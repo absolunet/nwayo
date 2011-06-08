@@ -1,0 +1,200 @@
+/*------------------------------------------------------------------------------------//
+// Client : -
+// Date   : mois 0000
+//------------------------------------------------------------------------------------*/
+
+/*- Base -------------------------------------------------------------------*/
+body {
+	margin:0;
+	font-family:@defaultFontFamily; font-size: 12px; 
+	background-color:@defaultBgColor;
+}
+a {
+	color:@defaultLinkColor; text-decoration:none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+
+
+/*- Selection -------------------------------------------------------------------*/
+::selection {
+    background-color: @defaultLinkColor;
+    color: @defaultFontColor;
+}
+::-moz-selection {
+    background-color: @defaultLinkColor;
+    color: @defaultFontColor;
+}
+img::selection {
+    background:none;
+}
+img::-moz-selection {
+    background:none;
+}
+
+
+/*- Common -------------------------------------------------------------------*/
+sup {
+	font-size: 80%;
+	line-height: 100%;
+	vertical-align: text-top;
+	padding-bottom: 5px;
+}
+.Clearer { clear:both; }
+.AligneGauche { float:left; }
+.AligneDroite { float:right; }
+div.hr {
+	height:1px;
+	margin:20px 0;
+	background-color:#fff;
+}
+
+a.Btn {
+	position:relative; display:inline-block;
+	height:50px;
+	padding:0 0 0 5px;
+	font-size:11px; color:#fff; 
+
+	span.left {
+		position:absolute; display:block;
+		left:0; top:0;
+		width:5px; height:50px;
+		background:transparent url(/images/Btn.png) left top no-repeat;
+		cursor:pointer;
+	}
+	span.text {
+		display:block;
+		height:20px;
+		padding:15px;
+		background:transparent url(/images/Btn.png) right top no-repeat;
+		cursor:pointer;
+	}
+}
+
+
+
+/*- Styles communs à toutes les pages -----------------------------------------*/
+#Wrapper {
+	width: 960px;
+	margin: 0 auto;
+	color:@defaultFontColor;
+}
+
+/*- Entete -------------------------------------------------------------------*/
+#Entete {
+
+	/*- Nav Fixe -------------------------------------------------------------------*/
+	#NavFixe {
+
+	}
+
+	/*- Menu Principal -------------------------------------------------------------------*/
+	#MenuPrincipal {
+
+	}
+
+}
+
+
+/*- Corps -------------------------------------------------------------------*/
+#Corps {
+
+	#Contenu {
+
+	}
+}
+
+
+/*- Pied de page -------------------------------------------------------------------*/
+#PiedPage {
+
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+/*- Editable -------------------------------------------------------------------*/
+.Editable {
+	font-size: 12px;
+
+	h1 {
+
+	}
+	h2 {
+
+	}
+	h3 {
+
+	}
+	h4,
+	h5,
+	h6 {
+
+	}
+	p {
+		font-size: 12px;
+		line-height: 1.5;
+		margin-bottom: 1em;
+	}
+	.TextePetit {
+		font-size: 80%;
+	}
+	img.ImageContour {
+		border: 1px solid #000;
+	}
+	img.ImageGauche {
+		border: 1px solid #000;
+		margin:	0 15px 5px 0;
+		float: left;
+	}
+	img.ImageDroite {
+		border: 1px solid #000;
+		margin: 0  0 5px 15px;
+		float: right;
+	}
+	ul {
+		margin: 0 0 1em 15px;
+		
+		li {
+			list-style: disc outside url(/images/Puce_Liste.gif);
+			padding: 0 0 5px 0;
+		}
+	}
+
+	ol {
+		margin: 0 0 1em 24px;
+
+		li {
+			list-style: decimal outside;
+			padding: 0 0 5px 0;
+		}
+	}
+	
+	table.Tableau {
+
+		td {
+			vertical-align: top;
+		}
+		td.CelluleTitre {
+
+		}
+		td.CelluleSousTitre {
+
+		}
+		td.CelluleAlternative {
+
+		}
+
+	}
+}
