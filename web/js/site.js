@@ -3,11 +3,11 @@
 // Date   : mois 0000
 //------------------------------------------------------------------------------------*/
 
-var MONSITE = (function(w,d,$,K,undefined){
+window.MONSITE = (function($,K,undefined){
 	
-	var variableLocale = 'yo man';
+	var _variableLocale = 'yo man';
 
-	function fonctionLocale() {
+	function _fonctionLocale() {
 		
 	}
 	
@@ -37,4 +37,4 @@ var MONSITE = (function(w,d,$,K,undefined){
 	
 	
 	return MS;
-})(window,document,jQuery,kafe);
+})(jQuery,kafe);
