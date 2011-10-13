@@ -1,0 +1,97 @@
+/*----------------------------------------------------------------------------//
+// Client : -
+// Date   : mois 0000
+//----------------------------------------------------------------------------*/
+
+/*- Redéfinition HTML -----------------------------------------------*/
+body {
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	color: ;
+}
+p {
+	margin: 0 0 12px 0;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+ul {
+	margin: 0 0 12px 15px;
+	padding: 0;
+}
+ul li {
+	list-style: disc outside url(/images/Puce_Liste.gif);
+	padding: 0 0 5px 0;
+}
+ol {
+	margin: 0 0 12px 24px;
+	padding: 0;
+}
+ol li {
+	list-style: decimal outside;
+	padding: 0 0 5px 0;
+}
+
+/*- Classes pour les textes -----------------------------------------*/
+.TextePetit {
+	font-size: 80%;
+}
+
+/*- Heading ---------------------------------------------------------*/
+h1 {
+	font-size: 18px;
+	color: red; text-decoration:line-through;
+	margin: 5px 0;
+}
+h2 {
+	font-size: 16px;
+}
+h3 {
+	font-size: 14px;
+}
+h4, h5, h6 {
+	font-size: 12px;
+}
+
+/*- Classes pour les hyperliens -------------------------------------*/
+a {
+	text-decoration: underline;
+}
+a:hover {
+	text-decoration: none;
+}
+a img {
+	border:0;
+}
+
+/*- Classes pour les images -----------------------------------------*/
+img.ImageContour {
+	border:	1px solid #000000;
+}
+img.ImageGauche {
+	margin: 0  15px 5px 0;
+	float: left;
+}
+img.ImageDroite {
+	margin: 0  0 5px 15px;
+	float: right;
+}
+
+/*- Classes pour les tableaux ---------------------------------------*/
+table.Tableau {
+
+}
+table.Tableau td {
+	vertical-align: top;
+}
+table.Tableau td.CelluleTitre {
+
+}
+table.Tableau td.CelluleSousTitre {
+
+}
+table.Tableau td.CelluleAlternative {
+
+}
+/*--------------------------------------------------------------------------*/

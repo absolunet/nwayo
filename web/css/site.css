@@ -1,0 +1,172 @@
+/*----------------------------------------------------------------------------//
+// Client : -
+// Date   : mois 0000
+//----------------------------------------------------------------------------*/
+@import url(reset.css);/* Mise à zéro de tous les padding / margin par défaut */
+@import url(traductions.css);/* Redéfinitions des images traduites */
+
+/*- Général -------------------------------------------------------------------*/
+body {
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 10px; /* 62.5% pour flexibilite */
+	background: #fff;
+	color: #000;
+}
+a {
+	color: blue;
+	text-decoration: underline;
+}
+a:hover {
+	text-decoration: none;
+}
+sup {
+	font-size: 80%;
+	line-height: 100%;
+	vertical-align: text-top;
+	padding-bottom: 5px;
+}
+.Clearer { clear:both; }
+.AligneGauche { float:left; }
+.AligneDroite { float:right; }
+
+/*- Styles communs à toutes les pages -----------------------------------------*/
+
+#Wrapper {
+	width: 960px;
+	margin: 0 auto;
+}
+#Entete {
+	
+}
+#NavFixe {
+	
+}
+#MenuPrincipal {
+
+}
+#Corps {
+	
+}
+#Contenu {
+	
+}
+#PiedPage {
+	
+}
+
+/*- Editable -------------------------------------------------------------------*/
+.Editable {
+	font-size: 12px;
+}
+.Editable h1 {
+
+}
+.Editable h2 {
+
+}
+.Editable h3 {
+
+}
+.Editable h4,
+.Editable h5,
+.Editable h6 {
+
+}
+.Editable p {
+	font-size: 12px;
+	line-height: 1.5;
+	margin-bottom: 1em;
+}
+.Editable .TextePetit {
+	font-size: 80%;
+}
+.Editable img.ImageContour {
+	border: 1px solid #000;
+}
+.Editable img.ImageGauche {
+	border: 1px solid #000;
+	margin:	0 15px 5px 0;
+	float: left;
+}
+.Editable img.ImageDroite {
+	border: 1px solid #000;
+	margin: 0  0 5px 15px;
+	float: right;
+}
+.Editable ul {
+	margin: 0 0 1em 15px;
+}
+.Editable ul li {
+	list-style: disc outside url(/images/Puce_Liste.gif);
+	padding: 0 0 5px 0;
+}
+
+.Editable ol {
+	margin: 0 0 1em 24px;
+}
+.Editable ol li {
+	list-style: decimal outside;
+	padding: 0 0 5px 0;
+}
+.Editable table.Tableau {
+
+}
+.Editable table.Tableau td {
+	vertical-align: top;
+}
+.Editable table.Tableau td.CelluleTitre {
+
+}
+.Editable table.Tableau td.CelluleSousTitre {
+
+}
+.Editable table.Tableau td.CelluleAlternative {
+
+}
+
+
+/*- Styles spéciaux pour page d'accueil ----------------------------------------*/
+body.Accueil {
+	
+}
+
+/*- Styles spéciaux pour pages intérieures -------------------------------------*/
+
+
+/*- Styles pour formulaires ----------------------------------------------------*/
+.Formulaire {
+	
+}
+.Formulaire p {
+
+}
+
+.TxtErreur {
+	color: #FF0000;
+}
+div.SommaireValidation {
+	color: #b46f6d !important;
+	background: #fdf1f1;
+	border:1px solid #b46f6d;
+	padding: 20px;
+	margin-bottom: 12px;
+}
+
+input, textarea, select,
+.TxtBox, .TxtArea, .SelectList {
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
+	font-size: 11px;
+}
+.TxtBox {
+
+}
+.TxtArea {
+
+}
+.SelectList {
+
+}
+.Btn {
+
+}
+
