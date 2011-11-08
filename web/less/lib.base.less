@@ -115,9 +115,10 @@
 }
 */
 
-
-
-
+.background_alpha(@r, @g, @b, @alpha) {
+	background: rgb(@r, @g, @b); /* The Fallback */
+	background: rgba(@r, @g, @b, @alpha);
+}
 
 
 /* ----- CUSTOM ----- */
@@ -125,4 +126,9 @@
 	display:block; text-indent:-10000px; overflow:hidden;
 	width:@width; height:@height;
 	text-align:left;
+}
+.MinHeight(@height:auto) {
+	min-height:@height;
+	height:auto !important;
+	height:@height;
 }
