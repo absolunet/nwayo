@@ -115,9 +115,30 @@
 }
 */
 
-.background_alpha(@r, @g, @b, @alpha) {
-	background: rgb(@r, @g, @b); /* The Fallback */
-	background: rgba(@r, @g, @b, @alpha);
+.background_alpha(@color:#000, @opacity:0.5) {
+	background-color: rgb(red(@color), green(@color), blue(@color));  /* Fallback */
+    background-color: rgba(red(@color), green(@color), blue(@color), @opacity);
+}
+
+/* IE6 - 8 */
+.ie_background_alpha(@color:#000, @opacity:0.5) {
+	background-color: transparent;
+
+    @msOpacity: floor(255 * @opacity);
+    @msColorFormat: "#{0}{1}{2}{3}";
+    @msColor: formatstring(@msColorFormat, hex(@msOpacity), hex(red(@color)), hex(green(@color)), hex(blue(@color))); 
+    @msGradient: "progid:DXImageTransform.Microsoft.gradient(startColorStr={0},EndColorStr={0})";
+
+    filter: formatString(@msGradient, @msColor);
+	zoom:1;
+}
+
+.background_fullscreen(@img) {
+	background: @img no-repeat top left fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 
 
