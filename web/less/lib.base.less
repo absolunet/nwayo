@@ -57,10 +57,24 @@
 
 
 /* ----- box-shadow ----- */
-.box-shadow(@shadow_x, @shadow_y, @shadow_rad, @shadow_color) {
-    box-shadow: @shadow_x @shadow_y @shadow_rad @shadow_color;
-    -webkit-box-shadow:@shadow_x @shadow_y @shadow_rad @shadow_color;
-    -moz-box-shadow:@shadow_x @shadow_y @shadow_rad @shadow_color;
+.box-shadow(@shadow_x, @shadow_y, @shadow_size, @shadow_rad, @shadow_color) {
+    -webkit-box-shadow:@shadow_x @shadow_y @shadow_size @shadow_rad @shadow_color;
+    -moz-box-shadow:@shadow_x @shadow_y @shadow_size @shadow_rad @shadow_color;
+    box-shadow: @shadow_x @shadow_y @shadow_size @shadow_rad @shadow_color;
+}
+
+.box-shadow-reset() {
+    -webkit-box-shadow:none !important;
+    -moz-box-shadow:none !important;
+    box-shadow:none !important;
+}
+
+
+/* ----- text-shadow ----- */
+.text-shadow(@tshadow_h, @tshadow_v, @tshadow_blur, @tshadow_color) {
+	-webkit-text-shadow:@tshadow_h @tshadow_v @tshadow_blur @tshadow_color;
+	-moz-text-shadow:@tshadow_h @tshadow_v @tshadow_blur @tshadow_color;
+	text-shadow:@tshadow_h @tshadow_v @tshadow_blur @tshadow_color;
 }
 
 
@@ -121,6 +135,7 @@
 }
 
 /* IE6 - 8 */
+/*
 .ie_background_alpha(@color:#000, @opacity:0.5) {
 	background-color: transparent;
 
@@ -132,6 +147,7 @@
     filter: formatString(@msGradient, @msColor);
 	zoom:1;
 }
+*/
 
 .background_fullscreen(@img) {
 	background: @img no-repeat top left fixed; 
