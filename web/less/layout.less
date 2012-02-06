@@ -1,115 +1,89 @@
-/*------------------------------------------------------------------------------------//
+/*----------------------------------------------------------------------------//
 // Client : -
-// Date   : mois 0000
-//------------------------------------------------------------------------------------*/
+//----------------------------------------------------------------------------*/
 
-/*- Base -------------------------------------------------------------------*/
-body {
-	margin:0;
-	font-family:@defaultFontFamily; font-size: 12px; 
+/*- Base ---------------------------------------------------------------------*/
+html {
 	background-color:@defaultBgColor;
+}
+body {
+	width:@siteWidth;
+	font-family:@defaultFontFamily; font-size:12px; line-height:1.3;
 }
 a {
 	color:@defaultLinkColor; text-decoration:none;
 
 	&:hover {
-		text-decoration: underline;
+		text-decoration:underline;
 	}
 }
-
-
-
-/*- Selection -------------------------------------------------------------------*/
-::selection {
-    background-color: @defaultLinkColor;
-    color: @defaultFontColor;
+ 
+.Clearer { 
+	clear:both;
 }
-::-moz-selection {
-    background-color: @defaultLinkColor;
-    color: @defaultFontColor;
-}
-img::selection {
-    background:none;
-}
-img::-moz-selection {
-    background:none;
-}
-
-
-/*- Common -------------------------------------------------------------------*/
 sup {
-	font-size: 80%;
-	line-height: 100%;
-	vertical-align: text-top;
-	padding-bottom: 5px;
+	padding-bottom:5px;
+	font-size:80%; line-height:100%; vertical-align:text-top;
 }
-.Clearer { clear:both; }
-.AligneGauche { float:left; }
-.AligneDroite { float:right; }
 div.hr {
 	height:1px;
 	margin:20px 0;
-	background-color:#fff;
+	background-color:@white;
 }
-
 a.Btn {
+	@btnHeight:50px;
+	@btnLeft:  5px;
+	
 	position:relative; display:inline-block;
-	height:50px;
-	padding:0 0 0 5px;
-	font-size:11px; color:#fff; 
+	height:@btnHeight;
+	padding:0 0 0 @btnLeft;
+	font-size:12px; color:@white; 
 
 	span.left {
 		position:absolute; display:block;
 		left:0; top:0;
-		width:5px; height:50px;
-		background:transparent url(/images/Btn.png) left top no-repeat;
+		width:@btnLeft; height:@btnHeight;
+		background:transparent @imgBtn left top no-repeat;
 		cursor:pointer;
 	}
 	span.text {
 		display:block;
 		height:20px;
 		padding:15px;
-		background:transparent url(/images/Btn.png) right top no-repeat;
+		background:transparent @imgBtn right top no-repeat;
 		cursor:pointer;
 	}
 }
 
+/*- Header -------------------------------------------------------------------*/
+#Header {
 
-
-/*- Styles communs à toutes les pages -----------------------------------------*/
-#Wrapper {
-	width: 960px;
-	margin: 0 auto;
-	color:@defaultFontColor;
-}
-
-/*- Entete -------------------------------------------------------------------*/
-#Entete {
-
-	/*- Nav Fixe -------------------------------------------------------------------*/
-	#NavFixe {
-
-	}
-
-	/*- Menu Principal -------------------------------------------------------------------*/
-	#MenuPrincipal {
+	/*- Fixed Nav --------------------------------------------------------*/
+	nav.Fixed {
 
 	}
 
 }
 
+/*- Main Menu ----------------------------------------------------------------*/
+#MainMenu {
 
-/*- Corps -------------------------------------------------------------------*/
-#Corps {
-
-	#Contenu {
-
-	}
 }
 
 
-/*- Pied de page -------------------------------------------------------------------*/
-#PiedPage {
+/*- Content ------------------------------------------------------------------*/
+#Content {
+
+}
+
+
+/*- Lateral Column -----------------------------------------------------------*/
+#LateraleCol {
+
+}
+
+/*- Footer -------------------------------------------------------------------*/
+#Footer {
 
 	
 }
@@ -124,9 +98,10 @@ a.Btn {
 
 
 
-/*- Editable -------------------------------------------------------------------*/
+/*- Editable -----------------------------------------------------------------*/
 .Editable {
-	font-size: 12px;
+	font-size:12px; line-height:1.5;
+
 
 	h1 {
 
@@ -143,48 +118,44 @@ a.Btn {
 
 	}
 	p {
-		font-size: 12px;
-		line-height: 1.5;
-		margin-bottom: 1em;
+		margin-bottom:1em;
 	}
 	.TextePetit {
-		font-size: 80%;
+		font-size:80%;
 	}
 	img.ImageContour {
-		border: 1px solid #000;
+		border:1px solid @black;
 	}
 	img.ImageGauche {
-		border: 1px solid #000;
-		margin:	0 15px 5px 0;
-		float: left;
+		float:left;
+		margin:0 15px 5px 0;
 	}
 	img.ImageDroite {
-		border: 1px solid #000;
-		margin: 0  0 5px 15px;
-		float: right;
+		float:right;
+		margin:0 0 5px 15px;
 	}
 	ul {
-		margin: 0 0 1em 15px;
+		margin:0 0 1em 15px;
 		
 		li {
-			list-style: disc outside url(/images/Puce_Liste.gif);
-			padding: 0 0 5px 0;
+			list-style:disc outside @imgPuce;
+			padding:0 0 5px 0;
 		}
 	}
 
 	ol {
-		margin: 0 0 1em 24px;
+		margin:0 0 1em 24px;
 
 		li {
-			list-style: decimal outside;
-			padding: 0 0 5px 0;
+			list-style:decimal outside;
+			padding:0 0 5px 0;
 		}
 	}
 	
 	table.Tableau {
 
 		td {
-			vertical-align: top;
+			vertical-align:top;
 		}
 		td.CelluleTitre {
 
