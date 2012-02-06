@@ -5,10 +5,9 @@
 /* ----- opacity ----- */
 .opacity(@per) {
 	@filter: @per*100;
-
 	opacity:@per;
-    -moz-opacity:@per;
-    -khtml-opacity:@per;
+	-moz-opacity:@per;
+	-khtml-opacity:@per;
 	filter:alpha(opacity=@filter);
 }
 
@@ -57,10 +56,10 @@
 
 
 /* ----- box-shadow ----- */
-.box-shadow(@shadow_x, @shadow_y, @shadow_size, @shadow_rad, @shadow_color) {
-    -webkit-box-shadow:@shadow_x @shadow_y @shadow_size @shadow_rad @shadow_color;
-    -moz-box-shadow:@shadow_x @shadow_y @shadow_size @shadow_rad @shadow_color;
-    box-shadow: @shadow_x @shadow_y @shadow_size @shadow_rad @shadow_color;
+.box-shadow(@value) {
+    -webkit-box-shadow:@value;
+    -moz-box-shadow:@value;
+    box-shadow:@value;
 }
 
 .box-shadow-reset() {
@@ -71,10 +70,10 @@
 
 
 /* ----- text-shadow ----- */
-.text-shadow(@tshadow_h, @tshadow_v, @tshadow_blur, @tshadow_color) {
-	-webkit-text-shadow:@tshadow_h @tshadow_v @tshadow_blur @tshadow_color;
-	-moz-text-shadow:@tshadow_h @tshadow_v @tshadow_blur @tshadow_color;
-	text-shadow:@tshadow_h @tshadow_v @tshadow_blur @tshadow_color;
+.text-shadow(@value) {
+	-webkit-text-shadow:@value;
+	-moz-text-shadow:@value;
+	text-shadow:@value;
 }
 
 
@@ -163,9 +162,4 @@
 	display:block; text-indent:-10000px; overflow:hidden;
 	width:@width; height:@height;
 	text-align:left;
-}
-.MinHeight(@height:auto) {
-	min-height:@height;
-	height:auto !important;
-	height:@height;
 }
