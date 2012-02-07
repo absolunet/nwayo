@@ -4,7 +4,14 @@
 
 window.MONSITE = (function($,K,undefined){
 	
-	var _variableLocale = 'yo man';
+	var 
+		$window   = $(window),
+		$document = $(document),
+		$body     = $('body'),
+		kEnv      = K.env,
+		culture   = kEnv('culture'),
+		lang      = kEnv('lang')
+	;
 
 	function _fonctionLocale() {
 		
