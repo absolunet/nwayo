@@ -1,4 +1,4 @@
-/*------------------------------------------------------------------------------------//
+﻿/*------------------------------------------------------------------------------------//
 // Client : -
 //------------------------------------------------------------------------------------*/
 
@@ -7,7 +7,6 @@ window.MONSITE = (function($,K,undefined){
 	var 
 		$window   = $(window),
 		$document = $(document),
-		$body     = $('body'),
 		kEnv      = K.env,
 		culture   = kEnv('culture'),
 		lang      = kEnv('lang')
@@ -36,6 +35,8 @@ window.MONSITE = (function($,K,undefined){
 	// ------------------------------------------
 	$(function(){
 	
+		var $body = $('body');
+
 		// à exécuter quand le document est ready
 		
 	});
