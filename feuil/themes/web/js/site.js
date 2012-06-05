@@ -9,7 +9,9 @@ window.MONSITE = (function($,K,undefined){
 		$document = $(document),
 		kEnv      = K.env,
 		culture   = kEnv('culture'),
-		lang      = kEnv('lang')
+		lang      = kEnv('lang'),
+		page      = kEnv('page'),
+		tmpl      = kEnv('tmpl')
 	;
 
 	function _fonctionLocale() {
