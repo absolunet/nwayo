@@ -78,11 +78,11 @@
 
 
 /* ----- transition ----- */
-.transition(@range, @time, @ease) {
-    -moz-transition: @range @time @ease;
-    -webkit-transition: @range @time @ease;
-    -o-transition: @range @time @ease;
-    transition: @range @time @ease;
+.transition(@value) {
+    -moz-transition: @value;
+    -webkit-transition: @value;
+    -o-transition: @value;
+    transition: @value;
 }
 
 
@@ -159,7 +159,7 @@
 
 /* ----- CUSTOM ----- */
 .ReplaceText(@width:auto,@height:auto) {
-	display:block; text-indent:-10000px; overflow:hidden;
+	display:block; overflow:hidden;
 	width:@width; height:@height;
-	text-align:left;
+	text-align:left; white-space:nowrap; text-indent:100%;
 }
