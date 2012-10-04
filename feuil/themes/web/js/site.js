@@ -2,32 +2,57 @@
 // Client : -
 //------------------------------------------------------------------------------------*/
 
-window.MONSITE = (function($,K,undefined){
+window.MYSITE = (function(K,undefined){
 	
 	var 
+		$         = K.jQuery,
 		$window   = $(window),
 		$document = $(document),
 		kEnv      = K.env,
 		culture   = kEnv('culture'),
 		lang      = kEnv('lang'),
 		page      = kEnv('page'),
-		tmpl      = kEnv('tmpl')
+		tmpl      = kEnv('tmpl'),
+
+		/*
+		kColorbox = K.ext.colorbox,
+		kUrl      = K.url,
+		/**/
+		
+		isHome    = _is('front'),
+		isContent = _is('page-node-4','page-node-22'),
+		
+		$header, 
+		$fixedNav, 
+		$mainMenu, 
+		$content, 
+		$lateralCol, 
+		$footer
 	;
 
-	function _fonctionLocale() {
-		
+	function _is() {
+		for (var i in arguments) {
+			if ($.inArray(arguments[i], tmpl.split(' ')) != -1) {
+				return true
+			}
+		}
+		return false;
+	}
+	
+	function _localFunction() {
+		// do something
 	}
 	
 	
 	// ------------------------------------------
 	// PUBLIC
 	// ------------------------------------------
-	var MS = {};
+	var M = {};
 	
-	MS.variablePublique = 'bonjour monsieur';
+	M.publicVariable = 'hi mister';
 	
-	MS.fonctionPublique = function() {
-		
+	M.publicFunction = function() {
+		// do something
 	};
 	
 
@@ -38,12 +63,102 @@ window.MONSITE = (function($,K,undefined){
 	$(function(){
 	
 		var $body = $('body');
-
-		// à exécuter quand le document est ready
 		
+		$header     = $('#Header');
+		$fixedNav   = $header.children('nav.Fixed');
+		$mainMenu   = $('#MainMenu');
+		$content    = $('#Content');
+		$lateralCol = $('#LateralCol');
+		$footer     = $('#Footer');
+
+		// external links
+		$body.on('click tap', 'a[rel="external"]', function() {
+			$(this).attr('target', '_blank');
+		});
+
+		/* addthis
+		window.addthis_config = { ui_language: lang };
+		window.addthis.init();
+		/**/
+		
+		/* preload jquery templates
+		$('script[type="text/x-jquery-tmpl"]').each(function () {
+			var $this = $(this);
+			$this.template($this.attr('id').substring(5));
+		});
+		/**/
+
+		/* colorbox default params
+		kColorbox.setParams({
+			close:      (lang == 'en') ? 'Close' : 'Fermer',
+			opacity:     0.7,
+			transition: 'elastic',
+			// if popup is hash triggered
+			// onClosed: function () { window.location = '#/'; }
+		});
+		/**/
+		
+		/* input mask
+		$('input[data-mask]').each(function() {
+			var 
+				$this = $(this),
+				mask  = $this.data('mask')
+			;
+			switch (mask) {
+				case 'phone':
+					$this.inputmask('(999) 999-9999 [ext: 99999]');
+				break;
+
+				case 'numeric':
+					$this.inputmask('non-negative-decimal', {radixPoint:',', digits:2 });
+				break;
+				
+				case 'numeric-integer':
+					$this.inputmask('9', {repeat:6, greedy:false });
+				break;
+				
+				default:
+					$this.inputmask(mask);
+				break;
+			}
+		});
+		/**/
+		
+		/* tabs
+		$('div[data-structure="tabs"] > section > h1').on('click', function() {
+			$(this).parent()
+				.siblings('section.On').removeClass('On').end()
+				.addClass('On')
+			;
+		}).first().trigger('click');
+		/**/
+		
+
+		/* hashchange
+		$window.on('hashchange', function (e) {
+			var params = kUrl.parseHashPath();
+
+			// if popup
+			if (params.length == 1 && $('#tmpl-' + params[0]).length) {
+				kColorbox.tmpl(params[0]);
+			} else {
+				// do your stuff
+			}
+		}).trigger('hashchange');
+		/**/
+
+
+
+		if (isHome) {
+			// do something
+		}
+		
+		if (isContent) {
+			// do something
+		}
 	});
 	
 	
 	
-	return MS;
-})(jQuery,kafe);
+	return M;
+})(kafe);

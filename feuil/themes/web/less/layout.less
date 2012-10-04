@@ -7,7 +7,9 @@ html {
 	background-color:@defaultBgColor;
 }
 body {
-	//-webkit-text-size-adjust:none; // pour sites mobiles
+	/* mobile
+	-webkit-text-size-adjust:none; 
+	*/
 	width:@siteWidth;
 	font-family:@defaultFontFamily; font-size:12px; line-height:1.3;
 }
@@ -27,35 +29,16 @@ sup {
 	padding-bottom:5px;
 	font-size:80%; line-height:100%; vertical-align:text-top;
 }
-div.hr {
-	height:1px;
-	margin:20px 0;
-	background-color:@white;
-}
-a.Btn {
-	@btnHeight:50px;
-	@btnLeft:  5px;
-	
-	position:relative; display:inline-block;
-	height:@btnHeight;
-	padding:0 0 0 @btnLeft;
-	font-size:12px; color:@white; 
 
-	span.left {
-		position:absolute; display:block;
-		left:0; top:0;
-		width:@btnLeft; height:@btnHeight;
-		background:transparent @imgBtn left top no-repeat;
-		cursor:pointer;
-	}
-	span.text {
-		display:block;
-		height:20px;
-		padding:15px;
-		background:transparent @imgBtn right top no-repeat;
-		cursor:pointer;
+.BtnType1 {
+	.Btn(16px, 8px, 10px, 8px, 10px, @imgBtn, top, -50px);
+	font-size:16px; color:@white;
+
+	&:hover {
+		color:@black;
 	}
 }
+
 
 /*- Header -------------------------------------------------------------------*/
 #Header {
@@ -92,7 +75,28 @@ a.Btn {
 
 
 
+form {
+	input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"] {
+		-webkit-appearance: textfield;
+	}
 
+	input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], select {
+		box-sizing:content-box;
+		-ms-box-sizing:content-box;
+		-moz-box-sizing:content-box;
+		-webkit-box-sizing:content-box;
+
+		&.Placeholder {
+			color: @black;
+		}
+		&::-webkit-input-placeholder {
+			color: @black;
+		}
+		&:-moz-placeholder {
+			color: @black;
+		}
+	}
+}
 
 
 
@@ -138,7 +142,7 @@ a.Btn {
 		margin:0 0 1em 15px;
 		
 		li {
-			list-style:disc outside @imgPuce;
+			list-style:disc outside @imgBullet;
 			padding:0 0 5px 0;
 		}
 	}

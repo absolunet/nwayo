@@ -3,7 +3,7 @@
 <html lang="fr">
 <head runat="server"> 
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width; user-scalable=no;" /> 
+	<meta name="viewport" content="width=device-width, user-scalable=no;" /> 
 	<meta name="format-detection" content="telephone=no" />
 	<title>Zone sécurisée / Secured Zone</title> 
 	<style> 
