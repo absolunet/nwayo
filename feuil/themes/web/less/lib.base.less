@@ -52,8 +52,13 @@
 .border-right-radius(@radius) {
 	.border-top-right-radius(@radius);
 	.border-bottom-right-radius(@radius);
-} 
+}
 
+/* ----- border ----- */
+.border_alpha(@hex:#000, @opacity:0.5) {
+	border-color: @hex;  /* Fallback */
+    border-color: hsla(hue(@hex), saturation(@hex), lightness(@hex), @opacity);
+}
 
 /* ----- box-shadow ----- */
 .box-shadow(@value) {
@@ -75,7 +80,11 @@
 	-moz-text-shadow:@value;
 	text-shadow:@value;
 }
-
+.text-shadow-reset() {
+    -webkit-text-shadow:none !important;
+    -moz-text-shadow:none !important;
+    text-shadow:none !important;
+}
 
 /* ----- transition ----- */
 .transition(@value) {
@@ -118,19 +127,33 @@
     transform: translate(@move_x, @move_y);
 }
 
-/*
+/* ----- Background ----- */
 .background_gradient(@from, @to) {
     background: @from;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(@from), to(@to));
-    background-image: -moz-linear-gradient(top, @from, @to);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(@from), to(@to)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(top, @from, @to); /* Chrome 10+, Saf5.1+ */
+	background-image: -moz-linear-gradient(top, @from, @to); /* FF3.6+ */
+	background-image: -ms-linear-gradient(top, @from, @to); /* IE10 */
+	background-image: -o-linear-gradient(top, @from, @to); /* Opera 11.10+ */
+	background-image: linear-gradient(top, @from, @to); /* W3C */
+	/*
     filter: formatstring("progid:DXImageTransform.Microsoft.gradient(startColorstr='{0}', endColorstr='{1}')", @from, @to);         // IE6,IE7 
     -ms-filter: formatstring("\"progid:DXImageTransform.Microsoft.gradient(startColorStr='{0}', EndColorStr='{1}')\"", @from, @to); // IE8
+	*/
 }
-*/
-
-.background_alpha(@color:#000, @opacity:0.5) {
-	background-color: rgb(red(@color), green(@color), blue(@color));  /* Fallback */
-    background-color: rgba(red(@color), green(@color), blue(@color), @opacity);
+.background_gradient_image(@img, @from, @to) {
+	background: @from;
+	background-image: @img; /* fallback */
+	background-image: @img, -webkit-gradient(linear, left top, left bottom, from(@from), to(@to)); /* Saf4+, Chrome */
+	background-image: @img, -webkit-linear-gradient(top, @from, @to); /* Chrome 10+, Saf5.1+ */
+	background-image: @img, -moz-linear-gradient(top, @from, @to); /* FF3.6+ */
+	background-image: @img, -ms-linear-gradient(top, @from, @to); /* IE10 */
+	background-image: @img, -o-linear-gradient(top, @from, @to); /* Opera 11.10+ */
+	background-image: @img, linear-gradient(top, @from, @to); /* W3C */
+}
+.background_alpha(@hex:#000, @opacity:0.5) {
+	background-color: @hex;  /* Fallback */
+    background-color: hsla(hue(@hex), saturation(@hex), lightness(@hex), @opacity);
 }
 
 /* IE6 - 8 */
