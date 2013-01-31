@@ -1,0 +1,81 @@
+body {
+	width:auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin:0;
+	font-weight:normal; font-size:100%;
+}
+em {
+	font-style:italic;
+}
+
+blockquote, dd, dl, fieldset, menu, ol, p, pre, ul {
+	margin:0; padding:0; border:0;
+}
+
+input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], select {
+	box-sizing:content-box;
+	-ms-box-sizing:content-box;
+	-moz-box-sizing:content-box;
+	-webkit-box-sizing:content-box;
+}
+
+// drupal
+div.contextual-links-wrapper, a.contextual-links-trigger {
+	display:block;
+}
+
+
+
+
+/* -------------------------------------------
+   FUNCTIONS
+   ------------------------------------------- */
+
+/*- Replace Text --------------------------------------*/
+.ReplaceText(@width:auto,@height:auto) {
+	display:block; overflow:hidden;
+	width:@width; height:@height;
+	text-align:left; white-space:nowrap; text-indent:100%;
+}
+
+/*- Btn --------------------------------------*/
+.Btn(@height, @top, @right, @bottom, @left, @bg, @bgOff, @bgOn) {
+	position:relative; display:inline-block; overflow:visible; outline:none;
+	margin:0 @right 0 0; padding:@top 0 @bottom @left; border:0;
+	text-decoration:none; line-height:@height; 
+	background-color:transparent;
+	cursor:pointer;
+
+	&::-moz-focus-inner { 
+		padding:0; border:0;
+	}
+
+	&:before {
+		content:'';
+		display:block; position:absolute; z-index:-1;
+		top:0; left:0;
+		width:100%; height:100%;
+		background:transparent @bg left @bgOff no-repeat;
+	}
+
+	&:after {
+		content:'';
+		position:absolute;
+		right:@right * -1; top:0;
+		width:@right; height:@height + @top + @bottom;
+		background:transparent @bg right @bgOff no-repeat;
+	}
+
+	&:hover {
+		text-decoration:none;
+		
+		&:before {
+			background-position:left @bgOn;
+		}
+		&:after {
+			background-position:right @bgOn;
+		}
+	}
+}

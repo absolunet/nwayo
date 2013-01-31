@@ -7,11 +7,11 @@ html {
 	background-color:@defaultBgColor;
 }
 body {
-	/* mobile
-	-webkit-text-size-adjust:none; 
-	*/
+	// mobile
+	// -webkit-text-size-adjust:none; 
+
 	width:@siteWidth;
-	font-family:@defaultFontFamily; font-size:12px; line-height:1.3;
+	font-family:@defaultFontFamily; font-size:16px; line-height:1.3;
 }
 a {
 	color:@defaultLinkColor; text-decoration:none;
@@ -25,10 +25,6 @@ a {
 .Clearer { 
 	clear:both;
 }
-sup {
-	padding-bottom:5px;
-	font-size:80%; line-height:100%; vertical-align:text-top;
-}
 
 .BtnType1 {
 	.Btn(16px, 8px, 10px, 8px, 10px, @imgBtn, top, -50px);
@@ -38,6 +34,16 @@ sup {
 		color:@black;
 	}
 }
+
+.selection() {
+	color:@white;
+	background-color:@black;
+}
+::-moz-selection { .selection(); }
+::selection      { .selection(); }	
+
+
+
 
 
 /*- Header -------------------------------------------------------------------*/
@@ -76,26 +82,12 @@ sup {
 
 
 form {
-	input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"] {
-		-webkit-appearance: textfield;
+	.placeholder() {
+		font-style:italic; color:@black + 128;
 	}
-
-	input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], select {
-		box-sizing:content-box;
-		-ms-box-sizing:content-box;
-		-moz-box-sizing:content-box;
-		-webkit-box-sizing:content-box;
-
-		&.Placeholder {
-			color: @black;
-		}
-		&::-webkit-input-placeholder {
-			color: @black;
-		}
-		&:-moz-placeholder {
-			color: @black;
-		}
-	}
+	input.Placeholder                { .placeholder(); }
+	input::-webkit-input-placeholder { .placeholder(); }
+	input:-moz-placeholder           { .placeholder(); }
 }
 
 
@@ -104,23 +96,24 @@ form {
 
 /*- Editable -----------------------------------------------------------------*/
 .Editable {
-	font-size:12px; line-height:1.5;
-
-
 	h1 {
-
 	}
+	
 	h2 {
-
 	}
+
 	h3 {
-
 	}
-	h4,
-	h5,
+
+	h4 {
+	}
+
+	h5 {
+	}
+
 	h6 {
-
 	}
+
 	p {
 		margin-bottom:1em;
 	}

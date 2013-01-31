@@ -6,9 +6,11 @@ window.MYSITE = (function(K,undefined){
 	
 	var 
 		$         = K.jQuery,
+//		$Drupal   = jQuery,
 		$window   = $(window),
 		$document = $(document),
 		kEnv      = K.env,
+		kString   = K.string,
 		culture   = kEnv('culture'),
 		lang      = kEnv('lang'),
 		page      = kEnv('page'),
@@ -19,8 +21,9 @@ window.MYSITE = (function(K,undefined){
 		kUrl      = K.url,
 		/**/
 		
-		isHome    = _is('front'),
-		isContent = _is('page-node-4','page-node-22'),
+		isHome         = tmpl.K().contains('front'),
+		isContent      = tmpl.K().contains('page-node-4','page-node-22'),
+		isFirstArticle = (page == 'article-12345'),
 		
 		$header, 
 		$fixedNav, 
@@ -30,15 +33,6 @@ window.MYSITE = (function(K,undefined){
 		$footer
 	;
 
-	function _is() {
-		for (var i in arguments) {
-			if ($.inArray(arguments[i], tmpl.split(' ')) != -1) {
-				return true
-			}
-		}
-		return false;
-	}
-	
 	function _localFunction() {
 		// do something
 	}
@@ -72,7 +66,7 @@ window.MYSITE = (function(K,undefined){
 		$footer     = $('#Footer');
 
 		// external links
-		$body.on('click tap', 'a[rel="external"]', function() {
+		$body.on('click', 'a[data-external="true"]', function() {
 			$(this).attr('target', '_blank');
 		});
 

@@ -3,36 +3,25 @@
 //------------------------------------------------------------------------------------*/
 
 @media print {
-	
+
+	/*- Largeur du print maximal -*/
+	#Wrapper {
+		width:100%;
+	}
+
+	/*- Liste à puce, si l'arrière-plan est utilisé -*/
+	#Content ul {
+		list-style:disc;
+	}
 
 
 
 
-/*- Largeur du print maximal -*/
-#Wrapper {
-	width:100%;
-}
-
-/*- Liste à puce, si l'arrière-plan est utilisé -*/
-#Content ul {
-	list-style:disc;
-}
-
-
-
-
-
-
-
-/*- Reset ce qui n'a pas été redéfinit -*/
-* {
-	/* float:none !important; */
-	position:static !important; overflow:visible !important;
-	border-color:@black !important;
-	color:@black !important; text-indent:0 !important;
-	background:transparent none !important;
-}
-
-
-/*------------------------------------------------------------------------------------*/
+	/*- Reset ce qui n'a pas été redéfinit -*/
+	* {
+		/* float:none !important; */
+		position:static !important; overflow:visible !important;
+		border-color:@black !important;
+		text-indent:0 !important;
+	}
 }
