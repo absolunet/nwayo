@@ -1,0 +1,22 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# AGENCY
+
+    Absolunet - @absolunet
+
+
+# TEAM
+
+    <name> -- <role> -- <twitter>
+
+
+# THANKS
+
+    <name>
+
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3,
+    lesscss, reset.css, Normalize.css, HTML5 ★ Boilerplate, elements.less, jQuery, kafe
