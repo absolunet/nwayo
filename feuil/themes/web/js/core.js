@@ -6,7 +6,7 @@ window.MYSITE = (function(K,undefined){
 	
 	var 
 		$         = K.jQuery,
-//		$Drupal   = jQuery,
+//		$Drupal   = window.jQuery,
 		$window   = $(window),
 		$document = $(document),
 		kEnv      = K.env,
@@ -70,6 +70,31 @@ window.MYSITE = (function(K,undefined){
 			$(this).attr('target', '_blank');
 		});
 
+		/* web font loader
+		WebFont.load({
+			custom: { families: ['FontName1','FontName2','FontName3'] },
+			loading: function() {
+				console.log('WebFont:loading');
+			},
+			active: function() {
+				console.log('WebFont:active');
+			},
+			inactive: function() {
+				console.log('WebFont:inactive');
+			},
+			fontloading: function(familyName, fvd) {
+				console.log('WebFont:loading: ' + familyName + '  |  '+ fvd);
+			},
+			fontactive: function(familyName, fvd) {
+				console.log('WebFont:active: ' + familyName + '  |  '+ fvd);
+			},
+			fontinactive: function(familyName, fvd) {
+				console.log('WebFont:inactive: ' + familyName + '  |  '+ fvd);
+			}
+		});
+		/**/
+		
+		
 		/* addthis
 		window.addthis_config = { ui_language: lang };
 		window.addthis.init();

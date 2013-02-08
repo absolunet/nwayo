@@ -18,5 +18,5 @@
 
 # TECHNOLOGY COLOPHON
 
-    HTML5, CSS3,
-    lesscss, reset.css, Normalize.css, HTML5 ★ Boilerplate, elements.less, jQuery, kafe
+    HTML5, CSS3, LESS, jQuery
+    reset.css, Normalize.css, HTML5 ★ Boilerplate, elements.less, cssua, kafe
