@@ -18,7 +18,7 @@
 	
 			$less = new lessc;
 			try {
-				echo $less->compileFile('../feuil/themes/web/less/loader.less');
+				echo $less->compileFile('../theme/less/loader.less');
 			} catch (exception $e) {
 				echo "fatal error: " . $e->getMessage();
 			}
@@ -46,75 +46,74 @@
 	<script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
 	<script src="//platform.twitter.com/widgets.js"></script>
 	<script src="//maps.google.com/maps/api/js?sensor=true"></script>
-	<script>window.kafe_jQuery = jQuery.noConflict(true);</script>
 
-	<script src="../../kafe/trunk/plugins/cssua.custom.js"></script>
-	<script src="../../kafe/trunk/kafe/kafe.js"></script>
+	<script src="../../kafe/branches/v2/plugins/cssua.custom.js"></script>
+	<script src="../../kafe/branches/v2/kafe/kafe.js"></script>
 
-	<script src="../../kafe/trunk/plugins/accounting.js"></script>
-	<script src="../../kafe/trunk/plugins/ajaxupload.js"></script>
-	<script src="../../kafe/trunk/plugins/json2.js"></script>
-	<script src="../../kafe/trunk/plugins/markerclusterer.js"></script>
-	<script src="../../kafe/trunk/plugins/modernizr.js"></script>
-	<script src="../../kafe/trunk/plugins/qrcode.js"></script>
-	<script src="../../kafe/trunk/plugins/simplexml.js"></script>
-	<script src="../../kafe/trunk/plugins/imageflow.custom/imageflow.js"></script>
-	<script src="../../kafe/trunk/plugins/jquery/bbq.js"></script>
-	<script src="../../kafe/trunk/plugins/jquery/blend.js"></script>
-	<script src="../../kafe/trunk/plugins/jquery/cookie.js"></script>
-	<script src="../../kafe/trunk/plugins/jquery/hashchange.js"></script>
-	<script src="../../kafe/trunk/plugins/jquery/inputmask.js"></script>
-	<script src="../../kafe/trunk/plugins/jquery/iviewer.js"></script>
-	<script src="../../kafe/trunk/plugins/jquery/json.js"></script>
-	<script src="../../kafe/trunk/plugins/jquery/mobile-gestures.custom.js"></script>
-	<script src="../../kafe/trunk/plugins/jquery/mobile.custom.js"></script>
-	<script src="../../kafe/trunk/plugins/jquery/scrollto.js"></script>
-	<script src="../../kafe/trunk/plugins/jquery/textselect.js"></script>
-	<script src="../../kafe/trunk/plugins/jquery/tmpl.js"></script>
-	<script src="../../kafe/trunk/plugins/jquery/colorbox/colorbox.js"></script>
-	<script src="../../kafe/trunk/plugins/jquery/jscrollpane/mousewheel.js"></script>
-	<script src="../../kafe/trunk/plugins/jquery/jscrollpane/mwheelIntent.js"></script>
-	<script src="../../kafe/trunk/plugins/jquery/jscrollpane/jscrollpane.js"></script>
+	<script src="../../kafe/branches/v2/plugins/accounting.js"></script>
+	<script src="../../kafe/branches/v2/plugins/ajaxupload.js"></script>
+	<script src="../../kafe/branches/v2/plugins/json2.js"></script>
+	<script src="../../kafe/branches/v2/plugins/markerclusterer.js"></script>
+	<script src="../../kafe/branches/v2/plugins/modernizr.js"></script>
+	<script src="../../kafe/branches/v2/plugins/qrcode.js"></script>
+	<script src="../../kafe/branches/v2/plugins/simplexml.js"></script>
+	<script src="../../kafe/branches/v2/plugins/imageflow.custom/imageflow.js"></script>
+	<script src="../../kafe/branches/v2/plugins/jquery/bbq.js"></script>
+	<script src="../../kafe/branches/v2/plugins/jquery/blend.js"></script>
+	<script src="../../kafe/branches/v2/plugins/jquery/cookie.js"></script>
+	<script src="../../kafe/branches/v2/plugins/jquery/hashchange.js"></script>
+	<script src="../../kafe/branches/v2/plugins/jquery/inputmask.js"></script>
+	<script src="../../kafe/branches/v2/plugins/jquery/iviewer.js"></script>
+	<script src="../../kafe/branches/v2/plugins/jquery/json.js"></script>
+	<script src="../../kafe/branches/v2/plugins/jquery/mobile-gestures.custom.js"></script>
+	<script src="../../kafe/branches/v2/plugins/jquery/mobile.custom.js"></script>
+	<script src="../../kafe/branches/v2/plugins/jquery/scrollto.js"></script>
+	<script src="../../kafe/branches/v2/plugins/jquery/textselect.js"></script>
+	<script src="../../kafe/branches/v2/plugins/jquery/tmpl.js"></script>
+	<script src="../../kafe/branches/v2/plugins/jquery/colorbox/colorbox.js"></script>
+	<script src="../../kafe/branches/v2/plugins/jquery/jscrollpane/mousewheel.js"></script>
+	<script src="../../kafe/branches/v2/plugins/jquery/jscrollpane/mwheelIntent.js"></script>
+	<script src="../../kafe/branches/v2/plugins/jquery/jscrollpane/jscrollpane.js"></script>
 
-	<script src="../../kafe/trunk/kafe/array.js"></script>
-	<script src="../../kafe/trunk/kafe/date.js"></script>
-	<script src="../../kafe/trunk/kafe/form.js"></script>
-	<script src="../../kafe/trunk/kafe/geolocation.js"></script>
-	<script src="../../kafe/trunk/kafe/mobile.js"></script>
-	<script src="../../kafe/trunk/kafe/number.js"></script>
-	<script src="../../kafe/trunk/kafe/storage.js"></script>
-	<script src="../../kafe/trunk/kafe/string.js"></script>
-	<script src="../../kafe/trunk/kafe/string-encrypt.js"></script>
-	<script src="../../kafe/trunk/kafe/string-validate.js"></script>
-	<script src="../../kafe/trunk/kafe/style.js"></script>
-	<script src="../../kafe/trunk/kafe/url.js"></script>
+	<script src="../../kafe/branches/v2/kafe/array.js"></script>
+	<script src="../../kafe/branches/v2/kafe/date.js"></script>
+	<script src="../../kafe/branches/v2/kafe/form.js"></script>
+	<script src="../../kafe/branches/v2/kafe/geolocation.js"></script>
+	<script src="../../kafe/branches/v2/kafe/mobile.js"></script>
+	<script src="../../kafe/branches/v2/kafe/number.js"></script>
+	<script src="../../kafe/branches/v2/kafe/storage.js"></script>
+	<script src="../../kafe/branches/v2/kafe/string.js"></script>
+	<script src="../../kafe/branches/v2/kafe/string-encrypt.js"></script>
+	<script src="../../kafe/branches/v2/kafe/string-validate.js"></script>
+	<script src="../../kafe/branches/v2/kafe/style.js"></script>
+	<script src="../../kafe/branches/v2/kafe/url.js"></script>
 
-	<script src="../../kafe/trunk/kafe/plugin/carousel.js"></script>
-	<script src="../../kafe/trunk/kafe/plugin/qrcode.js"></script>
-	<script src="../../kafe/trunk/kafe/plugin/sticky.js"></script>
-	<script src="../../kafe/trunk/kafe/plugin/webcropper.js"></script>
+	<script src="../../kafe/branches/v2/kafe/plugin/carousel.js"></script>
+	<script src="../../kafe/branches/v2/kafe/plugin/qrcode.js"></script>
+	<script src="../../kafe/branches/v2/kafe/plugin/sticky.js"></script>
+	<script src="../../kafe/branches/v2/kafe/plugin/webcropper.js"></script>
 
-	<script src="../../kafe/trunk/kafe/extension/addthis.js"></script>
-	<script src="../../kafe/trunk/kafe/extension/bbq.js"></script>
-	<script src="../../kafe/trunk/kafe/extension/colorbox.js"></script>
-	<script src="../../kafe/trunk/kafe/extension/disqus.js"></script>
-	<script src="../../kafe/trunk/kafe/extension/facebook.js"></script>
-	<script src="../../kafe/trunk/kafe/extension/flickr.js"></script>
-	<script src="../../kafe/trunk/kafe/extension/googlemaps.js"></script>
-	<script src="../../kafe/trunk/kafe/extension/googlemaps-styles.js"></script>
-	<script src="../../kafe/trunk/kafe/extension/inputmask.js"></script>
-	<script src="../../kafe/trunk/kafe/extension/soundcloud.js"></script>
-	<script src="../../kafe/trunk/kafe/extension/twitter.js"></script>
-	<script src="../../kafe/trunk/kafe/extension/youtube.js"></script>
+	<script src="../../kafe/branches/v2/kafe/extension/addthis.js"></script>
+	<script src="../../kafe/branches/v2/kafe/extension/bbq.js"></script>
+	<script src="../../kafe/branches/v2/kafe/extension/colorbox.js"></script>
+	<script src="../../kafe/branches/v2/kafe/extension/disqus.js"></script>
+	<script src="../../kafe/branches/v2/kafe/extension/facebook.js"></script>
+	<script src="../../kafe/branches/v2/kafe/extension/flickr.js"></script>
+	<script src="../../kafe/branches/v2/kafe/extension/googlemaps.js"></script>
+	<script src="../../kafe/branches/v2/kafe/extension/googlemaps-styles.js"></script>
+	<script src="../../kafe/branches/v2/kafe/extension/inputmask.js"></script>
+	<script src="../../kafe/branches/v2/kafe/extension/soundcloud.js"></script>
+	<script src="../../kafe/branches/v2/kafe/extension/twitter.js"></script>
+	<script src="../../kafe/branches/v2/kafe/extension/youtube.js"></script>
 
-	<script src="../../kafe/trunk/kafe/extension/cms/drupal.js"></script>
-	<script src="../../kafe/trunk/kafe/extension/cms/magento.js"></script>
-	<script src="../../kafe/trunk/kafe/extension/cms/medianamik.js"></script>
-	<script src="../../kafe/trunk/kafe/extension/cms/sitecore.js"></script>
+	<script src="../../kafe/branches/v2/kafe/extension/cms/drupal.js"></script>
+	<script src="../../kafe/branches/v2/kafe/extension/cms/magento.js"></script>
+	<script src="../../kafe/branches/v2/kafe/extension/cms/medianamik.js"></script>
+	<script src="../../kafe/branches/v2/kafe/extension/cms/sitecore.js"></script>
 
 
-	<!--script src="../../kafe/trunk/tequila/tequila.js"></script>
-		<script src="../../kafe/trunk/tequila/tween.js"></script-->	
+	<!--script src="../../kafe/branches/v2/tequila/tequila.js"></script>
+		<script src="../../kafe/branches/v2/tequila/tween.js"></script-->	
 
 
 	<!-- (c) 2013 Absolunet inc. -->
