@@ -21,12 +21,27 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
 	-webkit-box-sizing:content-box;
 }
 
+
+/* -------------------------------------------
+   CMS
+   ------------------------------------------- */
+
 // drupal
 div.contextual-links-wrapper, a.contextual-links-trigger {
 	display:block;
 }
 
 
+/* -------------------------------------------
+   MEDIA QUERIES
+   ------------------------------------------- */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {
+	#Content span.Infos,
+	#Content span.Details
+	{
+		.imgMobileIco2x();
+	}
+}
 
 
 /* -------------------------------------------

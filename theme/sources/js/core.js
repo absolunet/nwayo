@@ -1,4 +1,6 @@
-﻿/*------------------------------------------------------------------------------------//
+﻿try { require(['jquery', 'underscore', 'modernizr']); } catch () {};
+
+/*------------------------------------------------------------------------------------//
 // Client : -
 //------------------------------------------------------------------------------------*/
 
@@ -69,6 +71,8 @@ window.MYSITE = (function(K,undefined){
 		$body.on('click', 'a[data-external="true"]', function() {
 			$(this).attr('target', '_blank');
 		});
+		
+		//window.scrollTo(0,0);
 
 		/* web font loader
 		WebFont.load({

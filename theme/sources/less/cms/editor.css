@@ -20,7 +20,7 @@ ul {
 	padding: 0;
 }
 ul li {
-	list-style: disc outside url(/feuil/themes/web/images/Bullet.png);
+	list-style: disc outside url(/theme/assets/images/Bullet.png);
 	padding: 0 0 5px 0;
 }
 ol {
