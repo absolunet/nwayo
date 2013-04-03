@@ -1,11 +1,11 @@
 <!doctype html>
-<html id="fr-CA" lang="fr" data-kafe-page="SpecialContent" data-kafe-tmpl="Content">
+<html id="fr-CA" lang="fr" data-kafe-page="SpecialContent" data-kafe-tmpl="Content Patate">
 <head>
 	<title>Base page html5</title>
 
 	<meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport"              content="width=device-width">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport"              content="width=device-width">
 
 	<!-- MOBILE
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" /> 
@@ -18,7 +18,7 @@
 	
 			$less = new lessc;
 			try {
-				echo $less->compileFile('../theme/less/loader.less');
+				echo $less->compileFile('less/loader.less');
 			} catch (exception $e) {
 				echo "fatal error: " . $e->getMessage();
 			}
@@ -28,7 +28,7 @@
 
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-	<script src="http://code.jquery.com/jquery-migrate-1.1.0.js"></script>
+	<script src="//code.jquery.com/jquery-migrate-1.1.0.js"></script>
 	<?php /*
 
 	<!--[if lt IE 9]>
@@ -39,19 +39,21 @@
 	<!--[endif]-->
 	
 	*/ ?>
-	
-	
+	<script src="../../kafe/branches/v2/plugins/underscore.js"></script>
+
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+
+
+	<script src="../../kafe/branches/v2/kafe/kafe.js"></script>
+
 	<script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=TODO&amp;async=1"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
 	<script src="//platform.twitter.com/widgets.js"></script>
 	<script src="//maps.google.com/maps/api/js?sensor=true"></script>
 
-	<script src="../../kafe/branches/v2/plugins/cssua.custom.js"></script>
-	<script src="../../kafe/branches/v2/kafe/kafe.js"></script>
-
 	<script src="../../kafe/branches/v2/plugins/accounting.js"></script>
 	<script src="../../kafe/branches/v2/plugins/ajaxupload.js"></script>
+	<script src="../../kafe/branches/v2/plugins/cssua.js"></script>
 	<script src="../../kafe/branches/v2/plugins/json2.js"></script>
 	<script src="../../kafe/branches/v2/plugins/markerclusterer.js"></script>
 	<script src="../../kafe/branches/v2/plugins/modernizr.js"></script>
