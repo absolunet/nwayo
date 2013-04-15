@@ -1,126 +1,62 @@
 ﻿try { require(['jquery', 'underscore', 'modernizr']); } catch () {};
 
 /*------------------------------------------------------------------------------------//
-// Client : -
+// Client : MySite
 //------------------------------------------------------------------------------------*/
-
-window.MYSITE = (function(K,undefined){
+window.MySite = (function(kafe,undefined){
 	
 	var 
-		$         = K.jQuery,
-//		$Drupal   = window.jQuery,
-		$window   = $(window),
-		$document = $(document),
-		kEnv      = K.env,
-		kString   = K.string,
-		culture   = kEnv('culture'),
-		lang      = kEnv('lang'),
-		page      = kEnv('page'),
-		tmpl      = kEnv('tmpl'),
-
-		/*
-		kColorbox = K.ext.colorbox,
-		kUrl      = K.url,
-		/**/
-		
-		isHome         = tmpl.K().contains('front'),
-		isContent      = tmpl.K().contains('page-node-4','page-node-22'),
-		isFirstArticle = (page == 'article-12345'),
-		
-		$header, 
-		$fixedNav, 
-		$mainMenu, 
-		$content, 
-		$lateralCol, 
-		$footer
+		//$Drupal   = window.jQuery,
+		$         = kafe.dependencies.jQuery,
+		_         = kafe.dependencies.underscore,
+		Modernizr = kafe.dependencies.Modernizr,
+		App       = {},
+		Local     = {}
 	;
 
-	function _localFunction() {
-		// do something
-	}
-	
-	
-	// ------------------------------------------
-	// PUBLIC
-	// ------------------------------------------
-	var M = {};
-	
-	M.publicVariable = 'hi mister';
-	
-	M.publicFunction = function() {
-		// do something
-	};
-	
 
+	/*- Cache data -------------------------------------------------------------------*/
+	Local.Cache = function() {
+		
+		// env
+		App.env = {};
 
-	// ------------------------------------------
-	// INIT
-	// ------------------------------------------
-	$(function(){
-	
-		var $body = $('body');
-		
-		$header     = $('#Header');
-		$fixedNav   = $header.children('nav.Fixed');
-		$mainMenu   = $('#MainMenu');
-		$content    = $('#Content');
-		$lateralCol = $('#LateralCol');
-		$footer     = $('#Footer');
+		App.env.culture = kafe.env('culture');
+		App.env.lang    = kafe.env('lang');
+		App.env.page    = kafe.env('page');
+		App.env.tmpl    = kafe.env('tmpl');
 
-		// external links
-		$body.on('click', 'a[data-external="true"]', function() {
-			$(this).attr('target', '_blank');
-		});
-		
-		//window.scrollTo(0,0);
+		App.env.isHome            = (App.env.page == 'page-homepage');
+		App.env.isSousclientele   = _.contains(App.env.tmpl, 'node-type-sous-clientele');
 
-		/* web font loader
-		WebFont.load({
-			custom: { families: ['FontName1','FontName2','FontName3'] },
-			loading: function() {
-				console.log('WebFont:loading');
-			},
-			active: function() {
-				console.log('WebFont:active');
-			},
-			inactive: function() {
-				console.log('WebFont:inactive');
-			},
-			fontloading: function(familyName, fvd) {
-				console.log('WebFont:loading: ' + familyName + '  |  '+ fvd);
-			},
-			fontactive: function(familyName, fvd) {
-				console.log('WebFont:active: ' + familyName + '  |  '+ fvd);
-			},
-			fontinactive: function(familyName, fvd) {
-				console.log('WebFont:inactive: ' + familyName + '  |  '+ fvd);
-			}
-		});
-		/**/
+		// dom
+		App.dom = {};
 		
-		
-		/* addthis
-		window.addthis_config = { ui_language: lang };
-		window.addthis.init();
-		/**/
-		
+		App.dom.window     = $(window);
+		App.dom.document   = $(document);
+		App.dom.body       = $('body');
+		App.dom.header     = $('#Header');
+		App.dom.content    = $('#Content');
+		App.dom.lateralCol = $('#LateralCol') || undefined;
+		App.dom.footer     = $('#Footer');
+
 		/* preload jquery templates
 		$('script[type="text/x-jquery-tmpl"]').each(function () {
 			var $this = $(this);
 			$this.template($this.attr('id').substring(5));
 		});
 		/**/
+	};		
 
-		/* colorbox default params
-		kColorbox.setParams({
-			close:      (lang == 'en') ? 'Close' : 'Fermer',
-			opacity:     0.7,
-			transition: 'elastic',
-			// if popup is hash triggered
-			// onClosed: function () { window.location = '#/'; }
+
+	/*- Bind events -------------------------------------------------------------------*/
+	Local.Bind = function() {
+
+		// external links
+		App.dom.body.on('click', 'a[data-external="true"]', function() {
+			$(this).attr('target', '_blank');
 		});
-		/**/
-		
+
 		/* input mask
 		$('input[data-mask]').each(function() {
 			var 
@@ -169,19 +105,65 @@ window.MYSITE = (function(K,undefined){
 			}
 		}).trigger('hashchange');
 		/**/
+	};	
+	
+	
+	/*- To execute on start -------------------------------------------------------------------*/
+	Local.Start = function() {
+
+		/* web font loader
+		WebFont.load({
+			custom: { families: ['FontName1','FontName2','FontName3'] },
+			loading: function() {
+				console.log('WebFont:loading');
+			},
+			active: function() {
+				console.log('WebFont:active');
+			},
+			inactive: function() {
+				console.log('WebFont:inactive');
+			},
+			fontloading: function(familyName, fvd) {
+				console.log('WebFont:loading: ' + familyName + '  |  '+ fvd);
+			},
+			fontactive: function(familyName, fvd) {
+				console.log('WebFont:active: ' + familyName + '  |  '+ fvd);
+			},
+			fontinactive: function(familyName, fvd) {
+				console.log('WebFont:inactive: ' + familyName + '  |  '+ fvd);
+			}
+		});
+		/**/
+
+		/* addthis
+		window.addthis_config = { ui_language: lang };
+		window.addthis.init();
+		/**/
+
+		/* colorbox default params
+		kColorbox.setParams({
+			close:      (lang == 'en') ? 'Close' : 'Fermer',
+			opacity:     0.7,
+			transition: 'elastic',
+			// if popup is hash triggered
+			// onClosed: function () { window.location = '#/'; }
+		});
+		/**/
+
+	};
 
 
-
-		if (isHome) {
-			// do something
-		}
 		
-		if (isContent) {
-			// do something
-		}
+	$(function(){ 
+		Local.Cache();
+		Local.Bind();
+		Local.Start();
 	});
+
+
+
+	App.Utils = {};
+
+	return App;
 	
-	
-	
-	return M;
-})(kafe);
+})(window.kafe);
