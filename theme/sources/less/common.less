@@ -1,16 +1,19 @@
 /*------------------------------------------------------------------------------------//
 // Client : -
 //------------------------------------------------------------------------------------*/
+@assetPath: '/theme/assets';
+@imgPath:   '@{assetPath}/images';
+@fontPath:  '@{assetPath}/fonts';
 
 /*- Fonts -------------------------------------------------------------------*/
 /*
 @font-face {
 	font-family: 'MyFontFamily';
-	src: url('myfont-webfont.eot');                           // IE9 Compat Modes
-	src: url('myfont-webfont.eot?iefix') format('eot'),       // IE6-IE8
-	     url('myfont-webfont.woff') format('woff'),           // Modern Browsers
-	     url('myfont-webfont.ttf')  format('truetype'),       // Safari, Android, iOS
-	     url('myfont-webfont.svg#svgFontName') format('svg'); // Legacy iOS
+	src: url('@{fontPath}/myfont-webfont.eot');                           // IE9 Compat Modes
+	src: url('@{fontPath}/myfont-webfont.eot?iefix') format('eot'),       // IE6-IE8
+	     url('@{fontPath}/myfont-webfont.woff') format('woff'),           // Modern Browsers
+	     url('@{fontPath}/myfont-webfont.ttf')  format('truetype'),       // Safari, Android, iOS
+	     url('@{fontPath}/myfont-webfont.svg#svgFontName') format('svg'); // Legacy iOS
 }
 */
 
@@ -20,25 +23,25 @@
 @white: #fff;
 
 
-@siteWidth:         960px;
-@defaultBgColor:    #fff;
-@defaultFontColor:  #000;
-@defaultFontFamily: sans-serif;
+@siteWidth:     960px;
+@defaultBg:     #f8f8f8;
+@defaultText:   #444;
+@defaultFamily: sans-serif;
 
-@defaultLinkColor:  #00c;
-@shareLinkColor:    #0c0;
+@defaultLink:  #00c;
 
-@imgBullet:   url(/feuil/themes/web/images/Bullet.png);
-@imgBtn:      url(/feuil/themes/web/images/Btn.png);
-@imgMultiBg:  url(/feuil/themes/web/images/Bg_Multi.png);
-@imgMultiIco: url(/feuil/themes/web/images/Ico_Multi.png);
+
+@imgBullet:   url(@{imgPath}/Bullet.png);
+@imgBtn:      url(@{imgPath}/Btn.png);
+@imgMultiBg:  url(@{imgPath}/Bg_Multi.png);
+@imgMultiIco: url(@{imgPath}/Ico_Multi.png);
 	@imgMultiIcoPosItem1: left    top;
 	@imgMultiIcoPosItem2: left -100px;
 
-@imgMobileIco: url(/feuil/themes/mobile/images/Ico_Multi.png);  .imgMobileIco2x() { background-image:url(/feuil/themes/mobile/images/Ico_Multi@2x.png); background-size:100px 100px; }
+.imgImage() { background-image:url('@{imgPath}/Image.png'); @media @highdensity { background-image:url('@{imgPath}/Image@2x.png'); background-size:100px 100px; } }
 
 
-.TitleFont() {
+.Title() {
 	/* alternate font */
 }
 
