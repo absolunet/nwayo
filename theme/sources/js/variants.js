@@ -1,6 +1,13 @@
 ﻿/*------------------------------------------------------------------------------------//
 // Client : MySite
 //------------------------------------------------------------------------------------*/
+
+//>>excludeStart('excludeRequire', pragmas.excludeRequire);
+require([
+	'js/core'
+]);
+//>>excludeEnd('excludeRequire');
+
 (function(kafe, App, undefined){
 
 	var 

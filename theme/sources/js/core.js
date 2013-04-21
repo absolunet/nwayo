@@ -1,8 +1,13 @@
-﻿try { require(['jquery', 'underscore', 'modernizr']); } catch () {};
-
-/*------------------------------------------------------------------------------------//
+﻿/*------------------------------------------------------------------------------------//
 // Client : MySite
 //------------------------------------------------------------------------------------*/
+
+//>>excludeStart('excludeRequire', pragmas.excludeRequire);
+require([
+	'libs/kafe/kafe'
+]);
+//>>excludeEnd('excludeRequire');
+
 window.MySite = (function(kafe,undefined){
 	
 	var 
@@ -26,8 +31,8 @@ window.MySite = (function(kafe,undefined){
 		App.env.page    = kafe.env('page');
 		App.env.tmpl    = kafe.env('tmpl');
 
-		App.env.isHome            = (App.env.page == 'page-homepage');
-		App.env.isSousclientele   = _.contains(App.env.tmpl, 'node-type-sous-clientele');
+		App.env.isHome          = (App.env.page == 'page-homepage');
+		App.env.isSousclientele = _.contains(App.env.tmpl, 'node-type-sous-clientele');
 
 		// dom
 		App.dom = {};
@@ -113,25 +118,13 @@ window.MySite = (function(kafe,undefined){
 
 		/* web font loader
 		WebFont.load({
-			custom: { families: ['FontName1','FontName2','FontName3'] },
-			loading: function() {
-				console.log('WebFont:loading');
-			},
-			active: function() {
-				console.log('WebFont:active');
-			},
-			inactive: function() {
-				console.log('WebFont:inactive');
-			},
-			fontloading: function(familyName, fvd) {
-				console.log('WebFont:loading: ' + familyName + '  |  '+ fvd);
-			},
-			fontactive: function(familyName, fvd) {
-				console.log('WebFont:active: ' + familyName + '  |  '+ fvd);
-			},
-			fontinactive: function(familyName, fvd) {
-				console.log('WebFont:inactive: ' + familyName + '  |  '+ fvd);
-			}
+			custom:       { families: ['FontName1','FontName2','FontName3'] },
+			loading:      function() { App.dom.body.trigger('WebFont:loading'); },
+			active:       function() { App.dom.body.trigger('WebFont:active'); },
+			inactive:     function() { App.dom.body.trigger('WebFont:inactive'); },
+			fontloading:  function(familyName, fvd) { App.dom.body.trigger('WebFont:loading_font'); },
+			fontactive:   function(familyName, fvd) { App.dom.body.trigger('WebFont:active_font'); },
+			fontinactive: function(familyName, fvd) { App.dom.body.trigger('WebFont:inactive_font'); }
 		});
 		/**/
 
@@ -141,8 +134,8 @@ window.MySite = (function(kafe,undefined){
 		/**/
 
 		/* colorbox default params
-		kColorbox.setParams({
-			close:      (lang == 'en') ? 'Close' : 'Fermer',
+		kafe.ext.colorbox.setParams({
+			close:      (App.env.lang == 'en') ? 'Close' : 'Fermer',
 			opacity:     0.7,
 			transition: 'elastic',
 			// if popup is hash triggered
