@@ -90,7 +90,51 @@ form {
 	input:-moz-placeholder           { .placeholder(); }
 }
 
+// radio/checkbox images for css3 browsers 
+/*
+:root {
+	input[type="checkbox"], input[type="radio"] {
+		position:absolute;
+		clip:rect(1px, 1px, 1px, 1px);
+	
+		+ label {
+			position:relative;
+			padding-left:22px;
+			cursor:pointer;
+			
+			&:before {
+				content:'';
+				position:absolute;
+				top:0; left:0;
+				width:15px; height:15px;
+				background-image:@imgMultiIco; background-repeat:no-repeat;
+			}
+		}
+		
+		&:focus + label:before {
+			outline:1px dotted @black;
+		}
+	}
+	
+	input[type="checkbox"] {
+		+ label:before {
+			background-position:@imgMultiIcoPosCheckOff;
+		}
+		&:checked + label:before {
+			background-position:@imgMultiIcoPosCheckOn;
+		}
+	}
 
+	input[type="radio"] {
+		+ label:before {
+			background-position:@imgMultiIcoPosRadioOff;
+		}
+		&:checked + label:before {
+			background-position:@imgMultiIcoPosRadioOn;
+		}
+	}
+}
+*/
 
 
 
