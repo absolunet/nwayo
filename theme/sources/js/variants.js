@@ -4,7 +4,6 @@
 
 //>>excludeStart('excludeRequire', pragmas.excludeRequire);
 require([
-	'js/core'
 ]);
 //>>excludeEnd('excludeRequire');
 
