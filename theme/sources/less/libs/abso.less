@@ -49,6 +49,15 @@ div.contextual-links-wrapper, a.contextual-links-trigger {
    FUNCTIONS
    ------------------------------------------- */
 
+/*- Center/Scale an <img> in a container --------------*/
+.CenterImage(@w:150px, @h:150px) {
+	display:block; width:@w; height:@h;
+	font-size:1px; text-align:center; line-height:@h;
+	img {
+		display:inline-block; max-width:100%; max-height:100%;
+	}
+}
+
 /*- Replace Text --------------------------------------*/
 .ReplaceText(@width:auto,@height:auto) {
 	display:block; overflow:hidden;
