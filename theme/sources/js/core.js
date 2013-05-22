@@ -9,8 +9,8 @@ require([
 //>>excludeEnd('excludeRequire');
 
 window.MySite = (function(kafe,undefined){
-	
-	var 
+
+	var
 		//$Drupal   = window.jQuery,
 		$         = kafe.dependencies.jQuery,
 		_         = kafe.dependencies.underscore,
@@ -22,7 +22,7 @@ window.MySite = (function(kafe,undefined){
 
 	/*- Cache data -------------------------------------------------------------------*/
 	Local.Cache = function() {
-		
+
 		// env
 		App.env = {};
 
@@ -34,9 +34,9 @@ window.MySite = (function(kafe,undefined){
 		App.env.isHome          = (App.env.page == 'page-homepage');
 		App.env.isSousclientele = _.contains(App.env.tmpl, 'node-type-sous-clientele');
 
+
 		// dom
 		App.dom = {};
-		
 		App.dom.window     = $(window);
 		App.dom.document   = $(document);
 		App.dom.body       = $('body');
@@ -51,7 +51,7 @@ window.MySite = (function(kafe,undefined){
 			$this.template($this.attr('id').substring(5));
 		});
 		/**/
-	};		
+	};
 
 
 	/*- Bind events -------------------------------------------------------------------*/
@@ -87,7 +87,7 @@ window.MySite = (function(kafe,undefined){
 			}
 		});
 		/**/
-		
+
 		/* tabs
 		$('div[data-structure="tabs"] > section > h1').on('click', function() {
 			$(this).parent()
@@ -96,7 +96,7 @@ window.MySite = (function(kafe,undefined){
 			;
 		}).first().trigger('click');
 		/**/
-		
+
 
 		/* hashchange
 		$window.on('hashchange', function (e) {
@@ -110,9 +110,9 @@ window.MySite = (function(kafe,undefined){
 			}
 		}).trigger('hashchange');
 		/**/
-	};	
-	
-	
+	};
+
+
 	/*- To execute on start -------------------------------------------------------------------*/
 	Local.Start = function() {
 
@@ -146,8 +146,7 @@ window.MySite = (function(kafe,undefined){
 	};
 
 
-		
-	$(function(){ 
+	$(function() {
 		Local.Cache();
 		Local.Bind();
 		Local.Start();
@@ -158,5 +157,5 @@ window.MySite = (function(kafe,undefined){
 	App.Utils = {};
 
 	return App;
-	
+
 })(window.kafe);
