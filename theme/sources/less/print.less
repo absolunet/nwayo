@@ -4,24 +4,27 @@
 
 @media print {
 
-	/*- Largeur du print maximal -*/
-	#Wrapper {
+	#Body {
 		width:100%;
 	}
 
-	/*- Liste à puce, si l'arrière-plan est utilisé -*/
-	#Content ul {
+	ul {
 		list-style:disc;
 	}
 
 
 
 
-	/*- Reset ce qui n'a pas été redéfinit -*/
+	// Reset what hasn't been redefined
 	* {
-		/* float:none !important; */
+		// float:none !important;
 		position:static !important; overflow:visible !important;
 		border-color:@black !important;
 		text-indent:0 !important;
+
+
+		&:before, &:after {
+			display:none !important;
+		}
 	}
 }

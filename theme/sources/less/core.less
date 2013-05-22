@@ -4,17 +4,17 @@
 
 /*- Base ---------------------------------------------------------------------*/
 html {
-	background-color:@defaultBg;
+	background-color:@bgColor;
 }
 body {
 	// mobile
 	// -webkit-text-size-adjust:none; 
 
 	width:@siteWidth;
-	font-family:@defaultFamily; font-size:16px; color:@defaultText; line-height:1.3;
+	font-family:@textFont; font-size:16px; color:@textColor; line-height:1.3;
 }
 a {
-	color:@defaultLink; text-decoration:none;
+	color:@linkColor; text-decoration:none;
 
 	&:hover {
 		text-decoration:underline;
@@ -35,10 +35,7 @@ a {
 	}
 }
 
-.selection() {
-	color:@white;
-	background-color:@black;
-}
+.selection()     { color:@white; background-color:@black; }
 ::-moz-selection { .selection(); }
 ::selection      { .selection(); }	
 
@@ -49,31 +46,35 @@ a {
 /*- Header -------------------------------------------------------------------*/
 #Header {
 
-	/*- Fixed Nav --------------------------------------------------------*/
-	nav.Fixed {
+}
 
-	}
+/*- Fixed navigation --------------------------------------------------------*/
+#FixedNav {
 
 }
 
-/*- Main Menu ----------------------------------------------------------------*/
-#MainMenu {
+/*- Main navigation ----------------------------------------------------------------*/
+#MainNav {
 
+}
+
+/*- Body ------------------------------------------------------------------*/
+#Body {
+	.Editable();
 }
 
 /*- Content ------------------------------------------------------------------*/
 #Content {
-
+	.Editable();
 }
 
-/*- Lateral Column -----------------------------------------------------------*/
+/*- Lateral column -----------------------------------------------------------*/
 #LateralCol {
 
 }
 
 /*- Footer -------------------------------------------------------------------*/
 #Footer {
-
 	
 }
 
@@ -81,14 +82,23 @@ a {
 
 
 
-form {
-	.placeholder() {
-		font-style:italic; color:@black + 128;
-	}
-	input.Placeholder                { .placeholder(); }
-	input::-webkit-input-placeholder { .placeholder(); }
-	input:-moz-placeholder           { .placeholder(); }
+/*- Form -------------------------------------------------------------------*/
+.placeholder()                   { font-style:italic; color:@black + 128; }
+input.Placeholder                { .placeholder(); }
+input::-webkit-input-placeholder { .placeholder(); }
+input:-moz-placeholder           { .placeholder(); }
+
+input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], textarea {
+	// if ios support, play with this
+	// -webkit-appearance:none; .rounded(0);
+	-webkit-appearance:textfield;  
 }
+
+input.error, select.error, textarea.error {
+	color:@errorTextColor;
+	background-color:@errorBgColor;
+}
+
 
 // radio/checkbox images for css3 browsers 
 /*
@@ -138,75 +148,10 @@ form {
 
 
 
-/*- Editable -----------------------------------------------------------------*/
-.Editable {
-	h1 {
-	}
-	
-	h2 {
-	}
 
-	h3 {
-	}
-
-	h4 {
-	}
-
-	h5 {
-	}
-
-	h6 {
-	}
-
-	p {
-		margin-bottom:1em;
-	}
-	.TextePetit {
-		font-size:80%;
-	}
-	img.ImageContour {
-		border:1px solid @black;
-	}
-	img.ImageGauche {
-		float:left;
-		margin:0 15px 5px 0;
-	}
-	img.ImageDroite {
-		float:right;
-		margin:0 0 5px 15px;
-	}
-	ul {
-		margin:0 0 1em 15px;
-		
-		li {
-			list-style:disc outside @imgBullet;
-			padding:0 0 5px 0;
-		}
-	}
-
-	ol {
-		margin:0 0 1em 24px;
-
-		li {
-			list-style:decimal outside;
-			padding:0 0 5px 0;
-		}
-	}
-	
-	table.Tableau {
-
-		td {
-			vertical-align:top;
-		}
-		td.CelluleTitre {
-
-		}
-		td.CelluleSousTitre {
-
-		}
-		td.CelluleAlternative {
-
-		}
-
+/*- Drupal clogs -------------------------------------------------------------------*/
+.contextual-links-wrapper {
+	.block-views > & {
+		right:-35px;
 	}
 }

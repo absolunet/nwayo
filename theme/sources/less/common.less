@@ -5,44 +5,108 @@
 @imgPath:   '@{assetPath}/images';
 @fontPath:  '@{assetPath}/fonts';
 
-/*- Fonts -------------------------------------------------------------------*/
+
+
+/*- Base -------------------------------------------------------------------*/
+@siteWidth: 960px;
+@bgColor:   #f8f8f8;
+@textColor: #444;
+@linkColor: #00c;
+@textFont:  sans-serif;
+
+
+
+/*- Fonts ------------------------------------------------------------------*/
 /*
 @font-face {
 	font-family: 'MyFontFamily';
-	src: url('@{fontPath}/myfont-webfont.eot');                           // IE9 Compat Modes
-	src: url('@{fontPath}/myfont-webfont.eot?iefix') format('eot'),       // IE6-IE8
-	     url('@{fontPath}/myfont-webfont.woff') format('woff'),           // Modern Browsers
-	     url('@{fontPath}/myfont-webfont.ttf')  format('truetype'),       // Safari, Android, iOS
-	     url('@{fontPath}/myfont-webfont.svg#svgFontName') format('svg'); // Legacy iOS
+	src: url('@{fontPath}/myfont-webfont.eot');
+	src: url('@{fontPath}/myfont-webfont.eot?iefix') format('eot'),
+	     url('@{fontPath}/myfont-webfont.woff') format('woff'),
+	     url('@{fontPath}/myfont-webfont.ttf')  format('truetype'),
+	     url('@{fontPath}/myfont-webfont.svg#svgFontName') format('svg');
 }
 */
 
-
-/*- Général -------------------------------------------------------------------*/
-@black: #000;
-@white: #fff;
+.textFont() { font-family:@textFont; }
+.altFont()  { font-family:'Alternate', @textFont; font-weight:normal !important; font-style:normal !important; }
 
 
-@siteWidth:     960px;
-@defaultBg:     #f8f8f8;
-@defaultText:   #444;
-@defaultFamily: sans-serif;
 
-@defaultLink:  #00c;
+/*- Colors -----------------------------------------------------------------*/
+@errorBgColor:   #fee5e1;
+@errorTextColor: #c33;
+@altColor:       #c00;
+@alt2Color:      #0c0;
 
 
-@imgBullet:   url(@{imgPath}/Bullet.png);
-@imgBtn:      url(@{imgPath}/Btn.png);
-@imgMultiBg:  url(@{imgPath}/Bg_Multi.png);
-@imgMultiIco: url(@{imgPath}/Ico_Multi.png);
-	@imgMultiIcoPosItem1: left    top;
-	@imgMultiIcoPosItem2: left -100px;
+
+/*- Images & Sprites -------------------------------------------------------*/
+@btnImage:     url(@{imgPath}/Btn.png);
+@multiBgImage: url(@{imgPath}/Bg_Multi.png);
+@icoImage:     url(@{imgPath}/Ico_Multi.png);
+	@icoItem1Sprite: transparent @icoImage left    top no-repeat;
+	@icoItem2Sprite: transparent @icoImage left -100px no-repeat;
 
 .imgImage() { background-image:url('@{imgPath}/Image.png'); @media @highdensity { background-image:url('@{imgPath}/Image@2x.png'); background-size:100px 100px; } }
 
 
-.Title() {
-	/* alternate font */
+
+/*- Functions --------------------------------------------------------------*/
+.AltSomething() {
+
 }
 
 
+
+/*- Editable content styles ------------------------------------------------*/
+.Editable() {
+	h1 {
+	}
+	
+	h2 {
+	}
+
+	h3 {
+	}
+
+	h4 {
+	}
+
+	h5 {
+	}
+
+	h6 {
+	}
+
+	p {
+		margin-bottom:1em;
+	}
+	.TextePetit {
+		font-size:80%;
+	}
+	img.ImageContour {
+		border:1px solid @black;
+	}
+	img.ImageGauche {
+		float:left;
+		margin:0 15px 5px 0;
+	}
+	img.ImageDroite {
+		float:right;
+		margin:0 0 5px 15px;
+	}
+	ul {
+
+	}
+
+	ol {
+
+	}
+	
+	table.Tableau {
+		td {
+			vertical-align:top;
+		}
+	}
+}

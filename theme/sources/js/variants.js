@@ -9,13 +9,13 @@ require([
 
 (function(kafe, App, undefined){
 
-	var 
+	var
 		$         = kafe.dependencies.jQuery,
 		_         = kafe.dependencies.underscore,
 		Modernizr = kafe.dependencies.Modernizr,
 		Local     = {}
 	;
-		
+
 	/*- Home -------------------------------------------------------------------*/
 	Local.InitHome = function() {
 		if (App.env.isHome) {
@@ -29,11 +29,11 @@ require([
 
 		}
 	};
-	
 
-	$(function(){ 
+
+	$(function() {
 		Local.InitHome();
 		Local.InitLateralcolumn();
 	});
-	
+
 })(window.kafe, window.MySite);
