@@ -7,7 +7,7 @@ module.exports = function(grunt) {
 		// js
 		jshint: {
 			core_js: {
-				src: ['js/**/*.js', '!libs/**/*.js']
+				src: ['js/**/*.js', '!libs/**/*.js', '!js/plugins/**/*.js']
 			}
 		},
 		requirejs: {
@@ -86,5 +86,5 @@ module.exports = function(grunt) {
 	grunt.registerTask('core_js',     ['jshint:core_js','requirejs:core_js']);
 	grunt.registerTask('core_less',   ['less:core_less','cssmin:core_css','editor_less']);
 	grunt.registerTask('editor_less', ['less:editor_less']);
-	grunt.registerTask('default',     ['core_js','core_less','editor_less']);
+	grunt.registerTask('default',     ['core_js','core_less']);
 };

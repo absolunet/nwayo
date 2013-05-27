@@ -1,18 +1,12 @@
 /*------------------------------------------------------------------------------------//
 // Client : -
 //------------------------------------------------------------------------------------*/
+@import 'libs/elements';
+@import 'libs/abso';
+
 @assetPath: '/theme/assets';
 @imgPath:   '@{assetPath}/images';
 @fontPath:  '@{assetPath}/fonts';
-
-
-
-/*- Base -------------------------------------------------------------------*/
-@siteWidth: 960px;
-@bgColor:   #f8f8f8;
-@textColor: #444;
-@linkColor: #00c;
-@textFont:  sans-serif;
 
 
 
@@ -28,6 +22,17 @@
 }
 */
 
+
+
+/*- Base -------------------------------------------------------------------*/
+@siteWidth:   960px;
+@mobileMedia: ~"only screen and (max-width: 767px)";
+
+@bgColor:   #f8f8f8;
+@textColor: #444;
+@linkColor: #00c;
+@textFont:  sans-serif;
+
 .textFont() { font-family:@textFont; }
 .altFont()  { font-family:'Alternate', @textFont; font-weight:normal !important; font-style:normal !important; }
 
@@ -37,18 +42,18 @@
 @errorBgColor:   #fee5e1;
 @errorTextColor: #c33;
 @altColor:       #c00;
-@alt2Color:      #0c0;
+@alt2Color:      fade(#0c0,50%);
 
 
 
 /*- Images & Sprites -------------------------------------------------------*/
-@btnImage:     url(@{imgPath}/Btn.png);
-@multiBgImage: url(@{imgPath}/Bg_Multi.png);
-@icoImage:     url(@{imgPath}/Ico_Multi.png);
+@btnImage: url('@{imgPath}/misc-btn.png');
+@bgImage:  url('@{imgPath}/misc-bg.png');
+@icoImage: url('@{imgPath}/misc-ico.png');
 	@icoItem1Sprite: transparent @icoImage left    top no-repeat;
 	@icoItem2Sprite: transparent @icoImage left -100px no-repeat;
 
-.imgImage() { background-image:url('@{imgPath}/Image.png'); @media @highdensity { background-image:url('@{imgPath}/Image@2x.png'); background-size:100px 100px; } }
+.imgImage() { background-image:url('@{imgPath}/misc-image.png'); @media @highdensity { background-image:url('@{imgPath}/misc-image@2x.png'); background-size:100px 100px; } }
 
 
 
