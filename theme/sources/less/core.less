@@ -11,7 +11,7 @@ body {
 	// -webkit-text-size-adjust:none; 
 
 	width:@siteWidth;
-	font-family:@textFont; font-size:16px; color:@textColor; line-height:1.3;
+	.textFont(); font-size:16px; color:@textColor; line-height:1.3;
 }
 a {
 	color:@linkColor; text-decoration:none;
@@ -26,14 +26,16 @@ a {
 	clear:both;
 }
 
+/*
 .BtnType1 {
-	.Btn(16px, 8px, 10px, 8px, 10px, @imgBtn, top, -50px);
+	.Btn(16px, 8px, 10px, 8px, 10px, @btnImage, top, -50px);
 	font-size:16px; color:@white;
 
 	&:hover {
 		color:@black;
 	}
 }
+*/
 
 .selection()     { color:@white; background-color:@black; }
 ::-moz-selection { .selection(); }
@@ -60,7 +62,7 @@ a {
 
 /*- Body ------------------------------------------------------------------*/
 #Body {
-	.Editable();
+
 }
 
 /*- Content ------------------------------------------------------------------*/
