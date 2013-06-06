@@ -45,6 +45,16 @@ window.MySite = (function(kafe,undefined){
 		App.dom.lateralCol = $('#LateralCol') || undefined;
 		App.dom.footer     = $('#Footer');
 
+
+		// path
+		App.path = {};
+
+		App.path.theme  = '/theme/';
+		App.path.assets = App.path.theme+'assets/';
+		App.path.builds = App.path.assets+'builds/';
+		App.path.images = App.path.assets+'images/';
+		App.path.stubs  = App.path.theme+'stubs/';
+
 		/* preload jquery templates
 		$('script[type="text/x-jquery-tmpl"]').each(function () {
 			var $this = $(this);
