@@ -1,17 +1,19 @@
 /*----------------------------------------------------------------------------//
 // Client : -
 //----------------------------------------------------------------------------*/
+@import '../common';
+
 .Editable();
 
 html {
-	background-color:@defaultBg;
+	background-color:@bgColor;
 }
 body {
 	width:@siteWidth;
-	font-family:@defaultFamily; font-size:16px; color:@defaultText; line-height:1.3;
+	.textFont(); font-size:16px; color:@textColor; line-height:1.3;
 }
 a {
-	color:@defaultLink; text-decoration:none;
+	color:@linkColor; text-decoration:none;
 
 	&:hover {
 		text-decoration:underline;
