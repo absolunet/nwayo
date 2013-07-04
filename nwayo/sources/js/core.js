@@ -1,14 +1,16 @@
 ﻿/*------------------------------------------------------------------------------------//
-// Client : MySite
+// CORE
 //------------------------------------------------------------------------------------*/
 
 //>>excludeStart('excludeRequire', pragmas.excludeRequire);
 require([
 	'libs/kafe/kafe'
+
+	//'../../assets/builds/templateclient.tmp.js'
 ]);
 //>>excludeEnd('excludeRequire');
 
-window.MySite = (function(kafe,undefined){
+window.Sitename = (function(kafe,undefined){
 
 	var
 		//$Drupal   = window.jQuery,
@@ -31,8 +33,9 @@ window.MySite = (function(kafe,undefined){
 		App.env.page    = kafe.env('page');
 		App.env.tmpl    = kafe.env('tmpl');
 
-		App.env.isHome          = (App.env.page == 'page-homepage');
-		App.env.isSousclientele = _.contains(App.env.tmpl, 'node-type-sous-clientele');
+		//App.env.isUniquePage = (App.env.page == 'UID');
+		//App.env.isTypePage   = _.contains(App.env.tmpl, 'TYPE-ID');
+		//App.env.isOneOfThese = !!_.intersection(App.env.tmpl, ['ID1', 'ID2']).length;
 
 
 		// dom
@@ -40,41 +43,52 @@ window.MySite = (function(kafe,undefined){
 		App.dom.window     = $(window);
 		App.dom.document   = $(document);
 		App.dom.body       = $('body');
-		App.dom.header     = $('#Header');
-		App.dom.content    = $('#Content');
-		App.dom.lateralCol = $('#LateralCol') || undefined;
-		App.dom.footer     = $('#Footer');
+		//App.dom.header     = $('#Header');
+		//App.dom.content    = $('#Content');
+		//App.dom.lateralCol = $('#LateralCol') || undefined;
+		//App.dom.footer     = $('#Footer');
 
 
 		// path
 		App.path = {};
 
-		App.path.theme  = '/theme/';
+		App.path.theme  = '/nwayo/';
 		App.path.assets = App.path.theme+'assets/';
 		App.path.builds = App.path.assets+'builds/';
 		App.path.images = App.path.assets+'images/';
 		App.path.stubs  = App.path.theme+'stubs/';
 
-		/* preload jquery templates
-		$('script[type="text/x-jquery-tmpl"]').each(function () {
-			var $this = $(this);
-			$this.template($this.attr('id').substring(5));
-		});
-		/**/
+
+		// tmpl
+		App.tmpl = window.nwayo_jshtml;
+		delete window.nwayo_jshtml;
 	};
 
 
 	/*- Bind events -------------------------------------------------------------------*/
 	Local.Bind = function() {
 
-		// external links
-		App.dom.body.on('click', 'a[data-external="true"]', function() {
-			$(this).attr('target', '_blank');
-		});
+		App.dom.body
 
-		/* input mask
+			// external links
+			.on('click', 'a[data-external="true"]', function() {
+				$(this).attr('target', '_blank');
+			})
+
+			// anchors
+			/**
+			.on('click', 'a[href^="#"][href!="#"]', function(e) {
+				e.preventDefault();
+				$.scrollTo($(this).attr('href'), 500, {offset:{top:-15}});
+			})
+			/**/
+		;
+
+
+		// input mask
+		/**
 		$('input[data-mask]').each(function() {
-			var 
+			var
 				$this = $(this),
 				mask  = $this.data('mask')
 			;
@@ -86,11 +100,11 @@ window.MySite = (function(kafe,undefined){
 				case 'numeric':
 					$this.inputmask('non-negative-decimal', {radixPoint:',', digits:2 });
 				break;
-				
+
 				case 'numeric-integer':
 					$this.inputmask('9', {repeat:6, greedy:false });
 				break;
-				
+
 				default:
 					$this.inputmask(mask);
 				break;
@@ -98,7 +112,9 @@ window.MySite = (function(kafe,undefined){
 		});
 		/**/
 
-		/* tabs
+
+		// tabs
+		/**
 		$('div[data-structure="tabs"] > section > h1').on('click', function() {
 			$(this).parent()
 				.siblings('section.On').removeClass('On').end()
@@ -108,16 +124,10 @@ window.MySite = (function(kafe,undefined){
 		/**/
 
 
-		/* hashchange
+		// hashchange
+		/**
 		$window.on('hashchange', function (e) {
-			var params = kUrl.parseHashPath();
-
-			// if popup
-			if (params.length == 1 && $('#tmpl-' + params[0]).length) {
-				kColorbox.tmpl(params[0]);
-			} else {
-				// do your stuff
-			}
+			var params = kafe.url.parseHashPath();
 		}).trigger('hashchange');
 		/**/
 	};
@@ -126,7 +136,8 @@ window.MySite = (function(kafe,undefined){
 	/*- To execute on start -------------------------------------------------------------------*/
 	Local.Start = function() {
 
-		/* web font loader
+		// web font loader
+		/**
 		WebFont.load({
 			custom:       { families: ['FontName1','FontName2','FontName3'] },
 			loading:      function() { App.dom.body.trigger('WebFont:loading'); },
@@ -136,18 +147,27 @@ window.MySite = (function(kafe,undefined){
 			fontactive:   function(familyName, fvd) { App.dom.body.trigger('WebFont:active_font'); },
 			fontinactive: function(familyName, fvd) { App.dom.body.trigger('WebFont:inactive_font'); }
 		});
+
+		// fonts loaded
+		App.dom.body.on('WebFont:active', function() {
+
+		});
 		/**/
 
-		/* addthis
-		window.addthis_config = { ui_language: lang };
+
+		// addthis
+		/**
+		window.addthis_config = { ui_language: App.env.lang };
 		window.addthis.init();
 		/**/
 
-		/* colorbox default params
+
+		// colorbox default params
+		/**
 		kafe.ext.colorbox.setParams({
 			close:      (App.env.lang == 'en') ? 'Close' : 'Fermer',
 			opacity:     0.7,
-			transition: 'elastic',
+			transition: 'elastic'
 			// if popup is hash triggered
 			// onClosed: function () { window.location = '#/'; }
 		});
@@ -164,7 +184,7 @@ window.MySite = (function(kafe,undefined){
 
 
 
-	App.Utils = {};
+	//App.Utils = {};
 
 	return App;
 

@@ -1,0 +1,144 @@
+/*------------------------------------------------------------------------------------//
+// COMMON
+//------------------------------------------------------------------------------------*/
+@import 'libs/elements';
+@import 'libs/nwayo';
+
+@assetPath: '/nwayo/assets';
+@imgPath:   '@{assetPath}/images';
+@fontPath:  '@{assetPath}/fonts';
+
+
+
+/*- Base -------------------------------------------------------------------*/
+@siteWidth:   960px;
+
+//@mainContentSelector: ~"#block-system-main > .content";
+
+//@mobileMedia: ~"only screen and (max-width: 767px)";
+
+@bgColor:   #f8f8f8;
+@textColor: #444;
+@linkColor: #00c;
+
+
+
+/*- Fonts ------------------------------------------------------------------*/
+.LoadFont('Alternate',  'Alternate-webfont');
+.LoadFont('Alternate2', 'Alternate2-webfont');
+.LoadFont('icomoon',    'icomoon');
+
+@textFont:   sans-serif;
+.textFont () { font-family:@textFont; }
+.altFont ()  { font-family:'Alternate', @textFont;  font-weight:normal !important; font-style:normal !important; -webkit-font-smoothing:antialiased !important; }
+.alt2Font () { font-family:'Alternate2', @textFont; font-weight:normal !important; font-style:normal !important; -webkit-font-smoothing:antialiased !important; }
+
+.icoFont () { font-family:'icomoon'; font-style:normal !important; font-weight:normal !important; font-variant:normal !important; text-transform:none !important; line-height:1 !important; -webkit-font-smoothing:antialiased !important; }
+	.icoFacebookChar () { content:'f'; .icoFont(); }
+	.icoTwitterChar ()  { content:'t'; .icoFont(); }
+	.icoLinkedinChar () { content:'l'; .icoFont(); }
+
+
+
+/*- Colors -----------------------------------------------------------------*/
+@errorBgColor:   #fee5e1;
+@errorTextColor: #c33;
+@altColor:       #c00;
+@alt2Color:      fade(#0c0,50%);
+
+
+
+/*- Images & Sprites -------------------------------------------------------*/
+@btnImage: url('@{imgPath}/misc-btn.png');
+@bgImage:  url('@{imgPath}/misc-bg.png');
+
+@icoImage: url('@{imgPath}/misc-ico.png');
+	.icoItem1Sprite () { width:24px; height:24px; background:transparent @icoImage left    top no-repeat; }
+	.icoItem2Sprite () { width:32px; height:32px; background:transparent @icoImage left -100px no-repeat; }
+
+.imgImage () { background-image:url('@{imgPath}/misc-image.png'); @media @highdensity { background-image:url('@{imgPath}/misc-image@2x.png'); background-size:100px 100px; } }
+
+
+
+/*- Functions --------------------------------------------------------------*/
+.Something () {
+
+}
+
+/**
+.Colorize(@base:#888, @lite:#ddd, @dark:#333) {
+	._colorize(~"",               ~"",       @base,   @lite,   @dark);
+	._colorize(~".section-alpha", ~".Alpha", #880000, #dd0000, #330000);
+	._colorize(~".section-beta",  ~".Beta",  #008800, #00dd00, #003300);
+	._colorize(~".section-gamma", ~".Gamma", #000088, #0000dd, #000033);
+}
+
+exampleselector {
+	._colorize (@body, @class, @base, @lite, @dark) { 
+		body@{body} & {
+			a {
+				color:mix(@lite,@base);
+			}
+		}
+
+		&@{class} {
+			background:darken(@dark,10%);
+		}
+	}
+	.Colorize(@sectionBaseColor, @sectionBaseColor, @black);
+}
+/**/
+
+
+
+/*- Editable content styles ------------------------------------------------*/
+.Editable () {
+	h1 {
+	}
+	
+	h2 {
+	}
+
+	h3 {
+	}
+
+	h4 {
+	}
+
+	h5 {
+	}
+
+	h6 {
+	}
+
+	p {
+		margin-bottom:1em;
+	}
+	.TextePetit {
+		font-size:80%;
+	}
+	img.ImageContour {
+		border:1px solid @black;
+	}
+	img.ImageGauche {
+		float:left;
+		margin:0 15px 5px 0;
+	}
+	img.ImageDroite {
+		float:right;
+		margin:0 0 5px 15px;
+	}
+	ul {
+
+	}
+
+	ol {
+
+	}
+	
+	table.Tableau {
+		td {
+			vertical-align:top;
+		}
+	}
+}
