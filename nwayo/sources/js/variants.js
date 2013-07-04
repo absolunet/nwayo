@@ -1,5 +1,5 @@
 ﻿/*------------------------------------------------------------------------------------//
-// Client : MySite
+// VARIANTS
 //------------------------------------------------------------------------------------*/
 
 //>>excludeStart('excludeRequire', pragmas.excludeRequire);
@@ -17,23 +17,27 @@ require([
 	;
 
 	/*- Home -------------------------------------------------------------------*/
+	/**
 	Local.InitHome = function() {
 		if (App.env.isHome) {
 
 		}
 	};
+	/**/
 
 	/*- Lateral Column -------------------------------------------------------------------*/
+	/**
 	Local.InitLateralcolumn = function() {
 		if (App.dom.lateralCol) {
 
 		}
 	};
+	/**/
 
 
 	$(function() {
-		Local.InitHome();
-		Local.InitLateralcolumn();
+		//Local.InitHome();
+		//Local.InitLateralcolumn();
 	});
 
-})(window.kafe, window.MySite);
+})(window.kafe, window.Sitename);

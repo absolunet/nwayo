@@ -1,6 +1,6 @@
-/*----------------------------------------------------------------------------//
-// Client : -
-//----------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------//
+// CORE
+//------------------------------------------------------------------------------------*/
 
 /*- Base ---------------------------------------------------------------------*/
 html {
@@ -12,9 +12,16 @@ body {
 
 	width:@siteWidth;
 	.textFont(); font-size:16px; color:@textColor; line-height:1.3;
+
+	/**
+	@media @mobileSize {
+		background: green;
+	}
+	/**/
 }
 a {
 	color:@linkColor; text-decoration:none;
+	.transition(0.05s);
 
 	&:hover {
 		text-decoration:underline;
@@ -22,25 +29,14 @@ a {
 }
  
 
-.Clearer { 
-	clear:both;
+._selection () { 
+	color:@white; background-color:@black;
 }
+.selection();
 
-/*
-.BtnType1 {
-	.Btn(16px, 8px, 10px, 8px, 10px, @btnImage, top, -50px);
-	font-size:16px; color:@white;
 
-	&:hover {
-		color:@black;
-	}
-}
-*/
-
-.selection()     { color:@white; background-color:@black; }
-::-moz-selection { .selection(); }
-::selection      { .selection(); }	
-
+// .gradient();
+// html.no-gradient & { }
 
 
 
@@ -57,7 +53,7 @@ a {
 
 /*- Main navigation ----------------------------------------------------------------*/
 #MainNav {
-
+	
 }
 
 /*- Body ------------------------------------------------------------------*/
@@ -85,12 +81,12 @@ a {
 
 
 /*- Form -------------------------------------------------------------------*/
-.placeholder()                   { font-style:italic; color:@black + 128; }
-input.Placeholder                { .placeholder(); }
-input::-webkit-input-placeholder { .placeholder(); }
-input:-moz-placeholder           { .placeholder(); }
+._placeholder () {
+	font-style:italic; color:@black + 128;
+}
+.placeholder();
 
-input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], textarea {
+@{textfieldsSelector}, textarea {
 	// if ios support, play with this
 	// -webkit-appearance:none; .rounded(0);
 	-webkit-appearance:textfield;  
@@ -103,7 +99,7 @@ input.error, select.error, textarea.error {
 
 
 // radio/checkbox images for css3 browsers 
-/*
+/**
 :root {
 	input[type="checkbox"], input[type="radio"] {
 		position:absolute;
@@ -146,14 +142,16 @@ input.error, select.error, textarea.error {
 		}
 	}
 }
-*/
+/**/
 
 
 
 
 /*- Drupal clogs -------------------------------------------------------------------*/
+/**
 .contextual-links-wrapper {
 	.block-views > & {
 		right:-35px;
 	}
 }
+/**/
