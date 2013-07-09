@@ -60,8 +60,15 @@ window.Sitename = (function(kafe,undefined){
 
 
 		// tmpl
+		/**
 		App.tmpl = window.nwayo_jshtml;
 		delete window.nwayo_jshtml;
+
+		$('script[type="text/x-jsrender"]').each(function () {
+			var id = $(this).attr('id');
+			App.tmpl[id.substring(7)] = $.templates('#'+id);
+		});
+		/**/
 	};
 
 
@@ -92,22 +99,15 @@ window.Sitename = (function(kafe,undefined){
 				$this = $(this),
 				mask  = $this.data('mask')
 			;
+
 			switch (mask) {
-				case 'phone':
-					$this.inputmask('(999) 999-9999 [ext: 99999]');
-				break;
-
-				case 'numeric':
-					$this.inputmask('non-negative-decimal', {radixPoint:',', digits:2 });
-				break;
-
-				case 'numeric-integer':
-					$this.inputmask('9', {repeat:6, greedy:false });
-				break;
-
-				default:
-					$this.inputmask(mask);
-				break;
+				case 'phone':       $this.inputmask('(999) 999-9999'); break;
+				case 'phone-ext':   $this.inputmask('(999) 999-9999 [ext: 99999]'); break;
+				case 'date':        $this.inputmask('y-m-d'); break;
+				case 'postalcode':  $this.inputmask('A9A 9A9'); break;
+				case 'numeric':     $this.inputmask('non-negative-decimal', {radixPoint:',', digits:2 }); break;
+				case 'numeric-int': $this.inputmask('9', {repeat:6, greedy:false }); break;
+				default:            $this.inputmask(mask); break;
 			}
 		});
 		/**/
