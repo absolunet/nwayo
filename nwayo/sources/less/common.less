@@ -4,9 +4,10 @@
 @import 'libs/elements';
 @import 'libs/nwayo';
 
-@assetPath: '/nwayo/assets';
-@imgPath:   '@{assetPath}/images';
-@fontPath:  '@{assetPath}/fonts';
+@assetPath:   '/nwayo/assets';
+@imgPath:     '@{assetPath}/images';
+@fontPath:    '@{assetPath}/fonts';
+@imgdataPath: '_images';
 
 
 
@@ -28,15 +29,15 @@
 .LoadFont('Alternate2', 'Alternate2-webfont');
 .LoadFont('icomoon',    'icomoon');
 
-@textFont:   sans-serif;
-.textFont () { font-family:@textFont; }
-.altFont ()  { font-family:'Alternate', @textFont;  font-weight:normal !important; font-style:normal !important; -webkit-font-smoothing:antialiased !important; }
-.alt2Font () { font-family:'Alternate2', @textFont; font-weight:normal !important; font-style:normal !important; -webkit-font-smoothing:antialiased !important; }
+@textFont:  sans-serif;
+.textFont() { font-family:@textFont; }
+.altFont()  { font-family:'Alternate', @textFont;  font-weight:normal !important; font-style:normal !important; -webkit-font-smoothing:antialiased !important; }
+.alt2Font() { font-family:'Alternate2', @textFont; font-weight:normal !important; font-style:normal !important; -webkit-font-smoothing:antialiased !important; }
 
-.icoFont () { font-family:'icomoon'; font-style:normal !important; font-weight:normal !important; font-variant:normal !important; text-transform:none !important; line-height:1 !important; -webkit-font-smoothing:antialiased !important; }
-	.icoFacebookChar () { content:'f'; .icoFont(); }
-	.icoTwitterChar ()  { content:'t'; .icoFont(); }
-	.icoLinkedinChar () { content:'l'; .icoFont(); }
+.icoFont() { font-family:'icomoon'; font-style:normal !important; font-weight:normal !important; font-variant:normal !important; text-transform:none !important; line-height:1 !important; -webkit-font-smoothing:antialiased !important; }
+	.icoFacebookChar() { content:'f'; .icoFont(); }
+	.icoTwitterChar()  { content:'t'; .icoFont(); }
+	.icoLinkedinChar() { content:'l'; .icoFont(); }
 
 
 
@@ -53,15 +54,21 @@
 @bgImage:  url('@{imgPath}/misc-bg.png');
 
 @icoImage: url('@{imgPath}/misc-ico.png');
-	.icoItem1Sprite () { width:24px; height:24px; background:transparent @icoImage left    top no-repeat; }
-	.icoItem2Sprite () { width:32px; height:32px; background:transparent @icoImage left -100px no-repeat; }
+	.icoItem1Sprite() { width:24px; height:24px; background:transparent @icoImage left    top no-repeat; }
+	.icoItem2Sprite() { width:32px; height:32px; background:transparent @icoImage left -100px no-repeat; }
 
-.imgImage () { background-image:url('@{imgPath}/misc-image.png'); @media @highdensity { background-image:url('@{imgPath}/misc-image@2x.png'); background-size:100px 100px; } }
+/** high-density images
+.imgImage() { background-image:url('@{imgPath}/misc-image.png'); @media @highdensity { background-image:url('@{imgPath}/misc-image@2x.png'); background-size:100px 100px; } }
+/**/
+
+/** inline images
+._bgImagedata { background:transparent data-uri('@{imgdataPath}/site-bg.png') center top repeat; }
+/**/
 
 
 
 /*- Functions --------------------------------------------------------------*/
-.Something () {
+.Something() {
 
 }
 
@@ -74,7 +81,7 @@
 }
 
 exampleselector {
-	._colorize (@body, @class, @base, @lite, @dark) { 
+	._colorize(@body, @class, @base, @lite, @dark) { 
 		body@{body} & {
 			a {
 				color:mix(@lite,@base);
@@ -92,7 +99,7 @@ exampleselector {
 
 
 /*- Editable content styles ------------------------------------------------*/
-.Editable () {
+.Editable() {
 	h1 {
 	}
 	
