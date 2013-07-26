@@ -52,11 +52,11 @@ window.Sitename = (function(kafe,undefined){
 		// path
 		App.path = {};
 
-		App.path.theme  = '/nwayo/';
-		App.path.assets = App.path.theme+'assets/';
+		App.path.nwayo  = '/nwayo/';
+		App.path.assets = App.path.nwayo+'assets/';
 		App.path.builds = App.path.assets+'builds/';
 		App.path.images = App.path.assets+'images/';
-		App.path.stubs  = App.path.theme+'stubs/';
+		App.path.stubs  = App.path.nwayo+'stubs/';
 
 
 		// tmpl
@@ -67,6 +67,18 @@ window.Sitename = (function(kafe,undefined){
 		$('script[type="text/x-jsrender"]').each(function () {
 			var id = $(this).attr('id');
 			App.tmpl[id.substring(7)] = $.templates('#'+id);
+		});
+		/**/
+
+
+		// colorbox default params
+		/**
+		kafe.ext.colorbox.setParams({
+			close:      (App.env.lang == 'en') ? 'Close' : 'Fermer',
+			opacity:     0.7,
+			transition: 'elastic'
+			// if popup is hash triggered
+			// onClosed: function () { window.location = '#/'; }
 		});
 		/**/
 	};
@@ -159,18 +171,6 @@ window.Sitename = (function(kafe,undefined){
 		/**
 		window.addthis_config = { ui_language: App.env.lang };
 		window.addthis.init();
-		/**/
-
-
-		// colorbox default params
-		/**
-		kafe.ext.colorbox.setParams({
-			close:      (App.env.lang == 'en') ? 'Close' : 'Fermer',
-			opacity:     0.7,
-			transition: 'elastic'
-			// if popup is hash triggered
-			// onClosed: function () { window.location = '#/'; }
-		});
 		/**/
 
 	};
