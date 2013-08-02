@@ -62,7 +62,7 @@ window.Sitename = (function(kafe,undefined){
 		// tmpl
 		/**
 		App.tmpl = window.nwayo_jshtml;
-		delete window.nwayo_jshtml;
+		kafe.fn.deleteVar('window.nwayo_jshtml');
 
 		$('script[type="text/x-jsrender"]').each(function () {
 			var id = $(this).attr('id');

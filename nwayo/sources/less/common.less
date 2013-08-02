@@ -74,14 +74,14 @@
 
 /**
 .Colorize(@base:#888, @lite:#ddd, @dark:#333) {
-	._colorize(~"",               ~"",       @base,   @lite,   @dark);
-	._colorize(~".section-alpha", ~".Alpha", #880000, #dd0000, #330000);
-	._colorize(~".section-beta",  ~".Beta",  #008800, #00dd00, #003300);
-	._colorize(~".section-gamma", ~".Gamma", #000088, #0000dd, #000033);
+	._colorize(default, ~"",               ~"",       @base,   @lite,   @dark);
+	._colorize(alpha,   ~".section-alpha", ~".Alpha", #880000, #dd0000, #330000);
+	._colorize(beta,    ~".section-beta",  ~".Beta",  #008800, #00dd00, #003300);
+	._colorize(gamma,   ~".section-gamma", ~".Gamma", #000088, #0000dd, #000033);
 }
 
 exampleselector {
-	._colorize(@body, @class, @base, @lite, @dark) { 
+	._colorize(@id, @body, @class, @base, @lite, @dark) { 
 		body@{body} & {
 			a {
 				color:mix(@lite,@base);
@@ -90,6 +90,13 @@ exampleselector {
 
 		&@{class} {
 			background:darken(@dark,10%);
+		}
+	}
+	._colorize(alpha, @body, @class, @base, @lite, @dark) { 
+		body@{body} & {
+			a {
+				color:@dark;
+			}
 		}
 	}
 	.Colorize(@sectionBaseColor, @sectionBaseColor, @black);
