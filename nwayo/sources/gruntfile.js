@@ -46,6 +46,9 @@ module.exports = function(grunt) {
 			editor_less: {
 				files: { '../assets/builds/editor.css': 'less/extras/editor.less' },
 				options: { yuicompress:true }
+			},
+			newsletter_less: {
+				files: { '../assets/builds/newsletter.tmp.css': 'less/extras/newsletter.less' }
 			}
 		},
 		cssmin: {
@@ -57,6 +60,16 @@ module.exports = function(grunt) {
 						'less/libs/html5boilerplate.css',
 						'../assets/builds/core-less.tmp.css'
 					]
+				}
+			}
+		},
+
+
+		// standalone builder
+		inlinecss: {
+			newsletter_html: {
+				files: {
+					'../assets/builds/newsletter.html': 'misc/newsletter.html'
 				}
 			}
 		},
@@ -90,6 +103,10 @@ module.exports = function(grunt) {
 			less_editor: {
 				files: ['less/extras/editor.less'],
 				tasks: 'editor_less'
+			},
+			newsletter: {
+				files: ['less/extras/newsletter.less','misc/newsletter.html'],
+				tasks: 'newsletter'
 			}
 		}
 	});
@@ -99,6 +116,7 @@ module.exports = function(grunt) {
 	// load plugins
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
+	grunt.loadNpmTasks('grunt-inline-css');
 	grunt.loadNpmTasks('grunt-template-client');
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
@@ -109,7 +127,8 @@ module.exports = function(grunt) {
 	grunt.registerTask('core_js',     ['templateclient:core_jshtml','jshint:core_js','requirejs:core_js','clean:builds_tmp']);
 	grunt.registerTask('core_less',   ['less:core_less','cssmin:core_css','editor_less','clean:builds_tmp']);
 	grunt.registerTask('editor_less', ['less:editor_less']);
-	grunt.registerTask('default',     ['core_js','core_less']);
+	grunt.registerTask('newsletter',  ['less:newsletter_less','inlinecss:newsletter_html','clean:builds_tmp']);
+	grunt.registerTask('default',     ['core_js','core_less','newsletter']);
 };
 
 
