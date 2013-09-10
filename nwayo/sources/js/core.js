@@ -115,7 +115,8 @@ window.Sitename = (function(kafe,undefined){
 			switch (mask) {
 				case 'phone':       $this.inputmask('(999) 999-9999'); break;
 				case 'phone-ext':   $this.inputmask('(999) 999-9999 [ext: 99999]'); break;
-				case 'date':        $this.inputmask('y-m-d'); break;
+				case 'date':        $this.inputmask('yyyy-mm-dd'); break;
+				case 'time':        $this.inputmask('hh:mm:ss'); break;
 				case 'postalcode':  $this.inputmask('A9A 9A9'); break;
 				case 'numeric':     $this.inputmask('non-negative-decimal', {radixPoint:',', digits:2 }); break;
 				case 'numeric-int': $this.inputmask('9', {repeat:6, greedy:false }); break;
