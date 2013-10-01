@@ -1,14 +1,15 @@
 {
 	"name": "nwayo",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"devDependencies": {
 		"grunt": "~0.4.1",
 		"grunt-contrib-requirejs": "~0.4.1",
-		"grunt-contrib-jshint": "~0.6.0",
-		"grunt-contrib-less": "~0.6.4",
-		"grunt-contrib-cssmin": "~0.6.1",
-		"grunt-contrib-watch": "~0.4.4",
-		"grunt-template-client": "~0.3.0",
-		"grunt-contrib-clean": "~0.4.1"
+		"grunt-contrib-jshint": "~0.6.4",
+		"grunt-contrib-less": "~0.7.0",
+		"grunt-contrib-cssmin": "~0.6.2",
+		"grunt-contrib-watch": "~0.5.3",
+		"grunt-template-client": "~1.0.0",
+		"grunt-inline-css": "~0.1.3",
+		"grunt-contrib-clean": "~0.5.0"
 	}
 }

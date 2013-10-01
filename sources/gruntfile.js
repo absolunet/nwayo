@@ -7,7 +7,7 @@ module.exports = function(grunt) {
 		// js
 		jshint: {
 			core_js: {
-				src: ['js/**/*.js', '!libs/**/*.js', '!js/plugins/**/*.js']
+				src: ['js/**/*.js', '!libs/**/*.js', '!js/vendor/**/*.js']
 			}
 		},
 		requirejs: {
@@ -97,15 +97,15 @@ module.exports = function(grunt) {
 				tasks: 'core_js'
 			},
 			core_less: {
-				files: ['less/**/*.less', 'less/**/*.css', '!less/extras/**/*.less'],
+				files: ['less/**/*.less', 'less/**/*.css', '!less/misc/**/*.less'],
 				tasks: 'core_less'
 			},
 			less_editor: {
-				files: ['less/extras/editor.less'],
+				files: ['less/misc/editor.less'],
 				tasks: 'editor_less'
 			},
 			newsletter: {
-				files: ['less/extras/newsletter.less','misc/newsletter.html'],
+				files: ['less/misc/newsletter.less','misc/newsletter.html'],
 				tasks: 'newsletter'
 			}
 		}
