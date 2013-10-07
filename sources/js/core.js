@@ -6,6 +6,8 @@
 require([
 	'libs/kafe/kafe'
 
+	// 'js/vendor/foundation/index'  // drupal-zurb
+
 	//'../../assets/builds/templateclient.tmp.js'
 ]);
 //>>excludeEnd('excludeRequire');
