@@ -150,7 +150,13 @@ window.Sitename = (function(kafe,undefined){
 
 	/*- To execute on start -------------------------------------------------------------------*/
 	Local.Start = function() {
+		
+		// init drupal foundation
+		/**
+		$Drupal(document).foundation();
+		/**/
 
+		
 		// web font loader
 		/**
 		WebFont.load({

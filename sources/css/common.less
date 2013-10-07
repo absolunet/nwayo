@@ -3,24 +3,28 @@
 //------------------------------------------------------------------------------------*/
 @import 'libs/elements';
 @import 'libs/nwayo';
+//@import 'libs/cms-drupal';
+//@import 'libs/cms-drupal-zurbfoundation';
+//@import 'libs/cms-magento';
+//@import 'libs/cms-sitecore';
 
-@assetPath:   '/nwayo/assets';
-@imgPath:     '@{assetPath}/images';
-@fontPath:    '@{assetPath}/fonts';
-@imgdataPath: '_images';
+@asset-path:   '/nwayo/assets';
+@img-path:     '@{asset-path}/images';
+@font-path:    '@{asset-path}/fonts';
+@imgdata-path: '_images';
 
 
 
 /*- Base -------------------------------------------------------------------*/
-@siteWidth:   960px;
+@site-width: 960px;
 
-//@mainContentSelector: ~"#block-system-main > .content";
+//@mainContent-selector: ~"#block-system-main > .content";
 
-//@mobileMedia: ~"only screen and (max-width: 767px)";
+//@mobile-media: ~"only screen and (max-width: 767px)";
 
-@bgColor:   #f8f8f8;
-@textColor: #444;
-@linkColor: #00c;
+@bg-color:   #f8f8f8;
+@text-color: #444;
+@link-color: #00c;
 
 
 
@@ -29,40 +33,40 @@
 .LoadFont('Alternate2', 'Alternate2-webfont');
 .LoadFont('icomoon',    'icomoon');
 
-@textFont:  sans-serif;
-.textFont() { font-family:@textFont; }
-.altFont()  { font-family:'Alternate', @textFont;  font-weight:normal !important; font-style:normal !important; -webkit-font-smoothing:antialiased !important; }
-.alt2Font() { font-family:'Alternate2', @textFont; font-weight:normal !important; font-style:normal !important; -webkit-font-smoothing:antialiased !important; }
+@text-font:  sans-serif;
+.text-font() { font-family:@text-font; }
+.alt-font()  { font-family:'Alternate', @textFont;  font-weight:normal !important; font-style:normal !important; -webkit-font-smoothing:antialiased !important; }
+.alt2-font() { font-family:'Alternate2', @textFont; font-weight:normal !important; font-style:normal !important; -webkit-font-smoothing:antialiased !important; }
 
-.icoFont() { font-family:'icomoon'; font-style:normal !important; font-weight:normal !important; font-variant:normal !important; text-transform:none !important; line-height:1 !important; -webkit-font-smoothing:antialiased !important; }
-	.icoFacebookChar() { content:'f'; .icoFont(); }
-	.icoTwitterChar()  { content:'t'; .icoFont(); }
-	.icoLinkedinChar() { content:'l'; .icoFont(); }
+.ico-font() { font-family:'icomoon'; font-style:normal !important; font-weight:normal !important; font-variant:normal !important; text-transform:none !important; line-height:1 !important; -webkit-font-smoothing:antialiased !important; }
+	.icoFacebook-char() { content:'f'; .ico-font(); }
+	.icoTwitter-char()  { content:'t'; .ico-font(); }
+	.icoLinkedin-char() { content:'l'; .ico-font(); }
 
 
 
 /*- Colors -----------------------------------------------------------------*/
-@errorBgColor:   #fee5e1;
-@errorTextColor: #c33;
-@altColor:       #c00;
-@alt2Color:      fade(#0c0,50%);
+@errorBg-color:   #fee5e1;
+@errorText-color: #c33;
+@alt-color:       #c00;
+@alt2-color:      fade(#0c0,50%);
 
 
 
 /*- Images & Sprites -------------------------------------------------------*/
-@btnImage: url('@{imgPath}/misc-btn.png');
-@bgImage:  url('@{imgPath}/misc-bg.png');
+@btn-image: url('@{img-path}/misc-btn.png');
+@bg-image:  url('@{img-path}/misc-bg.png');
 
-@icoImage: url('@{imgPath}/misc-ico.png');
-	.icoItem1Sprite() { width:24px; height:24px; background:transparent @icoImage left    top no-repeat; }
-	.icoItem2Sprite() { width:32px; height:32px; background:transparent @icoImage left -100px no-repeat; }
+@ico-image: url('@{img-path}/misc-ico.png');
+	.icoItem1-sprite() { width:24px; height:24px; background:transparent @ico-image left    top no-repeat; }
+	.icoItem2-sprite() { width:32px; height:32px; background:transparent @ico-image left -100px no-repeat; }
 
 /** high-density images
-.imgImage() { background-image:url('@{imgPath}/misc-image.png'); @media @highdensity { background-image:url('@{imgPath}/misc-image@2x.png'); background-size:100px 100px; } }
+.img-image() { background-image:url('@{img-path}/misc-image.png'); @media @highdensity-media { background-image:url('@{img-path}/misc-image@2x.png'); background-size:100px 100px; } }
 /**/
 
 /** inline images
-._bgImagedata { background:transparent data-uri('@{imgdataPath}/an-inline-image.png') left top no-repeat; }
+._bg-imagedata { background:transparent data-uri('@{imgdata-path}/an-inline-image.png') left top no-repeat; }
 /**/
 
 
@@ -99,7 +103,7 @@ exampleselector {
 			}
 		}
 	}
-	.Colorize(@sectionBaseColor, @sectionBaseColor, @black);
+	.Colorize(@sectionBase-color, @sectionBase-color, @black);
 }
 /**/
 
