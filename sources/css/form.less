@@ -7,15 +7,15 @@
 }
 .placeholder();
 
-@{textfieldsSelector}, textarea {
+@{textfields-selector}, textarea {
 	// if ios support, play with this
 	// -webkit-appearance:none; .rounded(0);
 	-webkit-appearance:textfield;  
 }
 
 input.error, select.error, textarea.error {
-	color:@errorTextColor;
-	background-color:@errorBgColor;
+	color:@errorText-color;
+	background-color:@errorBg-color;
 }
 
 
@@ -36,7 +36,7 @@ input.error, select.error, textarea.error {
 				position:absolute;
 				top:0; left:0;
 				width:15px; height:15px;
-				background-image:@imgMultiIco; background-repeat:no-repeat;
+				background-image:@ico-image; background-repeat:no-repeat;
 			}
 		}
 		
@@ -47,19 +47,19 @@ input.error, select.error, textarea.error {
 	
 	input[type="checkbox"] {
 		+ label:before {
-			background-position:@imgMultiIcoPosCheckOff;
+			background-position:@icoCheckOff-sprite;
 		}
 		&:checked + label:before {
-			background-position:@imgMultiIcoPosCheckOn;
+			background-position:@icoCheckOn-sprite;
 		}
 	}
 
 	input[type="radio"] {
 		+ label:before {
-			background-position:@imgMultiIcoPosRadioOff;
+			background-position:@icoRadioOff-sprite;
 		}
 		&:checked + label:before {
-			background-position:@imgMultiIcoPosRadioOn;
+			background-position:@icoRadioOn-sprite;
 		}
 	}
 }
