@@ -44,7 +44,7 @@ module.exports = function(grunt) {
 				files: { '../assets/builds/core-less.tmp.css': 'less/loader.less' }
 			},
 			editor_less: {
-				files: { '../assets/builds/editor.css': 'less/extras/editor.less' },
+				files: { '../assets/builds/editor.css': 'less/misc/editor.less' },
 				options: { yuicompress:true }
 			},
 			newsletter_less: {
