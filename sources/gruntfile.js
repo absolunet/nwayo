@@ -224,7 +224,7 @@ module.exports = function(grunt) {
 			'clean:builds_tmp'
 		]);
 
-		tasks.default.push('editor');
+		tasks.core_css.push('editor');
 
 		config.watch.editor = {
 			files: ['css/misc/editor.less'],
@@ -253,7 +253,7 @@ module.exports = function(grunt) {
 			'clean:builds_tmp'
 		];
 
-		tasks.default.push('newsletter');
+		tasks.core_css.push('newsletter');
 
 		config.watch.newsletter = {
 			files: ['css/misc/newsletter.less','misc/newsletter.html'],
