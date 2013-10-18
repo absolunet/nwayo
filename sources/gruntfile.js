@@ -247,7 +247,6 @@ module.exports = function(grunt) {
 			files: { '../assets/builds/newsletter.html': 'misc/newsletter.html' }
 		}};
 
-
 		tasks.newsletter = [
 			'less:newsletter',
 			'inlinecss:newsletter',

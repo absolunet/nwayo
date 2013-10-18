@@ -100,7 +100,7 @@ window.Sitename = (function(kafe,undefined){
 			/**
 			.on('click', 'a[href^="#"][href!="#"]', function(e) {
 				e.preventDefault();
-				$.scrollTo($(this).attr('href'), 500, {offset:{top:-15}});
+				$.scrollTo($(this).attr('href'), (Modernizr.touch) ? 0 : 500, {offset:{top:-15}});
 			})
 			/**/
 		;
