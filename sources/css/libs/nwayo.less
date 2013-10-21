@@ -6,9 +6,9 @@
 @white: #fff;
 
 @highdensity-media: ~"print",
-              ~"(-o-min-device-pixel-ratio: 5/4)",
-              ~"(-webkit-min-device-pixel-ratio: 1.25)",
-              ~"(min-resolution: 120dpi)";
+                    ~"(-o-min-device-pixel-ratio: 5/4)",
+                    ~"(-webkit-min-device-pixel-ratio: 1.25)",
+                    ~"(min-resolution: 120dpi)";
 
 @textfields-selector: ~'input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"]';
 
@@ -182,6 +182,9 @@ blockquote, dd, dl, fieldset, menu, ol, p, pre, ul {
 	clear:both;
 }
 
+#powerTip {
+	display:none; position:absolute; z-index:2147483647;
+}
 
 // skype number hightlight
 span.skype_pnh_container {
