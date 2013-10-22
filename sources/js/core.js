@@ -55,9 +55,8 @@ window.Sitename = (function(kafe,undefined){
 		App.path = {};
 
 		App.path.nwayo  = '/nwayo/';
-		App.path.assets = App.path.nwayo+'assets/';
-		App.path.builds = App.path.assets+'builds/';
-		App.path.images = App.path.assets+'images/';
+		App.path.builds = App.path.nwayo+'builds/';
+		App.path.images = App.path.builds+'images/';
 		App.path.stubs  = App.path.nwayo+'stubs/';
 
 
