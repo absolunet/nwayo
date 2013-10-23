@@ -7,7 +7,7 @@ module.exports = function(grunt) {
 		jshtml     = !!(grunt.file.expand('tmpl/**/*.jshtml').length),
 
 		editor     = grunt.file.exists('css/misc/editor.less'),
-		newsletter = grunt.file.exists('misc/newsletter.html'),
+		staticHtml = !!(grunt.file.expand('misc/static/**/*.html').length),
 
 		theme      = false,
 
@@ -15,25 +15,25 @@ module.exports = function(grunt) {
 
 		// Project configuration.
 		tasks = {
-			default: ['core_js', 'core_css']
+			default: [],
+			rebuild: ['default']
 		},
 		
 		config = {
 			pkg: grunt.file.readJSON('package.json'),
 
+			copy: {},
 			nwayo_copy: {},
 			imagemin: {},
+			inlinecss: {},
 			'imagemagick-resize': {},
 			'imagemagick-convert': {},
 
 			// cleaner
 			clean: {
-				tmp_css: {
-					src: ['.tmp-nwayo/*.css'], options: { force: true }
-				},
-				tmp_js: {
-					src: ['.tmp-nwayo/*.js'], options: { force: true }
-				}
+				tmp_css: { src: ['.tmp-nwayo/*.css'], options: { force:true } },
+				tmp_js:  { src: ['.tmp-nwayo/*.js'],  options: { force:true } },
+				builds:  { src: ['../builds/*'],      options: { force:true } }
 			},
 
 			// watcher
@@ -48,7 +48,7 @@ module.exports = function(grunt) {
 
 		// check list report
 		checklist = function(name, found) {
-			grunt.log.writeln('['+ ((found) ? 'X' : ' ') +'] '+name);
+			grunt.log.writeln('[ '+ ((found) ? '✔' : ' ') +' ] '+name);
 		},
 
 		// get css static libs
@@ -75,6 +75,9 @@ module.exports = function(grunt) {
 		}
 	;
 
+
+	// grunt general modules
+	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-imagemin');
 	grunt.loadNpmTasks('grunt-imagemagick');
 
@@ -86,10 +89,10 @@ module.exports = function(grunt) {
 
 
 
-
-
-
 	checklist('Has theme?', theme);
+
+
+
 
 
 	// --------------------------------
@@ -97,7 +100,6 @@ module.exports = function(grunt) {
 	// --------------------------------
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
-
 
 	// js hint
 	config.jshint = {
@@ -130,6 +132,7 @@ module.exports = function(grunt) {
 		'requirejs:core',
 		'clean:tmp_js'
 	];
+	tasks.default.push('core_js');
 
 	config.watch.core_js = {
 		files: [
@@ -178,6 +181,7 @@ module.exports = function(grunt) {
 		'cssmin:core',
 		'clean:tmp_css'
 	];
+	tasks.default.push('core_css');
 
 	config.watch.core_css = {
 		files: [
@@ -188,6 +192,132 @@ module.exports = function(grunt) {
 		],
 		tasks: 'core_css'
 	};
+
+
+
+	// --------------------------------
+	// FOUNDATION
+	// --------------------------------
+	checklist('Foundation', foundation);
+
+	if (foundation) {
+
+		grunt.loadNpmTasks('grunt-contrib-sass');
+
+		config.sass = {
+			foundation: { files: { '.tmp-nwayo/foundation-scss.css': 'css/vendor/foundation/foundation.scss' } },
+		};
+
+		tasks.core_css.unshift('sass:foundation');
+
+		config.watch.core_css.files.push('css/**/*.scss');
+	}
+
+
+
+	// --------------------------------
+	// JSHTML
+	// --------------------------------
+	checklist('JSRender templates', jshtml);
+
+	if (jshtml) {
+		grunt.loadNpmTasks('grunt-template-client');
+		
+		config.templateclient = {
+			core: {
+				options: {
+					variable: 'nwayo_jshtml',
+					prefix: 'window.kafe.dependencies.jQuery.templates(',
+					suffix: ')'
+				},
+				src: ['tmpl/**/*.jshtml'],
+				dest: '.tmp-nwayo/templateclient.js'
+			}
+		};
+
+		tasks.core_js.unshift('templateclient:core');
+
+		config.watch.core_js.files.push('tmpl/**/*.jshtml');
+	}
+
+
+
+	// --------------------------------
+	// EDITOR
+	// --------------------------------
+	checklist('Editor styles', editor);
+
+	if (editor) {
+		config.less.editor   = { files: { '.tmp-nwayo/editor-less.css': 'css/misc/editor.less' } };
+		config.cssmin.editor = { files: { '../builds/css/editor.css': getCssLibs('.tmp-nwayo/editor-less.css') }, };
+
+		tasks.editor = [
+			'less:editor',
+			'cssmin:editor',
+			'clean:tmp_css'
+		];
+
+		tasks.core_css.push('editor');
+
+		config.watch.editor = {
+			files: ['css/misc/editor.less'],
+			tasks: 'editor'
+		};
+	}
+
+
+
+
+
+
+
+
+	// --------------------------------
+	// FONTS
+	// --------------------------------
+	config.copy.fonts = {
+		expand: true,
+		cwd:    'assets/fonts/',
+		src:    '**',
+		dest:   '../builds/fonts/',
+		filter: 'isFile'
+	};
+
+	tasks.fonts = [
+		'copy:fonts'
+	];
+	tasks.rebuild.push('fonts');
+
+	config.watch.fonts = {
+		files: ['assets/fonts/**/*.{eot,svg,ttf,woff}'],
+		tasks: 'fonts'
+	};
+
+
+
+	// --------------------------------
+	// IMAGES
+	// --------------------------------
+	config.imagemin.images = {
+		options: { optimizationLevel:7, progressive:false, interlaced:false, pngquant:true, force:true },
+		files: [{
+			expand: true,
+			cwd: 'assets/images/',
+			src: ['**/*.{png,jpg,gif}'],
+			dest: '../builds/images/'
+		}]
+	};
+
+	tasks.images = [
+		'imagemin:images'
+	];
+	tasks.rebuild.push('images');
+
+	config.watch.images = {
+		files: [ 'assets/images/**/*.{png,jpg,gif}'],
+		tasks: 'images'
+	};
+
 
 
 
@@ -245,145 +375,55 @@ module.exports = function(grunt) {
 		tasks.icons.push('imagemagick-convert:favicon');
 
 
-		// tasks
+		// grunt
+		config.clean.tmp_icons = { src: ['.tmp-nwayo/icons'], options: { force: true }};
+		tasks.icons.push('clean:tmp_icons');
+
+		tasks.rebuild.push('icons');
+
 		config.watch.icons = {
 			files: ['assets/icons/**/*.png'],
 			tasks: 'icons'
 		};
 
-		config.clean.tmp_icons = { src: ['.tmp-nwayo/icons'], options: { force: true }};
-		tasks.icons.push('clean:tmp_icons');
-
 	})([57,72,76,114,120,144,152]);
 
 
 
-
-
-	
 	// --------------------------------
-	// IMAGES
+	// HTML STATIC
 	// --------------------------------
+	checklist('Static HTML', staticHtml);
 
-	// clean up dir
-
-	config.imagemin.images = {
-		options: { optimizationLevel:7, progressive:false, interlaced:false, pngquant:true, force:true },
-		files: [{
-			expand: true,
-			cwd: 'assets/images/',
-			src: ['**/*.{png,jpg,gif}'],
-			dest: '../builds/images/'
-		}]
-	};
-
-	config.watch.images_images = {
-		files: [ 'assets/images/**/*.{png,jpg,gif}'],
-		tasks: 'imagemin:images'
-	};
-
-	tasks.default.push('imagemin:images');
-
-
-
-	// --------------------------------
-	// FOUNDATION
-	// --------------------------------
-	checklist('Foundation', foundation);
-
-	if (foundation) {
-
-		grunt.loadNpmTasks('grunt-contrib-sass');
-
-		config.sass = {
-			foundation: { files: { '.tmp-nwayo/foundation-scss.css': 'css/vendor/foundation/foundation.scss' } },
-		};
-
-		tasks.core_css.unshift('sass:foundation');
-
-		config.watch.core_css.files.push('css/**/*.scss');
-	}
-
-
-
-
-
-	// --------------------------------
-	// JSHTML
-	// --------------------------------
-	checklist('JSRender templates', jshtml);
-
-	if (jshtml) {
-		grunt.loadNpmTasks('grunt-template-client');
-		
-		config.templateclient = {
-			core: {
-				options: {
-					variable: 'nwayo_jshtml',
-					prefix: 'window.kafe.dependencies.jQuery.templates(',
-					suffix: ')'
-				},
-				src: ['tmpl/**/*.jshtml'],
-				dest: '.tmp-nwayo/templateclient.js'
-			}
-		};
-
-		tasks.core_js.unshift('templateclient:core');
-
-		config.watch.core_js.files.push('tmpl/**/*.jshtml');
-	}
-
-
-
-	// --------------------------------
-	// EDITOR
-	// --------------------------------
-	checklist('Editor styles', editor);
-
-	if (editor) {
-		config.less.editor   = { files: { '.tmp-nwayo/editor-less.css': 'css/misc/editor.less' } };
-		config.cssmin.editor = { files: { '../builds/css/editor.css': getCssLibs('.tmp-nwayo/editor-less.css') }, };
-
-		tasks.editor = [
-			'less:editor',
-			'cssmin:editor',
-			'clean:tmp_css'
-		];
-
-		tasks.core_css.push('editor');
-
-		config.watch.editor = {
-			files: ['css/misc/editor.less'],
-			tasks: 'editor'
-		};
-	}
-
-
-
-	// --------------------------------
-	// NEWSLETTER
-	// --------------------------------
-	checklist('Static newsletter', newsletter);
-
-	if (newsletter) {
+	if (staticHtml) {
 		grunt.loadNpmTasks('grunt-inline-css');
 
-		config.less.newsletter = { files: { '.tmp-nwayo/newsletter-less.css': 'css/misc/newsletter.less' } };
-		config.inlinecss = { newsletter: {
-			files: { '../builds/misc/newsletter.html': 'misc/newsletter.html' }
-		}};
+		config.less.static_html = { files: [{
+			expand: true,
+			cwd: 'css/misc/static/',
+			src: ['**/*.less'],
+			dest: '.tmp-nwayo/',
+			ext: '-less.css'
+		}]};
+		
+		config.inlinecss.static_html = { files: [{
+			expand: true,
+			cwd: 'misc/static/',
+			src: ['**/*.html'],
+			dest: '../builds/static/'
+		}]};
 
-		tasks.newsletter = [
-			'less:newsletter',
-			'inlinecss:newsletter',
+		tasks.static_html = [
+			'less:static_html',
+			'inlinecss:static_html',
 			'clean:tmp_css'
 		];
 
-		tasks.core_css.push('newsletter');
+		tasks.rebuild.push('static_html');
 
-		config.watch.newsletter = {
-			files: ['css/misc/newsletter.less','misc/newsletter.html'],
-			tasks: 'newsletter'
+		config.watch.static_html = {
+			files: ['css/misc/static/**/*.less','misc/static/**/*.html'],
+			tasks: 'static_html'
 		};
 	}
 
@@ -399,6 +439,8 @@ module.exports = function(grunt) {
 	// --------------------------------
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+
+	tasks.rebuild.unshift('clean:builds');
 
 	grunt.initConfig(config);
 
