@@ -1,7 +1,10 @@
 module.exports = function(grunt) {
-	grunt.log.writeln('\n---- nwayo report -----');
-
 	var
+		tmp    = '.tmp-nwayo',
+		builds = '../builds',
+		assets = 'assets',
+		line   = Array(80).join('-'),
+
 		// flags
 		foundation = grunt.file.exists('css/vendor/foundation/foundation.scss'),
 		jshtml     = !!(grunt.file.expand('tmpl/**/*.jshtml').length),
@@ -22,18 +25,23 @@ module.exports = function(grunt) {
 		config = {
 			pkg: grunt.file.readJSON('package.json'),
 
-			copy: {},
-			nwayo_copy: {},
-			imagemin: {},
-			inlinecss: {},
-			'imagemagick-resize': {},
+			requirejs:             {},
+			jshint:                {},
+			less:                  {},
+			sass:                  {},
+			cssmin:                {},
+			imagemin:              {},
+			copy:                  {},
+			inlinecss:             {},
+			nwayo_copy:            {},
+			'imagemagick-resize':  {},
 			'imagemagick-convert': {},
 
 			// cleaner
 			clean: {
-				tmp_css: { src: ['.tmp-nwayo/*.css'], options: { force:true } },
-				tmp_js:  { src: ['.tmp-nwayo/*.js'],  options: { force:true } },
-				builds:  { src: ['../builds/*'],      options: { force:true } }
+				tmp_css: { src: [tmp+'/*.css'], options: { force:true } },
+				tmp_js:  { src: [tmp+'/*.js'],  options: { force:true } },
+				builds:  { src: [builds+'/*'],  options: { force:true } }
 			},
 
 			// watcher
@@ -41,14 +49,14 @@ module.exports = function(grunt) {
 				all: {
 					files: ['gruntfile.js', 'package.json'],
 					tasks: 'default'
-				},
+				}
 			}
 		},
 
 
 		// check list report
 		checklist = function(name, found) {
-			grunt.log.writeln('[ '+ ((found) ? '✔' : ' ') +' ] '+name);
+			grunt.log.writeln(' '+ ((found) ? '✔' : ' ') +'  '+name);
 		},
 
 		// get css static libs
@@ -58,7 +66,7 @@ module.exports = function(grunt) {
 			if (foundation) {
 				css = [
 					'css/libs/normalize.css',
-					'.tmp-nwayo/foundation-scss.css'
+					tmp+'/foundation-scss.css'
 				];
 			
 			} else if (!theme) {
@@ -75,16 +83,24 @@ module.exports = function(grunt) {
 		}
 	;
 
+	grunt.log.subhead(Array(10).join('\n')+line+'\n NWAYO\n'+line);
+
 
 	// grunt general modules
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-imagemin');
 	grunt.loadNpmTasks('grunt-imagemagick');
 
+	// grunt custom tasks
 	grunt.task.registerMultiTask('nwayo_copy', '', function() {
-		for (var i in this.data) {
-			grunt.file.copy(this.data[i],i);
+		for (var i in this.data.files) {
+			grunt.log.writeln('Copying '+this.data.files[i].src+'\nto      '+this.data.files[i].dest);
+			grunt.file.copy(this.data.files[i].src, this.data.files[i].dest);
 		}
+	});
+
+	grunt.task.registerTask('nwayo_loghead', '', function(title) {
+		grunt.log.subhead('\n\n'+line+'\n '+title.toUpperCase()+'\n'+line);
 	});
 
 
@@ -102,26 +118,22 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
 
 	// js hint
-	config.jshint = {
-		core: {
-			src: ['js/**/*.js', '!libs/**/*.js', '!js/vendor/**/*.js']
-		}
+	config.jshint.core = {
+		src: ['js/**/*.js', '!libs/**/*.js', '!js/vendor/**/*.js']
 	};
 
 	// requirejs
-	config.requirejs = {
-		core: {
-			options: {
-				baseUrl:  './',
-				name:     'js/core',
-				include:  ['js/variants'],
-				out:      '../builds/js/core.js',
-				optimize: 'uglify', // 'none'
-				preserveLicenseComments: false,
-				skipModuleInsertion:     true,
-				findNestedDependencies:  true,
-				pragmasOnSave:           { excludeRequire: true }
-			}
+	config.requirejs.core = {
+		options: {
+			baseUrl:  './',
+			name:     'js/core',
+			include:  ['js/variants'],
+			out:      builds+'/js/core.js',
+			optimize: 'uglify', // 'none'
+			preserveLicenseComments: false,
+			skipModuleInsertion:     true,
+			findNestedDependencies:  true,
+			pragmasOnSave:           { excludeRequire: true }
 		}
 	};
 
@@ -155,23 +167,26 @@ module.exports = function(grunt) {
 		options: { optimizationLevel:7, progressive:false, interlaced:false, pngquant:true, force:true },
 		files: [{
 			expand: true,
-			cwd: 'assets/data-uri/',
+			cwd: assets+'/data-uri/',
 			src: ['**/*.{png,jpg,gif}'],
-			dest: '.tmp-nwayo/data-uri/'
+			dest: tmp+'/data-uri/'
 		}]
 	};
 
 
 	// less
-	config.less = {
-		core: { files: { '.tmp-nwayo/core-less.css': 'css/loader.less' } }
-	};
-
+	config.less.core = { files: [{
+		src:  'css/loader.less',
+		dest: tmp+'/core-less.css'
+	}]};
 
 	// css
-	config.cssmin = {
-		core: { files: { '../builds/css/core.css': getCssLibs('.tmp-nwayo/core-less.css') } },
-	};
+	config.cssmin.core = { files: [{
+		src:  getCssLibs(tmp+'/core-less.css'),
+		dest: builds+'/css/core.css'
+	}]};
+
+
 
 
 	// task
@@ -185,7 +200,7 @@ module.exports = function(grunt) {
 
 	config.watch.core_css = {
 		files: [
-			'assets/data-uri/**/*.{png,jpg,gif}',
+			assets+'/data-uri/**/*.{png,jpg,gif}',
 			'css/**/*.css',
 			'css/**/*.less',
 			'!css/misc/**/*'
@@ -204,9 +219,10 @@ module.exports = function(grunt) {
 
 		grunt.loadNpmTasks('grunt-contrib-sass');
 
-		config.sass = {
-			foundation: { files: { '.tmp-nwayo/foundation-scss.css': 'css/vendor/foundation/foundation.scss' } },
-		};
+		config.sass.foundation = { files: [{
+			src:  'css/vendor/foundation/foundation.scss',
+			dest: tmp+'/foundation-scss.css'
+		}]};
 
 		tasks.core_css.unshift('sass:foundation');
 
@@ -223,16 +239,14 @@ module.exports = function(grunt) {
 	if (jshtml) {
 		grunt.loadNpmTasks('grunt-template-client');
 		
-		config.templateclient = {
-			core: {
-				options: {
-					variable: 'nwayo_jshtml',
-					prefix: 'window.kafe.dependencies.jQuery.templates(',
-					suffix: ')'
-				},
-				src: ['tmpl/**/*.jshtml'],
-				dest: '.tmp-nwayo/templateclient.js'
-			}
+		config.templateclient.core = {
+			options: {
+				variable: 'nwayo_jshtml',
+				prefix: 'window.kafe.dependencies.jQuery.templates(',
+				suffix: ')'
+			},
+			src: ['tmpl/**/*.jshtml'],
+			dest: tmp+'/templateclient.js'
 		};
 
 		tasks.core_js.unshift('templateclient:core');
@@ -248,10 +262,18 @@ module.exports = function(grunt) {
 	checklist('Editor styles', editor);
 
 	if (editor) {
-		config.less.editor   = { files: { '.tmp-nwayo/editor-less.css': 'css/misc/editor.less' } };
-		config.cssmin.editor = { files: { '../builds/css/editor.css': getCssLibs('.tmp-nwayo/editor-less.css') }, };
+		config.less.editor = { files: [{
+			src:  'css/misc/editor.less',
+			dest: tmp+'/editor-less.css'
+		}]};
+
+		config.cssmin.editor = { files: [{
+			src:  getCssLibs(tmp+'/editor-less.css'),
+			dest: builds+'/css/editor.css'
+		}]};
 
 		tasks.editor = [
+			'nwayo_loghead:editor styles',
 			'less:editor',
 			'cssmin:editor',
 			'clean:tmp_css'
@@ -277,19 +299,20 @@ module.exports = function(grunt) {
 	// --------------------------------
 	config.copy.fonts = {
 		expand: true,
-		cwd:    'assets/fonts/',
+		cwd:    assets+'/fonts/',
 		src:    '**',
-		dest:   '../builds/fonts/',
+		dest:   builds+'/fonts/',
 		filter: 'isFile'
 	};
 
 	tasks.fonts = [
+		'nwayo_loghead:fonts',
 		'copy:fonts'
 	];
 	tasks.rebuild.push('fonts');
 
 	config.watch.fonts = {
-		files: ['assets/fonts/**/*.{eot,svg,ttf,woff}'],
+		files: [assets+'/fonts/**/*.{eot,svg,ttf,woff}'],
 		tasks: 'fonts'
 	};
 
@@ -302,19 +325,20 @@ module.exports = function(grunt) {
 		options: { optimizationLevel:7, progressive:false, interlaced:false, pngquant:true, force:true },
 		files: [{
 			expand: true,
-			cwd: 'assets/images/',
+			cwd: assets+'/images/',
 			src: ['**/*.{png,jpg,gif}'],
-			dest: '../builds/images/'
+			dest: builds+'/images/'
 		}]
 	};
 
 	tasks.images = [
+		'nwayo_loghead:image optimization',
 		'imagemin:images'
 	];
 	tasks.rebuild.push('images');
 
 	config.watch.images = {
-		files: [ 'assets/images/**/*.{png,jpg,gif}'],
+		files: [ assets+'/images/**/*.{png,jpg,gif}'],
 		tasks: 'images'
 	};
 
@@ -325,7 +349,7 @@ module.exports = function(grunt) {
 	// ICONS
 	// --------------------------------
 	(function(sizes) {
-		tasks.icons = [];
+		tasks.icons = ['nwayo_loghead:icons'];
 
 		// apple touch icons
 		var applecopytasks = [];
@@ -334,14 +358,16 @@ module.exports = function(grunt) {
 			var size = sizes[i];
 
 			config['imagemagick-resize']['apple-'+size] = {
-				from:  'assets/icons/',
-				to:    '.tmp-nwayo/icons/apple-'+size+'/',
+				from:  assets+'/icons/',
+				to:    tmp+'/icons/apple-'+size+'/',
 				files: 'share.png',
 				props: { width:size, height:size }
 			};
 
-			config.nwayo_copy['apple-'+size] = {};
-			config.nwayo_copy['apple-'+size]['../builds/touch-icon-'+size+'.png'] = '.tmp-nwayo/icons/apple-'+size+'/share.png';
+			config.nwayo_copy['apple-'+size] = { files: [{
+				src:  tmp+'/icons/apple-'+size+'/share.png',
+				dest: builds+'/touch-icon-'+size+'.png'
+			}]};
 
 			tasks.icons.push('imagemagick-resize:apple-'+size);
 			applecopytasks.push('nwayo_copy:apple-'+size);
@@ -351,9 +377,9 @@ module.exports = function(grunt) {
 			options: { optimizationLevel:7, progressive:false, interlaced:false, pngquant:true, force:true },
 			files: [{
 				expand: true,
-				cwd: '.tmp-nwayo/icons/',
+				cwd: tmp+'/icons/',
 				src: ['**/*.{png,jpg,gif}'],
-				dest: '.tmp-nwayo/icons/'
+				dest: tmp+'/icons/'
 			}]
 		};
 		tasks.icons.push('imagemin:icons_apple');
@@ -363,26 +389,29 @@ module.exports = function(grunt) {
 		// share
 		config.imagemin.icons_share = {
 			options: { optimizationLevel:7, progressive:false, interlaced:false, pngquant:true, force:true },
-			files: {'../builds/share-icon.png' : 'assets/icons/share.png'}
+			files: [{
+				src:  assets+'/icons/share.png',
+				dest: builds+'/share-icon.png'
+			}]
 		};
 		tasks.icons.push('imagemin:icons_share');
 
 
 		// favicon
 		config['imagemagick-convert'].favicon = {
-			args: ['assets/icons/favicon.png', '../builds/favicon.ico']
+			args: [assets+'/icons/favicon.png', builds+'/favicon.ico']
 		};
 		tasks.icons.push('imagemagick-convert:favicon');
 
 
 		// grunt
-		config.clean.tmp_icons = { src: ['.tmp-nwayo/icons'], options: { force: true }};
+		config.clean.tmp_icons = { src: [tmp+'/icons'], options: { force: true }};
 		tasks.icons.push('clean:tmp_icons');
 
 		tasks.rebuild.push('icons');
 
 		config.watch.icons = {
-			files: ['assets/icons/**/*.png'],
+			files: [assets+'/icons/**/*.png'],
 			tasks: 'icons'
 		};
 
@@ -402,7 +431,7 @@ module.exports = function(grunt) {
 			expand: true,
 			cwd: 'css/misc/static/',
 			src: ['**/*.less'],
-			dest: '.tmp-nwayo/',
+			dest: tmp+'/',
 			ext: '-less.css'
 		}]};
 		
@@ -410,10 +439,11 @@ module.exports = function(grunt) {
 			expand: true,
 			cwd: 'misc/static/',
 			src: ['**/*.html'],
-			dest: '../builds/static/'
+			dest: builds+'/static/'
 		}]};
 
 		tasks.static_html = [
+			'nwayo_loghead:static html',
 			'less:static_html',
 			'inlinecss:static_html',
 			'clean:tmp_css'
@@ -440,15 +470,17 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
-	tasks.rebuild.unshift('clean:builds');
+	tasks.core_css.unshift('nwayo_loghead:css');
+	tasks.core_js.unshift('nwayo_loghead:js');
+	tasks.rebuild.unshift('nwayo_loghead:rebuilding site','clean:builds');
 
 	grunt.initConfig(config);
 
 	// tasks
+	grunt.log.subhead(' Available tasks');
 	for (var name in tasks) {
 		grunt.registerTask(name, tasks[name]);
+		grunt.log.writeln(' •  '+name);
 	}
-
-	grunt.log.writeln('-----------------------\n');
 };
 
