@@ -133,7 +133,13 @@ module.exports = function(grunt) {
 			preserveLicenseComments: false,
 			skipModuleInsertion:     true,
 			findNestedDependencies:  true,
-			pragmasOnSave:           { excludeRequire: true }
+			pragmasOnSave:           { excludeRequire: true },
+			onBuildRead: function (moduleName, path, contents) {
+				return contents
+					.replace("typeof define === 'function' && define.amd", 'false')
+					.replace("define( ['jquery'], factory );", 'var x=0;')
+				;
+			}
 		}
 	};
 

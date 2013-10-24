@@ -8,9 +8,9 @@
 //@import 'libs/cms-magento';
 //@import 'libs/cms-sitecore';
 
-@asset-path:   '/nwayo/assets';
-@img-path:     '@{asset-path}/images';
-@font-path:    '@{asset-path}/fonts';
+@build-path:   '/nwayo/builds';
+@img-path:     '@{build-path}/images';
+@font-path:    '@{build-path}/fonts';
 @imgdata-path: '.tmp-nwayo/data-uri';
 
 
@@ -35,8 +35,8 @@
 
 @text-font:  sans-serif;
 .text-font() { font-family:@text-font; }
-.alt-font()  { font-family:'Alternate', @textFont;  font-weight:normal !important; font-style:normal !important; -webkit-font-smoothing:antialiased !important; }
-.alt2-font() { font-family:'Alternate2', @textFont; font-weight:normal !important; font-style:normal !important; -webkit-font-smoothing:antialiased !important; }
+.alt-font()  { font-family:'Alternate', @text-font;  font-weight:normal !important; font-style:normal !important; -webkit-font-smoothing:antialiased !important; }
+.alt2-font() { font-family:'Alternate2', @text-font; font-weight:normal !important; font-style:normal !important; -webkit-font-smoothing:antialiased !important; }
 
 .ico-font() { font-family:'icomoon'; font-style:normal !important; font-weight:normal !important; font-variant:normal !important; text-transform:none !important; line-height:1 !important; -webkit-font-smoothing:antialiased !important; }
 	.icoFacebook-char() { content:'f'; .ico-font(); }
