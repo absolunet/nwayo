@@ -1,4 +1,6 @@
 module.exports = function(grunt) {
+	grunt.log.writeln('\n\n');
+
 	var
 		tmp    = '.tmp-nwayo',
 		builds = '../builds',
@@ -19,7 +21,8 @@ module.exports = function(grunt) {
 		// Project configuration.
 		tasks = {
 			default: [],
-			rebuild: ['default']
+			rebuild: ['default'],
+			report:  ['nwayo_report']
 		},
 		
 		config = {
@@ -55,9 +58,7 @@ module.exports = function(grunt) {
 
 
 		// check list report
-		checklist = function(name, found) {
-			grunt.log.writeln(' '+ ((found) ? '✔' : ' ') +'  '+name);
-		},
+		checklist = [],
 
 		// get css static libs
 		getCssLibs = function(file) {
@@ -83,7 +84,6 @@ module.exports = function(grunt) {
 		}
 	;
 
-	grunt.log.subhead(Array(10).join('\n')+line+'\n NWAYO\n'+line);
 
 
 	// grunt general modules
@@ -99,14 +99,25 @@ module.exports = function(grunt) {
 		}
 	});
 
+	grunt.task.registerTask('nwayo_report', '', function() {
+		grunt.log.subhead(line+'\n NWAYO\n'+line);
+		for (var i in checklist) {
+			grunt.log.writeln(' '+ ((checklist[i][1]) ? '✔' : ' ') +'  '+checklist[i][0]);
+		}
+
+		grunt.log.subhead(' Available tasks');
+		for (var name in tasks) {
+			grunt.log.writeln(' •  '+name);
+		}
+	});
+
 	grunt.task.registerTask('nwayo_loghead', '', function(title) {
 		grunt.log.subhead('\n\n'+line+'\n '+title.toUpperCase()+'\n'+line);
 	});
 
 
 
-	checklist('Has theme?', theme);
-
+	checklist.push(['Has theme?',theme]);
 
 
 
@@ -135,11 +146,14 @@ module.exports = function(grunt) {
 			findNestedDependencies:  true,
 			pragmasOnSave:           { excludeRequire: true },
 			onBuildRead: function (moduleName, path, contents) {
-				return contents
-					.replace("typeof define === 'function' && define.amd", 'false')
-					.replace("define( ['jquery'], factory );", 'var x=0;')
-				;
-			}
+				if (/vendor/.test(path)) {
+					return contents
+						.replace("typeof define === 'function' && define.amd", 'false')
+						.replace("define( ['jquery'], factory );", 'var x=0;')
+					;
+				}
+				return contents;
+			},
 		}
 	};
 
@@ -181,16 +195,14 @@ module.exports = function(grunt) {
 
 
 	// less
-	config.less.core = { files: [{
-		src:  'css/loader.less',
-		dest: tmp+'/core-less.css'
-	}]};
+	config.less.core = { files: [
+		{ src:'css/loader.less', dest:tmp+'/core-less.css' }
+	]};
 
 	// css
-	config.cssmin.core = { files: [{
-		src:  getCssLibs(tmp+'/core-less.css'),
-		dest: builds+'/css/core.css'
-	}]};
+	config.cssmin.core = { files: [
+		{ src: getCssLibs(tmp+'/core-less.css'), dest: builds+'/css/core.css' }
+	]};
 
 
 
@@ -219,7 +231,7 @@ module.exports = function(grunt) {
 	// --------------------------------
 	// FOUNDATION
 	// --------------------------------
-	checklist('Foundation', foundation);
+	checklist.push(['Foundation',foundation]);
 
 	if (foundation) {
 
@@ -240,7 +252,7 @@ module.exports = function(grunt) {
 	// --------------------------------
 	// JSHTML
 	// --------------------------------
-	checklist('JSRender templates', jshtml);
+	checklist.push(['JSRender templates',jshtml]);
 
 	if (jshtml) {
 		grunt.loadNpmTasks('grunt-template-client');
@@ -265,7 +277,7 @@ module.exports = function(grunt) {
 	// --------------------------------
 	// EDITOR
 	// --------------------------------
-	checklist('Editor styles', editor);
+	checklist.push(['Editor styles',editor]);
 
 	if (editor) {
 		config.less.editor = { files: [{
@@ -428,7 +440,7 @@ module.exports = function(grunt) {
 	// --------------------------------
 	// HTML STATIC
 	// --------------------------------
-	checklist('Static HTML', staticHtml);
+	checklist.push(['Static HTML',staticHtml]);
 
 	if (staticHtml) {
 		grunt.loadNpmTasks('grunt-inline-css');
@@ -483,10 +495,7 @@ module.exports = function(grunt) {
 	grunt.initConfig(config);
 
 	// tasks
-	grunt.log.subhead(' Available tasks');
 	for (var name in tasks) {
 		grunt.registerTask(name, tasks[name]);
-		grunt.log.writeln(' •  '+name);
 	}
 };
-
