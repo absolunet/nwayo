@@ -8,7 +8,7 @@ require([
 
 	// 'js/vendor/foundation/index'  // drupal-zurb
 
-	//'.tmp-nwayo/templateclient.js'
+	//'../.tmp-nwayo/templateclient.js'
 ]);
 //>>excludeEnd('excludeRequire');
 
