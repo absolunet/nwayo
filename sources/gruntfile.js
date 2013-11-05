@@ -130,7 +130,10 @@ module.exports = function(grunt) {
 
 	// js hint
 	config.jshint.core = {
-		src: ['js/**/*.js', '!libs/**/*.js', '!js/vendor/**/*.js']
+		src: ['js/**/*.js', '!libs/**/*.js', '!js/vendor/**/*.js'],
+		options: {
+			//'-W061': true   // eval can be harmful
+		}
 	};
 
 	// requirejs
@@ -147,13 +150,19 @@ module.exports = function(grunt) {
 			pragmasOnSave:           { excludeRequire: true },
 			onBuildRead: function (moduleName, path, contents) {
 				if (/vendor/.test(path)) {
-					return contents
-						.replace("typeof define === 'function' && define.amd", 'false')
-						.replace("define( ['jquery'], factory );", 'var x=0;')
-					;
+				
+					// remove AMD requirement
+					// if ( typeof define === "function" && define.amd ) {
+					var pieces = contents.split(/\}\s*else\s*{/);
+					for (var i in pieces) {
+						pieces[i] = pieces[i].replace(/if\s*\(\s*typeof\s+define\s*\=\=\=\s*['"]function['"]\s*\&\&\s*define\.amd\s*\)\s*\{[\s\S]*/gi, 'if (false) { var x=false;');
+					}
+					return pieces.join('} else {');
 				}
+				
 				return contents;
 			},
+
 		}
 	};
 
