@@ -13,6 +13,8 @@ require([
 //>>excludeEnd('excludeRequire');
 
 window.Sitename = (function(kafe,undefined){
+	kafe.fn.deleteVar('window._');
+	kafe.fn.deleteVar('window.Modernizr');
 
 	var
 		//$Drupal   = window.jQuery,
