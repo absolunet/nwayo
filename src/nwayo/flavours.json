@@ -1,0 +1,12 @@
+{
+	"basic":               {},
+	"basic-foundation":    { "theme":"true" },
+	"drupal-basic":        { "drupal":"true" },
+	"drupal-foundation":   { "drupal":"true", "foundation":"true" },
+	"drupal-theme":        { "drupal":"true", "theme":"true" },
+	"magento-basic":       { "magento":"true" },
+	"magento-foundation":  { "magento":"true", "foundation":"true" },
+	"magento-theme":       { "magento":"true", "theme":"true" },
+	"sitecore-basic":      { "sitecore":"true" },
+	"sitecore-foundation": { "sitecore":"true", "foundation":"true" }
+}
