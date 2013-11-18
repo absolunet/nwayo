@@ -1,12 +1,12 @@
 {
-	"basic":               {},
-	"basic-foundation":    { "theme":"true" },
-	"drupal-basic":        { "drupal":"true" },
-	"drupal-foundation":   { "drupal":"true", "foundation":"true" },
-	"drupal-theme":        { "drupal":"true", "theme":"true" },
-	"magento-basic":       { "magento":"true" },
-	"magento-foundation":  { "magento":"true", "foundation":"true" },
-	"magento-theme":       { "magento":"true", "theme":"true" },
-	"sitecore-basic":      { "sitecore":"true" },
-	"sitecore-foundation": { "sitecore":"true", "foundation":"true" }
+	"basic":               { "cms":"",         "theme":"false", "layout":"desktop" },
+	"basic-foundation":    { "cms":"",         "theme":"false", "layout":"foundation" },
+	"drupal-basic":        { "cms":"drupal",   "theme":"false", "layout":"desktop" },
+	"drupal-foundation":   { "cms":"drupal",   "theme":"false", "layout":"foundation" },
+	"drupal-theme":        { "cms":"drupal",   "theme":"true",  "layout":"desktop" },
+	"magento-basic":       { "cms":"magento",  "theme":"false", "layout":"desktop" },
+	"magento-foundation":  { "cms":"magento",  "theme":"false", "layout":"foundation" },
+	"magento-theme":       { "cms":"magento",  "theme":"true",  "layout":"desktop" },
+	"sitecore-basic":      { "cms":"sitecore", "theme":"false", "layout":"desktop" },
+	"sitecore-foundation": { "cms":"sitecore", "theme":"false", "layout":"foundation" }
 }

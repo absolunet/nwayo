@@ -9,14 +9,18 @@
 	<link rel="dns-prefetch" href="//connect.facebook.net">
 	<meta http-equiv="cleartype" content="on">
 
-	<!-- {{STATIC}} -->
-	<meta name="viewport" content="width=1024">
-	<!-- {{/STATIC}} -->
-	<!-- {{RESPONSIVE}} -->
+	<!-- @if layout="responsive" || layout="foundation" || layout="mobile" -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-	<!-- {{/RESPONSIVE}} -->
+	<!-- @endif -->
 
+	<!-- @if layout=="desktop" -->
+	<meta name="viewport" content="width=1024">
+	<!-- @endif -->
+
+
+	<!-- @if cms!="drupal" -->
 	<link rel="shortcut icon"    href="/nwayo/builds/favicon.ico">
+	<!-- @endif -->
 	<link rel="image_src"        href="/nwayo/builds/share-icon.png">
 	<link rel="apple-touch-icon" href="/nwayo/builds/touch-icon-57.png">
 	<link rel="apple-touch-icon" href="/nwayo/builds/touch-icon-72.png"  sizes="72x72" >
