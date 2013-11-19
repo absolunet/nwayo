@@ -11,13 +11,11 @@ module.exports = function(grunt) {
 
 
 		tasks = { default:[] },
+
+		options = grunt.file.readJSON(src_nwayo+'/nwayo.json'),
 		
-		flavours = grunt.file.readJSON(src_nwayo+'/flavours.json'),
-
-
-
 		config = {
-			pkg: grunt.file.readJSON('package.json'),
+			pkg:    grunt.file.readJSON('package.json'),
 
 			requirejs:    {},
 			jshint:       {},
@@ -27,33 +25,32 @@ module.exports = function(grunt) {
 			copy:         {},
 			preprocess:   {},
 			nwayo_delete: {
-				tmp:   { path:tmp },
-				build: { path:out_build }
+				tmp:   { path:[tmp] },
+				build: { path:[out_build] }
 			},
-			watch:        { all: { files: ['gruntfile.js', 'package.json'], tasks: 'default' } }
+			watch: { all: { files: ['gruntfile.js', 'package.json'], tasks: 'default' } }
+		},
+
+		merge = function (obj1,obj2,obj3) {
+			var obj = {};
+			for (var attrname1 in obj1) { obj[attrname1] = obj1[attrname1]; }
+			for (var attrname2 in obj2) { obj[attrname2] = obj2[attrname2]; }
+			for (var attrname3 in obj3) { obj[attrname3] = obj3[attrname3]; }
+			return obj;
 		}
 	;
 
 	grunt.task.registerTask('nwayo_createtree', '', function(id) {
-		(function(dir) { for (var i in dir) {
-			grunt.file.write(skeleton+'/'+dir[i]+'/.gitignore', '', { force:true });
-		}})([
-			'builds',
-			'stubs',
-			'sources/assets/data-uri',
-			'sources/assets/fonts',
-			'sources/assets/images',
-			'sources/assets/images/vendor',
-			'sources/css/vendor/',
-			'sources/js/vendor/',
-			'sources/libs/',
-			'sources/tmpl/'
-		]);
+		for (var i in options.tree) {
+			grunt.file.write(skeleton+'/'+options.tree[i]+'/.gitignore', '', { force:true });
+		}
 	});
 
 	grunt.task.registerMultiTask('nwayo_delete', '', function() {
-		grunt.log.writeln('Deleting '+this.data.path);
-		grunt.file.delete(this.data.path, {force:true});
+		for (var i in this.data.path) {
+			grunt.log.writeln('Deleting '+this.data.path[i]);
+			grunt.file.delete(this.data.path[i], {force:true});
+		}
 	});
 
 
@@ -119,16 +116,95 @@ module.exports = function(grunt) {
 
 
 
-	flavours = {basic: flavours.basic};
+	//var flavours = {basic: options.flavours.basic};
+	var flavours = options.flavours;
 
 	for (var id in flavours) {
 		var
-			data  = flavours[id],
-			local = tmp+'/'+id,
-			out   = out_build+'/'+id
+			data       = merge(options.default, options.cms[ flavours[id].cms ], flavours[id] ),
+			local      = tmp+'/'+id,
+			out        = out_build+'/'+id,
+			css_common = [],
+			todelete   = []
 		;
 
-		data.responsive = (data.foundation);
+		data.space = '';
+		data.root += (data.theme) ? '/'+config.pkg.name : '';
+
+		data.build  = data.root+'/builds';
+
+		data.package   = config.pkg.name;
+		data.version   = config.pkg.version;
+		data.author    = config.pkg.author.name;
+		data.copyright = '\n\t<!-- '+config.pkg.name+' '+config.pkg.version+' (c) '+new Date().getFullYear()+' '+config.pkg.author.name+' -->';
+
+		data.ga      = (data.ga) ? '{{GA}}' : undefined;
+		data.addthis = '{{ADDTHIS}}';
+		data.domain  = '{{DOMAIN}}';
+
+		data.css_common = '';
+
+
+
+		// theme
+		if (!data.theme) {
+			css_common.push('nwayo-boilerplate');
+		} else {
+			todelete.push(
+				local+'/sources/css/libs/reset.css',
+				local+'/sources/css/libs/normalize.css',
+				local+'/sources/css/libs/html5boilerplate.css',
+				local+'/sources/css/libs/nwayo-boilerplate.less'
+			);
+		}
+
+
+		// drupal
+		if (data.cms == 'drupal') {
+			css_common.push('cms-drupal');
+
+			if (data.layout == 'foundation') {
+				css_common.push('cms-drupal-zurbfoundation');
+			} else {
+				todelete.push(local+'/sources/css/libs/cms-drupal-zurbfoundation.less');
+			}
+
+		} else {
+			todelete.push(local+'/sources/css/libs/cms-drupal.less', local+'/sources/css/libs/cms-drupal-zurbfoundation.less');
+		}
+
+
+		// magento
+		if (data.cms == 'magento') {
+			css_common.push('cms-magento');
+		} else {
+			todelete.push(local+'/sources/css/libs/cms-magento.less');
+		}
+
+
+		// sitecore
+		if (data.cms == 'sitecore') {
+			css_common.push('cms-sitecore');
+		} else {
+			todelete.push(local+'/sources/css/libs/cms-sitecore.less');
+		}
+
+
+		// none
+		if (data.cms === '') {
+			todelete.push(local+'/sources/css/misc/editor.less');
+		}
+
+
+
+		// css / less
+		for (var i in css_common) {
+			data.css_common += '@import \'libs/'+css_common[i]+'\';\n';
+		}
+
+
+
+
 
 		// copy skeleton
 		config.copy['tmp_'+id] = {
@@ -143,8 +219,11 @@ module.exports = function(grunt) {
 		// process this flavour
 		config.preprocess['flavour_'+id] = {
 			options: { context:data, inline:true },
-			src:     [local+'**/*.*']
+			src:     [local+'/**/*.*']
 		};
+
+		// delete unnecessary files 
+		config.nwayo_delete['flavour_'+id] = { path:todelete };
 
 
 		// copy to build
@@ -157,7 +236,7 @@ module.exports = function(grunt) {
 		};
 
 
-		tasks['flavour_'+id] = ['copy:tmp_'+id, 'preprocess:flavour_'+id, 'copy:build_'+id];
+		tasks['flavour_'+id] = ['copy:tmp_'+id, 'preprocess:flavour_'+id, 'nwayo_delete:flavour_'+id, 'copy:build_'+id];
 
 		tasks.default.push('flavour_'+id);
 	}

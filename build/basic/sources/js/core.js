@@ -1,26 +1,24 @@
-﻿/*------------------------------------------------------------------------------------//
+/*------------------------------------------------------------------------------------//
 // CORE
 //------------------------------------------------------------------------------------*/
 
 //>>excludeStart('excludeRequire', pragmas.excludeRequire);
 require([
-	'libs/kafe/kafe'
-
-	// 'js/vendor/foundation/index'  // drupal-zurb
+	'libs/kafe/kafe',
 
 	//'../.tmp-nwayo/templateclient.js'
 ]);
 //>>excludeEnd('excludeRequire');
 
-window.Sitename = (function(kafe,undefined){
+window.{{NAME}} = (function(kafe,undefined){
 	kafe.fn.deleteVar('window._');
 	kafe.fn.deleteVar('window.Modernizr');
 
 	var
-		//$Drupal   = window.jQuery,
 		$         = kafe.dependencies.jQuery,
 		_         = kafe.dependencies.underscore,
 		Modernizr = kafe.dependencies.Modernizr,
+		
 		App       = {},
 		Local     = {}
 	;
@@ -56,10 +54,10 @@ window.Sitename = (function(kafe,undefined){
 		// path
 		App.path = {};
 
-		App.path.nwayo  = '/nwayo/';
-		App.path.builds = App.path.nwayo+'builds/';
+		App.path.root  = '/nwayo/';
+		App.path.builds = App.path.root+'builds/';
 		App.path.images = App.path.builds+'images/';
-		App.path.stubs  = App.path.nwayo+'stubs/';
+		App.path.stubs  = App.path.root+'stubs/';
 
 
 		// tmpl
@@ -129,17 +127,6 @@ window.Sitename = (function(kafe,undefined){
 		/**/
 
 
-		// tabs
-		/**
-		$('div[data-structure="tabs"] > section > h1').on('click', function() {
-			$(this).parent()
-				.siblings('section.On').removeClass('On').end()
-				.addClass('On')
-			;
-		}).first().trigger('click');
-		/**/
-
-
 		// hashchange
 		/**
 		$window.on('hashchange', function (e) {
@@ -152,11 +139,6 @@ window.Sitename = (function(kafe,undefined){
 	/*- To execute on start -------------------------------------------------------------------*/
 	Local.Start = function() {
 		
-		// init drupal foundation
-		/**
-		$Drupal(document).foundation();
-		/**/
-
 		
 		// web font loader
 		/**

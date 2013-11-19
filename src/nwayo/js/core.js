@@ -4,23 +4,33 @@
 
 //>>excludeStart('excludeRequire', pragmas.excludeRequire);
 require([
-	'libs/kafe/kafe'
+	'libs/kafe/kafe',
 
-	// 'js/vendor/foundation/index'  // drupal-zurb
+	// @if layout="foundation"
+	'js/vendor/foundation/index',
+	// @endif
 
-	//'../.tmp-nwayo/templateclient.js'
+	// @if cms
+	'libs/kafe/cms//* @echo cms */',
+	// @endif
+
+	//'../.tmp-/* @echo package *//templateclient.js'
 ]);
 //>>excludeEnd('excludeRequire');
 
-window.Sitename = (function(kafe,undefined){
+window.{{NAME}} = (function(kafe,undefined){
 	kafe.fn.deleteVar('window._');
 	kafe.fn.deleteVar('window.Modernizr');
 
 	var
-		//$Drupal   = window.jQuery,
 		$         = kafe.dependencies.jQuery,
 		_         = kafe.dependencies.underscore,
 		Modernizr = kafe.dependencies.Modernizr,
+		
+		// @if cms="drupal"
+		$Drupal   = window.jQuery,
+		// @endif 
+
 		App       = {},
 		Local     = {}
 	;
@@ -56,16 +66,16 @@ window.Sitename = (function(kafe,undefined){
 		// path
 		App.path = {};
 
-		App.path.nwayo  = '/nwayo/';
-		App.path.builds = App.path.nwayo+'builds/';
+		App.path.root  = '/* @echo root *//';
+		App.path.builds = App.path.root+'builds/';
 		App.path.images = App.path.builds+'images/';
-		App.path.stubs  = App.path.nwayo+'stubs/';
+		App.path.stubs  = App.path.root+'stubs/';
 
 
 		// tmpl
 		/**
-		App.tmpl = window.nwayo_jshtml;
-		kafe.fn.deleteVar('window.nwayo_jshtml');
+		App.tmpl = window./* @echo package */_jshtml;
+		kafe.fn.deleteVar('window./* @echo package */_jshtml');
 
 		$('script[type="text/x-jsrender"]').each(function () {
 			var id = $(this).attr('id');
@@ -129,17 +139,6 @@ window.Sitename = (function(kafe,undefined){
 		/**/
 
 
-		// tabs
-		/**
-		$('div[data-structure="tabs"] > section > h1').on('click', function() {
-			$(this).parent()
-				.siblings('section.On').removeClass('On').end()
-				.addClass('On')
-			;
-		}).first().trigger('click');
-		/**/
-
-
 		// hashchange
 		/**
 		$window.on('hashchange', function (e) {
@@ -152,10 +151,15 @@ window.Sitename = (function(kafe,undefined){
 	/*- To execute on start -------------------------------------------------------------------*/
 	Local.Start = function() {
 		
+		// @if layout="foundation" && cms="drupal"
 		// init drupal foundation
-		/**
 		$Drupal(document).foundation();
-		/**/
+		// @endif 
+
+		// @if layout="foundation" && cms!="drupal"
+		// init foundation
+		App.dom.document.foundation();
+		// @endif 
 
 		
 		// web font loader

@@ -13,6 +13,11 @@ require([
 		$         = kafe.dependencies.jQuery,
 		_         = kafe.dependencies.underscore,
 		Modernizr = kafe.dependencies.Modernizr,
+
+		// @if cms="Drupal"
+		$Drupal   = window.jQuery,
+		// @endif 
+
 		Local     = {}
 	;
 
@@ -40,4 +45,4 @@ require([
 		//Local.InitLateralcolumn();
 	});
 
-})(window.kafe, window.Sitename);
+})(window.kafe, window.{{NAME}});
