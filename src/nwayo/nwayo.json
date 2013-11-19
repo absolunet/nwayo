@@ -1,0 +1,60 @@
+{
+	"tree": [
+		"builds",
+		"stubs",
+		"sources/assets/data-uri",
+		"sources/assets/fonts",
+		"sources/assets/images",
+		"sources/assets/images/vendor",
+		"sources/css/vendor/",
+		"sources/js/vendor/",
+		"sources/libs/",
+		"sources/tmpl/"
+	],
+
+	"default": {
+		"lang":    "en",
+		"culture": "en-CA",
+		"page":    "SpecialContent",
+		"tmpl":    "Content",
+		"ga":      true,
+		"root":    "/nwayo"
+	},
+
+
+	"cms": {
+		"drupal": {
+			"lang":    "<?php print $language->language; ?>",
+			"culture": "<?php print $language->language; ?>-CA",
+			"page":    "",
+			"tmpl":    "<?php print $classes; ?>",
+			"head":    "\t<?php print $head; ?>\n\t<title><?php print $head_title; ?></title>\n",
+			"cssjs":   "\t<?php print $styles; ?>\n\t<?php print $scripts; ?>\n",
+			"ga":      false,
+			"root":    "/sites/all/themes/{{NAME}}"
+		},
+		"magento": {
+			"lang":    "<?php echo $this->getLang() ?>",
+			"culture": "<?php echo $this->getLang() ?>-CA",
+			"page":    "",
+			"tmpl":    "<?php echo $this->getBodyClass() ?>",
+			"head":    "\t<?php echo $this->getChildHtml('head') ?>",
+			"cssjs":   "",
+			"ga":      false,
+			"root":    "/skin/frontend/default/{{NAME}}"
+		}
+	},
+
+	"flavours": {
+		"basic":               { "cms":"",         "theme":false, "layout":"desktop" },
+		"basic-foundation":    { "cms":"",         "theme":false, "layout":"foundation" },
+		"drupal-basic":        { "cms":"drupal",   "theme":false, "layout":"desktop" },
+		"drupal-foundation":   { "cms":"drupal",   "theme":false, "layout":"foundation" },
+		"drupal-theme":        { "cms":"drupal",   "theme":true,  "layout":"desktop" },
+		"magento-basic":       { "cms":"magento",  "theme":false, "layout":"desktop" },
+		"magento-foundation":  { "cms":"magento",  "theme":false, "layout":"foundation" },
+		"magento-theme":       { "cms":"magento",  "theme":true,  "layout":"desktop" },
+		"sitecore-basic":      { "cms":"sitecore", "theme":false, "layout":"desktop" },
+		"sitecore-foundation": { "cms":"sitecore", "theme":false, "layout":"foundation" }
+	}
+}

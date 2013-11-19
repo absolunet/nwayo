@@ -1,0 +1,88 @@
+/*------------------------------------------------------------------------------------//
+// CORE
+//------------------------------------------------------------------------------------*/
+
+/*- Base ---------------------------------------------------------------------*/
+html {
+	background-color:@bg-color;
+}
+body {
+	//width:@siteWidth;
+	.text-font(); font-size:16px; color:@text-color; line-height:1.3;
+
+	/** inline image
+	&:extend(._bg-imagedata);
+	**/
+
+	/**
+	@media @mobile-media {
+		background: green;
+	}
+	/**/
+}
+a {
+	color:@link-color; text-decoration:none;
+	.transition(0.05s);
+
+	&:hover {
+		text-decoration:underline;
+	}
+}
+ 
+
+._selection () { 
+	color:@white; background-color:@black;
+}
+.selection();
+
+
+// .gradient();
+// html.no-gradient & { }
+
+
+
+
+/*- Header -------------------------------------------------------------------*/
+#Header {
+
+}
+
+/*- Fixed navigation --------------------------------------------------------*/
+#FixedNav {
+
+}
+
+/*- Main navigation ----------------------------------------------------------------*/
+#MainNav {
+	
+}
+
+/*- Body ------------------------------------------------------------------*/
+#Body {
+
+}
+
+/*- Content ------------------------------------------------------------------*/
+#Content {
+	.Editable();
+}
+
+/*- Lateral column -----------------------------------------------------------*/
+#LateralCol {
+
+}
+
+/*- Footer -------------------------------------------------------------------*/
+#Footer {
+	
+}
+
+
+
+
+/*- Drupal clogs -------------------------------------------------------------------*/
+.contextual-links-wrapper {
+	.block-views > & {
+		right:-35px;
+	}
+}

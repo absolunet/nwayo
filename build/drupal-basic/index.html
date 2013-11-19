@@ -1,0 +1,77 @@
+<!doctype html>
+<html id="<?php print $language->language; ?>-CA" lang="<?php print $language->language; ?>" class="no-js" data-kafe-page="" data-kafe-tmpl="<?php print $classes; ?>">
+<head>
+	<?php print $head; ?>
+	<title><?php print $head_title; ?></title>
+	
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="dns-prefetch" href="//ajax.googleapis.com">
+	<link rel="dns-prefetch" href="//s7.addthis.com">
+	<link rel="dns-prefetch" href="//www.google-analytics.com">
+	<link rel="dns-prefetch" href="//connect.facebook.net">
+	<meta http-equiv="cleartype" content="on">
+
+	<meta name="viewport" content="width=1024">
+	
+
+
+	<link rel="image_src"        href="/sites/all/themes/{{NAME}}/builds/share-icon.png">
+	<link rel="apple-touch-icon" href="/sites/all/themes/{{NAME}}/builds/touch-icon-57.png">
+	<link rel="apple-touch-icon" href="/sites/all/themes/{{NAME}}/builds/touch-icon-72.png"  sizes="72x72" >
+	<link rel="apple-touch-icon" href="/sites/all/themes/{{NAME}}/builds/touch-icon-76.png"  sizes="76x76" >
+	<link rel="apple-touch-icon" href="/sites/all/themes/{{NAME}}/builds/touch-icon-114.png" sizes="114x114" >
+	<link rel="apple-touch-icon" href="/sites/all/themes/{{NAME}}/builds/touch-icon-120.png" sizes="120x120" >
+	<link rel="apple-touch-icon" href="/sites/all/themes/{{NAME}}/builds/touch-icon-144.png" sizes="144x144" >
+	<link rel="apple-touch-icon" href="/sites/all/themes/{{NAME}}/builds/touch-icon-152.png" sizes="152x152" >
+
+
+
+	<!-- Facebook OpenGraph
+	<meta property="og:url" content="//{{DOMAIN}}/">
+	<meta property="og:title" content="nwayo">
+	<meta property="og:description" content="">
+	<meta property="og:image" content="//{{DOMAIN}}/sites/all/themes/{{NAME}}/builds/share-icon.png">
+	<meta property="og:type" content="website">
+	-->
+
+
+
+	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <![endif]-->
+	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!--<![endif]-->
+	<!-- script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script -->
+	<script>window.kafejQuery = window.jQuery.noConflict(true)</script>
+	
+	<!-- CDN 
+	<script src="//s7.addthis.com/js/300/addthis_widget.js#pubid={{ADDTHIS}}&amp;async=1"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.10/webfont.js"></script>
+	-->
+
+
+
+
+	<?php print $styles; ?>
+	<?php print $scripts; ?>
+	
+	<!-- nwayo 1.0.0a (c) 2013 Absolunet -->
+</head>
+<body id="" class="<?php print $classes; ?>">
+
+
+	<div id="skip-link"><a href="#main-content" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a></div>
+	<?php 
+		print $page_top;
+		print $page;
+		print $page_bottom;
+	?>
+	
+	<!-- JSRender inline template 
+	<script id="jshtml-here_is_an_example" type="text/x-jsrender">
+		My inline template
+	</script>
+	-->
+
+</body>
+</html>
