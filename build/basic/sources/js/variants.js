@@ -41,4 +41,4 @@ require([
 		//Local.InitLateralcolumn();
 	});
 
-})(window.kafe, window.{{NAME}});
+})(window.kafe, window.basic);

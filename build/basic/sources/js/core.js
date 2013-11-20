@@ -10,7 +10,7 @@ require([
 ]);
 //>>excludeEnd('excludeRequire');
 
-window.{{NAME}} = (function(kafe,undefined){
+window.basic = (function(kafe,undefined){
 	kafe.fn.deleteVar('window._');
 	kafe.fn.deleteVar('window.Modernizr');
 
