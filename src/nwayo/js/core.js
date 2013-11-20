@@ -18,7 +18,7 @@ require([
 ]);
 //>>excludeEnd('excludeRequire');
 
-window.{{NAME}} = (function(kafe,undefined){
+window./* @echo name */ = (function(kafe,undefined){
 	kafe.fn.deleteVar('window._');
 	kafe.fn.deleteVar('window.Modernizr');
 

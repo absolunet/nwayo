@@ -31,7 +31,7 @@
 			"head":    "\t<?php print $head; ?>\n\t<title><?php print $head_title; ?></title>\n",
 			"cssjs":   "\t<?php print $styles; ?>\n\t<?php print $scripts; ?>\n",
 			"ga":      false,
-			"root":    "/sites/all/themes/{{NAME}}"
+			"root":    "/sites/all/themes/<%= name %>"
 		},
 		"magento": {
 			"lang":    "<?php echo $this->getLang() ?>",
@@ -41,20 +41,66 @@
 			"head":    "\t<?php echo $this->getChildHtml('head') ?>",
 			"cssjs":   "",
 			"ga":      false,
-			"root":    "/skin/frontend/default/{{NAME}}"
+			"root":    "/skin/frontend/default/<%= name %>"
 		}
 	},
 
+	"prompt": [
+		{
+			"name":    "custombuild.cms",
+			"message": "Which cms:",
+			"choices": [
+				{ "name":"None",     "value":"" },
+				{ "name":"Drupal",   "value":"drupal" },
+				{ "name":"Magento",  "value":"magento" },
+				{ "name":"Sitecore", "value":"sitecore" }
+			],
+			"type":    "list"
+		},
+		{
+			"name":    "custombuild.layout",
+			"message": "Which layout:",
+			"choices": [
+				{ "name":"Desktop",                 "value":"desktop" },
+				{ "name":"Mobile",                  "value":"mobile" },
+				{ "name":"Responsive",              "value":"responsive" },
+				{ "name":"Responsive (Foundation)", "value":"foundation" }
+			],
+			"type":    "list"
+		},
+		{
+			"name":    "custombuild.theme",
+			"message": "Has theme:",
+			"type":    "confirm"
+		},
+		{
+			"name":    "custombuild.name",
+			"message": "Project slug name:",
+			"type":    "input"
+		},
+		{
+			"name":    "custombuild.title",
+			"message": "Project readable name:",
+			"type":    "input"
+		},
+		{
+			"name":    "custombuild.addthis",
+			"message": "Addthis pubid:",
+			"type":    "input"
+		},
+		{
+			"name":    "custombuild.ga",
+			"message": "Google Analytics key:",
+			"type":    "input"
+		},
+		{
+			"name":    "custombuild.domain",
+			"message": "Public domain:",
+			"type":    "input"
+		}
+	],
+
 	"flavours": {
-		"basic":               { "cms":"",         "theme":false, "layout":"desktop" },
-		"basic-foundation":    { "cms":"",         "theme":false, "layout":"foundation" },
-		"drupal-basic":        { "cms":"drupal",   "theme":false, "layout":"desktop" },
-		"drupal-foundation":   { "cms":"drupal",   "theme":false, "layout":"foundation" },
-		"drupal-theme":        { "cms":"drupal",   "theme":true,  "layout":"desktop" },
-		"magento-basic":       { "cms":"magento",  "theme":false, "layout":"desktop" },
-		"magento-foundation":  { "cms":"magento",  "theme":false, "layout":"foundation" },
-		"magento-theme":       { "cms":"magento",  "theme":true,  "layout":"desktop" },
-		"sitecore-basic":      { "cms":"sitecore", "theme":false, "layout":"desktop" },
-		"sitecore-foundation": { "cms":"sitecore", "theme":false, "layout":"foundation" }
+		"basic": { "cms":"", "theme":false, "layout":"desktop" }
 	}
 }
