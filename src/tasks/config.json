@@ -1,0 +1,40 @@
+{
+	"default": {
+		"lang":    "en",
+		"culture": "en-CA",
+		"page":    "SpecialContent",
+		"tmpl":    "Content",
+		"ga":      true,
+		"root":    "/nwayo"
+	},
+
+
+	"cms": {
+		"drupal": {
+			"lang":    "<?php print $language->language; ?>",
+			"culture": "<?php print $language->language; ?>-CA",
+			"page":    "",
+			"tmpl":    "<?php print $classes; ?>",
+			"head":    "\t<?php print $head; ?>\n\t<title><?php print $head_title; ?></title>\n",
+			"cssjs":   "\t<?php print $styles; ?>\n\t<?php print $scripts; ?>\n",
+			"ga":      false,
+			"root":    "/sites/all/themes/<%= name %>"
+		},
+		"magento": {
+			"lang":    "<?php echo $this->getLang() ?>",
+			"culture": "<?php echo $this->getLang() ?>-CA",
+			"page":    "",
+			"tmpl":    "<?php echo $this->getBodyClass() ?>",
+			"head":    "\t<?php echo $this->getChildHtml('head') ?>",
+			"cssjs":   "",
+			"ga":      false,
+			"root":    "/skin/frontend/default/<%= name %>"
+		}
+	},
+
+
+	"flavours": {
+		"basic": { "cms":"", "theme":false, "layout":"desktop" }
+	}
+}
+
