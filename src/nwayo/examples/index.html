@@ -79,7 +79,7 @@
 
 	<!-- @echo copyright -->
 </head>
-<body id="<!-- @echo page -->" class="<!-- @echo tmpl -->">
+<body id="<!-- @echo page -->" class="<!-- @echo tmpl -->"<!-- @if cms="drupal" --><?php print $attributes;?><!-- @endif -->>
 
 
 	<!-- @if cms="drupal" -->
@@ -89,6 +89,10 @@
 		print $page;
 		print $page_bottom;
 	?>
+	<!-- @endif -->
+
+	<!-- @if cms="drupal" && layout="foundation" -->
+	<?php print _zurb_foundation_add_reveals(); ?>
 	<!-- @endif -->
 
 	<!-- @if cms="magento" -->

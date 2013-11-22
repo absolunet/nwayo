@@ -46,6 +46,15 @@ var processFlavour = function(id,params,suffix) {
 		);
 	}
 
+	// layout
+	if (data.layout == 'foundation') {
+		todelete.push(
+			local+'/sources/css/libs/reset.css',
+			local+'/sources/css/libs/html5boilerplate.css',
+			local+'/sources/css/libs/nwayo-boilerplate.less'
+		);
+	}
+
 
 	// drupal
 	if (data.cms == 'drupal') {
