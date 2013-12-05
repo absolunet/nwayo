@@ -2,29 +2,22 @@
 // CORE
 //------------------------------------------------------------------------------------*/
 
-//>>excludeStart('excludeRequire', pragmas.excludeRequire);
-require([
-	'libs/kafe/kafe',
+// @import 'libs/kafe/kafe',
 
-	// @if layout="foundation"
-	'js/vendor/foundation/index',
-	// @endif
+// @if layout="foundation"
+// @import 'js/vendor/foundation/index'
+// @endif
 
-	// @if cms
-	'libs/kafe/cms//* @echo cms */',
-	// @endif
+// @if cms
+// @import 'libs/kafe/cms//* @echo cms */'
+// @endif
 
-	//'../.tmp-/* @echo package *//templateclient.js'
-]);
-//>>excludeEnd('excludeRequire');
+// **@import '../.tmp-/* @echo package *//templateclient.js'
 
 window./* @echo name */ = (function(kafe,undefined){
-	kafe.fn.deleteVar('window._');
-	kafe.fn.deleteVar('window.Modernizr');
-
 	var
 		$         = kafe.dependencies.jQuery,
-		_         = kafe.dependencies.underscore,
+		_         = kafe.dependencies.LoDash,
 		Modernizr = kafe.dependencies.Modernizr,
 		
 		// @if cms="drupal"
