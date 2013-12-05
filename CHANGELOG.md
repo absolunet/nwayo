@@ -1,4 +1,4 @@
 v1.0.0:
-  date: 2013-1X-XX
+  date: 2014-1X-XX
   changes:
     - Initial public release of nwayo.

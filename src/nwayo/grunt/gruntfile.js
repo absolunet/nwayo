@@ -149,6 +149,15 @@ module.exports = function(grunt) {
 			findNestedDependencies:  true,
 			pragmasOnSave:           { excludeRequire: true },
 			onBuildRead: function (moduleName, path, contents) {
+
+
+
+
+				// grunt.file.write(out_build+'/vendor/'+filename, contents.replace('window.jQuery','jQuery') );
+
+				// wrap in anonymous function
+
+
 				if (/vendor/.test(path)) {
 				
 					// remove AMD requirement

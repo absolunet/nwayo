@@ -2,16 +2,13 @@
 // VARIANTS
 //------------------------------------------------------------------------------------*/
 
-//>>excludeStart('excludeRequire', pragmas.excludeRequire);
-require([
-]);
-//>>excludeEnd('excludeRequire');
+// **@import ''
 
 (function(kafe, App, undefined){
 
 	var
 		$         = kafe.dependencies.jQuery,
-		_         = kafe.dependencies.underscore,
+		_         = kafe.dependencies.LoDash,
 		Modernizr = kafe.dependencies.Modernizr,
 
 		// @if cms="Drupal"
