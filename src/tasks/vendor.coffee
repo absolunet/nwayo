@@ -26,7 +26,7 @@ module.exports = (grunt) ->
 			{ dest:vendor+'/kafe.zip',                                src:'http://localhost/kafe.zip' }
 		]
 
-		files.push { dest:vendor+'/foundation.zip',        src:'https://github.com/zurb/foundation/archive/master.zip' } if flags.foundation
+		files.push { dest:vendor+'/foundation.zip',        src:'http://foundation.zurb.com/cdn/releases/foundation-latest.zip' } if flags.foundation
 		files.push { dest:vendor+'/foundation-drupal.zip', src:'http://ftp.drupal.org/files/projects/zurb-foundation-7.x-4.0-beta1.zip' } if flags.foundation_drupal
 
 		async.mapLimit files, 10,
@@ -63,8 +63,8 @@ module.exports = (grunt) ->
 						util.copy skeleton+'/', foundation+'/', ['**', '**/.gitignore']
 
 						new AdmZip(vendor+'/foundation.zip').extractAllTo(vendor+'/foundation/')
-						util.copy vendor+'/foundation/foundation-master/scss/',          foundation+'/sources/css/vendor/foundation/'
-						util.copy vendor+'/foundation/foundation-master/js/foundation/', foundation+'/sources/js/vendor/foundation/'
+						util.copy vendor+'/foundation/foundation-latest/scss/',          foundation+'/sources/css/vendor/foundation/'
+						util.copy vendor+'/foundation/foundation-latest/js/foundation/', foundation+'/sources/js/vendor/foundation/'
 
 						grunt.file.delete foundation+'/sources/css/vendor/.gitignore'
 						grunt.file.delete foundation+'/sources/js/vendor/.gitignore'
