@@ -2,14 +2,15 @@ module.exports = (grunt) ->
 	path = grunt.config.get 'internal.path'
 	util = grunt.config.get 'util'
 
-	out = path.skeleton
-	src = path.src.nwayo
+	skeleton = path.skeleton.root
+	out      = path.skeleton.base
+	src      = path.src.nwayo
 
 
 	grunt.task.registerTask 'skeleton', '', () ->
 
 		# clean
-		util.delete out
+		util.delete skeleton
 
 		# build tree
 		grunt.file.write out+'/'+dir+'/.gitignore', '' for dir in [
@@ -25,10 +26,11 @@ module.exports = (grunt) ->
 		]
 
 		# copy items into place
-		util.copy src+'/css/',                out+'/sources/css/'
-		util.copy src+'/js/',                 out+'/sources/js/'
-		util.copy src+'/misc/',               out+'/sources/misc/'
-		util.copy src+'/icons/',              out+'/sources/assets/icons/'
-		util.copy src+'/examples/',           out+'/'
+		util.copy src+'/css/',      out+'/sources/css/'
+		util.copy src+'/js/',       out+'/sources/js/'
+		util.copy src+'/misc/',     out+'/sources/misc/'
+		util.copy src+'/icons/',    out+'/sources/assets/icons/'
+		util.copy src+'/examples/', out+'/'
 		
 		grunt.file.copy src+'/tmpl/gitignore.tmpl', out+'/sources/.gitignore'
+

@@ -5,9 +5,13 @@ module.exports = (grunt) ->
 	]
 
 	path = {
-	 	tmp:          'src/.tmp-nwayo'
-	 	skeleton:     'src/.tmp-nwayo/.skeleton'
-	 	dependencies: 'src/.tmp-nwayo/.dependencies'
+		tmp: 'src/.tmp-nwayo'
+		skeleton:
+			root:              'src/.tmp-nwayo/.skeleton'
+			base:              'src/.tmp-nwayo/.skeleton/base'
+			foundation:        'src/.tmp-nwayo/.skeleton/foundation'
+			foundation_drupal: 'src/.tmp-nwayo/.skeleton/foundation-drupal'
+			tmp_vendor:        'src/.tmp-nwayo/.skeleton/vendor'
 
 		src:
 			nwayo: 'src/nwayo'
