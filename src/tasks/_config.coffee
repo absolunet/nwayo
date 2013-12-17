@@ -1,17 +1,21 @@
 module.exports = (grunt) ->
+	os = require 'os'
+	inquirer = require 'inquirer'
+
 	grunt.task.loadNpmTasks task for task in [
 		'grunt-contrib-watch'
-		'grunt-prompt'
 	]
 
+	tmp = (if os.tmpdir then os.tmpdir() else os.tmpDir()) + 'nwayo-builder'
+
 	path = {
-		tmp: 'src/.tmp-nwayo'
+		tmp: tmp
 		skeleton:
-			root:              'src/.tmp-nwayo/.skeleton'
-			base:              'src/.tmp-nwayo/.skeleton/base'
-			foundation:        'src/.tmp-nwayo/.skeleton/foundation'
-			foundation_drupal: 'src/.tmp-nwayo/.skeleton/foundation-drupal'
-			tmp_vendor:        'src/.tmp-nwayo/.skeleton/vendor'
+			root:              tmp+'/_skeleton'
+			base:              tmp+'/_skeleton/base'
+			foundation:        tmp+'/_skeleton/foundation'
+			foundation_drupal: tmp+'/_skeleton/foundation-drupal'
+			tmp_vendor:        tmp+'/_skeleton/vendor'
 
 		src:
 			nwayo: 'src/nwayo'
@@ -21,8 +25,6 @@ module.exports = (grunt) ->
 		out:
 			root: '.'
 			dist: 'dist'
-
-
 	}
 
 	util = {
@@ -48,15 +50,23 @@ module.exports = (grunt) ->
 	}
 
 
-	grunt.task.registerTask 'default', [
-		#'skeleton'
-		#'dependencies'
-		#'flavour'
-		'doc'
-	]
 
 
-	#"grunt-preprocess":   "~3.0.1",
-	#"grunt-contrib-copy": "~0.4.1",
-	#"grunt-curl":         "~1.2.1",
-	#"grunt-zip":          "~0.10.0"
+
+
+	grunt.task.registerTask 'default', '', () ->
+		done = this.async()
+
+		console.log ''
+		inquirer.prompt [
+			name:    'task'
+			message: 'What can I do for you today ?'
+			type:    'list'
+			choices: [
+				new inquirer.Separator(' ')
+				{ name:'Build a custom flavour', value:'custom_flavour' }
+				new inquirer.Separator()
+				{ name:'Generate documentation', value:'doc' }
+			]
+		], (data) -> grunt.task.run data.task; done()
+

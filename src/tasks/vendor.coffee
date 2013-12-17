@@ -12,6 +12,7 @@ module.exports = (grunt) ->
 	vendor           = path.skeleton.tmp_vendor
 
 
+
 	# get vendor
 	grunt.task.registerTask 'get_vendor', '', () ->
 		done = this.async()
@@ -23,11 +24,11 @@ module.exports = (grunt) ->
 			{ dest:skeleton+'/sources/css/libs/html5boilerplate.css', src:'https://raw.github.com/h5bp/html5-boilerplate/master/css/main.css' }
 			{ dest:skeleton+'/sources/css/libs/normalize.css',        src:'https://raw.github.com/necolas/normalize.css/master/normalize.css' }
 			{ dest:skeleton+'/sources/css/libs/reset.css',            src:'http://meyerweb.com/eric/tools/css/reset/reset.css' }
-			{ dest:vendor+'/kafe.zip',                                src:'http://localhost/kafe.zip' }
+		#	{ dest:vendor+'/kafe.zip',                                src:'http://localhost/kafe.zip' }
 		]
 
-		files.push { dest:vendor+'/foundation.zip',        src:'http://foundation.zurb.com/cdn/releases/foundation-latest.zip' } if flags.foundation
-		files.push { dest:vendor+'/foundation-drupal.zip', src:'http://ftp.drupal.org/files/projects/zurb-foundation-7.x-4.0-beta1.zip' } if flags.foundation_drupal
+		files.push { dest:vendor+'/foundation.zip',        src:'https://github.com/zurb/foundation/archive/'+flags.foundation_version+'.zip' } if flags.foundation
+		files.push { dest:vendor+'/foundation-drupal.zip', src:'http://ftp.drupal.org/files/projects/zurb-foundation-'+flags.foundation_drupal_version+'.zip' } if flags.foundation_drupal
 
 		async.mapLimit files, 10,
 			(item, callback) ->
@@ -50,12 +51,12 @@ module.exports = (grunt) ->
 					grunt.log.ok 'Downloaded ' + results.length.toString().cyan + ' files.'
 
 					# kafe
-					new AdmZip(vendor+'/kafe.zip').extractAllTo(vendor+'/kafe/')
-					util.copy vendor+'/kafe/kafe-master', skeleton+'/sources/libs/'
+					#new AdmZip(vendor+'/kafe.zip').extractAllTo(vendor+'/kafe/')
+					#util.copy vendor+'/kafe/kafe-master', skeleton+'/sources/libs/'
 					
-					grunt.log.ok 'Deployed kafe files.'
+					#grunt.log.ok 'Deployed kafe files.'
 
-	
+
 					# foundation
 					if flags.foundation
 
@@ -63,11 +64,11 @@ module.exports = (grunt) ->
 						util.copy skeleton+'/', foundation+'/', ['**', '**/.gitignore']
 
 						new AdmZip(vendor+'/foundation.zip').extractAllTo(vendor+'/foundation/')
-						util.copy vendor+'/foundation/foundation-latest/scss/',          foundation+'/sources/css/vendor/foundation/'
-						util.copy vendor+'/foundation/foundation-latest/js/foundation/', foundation+'/sources/js/vendor/foundation/'
+						util.copy vendor+'/foundation/foundation-'+flags.foundation_version.substring(1)+'/scss/',          foundation+'/sources/css/vendor/foundation/'
+						util.copy vendor+'/foundation/foundation-'+flags.foundation_version.substring(1)+'/js/foundation/', foundation+'/sources/js/vendor/foundation/'
 
-						grunt.file.delete foundation+'/sources/css/vendor/.gitignore'
-						grunt.file.delete foundation+'/sources/js/vendor/.gitignore'
+						util.delete foundation+'/sources/css/vendor/.gitignore'
+						util.delete foundation+'/sources/js/vendor/.gitignore'
 
 						grunt.log.ok 'Deployed foundation files.'
 
