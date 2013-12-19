@@ -65,6 +65,7 @@ module.exports = (grunt) ->
 			choices: [
 				new inquirer.Separator(' ')
 				{ name:'Build a custom flavour', value:'custom_flavour' }
+				{ name:'Build defaut flavours', value:'default_flavours' }
 				new inquirer.Separator()
 				{ name:'Generate documentation', value:'doc' }
 			]

@@ -179,7 +179,7 @@ grunt.task.registerTask('default_flavours', '', function() {
 
 
 
-
+/*
 
 
 
@@ -244,3 +244,6 @@ tasks.default = ['prompt:custom_flavour', 'skeleton', 'custom_flavour'];
 
 // all defined flavours
 tasks.flavours = ['skeleton', 'default_flavours'];
+
+
+*/

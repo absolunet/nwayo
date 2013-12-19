@@ -14,7 +14,7 @@ module.exports = (grunt) ->
 
 
 	# get vendor
-	grunt.task.registerTask 'get_vendor', '', () ->
+	grunt.task.registerTask 'vendor', '', () ->
 		done = this.async()
 
 		flags = grunt.config.get 'internal.flags'
@@ -101,6 +101,9 @@ module.exports = (grunt) ->
 							grunt.file.copy fdnSrc+'/scss/base/_drupal.scss', foundationdrupal+'/sources/css/vendor/foundation/base/_drupal.scss'
 
 							# copy and change
+							grunt.file.write foundationdrupal+'/template.php',
+								grunt.file.read(fdnSrc+'/template.php').replace(/STARTER/g, '<!-- @echo name-->')
+
 							grunt.file.write foundationdrupal+'/sources/css/vendor/foundation/foundation.scss',
 								grunt.file.read(foundationdrupal+'/sources/css/vendor/foundation/foundation.scss')+'\n@import "base/drupal";'
 

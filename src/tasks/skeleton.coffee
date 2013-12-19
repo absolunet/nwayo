@@ -34,3 +34,4 @@ module.exports = (grunt) ->
 		
 		grunt.file.copy src+'/tmpl/gitignore.tmpl', out+'/sources/.gitignore'
 
+		grunt.log.ok 'Skeleton assembled.'

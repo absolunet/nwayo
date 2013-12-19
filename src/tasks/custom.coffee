@@ -2,13 +2,6 @@ module.exports = (grunt) ->
 	inquirer = require 'inquirer'
 	exec = require 'exec-sync'
 
-	path = grunt.config.get 'internal.path'
-	util = grunt.config.get 'util'
-
-	skeleton         = path.skeleton.base
-	foundation       = path.skeleton.foundation
-	foundationdrupal = path.skeleton.foundation_drupal
-
 	getTags = (url) ->
 		result = exec 'git ls-remote --tags '+url
 
@@ -108,5 +101,5 @@ module.exports = (grunt) ->
 			
 			grunt.config.set 'internal.flags', data
 
-			grunt.task.run 'skeleton', 'get_vendor'#, 'build'
+			grunt.task.run 'skeleton', 'vendor', 'build'
 			done()
