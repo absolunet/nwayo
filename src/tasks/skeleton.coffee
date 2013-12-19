@@ -30,7 +30,7 @@ module.exports = (grunt) ->
 		util.copy src+'/js/',       out+'/sources/js/'
 		util.copy src+'/misc/',     out+'/sources/misc/'
 		util.copy src+'/icons/',    out+'/sources/assets/icons/'
-		util.copy src+'/examples/', out+'/'
+		util.copy src+'/examples/', out+'/__examples/'
 		
 		grunt.file.copy src+'/tmpl/gitignore.tmpl', out+'/sources/.gitignore'
 

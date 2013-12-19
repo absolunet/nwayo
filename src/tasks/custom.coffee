@@ -41,6 +41,12 @@ module.exports = (grunt) ->
 				]
 			}
 			{
+				name:    'theme'
+				message: 'Has theme:'
+				type:    'confirm'
+				when:    (data) -> (data.cms isnt 'none')
+			}
+			{
 				name:    'layout'
 				message: 'Which layout:'
 				type:    'list'
@@ -50,6 +56,7 @@ module.exports = (grunt) ->
 					{ name:'Responsive',              value:'responsive' }
 					{ name:'Responsive (Foundation)', value:'foundation' }
 				]
+				when: (data) -> (data.theme isnt true)
 			}
 			{
 				name:    'foundation_version'
@@ -64,12 +71,6 @@ module.exports = (grunt) ->
 				type:    'list'
 				choices: foundation_drupal_versions
 				when:    (data) -> (data.layout is 'foundation' and data.cms is 'drupal')
-			}
-			{
-				name:    'theme'
-				message: 'Has theme:'
-				type:    'confirm'
-				when:    (data) -> (data.cms isnt 'none')
 			}
 			{
 				name:     'name'
@@ -99,9 +100,13 @@ module.exports = (grunt) ->
 				type:    'input'
 			}
 		], (data) ->
+			data.theme  = if data.theme  then data.theme  else false
+			data.layout = if data.layout then data.layout else 'desktop'
+			
 			data.foundation = (data.layout is 'foundation')
 			data.foundation_drupal = (data.layout is 'foundation' and data.cms is 'drupal')
-			grunt.config.set 'internal.flags', data
 			
+			grunt.config.set 'internal.flags', data
+
 			grunt.task.run 'skeleton', 'get_vendor'#, 'build'
 			done()

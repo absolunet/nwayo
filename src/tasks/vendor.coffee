@@ -62,11 +62,21 @@ module.exports = (grunt) ->
 
 						# duplicate skeleton
 						util.copy skeleton+'/', foundation+'/', ['**', '**/.gitignore']
-
 						new AdmZip(vendor+'/foundation.zip').extractAllTo(vendor+'/foundation/')
-						util.copy vendor+'/foundation/foundation-'+flags.foundation_version.substring(1)+'/scss/',          foundation+'/sources/css/vendor/foundation/'
-						util.copy vendor+'/foundation/foundation-'+flags.foundation_version.substring(1)+'/js/foundation/', foundation+'/sources/js/vendor/foundation/'
+						fdnSrc = vendor+'/foundation/foundation-'+flags.foundation_version.substring(1)
 
+						# copy
+						util.copy fdnSrc+'/scss/',          foundation+'/sources/css/vendor/foundation/'
+						util.copy fdnSrc+'/js/foundation/', foundation+'/sources/js/vendor/foundation/'
+
+						# changes
+						fileList = "@import 'js/vendor/foundation/foundation'\n"
+						for file in grunt.file.expand { cwd:foundation+'/sources/js/vendor/foundation/', filter:'isFile' }, '*.js'
+							if file isnt 'foundation.js'
+								fileList += "@import 'js/vendor/foundation/"+file.substring(0,file.length-3)+"'\n"
+						grunt.file.write foundation+'/sources/js/foundation.js', fileList
+
+						# cleanup
 						util.delete foundation+'/sources/css/vendor/.gitignore'
 						util.delete foundation+'/sources/js/vendor/.gitignore'
 
@@ -74,14 +84,37 @@ module.exports = (grunt) ->
 
 
 
+
+
 						# foundation drupal
 						if flags.foundation_drupal
 
 							# duplicate skeleton
-							util.copy skeleton+'/', foundationdrupal+'/', ['**', '**/.gitignore']
-
+							util.copy foundation+'/', foundationdrupal+'/', ['**', '**/.gitignore']
 							new AdmZip(vendor+'/foundation-drupal.zip').extractAllTo(vendor+'/foundation-drupal/')
-							util.copy vendor+'/foundation-drupal/zurb-foundation/', foundationdrupal+'/TEMP/'
+							fdnSrc = vendor+'/foundation-drupal/zurb-foundation/STARTER'
+
+							# copy 
+							util.copy vendor+'/foundation-drupal/zurb-foundation/', foundationdrupal+'/__DRUPAL-THEME__zurb-foundation/'
+							util.copy fdnSrc+'/images/foundation/', foundationdrupal+'/sources/assets/images/vendor/foundation/'
+							util.copy fdnSrc+'/templates/',         foundationdrupal+'/templates/'
+							grunt.file.copy fdnSrc+'/scss/base/_drupal.scss', foundationdrupal+'/sources/css/vendor/foundation/base/_drupal.scss'
+
+							# copy and change
+							grunt.file.write foundationdrupal+'/sources/css/vendor/foundation/foundation.scss',
+								grunt.file.read(foundationdrupal+'/sources/css/vendor/foundation/foundation.scss')+'\n@import "base/drupal";'
+
+							grunt.file.write foundationdrupal+'/STARTER.info',
+								grunt.file.read(fdnSrc+'/STARTER.info.txt')
+									.replace(/\nstylesheets\[/g,                 '\n;stylesheets[')
+									.replace(/\nscripts\[/g,                     '\n;scripts[')
+									.replace('base theme = zurb_foundation', 'base theme = zurb_foundation\n\nstylesheets[all][] = builds/css/core.css\nscripts[] = builds/js/core.js')																
+
+							# cleanup
+							util.delete foundationdrupal+'/sources/assets/images/.gitignore'
+							util.delete foundationdrupal+'/sources/assets/images/vendor/.gitignore'
+
+
 
 							grunt.log.ok 'Deployed drupal foundation files.'
 					
