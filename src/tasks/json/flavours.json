@@ -1,4 +1,5 @@
 {
+	"basic":               { "cms":"", "theme":false, "layout":"desktop" },
 	"basic-foundation":    { "cms":"",         "theme":false, "layout":"foundation" },
 	"drupal-basic":        { "cms":"drupal",   "theme":false, "layout":"desktop" },
 	"drupal-foundation":   { "cms":"drupal",   "theme":false, "layout":"foundation" },
