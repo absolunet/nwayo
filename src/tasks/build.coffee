@@ -1,5 +1,6 @@
 module.exports = (grunt) ->
 	_          = require 'lodash'
+	async      = require 'async'
 	preprocess = require 'preprocess'
 
 	config = grunt.config.get 'internal.config'
@@ -16,6 +17,8 @@ module.exports = (grunt) ->
 
 	# build
 	grunt.task.registerTask 'build', '', () ->
+		done = this.async()
+
 		less = []
 
 		flags   = grunt.config.get('internal.flags')
@@ -116,17 +119,17 @@ module.exports = (grunt) ->
 		data[key] = preprocess.preprocess value, data if grunt.util.kindOf(value) is 'string' for key, value of data
 
 		# process files
-		files = grunt.file.expand { cwd:"#{out}/", filter:'isFile'}, '**'
+		files = grunt.file.expand { cwd:"#{out}/", filter:'isFile'}, ['**','!__DRUPAL-THEME__zurb-foundation/**']
 		bar = util.progress 'Processing', files.length
 
-		for file in files
-			preprocess.preprocessFileSync("#{out}/#{file}", "#{out}/#{file}", data)
-			bar.tick()
-
-		util.progress_done bar
-
-		
-		grunt.log.ok "\nYour #{pkg.name} flavour #{data.id.cyan} is ready for your taster!"
+		async.mapLimit files, 10,
+			(item, callback) -> 
+				preprocess.preprocessFile "#{out}/#{item}", "#{out}/#{item}", data, ()-> callback(null, item); bar.tick()
+			
+			(error, results) -> 
+				util.progress_done bar
+				grunt.log.ok "\nYour #{pkg.name} flavour #{data.id.cyan} is ready for your taster!"
+				done()
 
 
 

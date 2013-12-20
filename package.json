@@ -12,7 +12,7 @@
 
 	"devDependencies": {
 		"lodash":     "~2.4.1",
-		"request":    "~2.27.0",
+		"request":    "~2.30.0",
 		"async":      "~0.2.9",
 		"adm-zip":    "~0.4.3",
 		"preprocess": "~2.0.0",
