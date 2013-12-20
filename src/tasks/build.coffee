@@ -1,6 +1,5 @@
 module.exports = (grunt) ->
 	_          = require 'lodash'
-	fs         = require 'fs'
 	preprocess = require 'preprocess'
 
 	config = grunt.config.get 'internal.config'
@@ -19,9 +18,10 @@ module.exports = (grunt) ->
 	grunt.task.registerTask 'build', '', () ->
 		less = []
 
-		flags = grunt.config.get('internal.flags')
-		data  = _.merge {}, (if config[flags.cms] then config[flags.cms] else config.default), flags
-		out   = "#{path.out.dist}/#{data.name}_#{grunt.template.today('_yyyy.mm.dd-HH.MM.ss')}"
+		flags   = grunt.config.get('internal.flags')
+		data    = _.merge {}, (if config[flags.cms] then config[flags.cms] else config.default), flags
+		data.id = "#{data.name}_#{grunt.template.today('yyyymmddHHMMss')}"
+		out     = "#{path.out.dist}/#{data.id}"
 
 		data.root     += if data.theme then "/#{pkg.name}" else ''
 		data.build     = "#{data.root}/builds"
@@ -34,11 +34,7 @@ module.exports = (grunt) ->
 		data.addthis = if data.addthis then data.addthis else '{TODO}'
 		data.domain  = if data.domain  then data.domain  else '{TODO}'
 
-		data.css_common = ''
-
-
-		console.log data
-		return false
+		data.less = ''
 
 
 		# copy base
@@ -79,7 +75,8 @@ module.exports = (grunt) ->
 
 			if data.layout is 'foundation'
 				less.push 'cms-drupal-zurbfoundation'
-				fs.renameSync "#{out}/STARTER.info", "${out}/#{data.name}.info" 
+				grunt.file.copy "#{out}/STARTER.info", "#{out}/#{data.name}.info"
+				grunt.file.delete "#{out}/STARTER.info"
 
 			else
 				grunt.file.delete "#{out}/sources/css/libs/cms-drupal-zurbfoundation.less"
@@ -109,22 +106,27 @@ module.exports = (grunt) ->
 
 
 
-
-
 		# build less loader
 		data.less += "@import 'libs/#{file}';\n" for file in less
 
+
+
+
 		# process data var
-		value = preprocess.preprocess(value,data) if (grunt.util.kindOf(value) is 'string') for value in data
+		data[key] = preprocess.preprocess value, data if grunt.util.kindOf(value) is 'string' for key, value of data
 
+		# process files
+		files = grunt.file.expand { cwd:"#{out}/", filter:'isFile'}, '**'
+		bar = util.progress 'Processing', files.length
 
-		###
-		preprocess files
-		###
+		for file in files
+			preprocess.preprocessFileSync("#{out}/#{file}", "#{out}/#{file}", data)
+			bar.tick()
+
+		util.progress_done bar
+
 		
-
-		console.log data
-
+		grunt.log.ok "\nYour #{pkg.name} flavour #{data.id.cyan} is ready for your taster!"
 
 
 

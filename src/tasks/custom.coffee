@@ -3,7 +3,7 @@ module.exports = (grunt) ->
 	exec = require 'exec-sync'
 
 	getTags = (url) ->
-		result = exec 'git ls-remote --tags '+url
+		result = exec "git ls-remote --tags #{url}"
 
 		tags = []
 		for tag in result.split('\n')
@@ -21,6 +21,7 @@ module.exports = (grunt) ->
 		foundation_versions        = getTags 'https://github.com/zurb/foundation.git'
 		foundation_drupal_versions = getTags 'http://git.drupal.org/project/zurb-foundation.git'
 
+		grunt.log.writeln()
 		inquirer.prompt [
 			{
 				name:    'cms'
