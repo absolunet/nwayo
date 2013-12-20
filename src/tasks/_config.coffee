@@ -1,21 +1,18 @@
 module.exports = (grunt) ->
-	os = require 'os'
+	os       = require 'os'
 	inquirer = require 'inquirer'
-
-	grunt.task.loadNpmTasks task for task in [
-		'grunt-contrib-watch'
-	]
+	progress = require 'progress'
 
 	tmp = (if os.tmpdir then os.tmpdir() else os.tmpDir()) + 'nwayo-builder'
 
 	path = {
 		tmp: tmp
 		skeleton:
-			root:              tmp+'/_skeleton'
-			base:              tmp+'/_skeleton/base'
-			foundation:        tmp+'/_skeleton/foundation'
-			foundation_drupal: tmp+'/_skeleton/foundation-drupal'
-			tmp_vendor:        tmp+'/_skeleton/vendor'
+			root:              "#{tmp}/_skeleton"
+			base:              "#{tmp}/_skeleton/base"
+			foundation:        "#{tmp}/_skeleton/foundation"
+			foundation_drupal: "#{tmp}/_skeleton/foundation-drupal"
+			tmp_vendor:        "#{tmp}/_skeleton/vendor"
 
 		src:
 			nwayo: 'src/nwayo'
@@ -28,8 +25,10 @@ module.exports = (grunt) ->
 	}
 
 	util = {
-		copy:   (src,dest,filter='**') -> grunt.file.copy src+file, dest+file for file in grunt.file.expand { cwd:src, filter:'isFile' }, filter		
-		delete: (src...) -> grunt.file.delete file, {force:true} for file in grunt.file.expand { cwd:path.out.root }, pattern for pattern in src
+		copy:          (src,dest,filter='**') -> grunt.file.copy src+file, dest+file for file in grunt.file.expand { cwd:src, filter:'isFile' }, filter		
+		delete:        (src...) -> grunt.file.delete file, {force:true} for file in grunt.file.expand { cwd:path.out.root }, pattern for pattern in src
+		progress:      (action,nb) -> grunt.log.writeln "#{action} #{nb.toString().cyan} files..."; return new progress '[:bar] :percent (:elapseds)', { total:nb, width:20, incomplete:' ', clear:true }
+		progress_done: (bar) -> bar.terminate(); grunt.log.ok "Completed in #{((new Date() - bar.start) / 1000).toFixed(1)}s"; grunt.log.writeln()
 	}
 
 
@@ -41,12 +40,7 @@ module.exports = (grunt) ->
 		'internal': 
 			path:   path
 			pkg:    grunt.file.readJSON 'package.json'
-			config: grunt.file.readJSON path.src.tasks+'/json/config.json'
-
-
-		'watch.all':
-			files: ['gruntfile.js']
-			tasks: 'default'
+			config: grunt.file.readJSON "#{path.src.tasks}/json/config.json"
 	}
 
 
@@ -57,15 +51,14 @@ module.exports = (grunt) ->
 	grunt.task.registerTask 'default', '', () ->
 		done = this.async()
 
-		console.log ''
+		grunt.log.writeln()
 		inquirer.prompt [
 			name:    'task'
 			message: 'What can I do for you today ?'
 			type:    'list'
 			choices: [
-				new inquirer.Separator(' ')
 				{ name:'Build a custom flavour', value:'custom_flavour' }
-				{ name:'Build defaut flavours', value:'default_flavours' }
+				{ name:'Build default flavours', value:'default_flavours' }
 				new inquirer.Separator()
 				{ name:'Generate documentation', value:'doc' }
 			]

@@ -11,14 +11,14 @@
 	"licenses":  [ { "url": "https://github.com/absolunet/nwayo/tree/master/LICENSE", "type":"MIT" } ],
 
 	"devDependencies": {
-		"lodash":              "~2.4.1",
-		"request":             "~2.27.0",
-		"async":               "~0.2.9",
-		"adm-zip":             "~0.4.3",
-		"preprocess":          "~2.0.0",
-		"exec-sync":           "~0.1.6",
-		"inquirer":            "~0.3.5",
-		"grunt":               "~0.4.2",
-		"grunt-contrib-watch": "~0.5.3"
+		"lodash":     "~2.4.1",
+		"request":    "~2.27.0",
+		"async":      "~0.2.9",
+		"adm-zip":    "~0.4.3",
+		"preprocess": "~2.0.0",
+		"exec-sync":  "~0.1.6",
+		"inquirer":   "~0.3.5",
+		"progress":   "~1.1.2",
+		"grunt":      "~0.4.2"
 	}
 }

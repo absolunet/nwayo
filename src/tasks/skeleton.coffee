@@ -13,7 +13,7 @@ module.exports = (grunt) ->
 		util.delete skeleton
 
 		# build tree
-		grunt.file.write out+'/'+dir+'/.gitignore', '' for dir in [
+		grunt.file.write "#{out}/#{dir}/.gitignore", '' for dir in [
 			'builds'
 			'stubs'
 			'sources/assets/data-uri'
@@ -26,12 +26,12 @@ module.exports = (grunt) ->
 		]
 
 		# copy items into place
-		util.copy src+'/css/',      out+'/sources/css/'
-		util.copy src+'/js/',       out+'/sources/js/'
-		util.copy src+'/misc/',     out+'/sources/misc/'
-		util.copy src+'/icons/',    out+'/sources/assets/icons/'
-		util.copy src+'/examples/', out+'/__examples/'
+		util.copy "#{src}/css/",      "#{out}/sources/css/"
+		util.copy "#{src}/js/",       "#{out}/sources/js/"
+		util.copy "#{src}/misc/",     "#{out}/sources/misc/"
+		util.copy "#{src}/icons/",    "#{out}/sources/assets/icons/"
+		util.copy "#{src}/examples/", "#{out}/__examples/"
 		
-		grunt.file.copy src+'/tmpl/gitignore.tmpl', out+'/sources/.gitignore'
+		grunt.file.copy "#{src}/tmpl/gitignore.tmpl", "#{out}/sources/.gitignore"
 
 		grunt.log.ok 'Skeleton assembled.'
