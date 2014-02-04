@@ -2,3 +2,15 @@
 // SITECORE
 //------------------------------------------------------------------------------------*/
 
+@SitecorePageEditor: ~'html[data-sitecore-editor="true"]';
+
+@{SitecorePageEditor}{
+	.scWebEditInput{
+		&[scfieldtype="rich text"]{
+			display:block;
+		}
+		&[scfieldtype="multi-line text"]{
+			display:inline;
+		}
+	}
+}
