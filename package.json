@@ -16,7 +16,7 @@
 		"async":      "~0.2.9",
 		"adm-zip":    "~0.4.3",
 		"preprocess": "~2.0.0",
-		"exec-sync":  "~0.1.6",
+		"execSync":   "~1.0.1-pre",
 		"inquirer":   "~0.3.5",
 		"progress":   "~1.1.2",
 		"grunt":      "~0.4.2"
