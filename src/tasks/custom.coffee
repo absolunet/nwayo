@@ -1,13 +1,14 @@
 module.exports = (grunt) ->
 	inquirer = require 'inquirer'
-	exec = require 'exec-sync'
+	sh = require 'execSync'
 
 	getTags = (url) ->
-		result = exec "git ls-remote --tags #{url}"
+
+		result = sh.exec "git ls-remote --tags #{url}"
 
 		tags = []
-		for tag in result.split('\n')
-			if not /\^\{\}$/.test(tag) 
+		for tag in result.stdout.split('\n')
+			if tag and not /\^\{\}$/.test(tag) 
 				tags.push tag.split('refs\/tags\/')[1] 
 
 		return tags.reverse().slice(0,10)
