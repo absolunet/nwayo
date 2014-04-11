@@ -70,6 +70,7 @@ module.exports = (grunt) ->
 			grunt.file.delete "#{out}/sources/css/libs/reset.css",
 			grunt.file.delete "#{out}/sources/css/libs/html5boilerplate.css",
 			grunt.file.delete "#{out}/sources/css/libs/nwayo-boilerplate.less"
+			less.push 'foundation-mixins'
 
 
 		# drupal
@@ -77,16 +78,11 @@ module.exports = (grunt) ->
 			less.push 'cms-drupal'
 
 			if data.layout is 'foundation'
-				less.push 'cms-drupal-zurbfoundation'
 				grunt.file.copy "#{out}/STARTER.info", "#{out}/#{data.name}.info"
 				grunt.file.delete "#{out}/STARTER.info"
 
-			else
-				grunt.file.delete "#{out}/sources/css/libs/cms-drupal-zurbfoundation.less"
-
 		else
 			grunt.file.delete "#{out}/sources/css/libs/cms-drupal.less"
-			grunt.file.delete "#{out}/sources/css/libs/cms-drupal-zurbfoundation.less"
 
 
 		# magento

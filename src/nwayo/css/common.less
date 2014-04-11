@@ -7,23 +7,32 @@
 
 
 // @echo space
-@build-path:   '/* @echo build */';
-@img-path:     '@{build-path}/images';
-@font-path:    '@{build-path}/fonts';
-@imgdata-path: '../.tmp-/* @echo package *//data-uri';
+@build-path:           '/* @echo build */';
+@img-path:             '@{build-path}/images';
+@font-path:            '@{build-path}/raw/fonts';
+@imgdata-path:         '../.tmp-/* @echo package *//data-uri';
+@imgdatafallback-path: '@{build-path}/imgdata';
 
 
 
-/*- Base -------------------------------------------------------------------*/
-@site-width: 960px;
+/*- Palette & colors -------------------------------------------------------------------*/
+@grey-palette:  #ccc;
+@red-palette:   #c00;
+@green-palette: #0c0;
+@blue-palette:  #00c;
 
-//@mainContent-selector: ~"#block-system-main > .content";
+@bg-color:        @grey-palette;
+@text-color:      darken(@bg-color, 30%);
 
-//@mobile-media: ~"only screen and (max-width: 767px)";
+@link-color:      @blue-palette;
+@linkHover-color: lighten(@link-color ,10%);
 
-@bg-color:   #f8f8f8;
-@text-color: #444;
-@link-color: #00c;
+@alt-color:       @green-palette;
+@altFaded-color:  spin( lighten( saturate( @alt-color, -39.5%), 26.2%), 17.8);  // #75dd94
+
+@errorText-color: @red-palette;
+@errorBg-color:   lighten(@errorText-color, 20%);
+
 
 
 
@@ -44,38 +53,48 @@
 
 
 
-/*- Colors -----------------------------------------------------------------*/
-@errorBg-color:   #fee5e1;
-@errorText-color: #c33;
-@alt-color:       #c00;
-@alt2-color:      fade(#0c0,50%);
-
-
-
 /*- Images & Sprites -------------------------------------------------------*/
-@btn-image: url('@{img-path}/misc-btn.png');
-@bg-image:  url('@{img-path}/misc-bg.png');
 
-@ico-image: url('@{img-path}/misc-ico.png');
-	.icoItem1-sprite() { width:24px; height:24px; background:transparent @ico-image left    top no-repeat; }
-	.icoItem2-sprite() { width:32px; height:32px; background:transparent @ico-image left -100px no-repeat; }
+// normal image
+._misc-image { background:transparent url('@{img-path}/misc.png') left top no-repeat; }
 
-/** high-density images
-.img-image() { background-image:url('@{img-path}/misc-image.png'); @media @highdensity-media { background-image:url('@{img-path}/misc-image@2x.png'); background-size:100px 100px; } }
-/**/
+// svg image with png fallback for ie8
+._miscVector-image { .svg('@{img-path}/misc-vector.svg', 100px, 100px); background-repeat:no-repeat; background-position:left top; }
 
-/** inline images
-._bg-imagedata { background:transparent data-uri('@{imgdata-path}/an-inline-image.png') left top no-repeat; }
-/**/
+// high-density images
+._miscHD-image { background-image:url('@{img-path}/misc-hd.png'); 
+	@media @highdensity-media { background-image:url('@{img-path}/misc-hd@2x.png'); background-size:100px 100px; }
+}
+
+// sprite
+@multiple-image: url('@{img-path}/sprite.png');
+	._multipleItem1-sprite { width:24px; height:24px; background:transparent @multiple-image left    top no-repeat; }
+	._multipleItem2-sprite { width:32px; height:32px; background:transparent @multiple-image left -100px no-repeat; }
+
+// image as data-uri
+._icoX-imagedata { background:transparent data-uri('@{imgdata-path}/ico-x.png') left top no-repeat; }
+
+// svg as data-uri with png fallback for ie8
+._icoY-imagedata { .svg_datauri('@{imgdata-path}/ico_y.svg'); width:32px; height:32px; background-position:left top; background-repeat:no-repeat; }
+
+
+
 
 
 
 /*- Functions --------------------------------------------------------------*/
-.Something() {
+.transition(@duration:0.2s, @ease:ease-out) {
+  -webkit-transition: all @duration @ease, z-index 1ms;
+  -moz-transition: all @duration @ease, z-index 1ms;
+  -o-transition: all @duration @ease, z-index 1ms;
+  transition: all @duration @ease, z-index 1ms;
+}
+._hover-transition     { .transition(100ms); }
+._animation-transition { .transition(500ms); }
 
+.Something() {
 }
 
-/**
 .Colorize(@base:#888, @lite:#ddd, @dark:#333) {
 	._colorize(default, ~"",               ~"",       @base,   @lite,   @dark);
 	._colorize(alpha,   ~".section-alpha", ~".Alpha", #880000, #dd0000, #330000);
@@ -83,68 +102,24 @@
 	._colorize(gamma,   ~".section-gamma", ~".Gamma", #000088, #0000dd, #000033);
 }
 
-exampleselector {
-	._colorize(@id, @body, @class, @base, @lite, @dark) { 
-		body@{body} & {
-			a {
-				color:mix(@lite,@base);
-			}
-		}
-
-		&@{class} {
-			background:darken(@dark,10%);
-		}
-	}
-	._colorize(alpha, @body, @class, @base, @lite, @dark) { 
-		body@{body} & {
-			a {
-				color:@dark;
-			}
-		}
-	}
-	.Colorize(@sectionBase-color, @sectionBase-color, @black);
-}
-/**/
-
 
 
 /*- Editable content styles ------------------------------------------------*/
 .Editable() {
-	h1 {
-	}
-	
-	h2 {
-	}
+	h1 { }
+	h2 { }
+	h3 { }
+	h4 { }
+	h5 { }
+	h6 { }
 
-	h3 {
-	}
+	.Small { font-size:0.8em; }
 
-	h4 {
-	}
+	p { margin-bottom:1em; }
+	ul { }
+	ol { }
 
-	h5 {
-	}
-
-	h6 {
-	}
-
-	p {
-		margin-bottom:1em;
-	}
-	.Small {
-		font-size:80%;
-	}
-	ul {
-
-	}
-
-	ol {
-
-	}
-	
 	table.Table {
-		td {
-			vertical-align:top;
-		}
+		td { vertical-align:top; }
 	}
 }
