@@ -5,21 +5,17 @@
 // @import 'libs/kafe/kafe',
 
 // @if layout="foundation"
-// @import 'js/vendor/foundation/index'
+// @import 'js/foundation'
 // @endif
 
 // @if cms
 // @import 'libs/kafe/cms//* @echo cms */'
 // @endif
 
-// **@import '../.tmp-/* @echo package *//templateclient.js'
+// **@import '.tmp-/* @echo package *//templateclient.js'
 
-window./* @echo name */ = (function(kafe,undefined){
+window./* @echo name */ = (function(undefined){
 	var
-		$         = kafe.dependencies.jQuery,
-		_         = kafe.dependencies.LoDash,
-		Modernizr = kafe.dependencies.Modernizr,
-		
 		// @if cms="drupal"
 		$Drupal   = window.jQuery,
 		// @endif 
@@ -102,7 +98,7 @@ window./* @echo name */ = (function(kafe,undefined){
 
 			// anchors
 			/**
-			.on('click', 'a[href^="#"][href!="#"]', function(e) {
+			.on('click', 'a[data-anchor="true"]', function(e) {
 				e.preventDefault();
 				$.scrollTo($(this).attr('href'), (Modernizr.touch) ? 0 : 500, {offset:{top:-15}});
 			})
@@ -130,30 +126,23 @@ window./* @echo name */ = (function(kafe,undefined){
 			}
 		});
 		/**/
-
-
-		// hashchange
-		/**
-		$window.on('hashchange', function (e) {
-			var params = kafe.url.parseHashPath();
-		}).trigger('hashchange');
-		/**/
 	};
 
 
 	/*- To execute on start -------------------------------------------------------------------*/
 	Local.Start = function() {
-		
-		// @if layout="foundation" && cms="drupal"
-		// init drupal foundation
-		$Drupal(document).foundation();
-		// @endif 
 
-		// @if layout="foundation" && cms!="drupal"
+		// @if layout="foundation"
 		// init foundation
 		App.dom.document.foundation();
 		// @endif 
 
+		// svg replacement
+		if(!Modernizr.svg) {
+			$('img[src*="svg"]').attr('src', function() {
+				return $(this).attr('src').replace('.svg', '.png');
+			});
+		}
 		
 		// web font loader
 		/**
@@ -195,4 +184,4 @@ window./* @echo name */ = (function(kafe,undefined){
 
 	return App;
 
-})(window.kafe);
+})();

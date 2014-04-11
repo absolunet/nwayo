@@ -20,11 +20,16 @@ module.exports = (grunt) ->
 		flags = grunt.config.get 'internal.flags'
 
 		files = [
-			{ dest:"#{skeleton}/sources/css/libs/elements.less",        src:'https://raw.github.com/dmitryf/elements/master/elements.less' }
-			{ dest:"#{skeleton}/sources/css/libs/html5boilerplate.css", src:'https://raw.github.com/h5bp/html5-boilerplate/master/css/main.css' }
-			{ dest:"#{skeleton}/sources/css/libs/normalize.css",        src:'https://raw.github.com/necolas/normalize.css/master/normalize.css' }
-			{ dest:"#{skeleton}/sources/css/libs/reset.css",            src:'http://meyerweb.com/eric/tools/css/reset/reset.css' }
-		#	{ dest:"#{vendor}/kafe.zip",                                src:'http://localhost/kafe.zip' }
+			{ dest:"#{skeleton}/sources/css/libs/elements.less",                    src:'https://raw.github.com/dmitryf/elements/master/elements.less' }
+			{ dest:"#{skeleton}/sources/css/libs/html5boilerplate.css",             src:'https://raw.github.com/h5bp/html5-boilerplate/master/css/main.css' }
+			{ dest:"#{skeleton}/sources/css/libs/normalize.css",                    src:'https://raw.github.com/necolas/normalize.css/master/normalize.css' }
+			{ dest:"#{skeleton}/sources/css/libs/reset.css",                        src:'http://meyerweb.com/eric/tools/css/reset/reset.css' }
+			{ dest:"#{skeleton}/sources/js/vendor/polyfill/html5shiv-printshiv.js", src:'https://raw.githubusercontent.com/aFarkas/html5shiv/master/src/html5shiv-printshiv.js' }
+			{ dest:"#{skeleton}/sources/js/vendor/polyfill/nwmatcher.js",           src:'http://javascript.nwbox.com/NWMatcher/nwmatcher.js' }
+			{ dest:"#{skeleton}/sources/js/vendor/polyfill/rem.js",                 src:'https://raw.githubusercontent.com/chuckcarpenter/REM-unit-polyfill/master/js/rem.js' }
+			{ dest:"#{skeleton}/sources/js/vendor/polyfill/respond.js",             src:'https://raw.githubusercontent.com/scottjehl/Respond/master/dest/respond.src.js' }
+			{ dest:"#{skeleton}/sources/js/vendor/polyfill/selectivizr.js",         src:'https://raw.githubusercontent.com/keithclark/selectivizr/master/selectivizr.js' }
+			{ dest:"#{vendor}/kafe.zip",                                            src:'https://github.com/absolunet/kafe/archive/master.zip' }
 		]
 
 		files.push { dest:"#{vendor}/foundation.zip",        src:"https://github.com/zurb/foundation/archive/#{flags.foundation_version}.zip" } if flags.foundation
@@ -55,9 +60,9 @@ module.exports = (grunt) ->
 					util.progress_done bar
 
 					# kafe
-					#new AdmZip("#{vendor}/kafe.zip").extractAllTo("#{vendor}/kafe/")
-					#util.copy "#{vendor}/kafe/kafe-master", "#{skeleton}/sources/libs/"
-					#grunt.log.ok 'Deployed kafe files.'
+					new AdmZip("#{vendor}/kafe.zip").extractAllTo("#{vendor}/kafe/")
+					util.copy "#{vendor}/kafe/kafe-master", "#{skeleton}/sources/libs/"
+					grunt.log.ok 'Deployed kafe files.'
 
 
 					# foundation
@@ -69,8 +74,10 @@ module.exports = (grunt) ->
 						fdnSrc = "#{vendor}/foundation/foundation-#{flags.foundation_version.substring(1)}"
 
 						# copy
-						util.copy "#{fdnSrc}/scss/",          "#{foundation}/sources/css/vendor/foundation/"
-						util.copy "#{fdnSrc}/js/foundation/", "#{foundation}/sources/js/vendor/foundation/"
+						util.copy "#{fdnSrc}/scss/foundation/", "#{foundation}/sources/css/vendor/foundation/"
+						util.copy "#{fdnSrc}/js/foundation/",   "#{foundation}/sources/js/vendor/foundation/"
+						grunt.file.copy "#{fdnSrc}/scss/foundation/_settings.scss", "#{foundation}/sources/css/_foundation-settings.scss"
+
 
 						# changes
 						fileList = "@import 'js/vendor/foundation/foundation'\n"
@@ -78,6 +85,15 @@ module.exports = (grunt) ->
 							if file isnt 'foundation.js'
 								fileList += "@import 'js/vendor/foundation/#{file.substring(0,file.length-3)}'\n"
 						grunt.file.write "#{foundation}/sources/js/foundation.js", fileList
+
+						grunt.file.write "#{foundation}/sources/css/_foundation-overwrites.scss", ''
+
+						grunt.file.write "#{foundation}/sources/css/foundation.scss",
+							'@import "foundation-settings";\n\n' +
+							grunt.file.read("#{fdnSrc}/scss/foundation.scss").replace(/foundation\/components\//g, 'vendor/foundation/components/') +
+							'\n\n@import "foundation-overwrites";\n'
+
+
 
 						# cleanup
 						util.delete "#{foundation}/sources/css/vendor/.gitignore"
@@ -101,14 +117,10 @@ module.exports = (grunt) ->
 							util.copy "#{vendor}/foundation-drupal/zurb-foundation/", "#{foundationdrupal}/__DRUPAL-THEME__zurb-foundation/"
 							util.copy "#{fdnSrc}/images/foundation/",                 "#{foundationdrupal}/sources/assets/images/vendor/foundation/"
 							util.copy "#{fdnSrc}/templates/",                         "#{foundationdrupal}/templates/"
-							grunt.file.copy "#{fdnSrc}/scss/base/_drupal.scss",       "#{foundationdrupal}/sources/css/vendor/foundation/base/_drupal.scss"
 
 							# copy and change
 							grunt.file.write "#{foundationdrupal}/template.php",
 								grunt.file.read("#{fdnSrc}/template.php").replace(/STARTER/g, '/* @echo name */')
-
-							grunt.file.write "#{foundationdrupal}/sources/css/vendor/foundation/foundation.scss",
-								grunt.file.read("#{foundationdrupal}/sources/css/vendor/foundation/foundation.scss")+'\n@import "base/drupal";'
 
 							grunt.file.write "#{foundationdrupal}/STARTER.info",
 								grunt.file.read("#{fdnSrc}/STARTER.info.txt")

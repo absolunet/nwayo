@@ -2,9 +2,7 @@
 // FORM
 //------------------------------------------------------------------------------------*/
 
-._placeholder () {
-	font-style:italic; color:@black + 128;
-}
+._placeholder () { font-style:italic; color:lighten(@black, 50%); }
 .placeholder();
 
 @{textfields-selector}, textarea {
@@ -13,10 +11,7 @@
 	-webkit-appearance:textfield;  
 }
 
-input.error, select.error, textarea.error {
-	color:@errorText-color;
-	background-color:@errorBg-color;
-}
+input.error, select.error, textarea.error { color:@errorText-color; background-color:@errorBg-color; }
 
 
 // radio/checkbox images for css3 browsers 

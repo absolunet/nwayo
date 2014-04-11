@@ -8,7 +8,7 @@ module.exports = function(grunt) {
 		line   = Array(80).join('-'),
 
 		// flags
-		foundation = grunt.file.exists('css/vendor/foundation/foundation.scss'),
+		foundation = grunt.file.exists('css/foundation.scss'),
 		jshtml     = !!(grunt.file.expand('tmpl/**/*.jshtml').length),
 
 		editor     = grunt.file.exists('css/misc/editor.less'),
@@ -28,10 +28,29 @@ module.exports = function(grunt) {
 		config = {
 			pkg: grunt.file.readJSON('package.json'),
 
-			requirejs:             {},
+			includes: {
+				options: {
+					includeRegexp:  /^\s*\/\/\s@import\s'([^']+)'\s*$/,
+					duplicates:     false,
+					filenameSuffix: '.js'
+				}
+			},
+			uglify: {
+				options: {
+					preserveComments:'some',
+					compress: {
+						global_defs: {
+							DEBUG:false
+						}
+					}
+				}
+			},
 			jshint:                {},
+			templateclient:        {},
 			less:                  {},
 			sass:                  {},
+			svgmin:                {},
+			svg2png:               {},
 			cssmin:                {},
 			imagemin:              {},
 			copy:                  {},
@@ -90,6 +109,9 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-imagemin');
 	grunt.loadNpmTasks('grunt-imagemagick');
+	grunt.loadNpmTasks('grunt-svg2png');
+	grunt.loadNpmTasks('grunt-svgmin');
+
 
 	// grunt custom tasks
 	grunt.task.registerMultiTask('nwayo_copy', '', function() {
@@ -115,6 +137,9 @@ module.exports = function(grunt) {
 		grunt.log.subhead('\n\n'+line+'\n '+title.toUpperCase()+'\n'+line);
 	});
 
+	grunt.task.registerTask('nwayo_mkdir', '', function() {
+		grunt.file.mkdir(tmp+'/images/');
+	});
 
 
 	checklist.push(['Has theme?',theme]);
@@ -126,7 +151,8 @@ module.exports = function(grunt) {
 	// JS
 	// --------------------------------
 	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-contrib-requirejs');
+	grunt.loadNpmTasks('grunt-includes');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 
 	// js hint
 	config.jshint.core = {
@@ -136,50 +162,25 @@ module.exports = function(grunt) {
 		}
 	};
 
-	// requirejs
-	config.requirejs.core = {
-		options: {
-			baseUrl:  './',
-			name:     'js/core',
-			include:  ['js/variants'],
-			out:      builds+'/js/core.js',
-			optimize: 'uglify', // 'none'
-			preserveLicenseComments: false,
-			skipModuleInsertion:     true,
-			findNestedDependencies:  true,
-			pragmasOnSave:           { excludeRequire: true },
-			onBuildRead: function (moduleName, path, contents) {
-
-
-
-
-				// grunt.file.write(out_build+'/vendor/'+filename, contents.replace('window.jQuery','jQuery') );
-
-				// wrap in anonymous function
-
-
-				if (/vendor/.test(path)) {
-				
-					// remove AMD requirement
-					// if ( typeof define === "function" && define.amd ) {
-					var pieces = contents.split(/\}\s*else\s*{/);
-					for (var i in pieces) {
-						pieces[i] = pieces[i].replace(/if\s*\(\s*typeof\s+define\s*\=\=\=\s*['"]function['"]\s*\&\&\s*define\.amd\s*\)\s*\{[\s\S]*/gi, 'if (false) { var x=false;');
-					}
-					return pieces.join('} else {');
-				}
-				
-				return contents;
-			},
-
-		}
+	// includes js
+	config.includes.core = {
+		options: { includePath: './' },
+		files: [{
+			src: 'js/bundle_core.js',
+			dest: tmp+'/core.js'
+		}]
 	};
+	config.uglify.core = { files: [{
+		src:  tmp+'/core.js',
+		dest: builds+'/js/core.js'
+	}]};
 
 
 	// tasks
 	tasks.core_js = [
 		'jshint:core',
-		'requirejs:core',
+		'includes:core',
+		'uglify:core',
 		'clean:tmp_js'
 	];
 	tasks.default.push('core_js');
@@ -191,6 +192,33 @@ module.exports = function(grunt) {
 		],
 		tasks: 'core_js'
 	};
+
+
+	// polyfill
+	config.uglify.polyfill = { files: [
+		{
+			src:  [
+				'js/vendor/polyfill/html5shiv-printshiv.js',
+				'js/vendor/polyfill/nwmatcher.js',
+				'js/vendor/polyfill/selectivizr.js',
+				'js/vendor/polyfill/respond.js',
+			],
+			dest: builds+'/js/polyfill-oldie-top.js'
+		},
+		{
+			src:  [
+				'js/vendor/polyfill/rem.js'
+			],
+			dest: builds+'/js/polyfill-oldie-bottom.js'
+		}
+	]};
+
+	tasks.polyfill_js = ['uglify:polyfill'];
+	config.watch.polyfill_js = {
+		files: [ 'js/vendor/polyfill/**/*.js' ],
+		tasks: 'polyfill_js'
+	};
+	tasks.default.push('polyfill_js');
 
 
 
@@ -211,6 +239,27 @@ module.exports = function(grunt) {
 		}]
 	};
 
+	config.svgmin.datauri = {
+		expand: true,
+		cwd:    assets+'/data-uri/',
+		src:    '**/*.svg',
+		dest:   tmp+'/data-uri/',
+		filter: 'isFile'
+	};
+
+	
+	config.svg2png.datauri = { files: [{ src:assets+'/data-uri/**/*.svg', dest:builds+'/imgdata/' }] };
+
+	config.imagemin.datauri_fallback = {
+		options: { optimizationLevel:7, progressive:false, interlaced:false, pngquant:true, force:true },
+		files: [{
+			expand: true,
+			cwd: builds+'/imgdata/',
+			src: ['**/*.png'],
+			dest: builds+'/imgdata/'
+		}]
+	};
+
 
 	// less
 	config.less.core = { files: [
@@ -228,6 +277,9 @@ module.exports = function(grunt) {
 	// task
 	tasks.core_css = [
 		'imagemin:datauri',
+		'svgmin:datauri',
+		'svg2png:datauri',
+		'imagemin:datauri_fallback',
 		'less:core',
 		'cssmin:core',
 		'clean:tmp_css'
@@ -236,7 +288,7 @@ module.exports = function(grunt) {
 
 	config.watch.core_css = {
 		files: [
-			assets+'/data-uri/**/*.{png,jpg,gif}',
+			assets+'/data-uri/**/*.{png,jpg,gif,svg}',
 			'css/**/*.css',
 			'css/**/*.less',
 			'!css/misc/**/*'
@@ -256,7 +308,7 @@ module.exports = function(grunt) {
 		grunt.loadNpmTasks('grunt-contrib-sass');
 
 		config.sass.foundation = { files: [{
-			src:  'css/vendor/foundation/foundation.scss',
+			src:  'css/foundation.scss',
 			dest: tmp+'/foundation-scss.css'
 		}]};
 
@@ -278,7 +330,7 @@ module.exports = function(grunt) {
 		config.templateclient.core = {
 			options: {
 				variable: 'nwayo_jshtml',
-				prefix: 'window.kafe.dependencies.jQuery.templates(',
+				prefix: '$.templates(',
 				suffix: ')'
 			},
 			src: ['tmpl/**/*.jshtml'],
@@ -331,54 +383,108 @@ module.exports = function(grunt) {
 
 
 	// --------------------------------
-	// FONTS
+	// RAW
 	// --------------------------------
-	config.copy.fonts = {
+	config.copy.raw = {
 		expand: true,
-		cwd:    assets+'/fonts/',
+		cwd:    assets+'/raw/',
 		src:    '**',
-		dest:   builds+'/fonts/',
+		dest:   builds+'/raw/',
 		filter: 'isFile'
 	};
 
-	tasks.fonts = [
-		'nwayo_loghead:fonts',
-		'copy:fonts'
+	tasks.raw = [
+		'nwayo_loghead:raw',
+		'copy:raw'
 	];
-	tasks.rebuild.push('fonts');
+	tasks.rebuild.push('raw');
 
-	config.watch.fonts = {
-		files: [assets+'/fonts/**/*.{eot,svg,ttf,woff}'],
-		tasks: 'fonts'
+	config.watch.raw = {
+		files: [assets+'/raw/**/*'],
+		tasks: 'raw'
 	};
+
 
 
 
 	// --------------------------------
 	// IMAGES
 	// --------------------------------
+	config.svgmin.options = { plugins: [{
+		removeViewBox: false // ie scaling
+	}]};
+
+	config.copy.svg = {
+		expand: true,
+		cwd:    assets+'/images/',
+		src:    '**/*.svg',
+		dest:   tmp+'/svg/',
+		filter: 'isFile'
+	};
+	config.svgmin.images = {
+		expand: true,
+		cwd:    tmp+'/svg/',
+		src:    '**/*.svg',
+		dest:   builds+'/images/',
+		filter: 'isFile'
+	};
+
+	
+	config.svg2png.images = { files: [{ src:tmp+'/svg/**/*.svg' }] };
+
+	(function(images) {
+		tasks.images_2x = ['nwayo_mkdir'];
+		for (var i in images) {
+			config['imagemagick-convert'][images[i]] = {
+				args:[images[i],'-resize', '50%', images[i].replace('@2x.','.').replace(assets,tmp)]
+			};
+			tasks.images_2x.push('imagemagick-convert:'+images[i]);
+		}
+	})(grunt.file.expand(assets+'/images/**/*@2x.*'));
+
 	config.imagemin.images = {
 		options: { optimizationLevel:7, progressive:false, interlaced:false, pngquant:true, force:true },
-		files: [{
-			expand: true,
-			cwd: assets+'/images/',
-			src: ['**/*.{png,jpg,gif}'],
-			dest: builds+'/images/'
-		}]
+		files: [
+			{
+				expand: true,
+				cwd: assets+'/images/',
+				src: ['**/*.{png,jpg,gif}'],
+				dest: builds+'/images/'
+			},
+			{
+				expand: true,
+				cwd: tmp+'/svg/',
+				src: ['**/*.png'],
+				dest: builds+'/images/'
+			},
+			{
+				expand: true,
+				cwd: tmp+'/images/',
+				src: ['**/*.{png,jpg,gif}'],
+				dest: builds+'/images/'
+			},
+		]
 	};
+
+
+
+	config.clean.svg = { src: [tmp+'/svg', tmp+'/images'],  options: { force:true }};
 
 	tasks.images = [
 		'nwayo_loghead:image optimization',
-		'imagemin:images'
+		'copy:svg',
+		'svgmin:images',
+		'svg2png:images',
+		'images_2x',
+		'imagemin:images',
+		'clean:svg'
 	];
 	tasks.rebuild.push('images');
 
 	config.watch.images = {
-		files: [ assets+'/images/**/*.{png,jpg,gif}'],
+		files: [ assets+'/images/**/*.{png,jpg,gif,svg}'],
 		tasks: 'images'
 	};
-
-
 
 
 	// --------------------------------
@@ -435,8 +541,9 @@ module.exports = function(grunt) {
 
 		// favicon
 		config['imagemagick-convert'].favicon = {
-			args: [assets+'/icons/favicon.png', builds+'/favicon.ico']
+			args: [assets+'/icons/favicon.png', '(', '-clone', '0', '-resize', '16x16', ')', '(', '-clone', '0', '-resize', '32x32', ')', '-delete', '0', builds+'/favicon.ico']
 		};
+
 		tasks.icons.push('imagemagick-convert:favicon');
 
 
