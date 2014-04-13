@@ -68,6 +68,11 @@ module.exports = (grunt) ->
 				when:    (data) -> (data.layout is 'foundation' and data.cms is 'drupal')
 			}
 			{
+				name:    'oldie'
+				message: 'Support old IE (8 and less):'
+				type:    'confirm'
+			}
+			{
 				name:     'name'
 				message:  'Project slug name:'
 				type:     'input'
