@@ -5,7 +5,7 @@
 		"page":      "SpecialContent",
 		"tmpl":      "Content",
 		"ga":        true,
-		"root":      "/<!-- @echo package -->",
+		"root":      "/nwayo",
 		"cmt_start": "<!--",
 		"cmt_end":   "-->"
 	},
@@ -35,7 +35,7 @@
 		"page":      "",
 		"tmpl":      "@ViewBag.Template",
 		"ga":        false,
-		"root":      "/<!-- @echo package -->",
+		"root":      "/nwayo",
 		"cmt_start": "@*",
 		"cmt_end":   "*@"
 	}

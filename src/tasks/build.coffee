@@ -110,7 +110,6 @@ module.exports = (grunt) ->
 
 
 
-
 		# process data var
 		data[key] = preprocess.preprocess value, data if grunt.util.kindOf(value) is 'string' for key, value of data
 

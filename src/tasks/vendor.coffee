@@ -61,7 +61,7 @@ module.exports = (grunt) ->
 
 					# kafe
 					new AdmZip("#{vendor}/kafe.zip").extractAllTo("#{vendor}/kafe/")
-					util.copy "#{vendor}/kafe/kafe-master", "#{skeleton}/sources/libs/"
+					util.copy "#{vendor}/kafe/kafe-master/dist/", "#{skeleton}/sources/libs/"
 					grunt.log.ok 'Deployed kafe files.'
 
 
