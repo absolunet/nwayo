@@ -5,21 +5,21 @@
 	<!-- @if cms='drupal' -->
 	<?php print $head; ?>
 	<title><?php print $head_title; ?></title>
-	<!-- @endif -->
 	
-	<!-- @if cms='magento' -->
+	<!-- @endif --><!-- @if cms='magento' -->
+	
 	<?php echo $this->getChildHtml('head') ?>
-	<!-- @endif -->
 	
-	<!-- @if cms='sitecore' -->
+	<!-- @endif --><!-- @if cms='sitecore' -->
+
 	<meta charset="utf-8">
 	<title>@ViewBag.BrowserTitle</title>
 	<meta name="keywords" content="@ViewBag.MetaKeywords">
 	<meta name="description" content="@ViewBag.MetaDescription">
 	@RenderSection("MetaHeader", false)
-	<!-- @endif -->
 
-	<!-- @if cms='' -->
+	<!-- @endif --><!-- @if cms='none' -->
+
 	<meta charset="utf-8">
 	<title><!-- @echo title --></title>
 	<meta name="keywords" content="">
@@ -27,24 +27,21 @@
 	<!-- @endif -->
 
 
-
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<!-- @echo cmt_start --> DNS prefetch
 	<link rel="dns-prefetch" href="//ajax.googleapis.com">
 	<link rel="dns-prefetch" href="//s7.addthis.com">
 	<link rel="dns-prefetch" href="//www.google-analytics.com">
 	<link rel="dns-prefetch" href="//connect.facebook.net">
 	<!-- @echo cmt_end -->
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta http-equiv="cleartype" content="on">
 
 	<!-- @if layout='responsive' || layout='foundation' || layout='mobile' -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- @endif -->
-
-	<!-- @if layout='desktop' -->
+	<!-- @endif --><!-- @if layout='desktop' -->
 	<meta name="viewport" content="width=1024">
 	<!-- @endif -->
-
 
 	<!-- @if cms!='drupal' -->
 	<link rel="shortcut icon"    href="<!-- @echo build -->/favicon.ico">
@@ -72,9 +69,7 @@
 
 	<!-- @if cms='drupal' -->
 	<?php print $styles; ?>
-	<!-- @endif --> 
-
-	<!-- @if cms='sitecore' || cms='' -->
+	<!-- @endif --><!-- @if cms='sitecore' || cms='none' -->
 	<link rel="stylesheet" href="<!-- @echo build -->/css/core.css">
 	<!-- @endif --> 
 
@@ -88,7 +83,6 @@
 	<!-- @echo copyright -->
 </head>
 <body id="<!-- @echo page -->" class="<!-- @echo tmpl -->"<!-- @if cms='drupal' --><?php print $attributes;?><!-- @endif -->>
-
 
 	<!-- @if cms='drupal' -->
 	<div id="skip-link"><a href="#main-content" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a></div>
