@@ -4,8 +4,7 @@
 		"culture":   "en-CA",
 		"page":      "SpecialContent",
 		"tmpl":      "Content",
-		"ga":        true,
-		"root":      "/nwayo",
+		"root":      "/<!-- @echo package -->",
 		"cmt_start": "<!--",
 		"cmt_end":   "-->"
 	},
@@ -14,7 +13,6 @@
 		"culture":   "<?php print $language->language; ?>-CA",
 		"page":      "",
 		"tmpl":      "<?php print $classes; ?>",
-		"ga":        false,
 		"root":      "/sites/all/themes/<!-- @echo name -->",
 		"cmt_start": "<?php /*",
 		"cmt_end":   "*/ ?>"
@@ -24,7 +22,6 @@
 		"culture":   "<?php echo $this->getLang() ?>-CA",
 		"page":      "",
 		"tmpl":      "<?php echo $this->getBodyClass() ?>",
-		"ga":        false,
 		"root":      "/skin/frontend/default/<!-- @echo name -->",
 		"cmt_start": "<?php /*",
 		"cmt_end":   "*/ ?>"
@@ -34,8 +31,7 @@
 		"culture":   "@(Sitecore.Context.Language.Name)-CA",
 		"page":      "",
 		"tmpl":      "@ViewBag.Template",
-		"ga":        false,
-		"root":      "/nwayo",
+		"root":      "/<!-- @echo package -->",
 		"cmt_start": "@*",
 		"cmt_end":   "*@"
 	}

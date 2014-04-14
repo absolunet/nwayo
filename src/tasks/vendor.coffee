@@ -76,18 +76,20 @@ module.exports = (grunt) ->
 						# copy
 						util.copy "#{fdnSrc}/scss/foundation/", "#{foundation}/sources/css/vendor/foundation/"
 						util.copy "#{fdnSrc}/js/foundation/",   "#{foundation}/sources/js/vendor/foundation/"
-						grunt.file.copy "#{fdnSrc}/scss/foundation/_settings.scss", "#{foundation}/sources/css/_foundation-settings.scss"
 
 
 						# changes
-						fileList = "@import 'js/vendor/foundation/foundation'\n"
+						fileList = "// @import 'js/vendor/foundation/foundation'\n"
 						for file in grunt.file.expand { cwd:"#{foundation}/sources/js/vendor/foundation/", filter:'isFile' }, '*.js'
 							if file isnt 'foundation.js'
-								fileList += "@import 'js/vendor/foundation/#{file.substring(0,file.length-3)}'\n"
+								fileList += "// @import 'js/vendor/foundation/#{file.substring(0,file.length-3)}'\n"
 						grunt.file.write "#{foundation}/sources/js/foundation.js", fileList
 
 						grunt.file.write "#{foundation}/sources/css/_foundation-overwrites.scss", ''
 
+						grunt.file.write "#{foundation}/sources/css/_foundation-settings.scss",
+							grunt.file.read("#{fdnSrc}/scss/foundation/_settings.scss").replace(/"foundation\//g, '"vendor/foundation/')
+				
 						grunt.file.write "#{foundation}/sources/css/foundation.scss",
 							'@import "foundation-settings";\n\n' +
 							grunt.file.read("#{fdnSrc}/scss/foundation.scss").replace(/foundation\/components\//g, 'vendor/foundation/components/') +

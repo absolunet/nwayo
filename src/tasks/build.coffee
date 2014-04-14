@@ -33,8 +33,8 @@ module.exports = (grunt) ->
 		data.author    = pkg.author.name
 		data.copyright = "\n\t<!-- #{pkg.name} #{pkg.version} (c) #{grunt.template.today('yyyy')} #{pkg.author.name} -->"
 
-		data.ga      = if data.ga      then data.ga      else '{TODO}'
-		data.addthis = if data.addthis then data.addthis else '{TODO}'
+		data.ga      = '{TODO}'
+		data.addthis = '{TODO}'
 		data.domain  = if data.domain  then data.domain  else '{TODO}'
 
 		data.less = ''
@@ -61,9 +61,9 @@ module.exports = (grunt) ->
 			grunt.file.delete "#{out}/sources/css/libs/normalize.css",
 			grunt.file.delete "#{out}/sources/css/libs/html5boilerplate.css",
 			grunt.file.delete "#{out}/sources/css/libs/nwayo-boilerplate.less"
-		else
-			less.push 'nwayo-boilerplate'
 
+		if not (data.theme or data.layout is 'foundation')
+			less.push 'nwayo-boilerplate'
 
 		# foundation
 		if data.layout is 'foundation'
@@ -111,10 +111,13 @@ module.exports = (grunt) ->
 
 
 		# process data var
-		data[key] = preprocess.preprocess value, data if grunt.util.kindOf(value) is 'string' for key, value of data
+		for key, value of data
+			if grunt.util.kindOf(value) is 'string'
+				data[key] = preprocess.preprocess value, data 
+
 
 		# process files
-		files = grunt.file.expand { cwd:"#{out}/", filter:'isFile'}, ['**','!__DRUPAL-THEME__zurb-foundation/**']
+		files = grunt.file.expand { cwd:"#{out}/", filter:'isFile'}, ['**','!__DRUPAL-THEME__zurb-foundation/**', '!**/*.png']
 		bar = util.progress 'Processing', files.length
 
 		async.mapLimit files, 10,

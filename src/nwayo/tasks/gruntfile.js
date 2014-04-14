@@ -531,10 +531,16 @@ module.exports = function(grunt) {
 		// share
 		config.imagemin.icons_share = {
 			options: { optimizationLevel:7, progressive:false, interlaced:false, pngquant:true, force:true },
-			files: [{
-				src:  assets+'/icons/share.png',
-				dest: builds+'/share-icon.png'
-			}]
+			files: [
+				{
+					src:  assets+'/icons/share.png',
+					dest: builds+'/share-icon.png'
+				},
+				{
+					src:  assets+'/icons/facebook.png',
+					dest: builds+'/facebook-image.png'
+				}
+			]
 		};
 		tasks.icons.push('imagemin:icons_share');
 

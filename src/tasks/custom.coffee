@@ -85,16 +85,6 @@ module.exports = (grunt) ->
 				validate: (answer) -> if /\S+/.test(answer) then true else 'Mandatory'
 			}
 			{
-				name:    'addthis'
-				message: 'Addthis pubid:'
-				type:    'input'
-			}
-			{
-				name:    'ga'
-				message: 'Google Analytics key:'
-				type:    'input'
-			}
-			{
 				name:    'domain'
 				message: 'Public domain:'
 				type:    'input'
