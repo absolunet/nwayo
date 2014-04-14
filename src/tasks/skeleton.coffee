@@ -18,6 +18,7 @@ module.exports = (grunt) ->
 			'stubs'
 			'sources/assets/data-uri'
 			'sources/assets/raw'
+			'sources/assets/raw/fonts'
 			'sources/assets/images'
 			'sources/assets/images/vendor'
 			'sources/css/vendor'

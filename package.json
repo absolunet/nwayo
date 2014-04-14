@@ -12,13 +12,13 @@
 
 	"devDependencies": {
 		"lodash":     "~2.4.1",
-		"request":    "~2.30.0",
-		"async":      "~0.2.9",
-		"adm-zip":    "~0.4.3",
+		"request":    "~2.34.0",
+		"async":      "~0.7.0",
+		"adm-zip":    "~0.4.4",
 		"preprocess": "~2.0.0",
 		"execSync":   "~1.0.1-pre",
-		"inquirer":   "~0.3.5",
-		"progress":   "~1.1.2",
-		"grunt":      "~0.4.2"
+		"inquirer":   "~0.4.1",
+		"progress":   "~1.1.5",
+		"grunt":      "~0.4.4"
 	}
 }
