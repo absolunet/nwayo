@@ -71,6 +71,8 @@ module.exports = (grunt) ->
 			grunt.file.delete "#{out}/sources/css/libs/html5boilerplate.css",
 			grunt.file.delete "#{out}/sources/css/libs/nwayo-boilerplate.less"
 			less.push 'foundation-mixins'
+		else 
+			grunt.file.delete "#{out}/sources/css/libs/foundation-mixins.less"
 
 
 		# drupal
@@ -117,7 +119,7 @@ module.exports = (grunt) ->
 
 
 		# process files
-		files = grunt.file.expand { cwd:"#{out}/", filter:'isFile'}, ['**','!__DRUPAL-THEME__zurb-foundation/**', '!**/*.png']
+		files = grunt.file.expand { cwd:"#{out}/", filter:'isFile'}, ['**','!__DRUPAL-THEME__zurb-foundation/**', '!**/.gitignore','!**/{vendor,libs}/*','!**/*.{png,jpg,gif,svg,zip}']
 		bar = util.progress 'Processing', files.length
 
 		async.mapLimit files, 10,
