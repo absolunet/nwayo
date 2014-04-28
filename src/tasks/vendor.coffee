@@ -24,6 +24,9 @@ module.exports = (grunt) ->
 			{ dest:"#{skeleton}/sources/css/libs/html5boilerplate.css",             src:'https://raw.github.com/h5bp/html5-boilerplate/master/css/main.css' }
 			{ dest:"#{skeleton}/sources/css/libs/normalize.css",                    src:'https://raw.github.com/necolas/normalize.css/master/normalize.css' }
 			{ dest:"#{skeleton}/sources/css/libs/reset.css",                        src:'http://meyerweb.com/eric/tools/css/reset/reset.css' }
+			{ dest:"#{skeleton}/sources/js/nwayo/vendor/jquery.js",                 src:'https://raw.githubusercontent.com/jquery/jquery/2.1.0/dist/jquery.min.js' }
+			{ dest:"#{skeleton}/sources/js/nwayo/vendor/lo-dash.js",                src:'https://raw.githubusercontent.com/lodash/lodash/master/dist/lodash.compat.min.js' }
+			{ dest:"#{skeleton}/sources/js/nwayo/vendor/underscore.string.js",      src:'https://raw.githubusercontent.com/epeli/underscore.string/master/dist/underscore.string.min.js' }
 			{ dest:"#{skeleton}/sources/js/vendor/polyfill/html5shiv-printshiv.js", src:'https://raw.githubusercontent.com/aFarkas/html5shiv/master/src/html5shiv-printshiv.js' }
 			{ dest:"#{skeleton}/sources/js/vendor/polyfill/nwmatcher.js",           src:'http://javascript.nwbox.com/NWMatcher/nwmatcher.js' }
 			{ dest:"#{skeleton}/sources/js/vendor/polyfill/rem.js",                 src:'https://raw.githubusercontent.com/chuckcarpenter/REM-unit-polyfill/master/js/rem.js' }

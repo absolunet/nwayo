@@ -45,6 +45,7 @@ module.exports = function(grunt) {
 					}
 				}
 			},
+			concat:                {},
 			jshint:                {},
 			templateclient:        {},
 			less:                  {},
@@ -153,10 +154,11 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-includes');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-concat');
 
 	// js hint
 	config.jshint.core = {
-		src: ['js/**/*.js', '!libs/**/*.js', '!js/vendor/**/*.js'],
+		src: ['js/**/*.js', '!libs/**/*.js', '!js/vendor/**/*.js', '!js/nwayo/vendor/**/*.js'],
 		options: {
 			//'-W061': true   // eval can be harmful
 		}
@@ -165,15 +167,28 @@ module.exports = function(grunt) {
 	// includes js
 	config.includes.core = {
 		options: { includePath: './' },
-		files: [{
-			src: 'js/bundle_core.js',
-			dest: tmp+'/core.js'
-		}]
+		files: [
+			{
+				src: 'js/nwayo/vendor.js',
+				dest: tmp+'/nwayo-vendor.js'
+			},
+			{
+				src: 'js/bundle_core.js',
+				dest: tmp+'/core.js'
+			}
+		]
 	};
 	config.uglify.core = { files: [{
 		src:  tmp+'/core.js',
+		dest: tmp+'/core.js'
+	}]};
+
+
+	config.concat.core = { files: [{
+		src: [tmp+'/nwayo-vendor.js', tmp+'/core.js'],
 		dest: builds+'/js/core.js'
 	}]};
+
 
 
 	// tasks
@@ -181,6 +196,7 @@ module.exports = function(grunt) {
 		'jshint:core',
 		'includes:core',
 		'uglify:core',
+		'concat:core',
 		'clean:tmp_js'
 	];
 	tasks.default.push('core_js');

@@ -2,25 +2,20 @@
 // CORE
 //------------------------------------------------------------------------------------*/
 
-// @import 'libs/kafe/kafe',
+// @import 'libs/kafe/kafe'
 
 // @if layout="foundation"
 // @import 'js/foundation'
 // @endif
 
-// @if cms
+// @if cms && cms != "none"
 // @import 'libs/kafe/cms//* @echo cms */'
 // @endif
 
 // **@import '.tmp-/* @echo package *//templateclient.js'
 
-window./* @echo name */ = (function(undefined){
+(function(){
 	var
-		// @if cms="drupal"
-		$Drupal   = window.jQuery,
-		// @endif 
-
-		App       = {},
 		Local     = {}
 	;
 
@@ -181,7 +176,5 @@ window./* @echo name */ = (function(undefined){
 
 
 	//App.Utils = {};
-
-	return App;
 
 })();
