@@ -1,0 +1,50 @@
+//@import "foundation-settings";
+
+// Foundation by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+// Make sure the charset is set appropriately
+@charset "UTF-8";
+
+// Behold, here are all the Foundation components.
+@import
+  "dependencies/foundation/components/grid",
+  "dependencies/foundation/components/accordion",
+  "dependencies/foundation/components/alert-boxes",
+  "dependencies/foundation/components/block-grid",
+  "dependencies/foundation/components/breadcrumbs",
+  "dependencies/foundation/components/button-groups",
+  "dependencies/foundation/components/buttons",
+  "dependencies/foundation/components/clearing",
+  "dependencies/foundation/components/dropdown",
+  "dependencies/foundation/components/dropdown-buttons",
+  "dependencies/foundation/components/flex-video",
+  "dependencies/foundation/components/forms",
+  "dependencies/foundation/components/inline-lists",
+  "dependencies/foundation/components/joyride",
+  "dependencies/foundation/components/keystrokes",
+  "dependencies/foundation/components/labels",
+  "dependencies/foundation/components/magellan",
+  "dependencies/foundation/components/orbit",
+  "dependencies/foundation/components/pagination",
+  "dependencies/foundation/components/panels",
+  "dependencies/foundation/components/pricing-tables",
+  "dependencies/foundation/components/progress-bars",
+  "dependencies/foundation/components/range-slider",
+  "dependencies/foundation/components/reveal",
+  "dependencies/foundation/components/side-nav",
+  "dependencies/foundation/components/split-buttons",
+  "dependencies/foundation/components/sub-nav",
+  "dependencies/foundation/components/switch",
+  "dependencies/foundation/components/tables",
+  "dependencies/foundation/components/tabs",
+  "dependencies/foundation/components/thumbs",
+  "dependencies/foundation/components/tooltips",
+  "dependencies/foundation/components/top-bar",
+  "dependencies/foundation/components/type",
+  "dependencies/foundation/components/offcanvas",
+  "dependencies/foundation/components/visibility";
+
+
+//@import "foundation-overwrites";
