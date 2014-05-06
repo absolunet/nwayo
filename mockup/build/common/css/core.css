@@ -1,0 +1,38 @@
+/* -------------------------------------------
+   MISC
+   ------------------------------------------- */
+/*- Load font via @font-face --------------*/
+/*- Palette & colors -------------------------------------------------------------------*/
+/*- Fonts ------------------------------------------------------------------*/
+@font-face {
+  font-family: "Alternate";
+  src: url("/build/common/raw/fonts/Alternate-webfont.eot");
+  src: url("/build/common/raw/fonts/Alternate-webfont.eot?#iefix") format("embedded-opentype"), url("/build/common/raw/fonts/Alternate-webfont.woff") format("woff"), url("/build/common/raw/fonts/Alternate-webfont.ttf") format("truetype"), url("/build/common/raw/fonts/Alternate-webfont.svg#@{name}") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Alternate2";
+  src: url("/build/common/raw/fonts/Alternate2-webfont.eot");
+  src: url("/build/common/raw/fonts/Alternate2-webfont.eot?#iefix") format("embedded-opentype"), url("/build/common/raw/fonts/Alternate2-webfont.woff") format("woff"), url("/build/common/raw/fonts/Alternate2-webfont.ttf") format("truetype"), url("/build/common/raw/fonts/Alternate2-webfont.svg#@{name}") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "icomoon";
+  src: url("/build/common/raw/fonts/icomoon.eot");
+  src: url("/build/common/raw/fonts/icomoon.eot?#iefix") format("embedded-opentype"), url("/build/common/raw/fonts/icomoon.woff") format("woff"), url("/build/common/raw/fonts/icomoon.ttf") format("truetype"), url("/build/common/raw/fonts/icomoon.svg#@{name}") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/*- Images & Sprites -------------------------------------------------------*/
+/* line 68, /Users/jb/Desktop/www/ABSOLUNET/nwayo/mockup/common/styles/common.scss */
+a {
+  background: transparent data-uri("../.tmp-nwayo/embed/ico-x.png") left top no-repeat;
+}
+
+/**/
+/* line 1, /Users/jb/Desktop/www/ABSOLUNET/nwayo/mockup/common/styles/layout.scss */
+body {
+  background-color: #cccccc;
+}
