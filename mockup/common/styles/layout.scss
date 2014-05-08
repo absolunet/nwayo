@@ -1,4 +1,13 @@
-body { background-color:$bg-color; }
+body { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; background-color:$bg-color; }
 
 
-a { @extend %icoX-embed; }
+#logo { @extend %miscInline-image; }
+#misc { @extend %misc-image; }
+
+.fLite { font-family:$alt-font; font-weight:$altLite-weight; }
+.fNorm { font-family:$alt-font; }
+.fBold { font-family:$alt-font; font-weight:bold; }
+
+.iMusic:before    { content:$icoMusic-char;    @extend %ico-font; }
+.iSettings:before { content:$icoSettings-char; @extend %ico-font; }
+.iWarning:before  { content:$icoWarning-char;  @extend %ico-font; }
