@@ -16,19 +16,61 @@ $white: #fff;
    MISC
    ------------------------------------------- */
 
+/*- Background image --------------*/
+@mixin bgImage ( $file, $options:() ) {
+	$options: map-merge((type:default, color:transparent, position:center center, repeat:no-repeat), $options);
+
+	$_width:    '';
+	$_height:   '';
+	$_color:    map-get($options, color);
+	$_uri:      '';
+	$_position: map-get($options, position);
+	$_repeat:   map-get($options, repeat);
+
+
+	// width
+	@if map-has-key($options, width) {
+		$_width: map-get($options, width);
+	} @else {
+		$_width: image-width($file);
+	}
+
+	// height
+	@if map-has-key($options, height) {
+		$_height: map-get($options, height);
+	} @else {
+		$_height: image-height($file);
+	}
+
+	// url or inline
+	@if map-get($options, type) == default {
+		$_uri: url($file);
+	} @else if map-get($options, type) == inline {
+		$_uri: inline-image($file);
+	}
+	
+	// css	
+	width:      $_width;
+	height:     $_height;
+	background: $_color $_uri $_position $_repeat;
+}
+
+
+
 /*- Load font via @font-face --------------*/
-@mixin LoadFont ($name, $filename, $path:$font-path){
+@mixin loadFont ($name, $filename, $weight:normal, $style:normal, $embed-path:$embedFont-path, $path:$font-path){
 	@font-face {
 		font-family: $name;
 		src: url($path+'/'+$filename+'.eot');
 		src: url($path+'/'+$filename+'.eot?#iefix') format('embedded-opentype'),
-		     url($path+'/'+$filename+'.woff') format('woff'),
-		     url($path+'/'+$filename+'.ttf') format('truetype'),
-		     url($path+'/'+$filename+'.svg#@{name}') format('svg');
-		font-weight: normal;
-		font-style: normal;
+		     inline-font-files($embed-path+'/'+$filename+'.woff'),
+		     url($path+'/'+$filename+'.ttf') format('truetype');
+		font-weight: $weight;
+		font-style: $style;
 	}
 }
+
+
 
 ///*- Center/scale an <img> in a container --------------*/
 //.CenterImage (@width:150px, @height:150px) {
