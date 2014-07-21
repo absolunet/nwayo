@@ -1,63 +1,7 @@
-# "gulp-imagemin": "0.5.0",
 # "gulp-jshint": "~1.5.5",
 # "gulp-uglify": "~0.2.1"
-
-
-#es     = require 'event-stream'
-gulp   = require 'gulp'
-
-#imagemin = require 'gulp-imagemin'
 #jshint   = require 'gulp-jshint'
 #uglify   = require 'gulp-uglify'
-
-build = '../build'
-common = '../common'
-assets = "#{common}/assets"
-bundles = "#{common}/bundles"
-
-
-
-gulp.task 'css', ->
-	sq     = require 'streamqueue'
-	concat = require 'gulp-concat'
-	#scsslint  = require 'gulp-scss-lint'
-	compass   = require 'gulp-compass'
-	minifycss = require 'gulp-minify-css'
-	stream    = sq objectMode:true
-
-	# lint files
-	#gulp.src "#{sources}/css/**/*.scss"
-	#	.pipe scsslint()
-
-	# build
-	#stream.queue(
-	#	gulp.src "#{sources}/css/libs/normalize.css"
-	#)
-
-	stream.queue(
-		gulp.src "#{bundles}/primary-core.scss"
-			.pipe compass
-				config_file: 'config.rb',
-	)
-
-	return stream.done()
-		.pipe concat "core.css"
-#		.pipe minifycss()
-		.pipe gulp.dest "#{build}/common/css"
-
-
-
-
-
-
-gulp.task 'watch', ->
-	gulp.watch "#{sources}/styles/**/*.{scss,css}", ['css']
-
-
-	
-
-
-
 
 
 # gulp.task 'default', ->
