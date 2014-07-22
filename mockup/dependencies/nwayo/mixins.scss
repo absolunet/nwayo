@@ -10,6 +10,29 @@ $white: #fff;
 
 
 
+//-- Paths
+
+@function -image-path($file, $context:'common') {
+	@return $build-path + '/images/' + $context + '/' + $file;
+}
+
+@function -inline-image-path($file, $context:'common') {
+	@return '.nwayo-cache/inline-images/' + $context + '/' + $file;
+}
+
+@function -font-path($context:'common') {
+	@return $build-path + '/fonts/' + $context;
+}
+
+@function -inline-font-path($context:'common') {
+	@if $context != 'common' {
+		$content: 'components/' + $context;
+	}
+	@return $context+'/assets/fonts';
+}
+
+
+
 
 
 /* -------------------------------------------
@@ -17,7 +40,7 @@ $white: #fff;
    ------------------------------------------- */
 
 /*- Background image --------------*/
-@mixin bgImage ( $file, $options:() ) {
+@mixin bg-image ( $file, $options:() ) {
 	$options: map-merge((type:default, color:transparent, position:center center, repeat:no-repeat), $options);
 
 	$_width:    '';
@@ -58,12 +81,12 @@ $white: #fff;
 
 
 /*- Load font via @font-face --------------*/
-@mixin loadFont ($name, $filename, $weight:normal, $style:normal, $embed-path:$embedFont-path, $path:$font-path){
+@mixin load-font ($name, $filename, $weight:normal, $style:normal, $inline-path:-inline-font-path(), $path:-font-path()){
 	@font-face {
 		font-family: $name;
 		src: url($path+'/'+$filename+'.eot');
 		src: url($path+'/'+$filename+'.eot?#iefix') format('embedded-opentype'),
-		     inline-font-files($embed-path+'/'+$filename+'.woff'),
+		     inline-font-files($inline-path+'/'+$filename+'.woff'),
 		     url($path+'/'+$filename+'.ttf') format('truetype');
 		font-weight: $weight;
 		font-style: $style;

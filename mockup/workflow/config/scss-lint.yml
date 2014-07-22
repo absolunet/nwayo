@@ -1,0 +1,7 @@
+linters:
+	CapitalizationInSelector:
+		enabled: false
+	Indentation:
+		enabled: false
+	NameFormat:
+		enabled: false
