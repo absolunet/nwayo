@@ -1,51 +1,46 @@
 @import 'dependencies/nwayo/mixins';
 
-$build-path:      '/build/common';
-$img-path:        $build-path+'/images';
-$font-path:       $build-path+'/fonts';
-$embedImage-path: '.tmp-nwayo/common/inline-images';
-$embedFont-path:  'common/assets/fonts';
-
-//$embedfallback-path: $build-path+'/imgdata';
+$build-path: '/build';
 
 
-/*- Palette & colors -------------------------------------------------------------------*/
+
+//-- Palette & colors 
 $grey-palette:  #ccc;
 $red-palette:   #c00;
 $green-palette: #0c0;
 $blue-palette:  #00c;
 
-$bg-color:        $grey-palette;
-$text-color:      darken($bg-color, 30%);
+$bg-color:   $grey-palette;
+$text-color: darken($bg-color, 30%);
 
-$link-color:      $blue-palette;
-$linkHover-color: lighten($link-color, 10%);
+$link-color:       $blue-palette;
+$link-hover-color: lighten($link-color, 10%);
 
 $alt-color:       $green-palette;
-$altFaded-color:  spin( lighten( desaturate( $alt-color, 39.5%), 26.2%), 17.8);  // #75dd94
+$alt-faded-color: spin( lighten( desaturate( $alt-color, 39.5%), 26.2%), 17.8);  // #75dd94
 
-$errorText-color: $red-palette;
-$errorBg-color:   lighten($errorText-color, 20%);
-
-
+$error-text-color: $red-palette;
+$error-bg-color:   lighten($error-text-color, 20%);
 
 
-/*- Fonts ------------------------------------------------------------------*/
+
+
+//-- Fonts
 $text-font: sans-serif;
 $alt-font:  'kreon', $text-font;
-	$altLite-weight: 300;
+	$alt-lite-weight: 300;
 
-@include loadFont('kreon',   'kreon-regular-webfont');
-@include loadFont('kreon',   'kreon-light-webfont',  $altLite-weight);
-@include loadFont('kreon',   'kreon-bold-webfont',   bold);
-@include loadFont('icomoon', 'icomoon');
+@include load-font('kreon',   'kreon-regular-webfont');
+@include load-font('kreon',   'kreon-light-webfont',  $alt-lite-weight);
+@include load-font('kreon',   'kreon-bold-webfont',   bold);
+@include load-font('icomoon', 'icomoon');
 
 
 
 %ico-font { font-family:'icomoon'; font-style:normal !important; font-weight:normal !important; font-variant:normal !important; text-transform:none !important; line-height:1 !important; -webkit-font-smoothing:antialiased !important; }
-	$icoMusic-char:    'm';
-	$icoSettings-char: 's';
-	$icoWarning-char:  'w';
+	$ico-music-char:    'm';
+	$ico-settings-char: 's';
+	$ico-warning-char:  'w';
 
 
 
@@ -53,26 +48,17 @@ $alt-font:  'kreon', $text-font;
 /*- Images & Sprites -------------------------------------------------------*/
 
 // normal image
-%misc-image { @include bgImage($img-path+'/misc.png', (width:111px, color:red) ); }
+%misc-image { @include bg-image(-image-path('misc.png'), (width:111px, color:red) ); }
 
-// // svg image with png fallback for ie8
-// ._miscVector-image { .svg('@{img-path}/misc-vector.svg', 100px, 100px); background-repeat:no-repeat; background-position:left top; }
-// 
 // // high-density images
 // ._miscHD-image { background-image:url('@{img-path}/misc-hd.png'); 
 // 	@media @highdensity-media { background-image:url('@{img-path}/misc-hd@2x.png'); background-size:100px 100px; }
 // }
 // 
-// // sprite
-// @multiple-image: url('@{img-path}/sprite.png');
-// 	._multipleItem1-sprite { width:24px; height:24px; background:transparent @multiple-image left    top no-repeat; }
-// 	._multipleItem2-sprite { width:32px; height:32px; background:transparent @multiple-image left -100px no-repeat; }
 
 // image as data-uri
-%miscInline-image { @include bgImage($embedImage-path+'/ico-x.png', (type:inline)); }
+%misc-inline-image { @include bg-image(-inline-image-path('ico-x.png'), (type:inline)); }
 
-// // svg as data-uri with png fallback for ie8
-// ._icoY-imagedata { .svg_datauri('@{imgdata-path}/ico_y.svg'); width:32px; height:32px; background-position:left top; background-repeat:no-repeat; }
 
 /**/
 

@@ -1,13 +1,13 @@
 body { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; background-color:$bg-color; }
 
 
-#logo { @extend %miscInline-image; }
+#logo { @extend %misc-inline-image; }
 #misc { @extend %misc-image; }
 
-.fLite { font-family:$alt-font; font-weight:$altLite-weight; }
+.fLite { font-family:$alt-font; font-weight:$alt-lite-weight; }
 .fNorm { font-family:$alt-font; }
 .fBold { font-family:$alt-font; font-weight:bold; }
 
-.iMusic:before    { content:$icoMusic-char;    @extend %ico-font; }
-.iSettings:before { content:$icoSettings-char; @extend %ico-font; }
-.iWarning:before  { content:$icoWarning-char;  @extend %ico-font; }
+.iMusic:before    { content:$ico-music-char;    @extend %ico-font; }
+.iSettings:before { content:$ico-settings-char; @extend %ico-font; }
+.iWarning:before  { content:$ico-warning-char;  @extend %ico-font; }
