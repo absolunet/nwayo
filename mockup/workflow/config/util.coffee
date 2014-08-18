@@ -4,7 +4,7 @@ module.exports =
 	path: () ->
 		
 		dir = {}
-		dir.root       = '../'
+		dir.root       = '..'
 		dir.cache      = "#{dir.root}/.nwayo-cache"
 		dir.build      = "#{dir.root}/build"
 		dir.common     = "#{dir.root}/common"

@@ -18,7 +18,7 @@ $white: #fff;
 // $rem-base: 16px;
 
 // Allows the use of rem-calc() or lower-bound() in your settings
-@import "vendor/foundation/functions";
+@import 'vendor/foundation/functions';
 
 // The default font-size is set to 100% of the browser style sheet (usually 16px)
 // for compatibility with browser-based text zoom or user-set defaults.
@@ -87,10 +87,10 @@ $white: #fff;
 // $xlarge-range: (90.063em, 120em);
 // $xxlarge-range: (120.063em, 99999999em);
 
-$small-range: (0em, 39.937em);
+$small-range: (0, 39.937em);
 $medium-range: (40em, 59.937em);
 $large-range: (60em, 79.937em);
-$xlarge-range: (80em,99999999em);
+$xlarge-range: (80em, 99999999em);
 
 // $screen: "only screen";
 
