@@ -1,7 +1,6 @@
 gulp   = require 'gulp'
 debug  = require 'gulp-debug'
 rename = require 'gulp-rename'
-#es    = require 'event-stream'
 
 util  = require '../config/util'
 path  = util.path()
@@ -30,41 +29,30 @@ gulp.task 'styles_images', ->
 
 #-- Lint SCSS
 gulp.task 'styles_lint', ->
-	###
-	scsslint = require 'gulp-scss-lint'
+	scsslint = require 'gulp-scsslint'
 
-	return gulp.src styles
-		.pipe scsslint()  
-	###
+	gulp.src path.files.styles
+		.pipe scsslint({
+			config: path.config.scsslint
+		})
+		.pipe scsslint.reporter()
+		.pipe scsslint.reporter('fail')
 
 
 
 #-- SCSS
 gulp.task 'styles_scss', ['styles_lint'], ->
-	sq        = require 'streamqueue'
 	concat    = require 'gulp-concat'
 	compass   = require 'gulp-compass'
 	minifycss = require 'gulp-minify-css'
-	stream    = new sq objectMode:true
 
-	# "gulp-imagemin": "0.5.0",
-	#imagemin = require 'gulp-imagemin'
-
-
-	# build
-	#stream.queue(
-	#	gulp.src "#{sources}/css/libs/normalize.css"
-	#)
-
-	stream.queue(
-		gulp.src "#{path.dir.bundles}/primary-core.scss"
-			.pipe compass
-				config_file: path.config.compass
-	)
-	return stream.done()
+	gulp.src "#{path.dir.bundles}/primary-core.scss"
+		.pipe compass
+			config_file: path.config.compass
 		.pipe concat 'core.css'
 		#.pipe minifycss()
 		.pipe gulp.dest "#{path.dir.build}/styles"
+
 
 
 

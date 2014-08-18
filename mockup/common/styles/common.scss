@@ -13,11 +13,11 @@ $blue-palette:  #00c;
 $bg-color:   $grey-palette;
 $text-color: darken($bg-color, 30%);
 
-$link-color:       $blue-palette;
-$link-hover-color: lighten($link-color, 10%);
+$link-color:      $blue-palette;
+$linkHover-color: lighten($link-color, 10%);
 
-$alt-color:       $green-palette;
-$alt-faded-color: spin( lighten( desaturate( $alt-color, 39.5%), 26.2%), 17.8);  // #75dd94
+$alt-color:      $green-palette;
+$altFaded-color: spin(lighten(desaturate($alt-color, 39.5%), 26.2%), 17.8);  // #75dd94
 
 $error-text-color: $red-palette;
 $error-bg-color:   lighten($error-text-color, 20%);
@@ -28,19 +28,19 @@ $error-bg-color:   lighten($error-text-color, 20%);
 //-- Fonts
 $text-font: sans-serif;
 $alt-font:  'kreon', $text-font;
-	$alt-lite-weight: 300;
+$altLite-weight: 300;
 
-@include load-font('kreon',   'kreon-regular-webfont');
-@include load-font('kreon',   'kreon-light-webfont',  $alt-lite-weight);
-@include load-font('kreon',   'kreon-bold-webfont',   bold);
+@include load-font('kreon', 'kreon-regular-webfont');
+@include load-font('kreon', 'kreon-light-webfont', $altLite-weight);
+@include load-font('kreon', 'kreon-bold-webfont', bold);
 @include load-font('icomoon', 'icomoon');
 
 
 
 %ico-font { font-family:'icomoon'; font-style:normal !important; font-weight:normal !important; font-variant:normal !important; text-transform:none !important; line-height:1 !important; -webkit-font-smoothing:antialiased !important; }
-	$ico-music-char:    'm';
-	$ico-settings-char: 's';
-	$ico-warning-char:  'w';
+$icoMusic-char:    'm';
+$icoSettings-char: 's';
+$icoWarning-char:  'w';
 
 
 
@@ -48,7 +48,7 @@ $alt-font:  'kreon', $text-font;
 /*- Images & Sprites -------------------------------------------------------*/
 
 // normal image
-%misc-image { @include bg-image(-image-path('misc.png'), (width:111px, color:red) ); }
+%misc-image { @include bg-image(-image-path('misc.png'), (width:111px, color:#f00)); }
 
 // // high-density images
 // ._miscHD-image { background-image:url('@{img-path}/misc-hd.png'); 
@@ -57,7 +57,7 @@ $alt-font:  'kreon', $text-font;
 // 
 
 // image as data-uri
-%misc-inline-image { @include bg-image(-inline-image-path('ico-x.png'), (type:inline)); }
+%miscInline-image { @include bg-image(-inline-image-path('ico-x.png'), (type:inline)); }
 
 
 /**/
@@ -107,3 +107,4 @@ $alt-font:  'kreon', $text-font;
 // 		td { vertical-align:top; }
 // 	}
 // }
+
