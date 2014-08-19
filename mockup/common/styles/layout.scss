@@ -1,7 +1,7 @@
 body { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; background-color:$bg-color; }
 
 
-#logo { @extend %miscInline-image; }
+#logo { @extend %miscInline-image; transform:rotateY(180deg); }
 #misc { @extend %misc-image; }
 
 .fLite { font-family:$alt-font; font-weight:$altLite-weight; }

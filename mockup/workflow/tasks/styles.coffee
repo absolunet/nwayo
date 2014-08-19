@@ -40,48 +40,29 @@ gulp.task 'styles_lint', ->
 
 
 
-#-- Compile via Compass
-gulp.task 'styles_compass', ['styles_lint'], ->
-	compass    = require 'gulp-compass'
-	minifycss  = require 'gulp-minify-css'
-	sourcemaps = require 'gulp-sourcemaps'
+#-- Compile
+gulp.task 'styles_compile', ['styles_lint'], ->
+	sass         = require 'gulp-ruby-sass'
+	sourcemaps   = require 'gulp-sourcemaps'
+	autoprefixer = require 'gulp-autoprefixer'
+	minifycss    = require 'gulp-minify-css'
 
 	gulp.src path.files.bundles_styles
-		.pipe compass
-			config_file: path.config.compass
-			css: '../build/styles'
-			sass: '../common/bundles'
-			sourcemap: true
-		.on('error', ->)
-
-		.pipe sourcemaps.init loadMaps:true
+		.pipe sass
+			loadPath: path.dir.root
+			compass: true
+#			sourcemap: false
+#			sourcemapPath: '../..'
+#		.pipe sourcemaps.init loadMaps:true
+		.pipe autoprefixer('last 2 versions', '> 1%', 'ie >= 9')
 		.pipe minifycss()
-		.pipe sourcemaps.write './',
-			addComment: true
-			includeContent: false
+#		.pipe sourcemaps.write './',
+#			addComment: true
+#			includeContent: false
 		.pipe gulp.dest "#{path.dir.build}/styles"
 
-
-
-#-- Minify
-gulp.task 'styles_process', ['styles_compass'], ->
-
-
-
-	###
-	minifycss  = require 'gulp-minify-css'
-	sourcemaps = require 'gulp-sourcemaps'
-
-	gulp.src "#{path.dir.build}/styles/*.css"
-		.pipe sourcemaps.init loadMaps:true
-		.pipe minifycss()
-		.pipe sourcemaps.write './',
-			addComment: true
-			includeContent: false
-		.pipe gulp.dest "#{path.dir.build}/styles"
-	###
 
 
 
 #-- Rebuild
-gulp.task 'styles', ['styles_fonts', 'styles_images', 'styles_minify']
+gulp.task 'styles', ['styles_fonts', 'styles_images', 'styles_compile']
