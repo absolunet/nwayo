@@ -1,8 +1,8 @@
-module.exports = 
+module.exports =
 
 	#-- paths
 	path: () ->
-		
+
 		dir = {}
 		dir.root       = '..'
 		dir.cache      = "#{dir.root}/.nwayo-cache"
@@ -30,8 +30,7 @@ module.exports =
 		files.scripts         = "#{dir.scripts}/**/*.js"
 		files.styles          = "#{dir.styles}/**/*.scss"
 
-		config = {} 
-		config.compass  = 'config/compass.rb'
+		config = {}
 		config.scsslint = 'config/scss-lint.yml'
 
 		return {
@@ -54,7 +53,7 @@ module.exports =
 
 
 	#-- assets rename
-	assets_rename: (path) -> 
+	assets_rename: (path) ->
 		elements = path.dirname.split '/'
 		elements.shift() if elements[0] is 'components'
 		rest = elements.splice(3)
