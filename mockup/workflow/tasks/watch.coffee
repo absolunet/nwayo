@@ -8,7 +8,10 @@ path = util.path()
 #-- Watch
 gulp.task 'watch', ->
 
+	# assets
+	gulp.watch [path.files.fonts], ['assets_fonts', 'styles_compile']
+	gulp.watch [path.files.images], ['assets_images']
+
 	# styles
-	gulp.watch [path.files.fonts],                             ['styles_fonts',  'styles_scss']
-	gulp.watch [path.files.inline],                            ['styles_inline', 'styles_scss']
-	gulp.watch [path.files.bundles_styles, path.files.styles], ['styles_scss']
+	gulp.watch [path.files.inline], ['styles_inline', 'styles_compile']
+	gulp.watch [path.files.bundles_styles, path.files.styles], ['styles_compile']
