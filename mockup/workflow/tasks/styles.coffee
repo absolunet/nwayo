@@ -1,18 +1,10 @@
+#debug  = require 'gulp-debug'
 gulp   = require 'gulp'
-debug  = require 'gulp-debug'
 rename = require 'gulp-rename'
 
 util  = require '../config/util'
 path  = util.path()
 
-
-
-
-#-- Fonts copy
-gulp.task 'styles_fonts', ->
-	gulp.src path.files.fonts_copy, base:path.dir.root
-		.pipe rename util.assets_rename
-		.pipe gulp.dest path.dir.build
 
 
 
@@ -63,6 +55,5 @@ gulp.task 'styles_compile', ['styles_lint'], ->
 
 
 
-
 #-- Rebuild
-gulp.task 'styles', ['styles_fonts', 'styles_images', 'styles_compile']
+gulp.task 'styles', ['styles_images', 'styles_compile']

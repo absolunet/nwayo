@@ -10,6 +10,7 @@
 		"gulp-concat":       "~2.3.4",
 		"gulp-rename":       "~1.2.0",
 		"gulp-sourcemaps":   "~1.1.1",
+		"gulp-gm":           "~0.0.7",
 		"gulp-imagemin":     "~1.0.0",
 		"gulp-scsslint":     "~0.0.5",
 		"gulp-ruby-sass":    "~0.7.1",
