@@ -10,38 +10,29 @@ path  = util.path()
 
 #-- Fonts copy
 gulp.task 'assets_fonts', ->
-	gulp.src path.files.fonts_copy, base:path.dir.root
+	return gulp.src path.files.fonts_copy, base:path.dir.root
 		.pipe rename util.assets_rename
 		.pipe gulp.dest path.dir.build
 
 
 
-#-- Images optimization
-gulp.task 'assets_images', ->
-	imagemin = require 'gulp-imagemin'
-	gm       = require 'gulp-gm'
+#-- Icons
+gulp.task 'assets_icons', ->
 
-	# optimize
-	gulp.src path.files.images, base:path.dir.root
-		.pipe imagemin util.imagemin_params()
+
+
+#-- Raw copy
+gulp.task 'assets_raw', ->
+	return gulp.src path.files.raw, base:path.dir.root
 		.pipe rename util.assets_rename
 		.pipe gulp.dest path.dir.build
-
-
-	# high density
-	resize2to1 = (gmfile) -> gmfile.resize('50%',' 50%') # QUALITY !!!!
-
-	gulp.src path.files.images2x, base:path.dir.root
-		.pipe gm resize2to1, imageMagick:true
-		.pipe rename (path) -> 
-			path.basename = path.basename.slice(0,-3)
-			return
-		.pipe imagemin util.imagemin_params()
-		.pipe rename util.assets_rename
-		.pipe gulp.dest path.dir.build
-
 
 
 
 #-- Rebuild
-gulp.task 'assets', ['assets_fonts', 'assets_images']
+gulp.task 'assets', (cb) ->
+	del         = require 'del'
+	runsequence = require 'run-sequence'
+
+	del [path.dir.build_assets, path.files.build_icons], force:true, ->
+		runsequence ['assets_fonts', 'assets_icons', 'assets_raw'], cb
