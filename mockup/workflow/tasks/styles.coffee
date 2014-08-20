@@ -12,7 +12,7 @@ path  = util.path()
 gulp.task 'styles_images', ->
 	imagemin = require 'gulp-imagemin'
 
-	gulp.src path.files.inline, base:path.dir.root
+	return gulp.src path.files.inline, base:path.dir.root
 		.pipe imagemin util.imagemin_params()
 		.pipe rename util.assets_rename
 		.pipe gulp.dest path.dir.cache
@@ -23,7 +23,7 @@ gulp.task 'styles_images', ->
 gulp.task 'styles_lint', ->
 	scsslint = require 'gulp-scsslint'
 
-	gulp.src path.files.styles
+	return gulp.src path.files.styles
 		.pipe scsslint({
 			config: path.config.scsslint
 		})
@@ -39,7 +39,7 @@ gulp.task 'styles_compile', ['styles_lint'], ->
 	autoprefixer = require 'gulp-autoprefixer'
 	minifycss    = require 'gulp-minify-css'
 
-	gulp.src path.files.bundles_styles
+	return gulp.src path.files.bundles_styles
 		.pipe sass
 			loadPath: path.dir.root
 			compass: true
@@ -56,4 +56,9 @@ gulp.task 'styles_compile', ['styles_lint'], ->
 
 
 #-- Rebuild
-gulp.task 'styles', ['styles_images', 'styles_compile']
+gulp.task 'styles', (cb) ->
+	del         = require 'del'
+	runsequence = require 'run-sequence'
+
+	del [path.dir.build_styles, path.dir.cache_inline], force:true, ->
+		runsequence ['images', 'styles_images'], 'styles_compile', cb
