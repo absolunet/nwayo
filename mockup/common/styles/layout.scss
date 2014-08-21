@@ -1,8 +1,9 @@
 body { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; background-color:$bg-color; }
 
 
-#logo { @extend %miscInline-image; transform:rotateY(180deg); }
-#misc { @extend %misc-image; }
+#logo   { @extend %miscInline-image; transform:rotateY(180deg); }
+#misc   { @extend %misc-image; }
+#miscHD { @extend %miscHD-image; }
 
 .fLite { font-family:$alt-font; font-weight:$altLite-weight; }
 .fNorm { font-family:$alt-font; }
@@ -11,3 +12,16 @@ body { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; ba
 .iMusic:before    { @extend %ico-font; content:$icoMusic-char; }
 .iSettings:before { @extend %ico-font; content:$icoSettings-char; }
 .iWarning:before  { @extend %ico-font; content:$icoWarning-char; }
+
+
+
+
+
+//-- Misc
+
+// powerTip
+#powerTip { display:none; position:absolute; z-index:2147483647; }
+
+// skype reset
+span.skype_pnh_container { display:none !important; }
+span.skype_pnh_print_container { display:inline !important; }

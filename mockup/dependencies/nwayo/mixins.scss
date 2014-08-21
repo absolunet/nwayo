@@ -1,95 +1,45 @@
-$black: #000;
-$white: #fff;
-
-//@highdensity-media: ~"print",
-//                    ~"(-o-min-device-pixel-ratio: 5/4)",
-//                    ~"(-webkit-min-device-pixel-ratio: 1.25)",
-//                    ~"(min-resolution: 120dpi)";
-//
-//@textfields-selector: ~'input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"]';
-
-
-
-//-- Paths
-
-@function -image-path($file, $context:'common') {
-	@return $build-path + '/images/' + $context + '/' + $file;
-}
-
-@function -inline-image-path($file, $context:'common') {
-	@return '.nwayo-cache/inline-images/' + $context + '/' + $file;
-}
-
-@function -font-path($context:'common') {
-	@return $build-path + '/fonts/' + $context;
-}
-
-@function -inline-font-path($context:'common') {
-	@if $context != 'common' {
-		$content: 'components/' + $context;
-	}
-	@return $context+'/assets/fonts';
-}
-
-
-
-
-
-/* -------------------------------------------
-   MISC
-   ------------------------------------------- */
-
-/*- Background image --------------*/
-@mixin bg-image ( $file, $options:() ) {
-	$options: map-merge((type:default, color:transparent, position:center center, repeat:no-repeat), $options);
-
-	$_width:    '';
-	$_height:   '';
+//-- Background image
+@mixin bg-image ($file, $options:()) {
+	$options:   map-merge((type:default, color:transparent, position:center center, repeat:no-repeat), $options);
+	$_width:    if(map-has-key($options, width), map-get($options, width), image-width($file));
+	$_height:   if(map-has-key($options, height), map-get($options, height), image-height($file));
 	$_color:    map-get($options, color);
-	$_uri:      '';
 	$_position: map-get($options, position);
 	$_repeat:   map-get($options, repeat);
+	$_uri:      '';
 
-
-	// width
-	@if map-has-key($options, width) {
-		$_width: map-get($options, width);
-	} @else {
-		$_width: image-width($file);
-	}
-
-	// height
-	@if map-has-key($options, height) {
-		$_height: map-get($options, height);
-	} @else {
-		$_height: image-height($file);
-	}
-
-	// url or inline
-	@if map-get($options, type) == default {
-		$_uri: url($file);
-	} @else if map-get($options, type) == inline {
+	// inline
+	@if str-index($file, $inline-path) {
 		$_uri: inline-image($file);
+
+	// high density
+	} @else if str-index($file, '@2x') {
+		@media print, (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
+			background-image:url($file); background-size:$_width/2 $_height/2;
+		}
+		$_uri: nwayo_str_replace('url("'+$file+'")', '@2x', '');
+	
+	// normal
+	} @else {
+		$_uri: url($file);
 	}
 	
 	// css	
-	width:      $_width;
-	height:     $_height;
-	background: $_color $_uri $_position $_repeat;
+	width:$_width; height:$_height; background:$_color #{$_uri} $_position $_repeat;
 }
 
 
 
-/*- Load font via @font-face --------------*/
-@mixin load-font ($name, $filename, $weight:normal, $style:normal, $inline-path:-inline-font-path(), $path:-font-path()){
+//-- Font-face
+@mixin load-font ($name, $filename, $weight:normal, $style:normal, $inline-path:-inline-font-path(), $path:-font-path()) {
 	@font-face {
-		font-family: $name;
-		src: url($path+'/'+$filename+'.eot');
-		src: url($path+'/'+$filename+'.eot?#iefix') format('embedded-opentype'),
-		     inline-font-files($inline-path+'/'+$filename+'.woff'),
-		     url($path+'/'+$filename+'.ttf') format('truetype');
-		font-weight: $weight;
-		font-style: $style;
+		font-family:$name;
+		src:url($path+'/'+$filename+'.eot');
+		src:url($path+'/'+$filename+'.eot?#iefix') format('embedded-opentype'),
+		    inline-font-files($inline-path+'/'+$filename+'.woff'),
+		    url($path+'/'+$filename+'.ttf') format('truetype');
+		font-weight:$weight;
+		font-style:$style;
 	}
 }
 
@@ -207,28 +157,3 @@ $white: #fff;
 //	-o-transition: all 0 none;
 //	transition: none;
 //}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//#powerTip {
-//	display:none; position:absolute; z-index:2147483647;
-//}
-//
-//// skype number hightlight
-//span.skype_pnh_container {
-//	display: none !important;
-//}
-//
-//span.skype_pnh_print_container {
-//	display: inline !important;
-//}
-//
