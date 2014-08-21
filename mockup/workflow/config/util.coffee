@@ -7,6 +7,7 @@ module.exports =
 		dir.root          = '..'
 		dir.cache         = "#{dir.root}/.nwayo-cache"
 		dir.cache_inline  = "#{dir.cache}/inline-images"
+		dir.cache_sass    = "#{dir.cache}/sass"
 		dir.build         = "#{dir.root}/build"
 		dir.build_assets  = "#{dir.build}/{fonts,images,raw}"
 		dir.build_images  = "#{dir.build}/images"
@@ -25,23 +26,25 @@ module.exports =
 		dir.scripts       = "#{dir.sources}/**/scripts"
 		dir.styles        = "#{dir.sources}/**/styles"
 		dir.templates     = "#{dir.sources}/**/templates"
+		dir.dependencies  = "#{dir.root}/dependencies"
 
 		files = {}
-		files.bundles_scripts = "#{dir.bundles}/**/*.js"
-		files.bundles_styles  = "#{dir.bundles}/**/*.scss"
-		files.fonts           = "#{dir.fonts}/**/*.{eot,svg,ttf,woff}"
-		files.fonts_copy      = "#{dir.fonts}/**/*.{eot,svg,ttf}"
-		files.images          = "#{dir.images}/**/*.{gif,jpg,png,svg}"
-		files.images2x        = "#{dir.images}/**/*\@2x.{gif,jpg,png,svg}"
-		files.inline          = "#{dir.inline}/**/*.{gif,jpg,png,svg}"
-		files.raw             = "#{dir.raw}/**/*"
-		files.scripts         = "#{dir.scripts}/**/*.js"
-		files.styles          = "#{dir.styles}/**/*.scss"
-		files.build_icons     = "#{dir.build}/*.{ico,jpg,png}"
+		files.bundles_scripts     = "#{dir.bundles}/**/*.js"
+		files.bundles_styles      = "#{dir.bundles}/**/*.scss"
+		files.fonts               = "#{dir.fonts}/**/*.{eot,svg,ttf,woff}"
+		files.fonts_copy          = "#{dir.fonts}/**/*.{eot,svg,ttf}"
+		files.images              = "#{dir.images}/**/*.{gif,jpg,png,svg}"
+		files.images2x            = "#{dir.images}/**/*\@2x.{gif,jpg,png,svg}"
+		files.inline              = "#{dir.inline}/**/*.{gif,jpg,png,svg}"
+		files.raw                 = "#{dir.raw}/**/*"
+		files.scripts             = "#{dir.scripts}/**/*.js"
+		files.styles              = "#{dir.styles}/**/*.scss"
+		files.dependencies_styles = "#{dir.dependencies}//**/*.scss"
+		files.build_icons         = "#{dir.build}/*.{ico,jpg,png}"
 
 		config = {}
+		config.scsslint = "#{dir.root}/.scss-lint.yml"
 		config.compass  = 'config/compass.rb'
-		config.scsslint = 'config/scss-lint.yml'
 		config.util     = 'config/util.coffee'
 
 

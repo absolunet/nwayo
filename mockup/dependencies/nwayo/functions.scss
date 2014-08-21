@@ -1,0 +1,28 @@
+$black: #000;
+$white: #fff;
+
+//@textfields-selector: ~'input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"]';
+
+
+
+//-- Paths
+$inline-path: '.nwayo-cache/inline-images/';
+
+@function -image-path($file, $context:'common') {
+	@return $build-path + '/images/' + $context + '/' + $file;
+}
+
+@function -inline-image-path($file, $context:'common') {
+	@return $inline-path + $context + '/' + $file;
+}
+
+@function -font-path($context:'common') {
+	@return $build-path + '/fonts/' + $context;
+}
+
+@function -inline-font-path($context:'common') {
+	@if $context != 'common' {
+		$content: 'components/' + $context;
+	}
+	@return $context+'/assets/fonts';
+}

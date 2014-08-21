@@ -1,6 +1,7 @@
-@import 'dependencies/nwayo/mixins';
-
 $build-path: '/build';
+
+@import 'dependencies/nwayo/utils';
+
 
 
 
@@ -36,7 +37,6 @@ $altLite-weight: 300;
 @include load-font('icomoon', 'icomoon');
 
 
-
 %ico-font { font-family:'icomoon'; font-style:normal !important; font-weight:normal !important; font-variant:normal !important; text-transform:none !important; line-height:1 !important; -webkit-font-smoothing:antialiased !important; }
 $icoMusic-char:    'm';
 $icoSettings-char: 's';
@@ -45,40 +45,25 @@ $icoWarning-char:  'w';
 
 
 
-/*- Images & Sprites -------------------------------------------------------*/
+//-- Images
 
 // normal image
 %misc-image { @include bg-image(-image-path('misc.png'), (width:111px, color:#f00)); }
 
-// // high-density images
-// ._miscHD-image { background-image:url('@{img-path}/misc-hd.png'); 
-// 	@media @highdensity-media { background-image:url('@{img-path}/misc-hd@2x.png'); background-size:100px 100px; }
-// }
-// 
+// high-density images
+%miscHD-image { @include bg-image(-image-path('hd@2x.png')); }
 
 // image as data-uri
-%miscInline-image { @include bg-image(-inline-image-path('ico-x.png'), (type:inline)); }
-
-
-/**/
-
-	
+%miscInline-image { @include bg-image(-inline-image-path('ico-x.png')); }
 
 
 
-// /*- Functions --------------------------------------------------------------*/
-// .transition(@duration:0.2s, @ease:ease-out) {
-//   -webkit-transition: all @duration @ease, z-index 1ms;
-//   -moz-transition: all @duration @ease, z-index 1ms;
-//   -o-transition: all @duration @ease, z-index 1ms;
-//   transition: all @duration @ease, z-index 1ms;
-// }
-// ._hover-transition     { .transition(100ms); }
-// ._animation-transition { .transition(500ms); }
-// 
-// .Something() {
-// }
-// 
+
+
+//-- Placeholders
+%hover-transition     { transition:all 100ms ease-out, z-index 1ms; }
+%animation-transition { transition:all 500ms ease-out, z-index 1ms; }
+
 // .Colorize(@base:#888, @lite:#ddd, @dark:#333) {
 // 	._colorize(default, ~"",               ~"",       @base,   @lite,   @dark);
 // 	._colorize(alpha,   ~".section-alpha", ~".Alpha", #880000, #dd0000, #330000);

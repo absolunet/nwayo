@@ -42,16 +42,20 @@ gulp.task 'styles_compile', ['styles_lint'], ->
 	return gulp.src path.files.bundles_styles
 		.pipe sass
 			loadPath: path.dir.root
+			cacheLocation: path.dir.cache_sass
+			#require: path.config.sass
 			compass: true
+			style: 'compact'
+			trace:true
 #			sourcemap: false
 #			sourcemapPath: '../..'
 #		.pipe sourcemaps.init loadMaps:true
 		.pipe autoprefixer('last 2 versions', '> 1%', 'ie >= 9')
-		.pipe minifycss()
+#		.pipe minifycss()
 #		.pipe sourcemaps.write './',
 #			addComment: true
 #			includeContent: false
-		.pipe gulp.dest "#{path.dir.build}/styles"
+		.pipe gulp.dest path.dir.build_styles
 
 
 
@@ -60,5 +64,5 @@ gulp.task 'styles', (cb) ->
 	del         = require 'del'
 	runsequence = require 'run-sequence'
 
-	del [path.dir.build_styles, path.dir.cache_inline], force:true, ->
+	del [path.dir.build_styles, path.dir.cache_inline, path.dir.cache_sass], force:true, ->
 		runsequence ['images', 'styles_images'], 'styles_compile', cb
