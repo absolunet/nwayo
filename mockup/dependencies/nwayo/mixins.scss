@@ -1,33 +1,32 @@
 //-- Background image
 @mixin bg-image ($file, $options:()) {
-	$options:   map-merge((type:default, color:transparent, position:center center, repeat:no-repeat), $options);
-	$_width:    if(map-has-key($options, width), map-get($options, width), image-width($file));
-	$_height:   if(map-has-key($options, height), map-get($options, height), image-height($file));
-	$_color:    map-get($options, color);
-	$_position: map-get($options, position);
-	$_repeat:   map-get($options, repeat);
-	$_uri:      '';
+	$options:  map-merge((type:default, color:transparent, position:center center, repeat:no-repeat), $options);
+	$width:    if(map-has-key($options, width), map-get($options, width), image-width($file));
+	$height:   if(map-has-key($options, height), map-get($options, height), image-height($file));
+	$color:    map-get($options, color);
+	$position: map-get($options, position);
+	$repeat:   map-get($options, repeat);
+	$uri:      '';
 
 	// inline
 	@if str-index($file, $inline-path) {
-		$_uri: inline-image($file);
+		$uri: inline-image($file);
 
 	// high density
 	} @else if str-index($file, '@2x') {
 		@media print, (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
-			background-image:url($file); background-size:$_width/2 $_height/2;
+			background-image:url($file); background-size:$width/2 $height/2;
 		}
-		$_uri: nwayo_str_replace('url("'+$file+'")', '@2x', '');
+		$uri: nwayo_str_replace('url("'+$file+'")', '@2x', '');
 	
 	// normal
 	} @else {
-		$_uri: url($file);
+		$uri: url($file);
 	}
 	
 	// css	
-	width:$_width; height:$_height; background:$_color #{$_uri} $_position $_repeat;
+	width:$width; height:$height; background:$color #{$uri} $position $repeat;
 }
-
 
 
 //-- Font-face
@@ -44,116 +43,49 @@
 }
 
 
+//-- Selection
+@mixin selection {
+	::-moz-selection { @content; }
+	::selection      { @content; }
+}
 
-///*- Center/scale an <img> in a container --------------*/
-//.CenterImage (@width:150px, @height:150px) {
-//	display:block; 
-//	width:@width; height:@height;
-//	font-size:1px; text-align:center; line-height:@height;
-//
-//	img {
-//		display:inline-block; 
-//		max-width:100%; max-height:100%;
-//	}
-//}
-//
-///*- Replace text --------------------------------------*/
-//.ReplaceText (@width:auto,@height:auto) {
-//	display:block; overflow:hidden;
-//	width:@width; height:@height;
-//	text-align:left; white-space:nowrap; text-indent:100%;
-//}
-//
-///*- Buttons via images --------------------------------------*/
-//.Button (@height, @top, @right, @bottom, @left, @bg, @bgOff, @bgOn) {
-//	position:relative; display:inline-block; overflow:visible; outline:none;
-//	margin:0 @right 0 0; padding:@top 0 @bottom @left; border:0;
-//	text-decoration:none; line-height:@height; 
-//	background-color:transparent;
-//	cursor:pointer;
-//
-//	&::-moz-focus-inner { 
-//		padding:0; border:0;
-//	}
-//
-//	&:before {
-//		content:'';
-//		display:block; position:absolute; z-index:-1;
-//		top:0; left:0;
-//		width:100%; height:100%;
-//		background:transparent @bg left @bgOff no-repeat;
-//	}
-//
-//	&:after {
-//		content:'';
-//		position:absolute;
-//		right:@right * -1; top:0;
-//		width:@right; height:@height + @top + @bottom;
-//		background:transparent @bg right @bgOff no-repeat;
-//	}
-//
-//	&:hover {
-//		text-decoration:none;
-//		
-//		&:before {
-//			background-position:left @bgOn;
-//		}
-//		&:after {
-//			background-position:right @bgOn;
-//		}
-//	}
-//}
-//
-///*- Arrow --------------------------------------*/
-//.Arrow (@_; @size:10px; @color:@black) {
-//	display:inline-block; 
-//	border:0;
-//}
-//
-//	.Arrow (@coord; @size:10px; @color:@black) when (@coord = up), (@coord = down) {
-//		height:@size; 
-//		border-left:@size solid transparent;
-//		border-right:@size solid transparent;
-//	}
-//		.Arrow (up; @size:10px; @color:@black) {
-//			border-bottom:@size solid @color;
-//		}
-//		.Arrow (down; @size:10px; @color:@black) {
-//			border-top:@size solid @color;
-//		}
-//
-//	.Arrow (@coord; @size:10px; @color:@black) when (@coord = left), (@coord = right) {
-//		width:@size; 
-//		border-top:@size solid transparent;
-//		border-bottom:@size solid transparent;
-//	}
-//		.Arrow (left; @size:10px; @color:@black) {
-//			border-right:@size solid @color;
-//		}
-//		.Arrow (right; @size:10px; @color:@black) {
-//			border-left:@size solid @color;
-//		}
-//
-//
-//
-//
-///*- Selection --------------------------------------*/
-//.selection () {
-//	::-moz-selection { ._selection(); }
-//	::selection      { ._selection(); }
-//}
-//
-///*- Placeholder --------------------------------------*/
-//.placeholder () {
-//	input.Placeholder                { ._placeholder(); }
-//	input::-webkit-input-placeholder { ._placeholder(); }
-//	input::-moz-placeholder          { ._placeholder(); }
-//}
-//
-///*- Cancel transition --------------------------------------*/
-//.transitionNone () {
-//	-moz-transition: none;
-//	-webkit-transition: none;
-//	-o-transition: all 0 none;
-//	transition: none;
-//}
+
+//-- Placeholder
+@mixin placeholder {
+	input.Placeholder                { @content; }
+	input::-webkit-input-placeholder { @content; }
+	input::-moz-placeholder          { @content; }
+}
+
+
+//-- Replace text
+@mixin replace-text ($width:auto, $height:auto) { 
+	display:block; overflow:hidden; width:$width; height:$height; text-align:left; white-space:nowrap; text-indent:1000%;
+}
+
+
+//-- Arrow
+@mixin arrow ($direction:right, $size:10px, $color:$black) {
+	display:inline-block; border:0;
+
+	@if $direction == up or $direction == down {
+		height:$size; border-left:$size solid transparent; border-right:$size solid transparent;
+
+		@if $direction == up {
+			border-bottom:$size solid $color;
+		} @else {
+			border-top:$size solid $color;
+		}
+	
+	} @else if $direction == left or $direction == right {
+		width:$size; border-top:$size solid transparent; border-bottom:$size solid transparent;
+
+		@if $direction == left {
+			border-right:$size solid $color;
+		} @else {
+			border-left:$size solid $color;
+		}
+	}
+}
+
+

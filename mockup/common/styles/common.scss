@@ -23,6 +23,12 @@ $altFaded-color: spin(lighten(desaturate($alt-color, 39.5%), 26.2%), 17.8);  // 
 $error-text-color: $red-palette;
 $error-bg-color:   lighten($error-text-color, 20%);
 
+$colorscheme: (
+	default: (body:'',               class:'',       base:#888, lite:#ddd, dark:#333),
+	alpha:   (body:'.section-alpha', class:'.Alpha', base:#800, lite:#d00, dark:#300),
+	beta:    (body:'.section-beta',  class:'.Beta',  base:#080, lite:#0d0, dark:#030),
+	gamma:   (body:'.section-gamma', class:'.Gamma', base:#008, lite:#00d, dark:#003),
+);
 
 
 
@@ -64,15 +70,7 @@ $icoWarning-char:  'w';
 %hover-transition     { transition:all 100ms ease-out, z-index 1ms; }
 %animation-transition { transition:all 500ms ease-out, z-index 1ms; }
 
-// .Colorize(@base:#888, @lite:#ddd, @dark:#333) {
-// 	._colorize(default, ~"",               ~"",       @base,   @lite,   @dark);
-// 	._colorize(alpha,   ~".section-alpha", ~".Alpha", #880000, #dd0000, #330000);
-// 	._colorize(beta,    ~".section-beta",  ~".Beta",  #008800, #00dd00, #003300);
-// 	._colorize(gamma,   ~".section-gamma", ~".Gamma", #000088, #0000dd, #000033);
-// }
-// 
-// 
-// 
+
 // /*- Editable content styles ------------------------------------------------*/
 // .Editable() {
 // 	h1 { }
