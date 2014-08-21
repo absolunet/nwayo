@@ -1,6 +1,10 @@
 body { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; background-color:$bg-color; }
 
 
+@include selection { color:$white; background-color:$black; }
+@include placeholder { font-style:italic; color:lighten($black, 50%); }
+
+
 #logo   { @extend %miscInline-image; transform:rotateY(180deg); }
 #misc   { @extend %misc-image; }
 #miscHD { @extend %miscHD-image; }
@@ -9,10 +13,29 @@ body { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; ba
 .fNorm { font-family:$alt-font; }
 .fBold { font-family:$alt-font; font-weight:bold; }
 
-.iMusic:before    { @extend %ico-font; content:$icoMusic-char; }
-.iSettings:before { @extend %ico-font; content:$icoSettings-char; }
-.iWarning:before  { @extend %ico-font; content:$icoWarning-char; }
+.iMusic::before    { @extend %ico-font; content:$icoMusic-char; }
+.iSettings::before { @extend %ico-font; content:$icoSettings-char; }
+.iWarning::before  { @extend %ico-font; content:$icoWarning-char; }
 
+
+
+// colorscheme
+.Blocks {
+	@each $id, $data in $colorscheme {
+		$body:  map-get($data, body);
+		$class: map-get($data, class);
+		$base:  map-get($data, base);
+		$lite:  map-get($data, lite);
+		$dark:  map-get($data, dark);
+
+		body#{$body} & { background-color:$lite; }
+		&#{$class}     { color:$base; background-color:$dark; }
+
+		@if $id == beta {
+			&::before { content:'BBB'; }
+		}
+	}
+}
 
 
 
