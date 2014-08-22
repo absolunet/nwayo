@@ -1,12 +1,15 @@
-@import 'common/styles/foundation';
+@import 'common/styles/config';
 
-@import 'common/styles/common';
+@import 'dependencies/nwayo/normalize';
+@import 'common/styles/foundation-settings';
+@import 'common/styles/foundation';
 
 //@import 'common/styles/vendor/a-plugin';
 //@import 'common/styles/vendor/a-plugin2';
 //@import 'common/styles/vendor/a-plugin3';
 
-//@import 'common/styles/form';
+@import 'common/styles/common';
 @import 'common/styles/layout';
+//@import 'common/styles/form';
 //@import 'common/styles/variants';
 //@import 'common/styles/print';

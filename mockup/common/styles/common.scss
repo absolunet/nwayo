@@ -1,93 +1,23 @@
-$build-path: '/build';
+//-- Misc
 
-@import 'dependencies/nwayo/utils';
+// powerTip
+#powerTip { display:none; position:absolute; z-index:2147483647; }
 
-
-
-
-//-- Palette & colors 
-$grey-palette:  #ccc;
-$red-palette:   #c00;
-$green-palette: #0c0;
-$blue-palette:  #00c;
-
-$bg-color:   $grey-palette;
-$text-color: darken($bg-color, 30%);
-
-$link-color:      $blue-palette;
-$linkHover-color: lighten($link-color, 10%);
-
-$alt-color:      $green-palette;
-$altFaded-color: spin(lighten(desaturate($alt-color, 39.5%), 26.2%), 17.8);  // #75dd94
-
-$error-text-color: $red-palette;
-$error-bg-color:   lighten($error-text-color, 20%);
-
-$colorscheme: (
-	default: (body:'',               class:'',       base:#888, lite:#ddd, dark:#333),
-	alpha:   (body:'.section-alpha', class:'.Alpha', base:#800, lite:#d00, dark:#300),
-	beta:    (body:'.section-beta',  class:'.Beta',  base:#080, lite:#0d0, dark:#030),
-	gamma:   (body:'.section-gamma', class:'.Gamma', base:#008, lite:#00d, dark:#003),
-);
+// skype reset
+span.skype_pnh_container { display:none !important; }
+span.skype_pnh_print_container { display:inline !important; }
 
 
 
-//-- Fonts
-$text-font: sans-serif;
-$alt-font:  'kreon', $text-font;
-$altLite-weight: 300;
+/* --------------------------------
 
-@include load-font('kreon', 'kreon-regular-webfont');
-@include load-font('kreon', 'kreon-light-webfont', $altLite-weight);
-@include load-font('kreon', 'kreon-bold-webfont', bold);
-@include load-font('icomoon', 'icomoon');
+// @if cms="drupal"
+//-- Drupal clogs
+.contextual-links-wrapper {
+	.block-views > & {
+		right:-35px;
+	}
+}
+// @endif
 
-
-%ico-font { font-family:'icomoon'; font-style:normal !important; font-weight:normal !important; font-variant:normal !important; text-transform:none !important; line-height:1 !important; -webkit-font-smoothing:antialiased !important; }
-$icoMusic-char:    'm';
-$icoSettings-char: 's';
-$icoWarning-char:  'w';
-
-
-
-
-//-- Images
-
-// normal image
-%misc-image { @include bg-image(-image-path('misc.png'), (width:111px, color:#f00)); }
-
-// high-density images
-%miscHD-image { @include bg-image(-image-path('hd@2x.png')); }
-
-// image as data-uri
-%miscInline-image { @include bg-image(-inline-image-path('ico-x.png')); }
-
-
-
-
-
-//-- Placeholders
-%hover-transition     { transition:all 100ms ease-out, z-index 1ms; }
-%animation-transition { transition:all 500ms ease-out, z-index 1ms; }
-
-
-// /*- Editable content styles ------------------------------------------------*/
-// .Editable() {
-// 	h1 { }
-// 	h2 { }
-// 	h3 { }
-// 	h4 { }
-// 	h5 { }
-// 	h6 { }
-// 
-// 	.Small { font-size:0.8em; }
-// 
-// 	p { margin-bottom:1em; }
-// 	ul { }
-// 	ol { }
-// 
-// 	table.Table {
-// 		td { vertical-align:top; }
-// 	}
-// }
-
+*/

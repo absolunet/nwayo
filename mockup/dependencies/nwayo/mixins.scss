@@ -1,5 +1,5 @@
 //-- Background image
-@mixin bg-image ($file, $options:()) {
+@mixin bg-image ($file, $context, $options:()) {
 	$options:  map-merge((type:default, color:transparent, position:center center, repeat:no-repeat), $options);
 	$width:    if(map-has-key($options, width), map-get($options, width), image-width($file));
 	$height:   if(map-has-key($options, height), map-get($options, height), image-height($file));
