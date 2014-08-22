@@ -40,11 +40,101 @@ body { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; ba
 
 
 
-//-- Misc
 
-// powerTip
-#powerTip { display:none; position:absolute; z-index:2147483647; }
 
-// skype reset
-span.skype_pnh_container { display:none !important; }
-span.skype_pnh_print_container { display:inline !important; }
+
+
+
+/*------------------------------------------------------------------------------------//
+// CORE
+//------------------------------------------------------------------------------------*/
+/*
+//-- Base
+html { background-color:@bg-color; }
+body { .text-font(); font-size:16px; color:@text-color; line-height:1.3; }
+a { color:@link-color; text-decoration:none; &:extend(._hover-transition);   
+	&:hover { color:@linkHover-color; text-decoration:underline; }
+}
+ 
+
+
+
+
+
+
+
+//-- Header
+.Header {
+
+}
+
+//-- Fixed navigation
+.FixedNav {
+
+}
+
+//-- Main navigation
+.MainNav {
+	
+}
+
+//-- Body
+.Body {
+
+	/* images examples
+		p.Image           { &:extend(._misc-image all); }
+		p.Vector          { &:extend(._miscVector-image all); }
+		p.ImageHighDef    { &:extend(._miscHD-image all); }
+		p.Sprite          { &:extend(._multipleItem1-sprite all); }
+		p.InlineIco       { &:extend(._icoX-imagedata all); }
+		p.InlineVectorIco { &:extend(._icoY-imagedata all); }
+
+		p.ImageChanged:extend(._misc-image all) { background-color:@black; }
+	/**/
+
+
+	/* modernizr exceptions
+		html.no-svg & { background-color:red; }
+		html.no-gradient & { background-color:red; }
+	/**/
+
+
+	/** foundation media exceptions
+		@media @fdn-medium-up { background:red;
+			a { color:red; }
+		}
+	/*
+
+}
+
+//-- Content
+.Content { @extend %Editable;
+
+}
+
+//-- Lateral column
+.LateralCol {
+
+}
+
+//-- Footer
+.Footer {
+	
+}
+
+
+
+
+// @if cms="drupal"
+//-- Drupal clogs
+.contextual-links-wrapper {
+	.block-views > & {
+		right:-35px;
+	}
+}
+// @endif
+
+
+
+
+*/
