@@ -1,42 +1,38 @@
 //-- Background image
 @mixin bg-image ($file, $context, $options:()) {
-	$options:  map-merge((type:default, color:transparent, position:center center, repeat:no-repeat), $options);
-	$width:    if(map-has-key($options, width), map-get($options, width), image-width($file));
-	$height:   if(map-has-key($options, height), map-get($options, height), image-height($file));
+	$options: map-merge((type:default, color:transparent, position:center center, repeat:no-repeat, inline:false), $options);
+
+	$uri:  if(map-get($options, inline), inline-image('.nwayo-cache/inline-images/' + $context + '/' + $file), url($build-path + '/images/' + $context + '/' + $file));
+	$path: if($context != 'common', 'components/', '') + $context + '/assets/'+ if(map-get($options, inline), 'inline-', '') + 'images/' + $file;
+
+	$width:    if(map-has-key($options, width), map-get($options, width), image-width($path));
+	$height:   if(map-has-key($options, height), map-get($options, height), image-height($path));
 	$color:    map-get($options, color);
 	$position: map-get($options, position);
 	$repeat:   map-get($options, repeat);
-	$uri:      '';
 
-	// inline
-	@if str-index($file, $inline-path) {
-		$uri: inline-image($file);
 
 	// high density
-	} @else if str-index($file, '@2x') {
+	@if str-index($file, '@2x') {
 		@media print, (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
-			background-image:url($file); background-size:$width/2 $height/2;
+			background-image:$uri; background-size:$width/2 $height/2;
 		}
-		$uri: nwayo_str_replace('url("'+$file+'")', '@2x', '');
-	
-	// normal
-	} @else {
-		$uri: url($file);
+		$uri: nwayo_str_replace($uri, '@2x', '');
 	}
-	
-	// css	
+
 	width:$width; height:$height; background:$color #{$uri} $position $repeat;
 }
 
 
 //-- Font-face
-@mixin load-font ($name, $filename, $weight:normal, $style:normal, $inline-path:-inline-font-path(), $path:-font-path()) {
+@mixin load-font ($name, $filename, $context, $weight:normal, $style:normal) {
+	$url: $build-path + '/fonts/' + $context + '/' + $filename;
 	@font-face {
 		font-family:$name;
-		src:url($path+'/'+$filename+'.eot');
-		src:url($path+'/'+$filename+'.eot?#iefix') format('embedded-opentype'),
-		    inline-font-files($inline-path+'/'+$filename+'.woff'),
-		    url($path+'/'+$filename+'.ttf') format('truetype');
+		src:url($url+'.eot');
+		src:url($url+'.eot?#iefix') format('embedded-opentype'),
+		    inline-font-files(if($context != 'common', 'components/', '') + $context + '/assets/fonts/' + $filename + '.woff'),
+		    url($url+'.ttf') format('truetype');
 		font-weight:$weight;
 		font-style:$style;
 	}

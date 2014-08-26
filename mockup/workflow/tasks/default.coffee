@@ -9,7 +9,13 @@ path  = util.path()
 
 
 #-- Rebuild
-gulp.task 'rebuild', ['assets', 'styles']
+gulp.task 'rebuild', (cb) ->
+	runsequence = require 'run-sequence'
+	runsequence ['assets', 'styles'], cb
+
+
+
+
 
 
 ## Menu with choices

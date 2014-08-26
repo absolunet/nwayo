@@ -14,6 +14,7 @@ sudo npm install gulp -g
 ```
 sudo gem install sass
 sudo gem install compass
+sudo gem install scss-lint
 ```
 
 ### 5. Installer GraphicsMagick via brew
