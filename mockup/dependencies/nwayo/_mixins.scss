@@ -1,5 +1,9 @@
+//-------------------------------------
+//-- Utils: Mixins
+//-------------------------------------
+
 //-- Background image
-@mixin bg-image ($file, $context, $options:()) {
+@mixin bgImage-mixin ($file, $context, $options:()) {
 	$options: map-merge((type:default, color:transparent, position:center center, repeat:no-repeat, inline:false), $options);
 
 	$uri:  if(map-get($options, inline), inline-image('.nwayo-cache/inline-images/' + $context + '/' + $file), url($build-path + '/images/' + $context + '/' + $file));
@@ -25,7 +29,7 @@
 
 
 //-- Font-face
-@mixin load-font ($name, $filename, $context, $weight:normal, $style:normal) {
+@mixin loadFont-mixin ($name, $filename, $context, $weight:normal, $style:normal) {
 	$url: $build-path + '/fonts/' + $context + '/' + $filename;
 	@font-face {
 		font-family:$name;
@@ -40,28 +44,35 @@
 
 
 //-- Selection
-@mixin selection {
+@mixin selection-mixin () {
 	::-moz-selection { @content; }
 	::selection      { @content; }
 }
 
 
 //-- Placeholder
-@mixin placeholder {
+@mixin placeholder-mixin () {
 	input.Placeholder                { @content; }
 	input::-webkit-input-placeholder { @content; }
 	input::-moz-placeholder          { @content; }
 }
 
 
+//-- Select reset
+@mixin selectReset-mixin() {
+	@-moz-document url-prefix() { select { @content; } }
+	html.lt-ie10 select { @content; }
+}
+
+
 //-- Replace text
-@mixin replace-text ($width:auto, $height:auto) { 
+@mixin replaceText-mixin ($width:auto, $height:auto) { 
 	display:block; overflow:hidden; width:$width; height:$height; text-align:left; white-space:nowrap; text-indent:1000%;
 }
 
 
 //-- Arrow
-@mixin arrow ($direction:right, $size:10px, $color:$black) {
+@mixin arrow-mixin ($direction:right, $size:10px, $color:$black) {
 	display:inline-block; border:0;
 
 	@if $direction == up or $direction == down {

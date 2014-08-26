@@ -1,142 +1,120 @@
-body { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; background-color:$bg-color; }
+//-------------------------------------
+//-- Site layout
+//-------------------------------------
 
-
-@include selection { color:$white; background-color:$black; }
-@include placeholder { font-style:italic; color:lighten($black, 50%); }
-
-
-#logo   { @extend %miscInline-image; transform:rotateY(180deg); }
-#icon   { @extend %iconInline-image; }
-#misc   { @extend %misc-image; }
-#logo2  { @extend %logo-image; }
-#miscHD { @extend %miscHD-image; }
-
-.fLite { font-family:$alt-font; font-weight:$altLite-weight; }
-.fNorm { font-family:$alt-font; }
-.fBold { font-family:$alt-font; font-weight:bold; }
-
-.iMusic::before    { @extend %ico-font; content:$icoMusic-char; }
-.iSettings::before { @extend %ico-font; content:$icoSettings-char; }
-.iWarning::before  { @extend %ico-font; content:$icoWarning-char; }
-
-
-
-// colorscheme
-.Blocks {
-	@each $id, $data in $colorscheme {
-		$body:  map-get($data, body);
-		$class: map-get($data, class);
-		$base:  map-get($data, base);
-		$lite:  map-get($data, lite);
-		$dark:  map-get($data, dark);
-
-		body#{$body} & { background-color:$lite; }
-		&#{$class}     { color:$base; background-color:$dark; }
-
-		@if $id == beta {
-			&::before { content:'BBB'; }
-		}
-	}
-}
-
-
-
-
-
-
-
-
-
-/*------------------------------------------------------------------------------------//
-// CORE
-//------------------------------------------------------------------------------------*/
-/*
 //-- Base
-html { background-color:@bg-color; }
-body { .text-font(); font-size:16px; color:@text-color; line-height:1.3; }
-a { color:@link-color; text-decoration:none; &:extend(._hover-transition);   
-	&:hover { color:@linkHover-color; text-decoration:underline; }
+html { background-color:$bg-color; }
+body { font-family:$text-font; font-size:16px; color:$text-color; line-height:1.3; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+a { @extend %hover-transition; color:$link-color; text-decoration:none;
+	&:hover { color:$linkHover-color; text-decoration:underline; }
 }
- 
-
-
-
+@include selection-mixin { color:$white; background-color:$black; }
 
 
 
 
 //-- Header
-.Header {
+.Header { /* ... */ }
 
-}
 
 //-- Fixed navigation
-.FixedNav {
+.FixedNav { /* ... */ }
 
-}
 
 //-- Main navigation
-.MainNav {
-	
-}
+.MainNav { /* ... */ }
+
 
 //-- Body
 .Body {
 
-	/* images examples
-		p.Image           { &:extend(._misc-image all); }
-		p.Vector          { &:extend(._miscVector-image all); }
-		p.ImageHighDef    { &:extend(._miscHD-image all); }
-		p.Sprite          { &:extend(._multipleItem1-sprite all); }
-		p.InlineIco       { &:extend(._icoX-imagedata all); }
-		p.InlineVectorIco { &:extend(._icoY-imagedata all); }
 
-		p.ImageChanged:extend(._misc-image all) { background-color:@black; }
-	/**/
+	//-------------------------------------
+	//-- Patterns
+	//-------------------------------------
 
 
-	/* modernizr exceptions
-		html.no-svg & { background-color:red; }
-		html.no-gradient & { background-color:red; }
-	/**/
+	//-- Modernizr exceptions
+	//html.no-svg & { }
+	//html.no-gradient & { }
 
 
-	/** foundation media exceptions
-		@media @fdn-medium-up { background:red;
-			a { color:red; }
+	//-- Foundation media exceptions
+	//@media #{$medium-up} { }
+
+
+	//-- Colorscheme
+	//.Blocks {
+	//	@each $id, $data in $section-colorscheme {
+	//		$body:  map-get($data, body);
+	//		$class: map-get($data, class);
+	//		$base:  map-get($data, base);
+	//		$lite:  map-get($data, lite);
+	//		$dark:  map-get($data, dark);
+	//
+	//		body#{$body} & { background-color:$lite; }
+	//		&#{$class}     { color:$base; background-color:$dark; }
+	//
+	//		@if $id == beta {
+	//			&::before { content:'BETA'; }
+	//		}
+	//	}
+	//}
+	
+
+
+	// ----------------------------
+
+
+
+
+
+	#logo   { @extend %miscInline-image; transform:rotateY(180deg); }
+	#icon   { @extend %iconInline-image; }
+	#misc   { @extend %misc-image; }
+	#logo2  { @extend %logo-image; }
+	#miscHD { @extend %miscHD-image; }
+
+	.fLite { font-family:$alt-font; font-weight:$altLite-weight; }
+	.fNorm { font-family:$alt-font; }
+	.fBold { font-family:$alt-font; font-weight:bold; }
+
+	.iMusic::before    { @extend %ico-font; content:$icoMusic-char; }
+	.iSettings::before { @extend %ico-font; content:$icoSettings-char; }
+	.iWarning::before  { @extend %ico-font; content:$icoWarning-char; }
+
+	.Blocks {
+		@each $id, $data in $section-colorscheme {
+			$body:  map-get($data, body);
+			$class: map-get($data, class);
+			$base:  map-get($data, base);
+			$lite:  map-get($data, lite);
+			$dark:  map-get($data, dark);
+
+			body#{$body} & { background-color:$lite; }
+			&#{$class}     { color:$base; background-color:$dark; }
+
+			@if $id == beta {
+				&::before { content:'BBB'; }
+			}
 		}
-	/*
+	}
+
+
+
+
 
 }
 
 //-- Content
-.Content { @extend %Editable;
-
+.Content { @extend %editable-styles;
+	/* ... */
 }
+
 
 //-- Lateral column
-.LateralCol {
+.LateralCol { /* ... */ }
 
-}
 
 //-- Footer
-.Footer {
-	
-}
-
-
-
-
-// @if cms="drupal"
-//-- Drupal clogs
-.contextual-links-wrapper {
-	.block-views > & {
-		right:-35px;
-	}
-}
-// @endif
-
-
-
-
-*/
+.Footer { /* ... */ }

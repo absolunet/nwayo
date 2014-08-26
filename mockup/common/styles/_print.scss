@@ -1,0 +1,13 @@
+//-------------------------------------
+//-- Print styles
+//-------------------------------------
+
+@media print {
+	.Body { width:100%; }
+	ul { list-style:disc; }
+
+	//-- Reset what hasn't been redefined
+	* { position:static !important; overflow:visible !important; border-color:$black !important; text-indent:0 !important; // float:none !important;
+		&:before, &:after { display:none !important; }
+	}
+}
