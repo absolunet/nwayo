@@ -6,7 +6,9 @@ body { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; ba
 
 
 #logo   { @extend %miscInline-image; transform:rotateY(180deg); }
+#icon   { @extend %iconInline-image; }
 #misc   { @extend %misc-image; }
+#logo2  { @extend %logo-image; }
 #miscHD { @extend %miscHD-image; }
 
 .fLite { font-family:$alt-font; font-weight:$altLite-weight; }
