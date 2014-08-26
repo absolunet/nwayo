@@ -1,8 +1,12 @@
+//-------------------------------------
+//-- Configuration settings 
+//-------------------------------------
+
+//-- Webroot build path
 $build-path: '/mockup/build';
 
+//-- Dependencies
 @import 'dependencies/nwayo/utils';
-
-
 
 
 //-- Palette & colors 
@@ -20,10 +24,10 @@ $linkHover-color: lighten($link-color, 10%);
 $alt-color:      $green-palette;
 $altFaded-color: spin(lighten(desaturate($alt-color, 39.5%), 26.2%), 17.8);  // #75dd94
 
-$error-text-color: $red-palette;
-$error-bg-color:   lighten($error-text-color, 20%);
+$errorText-color: $red-palette;
+$errorBg-color:   lighten($errorText-color, 20%);
 
-$colorscheme: (
+$section-colorscheme: (
 	default: (body:'',               class:'',       base:#888, lite:#ddd, dark:#333),
 	alpha:   (body:'.section-alpha', class:'.Alpha', base:#800, lite:#d00, dark:#300),
 	beta:    (body:'.section-beta',  class:'.Beta',  base:#080, lite:#0d0, dark:#030),
@@ -37,10 +41,10 @@ $text-font: sans-serif;
 $alt-font:  'kreon', $text-font;
 $altLite-weight: 300;
 
-@include load-font('kreon', 'kreon-regular-webfont', 'common');
-@include load-font('kreon', 'kreon-light-webfont', 'common', $altLite-weight);
-@include load-font('kreon', 'kreon-bold-webfont', 'common', bold);
-@include load-font('icomoon', 'icomoon', 'common');
+@include loadFont-mixin('kreon', 'kreon-regular-webfont', 'common');
+@include loadFont-mixin('kreon', 'kreon-light-webfont', 'common', $altLite-weight);
+@include loadFont-mixin('kreon', 'kreon-bold-webfont', 'common', bold);
+@include loadFont-mixin('icomoon', 'icomoon', 'common');
 
 
 %ico-font { font-family:'icomoon'; font-style:normal !important; font-weight:normal !important; font-variant:normal !important; text-transform:none !important; line-height:1 !important; -webkit-font-smoothing:antialiased !important; }
@@ -53,16 +57,16 @@ $icoWarning-char:  'w';
 
 //-- Images
 
-// normal image
-%misc-image { @include bg-image('misc.png', 'common', (width:111px, color:#f00)); }
-%logo-image { @include bg-image('logo.png', 'qwertyuio', (height:96px, color:#0f0)); }
+// Normal
+%misc-image { @include bgImage-mixin('misc.png', 'common', (width:111px, color:#f00)); }
+%logo-image { @include bgImage-mixin('logo.png', 'qwertyuio', (height:96px, color:#0f0)); }
 
-// high-density images
-%miscHD-image { @include bg-image('hd@2x.png', 'common'); }
+// High-density
+%miscHD-image { @include bgImage-mixin('hd@2x.png', 'common'); }
 
-// image as data-uri
-%miscInline-image { @include bg-image('ico-x.png', 'common', (inline:true)); }
-%iconInline-image { @include bg-image('icon.png', 'qwertyuio', (inline:true)); }
+// Inline
+%miscInline-image { @include bgImage-mixin('ico-x.png', 'common', (inline:true)); }
+%iconInline-image { @include bgImage-mixin('icon.png', 'qwertyuio', (inline:true)); }
 
 
 
@@ -72,24 +76,4 @@ $icoWarning-char:  'w';
 %hover-transition     { transition:all 100ms ease-out, z-index 1ms; }
 %animation-transition { transition:all 500ms ease-out, z-index 1ms; }
 
-
-// /*- Editable content styles ------------------------------------------------*/
-// .Editable() {
-// 	h1 { }
-// 	h2 { }
-// 	h3 { }
-// 	h4 { }
-// 	h5 { }
-// 	h6 { }
-// 
-// 	.Small { font-size:0.8em; }
-// 
-// 	p { margin-bottom:1em; }
-// 	ul { }
-// 	ol { }
-// 
-// 	table.Table {
-// 		td { vertical-align:top; }
-// 	}
-// }
 

@@ -1,4 +1,5 @@
-//@import 'foundation-settings';
+//@import 'dependencies/nwayo/normalize';
+@import 'common/styles/foundation-settings';
 
 // Foundation by ZURB
 // foundation.zurb.com
@@ -47,4 +48,4 @@
 'dependencies/foundation/components/visibility';
 
 
-//@import 'foundation-overwrites';
+@import 'common/styles/foundation-overwrites';

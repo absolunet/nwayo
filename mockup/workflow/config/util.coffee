@@ -33,6 +33,7 @@ module.exports =
 		files.bundles_styles      = "#{dir.bundles}/**/*.scss"
 		files.fonts               = "#{dir.fonts}/**/*.{eot,svg,ttf,woff}"
 		files.fonts_copy          = "#{dir.fonts}/**/*.{eot,svg,ttf}"
+		files.icons               = "#{dir.icons}/**/*"
 		files.images              = "#{dir.images}/**/*.{gif,jpg,png,svg}"
 		files.images2x            = "#{dir.images}/**/*\@2x.{gif,jpg,png,svg}"
 		files.inline              = "#{dir.inline}/**/*.{gif,jpg,png,svg}"
