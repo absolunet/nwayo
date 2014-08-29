@@ -173,20 +173,20 @@ module.exports = function(grunt) {
 				dest: tmp+'/nwayo-vendor.js'
 			},
 			{
-				src: 'js/bundle_core.js',
-				dest: tmp+'/core.js'
+				src: 'js/bundle_main.js',
+				dest: tmp+'/main.js'
 			}
 		]
 	};
 	config.uglify.core = { files: [{
-		src:  tmp+'/core.js',
-		dest: tmp+'/core.js'
+		src:  tmp+'/main.js',
+		dest: tmp+'/main.js'
 	}]};
 
 
 	config.concat.core = { files: [{
-		src: [tmp+'/nwayo-vendor.js', tmp+'/core.js'],
-		dest: builds+'/js/core.js'
+		src: [tmp+'/nwayo-vendor.js', tmp+'/main.js'],
+		dest: builds+'/js/main.js'
 	}]};
 
 
@@ -279,12 +279,12 @@ module.exports = function(grunt) {
 
 	// less
 	config.less.core = { files: [
-		{ src:'css/loader.less', dest:tmp+'/core-less.css' }
+		{ src:'css/bundle_main.less', dest:tmp+'/main-less.css' }
 	]};
 
 	// css
 	config.cssmin.core = { files: [
-		{ src: getCssLibs(tmp+'/core-less.css'), dest: builds+'/css/core.css' }
+		{ src: getCssLibs(tmp+'/main-less.css'), dest: builds+'/css/main.css' }
 	]};
 
 

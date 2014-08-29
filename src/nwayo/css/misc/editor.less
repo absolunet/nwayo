@@ -1,11 +1,12 @@
 /*------------------------------------------------------------------------------------//
 // EDITOR
 //------------------------------------------------------------------------------------*/
+@import        '../config';
 @import        '../common';
 @imgdata-path: '../../.tmp-nwayo/data-uri';
 
 html { background-color:@bg-color; }
-body:extend(.Editable) { width:960px; .text-font(); font-size:16px; color:@text-color; line-height:1.3; }
+body:extend(._Editable) { width:960px; .text-font(); font-size:16px; color:@text-color; line-height:1.3; }
 a { color:@link-color; text-decoration:none;
 	&:hover { text-decoration:underline; }
 }
