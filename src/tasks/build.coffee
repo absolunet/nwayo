@@ -119,7 +119,7 @@ module.exports = (grunt) ->
 
 
 		# process files
-		files = grunt.file.expand { cwd:"#{out}/", filter:'isFile'}, ['**','!__DRUPAL-THEME__zurb-foundation/**', '!**/.gitignore','!**/{vendor,libs}/*','!**/*.{png,jpg,gif,svg,zip}']
+		files = grunt.file.expand { cwd:"#{out}/", filter:'isFile'}, ['**','!__DRUPAL-THEME__zurb_foundation/**', '!**/.gitignore','!**/{vendor,libs}/**/*','!**/*.{png,jpg,gif,svg,zip}']
 		bar = util.progress 'Processing', files.length
 
 		async.mapLimit files, 10,

@@ -29,7 +29,6 @@
 	<!-- @endif -->
 
 	<!-- @echo cmt_start --> DNS prefetch
-	<link rel="dns-prefetch" href="//s7.addthis.com">
 	<link rel="dns-prefetch" href="//www.google-analytics.com">
 	<link rel="dns-prefetch" href="//connect.facebook.net">
 	<!-- @echo cmt_end -->
@@ -66,7 +65,7 @@
 	<!-- @if cms='drupal' -->
 	<?php print $styles; ?>
 	<!-- @endif --><!-- @if cms='sitecore' || cms='none' -->
-	<link rel="stylesheet" href="<!-- @echo build -->/css/core.css">
+	<link rel="stylesheet" href="<!-- @echo build -->/css/main.css">
 	<!-- @endif --> 
 
 	<!-- @if oldie -->
@@ -116,14 +115,13 @@
 	<!-- @if oldie -->
 	<!--[if lt IE 9]>
 		<script>window.___OLDIE___=true</script>
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="<!-- @echo build -->/js/polyfill-oldie-bottom.js"></script>
 	<![endif]-->
 	<!-- @endif -->
 
 	<!-- @echo cmt_start --> CDN 
-	<script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<!-- @echo addthis -->&amp;async=1"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/webfont/1.5.2/webfont.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/webfont/1.5.3/webfont.js"></script>
 	<!-- @echo cmt_end -->
 
 
@@ -136,7 +134,7 @@
 	<!-- @endif --> 
 
 	<!-- @if cms='sitecore' || cms='none' -->
-	<script src="<!-- @echo build -->/js/core.js"></script>
+	<script src="<!-- @echo build -->/js/main.js"></script>
 	<!-- @endif --> 
 
 

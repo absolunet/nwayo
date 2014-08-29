@@ -20,11 +20,11 @@ module.exports = (grunt) ->
 		flags = grunt.config.get 'internal.flags'
 
 		files = [
-			{ dest:"#{skeleton}/sources/css/libs/elements.less",                    src:'https://raw.github.com/dmitryf/elements/master/elements.less' }
-			{ dest:"#{skeleton}/sources/css/libs/html5boilerplate.css",             src:'https://raw.github.com/h5bp/html5-boilerplate/master/css/main.css' }
-			{ dest:"#{skeleton}/sources/css/libs/normalize.css",                    src:'https://raw.github.com/necolas/normalize.css/master/normalize.css' }
+			{ dest:"#{skeleton}/sources/css/libs/elements.less",                    src:'https://raw.githubusercontent.com/dmitryf/elements/master/elements.less' }
+			{ dest:"#{skeleton}/sources/css/libs/html5boilerplate.css",             src:'https://raw.githubusercontent.com/h5bp/html5-boilerplate/master/dist/css/main.css' }
+			{ dest:"#{skeleton}/sources/css/libs/normalize.css",                    src:'https://raw.githubusercontent.com/necolas/normalize.css/master/normalize.css' }
 			{ dest:"#{skeleton}/sources/css/libs/reset.css",                        src:'http://meyerweb.com/eric/tools/css/reset/reset.css' }
-			{ dest:"#{skeleton}/sources/js/nwayo/vendor/jquery.js",                 src:'https://raw.githubusercontent.com/jquery/jquery/2.1.0/dist/jquery.min.js' }
+			{ dest:"#{skeleton}/sources/js/nwayo/vendor/jquery.js",                 src:'https://raw.githubusercontent.com/jquery/jquery/2.1.1/dist/jquery.min.js' }
 			{ dest:"#{skeleton}/sources/js/nwayo/vendor/lo-dash.js",                src:'https://raw.githubusercontent.com/lodash/lodash/master/dist/lodash.compat.min.js' }
 			{ dest:"#{skeleton}/sources/js/nwayo/vendor/underscore.string.js",      src:'https://raw.githubusercontent.com/epeli/underscore.string/master/dist/underscore.string.min.js' }
 			{ dest:"#{skeleton}/sources/js/vendor/polyfill/html5shiv-printshiv.js", src:'https://raw.githubusercontent.com/aFarkas/html5shiv/master/src/html5shiv-printshiv.js' }
@@ -36,7 +36,7 @@ module.exports = (grunt) ->
 		]
 
 		files.push { dest:"#{vendor}/foundation.zip",        src:"https://github.com/zurb/foundation/archive/#{flags.foundation_version}.zip" } if flags.foundation
-		files.push { dest:"#{vendor}/foundation-drupal.zip", src:"http://ftp.drupal.org/files/projects/zurb-foundation-#{flags.foundation_drupal_version}.zip" } if flags.foundation_drupal
+		files.push { dest:"#{vendor}/foundation-drupal.zip", src:"http://ftp.drupal.org/files/projects/zurb_foundation-#{flags.foundation_drupal_version}.zip" } if flags.foundation_drupal
 
 		bar = util.progress 'Downloading', files.length
 
@@ -116,10 +116,10 @@ module.exports = (grunt) ->
 							# duplicate skeleton
 							util.copy "#{foundation}/", "#{foundationdrupal}/", ['**', '**/.gitignore']
 							new AdmZip("#{vendor}/foundation-drupal.zip").extractAllTo("#{vendor}/foundation-drupal/")
-							fdnSrc = "#{vendor}/foundation-drupal/zurb-foundation/STARTER"
+							fdnSrc = "#{vendor}/foundation-drupal/zurb_foundation/STARTER"
 
 							# copy 
-							util.copy "#{vendor}/foundation-drupal/zurb-foundation/", "#{foundationdrupal}/__DRUPAL-THEME__zurb-foundation/"
+							util.copy "#{vendor}/foundation-drupal/zurb_foundation/", "#{foundationdrupal}/__DRUPAL-THEME__zurb_foundation/"
 							util.copy "#{fdnSrc}/images/foundation/",                 "#{foundationdrupal}/sources/assets/images/vendor/foundation/"
 							util.copy "#{fdnSrc}/templates/",                         "#{foundationdrupal}/templates/"
 

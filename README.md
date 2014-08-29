@@ -1,7 +1,7 @@
-# nwayo v2.0.0
+# nwayo v2.1.0
 
 <img align="right" src="http://absolunet.github.io/nwayo/assets/logo-nwayo.svg" width="160" height="155" alt="nwayo" />
-### nwayo v2.0.0
+### nwayo v2.1.0
 #### A modern website boilerplate
 > /nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.
 
