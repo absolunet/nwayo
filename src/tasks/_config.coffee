@@ -21,7 +21,6 @@ module.exports = (grunt) ->
 
 		out:
 			root: '.'
-			dist: 'dist'
 	}
 
 	util = {
@@ -58,9 +57,6 @@ module.exports = (grunt) ->
 			type:    'list'
 			choices: [
 				{ name:'Build a custom flavour', value:'custom_flavour' }
-				{ name:'Build default flavours', value:'default_flavours' }
-				new inquirer.Separator()
-				{ name:'Generate documentation', value:'doc' }
 			]
 		], (data) -> grunt.task.run data.task; done()
 

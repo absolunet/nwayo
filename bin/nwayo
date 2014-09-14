@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+
+'use strict';
+
+process.title = 'nwayo';
+
+var argv = require('minimist')(process.argv.slice(2));
+var cwd  = process.cwd();
+
+// --version
+if (argv.version) {
+	console.log(require('../package').version);
+
+// --update
+//} else if (argv.update) {
+//	console.log(require('../package').version);
+
+// default
+} else {
+	var grunt = require('grunt');
+	grunt.file.setBase(__dirname+'/..');
+	grunt.config.set('cwd', cwd);
+	grunt.tasks(['default']);
+}

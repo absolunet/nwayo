@@ -1,88 +1,84 @@
+<!-- @if cms='sitecore' -->
+@using Sitecore.Sites
+<!-- @endif -->
 <!doctype html>
 <html id="<!-- @echo culture -->" lang="<!-- @echo lang -->" class="no-js" data-kafe-page="<!-- @echo page -->" data-kafe-tmpl="<!-- @echo tmpl -->">
 <head>
-	<!-- @if cms!="drupal" && cms!="magento" -->
-	<meta charset="utf-8">
-	<!-- @endif -->
+	<!-- @if cms='drupal' -->
+	<?php print $head; ?>
+	<title><?php print $head_title; ?></title>
+	
+	<!-- @endif --><!-- @if cms='magento' -->
+	
+	<?php echo $this->getChildHtml('head') ?>
+	
+	<!-- @endif --><!-- @if cms='sitecore' -->
 
-	<!-- @ifdef head --><!-- @echo head --><!-- @endif -->
-	<!-- @ifndef head -->
-	<title><!-- @echo package --></title>
+	<meta charset="utf-8">
+	<title>@ViewBag.BrowserTitle</title>
+	<meta name="keywords" content="@ViewBag.MetaKeywords">
+	<meta name="description" content="@ViewBag.MetaDescription">
+	@RenderSection("MetaHeader", false)
+
+	<!-- @endif --><!-- @if cms='none' -->
+
+	<meta charset="utf-8">
+	<title><!-- @echo title --></title>
+	<meta name="keywords" content="">
 	<meta name="description" content="">
 	<!-- @endif -->
-	<!-- @echo space -->
 
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<link rel="dns-prefetch" href="//ajax.googleapis.com">
-	<link rel="dns-prefetch" href="//s7.addthis.com">
+	<!-- @echo cmt_start --> DNS prefetch
 	<link rel="dns-prefetch" href="//www.google-analytics.com">
 	<link rel="dns-prefetch" href="//connect.facebook.net">
+	<!-- @echo cmt_end -->
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta http-equiv="cleartype" content="on">
-
-	<!-- @if layout="responsive" || layout="foundation" || layout="mobile" -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<!-- @endif -->
-
-	<!-- @if layout=="desktop" -->
+	<!-- @if layout='responsive' || layout='foundation' || layout='mobile' -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- @endif --><!-- @if layout='desktop' -->
 	<meta name="viewport" content="width=1024">
 	<!-- @endif -->
-	<!-- @echo space -->
 
-
-	<!-- @if cms!="drupal" -->
+	<!-- @if cms!='drupal' -->
 	<link rel="shortcut icon"    href="<!-- @echo build -->/favicon.ico">
 	<!-- @endif -->
 	<link rel="image_src"        href="<!-- @echo build -->/share-icon.png">
 	<link rel="apple-touch-icon" href="<!-- @echo build -->/touch-icon-57.png">
-	<link rel="apple-touch-icon" href="<!-- @echo build -->/touch-icon-72.png"  sizes="72x72" >
-	<link rel="apple-touch-icon" href="<!-- @echo build -->/touch-icon-76.png"  sizes="76x76" >
-	<link rel="apple-touch-icon" href="<!-- @echo build -->/touch-icon-114.png" sizes="114x114" >
-	<link rel="apple-touch-icon" href="<!-- @echo build -->/touch-icon-120.png" sizes="120x120" >
-	<link rel="apple-touch-icon" href="<!-- @echo build -->/touch-icon-144.png" sizes="144x144" >
-	<link rel="apple-touch-icon" href="<!-- @echo build -->/touch-icon-152.png" sizes="152x152" >
+	<link rel="apple-touch-icon" href="<!-- @echo build -->/touch-icon-72.png"  sizes="72x72">
+	<link rel="apple-touch-icon" href="<!-- @echo build -->/touch-icon-76.png"  sizes="76x76">
+	<link rel="apple-touch-icon" href="<!-- @echo build -->/touch-icon-114.png" sizes="114x114">
+	<link rel="apple-touch-icon" href="<!-- @echo build -->/touch-icon-120.png" sizes="120x120">
+	<link rel="apple-touch-icon" href="<!-- @echo build -->/touch-icon-144.png" sizes="144x144">
+	<link rel="apple-touch-icon" href="<!-- @echo build -->/touch-icon-152.png" sizes="152x152">
 
-
-
-	<!-- Facebook OpenGraph
+	<!-- @echo cmt_start --> Facebook OpenGraph
 	<meta property="og:url" content="//<!-- @echo domain -->/">
-	<meta property="og:title" content="<!-- @echo package -->">
+	<meta property="og:site_name" content="<!-- @echo title -->">
+	<meta property="og:title" content="">
 	<meta property="og:description" content="">
-	<meta property="og:image" content="//<!-- @echo domain --><!-- @echo build -->/share-icon.png">
+	<meta property="og:image" content="//<!-- @echo domain --><!-- @echo build -->/facebook-image.png">
 	<meta property="og:type" content="website">
-	-->
+	<!-- @echo cmt_end -->
 
-
-
-	<!--[if lt IE 9]>       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <![endif]-->
-	<!--[if gte IE 9]><!--> <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> <!--<![endif]-->
-	<!-- script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script -->
-	<script>window.kafejQuery = window.jQuery.noConflict(true)</script>
-	
-	<!-- CDN 
-	<script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<!-- @echo addthis -->&amp;async=1"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.10/webfont.js"></script>
-	-->
-
-
-
-
-	<!-- @ifdef cssjs --><!-- @echo cssjs --><!-- @endif -->
-	<!-- @ifndef cssjs --> 
-	<link rel="stylesheet" href="<!-- @echo build -->/css/core.css">
-	<script src="<!-- @echo build -->/js/core.js"></script>
+	<!-- @if cms='drupal' -->
+	<?php print $styles; ?>
+	<!-- @endif --><!-- @if cms='sitecore' || cms='none' -->
+	<link rel="stylesheet" href="<!-- @echo build -->/css/main.css">
 	<!-- @endif --> 
 
+	<!-- @if oldie -->
+	<!--[if lt IE 9]><script src="<!-- @echo build -->/js/polyfill-oldie-top.js"></script><![endif]-->
+	<!-- @endif --> 
 
-
+	<script>window.<!-- @echo name -->={}</script>
 
 	<!-- @echo copyright -->
 </head>
-<body id="<!-- @echo page -->" class="<!-- @echo tmpl -->"<!-- @if cms="drupal" --><?php print $attributes;?><!-- @endif -->>
+<body id="<!-- @echo page -->" class="<!-- @echo tmpl -->"<!-- @if cms='drupal' --><?php print $attributes;?><!-- @endif -->>
 
-
-	<!-- @if cms="drupal" -->
+	<!-- @if cms='drupal' -->
 	<div id="skip-link"><a href="#main-content" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a></div>
 	<?php 
 		print $page_top;
@@ -90,12 +86,11 @@
 		print $page_bottom;
 	?>
 	<!-- @endif -->
-
-	<!-- @if cms="drupal" && layout="foundation" -->
+	<!-- @if cms='drupal' && layout='foundation' -->
 	<?php print _zurb_foundation_add_reveals(); ?>
 	<!-- @endif -->
 
-	<!-- @if cms="magento" -->
+	<!-- @if cms='magento' -->
 	<div>
 		<?php echo $this->getChildHtml('after_body_start') ?>
 		<?php echo $this->getChildHtml('global_messages') ?>
@@ -105,31 +100,46 @@
 	</div>
 	<!-- @endif -->
 
-
-	<!-- @if cms!="drupal" && cms!="magento" -->
-	<header id="Header">
-		<nav id="FixedNav"></nav>
-	</header>
-
-	<nav id="MainNav"></nav>
-	
-	<div id="Body">
-		<div id="Content"></div>
-		<div id="LateralCol"></div>
-	</div>
-
-	<footer id="Footer"></footer>
+	<!-- @if cms='sitecore' -->
+	@RenderBody()
 	<!-- @endif -->
 
-	<!-- @echo space -->
-	<!-- JSRender inline template 
+
+
+	<!-- @echo cmt_start --> JSRender inline template 
 	<script id="jshtml-here_is_an_example" type="text/x-jsrender">
 		My inline template
 	</script>
-	-->
+	<!-- @echo cmt_end -->
 
-	<!-- @if cms!="drupal" && cms!="magento" -->
-	<!-- Google Analytics -->
+	<!-- @if oldie -->
+	<!--[if lt IE 9]>
+		<script>window.___OLDIE___=true</script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="<!-- @echo build -->/js/polyfill-oldie-bottom.js"></script>
+	<![endif]-->
+	<!-- @endif -->
+
+	<!-- @echo cmt_start --> CDN 
+	<script src="//ajax.googleapis.com/ajax/libs/webfont/1.5.3/webfont.js"></script>
+	<!-- @echo cmt_end -->
+
+
+	<!-- @if cms='drupal' -->
+	<?php print $scripts; ?>
+	<!-- @endif --> 
+
+	<!-- @if cms='sitecore' -->
+	<script src="/Localization/ResourcesToJson/@Sitecore.Context.Language.Name"></script>
+	<!-- @endif --> 
+
+	<!-- @if cms='sitecore' || cms='none' -->
+	<script src="<!-- @echo build -->/js/main.js"></script>
+	<!-- @endif --> 
+
+
+
+	<!-- @if cms='none' -->
 	<script>
 		(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
 		function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;

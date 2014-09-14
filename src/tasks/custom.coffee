@@ -68,6 +68,11 @@ module.exports = (grunt) ->
 				when:    (data) -> (data.layout is 'foundation' and data.cms is 'drupal')
 			}
 			{
+				name:    'oldie'
+				message: 'Support old IE (8 and less):'
+				type:    'confirm'
+			}
+			{
 				name:     'name'
 				message:  'Project slug name:'
 				type:     'input'
@@ -78,16 +83,6 @@ module.exports = (grunt) ->
 				message: 'Project readable name:'
 				type:    'input'
 				validate: (answer) -> if /\S+/.test(answer) then true else 'Mandatory'
-			}
-			{
-				name:    'addthis'
-				message: 'Addthis pubid:'
-				type:    'input'
-			}
-			{
-				name:    'ga'
-				message: 'Google Analytics key:'
-				type:    'input'
 			}
 			{
 				name:    'domain'

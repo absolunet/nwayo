@@ -10,7 +10,7 @@
                     ~"(-webkit-min-device-pixel-ratio: 1.25)",
                     ~"(min-resolution: 120dpi)";
 
-@textfields-selector: ~'input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"]';
+@textfields-selector: ~'input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], input[type="date"], input[type="number"]';
 
 
 
@@ -27,103 +27,85 @@
 		src: url('@{path}/@{filename}.eot');
 		src: url('@{path}/@{filename}.eot?#iefix') format('embedded-opentype'),
 		     url('@{path}/@{filename}.woff') format('woff'),
-		     url('@{path}/@{filename}.ttf') format('truetype'),
-		     url('@{path}/@{filename}.svg#@{name}') format('svg');
+		     url('@{path}/@{filename}.ttf') format('truetype');
 		font-weight: normal;
 		font-style: normal;
 	}
 }
 
 /*- Center/scale an <img> in a container --------------*/
-.CenterImage (@width:150px, @height:150px) {
-	display:block; 
-	width:@width; height:@height;
-	font-size:1px; text-align:center; line-height:@height;
-
-	img {
-		display:inline-block; 
-		max-width:100%; max-height:100%;
-	}
+.CenterImage (@width:150px, @height:150px) { display:block; width:@width; height:@height; font-size:1px; text-align:center; line-height:@height;
+	img { display:inline-block; max-width:100%; max-height:100%; }
 }
 
 /*- Replace text --------------------------------------*/
-.ReplaceText (@width:auto,@height:auto) {
-	display:block; overflow:hidden;
-	width:@width; height:@height;
-	text-align:left; white-space:nowrap; text-indent:100%;
-}
+.ReplaceText (@width:auto,@height:auto) { display:block; overflow:hidden; width:@width; height:@height; text-align:left; white-space:nowrap; text-indent:200%; }
 
 /*- Buttons via images --------------------------------------*/
-.Button (@height, @top, @right, @bottom, @left, @bg, @bgOff, @bgOn) {
-	position:relative; display:inline-block; overflow:visible; outline:none;
-	margin:0 @right 0 0; padding:@top 0 @bottom @left; border:0;
-	text-decoration:none; line-height:@height; 
-	background-color:transparent;
-	cursor:pointer;
-
-	&::-moz-focus-inner { 
-		padding:0; border:0;
-	}
-
-	&:before {
-		content:'';
-		display:block; position:absolute; z-index:-1;
-		top:0; left:0;
-		width:100%; height:100%;
-		background:transparent @bg left @bgOff no-repeat;
-	}
-
-	&:after {
-		content:'';
-		position:absolute;
-		right:@right * -1; top:0;
-		width:@right; height:@height + @top + @bottom;
-		background:transparent @bg right @bgOff no-repeat;
-	}
-
-	&:hover {
-		text-decoration:none;
-		
-		&:before {
-			background-position:left @bgOn;
-		}
-		&:after {
-			background-position:right @bgOn;
-		}
+.Button (@height, @top, @right, @bottom, @left, @bg, @bgOff, @bgOn) { position:relative; display:inline-block; overflow:visible; outline:none; margin:0 @right 0 0; padding:@top 0 @bottom @left; border:0; text-decoration:none; line-height:@height;  background-color:transparent; cursor:pointer;
+	&::-moz-focus-inner { padding:0; border:0; }
+	&:before { content:''; display:block; position:absolute; z-index:-1; top:0; left:0; width:100%; height:100%; background:transparent @bg left @bgOff no-repeat; }
+	&:after { content:''; position:absolute; right:@right * -1; top:0; width:@right; height:@height + @top + @bottom; background:transparent @bg right @bgOff no-repeat; }
+	&:hover { text-decoration:none;
+		&:before { background-position:left @bgOn; }
+		&:after { background-position:right @bgOn; }
 	}
 }
 
 /*- Arrow --------------------------------------*/
-.Arrow (@_; @size:10px; @color:@black) {
-	display:inline-block; 
-	border:0;
+.Arrow (@_; @size:10px; @color:@black) { display:inline-block; border:0; }
+	.Arrow (@coord; @size:10px; @color:@black) when (@coord = up), (@coord = down) { height:@size;  border-left:@size solid transparent; border-right:@size solid transparent; }
+		.Arrow (up; @size:10px; @color:@black) { border-bottom:@size solid @color; }
+		.Arrow (down; @size:10px; @color:@black) { border-top:@size solid @color; }
+	.Arrow (@coord; @size:10px; @color:@black) when (@coord = left), (@coord = right) { width:@size;  border-top:@size solid transparent; border-bottom:@size solid transparent; }
+		.Arrow (left; @size:10px; @color:@black) { border-right:@size solid @color; }
+		.Arrow (right; @size:10px; @color:@black) { border-left:@size solid @color; }
+
+
+
+.svg (@svg, @width:auto, @height:auto) {
+	@png: ~`"@{svg}".replace(".svg",".png")`;
+	html.svg    & { background-image:url('@{svg}'); }
+	html.no-svg & { background-image:url('@{png}'); }
+	background-size:@width @height;
 }
 
-	.Arrow (@coord; @size:10px; @color:@black) when (@coord = up), (@coord = down) {
-		height:@size; 
-		border-left:@size solid transparent;
-		border-right:@size solid transparent;
-	}
-		.Arrow (up; @size:10px; @color:@black) {
-			border-bottom:@size solid @color;
-		}
-		.Arrow (down; @size:10px; @color:@black) {
-			border-top:@size solid @color;
-		}
+.svg_datauri (@svg, @width:auto, @height:auto) {
+	@png: ~`@{svg}.replace(@{imgdata-path},@{imgdatafallback-path}).replace(".svg",".png")`;
+	html.svg & { background-image:data-uri('@{svg}'); }
+	html.no-svg & { background-image:url('@{png}'); }
+	background-size:@width @height; 
+}
 
-	.Arrow (@coord; @size:10px; @color:@black) when (@coord = left), (@coord = right) {
-		width:@size; 
-		border-top:@size solid transparent;
-		border-bottom:@size solid transparent;
-	}
-		.Arrow (left; @size:10px; @color:@black) {
-			border-right:@size solid @color;
-		}
-		.Arrow (right; @size:10px; @color:@black) {
-			border-left:@size solid @color;
-		}
+._grayscale {
+	filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+ */
+	filter: gray; /* IE6-9 */
+	-webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+	-webkit-transform: translateZ(0);
 
+	// ie-10-11
+	html.no-cssfilters.flexbox & { .opacity(0.5); } 
+}
 
+._grayscaleNone {
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+    -webkit-filter: grayscale(0%);
+    -webkit-transform: translateZ(0);
+
+	// ie-10-11
+	html.no-cssfilters.flexbox & { .opacity(1); } 
+}
+
+.blur(@size:10px) {
+	@sizeNum: unit(@size);
+	-webkit-filter:blur(@size);
+	-moz-filter:blur(@size);
+	-ms-filter:blur(@size);
+	-o-filter:blur(@size);
+	filter:url(~"data:image/svg+xml;utf8,<svg height=\'0\' xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'svgBlur\' x=\'-5%\' y=\'-5%\' width=\'110%\' height=\'110%\'><feGaussianBlur in=\'SourceGraphic\' stdDeviation=\'@{sizeNum}\' /></filter></svg>#blur");
+	filter: blur(@size);
+	filter:~"progid:DXImageTransform.Microsoft.Blur(PixelRadius='@{sizeNum}')";
+}
 
 
 /*- Selection --------------------------------------*/
@@ -147,26 +129,15 @@
 	transition: none;
 }
 
+/*- Bug fix for blurry images --------------------------------------*/
+.fixBlurryImage() { transform: rotate(.0001deg); }
+
+// skype number highlight
+span.skype_pnh_container { display: none !important; }
+span.skype_pnh_print_container { display: inline !important; }
+
+// powerTip
+#powerTip { display:none; position:absolute; z-index:2147483647; }
 
 
 
-
-
-
-
-
-
-
-
-#powerTip {
-	display:none; position:absolute; z-index:2147483647;
-}
-
-// skype number hightlight
-span.skype_pnh_container {
-	display: none !important;
-}
-
-span.skype_pnh_print_container {
-	display: inline !important;
-}

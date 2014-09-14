@@ -17,7 +17,8 @@ module.exports = (grunt) ->
 			'builds'
 			'stubs'
 			'sources/assets/data-uri'
-			'sources/assets/fonts'
+			'sources/assets/raw'
+			'sources/assets/raw/fonts'
 			'sources/assets/images'
 			'sources/assets/images/vendor'
 			'sources/css/vendor'
@@ -31,6 +32,7 @@ module.exports = (grunt) ->
 		util.copy "#{src}/misc/",     "#{out}/sources/misc/"
 		util.copy "#{src}/icons/",    "#{out}/sources/assets/icons/"
 		util.copy "#{src}/examples/", "#{out}/__examples/"
+		util.copy "#{src}/tasks/",    "#{out}/sources/"
 		
 		grunt.file.copy "#{src}/tmpl/gitignore.tmpl", "#{out}/sources/.gitignore"
 

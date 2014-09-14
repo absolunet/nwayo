@@ -4,17 +4,9 @@
 
 // **@import ''
 
-(function(kafe, App, undefined){
+(function(){
 
 	var
-		$         = kafe.dependencies.jQuery,
-		_         = kafe.dependencies.LoDash,
-		Modernizr = kafe.dependencies.Modernizr,
-
-		// @if cms="Drupal"
-		$Drupal   = window.jQuery,
-		// @endif 
-
 		Local     = {}
 	;
 
@@ -42,4 +34,4 @@
 		//Local.InitLateralcolumn();
 	});
 
-})(window.kafe, window./* @echo name */);
+})();
