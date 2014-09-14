@@ -6,13 +6,12 @@ module.exports = (grunt) ->
 	config = grunt.config.get 'internal.config'
 	pkg    = grunt.config.get 'internal.pkg'
 	path   = grunt.config.get 'internal.path'
+	cwd    = grunt.config.get 'cwd'
 	util   = grunt.config.get 'util'
 
 	skeleton         = path.skeleton.base
 	foundation       = path.skeleton.foundation
 	foundationdrupal = path.skeleton.foundation_drupal
-
-
 
 
 	# build
@@ -24,7 +23,7 @@ module.exports = (grunt) ->
 		flags   = grunt.config.get('internal.flags')
 		data    = _.merge {}, (if config[flags.cms] then config[flags.cms] else config.default), flags
 		data.id = "#{data.name}_#{grunt.template.today('yyyymmddHHMMss')}"
-		out     = "#{path.out.dist}/#{data.id}"
+		out     = "#{cwd}/#{data.id}"
 
 		data.root     += if data.theme then "/#{pkg.name}" else ''
 		data.build     = "#{data.root}/builds"
@@ -57,22 +56,22 @@ module.exports = (grunt) ->
 
 		# theme
 		if data.theme
-			grunt.file.delete "#{out}/sources/css/libs/reset.css",
-			grunt.file.delete "#{out}/sources/css/libs/normalize.css",
-			grunt.file.delete "#{out}/sources/css/libs/html5boilerplate.css",
-			grunt.file.delete "#{out}/sources/css/libs/nwayo-boilerplate.less"
+			grunt.file.delete "#{out}/sources/css/libs/reset.css", force:true
+			grunt.file.delete "#{out}/sources/css/libs/normalize.css", force:true
+			grunt.file.delete "#{out}/sources/css/libs/html5boilerplate.css", force:true
+			grunt.file.delete "#{out}/sources/css/libs/nwayo-boilerplate.less", force:true
 
 		if not (data.theme or data.layout is 'foundation')
 			less.push 'nwayo-boilerplate'
 
 		# foundation
 		if data.layout is 'foundation'
-			grunt.file.delete "#{out}/sources/css/libs/reset.css",
-			grunt.file.delete "#{out}/sources/css/libs/html5boilerplate.css",
-			grunt.file.delete "#{out}/sources/css/libs/nwayo-boilerplate.less"
+			grunt.file.delete "#{out}/sources/css/libs/reset.css", force:true
+			grunt.file.delete "#{out}/sources/css/libs/html5boilerplate.css", force:true
+			grunt.file.delete "#{out}/sources/css/libs/nwayo-boilerplate.less", force:true
 			less.push 'foundation-mixins'
 		else 
-			grunt.file.delete "#{out}/sources/css/libs/foundation-mixins.less"
+			grunt.file.delete "#{out}/sources/css/libs/foundation-mixins.less", force:true
 
 
 		# drupal
@@ -81,29 +80,29 @@ module.exports = (grunt) ->
 
 			if data.layout is 'foundation'
 				grunt.file.copy "#{out}/STARTER.info", "#{out}/#{data.name}.info"
-				grunt.file.delete "#{out}/STARTER.info"
+				grunt.file.delete "#{out}/STARTER.info", force:true
 
 		else
-			grunt.file.delete "#{out}/sources/css/libs/cms-drupal.less"
+			grunt.file.delete "#{out}/sources/css/libs/cms-drupal.less", force:true
 
 
 		# magento
 		if data.cms is 'magento'
 			less.push 'cms-magento'
 		else
-			grunt.file.delete "#{out}/sources/css/libs/cms-magento.less"
+			grunt.file.delete "#{out}/sources/css/libs/cms-magento.less", force:true
 
 
 		# sitecore
 		if data.cms is 'sitecore'
 			less.push 'cms-sitecore'
 		else
-			grunt.file.delete "#{out}/sources/css/libs/cms-sitecore.less"
+			grunt.file.delete "#{out}/sources/css/libs/cms-sitecore.less", force:true
 
 
 		# no cms
 		if data.cms is ''
-			grunt.file.delete "#{out}/sources/css/misc/editor.less"
+			grunt.file.delete "#{out}/sources/css/misc/editor.less", force:true
 
 
 

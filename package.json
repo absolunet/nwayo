@@ -10,10 +10,11 @@
 	"bugs":        { "url": "https://github.com/absolunet/nwayo/issues" },
 	"licenses":  [ { "url": "https://github.com/absolunet/nwayo/tree/master/LICENSE", "type":"MIT" } ],
 
-	"bin": { "nwayo": "bin/nwayo" },
+	"bin":     { "nwayo": "bin/nwayo" },
+	"engines": { "node":  ">= 0.10.31" },
 
 	"dependencies": {
-		"minimist":   "1.1.0",
+		"minimist":   "~1.1.0",
 		"lodash":     "~2.4.1",
 		"request":    "~2.40.0",
 		"async":      "~0.9.0",
