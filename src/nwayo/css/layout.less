@@ -1,79 +1,79 @@
 /*------------------------------------------------------------------------------------//
-// CORE
+// LAYOUT
 //------------------------------------------------------------------------------------*/
 
 /*- Base ---------------------------------------------------------------------*/
-html {
-	background-color:@bg-color;
-}
-body {
-	//width:@siteWidth;
-	.text-font(); font-size:16px; color:@text-color; line-height:1.3;
-
-	/** inline image
-	&:extend(._bg-imagedata);
-	**/
-
-	/**
-	@media @mobile-media {
-		background: green;
-	}
-	/**/
-}
-a {
-	color:@link-color; text-decoration:none;
-	.transition(0.05s);
-
-	&:hover {
-		text-decoration:underline;
-	}
+html { background-color:@bg-color; }
+body { .text-font(); font-size:16px; color:@text-color; line-height:1.3; }
+a { color:@link-color; text-decoration:none; &:extend(._hover-transition);   
+	&:hover { color:@linkHover-color; text-decoration:underline; }
 }
  
 
-._selection () { 
-	color:@white; background-color:@black;
-}
+._selection () { color:@white; background-color:@black; }
 .selection();
 
 
-// .gradient();
-// html.no-gradient & { }
 
 
 
 
 /*- Header -------------------------------------------------------------------*/
-#Header {
+.Header {
 
 }
 
 /*- Fixed navigation --------------------------------------------------------*/
-#FixedNav {
+.FixedNav {
 
 }
 
 /*- Main navigation ----------------------------------------------------------------*/
-#MainNav {
+.MainNav {
 	
 }
 
 /*- Body ------------------------------------------------------------------*/
-#Body {
+.Body {
+
+	/* images examples
+		p.Image           { &:extend(._misc-image all); }
+		p.Vector          { &:extend(._miscVector-image all); }
+		p.ImageHighDef    { &:extend(._miscHD-image all); }
+		p.Sprite          { &:extend(._multipleItem1-sprite all); }
+		p.InlineIco       { &:extend(._icoX-imagedata all); }
+		p.InlineVectorIco { &:extend(._icoY-imagedata all); }
+
+		p.ImageChanged:extend(._misc-image all) { background-color:@black; }
+	/**/
+
+
+	/* modernizr exceptions
+		html.no-svg & { background-color:red; }
+		html.no-gradient & { background-color:red; }
+	/**/
+
+
+	/** foundation media exceptions
+		@media @fdn-medium-up { background:red;
+			a { color:red; }
+		}
+	/**/
 
 }
 
 /*- Content ------------------------------------------------------------------*/
-#Content {
-	.Editable();
+.Content:extend(._Editable) {
+
 }
 
 /*- Lateral column -----------------------------------------------------------*/
-#LateralCol {
+.LateralCol {
 
 }
 
 /*- Footer -------------------------------------------------------------------*/
-#Footer {
+.Footer {
 	
 }
 
