@@ -21,7 +21,6 @@ module.exports = (grunt) ->
 
 		out:
 			root: '.'
-			dist: 'dist'
 	}
 
 	util = {
