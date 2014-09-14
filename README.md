@@ -1,10 +1,18 @@
-# nwayo v2.1.0
+<p align="center">
+	<a href="http://absolunet.github.io/nwayo">
+		<img src="http://absolunet.github.io/nwayo/assets/logo-nwayo.svg" width="160" height="155" alt="nwayo">
+	</a>
+</p>
 
-<img align="right" src="http://absolunet.github.io/nwayo/assets/logo-nwayo.svg" width="160" height="155" alt="nwayo" />
-### nwayo v2.1.0
+# nwayo [![NPM version][npm-image]][npm-url]
 #### A modern website boilerplate
 > /nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.
 
+## Installation
+```
+> sudo npm install -g nwayo
+> nwayo
+```
 
 ## Documentation
 Visit the [http://absolunet.github.io/nwayo](http://absolunet.github.io/nwayo) website for all the things.
@@ -13,3 +21,7 @@ See the [CHANGELOG](https://github.com/absolunet/nwayo/tree/master/CHANGELOG.md)
 
 ## License 
 See the [LICENSE](https://github.com/absolunet/nwayo/tree/master/LICENSE.md).
+
+
+[npm-url]: https://npmjs.org/package/nwayo
+[npm-image]: http://img.shields.io/npm/v/nwayo.svg
