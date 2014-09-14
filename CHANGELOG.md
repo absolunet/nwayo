@@ -1,9 +1,11 @@
-v2.1.0:
-  date: 2014-08-29
-  changes:
-    - Various improvements.
+# nwayo changelog
 
-v2.0.0:
-  date: 2014-04-21
-  changes:
-    - Initial public release of nwayo.
+## 2.1.1 (2014-09-14)
+- npm package
+- CLI implementation
+
+## 2.1.0 (2014-08-29)
+- Various improvements
+
+## 2.0.0 (2014-04-21)
+- Initial public release
