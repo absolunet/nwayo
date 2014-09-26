@@ -1,41 +1,40 @@
-# "gulp-jshint": "~1.5.5",
-# "gulp-uglify": "~0.2.1"
-#jshint   = require 'gulp-jshint'
-#uglify   = require 'gulp-uglify'
+#debug  = require 'gulp-debug'
+gulp   = require 'gulp'
+rename = require 'gulp-rename'
+
+util = require '../config/util'
+path = util.path()
 
 
-# gulp.task 'default', ->
-# 
-# 	console.log 'yahoo'
 
-# var paths = {
-#   scripts: ['client/js/**/*.coffee', '!client/external/**/*.coffee'],
-#   images: 'client/img/**/*'
-# };
-# 
-# gulp.task('scripts', function() {
+#-- Lint JS
+gulp.task 'scripts_lint', ->
+	jshint  = require 'gulp-jshint'
+	stylish = require 'jshint-stylish'
+	
+	return gulp.src path.files.scripts
+		.pipe jshint()
+		.pipe jshint.reporter(stylish)
+		.pipe jshint.reporter('fail')
+
+
+
+#-- Compile
+gulp.task 'scripts_compile', ->
+	uglify = require 'gulp-uglify'
+
 #   // Minify and copy all JavaScript (except vendor scripts)
 #   return gulp.src(paths.scripts)
-#     .pipe(coffee())
 #     .pipe(uglify())
 #     .pipe(concat('all.min.js'))
 #     .pipe(gulp.dest('build/js'));
 # });
 # 
-# // Copy all static images
-# gulp.task('images', function() {
-#  return gulp.src(paths.images)
-#     // Pass in options to the task
-#     .pipe(imagemin({optimizationLevel: 5}))
-#     .pipe(gulp.dest('build/img'));
-# });
-# 
-# // Rerun the task when a file changes
-# gulp.task('watch', function() {
-#   gulp.watch(paths.scripts, ['scripts']);
-#   gulp.watch(paths.images, ['images']);
-# });
-# 
-# // The default task (called when you run `gulp` from cli)
-# gulp.task('default', ['scripts', 'images', 'watch']);
 
+#-- Rebuild
+gulp.task 'styles', (cb) ->
+	del         = require 'del'
+	runsequence = require 'run-sequence'
+
+	del [path.dir.build_scripts], force:true, ->
+		runsequence 'scripts_lint', 'scripts_compile', cb
