@@ -5,9 +5,6 @@ linters:
   BorderZero:
     enabled: true
 
-  CapitalizationInSelector:
-    enabled: true
-
   ColorKeyword:
     enabled: true
 
@@ -38,35 +35,35 @@ linters:
     enabled: true
     present: true
 
-#  HexLength:
-#    enabled: true
-#    style: short
-#
-#  HexNotation:
-#    enabled: true
-#    style: lowercase
-#
-#  HexValidation:
-#    enabled: true
-#
-#  IdWithExtraneousSelector:
-#    enabled: true
-#
-#  Indentation:
-#    enabled: true
-#    character: tab
-#    width: 1
-#
-#  LeadingZero:
-#    enabled: true
-#
-#  MergeableSelector:
-#    enabled: true
-#     force_nesting
-#
-#  NameFormat:
-#    enabled: false
-#
+  HexLength:
+    enabled: true
+    style: long
+
+  HexNotation:
+    enabled: true
+    style: lowercase
+
+  HexValidation:
+    enabled: true
+
+  IdWithExtraneousSelector:
+    enabled: true
+
+  Indentation:
+    enabled: true
+    character: tab
+#    width: 2
+
+  LeadingZero:
+    enabled: true
+
+  MergeableSelector:
+    enabled: true
+    force_nesting: true
+
+  NameFormat:
+    enabled: hyphenated_lowercase
+
 #  PlaceholderInExtend:
 #    enabled: true
 #
@@ -85,7 +82,11 @@ linters:
 #
 #  SelectorDepth:
 #    enabled: false
-#
+
+  ## A VOIR SELON CMS
+  SelectorFormat:
+    convention: hyphenated_lowercase
+
 #  Shorthand:
 #    enabled: true
 #
