@@ -1,2 +1,3 @@
 .nwayo-cache
-workflow/node_modules
+node_modules
+dependencies/bower

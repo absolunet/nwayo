@@ -6,32 +6,32 @@
 $build-path: '/mockup/build';
 
 //-- Dependencies
-@import 'dependencies/nwayo/styles/utils';
+@import 'common/styles/libs/utils';
 
 
 //-- Palette & colors 
-$grey-palette:  #ccc;
-$red-palette:   #c00;
-$green-palette: #0c0;
-$blue-palette:  #00c;
+$grey-palette:  #cccccc;
+$red-palette:   #cc0000;
+$green-palette: #00cc00;
+$blue-palette:  #0000cc;
 
 $bg-color:   $grey-palette;
 $text-color: darken($bg-color, 30%);
 
 $link-color:      $blue-palette;
-$linkHover-color: lighten($link-color, 10%);
+$link-hover-color: lighten($link-color, 10%);
 
 $alt-color:      $green-palette;
-$altFaded-color: spin(lighten(desaturate($alt-color, 39.5%), 26.2%), 17.8);  // #75dd94
+$alt-faded-color: spin(lighten(desaturate($alt-color, 39.5%), 26.2%), 17.8);  // #75dd94
 
-$errorText-color: $red-palette;
-$errorBg-color:   lighten($errorText-color, 20%);
+$error-text-color: $red-palette;
+$error-bg-color:   lighten($error-text-color, 20%);
 
 $section-colorscheme: (
-	default: (body:'',               class:'',       base:#888, lite:#ddd, dark:#333),
-	alpha:   (body:'.section-alpha', class:'.Alpha', base:#800, lite:#d00, dark:#300),
-	beta:    (body:'.section-beta',  class:'.Beta',  base:#080, lite:#0d0, dark:#030),
-	gamma:   (body:'.section-gamma', class:'.Gamma', base:#008, lite:#00d, dark:#003),
+	default: (body:'',               class:'',       base:#888888, lite:#dddddd, dark:#333333),
+	alpha:   (body:'.section-alpha', class:'.Alpha', base:#880000, lite:#dd0000, dark:#330000),
+	beta:    (body:'.section-beta',  class:'.Beta',  base:#008800, lite:#00dd00, dark:#003300),
+	gamma:   (body:'.section-gamma', class:'.Gamma', base:#000088, lite:#0000dd, dark:#000033),
 );
 
 
@@ -39,18 +39,18 @@ $section-colorscheme: (
 //-- Fonts
 $text-font: sans-serif;
 $alt-font:  'kreon', $text-font;
-$altLite-weight: 300;
+$alt-lite-weight: 300;
 
-@include loadFont-mixin('kreon', 'kreon-regular-webfont', 'common');
-@include loadFont-mixin('kreon', 'kreon-light-webfont', 'common', $altLite-weight);
-@include loadFont-mixin('kreon', 'kreon-bold-webfont', 'common', bold);
-@include loadFont-mixin('icomoon', 'icomoon', 'common');
+@include load-font-mixin('kreon', 'kreon-regular-webfont', 'common');
+@include load-font-mixin('kreon', 'kreon-light-webfont', 'common', $alt-lite-weight);
+@include load-font-mixin('kreon', 'kreon-bold-webfont', 'common', bold);
+@include load-font-mixin('icomoon', 'icomoon', 'common');
 
 
 %ico-font { font-family:'icomoon'; font-style:normal !important; font-weight:normal !important; font-variant:normal !important; text-transform:none !important; line-height:1 !important; -webkit-font-smoothing:antialiased !important; }
-$icoMusic-char:    'm';
-$icoSettings-char: 's';
-$icoWarning-char:  'w';
+$ico-music-char:    'm';
+$ico-settings-char: 's';
+$ico-warning-char:  'w';
 
 
 
@@ -58,15 +58,15 @@ $icoWarning-char:  'w';
 //-- Images
 
 // Normal
-%misc-image { @include bgImage-mixin('misc.png', 'common', (width:111px, color:#f00)); }
-%logo-image { @include bgImage-mixin('logo.png', 'qwertyuio', (height:96px, color:#0f0)); }
+%misc-image { @include bg-image-mixin('misc.png', 'common', (width:111px, color:#ff0000)); }
+%logo-image { @include bg-image-mixin('logo.png', 'qwertyuio', (height:96px, color:#00ff00)); }
 
 // High-density
-%miscHD-image { @include bgImage-mixin('hd@2x.png', 'common'); }
+%misc-hd-image { @include bg-image-mixin('hd@2x.png', 'common'); }
 
 // Inline
-%miscInline-image { @include bgImage-mixin('ico-x.png', 'common', (inline:true)); }
-%iconInline-image { @include bgImage-mixin('icon.png', 'qwertyuio', (inline:true)); }
+%misc-inline-image { @include bg-image-mixin('ico-x.png', 'common', (inline:true)); }
+%icon-inline-image { @include bg-image-mixin('icon.png', 'qwertyuio', (inline:true)); }
 
 
 

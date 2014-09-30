@@ -1,51 +1,51 @@
 //@import 'dependencies/nwayo/normalize';
 @import 'common/styles/foundation-settings';
 
+@charset 'UTF-8';
 // Foundation by ZURB
 // foundation.zurb.com
 // Licensed under MIT Open Source
 
 // Make sure the charset is set appropriately
-@charset 'UTF-8';
 
 // Behold, here are all the Foundation components.
-@import
-'dependencies/foundation/components/grid',
-'dependencies/foundation/components/accordion',
-'dependencies/foundation/components/alert-boxes',
-'dependencies/foundation/components/block-grid',
-'dependencies/foundation/components/breadcrumbs',
-'dependencies/foundation/components/button-groups',
-'dependencies/foundation/components/buttons',
-'dependencies/foundation/components/clearing',
-'dependencies/foundation/components/dropdown',
-'dependencies/foundation/components/dropdown-buttons',
-'dependencies/foundation/components/flex-video',
-'dependencies/foundation/components/forms',
-'dependencies/foundation/components/inline-lists',
-'dependencies/foundation/components/joyride',
-'dependencies/foundation/components/keystrokes',
-'dependencies/foundation/components/labels',
-'dependencies/foundation/components/magellan',
-'dependencies/foundation/components/orbit',
-'dependencies/foundation/components/pagination',
-'dependencies/foundation/components/panels',
-'dependencies/foundation/components/pricing-tables',
-'dependencies/foundation/components/progress-bars',
-'dependencies/foundation/components/range-slider',
-'dependencies/foundation/components/reveal',
-'dependencies/foundation/components/side-nav',
-'dependencies/foundation/components/split-buttons',
-'dependencies/foundation/components/sub-nav',
-'dependencies/foundation/components/switch',
-'dependencies/foundation/components/tables',
-'dependencies/foundation/components/tabs',
-'dependencies/foundation/components/thumbs',
-'dependencies/foundation/components/tooltips',
-'dependencies/foundation/components/top-bar',
-'dependencies/foundation/components/type',
-'dependencies/foundation/components/offcanvas',
-'dependencies/foundation/components/visibility';
+@import 'dependencies/bower/foundation/scss/foundation/components/grid';
+@import 'dependencies/bower/foundation/scss/foundation/components/accordion';
+@import 'dependencies/bower/foundation/scss/foundation/components/alert-boxes';
+@import 'dependencies/bower/foundation/scss/foundation/components/block-grid';
+@import 'dependencies/bower/foundation/scss/foundation/components/breadcrumbs';
+@import 'dependencies/bower/foundation/scss/foundation/components/button-groups';
+@import 'dependencies/bower/foundation/scss/foundation/components/buttons';
+@import 'dependencies/bower/foundation/scss/foundation/components/clearing';
+@import 'dependencies/bower/foundation/scss/foundation/components/dropdown';
+@import 'dependencies/bower/foundation/scss/foundation/components/dropdown-buttons';
+@import 'dependencies/bower/foundation/scss/foundation/components/flex-video';
+@import 'dependencies/bower/foundation/scss/foundation/components/forms';
+@import 'dependencies/bower/foundation/scss/foundation/components/icon-bar';
+@import 'dependencies/bower/foundation/scss/foundation/components/inline-lists';
+@import 'dependencies/bower/foundation/scss/foundation/components/joyride';
+@import 'dependencies/bower/foundation/scss/foundation/components/keystrokes';
+@import 'dependencies/bower/foundation/scss/foundation/components/labels';
+@import 'dependencies/bower/foundation/scss/foundation/components/magellan';
+@import 'dependencies/bower/foundation/scss/foundation/components/orbit';
+@import 'dependencies/bower/foundation/scss/foundation/components/pagination';
+@import 'dependencies/bower/foundation/scss/foundation/components/panels';
+@import 'dependencies/bower/foundation/scss/foundation/components/pricing-tables';
+@import 'dependencies/bower/foundation/scss/foundation/components/progress-bars';
+@import 'dependencies/bower/foundation/scss/foundation/components/range-slider';
+@import 'dependencies/bower/foundation/scss/foundation/components/reveal';
+@import 'dependencies/bower/foundation/scss/foundation/components/side-nav';
+@import 'dependencies/bower/foundation/scss/foundation/components/split-buttons';
+@import 'dependencies/bower/foundation/scss/foundation/components/sub-nav';
+@import 'dependencies/bower/foundation/scss/foundation/components/switches';
+@import 'dependencies/bower/foundation/scss/foundation/components/tables';
+@import 'dependencies/bower/foundation/scss/foundation/components/tabs';
+@import 'dependencies/bower/foundation/scss/foundation/components/thumbs';
+@import 'dependencies/bower/foundation/scss/foundation/components/tooltips';
+@import 'dependencies/bower/foundation/scss/foundation/components/top-bar';
+@import 'dependencies/bower/foundation/scss/foundation/components/type';
+@import 'dependencies/bower/foundation/scss/foundation/components/offcanvas';
+@import 'dependencies/bower/foundation/scss/foundation/components/visibility';
 
 
 @import 'common/styles/foundation-overwrites';

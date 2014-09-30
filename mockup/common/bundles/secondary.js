@@ -1,8 +1,9 @@
 (function(global, undefined) {
 
-	// @import 'js/nwayo/bundle'
+	//= require common/scripts/_global
 
-	// @import 'js/variant'
+	//= require common/scripts/variant
+	//= require common/scripts/variant
 
 
 /* global window */

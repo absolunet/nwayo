@@ -3,7 +3,7 @@
 //-------------------------------------
 
 // Headings
-%title-styles    { /* ... */ }
+%title-styles { /* ... */ }
 %subtitle-styles { /* ... */ }
 
 
@@ -17,13 +17,13 @@
 	h5 { /* ... */ }
 	h6 { /* ... */ }
 	
-	.Small { font-size:.8em; }
+	.small { font-size:.8em; }
 	
 	p { margin-bottom:1em; }
 	ul { /* ... */ }
 	ol { /* ... */ }
 	
-	table.Table {
+	table.table {
 		td { vertical-align:top; }
 	}
 }
@@ -33,7 +33,7 @@
 //-- Misc
 
 // powerTip
-#powerTip { display:none; position:absolute; z-index:2147483647; }
+// #powerTip { display:none; position:absolute; z-index:2147483647; }
 
 // skype reset
 span.skype_pnh_container { display:none !important; }
