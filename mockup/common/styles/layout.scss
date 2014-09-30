@@ -6,7 +6,7 @@
 html { background-color:$bg-color; }
 body { font-family:$text-font; font-size:16px; color:$text-color; line-height:1.3; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
 a { @extend %hover-transition; color:$link-color; text-decoration:none;
-	&:hover { color:$linkHover-color; text-decoration:underline; }
+	&:hover { color:$link-hover-color; text-decoration:underline; }
 }
 @include selection-mixin { color:$white; background-color:$black; }
 
@@ -14,19 +14,19 @@ a { @extend %hover-transition; color:$link-color; text-decoration:none;
 
 
 //-- Header
-.Header { /* ... */ }
+.header { /* ... */ }
 
 
 //-- Fixed navigation
-.FixedNav { /* ... */ }
+.fixed-nav { /* ... */ }
 
 
 //-- Main navigation
-.MainNav { /* ... */ }
+.main-nav { /* ... */ }
 
 
 //-- Body
-.Body {
+.body {
 
 
 	//-------------------------------------
@@ -69,21 +69,21 @@ a { @extend %hover-transition; color:$link-color; text-decoration:none;
 
 
 
-	#logo   { @extend %miscInline-image; transform:rotateY(180deg); }
-	#icon   { @extend %iconInline-image; }
-	#misc   { @extend %misc-image; }
-	#logo2  { @extend %logo-image; }
-	#miscHD { @extend %miscHD-image; }
+	#logo { @extend %misc-inline-image; transform:rotateY(180deg); }
+	#icon { @extend %icon-inline-image; }
+	#misc { @extend %misc-image; }
+	#logo2 { @extend %logo-image; }
+	#misc-hd { @extend %misc-hd-image; }
 
-	.fLite { font-family:$alt-font; font-weight:$altLite-weight; }
-	.fNorm { font-family:$alt-font; }
-	.fBold { font-family:$alt-font; font-weight:bold; }
+	.f-lite { font-family:$alt-font; font-weight:$alt-lite-weight; }
+	.f-norm { font-family:$alt-font; }
+	.f-bold { font-family:$alt-font; font-weight:bold; }
 
-	.iMusic::before    { @extend %ico-font; content:$icoMusic-char; }
-	.iSettings::before { @extend %ico-font; content:$icoSettings-char; }
-	.iWarning::before  { @extend %ico-font; content:$icoWarning-char; }
+	.i-music::before { @extend %ico-font; content:$ico-music-char; }
+	.i-settings::before { @extend %ico-font; content:$ico-settings-char; }
+	.i-warning::before { @extend %ico-font; content:$ico-warning-char; }
 
-	.Blocks {
+	.blocks {
 		@each $id, $data in $section-colorscheme {
 			$body:  map-get($data, body);
 			$class: map-get($data, class);
@@ -107,14 +107,14 @@ a { @extend %hover-transition; color:$link-color; text-decoration:none;
 }
 
 //-- Content
-.Content { @extend %editable-styles;
+.content { @extend %editable-styles;
 	/* ... */
 }
 
 
 //-- Lateral column
-.LateralCol { /* ... */ }
+.lateral-col { /* ... */ }
 
 
 //-- Footer
-.Footer { /* ... */ }
+.footer { /* ... */ }

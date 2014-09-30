@@ -1,0 +1,98 @@
+//-------------------------------------
+//-- Utils: Mixins
+//-------------------------------------
+
+//-- Background image
+@mixin bg-image-mixin ($file, $context, $options:()) {
+	$options: map-merge((type:default, color:transparent, position:center center, repeat:no-repeat, inline:false), $options);
+
+	$uri:  if(map-get($options, inline), inline-image('.nwayo-cache/inline-images/' + $context + '/' + $file), url($build-path + '/images/' + $context + '/' + $file));
+	$path: if($context != 'common', 'components/', '') + $context + '/assets/'+ if(map-get($options, inline), 'inline-', '') + 'images/' + $file;
+
+	$width:    if(map-has-key($options, width), map-get($options, width), image-width($path));
+	$height:   if(map-has-key($options, height), map-get($options, height), image-height($path));
+	$color:    map-get($options, color);
+	$position: map-get($options, position);
+	$repeat:   map-get($options, repeat);
+
+
+	// high density
+	@if str-index($file, '@2x') {
+		@media print, (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
+			background-image:$uri; background-size:$width/2 $height/2;
+		}
+		$uri: strreplace($uri, '@2x', '');
+	}
+
+	width:$width; height:$height; background:$color #{$uri} $position $repeat;
+}
+
+
+//-- Font-face
+@mixin load-font-mixin ($name, $filename, $context, $weight:normal, $style:normal) {
+	$url: $build-path + '/fonts/' + $context + '/' + $filename;
+	@font-face {
+		font-family:$name;
+		src:url($url+'.eot');
+		src:url($url+'.eot?#iefix') format('embedded-opentype'),
+		    inline-font-files(if($context != 'common', 'components/', '') + $context + '/assets/fonts/' + $filename + '.woff'),
+		    url($url+'.ttf') format('truetype');
+		font-weight:$weight;
+		font-style:$style;
+	}
+}
+
+
+//-- Selection
+@mixin selection-mixin () {
+	::-moz-selection { @content; }
+	::selection { @content; }
+}
+
+
+//-- Placeholder
+@mixin placeholder-mixin () {
+	input.placeholder { @content; }
+	input::-webkit-input-placeholder { @content; }
+	input::-moz-placeholder { @content; }
+}
+
+
+//-- Select reset
+@mixin select-reset-mixin() {
+	@-moz-document url-prefix() { select { @content; } }
+	html.lt-ie10 select { @content; }
+}
+
+
+//-- Replace text
+@mixin replace-text-mixin ($width:auto, $height:auto) { 
+	display:block; overflow:hidden; width:$width; height:$height; text-align:left; white-space:nowrap; text-indent:1000%;
+}
+
+
+//-- Arrow
+@mixin arrow-mixin ($direction:right, $size:10px, $color:$black) {
+	display:inline-block; border:0;
+
+	@if $direction == up or $direction == down {
+		height:$size; border-left:$size solid transparent; border-right:$size solid transparent;
+
+		@if $direction == up {
+			border-bottom:$size solid $color;
+		} @else {
+			border-top:$size solid $color;
+		}
+	
+	} @else if $direction == left or $direction == right {
+		width:$size; border-top:$size solid transparent; border-bottom:$size solid transparent;
+
+		@if $direction == left {
+			border-right:$size solid $color;
+		} @else {
+			border-left:$size solid $color;
+		}
+	}
+}
+
+

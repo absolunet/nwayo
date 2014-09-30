@@ -1,11 +1,11 @@
 (function(global, undefined) {
 
-	// @import 'js/nwayo/init'
-	// @import 'js/nwayo/bundle'
+	//= require common/scripts/_init
+	//= require common/scripts/_global
 
-	// @import 'js/main'
-	// @import 'js/utils'
-	// @import 'js/variant'
+	//= require common/scripts/main
+	//= require common/scripts/utils
+	//= require common/scripts/variant
 	
 /* global window */
 })(typeof window !== 'undefined' ? window : this);
