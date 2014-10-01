@@ -32,7 +32,7 @@ module.exports = (grunt) ->
 			{ dest:"#{skeleton}/sources/js/vendor/polyfill/rem.js",                 src:'https://raw.githubusercontent.com/chuckcarpenter/REM-unit-polyfill/master/js/rem.js' }
 			{ dest:"#{skeleton}/sources/js/vendor/polyfill/respond.js",             src:'https://raw.githubusercontent.com/scottjehl/Respond/master/dest/respond.src.js' }
 			{ dest:"#{skeleton}/sources/js/vendor/polyfill/selectivizr.js",         src:'https://raw.githubusercontent.com/keithclark/selectivizr/master/selectivizr.js' }
-			{ dest:"#{vendor}/kafe.zip",                                            src:'https://github.com/absolunet/kafe/archive/master.zip' }
+			{ dest:"#{vendor}/kafe.zip",                                            src:'https://github.com/absolunet/kafe/archive/2.1.1.zip' }
 		]
 
 		files.push { dest:"#{vendor}/foundation.zip",        src:"https://github.com/zurb/foundation/archive/#{flags.foundation_version}.zip" } if flags.foundation
@@ -64,7 +64,7 @@ module.exports = (grunt) ->
 
 					# kafe
 					new AdmZip("#{vendor}/kafe.zip").extractAllTo("#{vendor}/kafe/")
-					util.copy "#{vendor}/kafe/kafe-master/dist/", "#{skeleton}/sources/libs/"
+					util.copy "#{vendor}/kafe/kafe-2.1.1/dist/", "#{skeleton}/sources/libs/"
 					grunt.log.ok 'Deployed kafe files.'
 
 
