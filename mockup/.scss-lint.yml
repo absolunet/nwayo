@@ -1,4 +1,5 @@
 # https://github.com/causes/scss-lint/blob/master/lib/scss_lint/linter/README.md
+# https://github.com/causes/scss-lint/blob/master/lib/scss_lint/linter/compass/README.md
 
 linters:
 
@@ -64,79 +65,80 @@ linters:
   NameFormat:
     enabled: hyphenated_lowercase
 
-#  PlaceholderInExtend:
-#    enabled: true
-#
+  PlaceholderInExtend:
+    enabled: true
+
 #  PropertySortOrder:
 #    enabled: true
 #    ignore_unspecified: true
 #    order:
 #      - display
 ##      - ipsum
-#
-#  PropertySpelling:
-#    enabled: true
-##    extra_properties:
-##      - lorem
-##      - ipsum
-#
-#  SelectorDepth:
-#    enabled: false
+
+  PropertySpelling:
+    enabled: true
+#    extra_properties:
+#      - lorem
+#      - ipsum
+
+  SelectorDepth:
+    enabled: false
 
   ## A VOIR SELON CMS
   SelectorFormat:
     convention: hyphenated_lowercase
 
-#  Shorthand:
-#    enabled: true
-#
-#  SingleLinePerProperty:
-#    enabled: false
-#
-#  SingleLinePerSelector:
-#    enabled: false
-#
-#  SpaceAfterComma:
-#    enabled: true
-#
-#  SpaceAfterPropertyColon:
-#    enabled: true
-#    style: no_space
-#
-#  SpaceAfterPropertyName:
-#    enabled: true
-#
-#  SpaceBeforeBrace:
-#    enabled: true
-#    allow_single_line_padding: true
-#
-#  SpaceBetweenParens:
-#    enabled: true
-#    spaces: 0
-#
-#  StringQuotes:
-#    enabled: true
-#    style: single_quotes
-#
-#  TrailingSemicolon:
-#    enabled: true
-#
-#  UnnecessaryMantissa:
-#    enabled: true
-#
-#  UnnecessaryParentReference:
-#    enabled: true
-#
-#  UrlFormat:
-#    enabled: false
-#
-#  UrlQuotes:
-#    enabled: true
-#
-#  ZeroUnit:
-#    enabled: true
-#
-## https://github.com/causes/scss-lint/blob/master/lib/scss_lint/linter/compass/README.md
-#  Compass::PropertyWithMixin:
-#    enabled: false
-#
+  Shorthand:
+    enabled: true
+
+  SingleLinePerProperty:
+    enabled: false
+
+  SingleLinePerSelector:
+    enabled: false
+
+  SpaceAfterComma:
+    enabled: true
+
+  SpaceAfterPropertyColon:
+    enabled: true
+    style: one_space
+
+  SpaceAfterPropertyName:
+    enabled: true
+
+  SpaceBeforeBrace:
+    enabled: true
+    allow_single_line_padding: true
+
+  SpaceBetweenParens:
+    enabled: true
+    spaces: 0
+
+  StringQuotes:
+    enabled: true
+    style: single_quotes
+
+  TrailingSemicolon:
+    enabled: true
+
+  TrailingZero:
+    enabled: true
+
+  UnnecessaryMantissa:
+    enabled: true
+
+  UnnecessaryParentReference:
+    enabled: true
+
+  UrlFormat:
+    enabled: false
+
+  UrlQuotes:
+    enabled: true
+
+  ZeroUnit:
+    enabled: true
+
+  Compass::PropertyWithMixin:
+    enabled: false
