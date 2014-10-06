@@ -16,7 +16,7 @@ module.exports = (grunt) ->
 			description: pkg.description
 			definition:  pkg.definition
 			repo:        "https://github.com/absolunet/#{pkg.name}"
-			repo_url:    "https://github.com/absolunet/#{pkg.name}/tree/master"
+			repo_url:    "https://github.com/absolunet/#{pkg.name}/blob/master"
 			homepage:    pkg.homepage
 			doc:         false
 			year:        grunt.template.today 'yyyy'
