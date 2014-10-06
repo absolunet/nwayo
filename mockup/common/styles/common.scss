@@ -17,14 +17,14 @@
 	h5 { /* ... */ }
 	h6 { /* ... */ }
 	
-	.small { font-size:.8em; }
+	.small { font-size: .8em; }
 	
-	p { margin-bottom:1em; }
+	p { margin-bottom: 1em; }
 	ul { /* ... */ }
 	ol { /* ... */ }
 	
 	table.table {
-		td { vertical-align:top; }
+		td { vertical-align: top; }
 	}
 }
 
@@ -33,11 +33,11 @@
 //-- Misc
 
 // powerTip
-// #powerTip { display:none; position:absolute; z-index:2147483647; }
+#{'#powerTip'} { display: none; position: absolute; z-index: 2147483647; }
 
 // skype reset
-span.skype_pnh_container { display:none !important; }
-span.skype_pnh_print_container { display:inline !important; }
+span.skype_pnh_container { display: none !important; }
+span.skype_pnh_print_container { display: inline !important; }
 
 // @if cms="drupal"
 //-- Drupal clogs

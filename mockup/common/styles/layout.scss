@@ -3,12 +3,12 @@
 //-------------------------------------
 
 //-- Base
-html { background-color:$bg-color; }
-body { font-family:$text-font; font-size:16px; color:$text-color; line-height:1.3; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
-a { @extend %hover-transition; color:$link-color; text-decoration:none;
-	&:hover { color:$link-hover-color; text-decoration:underline; }
+html { background-color: $bg-color; }
+body { font-family: $text-font; font-size: 16px; color: $text-color; line-height: 1.3; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+a { @extend %hover-transition; color: $link-color; text-decoration: none;
+	&:hover { color: $link-hover-color; text-decoration: underline; }
 }
-@include selection-mixin { color:$white; background-color:$black; }
+@include selection-mixin { color: $white; background-color: $black; }
 
 
 
@@ -69,19 +69,19 @@ a { @extend %hover-transition; color:$link-color; text-decoration:none;
 
 
 
-	#logo { @extend %misc-inline-image; transform:rotateY(180deg); }
+	#logo { @extend %misc-inline-image; transform: rotateY(180deg); }
 	#icon { @extend %icon-inline-image; }
 	#misc { @extend %misc-image; }
 	#logo2 { @extend %logo-image; }
 	#misc-hd { @extend %misc-hd-image; }
 
-	.f-lite { font-family:$alt-font; font-weight:$alt-lite-weight; }
-	.f-norm { font-family:$alt-font; }
-	.f-bold { font-family:$alt-font; font-weight:bold; }
+	.f-lite { font-family: $alt-font; font-weight: $alt-lite-weight; }
+	.f-norm { font-family: $alt-font; }
+	.f-bold { font-family: $alt-font; font-weight: bold; }
 
-	.i-music::before { @extend %ico-font; content:$ico-music-char; }
-	.i-settings::before { @extend %ico-font; content:$ico-settings-char; }
-	.i-warning::before { @extend %ico-font; content:$ico-warning-char; }
+	.i-music::before { @extend %ico-font; content: $ico-music-char; }
+	.i-settings::before { @extend %ico-font; content: $ico-settings-char; }
+	.i-warning::before { @extend %ico-font; content: $ico-warning-char; }
 
 	.blocks {
 		@each $id, $data in $section-colorscheme {
@@ -91,11 +91,11 @@ a { @extend %hover-transition; color:$link-color; text-decoration:none;
 			$lite:  map-get($data, lite);
 			$dark:  map-get($data, dark);
 
-			body#{$body} & { background-color:$lite; }
-			&#{$class}     { color:$base; background-color:$dark; }
+			body#{$body} & { background-color: $lite; }
+			&#{$class}     { color: $base; background-color: $dark; }
 
 			@if $id == beta {
-				&::before { content:'BBB'; }
+				&::before { content: 'BBB'; }
 			}
 		}
 	}

@@ -3,8 +3,8 @@
 //-------------------------------------
 
 html[data-sitecore-editor="true"] {
-	.scWebEditInput {
-		&[scfieldtype="rich text"] { display:block; }
-		&[scfieldtype="multi-line text"] { display:inline; }
+	.#{'scWebEditInput'} {
+		&[scfieldtype="rich text"] { display: block; }
+		&[scfieldtype="multi-line text"] { display: inline; }
 	}
 }

@@ -28,7 +28,7 @@ gulp.task 'styles_lint', ->
 			config: path.config.scsslint
 		})
 		.pipe scsslint.reporter()
-		#.pipe scsslint.reporter('fail')
+		.pipe scsslint.reporter('fail')
 
 
 

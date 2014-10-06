@@ -31,6 +31,8 @@ a { -webkit-transition: all 100ms ease-out, z-index 1ms; transition: all 100ms e
 .content ol { /* ... */ }
 .content table.table td { vertical-align: top; }
 
+#powerTip { display: none; position: absolute; z-index: 2147483647; }
+
 span.skype_pnh_container { display: none !important; }
 
 span.skype_pnh_print_container { display: inline !important; }
