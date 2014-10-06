@@ -17,10 +17,10 @@
 ## Documentation
 Visit the [http://absolunet.github.io/nwayo](http://absolunet.github.io/nwayo) website for all the things.
 ## Release history
-See the [CHANGELOG](https://github.com/absolunet/nwayo/tree/master/CHANGELOG.md).
+See the [CHANGELOG](https://github.com/absolunet/nwayo/blob/master/CHANGELOG.md).
 
 ## License 
-See the [LICENSE](https://github.com/absolunet/nwayo/tree/master/LICENSE.md).
+See the [LICENSE](https://github.com/absolunet/nwayo/blob/master/LICENSE.md).
 
 
 [npm-url]: https://npmjs.org/package/nwayo
