@@ -5052,6 +5052,8 @@ th.hide-for-touch { display: table-cell !important; }
   tr.show-for-print { display: table-row !important; }
   td.show-for-print { display: table-cell !important; }
   th.show-for-print { display: table-cell !important; } }
+#powerTip { display: none; position: absolute; z-index: 2147483647; }
+
 span.skype_pnh_container { display: none !important; }
 
 span.skype_pnh_print_container { display: inline !important; }

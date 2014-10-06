@@ -27,7 +27,6 @@ linters:
 
   EmptyLineBetweenBlocks:
     enabled: false
-#    ignore_single_line_blocks: true
 
   EmptyRule:
     enabled: true
@@ -68,23 +67,23 @@ linters:
   PlaceholderInExtend:
     enabled: true
 
-#  PropertySortOrder:
-#    enabled: true
-#    ignore_unspecified: true
-#    order:
-#      - display
+###
+  PropertySortOrder:
+    enabled: false
+##    ignore_unspecified: true
+##    order:
+##      - display
 ##      - ipsum
 
   PropertySpelling:
     enabled: true
-#    extra_properties:
-#      - lorem
-#      - ipsum
+    #extra_properties:
+    #  - lorem
+    #  - ipsum
 
   SelectorDepth:
     enabled: false
 
-  ## A VOIR SELON CMS
   SelectorFormat:
     convention: hyphenated_lowercase
 

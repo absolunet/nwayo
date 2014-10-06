@@ -2,20 +2,20 @@
 //-- Newsletter
 //-------------------------------------
 
-img { display:block;
-	&.Spacer { width:1px; height:1px; }
-	&.HPad { height:20px; }
-	&.VPad { width:20px; }
+img { display: block;
+	&.spacer { width: 1px; height: 1px; }
+	&.hpad { height: 20px; }
+	&.vpad { width: 20px; }
 }
 
-body { margin:0; padding:0; background:$bg-color; }
+body { margin: 0; padding: 0; background: $bg-color; }
 
-a { color:$link-color; }
+a { color: $link-color; }
 
-.Html { width:100%; height:100%; border:0; font-family:$text-font; font-size:16px; color:$text-color; line-height:1.3; background:$bg-color; }
+.html { width: 100%; height: 100%; border: 0; font-family: $text-font; font-size: 16px; color: $text-color; line-height: 1.3; background: $bg-color; }
 
-.Body { width:100%; height:100%; vertical-align:top; background:$bg-color; }
+.body { width: 100%; height: 100%; vertical-align: top; background: $bg-color; }
 
-.Content { width:650px; border:0; background:$white;
-	> tr > td { vertical-align:top; }
+.content { width: 650px; border: 0; background: $white;
+	> tr > td { vertical-align: top; }
 }

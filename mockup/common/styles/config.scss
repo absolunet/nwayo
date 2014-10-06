@@ -47,7 +47,7 @@ $alt-lite-weight: 300;
 @include load-font-mixin('icomoon', 'icomoon', 'common');
 
 
-%ico-font { font-family:'icomoon'; font-style:normal !important; font-weight:normal !important; font-variant:normal !important; text-transform:none !important; line-height:1 !important; -webkit-font-smoothing:antialiased !important; }
+%ico-font { font-family: 'icomoon'; font-style: normal !important; font-weight: normal !important; font-variant: normal !important; text-transform: none !important; line-height: 1 !important; -webkit-font-smoothing: antialiased !important; }
 $ico-music-char:    'm';
 $ico-settings-char: 's';
 $ico-warning-char:  'w';
@@ -73,7 +73,7 @@ $ico-warning-char:  'w';
 
 
 //-- Placeholders
-%hover-transition     { transition:all 100ms ease-out, z-index 1ms; }
-%animation-transition { transition:all 500ms ease-out, z-index 1ms; }
+%hover-transition     { transition: all 100ms ease-out, z-index 1ms; }
+%animation-transition { transition: all 500ms ease-out, z-index 1ms; }
 
 
