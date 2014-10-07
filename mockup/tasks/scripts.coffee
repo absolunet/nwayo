@@ -12,7 +12,7 @@ gulp.task 'scripts_lint', ->
 	jshint  = require 'gulp-jshint'
 	stylish = require 'jshint-stylish'
 	
-	return gulp.src path.files.scripts
+	return gulp.src path.files.scripts_lint
 		.pipe jshint()
 		.pipe jshint.reporter(stylish)
 		.pipe jshint.reporter('fail')
@@ -20,7 +20,7 @@ gulp.task 'scripts_lint', ->
 
 
 #-- Compile
-gulp.task 'scripts_compile', ->
+gulp.task 'scripts_compile', ['scripts_lint'], ->
 	include = require 'gulp-include'
 	uglify  = require 'gulp-uglify'
 
