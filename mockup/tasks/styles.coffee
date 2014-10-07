@@ -23,7 +23,7 @@ gulp.task 'styles_images', ->
 gulp.task 'styles_lint', ->
 	scsslint = require 'gulp-scsslint'
 
-	return gulp.src path.files.styles
+	return gulp.src path.files.styles_lint
 		.pipe scsslint({
 			config: path.config.scsslint
 		})
