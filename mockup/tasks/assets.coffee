@@ -16,11 +16,6 @@ gulp.task 'assets_fonts', ->
 
 
 
-#-- Icons
-gulp.task 'assets_icons', ->
-
-
-
 #-- Images optimization
 gulp.task 'assets_images_optimization', ->
 	imagemin = require 'gulp-imagemin'
@@ -40,16 +35,16 @@ gulp.task 'assets_images_highdensity', ->
 
 	# high density
 	return gulp.src path.files.images2x, base:path.dir.root
-		.pipe gm (gmfile, done) -> 
+		.pipe gm (gmfile, done) ->
 			gmfile.identify (err, info) ->
 				util.gm_optimization gmfile.resize('50%','50%'), info
 				done null, gmfile
-	
-		.pipe rename (path) -> 
+
+		.pipe rename (path) ->
 			path = util.assets_rename path, true
 			path.basename = path.basename.slice(0,-3)
 			return
-	
+
 		.pipe imagemin util.imagemin_params()
 		.pipe gulp.dest path.dir.build
 
@@ -82,4 +77,4 @@ gulp.task 'assets', (cb) ->
 	runsequence = require 'run-sequence'
 
 	del [path.dir.build_assets, path.files.build_icons], force:true, ->
-		runsequence ['assets_fonts', 'assets_icons', 'assets_images', 'assets_raw'], cb
+		runsequence ['assets_fonts', 'assets_images', 'assets_raw'], cb

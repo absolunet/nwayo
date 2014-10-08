@@ -1,4 +1,4 @@
 {
-	"cwd": "./",
-	"directory": "dependencies/bower/"
+  "cwd": "./",
+  "directory": "dependencies/bower/"
 }

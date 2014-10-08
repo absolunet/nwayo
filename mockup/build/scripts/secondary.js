@@ -1,10 +1,1 @@
-(function(global, undefined) {
-
-	//= require common/scripts/_global
-
-	//= require common/scripts/variant
-	//= require common/scripts/variant
-
-
-/* global window */
-})(typeof window !== 'undefined' ? window : this);
+!function(n){{var o=(nwayo.vendor.jQuery,nwayo.vendor.jQuery);n.jQuery,nwayo.vendor.Modernizr,nwayo.vendor._,n.POUEL}!function(){"use strict";var n={};n.dssd="",o(function(){})}()}("undefined"!=typeof window?window:this);

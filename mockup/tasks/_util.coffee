@@ -69,7 +69,7 @@ module.exports =
 		]
 	}
 
-	
+
 	#-- gm optimization
 	gm_optimization: (gmfile, info) ->
 		gmfile.noProfile().quality(95) if info.format is 'JPG'
