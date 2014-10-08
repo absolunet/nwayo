@@ -11,7 +11,7 @@ path = util.path()
 gulp.task 'scripts_lint', ->
 	jshint  = require 'gulp-jshint'
 	stylish = require 'jshint-stylish'
-	
+
 	return gulp.src path.files.scripts_lint
 		.pipe jshint()
 		.pipe jshint.reporter(stylish)
@@ -24,16 +24,11 @@ gulp.task 'scripts_compile', ['scripts_lint'], ->
 	include = require 'gulp-include'
 	uglify  = require 'gulp-uglify'
 
-	# Minify and copy all JavaScript (except vendor scripts)
 	return gulp.src path.files.bundles_scripts
-		.pipe include basePath: '../', autoExtension:true
+		.pipe include basePath: './', autoExtension:true
+		.pipe uglify()
 		.pipe gulp.dest path.dir.build_scripts
 
-	#     .pipe(uglify())
-	#     .pipe(concat('all.min.js'))
-	#     .pipe(gulp.dest('build/js'));
-	# });
-	# 
 
 #-- Rebuild
 gulp.task 'styles', (cb) ->

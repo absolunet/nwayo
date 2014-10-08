@@ -1,9 +1,18 @@
+# http://editorconfig.org
+
 root = true
 
 [*.{css,less,scss,coffee,js,html}]
 indent_style = tab
-tab_width = 2
+tab_width = 4
 end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
+
+[*.md]
+trim_trailing_whitespace = false
+
+[{.bowerrc,.jshintrc,.scss-lint.yml,bower.json,package.json,.travis.yml}]
+indent_style = space
+indent_size = 2
