@@ -12,7 +12,7 @@ path  = util.path()
 
 #-- favicon.ico
 # https://mathiasbynens.be/notes/rel-shortcut-icon
-gulp.task 'icons_favicon', () ->
+gulp.task 'icons_favicon', ->
 	mkdirp = require 'mkdirp'
 	paths  = require 'path'
 	im     = require 'imagemagick'
@@ -37,12 +37,12 @@ gulp.task 'icons_favicon', () ->
 
 
 
-#-- favicon + touch icon
+#-- share icons
 # https://mathiasbynens.be/notes/touch-icons
 # https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/IconMatrix.html
 # https://developer.chrome.com/multidevice/android/installtohomescreen
 # http://operacoast.com/developer
-gulp.task 'icons_favtouch', (() ->
+gulp.task 'icons_share', (() ->
 	tasks = []
 
 	for name, size of {
@@ -59,14 +59,58 @@ gulp.task 'icons_favtouch', (() ->
 		'favicon-64':      64   # Windows site icons, Safari Reading List, Modern browsers
 		'favicon-96':      96   # Google TV Favicon
 		'favicon-195':    195   # Opera Speed Dial icon
+		'share':          512   # General share icon
 	}
-		task = "icons_png_#{name}"
+		task = "icons_share_#{name}"
 
 		gulp.task task, ((name, size) -> return () ->
 			imagemin = require 'gulp-imagemin'
 			gm       = require 'gulp-gm'
 
-			return gulp.src path.files.icons_favtouch
+			return gulp.src path.files.icons_icon
+				.pipe gm (gmfile, done) ->
+					gmfile.identify (err, info) ->
+						util.gm_optimization gmfile.resize(size,size), info
+						done null, gmfile
+				.pipe rename (path) ->
+					path.dirname = util.assets_rename path.dirname
+					path.basename = name
+					return
+				.pipe imagemin util.imagemin_params()
+				.pipe gulp.dest path.dir.build
+		)(name, size)
+
+		tasks.push task
+
+	return tasks
+)(), ->
+	imagemin = require 'gulp-imagemin'
+
+	return gulp.src [path.files.icons_large], base:path.dir.root
+		.pipe imagemin util.imagemin_params()
+		.pipe rename (path) -> path.dirname = util.assets_rename path.dirname; return
+		.pipe gulp.dest path.dir.build
+
+
+
+#-- windows tile
+# http://msdn.microsoft.com/en-us/library/ie/dn455106(v=vs.85).aspx
+# http://msdn.microsoft.com/en-us/library/ie/bg183312(v=vs.85).aspx
+gulp.task 'icons_tile', (() ->
+	tasks = []
+
+	for name, size of {
+		'tile-small':  128  	# officially:  70 x  70 | recommended: 128 x 128
+		'tile-medium': 270  	# officially: 150 x 150 | recommended: 270 x 270
+		'tile-large':  558  	# officially: 310 x 310 | recommended: 558 x 558
+	}
+		task = "icons_tile_#{name}"
+
+		gulp.task task, ((name, size) -> return () ->
+			imagemin = require 'gulp-imagemin'
+			gm       = require 'gulp-gm'
+
+			return gulp.src path.files.icons_tile
 				.pipe gm (gmfile, done) ->
 					gmfile.identify (err, info) ->
 						util.gm_optimization gmfile.resize(size,size), info
@@ -85,15 +129,9 @@ gulp.task 'icons_favtouch', (() ->
 )()
 
 
+# 310 x 150  recommended: 558 x 270
 
-#<!-- Tile icon for Win8 (144x144 + tile color) -->
-#<meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
-#<meta name="msapplication-TileColor" content="#3372DF">
 
-# windows-tile-144x144.png (144x144) — Windows 8 tile;
-
-# share image
-# facebook image
 
 
 
@@ -107,6 +145,6 @@ gulp.task 'icons', (cb) ->
 	runsequence = require 'run-sequence'
 
 	del [path.dir.build_icons], force:true, ->
-		runsequence ['icons_favicon', 'icons_favtouch'], cb
+		runsequence ['icons_favicon', 'icons_share'], cb
 
 

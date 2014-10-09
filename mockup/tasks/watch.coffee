@@ -15,7 +15,7 @@ gulp.task 'watch', ->
 
 	# icons
 	gulp.watch [path.files.icons_favicon],  ['icons_favicon']
-	gulp.watch [path.files.icons_favtouch], ['icons_favtouch']
+	gulp.watch [path.files.icons_icon, path.files.icons_large], ['icons_share']
 
 	# scripts
 	gulp.watch [path.files.bundles_scripts, path.files.scripts, path.files.dependencies_scripts], ['scripts_compile']
