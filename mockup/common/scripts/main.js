@@ -2,6 +2,9 @@
 //-- Main
 //-------------------------------------
 
+//= jshtml 'common/templates/*'
+//= jshtml 'common/templates/patate'
+//= jshtml 'common/templates/pouel'
 //= **require '.nwayo-cache/templateclient.js'
 
 (function(){
