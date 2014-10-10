@@ -23,12 +23,14 @@ gulp.task 'scripts_lint', ->
 gulp.task 'scripts_compile', ['scripts_lint'], ->
 	include   = require 'gulp-include'
 	uglify    = require 'gulp-uglify'
+	ninclude  = require 'gulp-nwayo-include'
 	sixtofive = require 'gulp-6to5'
 
 	return gulp.src path.files.bundles_scripts
 		.pipe include basePath: './', autoExtension:true
-		.pipe sixtofive()
-		.pipe uglify()
+		.pipe ninclude basePath: './'
+		#.pipe sixtofive()
+		#.pipe uglify()
 		.pipe gulp.dest path.dir.build_scripts
 
 
