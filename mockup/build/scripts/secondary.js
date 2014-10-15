@@ -60,7 +60,7 @@
 	})();
 	
 
-	// [gulp-include] -- Skipping 'common/scripts/variant', already included.
+	// [gulp-include] -- Skipping common/scripts/variant, already included.
 
 
 
