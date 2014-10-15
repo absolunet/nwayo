@@ -35,7 +35,6 @@ gulp.task 'styles_lint', ->
 #-- Compile
 gulp.task 'styles_compile', ['styles_lint'], ->
 	sass         = require 'gulp-ruby-sass'
-	#sourcemaps   = require 'gulp-sourcemaps'
 	autoprefixer = require 'gulp-autoprefixer'
 	minifycss    = require 'gulp-minify-css'
 
@@ -45,15 +44,9 @@ gulp.task 'styles_compile', ['styles_lint'], ->
 			cacheLocation: path.dir.cache_sass
 			compass: true
 			trace: true
-			'sourcemap=none': true
-			#sourcemap: true
-			#sourcemapPath: '../..'
-#		.pipe sourcemaps.init loadMaps:true
+			'sourcemap=none': true # horrible temporary patch
 		.pipe autoprefixer('last 2 versions', '> 1%', 'ie >= 9')
 #		.pipe minifycss()
-#		.pipe grunts.write './',
-#			addComment: true
-#			includeContent: false
 		.pipe gulp.dest path.dir.build_styles
 
 
