@@ -35,7 +35,7 @@ gulp.task 'scripts_compile', ['scripts_lint'], ->
 
 
 #-- Rebuild
-gulp.task 'styles', (cb) ->
+gulp.task 'scripts', (cb) ->
 	del         = require 'del'
 	runsequence = require 'run-sequence'
 
