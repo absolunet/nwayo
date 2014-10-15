@@ -1,22 +1,33 @@
 {
-    "name": "normalize-scss",
-    "version": "2.1.3",
-    "main": "_normalize.scss",
-    "author": ["Nicolas Gallagher", "John Albin Wilkins"],
-    "ignore": [
-        "CHANGELOG.md",
-        "CONTRIBUTING.md",
-        "component.json",
-        "normalize-scss.gemspec",
-        "lib/normalize-scss.rb",
-        "test.html"
-    ],
-    "licenses": [{
-        "type": "MIT",
-        "url": "http://opensource.org/licenses/MIT"
-    },
-    {
-        "type": "GPLv2",
-        "url": "http://www.gnu.org/licenses/gpl-2.0.html"
-    }]
+  "name": "normalize-scss",
+  "version": "3.0.1+normalize.3.0.1",
+  "homepage": "https://github.com/JohnAlbin/normalize-scss",
+  "author": [
+    "Nicolas Gallagher",
+    "John Albin Wilkins"
+  ],
+  "description": "This is the Sass/Compass version of Normalize.css, a collection of HTML element and attribute rulesets to normalize styles across all browsers.",
+  "main": "_normalize.scss",
+  "keywords": [
+    "normalize",
+    "reset",
+    "typography",
+    "design",
+    "ui"
+  ],
+  "license": [
+    "MIT",
+    "GPLv2"
+  ],
+  "ignore": [
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "component.json",
+    "package.json",
+    "normalize-scss.gemspec",
+    "sache.json",
+    "test.html",
+    "lib",
+    "tests"
+  ]
 }

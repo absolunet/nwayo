@@ -9,6 +9,6 @@
     "commit": "3c4864c9c0b456ba03ead71a1338e595e3b125d5"
   },
   "_source": "git://github.com/adamstac/meyer-reset.git",
-  "_target": "*",
+  "_target": "master",
   "_originalSource": "meyer-reset"
 }
