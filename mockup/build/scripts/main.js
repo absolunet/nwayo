@@ -1866,9 +1866,9 @@
 		App.tmpl.common_patate = $.templates('common_patate', 'PATATE3');
 		App.tmpl.common_pouel = $.templates('common_pouel', 'POUEL2');
 
-	// [gulp-nwayo-include] -- Skipping ''common/templates/patate'', already included.
+	// [gulp-nwayo-include] -- Skipping 'common/templates/patate', already included.
 
-	// [gulp-nwayo-include] -- Skipping ''common/templates/pouel'', already included.
+	// [gulp-nwayo-include] -- Skipping 'common/templates/pouel', already included.
 
 	//= **require '.nwayo-cache/templateclient.js'
 	
@@ -2033,7 +2033,7 @@
 	})();
 	
 
-	// [gulp-include] -- Skipping 'common/scripts/main', already included.
+	// [gulp-include] -- Skipping common/scripts/main, already included.
 
 	//-------------------------------------
 	//-- Utils

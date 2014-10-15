@@ -14,7 +14,7 @@ gulp.task 'styles_images', ->
 
 	return gulp.src path.files.inline, base:path.dir.root
 		.pipe imagemin util.imagemin_params()
-		.pipe rename util.assets_rename
+		.pipe rename (path) -> path.dirname = util.assets_rename path.dirname; return
 		.pipe gulp.dest path.dir.cache
 
 
@@ -35,7 +35,7 @@ gulp.task 'styles_lint', ->
 #-- Compile
 gulp.task 'styles_compile', ['styles_lint'], ->
 	sass         = require 'gulp-ruby-sass'
-	sourcemaps   = require 'gulp-sourcemaps'
+	#sourcemaps   = require 'gulp-sourcemaps'
 	autoprefixer = require 'gulp-autoprefixer'
 	minifycss    = require 'gulp-minify-css'
 
@@ -44,14 +44,14 @@ gulp.task 'styles_compile', ['styles_lint'], ->
 			loadPath: path.dir.root
 			cacheLocation: path.dir.cache_sass
 			compass: true
-			style: 'compact'
-			trace:true
-#			sourcemap: false
-#			sourcemapPath: '../..'
+			trace: true
+			'sourcemap=none': true
+			#sourcemap: true
+			#sourcemapPath: '../..'
 #		.pipe sourcemaps.init loadMaps:true
 		.pipe autoprefixer('last 2 versions', '> 1%', 'ie >= 9')
 #		.pipe minifycss()
-#		.pipe sourcemaps.write './',
+#		.pipe grunts.write './',
 #			addComment: true
 #			includeContent: false
 		.pipe gulp.dest path.dir.build_styles

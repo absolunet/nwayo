@@ -1,3 +1,5 @@
+sep = require('path').sep
+
 module.exports =
 
 	#-- paths
@@ -83,8 +85,8 @@ module.exports =
 
 	#-- assets rename
 	assets_rename: (path) ->
-		elements = path.split '/'
+		elements = path.split sep
 		elements.shift() if elements[0] is 'components'
 		rest = elements.splice(3)
-		path = elements[2] + '/' + elements[0] + '/' + (rest.join '/')
+		path = elements[2] + sep + elements[0] + sep + (rest.join sep)
 		return path
