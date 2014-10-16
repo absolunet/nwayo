@@ -7,10 +7,10 @@
 (function(){
 	'use strict';
 
-	App.Utils = {};
+	app.utils = {};
 
 	/*- Do something -------------------------------------------------------------------*/
-	App.Utils.Something = function() {
+	app.utils.something = function() {
 
 	};
 

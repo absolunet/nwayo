@@ -1,0 +1,60 @@
+{
+  "name": "kafe",
+  "version": "3.0.1",
+  "description": "Mixing javascript crops for a perfect flavour.",
+  "definition": "/kæfˈeɪ/ (haitian creole) A beverage made by infusing the beans of the coffee plant in hot water.",
+  "homepage": "http://absolunet.github.io/kafe",
+  "authors": {
+    "name": "Absolunet",
+    "url": "http://absolunet.com/"
+  },
+  "repository": {
+    "url": "git://github.com/absolunet/kafe.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/absolunet/kafe/issues"
+  },
+  "license": "https://github.com/absolunet/kafe/blob/master/LICENSE.md",
+  "main": "dist/kafe.js",
+  "keywords": [
+    "javascript",
+    "nwayo"
+  ],
+  "ignore": [
+    ".git",
+    "dependencies",
+    "doc",
+    "node_modules",
+    "src",
+    "test",
+    ".bowerrc",
+    ".gitignore",
+    "CHANGELOG.md",
+    "gruntfile.coffee",
+    "gulpfile.js",
+    "package.json"
+  ],
+  "devDependencies": {
+    "qunit": "~1.15.0"
+  },
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "modernizr": "~2.8.3",
+    "lodash": "~2.4.1",
+    "underscore.string": "~2.3.2",
+    "jquery-cookie": "~1.4.1",
+    "jquery-json": "~2.5.1",
+    "jquery.bbq": "~1.2.1",
+    "colorbox": "~1.5.14"
+  },
+  "_release": "3.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "3.0.1",
+    "commit": "93383d5711d52503bf3865b5ab3e382cfc4aa44e"
+  },
+  "_source": "git://github.com/absolunet/kafe.git",
+  "_target": "~3.0.1",
+  "_originalSource": "kafe"
+}

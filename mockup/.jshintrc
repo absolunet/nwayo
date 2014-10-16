@@ -5,7 +5,7 @@
   "undef": true,
   "unused": true,
   "strict": true,
-  "predef": [ "document", "global", "$", "Modernizr", "_", "kafe", "nwayo", "App" ]
+  "predef": [ "document", "console", "global", "$", "$Global", "Modernizr", "_", "kafe", "nwayo", "app", "__" ]
 
   /*
 

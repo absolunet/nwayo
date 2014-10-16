@@ -1,4 +1,4 @@
-﻿//-------------------------------------
+//-------------------------------------
 //-- Variant
 //-------------------------------------
 
@@ -7,14 +7,14 @@
 (function(){
 	'use strict';
 
-	var Local = {};
+	var local = {};
 
-	Local.dssd = '';
+	local.dssd = '';
 
 	/*- Home -------------------------------------------------------------------*/
 	/**
-	Local.InitHome = function() {
-		if (App.env.isHome) {
+	local.initHome = function() {
+		if (app.env.isHome) {
 
 		}
 	};
@@ -22,8 +22,8 @@
 
 	/*- Lateral Column -------------------------------------------------------------------*/
 	/**
-	Local.InitLateralcolumn = function() {
-		if (App.dom.lateralCol) {
+	local.initLateralcolumn = function() {
+		if (app.dom.lateralCol.length) {
 
 		}
 	};
@@ -31,8 +31,8 @@
 
 
 	$(function() {
-		//Local.InitHome();
-		//Local.InitLateralcolumn();
+		//local.initHome();
+		//local.initLateralcolumn();
 	});
 
 })();
