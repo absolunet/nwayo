@@ -76,7 +76,7 @@ gulp.task 'scan-bower', (cb) ->
 
 		found = false
 		for name, info of data.dependencies
-			if info.update && info.update.target != info.update.latest
+			if info.update && info.pkgMeta.version != info.update.latest
 				if not found
 					found = true
 					echo '                               '.bgRed
@@ -84,7 +84,7 @@ gulp.task 'scan-bower', (cb) ->
 					echo '                               '.bgRed
 					echo ''
 
-				echo "[#{name}] : #{info.update.target.red} ➝  #{info.update.latest.green}"
+				echo "[#{name}] : #{info.pkgMeta.version.red} ➝  #{info.update.latest.green}"
 
 		if not found
 			echo '   You are cutting edge - Have a bird '.green

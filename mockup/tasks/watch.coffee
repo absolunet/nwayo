@@ -19,8 +19,8 @@ gulp.task 'watch', ->
 	gulp.watch [path.files.icons_tile], ['icons_tile']
 
 	# scripts
-	gulp.watch [path.files.bundles_scripts, path.files.scripts, path.files.dependencies_scripts], ['scripts_compile']
+	gulp.watch [path.files.bundles_scripts, path.files.scripts, path.files.bower_scripts], ['scripts_compile']
 
 	# styles
 	gulp.watch [path.files.inline], ['styles_inline', 'styles_compile']
-	gulp.watch [path.files.bundles_styles, path.files.styles, path.files.dependencies_styles], ['styles_compile']
+	gulp.watch [path.files.bundles_styles, path.files.styles, path.files.bower_styles], ['styles_compile']

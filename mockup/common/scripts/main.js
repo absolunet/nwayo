@@ -2,61 +2,61 @@
 //-- Main
 //-------------------------------------
 
+//= require 'components/vendor-misc/scripts/jsrender'
 //= jshtml 'common/templates/*'
 //= jshtml 'common/templates/patate'
 //= jshtml 'common/templates/pouel'
-//= **require '.nwayo-cache/templateclient.js'
 
 (function(){
 	'use strict';
 
-	var Local = {};
+	var local = {};
 
 
 	/*- Cache data -------------------------------------------------------------------*/
-	Local.Cache = function() {
+	local.cache = function() {
 
 		// env
-		App.env = {};
+		app.env = {};
 
-		App.env.culture = kafe.env('culture');
-		App.env.lang    = kafe.env('lang');
-		App.env.page    = kafe.env('page');
-		App.env.tmpl    = kafe.env('tmpl');
+		app.env.culture = kafe.env('culture');
+		app.env.lang    = kafe.env('lang');
+		app.env.page    = kafe.env('page');
+		app.env.tmpl    = kafe.env('tmpl');
 
-		//App.env.isUniquePage = (App.env.page == 'UID');
-		//App.env.isTypePage   = _.contains(App.env.tmpl, 'TYPE-ID');
-		//App.env.isOneOfThese = !!_.intersection(App.env.tmpl, ['ID1', 'ID2']).length;
+		//app.env.isUniquePage = (app.env.page == 'UID');
+		//app.env.isTypePage   = _.contains(app.env.tmpl, 'TYPE-ID');
+		//app.env.isOneOfThese = !!_.intersection(app.env.tmpl, ['ID1', 'ID2']).length;
 
 
 		// dom
-		App.dom = {};
-		App.dom.window     = $(global);
-		App.dom.document   = $(document);
-		App.dom.body       = $('body');
-		//App.dom.header     = $('#Header');
-		//App.dom.content    = $('#Content');
-		//App.dom.lateralCol = $('#LateralCol') || undefined;
-		//App.dom.footer     = $('#Footer');
+		app.dom = {};
+		app.dom.window     = $(global);
+		app.dom.document   = $(document);
+		app.dom.body       = $('body');
+		//app.dom.header     = $('.header');
+		//app.dom.content    = $('.content');
+		//app.dom.lateralCol = $('.lateral-col') || undefined;
+		//app.dom.footer     = $('.footer');
 
 
 		// path
-		App.path = {};
+		app.path = {};
 
-		App.path.root  = '/nwayo/';
-		App.path.builds = App.path.root+'builds/';
-		App.path.images = App.path.builds+'images/';
-		App.path.stubs  = App.path.root+'stubs/';
+		app.path.root  = '/nwayo/';
+		app.path.builds = app.path.root+'builds/';
+		app.path.images = app.path.builds+'images/';
+		app.path.stubs  = app.path.root+'stubs/';
 
 
 		// tmpl
 		/**
-		App.tmpl = window.nwayo_jshtml;
+		app.tmpl = window.nwayo_jshtml;
 		kafe.fn.deleteVar('window.nwayo_jshtml');
 
 		$('script[type="text/x-jsrender"]').each(function () {
 			var id = $(this).attr('id');
-			App.tmpl[id.substring(7)] = $.templates('#'+id);
+			app.tmpl[id.substring(7)] = $.templates('#'+id);
 		});
 		/**/
 
@@ -64,7 +64,7 @@
 		// colorbox default params
 		/**
 		kafe.ext.colorbox.setParams({
-			close:      (App.env.lang == 'en') ? 'Close' : 'Fermer',
+			close:      (app.env.lang == 'en') ? 'Close' : 'Fermer',
 			opacity:     0.7,
 			transition: 'elastic'
 			// if popup is hash triggered
@@ -75,9 +75,9 @@
 
 
 	/*- Bind events -------------------------------------------------------------------*/
-	Local.Bind = function() {
+	local.bind = function() {
 
-		App.dom.body
+		app.dom.body
 
 			// external links
 			.on('click', 'a[data-external="true"]', function() {
@@ -118,7 +118,7 @@
 
 
 	/*- To execute on start -------------------------------------------------------------------*/
-	Local.Start = function() {
+	local.start = function() {
 
 		// svg replacement
 		if(!Modernizr.svg) {
@@ -131,16 +131,16 @@
 		/**
 		WebFont.load({
 			custom:       { families: ['FontName1','FontName2','FontName3'] },
-			loading:      function() { App.dom.body.trigger('WebFont:loading'); },
-			active:       function() { App.dom.body.trigger('WebFont:active'); },
-			inactive:     function() { App.dom.body.trigger('WebFont:inactive'); },
-			fontloading:  function(familyName, fvd) { App.dom.body.trigger('WebFont:loading_font'); },
-			fontactive:   function(familyName, fvd) { App.dom.body.trigger('WebFont:active_font'); },
-			fontinactive: function(familyName, fvd) { App.dom.body.trigger('WebFont:inactive_font'); }
+			loading:      function() { app.dom.body.trigger('WebFont:loading'); },
+			active:       function() { app.dom.body.trigger('WebFont:active'); },
+			inactive:     function() { app.dom.body.trigger('WebFont:inactive'); },
+			fontloading:  function(familyName, fvd) { app.dom.body.trigger('WebFont:loading_font'); },
+			fontactive:   function(familyName, fvd) { app.dom.body.trigger('WebFont:active_font'); },
+			fontinactive: function(familyName, fvd) { app.dom.body.trigger('WebFont:inactive_font'); }
 		});
 
 		// fonts loaded
-		App.dom.body.on('WebFont:active', function() {
+		app.dom.body.on('WebFont:active', function() {
 
 		});
 		/**/
@@ -148,7 +148,7 @@
 
 		// addthis
 		/**
-		window.addthis_config = { ui_language: App.env.lang };
+		window.addthis_config = { ui_language: app.env.lang };
 		window.addthis.init();
 		/**/
 
@@ -156,13 +156,9 @@
 
 
 	$(function() {
-		Local.Cache();
-		Local.Bind();
-		Local.Start();
+		local.cache();
+		local.bind();
+		local.start();
 	});
-
-
-
-	//App.Utils = {};
 
 })();

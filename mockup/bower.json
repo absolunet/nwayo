@@ -6,7 +6,7 @@
     "normalize.scss":    "3.0.1+normalize.3.0.1",
     "html5-boilerplate": "~4.3.0",
     
-    "kafe":       "~3.0.0",
+    "kafe":       "~3.0.1",
     "foundation": "~5.4.6"
   },
 
@@ -24,7 +24,8 @@
     "jscrollpane":                "~2.0.14",
     "json2":                      "master",
     "jsrender":                   "master",
-    "masonry":                    "~3.1.5"
+    "masonry":                    "~3.1.5",
+    "webfontloader":              "~1.5.6"
   },
   "_recommendeScripts": {
     "cssua":     "https://bitbucket.org/mckamey/cssuseragent/raw/tip/cssua.js",
