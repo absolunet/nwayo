@@ -54,6 +54,8 @@ module.exports =
 		files.bower_styles    = "#{dir.bower}/**/*.{css,less,scss}"
 
 		config = {}
+		config.nwayo    = "#{dir.root}/.nwayorc"
+		config.package  = "#{dir.root}./package.json"
 		config.scsslint = "#{dir.root}/.scss-lint.yml"
 
 
