@@ -1,4 +1,4 @@
-# nwayo analyze <name>
+# nwayo analyze [<name>]
 
 module.exports = (app) ->
 	echo = console.log
