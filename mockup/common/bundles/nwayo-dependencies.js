@@ -9,7 +9,7 @@
 	//= require 'bower_components/kafe/dist/kafe'
 
 	global.nwayo = {
-		version: '/* @echo version */',
+		version: '3.0.0-alpha.1x',
 		vendor: {
 			jQuery:        global.jQuery.noConflict(true),
 			jQuery_Global: global.jQuery,
