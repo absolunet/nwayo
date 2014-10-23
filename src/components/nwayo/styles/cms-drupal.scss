@@ -1,0 +1,14 @@
+//-------------------------------------
+//-- Drupal
+//-------------------------------------
+
+//-- Show clogs
+.contextual-links-wrapper, .contextual-links-trigger { display: block;
+	a { transition: none; }
+}
+.contextual-links-wrapper {
+	.block-views > & { right: -35px; }
+}
+
+//-- Make video player display with the flow
+.mejs-video { display: inline-block; }

@@ -1,0 +1,85 @@
+// http://www.jshint.com/docs/options
+
+{
+  "curly": true,
+  "undef": true,
+  "unused": true,
+  "strict": true,
+  "predef": [ "document", "console", "global", "$", "$Global", "Modernizr", "_", "kafe", "nwayo", "app", "__" ]
+
+  /*
+
+  // enforcing options
+  "bitwise":   "",
+  "camelcase": "",
+  "curly": "",
+  "eqeqeq": "",
+  "es3": "",
+  "forin": "",
+  "freeze": "",
+  "immed": "",
+  "indent": "",
+  "latedef": "",
+  "newcap": "",
+  "noarg": "",
+  "noempty": "",
+  "nonbsp": "",
+  "nonew": "",
+  "plusplus": "",
+  "quotmark": "",
+  "undef": "",
+  "unused": "",
+  "strict": "",
+  "maxparams": "",
+  "maxdepth": "",
+  "maxstatements": "",
+  "maxcomplexity": "",
+  "maxlen": "",
+
+
+  // relaxing options
+  "asi": "",
+  "boss": "",
+  "debug": "",
+  "eqnull": "",
+  "esnext": "",
+  "evil": "",
+  "expr": "",
+  "funcscope": "",
+  "globalstrict": "",
+  "iterator": "",
+  "lastsemic": "",
+  "laxbreak": "",
+  "laxcomma": "",
+  "loopfunc": "",
+  "maxerr": "",
+  "moz": "",
+  "multistr": "",
+  "notypeof": "",
+  "proto": "",
+  "scripturl": "",
+  "shadow": "",
+  "sub": "",
+  "supernew": "",
+  "validthis": "",
+  "noyield": "",
+
+
+  // environments
+  "browser": "",
+  "couch": "",
+  "devel": "",
+  "dojo": "",
+  "jquery": "",
+  "mootools": "",
+  "node": "",
+  "nonstandard": "",
+  "phantom": "",
+  "prototypejs": "",
+  "rhino": "",
+  "worker": "",
+  "wsh": "",
+  "yui": ""
+
+  */
+}

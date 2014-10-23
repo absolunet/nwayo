@@ -1,2 +1,7 @@
+doc
 media
-src/tmpl
+test
+.editorconfig
+.travis.yml
+bower.json
+gulpfile.js
