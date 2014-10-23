@@ -1,0 +1,120 @@
+//-------------------------------------
+//-- Site layout
+//-------------------------------------
+
+//-- Base
+html { background-color: $bg-color; }
+body { font-family: $text-font; font-size: 16px; color: $text-color; line-height: 1.3; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+a { @extend %hover-transition; color: $link-color; text-decoration: none;
+	&:hover { color: $link-hover-color; text-decoration: underline; }
+}
+@include selection-mixin { color: $white; background-color: $black; }
+
+
+
+
+//-- Header
+.header { /* ... */ }
+
+
+//-- Fixed navigation
+.fixed-nav { /* ... */ }
+
+
+//-- Main navigation
+.main-nav { /* ... */ }
+
+
+//-- Body
+.body {
+
+
+	//-------------------------------------
+	//-- Patterns
+	//-------------------------------------
+
+
+	//-- Modernizr exceptions
+	//html.no-svg & { }
+	//html.no-gradient & { }
+
+
+	//-- Foundation media exceptions
+	//@media #{$medium-up} { }
+
+
+	//-- Colorscheme
+	//.Blocks {
+	//	@each $id, $data in $section-colorscheme {
+	//		$body:  map-get($data, body);
+	//		$class: map-get($data, class);
+	//		$base:  map-get($data, base);
+	//		$lite:  map-get($data, lite);
+	//		$dark:  map-get($data, dark);
+	//
+	//		body#{$body} & { background-color:$lite; }
+	//		&#{$class}     { color:$base; background-color:$dark; }
+	//
+	//		@if $id == beta {
+	//			&::before { content:'BETA'; }
+	//		}
+	//	}
+	//}
+	
+
+
+	// ----------------------------
+
+
+
+
+
+	#logo { @extend %misc-inline-image; transform: rotateY(180deg); }
+	#icon { @extend %icon-inline-image; }
+	#misc { @extend %misc-image; }
+	#logo2 { @extend %logo-image; }
+	#misc-hd { @extend %misc-hd-image; }
+
+	.f-lite { font-family: $alt-font; font-weight: $alt-lite-weight; }
+	.f-norm { font-family: $alt-font; }
+	.f-bold { font-family: $alt-font; font-weight: bold; }
+
+	.i-music::before { @extend %ico-font; content: $ico-music-char; }
+	.i-settings::before { @extend %ico-font; content: $ico-settings-char; }
+	.i-warning::before { @extend %ico-font; content: $ico-warning-char; }
+
+	.blocks {
+		@each $id, $data in $section-colorscheme {
+			$body:  map-get($data, body);
+			$class: map-get($data, class);
+			$base:  map-get($data, base);
+			$lite:  map-get($data, lite);
+			$dark:  map-get($data, dark);
+
+			body#{$body} & { background-color: $lite; }
+			&#{$class}     { color: $base; background-color: $dark; }
+
+			@if $id == beta {
+				&::before { content: 'BBB'; }
+			}
+		}
+	}
+
+
+
+
+
+}
+
+//-- Content
+.content { @extend %editable-styles;
+	/* ... */
+}
+
+
+//-- Lateral column
+.lateral-col { /* ... */ }
+
+
+//-- Footer
+.footer { /* ... */ }
