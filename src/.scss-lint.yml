@@ -7,6 +7,10 @@ exclude:
   - '**components/vendor-*'
 
 linters:
+  BangFormat:
+    enabled: true
+    space_before_bang: true
+    space_after_bang: false
 
   BorderZero:
     enabled: true
@@ -54,6 +58,11 @@ linters:
   IdWithExtraneousSelector:
     enabled: true
 
+  ImportPath:
+    enabled: true
+    leading_underscore: false
+    filename_extension: false
+
   Indentation:
     enabled: true
     character: tab
@@ -68,6 +77,9 @@ linters:
 
   NameFormat:
     enabled: hyphenated_lowercase
+
+  NestingDepth:
+    enabled: false
 
   PlaceholderInExtend:
     enabled: true
@@ -189,6 +201,12 @@ linters:
     #extra_properties:
     #  - lorem
 
+  QualifyingElement:
+    enabled: true
+    allow_with_attribute: true
+    allow_with_class: true
+    allow_with_id: false
+
   SelectorDepth:
     enabled: false
 
@@ -243,6 +261,10 @@ linters:
 
   UrlQuotes:
     enabled: true
+
+  VendorPrefixes:
+    enabled: true
+    identifier_list: base
 
   ZeroUnit:
     enabled: true
