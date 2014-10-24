@@ -1,0 +1,37 @@
+{
+  "config": {
+    "exclude": ["bower_components/**", "node_modules/**", "components/nwayo/**", "components/theme-*/**", "components/vendor-*/**"],
+    "verbose": true,
+
+    "always-semicolon": true,
+    "color-case": "lower",
+    "color-shorthand": false,
+    "element-case": "lower",
+    "eof-newline": true,
+    "leading-zero": false,
+    "quotes": "single",
+    "remove-empty-rulesets": true,
+    "sort-order": [ ["margin", "padding", "border", "background" ] ],
+    "space-after-colon": " ",
+    "space-after-combinator": " ",
+    "space-after-opening-brace": " ",
+    "space-after-selector-delimiter": " ",
+    "space-before-colon": "",
+    "space-before-combinator": " ",
+    "space-before-opening-brace": " ",
+    "space-before-selector-delimiter": "",
+    "space-between-declarations": " ",
+    "unitless-zero": true,
+
+
+    "__unused__" : {
+      "block-indent": "",
+      "space-before-closing-brace": "",
+      "sort-order-fallback": "",
+      "strip-spaces": "",
+      "tab-size": "",
+      "vendor-prefix-align": "",
+    }
+  }
+}
+
