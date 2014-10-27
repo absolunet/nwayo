@@ -3,7 +3,7 @@ sep = require('path').sep
 module.exports =
 
 	#-- paths
-	path: () ->
+	path: ->
 
 		dir = {}
 		dir.root           = '.'
@@ -67,7 +67,7 @@ module.exports =
 
 
 	#-- image optimization parameters
-	imagemin_params: () -> {
+	imagemin_params: -> {
 		optimizationLevel: 7
 		progressive: true
 		interlaced:  true
