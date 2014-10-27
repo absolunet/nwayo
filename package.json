@@ -15,10 +15,11 @@
   "scripts": { "test":  "mocha" },
 
   "devDependencies": {
-    "gulp":   "3.8.9",
-    "mocha":  "2.0.1",
-    "should": "4.1.0"
-  },
+    "gulp":            "3.8.9",
+    "mocha":           "2.0.1",
+    "should":          "4.1.0",
+    "stripcolorcodes": "0.1.0"
+ },
 
   "dependencies": {
     "lodash":        "2.4.1",

@@ -1,4 +1,10 @@
 #!/usr/bin/env node
 
+process.title = 'nwayo';
+
 require('coffee-script/register');
-require('../lib/cli.coffee');
+
+var minimist = require('minimist');
+var cli = require('../lib/cli');
+
+cli.argv( process.argv.slice(2), process.cwd() );
