@@ -20,8 +20,8 @@ module.exports = (app) ->
 			unavailable.push component if available.indexOf(component) is -1
 			exist.push component if fs.existsSync "#{app.cwd}/components/#{component}"
 
-		if unavailable.length then echo chalk.red "\n [Error] - Component(s) unavailable : #{unavailable}"
-		if exist.length then echo chalk.red "\n [Error] - Component(s) already installed : #{exist}"
+		if unavailable.length then app.error "[Error] - Component(s) unavailable : #{unavailable}"
+		if exist.length then app.error "[Error] - Component(s) already installed : #{exist}"
 
 
 		# let the downloading begin
@@ -43,43 +43,40 @@ module.exports = (app) ->
 
 
 
-	if app.projconf
+	# get component list from github
+	request {
+		url: "https://api.github.com/repos/#{repo}/contents/"
+		json: true
+		headers: { 'User-Agent': "nwayo/#{app.nwayopkg.version}" }
+	}, (error, response, body) ->
 
-		# get component list from github
-		request {
-			url: "https://api.github.com/repos/#{repo}/contents/"
-			json: true
-			headers: { 'User-Agent': "nwayo/#{app.nwayopkg.version}" }
-		}, (error, response, body) ->
+		if not error and response.statusCode is 200
 
-			if not error and response.statusCode is 200
+			# get all available components
+			available = []
+			available.push item.name for item in body when item.type is 'dir'
 
-				# get all available components
-				available = []
-				available.push item.name for item in body when item.type is 'dir'
+			if app.target?
 
-				if app.target?
+				get app.targets, available
 
-					get app.targets, available
+			else
 
-				else
+				# ask for components
+				inquirer = require 'inquirer'
 
-					# ask for components
-					inquirer = require 'inquirer'
+				choices = []
+				choices.push { name:component, value:component } for component in available
 
-					choices = []
-					choices.push { name:component, value:component } for component in available
-
-					echo ''
-					inquirer.prompt [{
-						name:    'components'
-						message: 'Which components do you want to install?'
-						type:    'checkbox'
-						choices: choices
-						validate: (data) -> if data.length then true else 'Please choose at least one component'
-					}], (data) -> get data.components, available
+				echo ''
+				inquirer.prompt [{
+					name:    'components'
+					message: 'Which components do you want to install?'
+					type:    'checkbox'
+					choices: choices
+					validate: (data) -> if data.length then true else 'Please choose at least one component'
+				}], (data) -> get data.components, available
 
 
-			else echo chalk.red "\n [Error fetching component list] - #{error || body.message || body}"
+		else app.error "[Error fetching component list] - #{error || body.message || body}"
 
-	else app.noproject()

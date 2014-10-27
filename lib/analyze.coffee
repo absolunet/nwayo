@@ -13,7 +13,7 @@ module.exports = (app) ->
 				david = require 'david'
 
 				echo ''
-				echo "   Analyzing #{app.projpkg.name.cyan} node dependencies"
+				echo "   Analyzing #{chalk.cyan app.projpkg.name} node dependencies"
 				echo ''
 				david.getUpdatedDependencies app.projpkg, dev:true, (er, deps) ->
 
@@ -24,6 +24,7 @@ module.exports = (app) ->
 						echo ''
 						echo "[#{name}] : #{chalk.red version.required} ➝  #{chalk.green version.stable}" for name, version of deps
 						echo ''
+						app.error
 
 					else
 						echo chalk.green '   You are cutting edge - Have a cat '
@@ -62,19 +63,25 @@ module.exports = (app) ->
 				echo ''
 				bower.commands.list().on 'end', (data) ->
 
-					found = false
+					outdated = []
+
 					for name, info of data.dependencies
-						if info.update and info.pkgMeta.version isnt info.update.latest
-							if not found
-								found = true
-								echo chalk.bgRed '                               '
-								echo chalk.bgRed '  You are a dull blade   ಠ_ಠ   '
-								echo chalk.bgRed '                               '
-								echo ''
+						if info.pkgMeta
+							if info.update and info.pkgMeta.version isnt info.update.latest
+								outdated.push "[#{name}] : #{chalk.red info.pkgMeta.version} ➝  #{chalk.green info.update.latest}"
+						else
+							outdated.push "[#{name}] : #{chalk.red 'Not installed'}"
 
-							echo "[#{name}] : #{chalk.red info.pkgMeta.version} ➝  #{chalk.green info.update.latest}"
 
-					if not found
+					if outdated.length
+						echo chalk.bgRed '                               '
+						echo chalk.bgRed '  You are a dull blade   ಠ_ಠ   '
+						echo chalk.bgRed '                               '
+						echo ''
+						echo text for text in outdated
+						app.error
+
+					else
 						echo chalk.green '   You are cutting edge - Have a bird '
 						echo ''
 						echo '                                             '
@@ -107,23 +114,20 @@ module.exports = (app) ->
 
 
 	# cli
-	if app.projconf
+	if app.target?
+		analyze app.target
+	else
 
-		if app.target?
-			analyze app.target
-		else
+		inquirer = require 'inquirer'
 
-			inquirer = require 'inquirer'
+		echo ''
+		inquirer.prompt [{
+			name:    'system'
+			message: 'What do you want to analyze?'
+			type:    'list'
+			choices: [
+				{ name:'Node modules dependencies status', value:'node' }
+				{ name:'Bower packages dependencies status', value:'bower' }
+			]
+		}], (data) -> analyze data.system
 
-			echo ''
-			inquirer.prompt [{
-				name:    'system'
-				message: 'What do you want to analyze?'
-				type:    'list'
-				choices: [
-					{ name:'Node modules dependencies status', value:'node' }
-					{ name:'Bower packages dependencies status', value:'bower' }
-				]
-			}], (data) -> analyze data.system
-
-	else app.noproject()
