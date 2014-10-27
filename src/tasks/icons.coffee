@@ -42,7 +42,7 @@ gulp.task 'icons_favicon', ->
 # https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/IconMatrix.html
 # https://developer.chrome.com/multidevice/android/installtohomescreen
 # http://operacoast.com/developer
-gulp.task 'icons_share', (() ->
+gulp.task 'icons_share', ( ->
 	tasks = []
 
 	for size in [
@@ -63,7 +63,7 @@ gulp.task 'icons_share', (() ->
 	]
 		task = "icons_share_#{size}"
 
-		gulp.task task, ((size) -> return () ->
+		gulp.task task, ((size) -> return ->
 			imagemin = require 'gulp-imagemin'
 			gm       = require 'gulp-gm'
 
@@ -96,7 +96,7 @@ gulp.task 'icons_share', (() ->
 #-- windows tile
 # http://msdn.microsoft.com/en-us/library/ie/dn455106(v=vs.85).aspx
 # http://msdn.microsoft.com/en-us/library/ie/bg183312(v=vs.85).aspx
-gulp.task 'icons_tile', (() ->
+gulp.task 'icons_tile', ( ->
 	tasks = []
 
 	for name, size of {
@@ -106,7 +106,7 @@ gulp.task 'icons_tile', (() ->
 	}
 		task = "icons_tile_#{name}"
 
-		gulp.task task, ((name, size) -> return () ->
+		gulp.task task, ((name, size) -> return ->
 			imagemin = require 'gulp-imagemin'
 			gm       = require 'gulp-gm'
 
