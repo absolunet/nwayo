@@ -3,8 +3,8 @@
 module.exports = (app) ->
 	echo = console.log
 
+
 	analyze = (module) ->
-		chalk = require 'chalk'
 
 		switch module
 
@@ -12,104 +12,89 @@ module.exports = (app) ->
 			when 'node'
 				david = require 'david'
 
-				echo ''
-				echo "   Analyzing #{chalk.cyan app.projpkg.name} node dependencies"
-				echo ''
+				reportTitle 'node'
+
+				data = outdated: []
 				david.getUpdatedDependencies app.projpkg, dev:true, (er, deps) ->
 
 					if Object.keys(deps).length
-						echo chalk.bgRed '                               '
-						echo chalk.bgRed '  You are a dull blade   ಠ_ಠ   '
-						echo chalk.bgRed '                               '
-						echo ''
-						echo "[#{name}] : #{chalk.red version.required} ➝  #{chalk.green version.stable}" for name, version of deps
-						echo ''
-						app.error
+						for name, version of deps
+							data.outdated.push {
+								name:    name
+								current: version.required
+								latest:  version.stable
+							}
 
 					else
-						echo chalk.green '   You are cutting edge - Have a cat '
-						echo ''
-						echo '                .               ,.                           '
-						echo '               T."-._..---.._,-"/|                           '
-						echo '               l|"-.  _.v._   (" |                           '
-						echo '               [l /.\'_ \\; _~"-.`-t                           '
-						echo '               Y " _(o} _{o)._ ^.|                           '
-						echo '               j  T  ,-<v>-.  T  ]                           '
-						echo '               \\  l ( /-^-\\ ) !  !                           '
-						echo '                \\. \\.  "~"  ./  /c-..,__                     '
-						echo '                  ^r- .._ .- .-"  `- .  ~"--.                '
-						echo '                   > \\.                      \\               '
-						echo '                   ]   ^.                     \\              '
-						echo '                   3  .  ">            .       Y             '
-						echo '      ,.__.--._   _j   \\ ~   .         ;       |             '
-						echo '     (    ~"-._~"^._\\   ^.    ^._      I     . l             '
-						echo '      "-._ ___ ~"-,_7    .Z-._   7"   Y      ;  \\        _   '
-						echo '         /"   "~-(r r  _/_--._~-/    /      /,.--^-._   / Y  '
-						echo '         "-._    \'"~~~>-._~]>--^---./____,.^~        ^.^  !  '
-						echo '             ~--._    \'   Y---.                        \\./   '
-						echo '                  ~~--._  l_   )                        \\    '
-						echo '                        ~-._~~~---._,____..---           \\   '
-						echo '                            ~----"~       \\                  '
-						echo '                                           \\                 '
-						echo '                                                             '
+						data.reward = 'cat'
+
+					report data
 
 
 			# nwayo analyze bower
 			when 'bower'
 				bower = require 'bower'
 
-				echo ''
-				echo "   Analyzing #{chalk.cyan app.projpkg.name} bower dependencies"
-				echo ''
-				bower.commands.list().on 'end', (data) ->
+				reportTitle 'bower'
 
-					outdated = []
+				data = outdated: []
+				bower.commands.list().on 'end', (deps) ->
 
-					for name, info of data.dependencies
+					for name, info of deps.dependencies
 						if info.pkgMeta
 							if info.update and info.pkgMeta.version isnt info.update.latest
-								outdated.push "[#{name}] : #{chalk.red info.pkgMeta.version} ➝  #{chalk.green info.update.latest}"
+								data.outdated.push {
+									name:    name
+									current: info.pkgMeta.version
+									latest:  info.update.latest
+								}
 						else
-							outdated.push "[#{name}] : #{chalk.red 'Not installed'}"
+							data.outdated.push {
+								name:    name
+								message: 'Not installed'
+							}
 
 
-					if outdated.length
-						echo chalk.bgRed '                               '
-						echo chalk.bgRed '  You are a dull blade   ಠ_ಠ   '
-						echo chalk.bgRed '                               '
-						echo ''
-						echo text for text in outdated
-						app.error
+					if not data.outdated.length
+						data.reward = 'bird'
 
-					else
-						echo chalk.green '   You are cutting edge - Have a bird '
-						echo ''
-						echo '                                             '
-						echo '                   _.----._                  '
-						echo '                 ,\'.::.--..:._               '
-						echo '                //:://_,-<o)::;_`-._         '
-						echo '               ::::::::`-\';\'`,--`-`          '
-						echo '               ;::;\'|::::,\',\'                '
-						echo '             ,\':://  ;::://, :.              '
-						echo '            //,\'://  //::;\' \ \':\              '
-						echo '           :\'.:: ,-\'\'   . `.::\               '
-						echo '           \.:;\':.    `    :: .:              '
-						echo '           (;\' ;;;       .::\' :|             '
-						echo '            \,:;;      \ `::.\.\                 '
-						echo '            `);\'        \'::\'  `:             '
-						echo '             \.  `        `\'  .:      _ ,\'    '
-						echo '              `.: ..  -. \' :. ://  _.-\' _.-  '
-						echo '                >;._.:._.;,-=_(.-\'  __ `._   '
-						echo '              ,;\'  _..-((((\'\'  .,-\'\'  `-._   '
-						echo '           _,\'<.-\'\'  _..``\'.\'`-\'`.        `  '
-						echo '       _.-((((_..--\'\'       \ \ `.`.           '
-						echo '     -\'  _.``\'               \      `         '
-						echo '       ,\'                                    '
-						echo '                                             '
-
-					echo ''
+					report data
 
 			else app.usage()
+
+
+
+	reportTitle = (type) ->
+		chalk = require 'chalk'
+		echo ''
+		echo "   Analyzing #{chalk.cyan app.projpkg.name} #{type} dependencies"
+		echo ''
+
+
+	report = (data) ->
+		chalk = require 'chalk'
+
+		if data.outdated.length
+			echo chalk.bgRed '                               '
+			echo chalk.bgRed '  You are a dull blade   ಠ_ಠ   '
+			echo chalk.bgRed '                               '
+			echo ''
+
+			for item in data.outdated
+				msg = if item.message then "#{chalk.red item.message}" else "#{chalk.red item.current} ➝  #{chalk.green item.latest}"
+				echo "[#{item.name}] : #{msg}"
+
+			app.error
+
+		else
+			fs = require 'fs'
+			echo chalk.green "   You are cutting edge - Have a #{data.reward}"
+			echo fs.readFileSync "#{__dirname}/../doc/rewards/#{data.reward}.txt", 'utf8'
+			echo ''
+
+
+
+
 
 
 
