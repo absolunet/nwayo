@@ -8,14 +8,22 @@
 
   "repository":  { "url":   "git://github.com/absolunet/nwayo.git", "type":"git" },
   "bugs":        { "url": "https://github.com/absolunet/nwayo/issues" },
-  "licenses":  [ { "url": "https://github.com/absolunet/nwayo/tree/master/LICENSE", "type":"MIT" } ],
+  "licenses":  [ { "url": "https://github.com/absolunet/nwayo/tree/master/LICENSE.md", "type":"MIT" } ],
 
   "bin":     { "nwayo": "bin/nwayo" },
   "engines": { "node":  ">= 0.10.33" },
-  "scripts": { "test":  "mocha" },
+  "scripts": {
+    "test":   "mocha",
+    "deploy": "gulp deploy",
+    "files":  "gulp files"
+  },
 
   "devDependencies": {
     "gulp":            "3.8.9",
+    "gulp-gh-pages":   "0.4.0",
+    "gulp-preprocess": "1.1.1",
+    "gulp-rename":     "1.2.0",
+
     "mocha":           "2.0.1",
     "should":          "4.1.0",
     "stripcolorcodes": "0.1.0"
@@ -25,15 +33,14 @@
     "lodash":        "2.4.1",
     "async":         "0.9.0",
     "adm-zip":       "0.4.4",
-    "preprocess":    "2.0.0",
     "execSync":      "1.0.2",
     "progress":      "1.1.8",
-    "grunt":         "0.4.5",
+    "preprocess":      "2.0.0",
 
 
-    "coffee-script": "1.8.0",
-    "request":       "2.47.0",
-    "minimist":      "1.1.0",
+    "coffee-script":   "1.8.0",
+    "minimist":        "1.1.0",
+    "request":         "2.47.0",
 
     "chalk":           "0.5.1",
     "inquirer":        "0.8.0",
@@ -41,7 +48,7 @@
     "download-status": "2.1.0",
     "gulp-ignore":     "1.2.1",
 
-    "david":       "5.0.0",
-    "bower":       "1.3.12"
+    "david":           "5.0.0",
+    "bower":           "1.3.12"
   }
 }

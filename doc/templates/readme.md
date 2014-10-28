@@ -11,7 +11,6 @@
 ## Installation
 ```
 > sudo npm install -g <!-- @echo package -->
-> <!-- @echo package -->
 ```
 
 <!-- @if !doc -->
