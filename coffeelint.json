@@ -39,7 +39,7 @@
     "__limitComments": true
   },
   "missing_fat_arrows": {
-    "level": "error"
+    "level": "ignore"
   },
   "newlines_after_classes": {
     "level": "error",
