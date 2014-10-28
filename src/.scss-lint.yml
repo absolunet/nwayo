@@ -87,113 +87,112 @@ linters:
   PropertySortOrder:
     enabled: false
     ignore_unspecified: false
+      - content
+      - quotes
 
-    ##  - content
-    ##  - quotes
+      - position
+      - top
+      - right
+      - bottom
+      - left
+      - z-index
 
-    ##  - position
-    ##  - z-index
-    ##  - top
-    ##  - right
-    ##  - bottom
-    ##  - left
+      - display
+      - float
+      - clear
+      - overflow
+      - visibility
+      - opacity
+      - list-style
+      - vertical-align
 
-    ##  - display
-    ##  - overflow
-    ##  - vertical-align
-    ##  - list-style
-    ##  - float
-    ##  - clear
-    ##  - visibility
-    ##  - opacity
+      - box-sizing
+      - width
+      - min-width
+      - max-width
+      - height
+      - min-height
+      - max-height
+      - padding
+      - padding-top
+      - padding-right
+      - padding-bottom
+      - padding-left
+      - border
+      - border-top
+      - border-right
+      - border-bottom
+      - border-left
+      - border-width
+      - border-top-width
+      - border-right-width
+      - border-bottom-width
+      - border-left-width
+      - border-style
+      - border-top-style
+      - border-right-style
+      - border-bottom-style
+      - border-left-style
+      - border-color
+      - border-top-color
+      - border-right-color
+      - border-bottom-color
+      - border-left-color
+      - border-radius
+      - border-top-left-radius
+      - border-top-right-radius
+      - border-bottom-left-radius
+      - border-bottom-right-radius
+      - margin
+      - margin-top
+      - margin-right
+      - margin-bottom
+      - margin-left
+      - outline
+      - box-shadow
 
-    ##  - box-sizing
-    ##  - width
-    ##  - min-width
-    ##  - max-width
-    ##  - height
-    ##  - min-height
-    ##  - max-height
-    ##  - padding
-    ##  - padding-top
-    ##  - padding-right
-    ##  - padding-bottom
-    ##  - padding-left
-    ##  - border
-    ##  - border-top
-    ##  - border-right
-    ##  - border-bottom
-    ##  - border-left
-    ##  - border-width
-    ##  - border-top-width
-    ##  - border-right-width
-    ##  - border-bottom-width
-    ##  - border-left-width
-    ##  - border-style
-    ##  - border-top-style
-    ##  - border-right-style
-    ##  - border-bottom-style
-    ##  - border-left-style
-    ##  - border-color
-    ##  - border-top-color
-    ##  - border-right-color
-    ##  - border-bottom-color
-    ##  - border-left-color
-    ##  - border-radius
-    ##  - border-top-left-radius
-    ##  - border-top-right-radius
-    ##  - border-bottom-left-radius
-    ##  - border-bottom-right-radius
-    ##  - margin
-    ##  - margin-top
-    ##  - margin-right
-    ##  - margin-bottom
-    ##  - margin-left
-    ##  - outline
-    ##  - box-shadow
+      - background
+      - background-color
+      - background-image
+      - background-repeat
+      - background-position
+      - background-size
 
-    ##  - background
-    ##  - background-color
-    ##  - background-image
-    ##  - background-repeat
-    ##  - background-position
-    ##  - background-size
+      - color
+      - font
+      - font-family
+      - font-size
+      - font-weight
+      - font-smoothing
+      - font-style
+      - text-align
+      - text-indent
+      - text-transform
+      - text-decoration
+      - text-rendering
+      - text-shadow
+      - text-overflow
+      - line-height
+      - word-spacing
+      - letter-spacing
+      - white-space
 
-    ##  - font
-    ##  - font-family
-    ##  - font-size
-    ##  - font-weight
-    ##  - font-smoothing
-    ##  - font-style
-    ##  - text-align
-    ##  - text-indent
-    ##  - text-transform
-    ##  - text-decoration
-    ##  - text-rendering
-    ##  - text-shadow
-    ##  - text-overflow
-    ##  - line-height
-    ##  - word-spacing
-    ##  - letter-spacing
-    ##  - white-space
-    ##  - color
+      - caption-side
+      - table-layout
+      - border-collapse
+      - border-spacing
+      - empty-cells
+      - columns
+      - column-gap
+      - column-fill
+      - column-rule
+      - column-span
+      - column-count
+      - column-width
 
-    ##  - caption-side
-    ##  - table-layout
-    ##  - border-collapse
-    ##  - border-spacing
-    ##  - empty-cells
-    ##  - columns
-    ##  - column-gap
-    ##  - column-fill
-    ##  - column-rule
-    ##  - column-span
-    ##  - column-count
-    ##  - column-width
-
-    ##  - transform
-    ##  - transition
-    ##  - cursor
+      - transform
+      - transition
+      - cursor
 
 
   PropertySpelling:
