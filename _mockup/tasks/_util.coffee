@@ -16,21 +16,19 @@ module.exports =
 		dir.build_images   = "#{dir.build}/images"
 		dir.build_scripts  = "#{dir.build}/scripts"
 		dir.build_styles   = "#{dir.build}/styles"
-		dir.common         = "#{dir.root}/common"
+		dir.bundles        = "#{dir.root}/bundles"
 		dir.components     = "#{dir.root}/components"
-		dir.bundles        = "#{dir.common}/bundles"
-		dir.sources        = "#{dir.root}/{common,components}"
-		dir.assets         = "#{dir.sources}/**/assets"
+		dir.assets         = "#{dir.components}/**/assets"
 		dir.fonts          = "#{dir.assets}/fonts"
 		dir.icons          = "#{dir.assets}/icons"
 		dir.images         = "#{dir.assets}/images"
 		dir.inline         = "#{dir.assets}/inline-images"
 		dir.raw            = "#{dir.assets}/raw"
-		dir.scripts        = "#{dir.sources}/**/scripts"
-		dir.scripts_nolint = "#{dir.sources}/{theme,vendor}-*/scripts"
-		dir.styles         = "#{dir.sources}/**/styles"
-		dir.styles_nolint  = "#{dir.sources}/{theme,vendor}-*/styles"
-		dir.templates      = "#{dir.sources}/**/templates"
+		dir.scripts        = "#{dir.components}/**/scripts"
+		dir.scripts_nolint = "#{dir.components}/{theme,vendor}-*/scripts"
+		dir.styles         = "#{dir.components}/**/styles"
+		dir.styles_nolint  = "#{dir.components}/{theme,vendor}-*/styles"
+		dir.templates      = "#{dir.components}/**/templates"
 		dir.bower          = "#{dir.root}/bower_components"
 
 		files = {}
@@ -54,7 +52,7 @@ module.exports =
 		files.bower_styles    = "#{dir.bower}/**/*.{css,less,scss}"
 
 		config = {}
-		config.nwayo    = "#{dir.root}/.nwayorc"
+		config.nwayo    = "#{dir.root}/.nwayokonfig"
 		config.package  = "#{dir.root}./package.json"
 		config.scsslint = "#{dir.root}/.scss-lint.yml"
 
@@ -88,7 +86,5 @@ module.exports =
 	#-- assets rename
 	assets_rename: (path) ->
 		elements = path.split sep
-		elements.shift() if elements[0] is 'components'
-		rest = elements.splice(3)
-		path = elements[2] + sep + elements[0] + sep + (rest.join sep)
+		path = elements[3] + sep + elements[1] + sep + (elements.slice(4).join sep)
 		return path

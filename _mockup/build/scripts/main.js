@@ -47,9 +47,9 @@
 	
 	app.tmpl.common_pouel = $.templates('common_pouel', 'POUEL2');
 
-	// [gulp-nwayo-include] -- Skipping 'common/templates/patate', already included.
+	// [gulp-nwayo-include] -- Skipping 'components/common/templates/patate', already included.
 
-	// [gulp-nwayo-include] -- Skipping 'common/templates/pouel', already included.
+	// [gulp-nwayo-include] -- Skipping 'components/common/templates/pouel', already included.
 
 	
 	(function(){
@@ -209,7 +209,7 @@
 	})();
 	
 
-	// [gulp-include] -- Skipping common/scripts/main, already included.
+	// [gulp-include] -- Skipping components/common/scripts/main, already included.
 
 	//-------------------------------------
 	//-- Utils
