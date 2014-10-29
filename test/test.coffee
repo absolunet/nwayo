@@ -11,8 +11,8 @@ expected = (name) -> fs.readFileSync "#{__dirname}/expected/#{name}.txt", 'utf8'
 runCLI = (cmd) ->
 	stripcolorcodes = require 'stripcolorcodes'
 
-	bk = console.log
 	out = []
+	bk = console.log
 	console.log = (str) -> out.push str
 
 	cli.argv cmd.split ' '

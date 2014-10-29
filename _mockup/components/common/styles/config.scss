@@ -1,15 +1,15 @@
 //-------------------------------------
-//-- Configuration settings 
+//-- Configuration settings
 //-------------------------------------
 
 //-- Webroot build path
 $build-path: '/mockup/build';
 
 //-- Dependencies
-@import 'common/styles/libs/utils';
+@import 'components/common/styles/libs/utils';
 
 
-//-- Palette & colors 
+//-- Palette & colors
 $grey-palette:  #cccccc;
 $red-palette:   #cc0000;
 $green-palette: #00cc00;

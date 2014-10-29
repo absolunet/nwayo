@@ -3,9 +3,9 @@
 //-------------------------------------
 
 //= require 'components/vendor-misc/scripts/jsrender'
-//= jshtml 'common/templates/*'
-//= jshtml 'common/templates/patate'
-//= jshtml 'common/templates/pouel'
+//= jshtml 'components/common/templates/*'
+//= jshtml 'components/common/templates/patate'
+//= jshtml 'components/common/templates/pouel'
 
 (function(){
 	'use strict';

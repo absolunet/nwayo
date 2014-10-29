@@ -7,7 +7,7 @@
 	$options: map-merge((type:default, color:transparent, position:center center, repeat:no-repeat, inline:false), $options);
 
 	$uri:  if(map-get($options, inline), inline-image('.nwayo-cache/inline-images/' + $context + '/' + $file), url($build-path + '/images/' + $context + '/' + $file));
-	$path: if($context != 'common', 'components/', '') + $context + '/assets/'+ if(map-get($options, inline), 'inline-', '') + 'images/' + $file;
+	$path: 'components/' + $context + '/assets/'+ if(map-get($options, inline), 'inline-', '') + 'images/' + $file;
 
 	$width:    if(map-has-key($options, width), map-get($options, width), image-width($path));
 	$height:   if(map-has-key($options, height), map-get($options, height), image-height($path));
@@ -35,7 +35,7 @@
 		font-family: $name;
 		src: url($url+'.eot');
 		src: url($url+'.eot?#iefix') format('embedded-opentype'),
-		     inline-font-files(if($context != 'common', 'components/', '') + $context + '/assets/fonts/' + $filename + '.woff'),
+		     inline-font-files('components/' + $context + '/assets/fonts/' + $filename + '.woff'),
 		     url($url+'.ttf') format('truetype');
 		font-weight: $weight;
 		font-style: $style;
@@ -66,7 +66,7 @@
 
 
 //-- Replace text
-@mixin replace-text-mixin ($width:auto, $height:auto) { 
+@mixin replace-text-mixin ($width:auto, $height:auto) {
 	display: block; overflow: hidden; width: $width; height: $height; text-align: left; white-space: nowrap; text-indent: 1000%;
 }
 
@@ -83,7 +83,7 @@
 		} @else {
 			border-top: $size solid $color;
 		}
-	
+
 	} @else if $direction == left or $direction == right {
 		width: $size; border-top: $size solid transparent; border-bottom: $size solid transparent;
 
