@@ -50,16 +50,32 @@ module.exports =
 
 	#-- Run
 	run: (task, context) ->
-		fs   = require 'fs'
-		base = "#{context.cwd}/node_modules/gulp"
+		fs     = require 'fs'
+		semver = require 'semver'
+
+		tool = if semver.lt context.conf.version, '2.2.0' then 'grunt' else 'gulp'
+		base = "#{context.cwd}/node_modules/#{tool}"
 
 		if fs.existsSync "#{base}/package.json"
-			pkg   = require "#{base}/package"
-			spawn = require('child_process').spawn
+			pkg = require "#{base}/package"
 
-			cmd = spawn "#{base}/#{pkg.bin.gulp}", [task], { env:process.env, stdio:'inherit' }
-			cmd.on 'close', (code) ->
-				if code and code is not 65
-					@echo code
+			switch tool
+
+				when 'gulp'
+					spawn = require('child_process').spawn
+
+					cmd = spawn "#{base}/#{pkg.bin.gulp}", [task], { env:process.env, stdio:'inherit' }
+					cmd.on 'close', (code) ->
+						if code and code is not 65
+							@echo code
+
+
+				when 'grunt'
+					grunt = require base
+
+					grunt.file.setBase context.cwd
+					grunt.config.set 'cwd', context.cwd
+					grunt.tasks [task]
+
 
 		else @error 'Build tool not found. Please run \'npm install\''

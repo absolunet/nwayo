@@ -41,6 +41,7 @@
     "minimist":        "1.1.0",
     "request":         "2.47.0",
     "execSync":        "1.0.2",
+    "semver":          "4.1.0",
 
     "chalk":           "0.5.1",
     "inquirer":        "0.8.0",
