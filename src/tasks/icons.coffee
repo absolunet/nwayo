@@ -67,7 +67,7 @@ gulp.task 'icons_share', ( ->
 			imagemin = require 'gulp-imagemin'
 			gm       = require 'gulp-gm'
 
-			return gulp.src path.files.icons_icon
+			return gulp.src path.files.icons_icon, base:path.dir.root
 				.pipe gm (gmfile, done) ->
 					gmfile.identify (err, info) ->
 						gmfile = util.gm_optimization gmfile.resize(size,size), info
@@ -110,7 +110,7 @@ gulp.task 'icons_tile', ( ->
 			imagemin = require 'gulp-imagemin'
 			gm       = require 'gulp-gm'
 
-			return gulp.src path.files.icons_tile
+			return gulp.src path.files.icons_tile, base:path.dir.root
 				.pipe gm (gmfile, done) ->
 					gmfile.identify (err, info) ->
 						util.gm_optimization gmfile.resize(size,size), info
@@ -130,7 +130,7 @@ gulp.task 'icons_tile', ( ->
 	imagemin = require 'gulp-imagemin'
 	gm       = require 'gulp-gm'
 
-	return gulp.src path.files.icons_tile
+	return gulp.src path.files.icons_tile, base:path.dir.root
 		.pipe gm (gmfile, done) ->
 			gmfile.identify (err, info) ->
 				gmfile = util.gm_optimization gmfile.resize(270,270), info
