@@ -42,7 +42,7 @@ module.exports =
 			chalk.yellow('nwayo version') + '             get cli version'
 			chalk.yellow('nwayo grow') + '                grow a new project'
 			''
-			"nwayo@#{@pkg.version} #{path.dirname __dirname}"
+			"nwayo@#{@pkg.version} #{path.normalize "#{__dirname}../../.."}"
 			''
 		].join '\n '
 
@@ -57,25 +57,30 @@ module.exports =
 		base = "#{context.cwd}/node_modules/#{tool}"
 
 		if fs.existsSync "#{base}/package.json"
-			pkg = require "#{base}/package"
+			bin = ''
+			arg = [task]
 
 			switch tool
 
 				when 'gulp'
-					spawn = require('child_process').spawn
-
-					cmd = spawn "#{base}/#{pkg.bin.gulp}", [task], { env:process.env, stdio:'inherit' }
-					cmd.on 'close', (code) ->
-						if code and code is not 65
-							@echo code
-
+					pkg = require "#{base}/package"
+					bin = "#{base}/#{pkg.bin.gulp}"
 
 				when 'grunt'
-					grunt = require base
+					grunt_cli = "#{__dirname}/../../node_modules/grunt-cli"
+					pkg = require "#{grunt_cli}/package"
 
-					grunt.file.setBase context.cwd
-					grunt.config.set 'cwd', context.cwd
-					grunt.tasks [task]
+					bin = "#{grunt_cli}/#{pkg.bin.grunt}"
+					arg.push '--gruntfile', "#{context.cwd}/gruntfile.js"
 
 
-		else @error 'Build tool not found. Please run \'npm install\''
+			spawn = require('child_process').spawn
+			cmd = spawn "#{bin}", arg, { env:process.env, stdio:'inherit' }
+			cmd.on 'close', (code) ->
+				if code and code is not 65
+					@echo code
+
+
+
+
+		else @error 'Build tool not found. Please run `npm install`'
