@@ -3,8 +3,8 @@
 //-------------------------------------
 
 //= **require     components/foo/scripts/bar
-//= **jshtml      common/templates/foobar
-//= **jshtml_tree common/templates
+//= **jshtml      components/common/templates/foobar
+//= **jshtml_tree components/common/templates
 
 (function(){
 	'use strict';

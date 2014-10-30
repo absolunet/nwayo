@@ -3,9 +3,9 @@
 //-------------------------------------
 
 //= **require     bower_components/foo/bar
-//= **require     common/scripts/foobar
-//= **jshtml      common/templates/foobar
-//= **jshtml_tree common/templates
+//= **require     components/common/scripts/foobar
+//= **jshtml      components/common/templates/foobar
+//= **jshtml_tree components/common/templates
 
 (function(){
 	'use strict';
