@@ -30,7 +30,8 @@ module.exports =
 
 				# get project config file
 				if fs.existsSync "#{context.cwd}/#{helper.configfile}"
-					context.conf = JSON.parse fs.readFileSync("#{context.cwd}/#{helper.configfile}")
+					CSON = require 'cson'
+					context.conf = CSON.parseSync fs.readFileSync("#{context.cwd}/#{helper.configfile}").toString()
 
 					# get project package.json file
 					if fs.existsSync "#{context.cwd}/package.json"
