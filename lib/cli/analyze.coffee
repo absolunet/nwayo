@@ -35,32 +35,38 @@ analyze = (context) ->
 
 		# nwayo analyze bower
 		when 'bower'
-			bower = require 'bower'
+			fs = require 'fs'
 
-			reportTitle 'bower', context.pkg.name
+			if bowerExists context
 
-			data = outdated: []
-			bower.commands.list().on 'end', (deps) ->
+				bower = require 'bower'
 
-				for name, info of deps.dependencies
-					if info.pkgMeta
-						if info.update and info.pkgMeta.version isnt info.update.latest
+				reportTitle 'bower', context.pkg.name
+
+				data = outdated: []
+				bower.commands.list().on 'end', (deps) ->
+
+					for name, info of deps.dependencies
+						if info.pkgMeta
+							if info.update and info.pkgMeta.version isnt info.update.latest
+								data.outdated.push {
+									name:    name
+									current: info.pkgMeta.version
+									latest:  info.update.latest
+								}
+						else
 							data.outdated.push {
 								name:    name
-								current: info.pkgMeta.version
-								latest:  info.update.latest
+								message: 'Not installed'
 							}
-					else
-						data.outdated.push {
-							name:    name
-							message: 'Not installed'
-						}
 
 
-				if not data.outdated.length
-					data.reward = 'bird'
+					if not data.outdated.length
+						data.reward = 'bird'
 
-				report data
+					report data
+
+			else helper.error 'No bower.json file found'
 
 		else helper.usage()
 
@@ -97,6 +103,10 @@ report = (data) ->
 		helper.echo fs.readFileSync "#{__dirname}/../text/reward-#{data.reward}.txt", 'utf8'
 		helper.echo ''
 
+#-- bowerExists
+bowerExists = (context) ->
+	fs = require 'fs'
+	return fs.existsSync "#{context.cwd}/bower.json"
 
 
 #-- PUBLIC
@@ -110,15 +120,15 @@ module.exports =
 		else
 			inquirer = require 'inquirer'
 
+			choices = [name:'Node modules dependencies status', value:'node']
+			choices.push { name:'Bower packages dependencies status', value:'bower'} if bowerExists(context)
+
 			helper.echo ''
 			inquirer.prompt [{
 				name:    'system'
 				message: 'What do you want to analyze?'
 				type:    'list'
-				choices: [
-					{ name:'Node modules dependencies status', value:'node' }
-					{ name:'Bower packages dependencies status', value:'bower' }
-				]
+				choices:  choices
 			}], (data) ->
 				context.target = data.system
 				analyze context
