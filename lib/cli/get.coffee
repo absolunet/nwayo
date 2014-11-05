@@ -49,44 +49,53 @@ module.exports =
 
 	#-- Run
 	run: (context) ->
-		request = require 'request'
+		semver = require 'semver'
 
-		# get component list from github
-		request {
-			url: "https://api.github.com/repos/#{REPO}/contents/"
-			json: true
-			headers: { 'User-Agent': "nwayo/#{helper.pkg.version}" }
-		}, (error, response, body) ->
+		if semver.gt context.conf.version, '2.2.0'
 
+			request = require 'request'
 
-			if not error and response.statusCode is 200
-
-				# get all available components
-				available = []
-				available.push item.name for item in body when item.type is 'dir'
-
-				# if selected components
-				if context.target?
-					get context, available
+			# get component list from github
+			request {
+				url: "https://api.github.com/repos/#{REPO}/contents/"
+				json: true
+				headers: { 'User-Agent': "nwayo/#{helper.pkg.version}" }
+			}, (error, response, body) ->
 
 
-				# ask for components
-				else
-					inquirer = require 'inquirer'
+				if not error and response.statusCode is 200
 
-					choices = []
-					choices.push { name:component, value:component } for component in available
+					# get all available components
+					available = []
+					available.push item.name for item in body when item.type is 'dir'
 
-					helper.echo ''
-					inquirer.prompt [{
-						name:    'components'
-						message: 'Which components do you want to install?'
-						type:    'checkbox'
-						choices: choices
-						validate: (data) -> if data.length then true else 'Please choose at least one component'
-					}], (data) ->
-						context.targets = data.components
+					# if selected components
+					if context.target?
 						get context, available
 
 
-			else helper.error "[Error fetching component list] - #{error || body.message || body}"
+					# ask for components
+					else
+						fs       = require 'fs'
+						inquirer = require 'inquirer'
+						chalk    = require 'chalk'
+
+						installed = fs.readdirSync "#{context.cwd}/components"
+
+						choices = []
+						choices.push { name:component, value:component, disabled:(if installed.indexOf(component) isnt -1 then chalk.green 'Installed' else false) } for component in available
+
+						helper.echo ''
+						inquirer.prompt [{
+							name:    'components'
+							message: 'Which components do you want to install?'
+							type:    'checkbox'
+							choices: choices
+							validate: (data) -> if data.length then true else 'Please choose at least one component'
+						}], (data) ->
+							context.targets = data.components
+							get context, available
+
+				else helper.error "[Error fetching component list] - #{error || body.message || body}"
+
+		else helper.error 'Components are not supported for versions lower than 3.0.0'
