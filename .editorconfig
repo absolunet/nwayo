@@ -4,24 +4,19 @@ root = true
 
 [*.{css,less,scss,coffee,js,html}]
 indent_style = tab
-indent_size = 4
-end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
 [*.md]
 indent_style = tab
-indent_size = 4
-end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = false
 insert_final_newline = true
 
-[{.bowerrc,.jshintrc,.scss-lint.yml,bower.json,package.json,.travis.yml}]
+[{.bowerrc,.editorconfig,.gitignore,.jshintrc,.npmignore,.scss-lint.yml,bower.json,coffeelint.json,config.rb,package.json,.travis.yml}]
 indent_style = space
 indent_size = 2
-end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true

@@ -1,6 +1,6 @@
 /* jshint ignore:start */
 
-(function(global, undefined) {
+(function ʃbundle_nwayodependencies(global, undefined) {
 
 	//= require bower_components/jquery/dist/jquery.min
 	//= require bower_components/lodash/dist/lodash.min
