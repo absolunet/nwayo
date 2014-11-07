@@ -5,7 +5,6 @@ fs   = require 'fs'
 util  = require './_util'
 path  = util.path()
 pkg   = require path.config.package
-nwayo = JSON.parse fs.readFileSync(path.config.nwayo)
 
 echo = console.log
 
@@ -33,7 +32,7 @@ gulp.task 'default', (cb) ->
 	inquirer    = require 'inquirer'
 
 	echo '\n'
-	echo " #{pkg.name} ".bgGreen.bold + "    [nwayo #{nwayo.version}]".yellow
+	echo " #{pkg.name} ".bgGreen.bold + "    [nwayo #{pkg.nwayo.version}]".yellow
 	echo ''
 
 	inquirer.prompt [

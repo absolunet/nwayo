@@ -3,6 +3,12 @@
   "description": " ",
   "repository":  {},
 
+  "nwayo": {
+    "version": "3.0.0-alpha.1x",
+    "cms":     "drupal",
+    "debug":   false
+  },
+
   "devDependencies": {
     "coffee-script": "1.8.0",
     "del":           "0.1.3",

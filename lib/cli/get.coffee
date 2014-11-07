@@ -51,7 +51,7 @@ module.exports =
 	run: (context) ->
 		semver = require 'semver'
 
-		if semver.gt context.conf.version, '2.2.0'
+		if semver.gt context.pkg.nwayo.version, '2.2.0'
 
 			request = require 'request'
 

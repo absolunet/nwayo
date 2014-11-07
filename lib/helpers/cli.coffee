@@ -6,8 +6,7 @@
 
 #-- PUBLIC
 module.exports =
-	pkg:        require '../../package'
-	configfile: '.nwayokonfig'
+	pkg: require '../../package'
 
 
 	#-- Echo
@@ -53,7 +52,7 @@ module.exports =
 		fs     = require 'fs'
 		semver = require 'semver'
 
-		tool = if semver.lt context.conf.version, '2.2.0' then 'grunt' else 'gulp'
+		tool = if semver.lt context.pkg.nwayo.version, '2.2.0' then 'grunt' else 'gulp'
 		base = "#{context.cwd}/node_modules/#{tool}"
 
 		if fs.existsSync "#{base}/package.json"

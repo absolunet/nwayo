@@ -1,0 +1,15 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "./"
+		},
+		
+		### TODO ###
+		{
+			"follow_symlinks": true,
+			"path": "../Views"
+		}
+	]
+}
