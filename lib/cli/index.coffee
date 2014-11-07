@@ -28,18 +28,14 @@ module.exports =
 			# if project command
 			if ['analyze','get','run','watch'].indexOf(context.command) isnt -1
 
-				# get project config file
-				if fs.existsSync "#{context.cwd}/#{helper.configfile}"
-					CSON = require 'cson'
-					context.conf = CSON.parseSync fs.readFileSync("#{context.cwd}/#{helper.configfile}").toString()
+				# get project package.json file
+				if fs.existsSync "#{context.cwd}/package.json"
+					context.pkg = require "#{context.cwd}/package"
 
-					# get project package.json file
-					if fs.existsSync "#{context.cwd}/package.json"
-						context.pkg = require "#{context.cwd}/package"
+					# check for nwayo config info
+					if not context.pkg.nwayo then helper.error "No nwayo config found"
 
-					else helper.error 'No package.json file found'
-
-				else helper.error "No #{helper.configfile} file found"
+				else helper.error 'No package.json file found'
 
 			require("../cli/#{context.command}").run context
 

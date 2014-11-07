@@ -25,6 +25,10 @@ gulp.task 'scripts_compile', ['scripts_lint'], ->
 	uglify    = require 'gulp-uglify'
 	ninclude  = require 'gulp-nwayo-include'
 
+
+	# get nwayo version and dump in js
+	# get project name and dump in js
+
 	return gulp.src path.files.bundles_scripts
 		.pipe include basePath: './', autoExtension:true
 		.pipe ninclude basePath: './'
