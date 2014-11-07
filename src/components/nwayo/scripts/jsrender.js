@@ -1,4 +1,4 @@
-(function() {
+(function ʃfile_nwayo_jsrender() {
 	/* jshint strict:false */
 
 	this.jQuery = $;

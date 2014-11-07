@@ -7,7 +7,7 @@
 //= **jshtml      components/common/templates/foobar
 //= **jshtml_tree components/common/templates
 
-(function(){
+(function ʃfile_common_main(){
 	'use strict';
 
 	var local = {};
@@ -50,7 +50,7 @@
 		// tmpl
 		/*
 		app.tmpl = app.tmpl || {};
-		$('script[type="text/x-jsrender"]').each(function () {
+		$('script[type="text/x-jsrender"]').each(function ʃloadtemplates() {
 			var id = $(this).attr('id');
 			app.tmpl[id.substring(7)] = $.templates('#'+id);
 		});
