@@ -2,10 +2,9 @@
 gulp = require 'gulp'
 fs   = require 'fs'
 
-util  = require './_util'
-path  = util.path()
-pkg   = require path.config.package
-
+util = require './_util'
+path = util.path
+pkg  = util.pkg
 echo = console.log
 
 

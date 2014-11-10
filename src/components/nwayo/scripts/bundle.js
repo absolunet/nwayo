@@ -2,16 +2,16 @@
 //-- Bundle starter kit
 //-------------------------------------
 
-/* jshint ignore:start */
+/* jshint -W098, -W079, strict:false */
 var nwayo     = global.nwayo;
 var jQuery    = nwayo.vendor.jQuery;
 var $         = nwayo.vendor.jQuery;
 var $Global   = nwayo.vendor.jQuery_Global;
 var Modernizr = nwayo.vendor.Modernizr;
 var _         = nwayo.vendor._;
-var app       = global.TODO = global.TODO || {};
+var app       = global.ΦΦnameΦΦ = global.ΦΦnameΦΦ || {};
 
-app.tmpl = app.tmpl || {}
+app.tmpl = app.tmpl || {};
 
 var __ = {
 	shortcut:    function(type,value) { return '[data-'+type+'="'+value+'"]'; },
@@ -21,4 +21,3 @@ var __ = {
 	field:       function() { return __.shortcut('field', arguments[0]); },
 	showfor:     function() { return __.shortcut('showfor', arguments[0]); }
 };
-/* jshint ignore:end */

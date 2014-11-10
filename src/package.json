@@ -6,7 +6,8 @@
   "nwayo": {
     "version": "3.0.0-alpha.1x",
     "cms":     "drupal",
-    "debug":   false
+    "debug":   false,
+    "token":   { }
   },
 
   "devDependencies": {
@@ -17,10 +18,11 @@
     "inquirer":      "0.8.0",
     "colors":        "1.0.3",
 
-    "gulp":            "3.8.10",
-    "gulp-debug":      "1.0.1",
-    "gulp-rename":     "1.2.0",
-    "run-sequence":    "1.0.1",
+    "gulp":         "3.8.10",
+    "gulp-debug":   "1.0.1",
+    "gulp-rename":  "1.2.0",
+    "gulp-replace": "0.5.0",
+    "run-sequence": "1.0.1",
 
     "gulp-gm":       "0.0.7",
     "gulp-imagemin": "1.2.1",

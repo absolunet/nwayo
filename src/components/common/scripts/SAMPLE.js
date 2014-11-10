@@ -6,7 +6,7 @@
 //= **jshtml      components/common/templates/foobar
 //= **jshtml_tree components/common/templates
 
-(function ʃfile_common_SAMPLE(){
+(function ʩfile_common_SAMPLE(){
 	'use strict';
 
 	var local = {};

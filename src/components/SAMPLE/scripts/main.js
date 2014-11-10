@@ -7,7 +7,7 @@
 //= **jshtml      components/foo/templates/foobar
 //= **jshtml_tree components/foo/templates
 
-(function ʃfile_SAMPLE_main(){
+(function ʩfile_SAMPLE_main(){
 	'use strict';
 
 	var local = {};
