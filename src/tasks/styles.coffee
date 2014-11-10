@@ -3,7 +3,7 @@ gulp   = require 'gulp'
 rename = require 'gulp-rename'
 
 util = require './_util'
-path = util.path()
+path = util.path
 
 
 
@@ -36,6 +36,7 @@ gulp.task 'styles_lint', ->
 gulp.task 'styles_compile', ['styles_lint'], ->
 	sass         = require 'gulp-ruby-sass'
 	autoprefixer = require 'gulp-autoprefixer'
+	replace      = require 'gulp-replace'
 	minifycss    = require 'gulp-minify-css'
 
 	return gulp.src path.files.bundles_styles
@@ -46,6 +47,7 @@ gulp.task 'styles_compile', ['styles_lint'], ->
 			trace: true
 			'sourcemap=none': true # horrible temporary patch
 		.pipe autoprefixer('last 2 versions', '> 1%', 'ie >= 9')
+		.pipe replace util.token_regexp, util.token_replace
 #		.pipe minifycss()
 		.pipe gulp.dest path.dir.build_styles
 

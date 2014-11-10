@@ -1,4 +1,4 @@
-(function ʃbundle_main(global, undefined) {
+(function ʩbundle_main(global, undefined) {
 
 	//= require components/nwayo/scripts/bundle
 

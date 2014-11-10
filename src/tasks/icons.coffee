@@ -3,7 +3,7 @@ gulp   = require 'gulp'
 rename = require 'gulp-rename'
 
 util  = require './_util'
-path  = util.path()
+path  = util.path
 
 
 # https://github.com/gleero/grunt-favicons

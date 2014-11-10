@@ -1,6 +1,6 @@
-/* jshint ignore:start */
+/* jshint -W117, strict:false */
 
-(function ʃbundle_nwayodependencies(global, undefined) {
+(function ʩbundle_nwayodependencies(global, undefined) {
 
 	//= require bower_components/jquery/dist/jquery.min
 	//= require bower_components/lodash/dist/lodash.min
@@ -9,7 +9,7 @@
 	//= require bower_components/kafe/dist/kafe
 
 	global.nwayo = {
-		version: 'TODO',
+		version: 'ΦΦversionΦΦ',
 		vendor: {
 			jQuery:        global.jQuery.noConflict(true),
 			jQuery_Global: global.jQuery,
@@ -20,4 +20,3 @@
 
 })(typeof window !== 'undefined' ? window : this);
 
-/* jshint ignore:end */

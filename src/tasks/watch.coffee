@@ -1,7 +1,7 @@
 gulp = require 'gulp'
 
 util = require './_util'
-path = util.path()
+path = util.path
 
 
 

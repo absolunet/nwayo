@@ -3,7 +3,7 @@ gulp   = require 'gulp'
 rename = require 'gulp-rename'
 
 util = require './_util'
-path = util.path()
+path = util.path
 
 
 
@@ -21,17 +21,15 @@ gulp.task 'scripts_lint', ->
 
 #-- Compile
 gulp.task 'scripts_compile', ['scripts_lint'], ->
-	include   = require 'gulp-include'
-	uglify    = require 'gulp-uglify'
-	ninclude  = require 'gulp-nwayo-include'
-
-
-	# get nwayo version and dump in js
-	# get project name and dump in js
+	include  = require 'gulp-include'
+	ninclude = require 'gulp-nwayo-include'
+	replace  = require 'gulp-replace'
+	uglify   = require 'gulp-uglify'
 
 	return gulp.src path.files.bundles_scripts
 		.pipe include basePath: './', autoExtension:true
 		.pipe ninclude basePath: './'
+		.pipe replace util.token_regexp, util.token_replace
 		#.pipe uglify()
 		.pipe gulp.dest path.dir.build_scripts
 
