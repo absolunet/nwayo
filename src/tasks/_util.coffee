@@ -3,7 +3,7 @@ util = {}
 
 
 #-- paths
-util.path = ( ()->
+util.path = ( ->
 
 	dir = {}
 	dir.root           = '.'
@@ -48,6 +48,7 @@ util.path = ( ()->
 	files.scripts_lint    = [files.bundles_scripts, files.scripts, "!#{dir.scripts_nolint}/**/*"]
 	files.styles          = "#{dir.styles}/**/*.scss"
 	files.styles_lint     = [files.bundles_styles, files.styles, "!#{dir.styles_nolint}/**/*"]
+	files.templates       = "#{dir.templates}/**/*.jshtml"
 	files.bower_scripts   = "#{dir.bower}/**/*.js"
 	files.bower_styles    = "#{dir.bower}/**/*.{css,less,scss}"
 

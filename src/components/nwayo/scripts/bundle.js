@@ -8,7 +8,7 @@ var jQuery    = nwayo.vendor.jQuery;
 var $         = nwayo.vendor.jQuery;
 var $Global   = nwayo.vendor.jQuery_Global;
 var Modernizr = nwayo.vendor.Modernizr;
-var _         = nwayo.vendor._;
+var _         = nwayo.vendor.LoDash;
 var app       = global.ΦΦnameΦΦ = global.ΦΦnameΦΦ || {};
 
 app.tmpl = app.tmpl || {};
