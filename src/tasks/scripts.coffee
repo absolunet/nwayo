@@ -21,14 +21,12 @@ gulp.task 'scripts_lint', ->
 
 #-- Compile
 gulp.task 'scripts_compile', ['scripts_lint'], ->
-	include  = require 'gulp-include'
-	ninclude = require 'gulp-nwayo-include'
-	replace  = require 'gulp-replace'
-	uglify   = require 'gulp-uglify'
+	include = require 'gulp-nwayo-include'
+	replace = require 'gulp-replace'
+	uglify  = require 'gulp-uglify'
 
 	return gulp.src path.files.bundles_scripts
 		.pipe include basePath: './', autoExtension:true
-		.pipe ninclude basePath: './'
 		.pipe replace util.token_regexp, util.token_replace
 		#.pipe uglify()
 		.pipe gulp.dest path.dir.build_scripts
