@@ -19,12 +19,12 @@
 	// high density
 	@if str-index($file, '@2x') {
 		@media print, (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
-			background-image: $uri; background-size: $width/2 $height/2;
+			background-image:$uri; background-size:$width/2 $height/2;
 		}
 		$uri: strreplace($uri, '@2x', '');
 	}
 
-	width: $width; height: $height; background: $color #{$uri} $position $repeat;
+	width:$width; height:$height; background:$color #{$uri} $position $repeat;
 }
 
 
@@ -32,13 +32,13 @@
 @mixin load-font-mixin ($name, $filename, $context, $weight:normal, $style:normal) {
 	$url: $build-path + '/fonts/' + $context + '/' + $filename;
 	@font-face {
-		font-family: $name;
-		src: url($url+'.eot');
-		src: url($url+'.eot?#iefix') format('embedded-opentype'),
+		font-family:$name;
+		src:url($url+'.eot');
+		src:url($url+'.eot?#iefix') format('embedded-opentype'),
 		     inline-font-files('components/' + $context + '/assets/fonts/' + $filename + '.woff'),
 		     url($url+'.ttf') format('truetype');
-		font-weight: $weight;
-		font-style: $style;
+		font-weight:$weight;
+		font-style:$style;
 	}
 }
 
@@ -67,30 +67,30 @@
 
 //-- Replace text
 @mixin replace-text-mixin ($width:auto, $height:auto) {
-	display: block; overflow: hidden; width: $width; height: $height; text-align: left; white-space: nowrap; text-indent: 1000%;
+	display:block; overflow:hidden; width:$width; height:$height; text-align:left; white-space:nowrap; text-indent:1000%;
 }
 
 
 //-- Arrow
 @mixin arrow-mixin ($direction:right, $size:10px, $color:$black) {
-	display: inline-block; border: 0;
+	display:inline-block; border:0;
 
 	@if $direction == up or $direction == down {
-		height: $size; border-left: $size solid transparent; border-right: $size solid transparent;
+		height:$size; border-left:$size solid transparent; border-right:$size solid transparent;
 
 		@if $direction == up {
-			border-bottom: $size solid $color;
+			border-bottom:$size solid $color;
 		} @else {
-			border-top: $size solid $color;
+			border-top:$size solid $color;
 		}
 
 	} @else if $direction == left or $direction == right {
-		width: $size; border-top: $size solid transparent; border-bottom: $size solid transparent;
+		width:$size; border-top:$size solid transparent; border-bottom:$size solid transparent;
 
 		@if $direction == left {
-			border-right: $size solid $color;
+			border-right:$size solid $color;
 		} @else {
-			border-left: $size solid $color;
+			border-left:$size solid $color;
 		}
 	}
 }
