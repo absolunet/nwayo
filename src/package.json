@@ -4,7 +4,7 @@
   "repository":  {},
 
   "nwayo": {
-    "version": "3.0.0-alpha.1x",
+    "version": "3.0.0-alpha.2",
     "cms":     "drupal",
     "debug":   false,
     "token":   { }
