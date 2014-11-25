@@ -75,7 +75,7 @@
 		app.dom.body
 
 			// external links
-			.on('click', 'a[data-external="true"]', function() {
+			.on('click', 'a[data-external]', function() {
 				$(this).attr('target', '_blank');
 			})
 

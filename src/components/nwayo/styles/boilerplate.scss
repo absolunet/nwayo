@@ -2,11 +2,11 @@
 //-- Boilerplate
 //-------------------------------------
 
-body { width: auto; }
+body { width:auto; }
 
-h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: normal; font-size: 100%; }
-em { font-style: italic; }
+h1, h2, h3, h4, h5, h6 { margin:0; font-weight:normal; font-size:100%; }
+em { font-style:italic; }
 
-blockquote, dd, dl, fieldset, menu, ol, p, pre, ul { margin: 0; padding: 0; border: 0; }
+blockquote, dd, dl, fieldset, menu, ol, p, pre, ul { margin:0; padding:0; border:0; }
 
-#{$textfields-selector}, select { box-sizing: content-box; }
+#{$textfields-selector}, select { box-sizing:content-box; }
