@@ -40,6 +40,7 @@ module.exports =
 			chalk.underline 'Global commands'
 			chalk.yellow('nwayo version') + '             get cli version'
 			chalk.yellow('nwayo grow') + '                grow a new project'
+			chalk.yellow('nwayo pronounce') + '           how to pronounce'
 			''
 			"nwayo@#{@pkg.version} #{path.normalize "#{__dirname}../../.."}"
 			''
