@@ -21,13 +21,14 @@ analyze = (context) ->
 
 				if Object.keys(deps).length
 					for name, version of deps
-						data.outdated.push {
-							name:    name
-							current: version.required
-							latest:  version.stable
-						}
+						if version.required is not version.stable
+							data.outdated.push {
+								name:    name
+								current: version.required
+								latest:  version.stable
+							}
 
-				else
+				if not data.outdated.length
 					data.reward = 'cat'
 
 				report data

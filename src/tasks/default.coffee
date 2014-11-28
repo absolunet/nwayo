@@ -51,4 +51,4 @@ gulp.task 'default', (cb) ->
 		}
 	], (data) ->
 		echo '\n\n'
-		runsequence task, cb
+		runsequence data.task, cb
