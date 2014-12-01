@@ -10,7 +10,7 @@ path = util.path
 
 #-- Fonts copy
 gulp.task 'assets_fonts', ->
-	return gulp.src path.files.fonts_copy, base:path.dir.root
+	return gulp.src path.files.fonts, base:path.dir.root
 		.pipe rename (path) -> path.dirname = util.assets_rename path.dirname; return
 		.pipe gulp.dest path.dir.build
 

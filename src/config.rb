@@ -20,6 +20,9 @@ module Sass::Script::Functions
   end
   declare :strreplace, [:string, :find, :replace]
 
-
+  def fileexists(file)
+    Sass::Script::Bool.new(File.exists?(file.value))
+  end
+  declare :fileexists, [:string]
 
 end

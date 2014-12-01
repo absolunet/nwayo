@@ -2,3 +2,18 @@
 //-- Utils: Functions
 //-------------------------------------
 
+@function color-diff($color-a, $color-b) {
+	$hue: hue($color-a) - hue($color-b);
+	$saturation: saturation($color-a) - saturation($color-b);
+	$lightness: lightness($color-a) - lightness($color-b);
+
+	$function-hue: 'adjust-hue';
+	$function-saturation: if($saturation > 0, 'desaturate', 'saturate');
+	$function-lightness: if($lightness > 0, 'darken', 'lighten');
+
+	@return (
+		#{$function-hue}#{'('}#{$function-saturation}#{'('}#{$function-lightness}#{'(XXX, '}abs($lightness)#{'),'}
+		abs($saturation)#{'),'}
+		(-$hue)#{')'}
+	);
+}

@@ -3,27 +3,54 @@
 //-------------------------------------
 
 //-- Base
-html { background-color:$bg-color; }
-body { color:$text-color; font-family:$text-font; font-size:16px; text-rendering:optimizeLegibility; line-height:1.3; -webkit-font-smoothing:antialiased; }
-a { @extend %hover-transition; color:$link-color; text-decoration:none;
-	&:hover { color:$link-hover-color; text-decoration:underline; }
+html {
+	background-color: $bg-color;
 }
-@include selection-mixin { background-color:$black; color:$white; }
+body {
+	color: $text-color;
+	font-family: $text-font;
+	font-size: 16px;
+	text-rendering: optimizeLegibility;
+	line-height: 1.3;
+
+	-webkit-font-smoothing: antialiased;
+}
+a {
+	@extend %hover-transition;
+	color: $link-color;
+	text-decoration: none;
+	&:hover {
+		color: $link-hover-color;
+		text-decoration: underline;
+	}
+}
+@include selection-mixin {
+	background-color: $black;
+	color: $white;
+}
+
 
 
 
 
 
 //-- Header
-.header { /* ... */ }
+.header {
+	/* ... */
+}
 
 
 //-- Fixed navigation
-.fixed-nav { /* ... */ }
+.fixed-nav {
+	/* ... */
+}
 
 
 //-- Main navigation
-.main-nav { /* ... */ }
+.main-nav {
+	/* ... */
+}
+
 
 
 //-- Body
@@ -70,14 +97,20 @@ a { @extend %hover-transition; color:$link-color; text-decoration:none;
 }
 
 //-- Content
-.content { @extend %editable-styles;
+.content {
+	@extend %editable-styles;
 	/* ... */
 }
 
 
 //-- Lateral column
-.lateral-col { /* ... */ }
+.lateral-col {
+	/* ... */
+}
 
 
 //-- Footer
-.footer { /* ... */ }
+.footer {
+	/* ... */
+}
+

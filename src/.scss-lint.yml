@@ -226,7 +226,7 @@ linters:
 
   SpaceAfterPropertyColon:
     enabled: true
-    style: no_space
+    style: one_space
 
   SpaceAfterPropertyName:
     enabled: true
