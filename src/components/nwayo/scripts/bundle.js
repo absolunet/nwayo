@@ -6,7 +6,7 @@
 var nwayo     = global.nwayo;
 var jQuery    = nwayo.vendor.jQuery;
 var $         = nwayo.vendor.jQuery;
-var $Global   = nwayo.vendor.jQuery_Global;
+var $Global   = nwayo.vendor.jQueryGlobal;
 var Modernizr = nwayo.vendor.Modernizr;
 var _         = nwayo.vendor.LoDash;
 var app       = global.ΦΦnameΦΦ = global.ΦΦnameΦΦ || {};
