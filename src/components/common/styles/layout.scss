@@ -24,7 +24,7 @@ a {
 		text-decoration: underline;
 	}
 }
-@include selection-mixin {
+::selection {
 	background-color: $black;
 	color: $white;
 }

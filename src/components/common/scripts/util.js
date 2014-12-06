@@ -6,7 +6,7 @@
 //= **jshtml      components/common/templates/foobar
 //= **jshtml_tree components/common/templates
 
-(function ʩfile_common_util(){
+(function ʩfileCommonUtil(){
 	'use strict';
 
 	app.util = {};

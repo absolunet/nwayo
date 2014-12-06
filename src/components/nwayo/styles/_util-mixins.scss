@@ -48,18 +48,10 @@
 }
 
 
-//-- Selection
-@mixin selection-mixin () {
-	::-moz-selection { @content; }
-	::selection { @content; }
-}
-
-
 //-- Placeholder
 @mixin placeholder-mixin () {
 	input.placeholder { @content; }
-	input::-webkit-input-placeholder { @content; }
-	input::-moz-placeholder { @content; }
+	input::placeholder { @content; }
 }
 
 

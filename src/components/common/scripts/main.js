@@ -7,7 +7,7 @@
 //= **jshtml      components/common/templates/foobar
 //= **jshtml_tree components/common/templates
 
-(function ʩfile_common_main(){
+(function ʩfileCommonMain(){
 	'use strict';
 
 	var local = {};
@@ -116,7 +116,7 @@
 	local.start = function() {
 
 		// svg replacement
-		if(!Modernizr.svg) {
+		if (!Modernizr.svg) {
 			$('img[src*="svg"]').attr('src', function() {
 				return $(this).attr('src').replace('.svg', '.png');
 			});

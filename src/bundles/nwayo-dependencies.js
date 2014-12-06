@@ -1,6 +1,6 @@
 /* jshint -W117, strict:false */
 
-(function ʩbundle_nwayodependencies(global, undefined) {
+(function ʩbundleNwayodependencies(global, undefined) {
 
 	//= require bower_components/jquery/dist/jquery.min
 	//= require bower_components/lodash/dist/lodash.min
@@ -11,10 +11,10 @@
 	global.nwayo = {
 		version: 'ΦΦversionΦΦ',
 		vendor: {
-			jQuery:        global.jQuery.noConflict(true),
-			jQuery_Global: global.jQuery,
-			Modernizr:     global.Modernizr,
-			LoDash:        global._
+			jQuery:       global.jQuery.noConflict(true),
+			jQueryGlobal: global.jQuery,
+			Modernizr:    global.Modernizr,
+			LoDash:       global._
 		}
 	};
 
