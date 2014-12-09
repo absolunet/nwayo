@@ -1,6 +1,6 @@
  {
   "name":        "nwayo",
-  "version":     "3.0.0-alpha.2x",
+  "version":     "3.0.0-alpha.3",
   "description": "A modern website boilerplate",
   "definition":  "/nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.",
   "homepage":    "http://absolunet.github.io/nwayo",
@@ -21,11 +21,11 @@
   "devDependencies": {
     "gulp":            "3.8.10",
     "gulp-gh-pages":   "0.4.0",
-    "gulp-preprocess": "1.1.1",
+    "gulp-preprocess": "1.2.0",
     "gulp-rename":     "1.2.0",
 
     "mocha":           "2.0.1",
-    "should":          "4.2.1",
+    "should":          "4.3.1",
     "stripcolorcodes": "0.1.0"
  },
 
@@ -38,7 +38,7 @@
     "coffee-script":   "1.8.0",
     "lodash":          "2.4.1",
     "minimist":        "1.1.0",
-    "request":         "2.47.0",
+    "request":         "2.49.0",
     "execSync":        "1.0.2",
     "semver":          "4.1.0",
 

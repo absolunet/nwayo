@@ -21,7 +21,7 @@ analyze = (context) ->
 
 				if Object.keys(deps).length
 					for name, version of deps
-						if version.required is not version.stable
+						if version.required isnt version.stable
 							data.outdated.push {
 								name:    name
 								current: version.required
