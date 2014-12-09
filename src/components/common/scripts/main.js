@@ -115,6 +115,11 @@
 	//-- To execute on start
 	local.start = function() {
 
+		// foundation
+		// app.dom.document.foundation();
+		// $Global(document).foundation();
+
+
 		// svg replacement
 		if (!Modernizr.svg) {
 			$('img[src*="svg"]').attr('src', function() {

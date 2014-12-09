@@ -31,9 +31,9 @@ $error-bg-color:   lighten($error-text-color, 20%);
 
 $section-colorscheme: (
 	default: (body:'',               class:'',       base:#888888, lite:#dddddd, dark:#333333),
-	alpha:   (body:'.section-alpha', class:'.Alpha', base:#880000, lite:#dd0000, dark:#330000),
-	beta:    (body:'.section-beta',  class:'.Beta',  base:#008800, lite:#00dd00, dark:#003300),
-	gamma:   (body:'.section-gamma', class:'.Gamma', base:#000088, lite:#0000dd, dark:#000033),
+	alpha:   (body:'.section-alpha', class:'.alpha', base:#880000, lite:#dd0000, dark:#330000),
+	beta:    (body:'.section-beta',  class:'.beta',  base:#008800, lite:#00dd00, dark:#003300),
+	gamma:   (body:'.section-gamma', class:'.gamma', base:#000088, lite:#0000dd, dark:#000033),
 );
 
 
@@ -52,12 +52,11 @@ $alt-lite-weight: 300;
 %ico-font {
 	font-family: 'icomoon';
 	font-weight: normal !important;
+	-webkit-font-smoothing: antialiased !important;
 	font-style: normal !important;
 	text-transform: none !important;
 	line-height: 1 !important;
-
 	font-variant: normal !important;
-	-webkit-font-smoothing: antialiased !important;
 }
 $ico-music-char:    'm';
 $ico-settings-char: 's';
