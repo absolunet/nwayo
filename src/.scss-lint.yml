@@ -85,8 +85,9 @@ linters:
     enabled: true
 
   PropertySortOrder:
-    enabled: false
+    enabled: true
     ignore_unspecified: false
+    order:
       - content
       - quotes
 

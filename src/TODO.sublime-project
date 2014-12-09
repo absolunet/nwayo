@@ -5,11 +5,23 @@
 			"follow_symlinks": true,
 			"path": "./"
 		},
-		
+
 		### TODO ###
 		{
 			"follow_symlinks": true,
 			"path": "../Views"
+		}
+
+		"settings": {
+			"todoreview": {
+				"exclude_folders": [
+					"*.git*",
+					"*nwayo/.nwayo-cache*",
+					"*nwayo/build*",
+					"*nwayo/bower_components*",
+					"*nwayo/node_modules*"
+				]
+			}
 		}
 	]
 }
