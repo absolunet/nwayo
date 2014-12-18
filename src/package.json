@@ -35,7 +35,7 @@
 
     "gulp-jshint":        "1.9.0",
     "jshint-stylish":     "1.0.0",
-    "gulp-nwayo-include": "0.2.0",
+    "gulp-nwayo-include": "0.2.1",
     "gulp-uglify":        "1.0.2"
   }
 }
