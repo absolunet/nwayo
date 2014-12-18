@@ -1,7 +1,7 @@
 // http://www.jshint.com/docs/options
 {
   // change to globals
-  "predef": [ "document", "console", "global", "$", "$Global", "Modernizr", "_", "kafe", "nwayo", "app", "__" ],
+  "predef": [ "document", "console", "alert", "global", "$", "$Global", "Modernizr", "_", "kafe", "nwayo", "app", "__" ],
 
   // enforcing options
   "bitwise":       true,
@@ -52,7 +52,7 @@
   "proto":         false,
   "scripturl":     false,
   "shadow":        false,
-  "sub":           false,
+  "sub":           true,
   "supernew":      false,
   "validthis":     false,
   "noyield":       false
