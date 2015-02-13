@@ -74,7 +74,7 @@ module.exports =
 					arg.push '--gruntfile', "#{context.cwd}/gruntfile.js"
 
 
-			spawn = require('child_process').spawn
+			spawn = require('win-spawn')
 			cmd = spawn "#{bin}", arg, { env:process.env, stdio:'inherit' }
 			cmd.on 'close', (code) ->
 				if code and code is not 65

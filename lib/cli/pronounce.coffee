@@ -10,6 +10,10 @@ module.exports =
 
 	#-- Run
 	run: (context) ->
-		spawn = require('child_process').spawn
 
-		spawn 'say', ['nwaw','yo']
+		helper.echo '/nwajo/'
+
+		if process.platform is 'darwin'
+
+			spawn = require('child_process').spawn
+			spawn 'say', ['nwaw','yo']
