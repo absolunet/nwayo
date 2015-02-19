@@ -3,20 +3,14 @@
 //-------------------------------------
 
 //-- Background image
-@mixin bg-image-mixin ($file, $context, $options:()) {
-	$options: map-merge((type:default, color:transparent, position:center center, repeat:no-repeat, inline:false), $options);
-
-	$uri:      if(map-get($options, inline), inline-image('.nwayo-cache/inline-images/' + $context + '/' + $file), url($build-path + '/images/' + $context + '/' + $file));
-	$color:    map-get($options, color);
-	$position: map-get($options, position);
-	$repeat:   map-get($options, repeat);
-
+@mixin bg-image-mixin ($file, $context, $inline:false, $width:false, $height:false) {
+	$uri: if($inline, inline-image('.nwayo-cache/inline-images/' + $context + '/' + $file), url($build-path + '/images/' + $context + '/' + $file));
 
 	// high density
 	@if str-index($file, '@2x') {
-		$path:   'components/' + $context + '/assets/'+ if(map-get($options, inline), 'inline-', '') + 'images/' + $file;
-		$width:  if(map-has-key($options, width), map-get($options, width), image-width($path));
-		$height: if(map-has-key($options, height), map-get($options, height), image-height($path));
+		$path: 'components/' + $context + '/assets/'+ if($inline, 'inline-', '') + 'images/' + $file;
+		$width:  if($width, $width, image-width($path));
+		$height: if($height, $height, image-height($path));
 
 		@media print, (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
 			background-image: $uri;
@@ -25,7 +19,16 @@
 		$uri: strreplace($uri, '@2x', '');
 	}
 
-	background: $color #{$uri} $position $repeat;
+	background-image: #{$uri};
+}
+
+
+//-- Scalable icon
+@mixin scalable-icon-mixin ($file, $context) {
+	@include bg-image-mixin($file, $context, $inline:true);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: contain;
 }
 
 

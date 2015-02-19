@@ -1,0 +1,9 @@
+//-------------------------------------
+//-- SAMPLE - MULTI
+//-------------------------------------
+
+// %SAMPLE-foobar1-image { @include bg-image-mixin('foobar1.png', 'SAMPLE'); }
+// %SAMPLE-foobar2-image { @include bg-image-mixin('foobar2.png', 'SAMPLE'); }
+
+@import 'components/SAMPLE/styles/foo';
+@import 'components/SAMPLE/styles/bar';

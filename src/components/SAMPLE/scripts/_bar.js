@@ -1,5 +1,5 @@
 //-------------------------------------
-//-- SAMPLE
+//-- Bar
 //-------------------------------------
 
 //= **require     bower_components/foo/bar
@@ -7,7 +7,7 @@
 //= **jshtml      components/foo/templates/foobar
 //= **jshtml_tree components/foo/templates
 
-(function ʩfileSAMPLEMain(){
+(function(){
 	'use strict';
 
 	var local = {};

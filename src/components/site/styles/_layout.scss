@@ -1,6 +1,8 @@
 //-------------------------------------
-//-- Site layout
+//-- Layout
 //-------------------------------------
+
+//@import 'components/vendor-foundation/styles/foundation';
 
 //-- Base
 html {
@@ -19,7 +21,8 @@ a {
 	@extend %hover-transition;
 	color: $link-color;
 	text-decoration: none;
-	&:hover {
+
+	&:hover, &:active, &:focus {
 		color: $link-hover-color;
 		text-decoration: underline;
 	}

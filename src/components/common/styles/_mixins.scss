@@ -1,0 +1,55 @@
+//-------------------------------------
+//-- Mixins
+//-------------------------------------
+
+//-- Headings
+%title-styles {
+	/* ... */
+}
+%subtitle-styles {
+	/* ... */
+}
+
+
+
+//-- Editable content styles
+%editable-styles {
+	h1 {
+		@extend %title-styles;
+	}
+	h2 {
+		@extend %subtitle-styles;
+	}
+	h3 {
+		/* ... */
+	}
+	h4 {
+		/* ... */
+	}
+	h5 {
+		/* ... */
+	}
+	h6 {
+		/* ... */
+	}
+	.small {
+		font-size: .8em;
+	}
+	p {
+		margin-bottom: 1em;
+	}
+	ul {
+		/* ... */
+	}
+	ol {
+		/* ... */
+	}
+	table.table {
+		td {
+			vertical-align: top;
+		}
+	}
+}
+
+
+
