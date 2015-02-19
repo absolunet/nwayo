@@ -2,13 +2,6 @@
 //-- Main bundle
 //-------------------------------------
 
-@import 'components/common/styles/config';
-
-//@import 'components/vendor-foundation/styles/foundation';
-
 @import 'components/common/styles/common';
-@import 'components/common/styles/layout';
-@import 'components/common/styles/form';
-@import 'components/common/styles/print';
-
-//@import 'components/foo/styles/bar';
+@import 'components/site/styles/site';
+@import 'components/form/styles/form';

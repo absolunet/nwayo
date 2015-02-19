@@ -19,7 +19,7 @@ gulp.task 'icons_favicon', ->
 	glob   = require 'glob'
 
 	for file in (glob.sync path.files.icons_favicon, mark:true)
-		out = paths.dirname "#{path.dir.build}/" + util.assets_rename( file.substring( path.dir.root.length + 1 ) )
+		out = util.sep paths.dirname( "#{path.dir.build}/" + util.assets_rename( util.sep(file).substring( path.dir.root.length + 1 ) ) )
 		mkdirp.sync out
 
 		im.convert [
@@ -29,7 +29,7 @@ gulp.task 'icons_favicon', ->
 			'(', '-clone', '0', '-resize', '32x32', '-filter', 'box', ')'  # New tab page in IE, taskbar button in Win 7+, Safari Read Later sidebar
 			'(', '-clone', '0', '-resize', '48x48', '-filter', 'box', ')'  # Windows site icons
 			'-delete', '0'
-			"#{out}/favicon.ico"
+			util.sep "#{out}/favicon.ico"
 		], (err, stdout) ->
 			if err
 				throw err

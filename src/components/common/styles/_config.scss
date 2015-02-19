@@ -43,12 +43,13 @@ $text-font: sans-serif;
 $alt-font:  'kreon', $text-font;
 $alt-lite-weight: 300;
 
-@include load-font-mixin('kreon', 'kreon-regular-webfont', 'common');
-@include load-font-mixin('kreon', 'kreon-light-webfont', 'common', $alt-lite-weight);
-@include load-font-mixin('kreon', 'kreon-bold-webfont', 'common', bold);
-@include load-font-mixin('icomoon', 'icomoon', 'common');
+// @include load-font-mixin('kreon', 'kreon-regular-webfont', 'common');
+// @include load-font-mixin('kreon', 'kreon-light-webfont', 'common', $alt-lite-weight);
+// @include load-font-mixin('kreon', 'kreon-bold-webfont', 'common', bold);
+// @include load-font-mixin('icomoon', 'icomoon', 'common');
 
 
+/*
 %ico-font {
 	font-family: 'icomoon';
 	font-weight: normal !important;
@@ -61,32 +62,34 @@ $alt-lite-weight: 300;
 $ico-music-char:    'm';
 $ico-settings-char: 's';
 $ico-warning-char:  'w';
-
+*/
 
 
 
 //-- Images
 
 // Normal
-//%misc-image { @include bg-image-mixin('misc.png', 'common', (width:111px, color:#ff0000)); }
-//%logo-image { @include bg-image-mixin('logo.png', 'qwertyuio', (height:96px, color:#00ff00)); }
+//%misc1-image { @include bg-image-mixin('misc1.png', 'common', $width:111px, $color:#ff0000); }
+//%logo1-image { @include bg-image-mixin('logo1.png', 'foobar', $height:96px, $color:#00ff00); }
 
 // High-density
-//%misc-hd-image { @include bg-image-mixin('hd@2x.png', 'common'); }
+//%misc2-image { @include bg-image-mixin('misc@2x.png', 'common'); }
 
 // Inline
-//%misc-inline-image { @include bg-image-mixin('ico-x.png', 'common', (inline:true)); }
-//%icon-inline-image { @include bg-image-mixin('icon.png', 'qwertyuio', (inline:true)); }
+//%misc3-image { @include bg-image-mixin('misc3.png', 'common', $inline:true); }
+//%icon3-image { @include bg-image-mixin('icon3.png', 'foobar', $inline:true); }
 
+// Scalable
+//%icon4-image { @include scalable-icon-mixin('icon4.svg', 'foobar'); }
 
 
 
 
 //-- Placeholders
 %hover-transition {
-	transition: all 100ms ease-out, z-index 1ms;
+	transition: all #{'ΦΦhoverMsΦΦ'}ms ease-out, z-index 1ms;
 }
 %animation-transition {
-	transition: all 500ms ease-out, z-index 1ms;
+	transition: all #{'ΦΦanimateMsΦΦ'}ms ease-out, z-index 1ms;
 }
 

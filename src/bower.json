@@ -25,6 +25,7 @@
     "json2":                      "master",
     "jsrender":                   "master",
     "masonry":                    "~3.1.5",
+    "SVGInjector":                "~1.1.2",
     "webfontloader":              "~1.5.6"
   },
   "_recommendeScripts": {

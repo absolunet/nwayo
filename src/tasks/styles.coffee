@@ -21,14 +21,13 @@ gulp.task 'styles_images', ->
 
 #-- Lint SCSS
 gulp.task 'styles_lint', ->
-	scsslint = require 'gulp-scsslint'
+	scsslint = require 'gulp-scss-lint'
 
 	return gulp.src path.files.styles_lint
 		.pipe scsslint({
 			config: path.config.scsslint
 		})
-		.pipe scsslint.reporter()
-		.pipe scsslint.reporter('fail')
+		.pipe scsslint.failReporter()
 
 
 
@@ -48,7 +47,7 @@ gulp.task 'styles_compile', ['styles_lint'], ->
 			'sourcemap=none': true # horrible temporary patch
 		.pipe autoprefixer('last 2 versions', '> 1%', 'ie >= 9')
 		.pipe replace util.token_regexp, util.token_replace
-#		.pipe minifycss()
+		.pipe minifycss()
 		.pipe gulp.dest path.dir.build_styles
 
 

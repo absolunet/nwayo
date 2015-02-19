@@ -28,7 +28,7 @@ gulp.task 'scripts_compile', ['scripts_lint'], ->
 	return gulp.src path.files.bundles_scripts
 		.pipe include basePath: './', autoExtension:true
 		.pipe replace util.token_regexp, util.token_replace
-		#.pipe uglify()
+		.pipe uglify()
 		.pipe gulp.dest path.dir.build_scripts
 
 

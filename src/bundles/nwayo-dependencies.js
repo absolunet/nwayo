@@ -1,6 +1,10 @@
+//-------------------------------------
+//-- nwayo dependencies
+//-------------------------------------
+
 /* jshint -W117, strict:false */
 
-(function ʩbundleNwayodependencies(global, undefined) {
+(function(global, undefined) {
 
 	//= require bower_components/jquery/dist/jquery
 	//= require bower_components/lodash/dist/lodash.min
