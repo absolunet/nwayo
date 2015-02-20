@@ -1,27 +1,24 @@
 {
-	"folders":
-	[
+	"folders": [
 		{
+			"folder_exclude_patterns": [
+				".nwayo-cache"
+				"node_modules",
+			],
 			"follow_symlinks": true,
-			"path": "./"
+			"path": "."
 		},
-
-		### TODO ###
-		{
-			"follow_symlinks": true,
-			"path": "../Views"
-		}
-
-		"settings": {
-			"todoreview": {
-				"exclude_folders": [
-					"*.git*",
-					"*nwayo/.nwayo-cache*",
-					"*nwayo/build*",
-					"*nwayo/bower_components*",
-					"*nwayo/node_modules*"
-				]
-			}
-		}
 	]
+
+	"settings": {
+		"todoreview": {
+			"exclude_folders": [
+				"*.git*",
+				"*nwayo/.nwayo-cache*",
+				"*nwayo/build*",
+				"*nwayo/bower_components*",
+				"*nwayo/node_modules*"
+			]
+		}
+	}
 }
