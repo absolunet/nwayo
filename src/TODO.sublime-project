@@ -2,13 +2,26 @@
 	"folders": [
 		{
 			"folder_exclude_patterns": [
-				".nwayo-cache"
+				".nwayo-cache",
+				"node_modules"
+			],
+			"file_exclude_patterns": [
+				".nwayo-cache",
 				"node_modules",
+				".bowerrc",
+				".editorconfig",
+				".gitignore",
+				".jshintrc",
+				".scss-lint.yml",
+				"config.rb",
+				"gulpfile.js",
+				"*.sublime-project",
+				"readme.md"
 			],
 			"follow_symlinks": true,
 			"path": "."
-		},
-	]
+		}
+	],
 
 	"settings": {
 		"todoreview": {
