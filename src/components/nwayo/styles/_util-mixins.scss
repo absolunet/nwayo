@@ -83,8 +83,8 @@
 
 	@if $direction == up or $direction == down {
 		height: $size;
-		border-right: $size solid transparent;
-		border-left: $size solid transparent;
+		border-right: $size solid $transparent;
+		border-left: $size solid $transparent;
 
 		@if $direction == up {
 			border-bottom: $size solid $color;
@@ -94,8 +94,8 @@
 
 	} @else if $direction == left or $direction == right {
 		width: $size;
-		border-top: $size solid transparent;
-		border-bottom: $size solid transparent;
+		border-top: $size solid $transparent;
+		border-bottom: $size solid $transparent;
 
 		@if $direction == left {
 			border-right: $size solid $color;

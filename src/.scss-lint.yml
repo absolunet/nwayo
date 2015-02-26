@@ -1,10 +1,7 @@
 # https://github.com/causes/scss-lint/blob/master/lib/scss_lint/linter/README.md
 # https://github.com/causes/scss-lint/blob/master/lib/scss_lint/linter/compass/README.md
 
-exclude:
-  - '**bower_components/**'
-  - '**components/theme-*'
-  - '**components/vendor-*'
+exclude: 'bower_components/**/*.scss,components/theme-*/**/*.scss,components/vendor-*/**/*.scss'
 
 linters:
   BangFormat:
@@ -16,6 +13,9 @@ linters:
     enabled: true
 
   ColorKeyword:
+    enabled: true
+
+  ColorVariable:
     enabled: true
 
   Comment:
@@ -58,6 +58,9 @@ linters:
   IdWithExtraneousSelector:
     enabled: true
 
+  ImportantRule:
+    enabled: false
+
   ImportPath:
     enabled: true
     leading_underscore: false
@@ -83,6 +86,9 @@ linters:
 
   PlaceholderInExtend:
     enabled: true
+
+  PropertyCount:
+    enabled: false
 
   PropertySortOrder:
     enabled: true
@@ -261,6 +267,9 @@ linters:
 
   UrlQuotes:
     enabled: true
+
+  VariableForProperty:
+    enabled: false
 
   VendorPrefixes:
     enabled: true

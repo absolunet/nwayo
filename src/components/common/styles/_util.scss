@@ -3,8 +3,9 @@
 //-------------------------------------
 
 a[href="#TODO"] {
-	color: #ff0000 !important;
-	font-weight: bold !important;
+	$todopatch-color: #ff0000;
+	color: $todopatch-color !important;
+	font-weight: $font-bold-weight !important;
 	text-decoration: underline !important;
 }
 

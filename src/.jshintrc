@@ -1,14 +1,16 @@
 // http://www.jshint.com/docs/options
 {
   // change to globals
-  "predef": [ "document", "console", "alert", "global", "$", "$Global", "Modernizr", "_", "kafe", "nwayo", "app", "__" ],
+  "predef": [ "document", "alert", "console", "global", "$", "$Global", "Modernizr", "_", "kafe", "nwayo", "app", "__" ],
 
   // enforcing options
   "bitwise":       true,
   "camelcase":     true,
   "curly":         true,
+//"enforceall":    true,
   "eqeqeq":        true,
   "es3":           true,
+  "es5":           false,
   "forin":         true,
   "freeze":        true,
   "immed":         true,
@@ -16,11 +18,13 @@
   "latedef":       true,
   "newcap":        true,
   "noarg":         true,
+  "nocomma":       false,
   "noempty":       true,
   "nonbsp":        true,
   "nonew":         true,
   "plusplus":      false,
   "quotmark":      "single",
+  "singleGroups":  true,
   "undef":         true,
   "unused":        true,
   "strict":        true,
@@ -29,11 +33,13 @@
   "maxstatements": false,
   "maxcomplexity": false,
   "maxlen":        false,
+  "maxerr":        0,
 
   // relaxing options
   "asi":           false,
   "boss":          false,
   "debug":         false,
+  "elision":       false,
   "eqnull":        false,
   "esnext":        false,
   "evil":          false,
@@ -49,11 +55,12 @@
   "moz":           false,
   "multistr":      false,
   "notypeof":      false,
+  "noyield":       false,
   "proto":         false,
   "scripturl":     false,
   "shadow":        false,
   "sub":           true,
   "supernew":      false,
   "validthis":     false,
-  "noyield":       false
+  "withstmt":      false
 }
