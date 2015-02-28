@@ -25,7 +25,7 @@
     "gulp-rename":     "1.2.0",
 
     "mocha":           "2.1.0",
-    "should":          "5.0.0",
+    "should":          "5.0.1",
     "stripcolorcodes": "0.1.0"
  },
 
@@ -34,18 +34,19 @@
     "adm-zip":       "0.4.7",
     "progress":      "1.1.8",
     "preprocess":    "2.1.1",
+    "cli-spinner":   "0.2.0",
 
     "coffee-script":   "1.9.1",
-    "lodash":          "3.2.0",
+    "lodash":          "3.3.1",
     "minimist":        "1.1.0",
     "request":         "2.53.0",
     "execSync":        "1.0.2",
-    "semver":          "4.3.0",
+    "semver":          "4.3.1",
     "win-spawn":       "2.0.0",
 
-    "chalk":           "0.5.1",
+    "chalk":           "1.0.0",
     "inquirer":        "0.8.0",
-    "download":        "4.0.0",
+    "download":        "4.0.1",
     "download-status": "2.1.1",
     "gulp-ignore":     "1.2.1",
 

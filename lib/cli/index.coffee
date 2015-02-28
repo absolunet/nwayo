@@ -26,14 +26,14 @@ module.exports =
 		if context.command isnt 'index' and fs.existsSync "#{__dirname}/#{context.command}.coffee"
 
 			# if project command
-			if ['analyze','get','run','watch'].indexOf(context.command) isnt -1
+			if ['doctor','get','rebuild','run','watch'].indexOf(context.command) isnt -1
 
 				# get project package.json file
 				if fs.existsSync "#{context.cwd}/package.json"
 					context.pkg = require "#{context.cwd}/package"
 
 					# check for nwayo config info
-					if not context.pkg.nwayo then helper.error "No nwayo config found"
+					if not context.pkg.nwayo then helper.error 'No nwayo config found'
 
 				else helper.error 'No package.json file found'
 
