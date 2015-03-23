@@ -38,13 +38,13 @@ gulp.task 'styles_compile', ['styles_lint'], ->
 	replace      = require 'gulp-replace'
 	minifycss    = require 'gulp-minify-css'
 
-	return gulp.src path.files.bundles_styles
-		.pipe sass
+	return sass path.dir.bundles, {
 			loadPath: path.dir.root
 			cacheLocation: path.dir.cache_sass
 			compass: true
 			trace: true
-			'sourcemap=none': true # horrible temporary patch
+			sourcemap: true
+		}
 		.pipe autoprefixer('last 2 versions', '> 1%', 'ie >= 9')
 		.pipe replace util.token_regexp, util.token_replace
 		.pipe minifycss()
