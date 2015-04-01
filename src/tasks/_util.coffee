@@ -95,9 +95,11 @@ util.vinyl_stream = (filename, string) ->
 
 #-- constants
 util.konstan = (type) ->
+	extend = require('util')._extend
+
 	parse_item = (item) -> "data.konstan['#{item.split('.').join("']['")}']"
 
-	data = konstan: util.pkg.nwayo.konstan
+	data = konstan: extend {}, util.pkg.nwayo.konstan
 	options = data.konstan.__options[type] or {}
 	delete data.konstan.__options
 
