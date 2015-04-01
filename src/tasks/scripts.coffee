@@ -18,17 +18,26 @@ gulp.task 'scripts_lint', ->
 		.pipe jshint.reporter('fail')
 
 
+#-- Convert constants to JS
+gulp.task 'scripts_constants', ->
+	data = util.konstan('scripts')
+	data.projectname  = util.pkg.name
+	data.nwayoversion = util.pkg.nwayo.version
+
+	return util.vinyl_stream 'konstan.js', "var konstan=#{JSON.stringify data};"
+		.pipe gulp.dest path.dir.cache
+
+
 
 #-- Compile
-gulp.task 'scripts_compile', ['scripts_lint'], ->
+gulp.task 'scripts_compile', ['scripts_lint', 'scripts_constants'], ->
 	include = require 'gulp-nwayo-include'
 	replace = require 'gulp-replace'
 	uglify  = require 'gulp-uglify'
 
 	return gulp.src path.files.bundles_scripts
 		.pipe include basePath: './', autoExtension:true
-		.pipe replace util.token_regexp, util.token_replace
-		.pipe uglify()
+#		.pipe uglify()
 		.pipe gulp.dest path.dir.build_scripts
 
 
@@ -38,4 +47,4 @@ gulp.task 'scripts', (cb) ->
 	runsequence = require 'run-sequence'
 
 	del [path.dir.build_scripts], force:true, ->
-		runsequence 'scripts_lint', 'scripts_compile', cb
+		runsequence 'scripts_compile', cb

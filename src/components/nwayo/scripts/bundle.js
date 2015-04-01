@@ -2,25 +2,33 @@
 //-- Bundle starter kit
 //-------------------------------------
 
-/* jshint -W098, -W079, strict:false */
+/* jshint -W079, unused:false, singleGroups:false, strict:false */
 var nwayo     = global.nwayo;
+var konstan   = nwayo.konstan;
 var jQuery    = nwayo.vendor.jQuery;
 var $         = nwayo.vendor.jQuery;
 var $Global   = nwayo.vendor.jQueryGlobal;
 var Modernizr = nwayo.vendor.Modernizr;
 var _         = nwayo.vendor.LoDash;
-var app       = global.ΦΦnameΦΦ = global.ΦΦnameΦΦ || {};
+var app       = global[nwayo.projectname] = global[nwayo.projectname] || {};
 
 app.tmpl = app.tmpl || {};
 
-var __ = {
-	shortcut:    function(type,value) { return '[data-'+type+'~="'+value+'"]'; },
+// shortcuts
+var __ = (function() {
+	var calls = {};
+	var selector = function(key, value) { return '['+key+(value ? '~="'+value+'"' : '' )+']'; };
 
-	action:      function() { return __.shortcut('action', arguments[0]); },
-	component:   function() { return __.shortcut('component', arguments[0]); },
-	placeholder: function() { return __.shortcut('placeholder', arguments[0]); },
-	field:       function() { return __.shortcut('field', arguments[0]); },
-	showfor:     function() { return __.shortcut('showfor', arguments[0]); },
+	// shortcuts
+	_.forEach(['name'], function(key) {
+		calls[key] = function() { return selector(key, arguments[0]); };
+	});
 
-	name:        function() { return '[name="'+arguments[0]+'"]'; }
-};
+	// data - shortcuts
+	_.forEach(['action','component','placeholder','field','showfor'], function(key) {
+		calls[key] = function() { return selector('data-'+key, arguments[0]); };
+	});
+
+	return calls;
+
+})();
