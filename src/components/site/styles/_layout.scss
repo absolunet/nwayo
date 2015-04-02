@@ -6,10 +6,10 @@
 
 //-- Base
 html {
-	background-color: $bg-color;
+	//background-color: $bg-color;
 }
 body {
-	color: $text-color;
+	//color: $text-color;
 	font-family: $text-font;
 	font-size: 16px;
 	-webkit-font-smoothing: antialiased;
@@ -19,11 +19,11 @@ body {
 
 a {
 	@extend %hover-transition;
-	color: $link-color;
+	//color: $link-color;
 	text-decoration: none;
 
 	&:hover, &:active, &:focus {
-		color: $link-hover-color;
+		//color: $link-hover-color;
 		text-decoration: underline;
 	}
 }
