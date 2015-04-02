@@ -2,10 +2,11 @@
 //-- nwayo dependencies
 //-------------------------------------
 
-/* jshint -W117, strict:false */
+/* jshint undef:false, strict:false */
 
 (function(global, undefined) {
 
+	//= require .nwayo-cache/konstan
 	//= require bower_components/jquery/dist/jquery
 	//= require bower_components/lodash/dist/lodash.min
 	//= require bower_components/underscore.string/dist/underscore.string.min
@@ -13,7 +14,9 @@
 	//= require bower_components/kafe/dist/kafe
 
 	global.nwayo = {
-		version: 'ΦΦversionΦΦ',
+		konstan:     konstan.konstan,
+		projectname: konstan.projectname,
+		version:     konstan.nwayoversion,
 		vendor: {
 			jQuery:       global.jQuery.noConflict(true),
 			jQueryGlobal: global.jQuery,

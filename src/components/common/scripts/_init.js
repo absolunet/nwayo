@@ -32,11 +32,7 @@
 
 
 		// path
-		app.path = {};
-		app.path.root   = 'ΦΦrootΦΦ';
-		app.path.build  = app.path.root + '/build';
-		app.path.images = app.path.build + '/images';
-		app.path.stubs  = app.path.root + '/misc/stubs';
+		app.path = konstan.path;
 
 
 		// tmpl

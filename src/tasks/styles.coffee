@@ -31,23 +31,32 @@ gulp.task 'styles_lint', ->
 
 
 
+#-- Convert constants to SCSS
+gulp.task 'styles_constants', ->
+	jsonsass = require 'gulp-json-sass'
+
+	return util.vinyl_stream 'konstan.json', JSON.stringify util.konstan('styles')
+		.pipe jsonsass()
+		.pipe gulp.dest path.dir.cache
+
+
+
 #-- Compile
-gulp.task 'styles_compile', ['styles_lint'], ->
+gulp.task 'styles_compile', ['styles_lint', 'styles_constants'], ->
 	sass         = require 'gulp-ruby-sass'
 	autoprefixer = require 'gulp-autoprefixer'
 	replace      = require 'gulp-replace'
 	minifycss    = require 'gulp-minify-css'
 
-	return gulp.src path.files.bundles_styles
-		.pipe sass
+	return sass path.dir.bundles, {
 			loadPath: path.dir.root
 			cacheLocation: path.dir.cache_sass
 			compass: true
 			trace: true
-			'sourcemap=none': true # horrible temporary patch
+			sourcemap: false
+		}
 		.pipe autoprefixer('last 2 versions', '> 1%', 'ie >= 9')
-		.pipe replace util.token_regexp, util.token_replace
-		.pipe minifycss()
+#		.pipe minifycss()
 		.pipe gulp.dest path.dir.build_styles
 
 
