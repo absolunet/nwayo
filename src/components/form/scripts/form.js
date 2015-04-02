@@ -24,25 +24,18 @@
 	//-- Bind events
 	local.bind = function() {
 
-		// input mask
+		//-- input mask
 		/**
-		$('input[data-mask]').each(function() {
-			var
-				$this = $(this),
-				mask  = $this.data('mask')
-			;
+		if (!Modernizr.inputtypes.date) {
+			$('input[type="date"]').inputmask('yyyy-mm-dd');
+		}
+		$('input[type="tel"]').inputmask('(999) 999-9999');
+		$('input[type="tel"][data-mask="ext"]').inputmask('(999) 999-9999 [ext: 99999]');
 
-			switch (mask) {
-				case 'phone':       $this.inputmask('(999) 999-9999'); break;
-				case 'phone-ext':   $this.inputmask('(999) 999-9999 [ext: 99999]'); break;
-				case 'date':        $this.inputmask('yyyy-mm-dd'); break;
-				case 'time':        $this.inputmask('hh:mm:ss'); break;
-				case 'postalcode':  $this.inputmask('A9A 9A9'); break;
-				case 'numeric':     $this.inputmask('non-negative-decimal', {radixPoint:',', digits:2 }); break;
-				case 'numeric-int': $this.inputmask('9', {repeat:6, greedy:false }); break;
-				default:            $this.inputmask(mask); break;
-			}
-		});
+		$('input[data-mask="time"]').inputmask('hh:mm:ss');
+		$('input[data-mask="postalcode"]').inputmask('A9A 9A9');
+		$('input[data-mask="numeric"]').inputmask('non-negative-decimal', {radixPoint:',', digits:2 });
+		$('input[data-mask="numeric-int"]').inputmask('9', {repeat:6, greedy:false });
 		/**/
 
 	};

@@ -10,8 +10,11 @@ $build-path: 'ΦΦrootΦΦ/build';
 
 
 //-- Palette & colors
-//@debug color-diff(#545453,#878781);
+//$analyze-source-color: #545453;
+//$analyze-target-color: #878781;
+//@debug color-diff($analyze-source-color,$analyze-target-color);
 
+/**
 $grey-palette:  #cccccc;
 $red-palette:   #cc0000;
 $green-palette: #00cc00;
@@ -28,15 +31,16 @@ $alt-faded-color: adjust-hue(desaturate(lighten($alt-color, 26.2%), 39.5%), 64.0
 
 $error-text-color: $red-palette;
 $error-bg-color:   lighten($error-text-color, 20%);
+/**/
 
-/*
+/**
 $section-colorscheme: (
 	default: (body:'',               class:'',       base:#888888, lite:#dddddd, dark:#333333),
 	alpha:   (body:'.section-alpha', class:'.alpha', base:#880000, lite:#dd0000, dark:#330000),
 	beta:    (body:'.section-beta',  class:'.beta',  base:#008800, lite:#00dd00, dark:#003300),
 	gamma:   (body:'.section-gamma', class:'.gamma', base:#000088, lite:#0000dd, dark:#000033),
 );
-*/
+/**/
 
 
 
@@ -44,27 +48,19 @@ $section-colorscheme: (
 $text-font: sans-serif;
 $alt-font:  'kreon', $text-font;
 
-$font-thin-weight:       100;
-$font-extralight-weight: 200;
-$font-light-weight:      300;
-$font-normal-weight:     400;
-$font-medium-weight:     500;
-$font-semibold-weight:   600;
-$font-bold-weight:       700;
-$font-extrabold-weight:  800;
-$font-black-weight:      900;
-
-// @include load-font-mixin('kreon',   'kreon-regular-webfont', 'common');
-// @include load-font-mixin('kreon',   'kreon-light-webfont',   'common', $weight:$font-light-weight);
-// @include load-font-mixin('kreon',   'kreon-bold-webfont',    'common', $weight:bold);
-// @include load-font-mixin('kreon',   'kreon-italic-webfont',  'common', $style:italic);
-// @include load-font-mixin('icomoon', 'icomoon',               'common');
+/**
+@include load-font-mixin('kreon',   'kreon-regular-webfont', 'common');
+@include load-font-mixin('kreon',   'kreon-light-webfont',   'common', $weight:$light-weight);
+@include load-font-mixin('kreon',   'kreon-bold-webfont',    'common', $weight:bold);
+@include load-font-mixin('kreon',   'kreon-italic-webfont',  'common', $style:italic);
+@include load-font-mixin('icomoon', 'icomoon',               'common');
+/**/
 
 
-/*
+/**
 %ico-font {
 	font-family: 'icomoon';
-	font-weight: $font-bold-weight !important;
+	font-weight: $bold-weight !important;
 	-webkit-font-smoothing: antialiased !important;
 	font-style: normal !important;
 	text-transform: none !important;
@@ -74,26 +70,28 @@ $font-black-weight:      900;
 $ico-music-char:    'm';
 $ico-settings-char: 's';
 $ico-warning-char:  'w';
-*/
+/**/
 
 
 
 //-- Images
+/**
 
 // Normal
-//%misc1-image { @include bg-image-mixin('misc1.png', 'common', $width:111px, $color:#ff0000); }
-//%logo1-image { @include bg-image-mixin('logo1.png', 'foobar', $height:96px, $color:#00ff00); }
+%misc1-image { @include bg-image-mixin('misc1.png', 'common'); }
+%logo1-image { @include bg-image-mixin('logo1.png', 'foobar'); }
 
 // High-density
-//%misc2-image { @include bg-image-mixin('misc@2x.png', 'common'); }
+%misc2-image { @include bg-image-mixin('misc@2x.png', 'common'); }
 
 // Inline
-//%misc3-image { @include bg-image-mixin('misc3.png', 'common', $inline:true); }
-//%icon3-image { @include bg-image-mixin('icon3.png', 'foobar', $inline:true); }
+%misc3-image { @include bg-image-mixin('misc3.png', 'common', $inline:true); }
+%icon3-image { @include bg-image-mixin('icon3.png', 'foobar', $inline:true); }
 
 // Scalable
-//%icon4-image { @include scalable-icon-mixin('icon4.svg', 'foobar'); }
+%icon4-image { @include scalable-icon-mixin('icon4.svg', 'foobar'); }
 
+/**/
 
 
 
