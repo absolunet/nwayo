@@ -9,6 +9,15 @@ util.sep = (path) -> path.replace /\//g, sep
 #-- paths
 util.path = ( ->
 
+	nolint = '{theme,vendor}'
+
+	ext = {}
+	ext.fonts     = '{eot,svg,ttf,woff,woff2}'
+	ext.images    = '{gif,jpg,png,svg}'
+	ext.scripts   = 'js'
+	ext.styles    = 'scss'
+	ext.templates = 'jshtml'
+
 	dir = {}
 	dir.root           = '.'
 	dir.cache          = util.sep "#{dir.root}/.nwayo-cache"
@@ -31,9 +40,9 @@ util.path = ( ->
 	dir.inline         = util.sep "#{dir.assets}/inline-images"
 	dir.raw            = util.sep "#{dir.assets}/raw"
 	dir.scripts        = util.sep "#{dir.components}/**/scripts"
-	dir.scripts_nolint = util.sep "#{dir.components}/{theme,vendor}-*/scripts"
+	dir.scripts_nolint = util.sep "#{dir.components}/#{nolint}-*/scripts"
 	dir.styles         = util.sep "#{dir.components}/**/styles"
-	dir.styles_nolint  = util.sep "#{dir.components}/{theme,vendor}-*/styles"
+	dir.styles_nolint  = util.sep "#{dir.components}/#{nolint}-*/styles"
 	dir.templates      = util.sep "#{dir.components}/**/templates"
 	dir.bower          = util.sep "#{dir.root}/bower_components"
 	dir.misc           = util.sep "#{dir.root}/misc"
@@ -41,26 +50,25 @@ util.path = ( ->
 	dir.stubs          = util.sep "#{dir.misc}/stubs"
 
 	files = {}
-	files.bundles_scripts = util.sep "#{dir.bundles}/**/*.js"
-	files.bundles_styles  = util.sep "#{dir.bundles}/**/*.scss"
-	files.fonts           = util.sep "#{dir.fonts}/**/*.{eot,svg,ttf,woff,woff2}"
+	files.bundles_scripts = util.sep "#{dir.bundles}/**/*.#{ext.scripts}"
+	files.bundles_styles  = util.sep "#{dir.bundles}/**/*.#{ext.styles}"
+	files.fonts           = util.sep "#{dir.fonts}/**/*.#{ext.fonts}"
 	files.icons_favicon   = util.sep "#{dir.icons}/favicon.png"
 	files.icons_icon      = util.sep "#{dir.icons}/icon.png"
 	files.icons_large     = util.sep "#{dir.icons}/large.png"
 	files.icons_tile      = util.sep "#{dir.icons}/tile.png"
-	files.images          = util.sep "#{dir.images}/**/*.{gif,jpg,png,svg}"
-	files.images2x        = util.sep "#{dir.images}/**/*\@2x.{gif,jpg,png,svg}"
-	files.inline          = util.sep "#{dir.inline}/**/*.{gif,jpg,png,svg}"
+	files.images          = util.sep "#{dir.images}/**/*.#{ext.images}"
+	files.images2x        = util.sep "#{dir.images}/**/*\@2x.#{ext.images}"
+	files.inline          = util.sep "#{dir.inline}/**/*.#{ext.images}"
 	files.raw             = util.sep "#{dir.raw}/**/*"
-	files.scripts         = util.sep "#{dir.scripts}/**/*.js"
-	files.scripts_lint    = [files.bundles_scripts, files.scripts, util.sep "!#{dir.scripts_nolint}/**/*"]
-	files.styles          = util.sep "#{dir.styles}/**/*.scss"
-	files.styles_lint     = [files.bundles_styles, files.styles, util.sep "!#{dir.styles_nolint}/**/*"]
-	files.templates       = util.sep "#{dir.templates}/**/*.jshtml"
-	files.bower_scripts   = util.sep "#{dir.bower}/**/*.js"
-	files.bower_styles    = util.sep "#{dir.bower}/**/*.{css,less,scss}"
+	files.scripts         = util.sep "#{dir.scripts}/**/*.#{ext.scripts}"
+	files.scripts_lint    = [files.bundles_scripts, files.scripts, util.sep("!#{dir.scripts_nolint}/**/*"), util.sep("!#{dir.scripts}/**/?(_)#{nolint}*.#{ext.scripts}")]
+	files.styles          = util.sep "#{dir.styles}/**/*.#{ext.styles}"
+	files.styles_lint     = [files.bundles_styles, files.styles, util.sep("!#{dir.styles_nolint}/**/*"), util.sep("!#{dir.styles}/**/?(_)#{nolint}*.#{ext.styles}")]
+	files.templates       = util.sep "#{dir.templates}/**/*.#{ext.templates}"
 
 	config = {}
+	config.package  = util.sep "#{dir.root}/package.json"
 	config.scsslint = util.sep "#{dir.root}/.scss-lint.yml"
 
 
@@ -95,11 +103,11 @@ util.vinyl_stream = (filename, string) ->
 
 #-- constants
 util.konstan = (type) ->
-	extend = require('util')._extend
+	extend = require 'extend'
 
 	parse_item = (item) -> "data.konstan['#{item.split('.').join("']['")}']"
 
-	data = konstan: extend {}, util.pkg.nwayo.konstan
+	data = konstan: extend true, {}, util.pkg.nwayo.konstan
 	options = data.konstan.__options[type] or {}
 	delete data.konstan.__options
 

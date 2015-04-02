@@ -2,7 +2,7 @@
 	/* jshint strict:false */
 
 	this.jQuery = $;
-	//= require bower_components/jsrender/jsrender.min
+	//= require bower_components/jsrender/jsrender
 	this.jQuery = $Global;
 
 })();

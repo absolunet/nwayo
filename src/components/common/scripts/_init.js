@@ -34,6 +34,9 @@
 		// path
 		app.path = konstan.path;
 
+		// transition
+		app.transition = konstan.transition;
+
 
 		// tmpl
 		/*
