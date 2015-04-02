@@ -39,13 +39,24 @@
 
 
 		// tmpl
-		/*
+		/**
 		app.tmpl = app.tmpl || {};
+
 		$('script[type="text/x-jsrender"][id^="jshtml-"]').each(function() {
 			var id = $(this).attr('id');
 			app.tmpl['html-'+id.substring(7)] = $.templates('#'+id);
 		});
-		*/
+
+		$.views.helpers({
+			konstan: function(key) {
+				var value = '';
+				// jshint evil:true
+				eval('value = konstan["' + key.split('.').join('"]["') + '"];');
+				// jshint evil:false
+				return value;
+			}
+		});
+		/**/
 	};
 
 
