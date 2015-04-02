@@ -13,4 +13,14 @@ $debug-green:  #76ee00;
 $debug-blue:   #1e90ff;
 $debug-purple: #a020f0;
 
-$textfields-selector: 'input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"]';
+$thin-weight:       100;
+$extralight-weight: 200;
+$light-weight:      300;
+$normal-weight:     400;
+$medium-weight:     500;
+$semibold-weight:   600;
+$bold-weight:       700;
+$extrabold-weight:  800;
+$black-weight:      900;
+
+$textfields-selector: 'input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], input[type="date"]';

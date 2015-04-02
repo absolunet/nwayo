@@ -16,7 +16,8 @@
 		overflow: visible !important;
 		border-color: $black !important;
 		text-indent: 0 !important; // float: none !important;
-		&:before, &:after {
+
+		&::before, &::after {
 			display: none !important;
 		}
 	}

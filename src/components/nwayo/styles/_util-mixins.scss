@@ -51,6 +51,7 @@
 
 //-- Placeholder
 @mixin placeholder-mixin () {
+	select.placeholder { @content; }
 	input.placeholder { @content; }
 	input::placeholder { @content; }
 }
@@ -60,6 +61,12 @@
 @mixin select-reset-mixin() {
 	@-moz-document url-prefix() { select { @content; } }
 	html.lt-ie10 select { @content; }
+}
+
+//-- Input type file button
+@mixin input-file-button-mixin() {
+	&::-webkit-file-upload-button { @content; }
+	//&::-ms-browse { @content; }
 }
 
 

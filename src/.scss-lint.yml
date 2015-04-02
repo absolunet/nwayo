@@ -108,6 +108,8 @@ linters:
       - float
       - clear
       - overflow
+      - overflow-x
+      - overflow-y
       - visibility
       - opacity
       - list-style

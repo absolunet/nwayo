@@ -42,9 +42,9 @@
 		// tmpl
 		/*
 		app.tmpl = app.tmpl || {};
-		$('script[type="text/x-jsrender"]').each(function() {
+		$('script[type="text/x-jsrender"][id^="jshtml-"]').each(function() {
 			var id = $(this).attr('id');
-			app.tmpl[id.substring(7)] = $.templates('#'+id);
+			app.tmpl['html-'+id.substring(7)] = $.templates('#'+id);
 		});
 		*/
 	};
