@@ -1,9 +1,7 @@
 //-------------------------------------
 //-- Configuration settings
 //-------------------------------------
-
-//-- Webroot build path
-$build-path: 'ΦΦrootΦΦ/build';
+@import '.nwayo-cache/konstan';
 
 //-- nwayo util
 @import 'components/nwayo/styles/util';
@@ -97,9 +95,9 @@ $ico-warning-char:  'w';
 
 //-- Placeholders
 %hover-transition {
-	transition: all #{'ΦΦhoverMsΦΦ'}ms ease-out, z-index 1ms;
+	transition: all #{$konstan-transition-hover}ms ease-out, z-index 1ms;
 }
 %animation-transition {
-	transition: all #{'ΦΦanimateMsΦΦ'}ms ease-out, z-index 1ms;
+	transition: all #{$konstan-transition-animation}ms ease-out, z-index 1ms;
 }
 

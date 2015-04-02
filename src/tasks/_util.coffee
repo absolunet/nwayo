@@ -16,8 +16,10 @@ util.path = ( ->
 	dir.cache_sass     = util.sep "#{dir.cache}/sass"
 	dir.build          = util.sep "#{dir.root}/build"
 	dir.build_assets   = util.sep "#{dir.build}/{fonts,images,raw}"
+	dir.build_fonts    = util.sep "#{dir.build}/fonts"
 	dir.build_icons    = util.sep "#{dir.build}/icons"
 	dir.build_images   = util.sep "#{dir.build}/images"
+	dir.build_raw      = util.sep "#{dir.build}/raw"
 	dir.build_scripts  = util.sep "#{dir.build}/scripts"
 	dir.build_styles   = util.sep "#{dir.build}/styles"
 	dir.bundles        = util.sep "#{dir.root}/bundles"
@@ -34,6 +36,9 @@ util.path = ( ->
 	dir.styles_nolint  = util.sep "#{dir.components}/{theme,vendor}-*/styles"
 	dir.templates      = util.sep "#{dir.components}/**/templates"
 	dir.bower          = util.sep "#{dir.root}/bower_components"
+	dir.misc           = util.sep "#{dir.root}/misc"
+	dir.resources      = util.sep "#{dir.misc}/resources"
+	dir.stubs          = util.sep "#{dir.misc}/stubs"
 
 	files = {}
 	files.bundles_scripts = util.sep "#{dir.bundles}/**/*.js"
@@ -71,24 +76,54 @@ util.pkg = require "#{__dirname}/../package"
 
 
 
-#-- env tokens
-util.token = ( ->
-	data         = util.pkg.nwayo.token
-	data.name    = util.pkg.name
-	data.version = util.pkg.nwayo.version
+#-- create a vinyl stream from a text
+util.vinyl_stream = (filename, string) ->
+	vinyl = require 'vinyl'
+	src   = require('stream').Readable { objectMode: true }
+
+	src._read = () ->
+		this.push new vinyl {
+			path: filename
+			contents: new Buffer(string)
+		}
+		this.push(null)
+
+	return src
+
+
+
+
+#-- constants
+util.konstan = (type) ->
+	extend = require('util')._extend
+
+	parse_item = (item) -> "data.konstan['#{item.split('.').join("']['")}']"
+
+	data = konstan: extend {}, util.pkg.nwayo.konstan
+	options = data.konstan.__options[type] or {}
+	delete data.konstan.__options
+
+	# path
+	for source_key in ['build', 'build_fonts', 'build_icons', 'build_images', 'build_scripts', 'build_styles', 'build_raw', 'cache_inline', 'stubs']
+		target_key = source_key.split('_').pop()
+		data.konstan.path[target_key] = (if source_key isnt 'cache_inline' then data.konstan.path.root else '') + util.path.dir[source_key].substr(util.path.dir.root.length + 1) + '/'
+		options.escape.push "path.#{target_key}" if options.escape and options.escape.indexOf 'path.root' isnt -1
+
+	delete data.konstan.path.inline if type is 'scripts'
+
+	# option escape strings
+	if options.escape
+		for item in options.escape
+			item = parse_item item
+			eval "#{item} = \"'\"+#{item}.replace(\"'\",\"\\\\\'\")+\"'\""
+
+	# option excluse items
+	if options.exclude
+		for item in options.exclude
+			item = parse_item item
+			eval "delete #{item}"
+
 	return data
-)()
-
-#-- token regexp
-util.token_regexp = /ΦΦ([a-zA-Z0-9]+)ΦΦ/g
-
-#-- token replace
-util.token_replace = (match,token) -> util.token[token]
-
-
-
-
-
 
 
 
