@@ -16,6 +16,9 @@
 	//-- Cache data
 	local.cache = function() {
 
+		// addthis
+		//global['addthis_config'] = { 'ui_language': app.env.lang };
+
 		// env
 		//app.env.isUniquePage = (app.env.page == 'UID');
 		//app.env.isTypePage   = _.contains(app.env.tmpl, 'TYPE-ID');

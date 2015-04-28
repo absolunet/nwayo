@@ -47,6 +47,7 @@
 			app.tmpl['html-'+id.substring(7)] = $.templates('#'+id);
 		});
 
+		# https://lodash.com/docs#get
 		$.views.helpers({
 			konstan: function(key) {
 				var value = '';
