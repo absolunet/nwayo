@@ -105,6 +105,7 @@ util.vinyl_stream = (filename, string) ->
 util.konstan = (type) ->
 	extend = require 'extend'
 
+	#https://lodash.com/docs#get
 	parse_item = (item) -> "data.konstan['#{item.split('.').join("']['")}']"
 
 	data = konstan: extend true, {}, util.pkg.nwayo.konstan
