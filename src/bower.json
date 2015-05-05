@@ -4,10 +4,10 @@
   "devDependencies": {
     "meyer-reset":       "master",
     "normalize.scss":    "3.0.2+normalize.3.0.2",
-    "html5-boilerplate": "~5.1.0",
+    "html5-boilerplate": "~5.2.0",
 
     "kafe":       "~3.0.1",
-    "foundation": "~5.5.1"
+    "foundation": "~5.5.2",
   },
 
 
