@@ -1,0 +1,78 @@
+#-------------------------------------
+#-- konstan
+#-------------------------------------
+data:
+
+  # responsive breakpoints
+  dimension:
+    small:   640
+    medium: 1024
+    large:  1440
+    xlarge: 1920
+    max:    1496
+
+
+  # transition speeds in ms
+  transition:
+    hover:     100
+    animation: 500
+
+
+  # colors
+  color:
+    bg-color:   '#cccccc'
+    text-color: '#666666'
+
+
+  # classes
+  classes:
+    gridcentered:      medium-centered medium-9 large-6 columns
+    gridsmallcentered: medium-centered medium-7 large-5 columns
+
+
+  # api keys and other accounts identifier
+  keychain:
+
+    facebook:
+      version: v2.3
+      appid:   1234567890
+      secret:  qwertyuiopasdfghjkl
+
+    linkedin:
+      appid:  qwertyuiopasdfghjkl
+      secret: qwertyuiopasdfghjkl
+
+    addthis:
+      campaign: ra-123456789
+
+    google:
+      tagmanager: GTM-1234
+
+
+
+
+  #-- misc utils
+  util:
+    emptyimage: data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7
+
+
+
+
+
+
+
+
+#-- konstan output options
+options:
+
+  scripts:
+    exclude:
+      - keychain.facebook.secret
+      - keychain.linkedin.secret
+
+
+  styles:
+    exclude:
+      - keychain.facebook.secret
+      - keychain.linkedin.secret
+      - util.emptyimage

@@ -1,0 +1,48 @@
+#-------------------------------------
+#-- site
+#-------------------------------------
+
+# output path (relative to nwayo folder) and output url
+output:
+  path: ../web/qwertyuio
+  url:  /qwertyuio
+
+
+
+# list of required components assets
+assets:
+  - form
+  - site
+
+
+
+# scripts
+scripts:
+
+  dependencies:
+    - .nwayo-cache/konstan-site
+    - bower_components/jquery/dist/jquery
+    - bower_components/lodash/dist/lodash.min
+    - bower_components/underscore.string/dist/underscore.string.min
+    - bower_components/modernizr/modernizr
+    - bower_components/kafe/dist/kafe
+
+  main:
+    - components/nwayo/scripts/bundle
+    - components/common/scripts/common
+    - components/site/scripts/site
+    - components/form/scripts/form
+
+
+
+# styles
+styles:
+
+  editor:
+    - components/common/styles/common
+    - components/cms/styles/editor
+
+  main:
+    - components/common/styles/common
+    - components/site/styles/site
+    - components/form/styles/form

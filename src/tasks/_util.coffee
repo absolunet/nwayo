@@ -68,6 +68,7 @@ util.path = ( ->
 	files.templates       = util.sep "#{dir.templates}/**/*.#{ext.templates}"
 
 	config = {}
+	config.konstan  = util.sep "#{dir.root}/konstan.yaml"
 	config.package  = util.sep "#{dir.root}/package.json"
 	config.scsslint = util.sep "#{dir.root}/.scss-lint.yml"
 
@@ -83,13 +84,37 @@ util.path = ( ->
 util.pkg = require "#{__dirname}/../package"
 
 
+#-- read yaml
+( ->
+	fs   = require 'fs'
+	glob = require 'glob'
+	yaml = require 'js-yaml'
+
+	#-- konstan data
+	util.konstan =  yaml.safeLoad fs.readFileSync(util.path.config.konstan, 'utf8')
+
+
+
+#	#-- bundles data
+#	util.bundles = []
+
+#	bundles = glob.sync util.path.dir.bundles + '/*.json'
+
+#	for name in bundles
+#		name = name.match(/([^/]+).json$/)[1]
+#		util.bundles[name] = require "#{__dirname}/../bundles/#{name}"
+
+#	console.log util.bundles
+
+)()
+
 
 #-- create a vinyl stream from a text
 util.vinyl_stream = (filename, string) ->
 	vinyl = require 'vinyl'
 	src   = require('stream').Readable { objectMode: true }
 
-	src._read = () ->
+	src._read = ->
 		this.push new vinyl {
 			path: filename
 			contents: new Buffer(string)
@@ -102,23 +127,27 @@ util.vinyl_stream = (filename, string) ->
 
 
 #-- constants
-util.konstan = (type) ->
+util.parse_konstan = (type, root_url) ->
 	extend = require 'extend'
 
-	#https://lodash.com/docs#get
-	parse_item = (item) -> "data.konstan['#{item.split('.').join("']['")}']"
+	parse_item = (item) -> "data['#{item.split('.').join("']['")}']"
 
-	data = konstan: extend true, {}, util.pkg.nwayo.konstan
-	options = data.konstan.__options[type] or {}
-	delete data.konstan.__options
+	data    = extend true, {}, util.konstan.data
+	options = extend true, {}, util.konstan.options[type]
+
+	data.path = root: root_url
+
 
 	# path
-	for source_key in ['build', 'build_fonts', 'build_icons', 'build_images', 'build_scripts', 'build_styles', 'build_raw', 'cache_inline', 'stubs']
+	options.escape = ['path.root'] if type is 'styles'
+
+	for source_key in ['build_fonts', 'build_icons', 'build_images', 'build_scripts', 'build_styles', 'build_raw', 'cache_inline']
 		target_key = source_key.split('_').pop()
-		data.konstan.path[target_key] = (if source_key isnt 'cache_inline' then data.konstan.path.root else '') + util.path.dir[source_key].substr(util.path.dir.root.length + 1) + '/'
+		data.path[target_key] = (if source_key isnt 'cache_inline' then data.path.root + util.path.dir[source_key].substr(util.path.dir.root.length + util.path.dir.build.length) else util.path.dir[source_key].substr(util.path.dir.root.length + 1)) + '/'
 		options.escape.push "path.#{target_key}" if options.escape and options.escape.indexOf 'path.root' isnt -1
 
-	delete data.konstan.path.inline if type is 'scripts'
+	delete data.path.inline if type is 'scripts'
+
 
 	# option escape strings
 	if options.escape
@@ -126,13 +155,16 @@ util.konstan = (type) ->
 			item = parse_item item
 			eval "#{item} = \"'\"+#{item}.replace(\"'\",\"\\\\\'\")+\"'\""
 
+
 	# option excluse items
 	if options.exclude
 		for item in options.exclude
 			item = parse_item item
 			eval "delete #{item}"
 
-	return data
+
+
+	return konstan: data
 
 
 

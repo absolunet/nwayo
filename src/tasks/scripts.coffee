@@ -20,7 +20,7 @@ gulp.task 'scripts_lint', ->
 
 #-- Convert constants to JS
 gulp.task 'scripts_constants', ->
-	data = util.konstan('scripts')
+	data = util.parse_konstan 'scripts', '/web/builds/'
 	data.projectname  = util.pkg.name
 	data.nwayoversion = util.pkg.nwayo.version
 
@@ -33,11 +33,12 @@ gulp.task 'scripts_constants', ->
 gulp.task 'scripts_compile', ['scripts_lint', 'scripts_constants'], ->
 	include = require 'gulp-nwayo-include'
 	replace = require 'gulp-replace'
+	gulpif  = require 'gulp-if'
 	uglify  = require 'gulp-uglify'
 
 	return gulp.src path.files.bundles_scripts
 		.pipe include basePath: './', autoExtension:true
-#		.pipe uglify()
+		.pipe gulpif( util.pkg.nwayo.workflow['minify-scripts'], uglify() )
 		.pipe gulp.dest path.dir.build_scripts
 
 

@@ -15,7 +15,7 @@ charset = utf-8
 trim_trailing_whitespace = false
 insert_final_newline = true
 
-[{.bowerrc,.editorconfig,.gitignore,.jshintrc,.npmignore,.scss-lint.yml,bower.json,coffeelint.json,config.rb,package.json,.travis.yml}]
+[{.bowerrc,.editorconfig,.gitignore,.jshintrc,.npmignore,.scss-lint.yml,bower.json,coffeelint.json,config.rb,konstan.yaml,package.json,.travis.yml,bundles/**.yaml}]
 indent_style = space
 indent_size = 2
 charset = utf-8
