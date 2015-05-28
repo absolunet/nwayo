@@ -35,7 +35,7 @@ gulp.task 'styles_lint', ->
 gulp.task 'styles_constants', ->
 	jsonsass = require 'gulp-json-sass'
 
-	return util.vinyl_stream 'konstan.json', JSON.stringify util.konstan('styles')
+	return util.vinyl_stream 'konstan.json', JSON.stringify util.parse_konstan('styles', '/web/builds/')
 		.pipe jsonsass()
 		.pipe gulp.dest path.dir.cache
 
@@ -46,6 +46,7 @@ gulp.task 'styles_compile', ['styles_lint', 'styles_constants'], ->
 	sass         = require 'gulp-ruby-sass'
 	autoprefixer = require 'gulp-autoprefixer'
 	replace      = require 'gulp-replace'
+	gulpif       = require 'gulp-if'
 	minifycss    = require 'gulp-minify-css'
 
 	return sass path.dir.bundles, {
@@ -55,8 +56,8 @@ gulp.task 'styles_compile', ['styles_lint', 'styles_constants'], ->
 			trace: true
 			sourcemap: false
 		}
-		.pipe autoprefixer('last 2 versions', '> 1%', 'ie >= 9')
-#		.pipe minifycss()
+		.pipe autoprefixer browsers: util.pkg.nwayo.workflow['autoprefixer-rules']
+		.pipe gulpif( util.pkg.nwayo.workflow['minify-styles'], minifycss() )
 		.pipe gulp.dest path.dir.build_styles
 
 
