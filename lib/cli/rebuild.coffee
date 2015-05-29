@@ -10,4 +10,6 @@ module.exports =
 
 	#-- Run
 	run: (context) ->
+		context.flags = bundle: context.targets[0] if context.targets[0]
+
 		helper.run 'rebuild', context

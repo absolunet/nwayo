@@ -1,9 +1,114 @@
+colors = require 'colors'
+
+sep  = require('path').sep
+echo = console.log
 util = {}
 
 
+
 #-- sep
-sep = require('path').sep
 util.sep = (path) -> path.replace /\//g, sep
+
+
+
+#-- read and parse a YAML file
+util.readYAML = (file) ->
+	fs   = require 'fs'
+	yaml = require 'js-yaml'
+
+	return yaml.safeLoad fs.readFileSync(file, 'utf8')
+
+
+
+#-- create a vinyl stream from a text
+util.vinyl_stream = (filename, string) ->
+	vinyl = require 'vinyl'
+	src   = require('stream').Readable { objectMode: true }
+
+	src._read = ->
+		this.push new vinyl {
+			path: filename
+			contents: new Buffer(string)
+		}
+		this.push(null)
+
+	return src
+
+
+
+#-- constants
+util.parse_konstan = (type, root_url) ->
+	extend = require 'extend'
+
+	parse_item = (item) -> "data['#{item.split('.').join("']['")}']"
+
+	options = extend true, {}, util.konstan.options[type]
+	paths   = extend true, {}, util.path.build
+	data    = extend true, {}, util.konstan.data
+
+
+	# output url paths
+	data.path = root: root_url
+
+	if type is 'styles'
+		options.escape = ['path.root']
+		paths.cache_inline = util.path.dir.cache_inline
+
+	for key, value of paths
+		data.path[key] = (if key isnt 'cache_inline' then "#{data.path.root}/" else '') + value
+		options.escape.push "path.#{key}" if options.escape and options.escape.indexOf 'path.root' isnt -1
+
+
+	# option escape strings
+	if options.escape
+		for item in options.escape
+			item = parse_item item
+			eval "#{item} = \"'\"+#{item}.replace(\"'\",\"\\\\\'\")+\"'\""
+
+
+	# option excluse items
+	if options.exclude
+		for item in options.exclude
+			item = parse_item item
+			eval "delete #{item}"
+
+	return data
+
+
+
+#-- image optimization parameters
+util.imagemin_params = -> {
+	optimizationLevel: 7
+	progressive: true
+	interlaced:  true
+	svgoPlugins: [
+		removeViewBox: false
+		#removeUselessStrokeAndFill: false
+	]
+}
+
+#-- gm optimization
+util.gm_optimization = (gmfile, info) ->
+	gmfile.noProfile().quality(95) if info.format is 'JPG'
+	gmfile.dither(false).colors(256) if info.format is 'PNG' and info.depth is 8
+	return gmfile
+
+
+
+#-- assets rename
+util.assets_rename = (path) ->
+	elements = path.split sep
+	path = util.sep "#{elements[3]}/#{elements[1]}/#{elements.slice(4).join '/'}"
+	return path
+
+
+
+
+
+
+
+
+
 
 
 #-- paths
@@ -23,14 +128,6 @@ util.path = ( ->
 	dir.cache          = util.sep "#{dir.root}/.nwayo-cache"
 	dir.cache_inline   = util.sep "#{dir.cache}/inline-images"
 	dir.cache_sass     = util.sep "#{dir.cache}/sass"
-	dir.build          = util.sep "#{dir.root}/build"
-	dir.build_assets   = util.sep "#{dir.build}/{fonts,images,raw}"
-	dir.build_fonts    = util.sep "#{dir.build}/fonts"
-	dir.build_icons    = util.sep "#{dir.build}/icons"
-	dir.build_images   = util.sep "#{dir.build}/images"
-	dir.build_raw      = util.sep "#{dir.build}/raw"
-	dir.build_scripts  = util.sep "#{dir.build}/scripts"
-	dir.build_styles   = util.sep "#{dir.build}/styles"
 	dir.bundles        = util.sep "#{dir.root}/bundles"
 	dir.components     = util.sep "#{dir.root}/components"
 	dir.assets         = util.sep "#{dir.components}/**/assets"
@@ -67,6 +164,14 @@ util.path = ( ->
 	files.styles_lint     = [files.bundles_styles, files.styles, util.sep("!#{dir.styles_nolint}/**/*"), util.sep("!#{dir.styles}/**/?(_)#{nolint}*.#{ext.styles}")]
 	files.templates       = util.sep "#{dir.templates}/**/*.#{ext.templates}"
 
+	build = {}
+	build.fonts   = 'fonts'
+	build.icons   = 'icons'
+	build.images  = 'images'
+	build.raw     = 'raw'
+	build.scripts = 'scripts'
+	build.styles  = 'styles'
+
 	config = {}
 	config.konstan  = util.sep "#{dir.root}/konstan.yaml"
 	config.package  = util.sep "#{dir.root}/package.json"
@@ -76,122 +181,46 @@ util.path = ( ->
 	return {
 		dir:    dir
 		files:  files
+		build:  build
 		config: config
 	}
 )()
 
+
+
 #-- package data
-util.pkg = require "#{__dirname}/../package"
-
-
-#-- read yaml
-( ->
-	fs   = require 'fs'
-	glob = require 'glob'
-	yaml = require 'js-yaml'
-
-	#-- konstan data
-	util.konstan =  yaml.safeLoad fs.readFileSync(util.path.config.konstan, 'utf8')
+util.pkg     = require "#{__dirname}/../package"
+util.konstan = util.readYAML util.path.config.konstan
 
 
 
-#	#-- bundles data
-#	util.bundles = []
+#-- load bundles
+util.bundles = ( ->
+	glob     = require 'glob'
+	minimist = require 'minimist'
 
-#	bundles = glob.sync util.path.dir.bundles + '/*.json'
+	# get cli flag
+	options = minimist process.argv.slice(2), { string: 'bundle', default: { bundle: '*' } }
 
-#	for name in bundles
-#		name = name.match(/([^/]+).json$/)[1]
-#		util.bundles[name] = require "#{__dirname}/../bundles/#{name}"
+	# get list
+	bundles = glob.sync "#{util.path.dir.bundles}/#{options.bundle}.yaml"
 
-#	console.log util.bundles
+	# process bundles
+	if bundles.length
+		data = {}
+		for name in bundles
+			name = name.match(/([^/]+).yaml/)[1]
+			data[name] = util.readYAML "#{__dirname}/../bundles/#{name}.yaml"
+
+	else
+		echo "\n No bundle #{if options.bundle != '*' then "'"+options.bundle+"' " else ""}found".red
+		process.exit(1) if process
+
+	return data
 
 )()
 
 
-#-- create a vinyl stream from a text
-util.vinyl_stream = (filename, string) ->
-	vinyl = require 'vinyl'
-	src   = require('stream').Readable { objectMode: true }
-
-	src._read = ->
-		this.push new vinyl {
-			path: filename
-			contents: new Buffer(string)
-		}
-		this.push(null)
-
-	return src
-
-
-
-
-#-- constants
-util.parse_konstan = (type, root_url) ->
-	extend = require 'extend'
-
-	parse_item = (item) -> "data['#{item.split('.').join("']['")}']"
-
-	data    = extend true, {}, util.konstan.data
-	options = extend true, {}, util.konstan.options[type]
-
-	data.path = root: root_url
-
-
-	# path
-	options.escape = ['path.root'] if type is 'styles'
-
-	for source_key in ['build_fonts', 'build_icons', 'build_images', 'build_scripts', 'build_styles', 'build_raw', 'cache_inline']
-		target_key = source_key.split('_').pop()
-		data.path[target_key] = (if source_key isnt 'cache_inline' then data.path.root + util.path.dir[source_key].substr(util.path.dir.root.length + util.path.dir.build.length) else util.path.dir[source_key].substr(util.path.dir.root.length + 1)) + '/'
-		options.escape.push "path.#{target_key}" if options.escape and options.escape.indexOf 'path.root' isnt -1
-
-	delete data.path.inline if type is 'scripts'
-
-
-	# option escape strings
-	if options.escape
-		for item in options.escape
-			item = parse_item item
-			eval "#{item} = \"'\"+#{item}.replace(\"'\",\"\\\\\'\")+\"'\""
-
-
-	# option excluse items
-	if options.exclude
-		for item in options.exclude
-			item = parse_item item
-			eval "delete #{item}"
-
-
-
-	return konstan: data
-
-
-
-#-- image optimization parameters
-util.imagemin_params = -> {
-	optimizationLevel: 7
-	progressive: true
-	interlaced:  true
-	svgoPlugins: [
-		removeViewBox: false
-		#removeUselessStrokeAndFill: false
-	]
-}
-
-#-- gm optimization
-util.gm_optimization = (gmfile, info) ->
-	gmfile.noProfile().quality(95) if info.format is 'JPG'
-	gmfile.dither(false).colors(256) if info.format is 'PNG' and info.depth is 8
-	return gmfile
-
-
-
-#-- assets rename
-util.assets_rename = (path) ->
-	elements = path.split sep
-	path = util.sep "#{elements[3]}/#{elements[1]}/#{elements.slice(4).join '/'}"
-	return path
 
 
 

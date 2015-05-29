@@ -32,16 +32,16 @@ module.exports =
 			'Usage: ' + chalk.yellow 'nwayo' + chalk.cyan ' <command>'
 			''
 			chalk.underline 'Project commands'
-			chalk.yellow('nwayo get') + ' [' + chalk.cyan('<component>') + ']   install a nwayo component'
-			chalk.yellow('nwayo run') + ' [' + chalk.cyan('<task>') + ']        run a task'
-			chalk.yellow('nwayo rebuild') + '             run rebuild task'
-			chalk.yellow('nwayo watch') + '               run watch task'
-			chalk.yellow('nwayo doctor') + '              diagnose project dependencies'
+			chalk.yellow('nwayo get') + ' [' + chalk.cyan('<component>') + ']         install a nwayo component'
+			chalk.yellow('nwayo run') + ' [' + chalk.cyan('<task>') + ' [' + chalk.cyan('<bundle>') + ']]   run a task'
+			chalk.yellow('nwayo rebuild') + ' [' + chalk.cyan('<bundle>') + ']        run rebuild task'
+			chalk.yellow('nwayo watch') + ' [' + chalk.cyan('<bundle>') + ']          run watch task'
+			chalk.yellow('nwayo doctor') + '                    diagnose project dependencies'
 			''
 			chalk.underline 'Global commands'
-			chalk.yellow('nwayo version') + '             get cli version'
-			chalk.yellow('nwayo grow') + '                grow a new project'
-			chalk.yellow('nwayo pronounce') + '           how to pronounce'
+			chalk.yellow('nwayo version') + '     get cli version'
+			chalk.yellow('nwayo grow') + '        grow a new project'
+			chalk.yellow('nwayo pronounce') + '   how to pronounce'
 			''
 			"nwayo@#{@pkg.version} #{path.normalize "#{__dirname}../../.."}"
 			''
@@ -74,6 +74,8 @@ module.exports =
 					bin = "#{grunt_cli}/#{pkg.bin.grunt}"
 					arg.push '--gruntfile', "#{context.cwd}/gruntfile.js"
 
+
+			arg.push "--#{flag}", value for flag, value of context.flags if context.flags
 
 			spawn = require('win-spawn')
 			cmd = spawn "#{bin}", arg, { env:process.env, stdio:'inherit' }

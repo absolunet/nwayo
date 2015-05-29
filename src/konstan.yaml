@@ -20,8 +20,8 @@ data:
 
   # colors
   color:
-    bg-color:   '#cccccc'
-    text-color: '#666666'
+    bgcolor:   '#cccccc'
+    textcolor: '#666666'
 
 
   # classes
