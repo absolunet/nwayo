@@ -13,7 +13,7 @@ echo = console.log
 #-- Rebuild
 gulp.task 'rebuild', (cb) ->
 	runsequence = require 'run-sequence'
-	runsequence ['assets', 'icons', 'scripts', 'styles'], cb
+	runsequence ['assets', 'icons', 'scripts', 'styles', 'local'], cb
 
 
 
@@ -47,6 +47,7 @@ gulp.task 'default', (cb) ->
 				{ name:'Icons only',       value:'icons' }
 				{ name:'Scripts only',     value:'scripts' }
 				{ name:'Styles only',      value:'styles' }
+				{ name:'Local only',       value:'local' }
 			]
 		}
 	], (data) ->

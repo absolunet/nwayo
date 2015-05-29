@@ -1,19 +1,19 @@
 #-------------------------------------
-#-- site
+#-- blog
 #-------------------------------------
 
 #-- output paths (relative to nwayo folder) and output url
 output:
-  konstan: __konstan-output-to-change/siteout
-  build:   __build-output-to-change/siteout
-  url:     /nwayo/__build-output-to-change/siteout
+  konstan: __konstan-output-to-change/blogout
+  build:   __build-output-to-change/blogout
+  url:     /nwayo/__build-output-to-change/blogout
 
 
 
 #-- assets
 assets:
   components:
-    - form
+    - SAMPLE
     - site
 
 
@@ -33,11 +33,9 @@ scripts:
       - bower_components/kafe/dist/kafe
       - components/nwayo/scripts/dependencies-starter
 
-    main:
+    post:
       - components/nwayo/scripts/collection-starter
-      - components/common/scripts/common
-      - components/site/scripts/site
-      - components/form/scripts/form
+      - components/SAMPLE/scripts/SAMPLE
 
 
 
@@ -53,12 +51,11 @@ styles:
       - 'Opera 12.1'
 
   collections:
-    main:
-      - components/common/styles/common
-      - components/site/styles/site
-      - components/form/styles/form
-
     editor:
       - components/common/styles/common
       - components/cms/styles/editor
 
+    main:
+      - components/common/styles/common
+      - components/site/styles/site
+      - components/form/styles/form

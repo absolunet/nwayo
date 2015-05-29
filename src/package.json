@@ -6,13 +6,7 @@
   "nwayo": {
     "version": "3.0.0-alpha.4",
     "cms":     [ "drupal" ],
-    "debug":   false,
-    "workflow": {
-      "autoprefixer-rules":  [ "> 1%", "last 2 versions", "ie >= 9", "Firefox ESR", "Opera 12.1" ],
-      "konstan-json-output": "../",
-      "minify-scripts":      false,
-      "minify-styles":       false
-    }
+    "debug":   false
   },
 
   "devDependencies": {
@@ -23,6 +17,7 @@
     "extend":        "2.0.1",
     "js-yaml":       "3.3.1",
     "inquirer":      "0.8.5",
+    "minimist":      "1.1.0",
     "colors":        "1.1.0",
 
     "gulp":         "3.8.11",
@@ -32,6 +27,7 @@
     "gulp-if":      "1.2.5",
     "vinyl":        "0.4.6",
     "run-sequence": "1.1.0",
+    "merge-stream": "0.1.7",
 
     "gulp-gm":       "0.0.7",
     "gulp-imagemin": "2.2.1",
