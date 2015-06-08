@@ -11,6 +11,7 @@
 
   "devDependencies": {
     "coffee-script": "1.9.3",
+    "fs-extra":      "0.18.4",
     "del":           "1.2.0",
     "glob":          "5.0.10",
     "mkdirp":        "0.5.1",

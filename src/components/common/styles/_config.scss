@@ -1,7 +1,6 @@
 //-------------------------------------
 //-- Configuration settings
 //-------------------------------------
-@import '.nwayo-cache/konstan';
 
 //-- nwayo util
 @import 'components/nwayo/styles/util';
@@ -46,6 +45,7 @@ $section-colorscheme: (
 $text-font: sans-serif;
 $alt-font:  'kreon', $text-font;
 
+@include load-font-mixin('kreon',   'kreon-regular-webfont', 'common');
 /**
 @include load-font-mixin('kreon',   'kreon-regular-webfont', 'common');
 @include load-font-mixin('kreon',   'kreon-light-webfont',   'common', $weight:$light-weight);
@@ -91,7 +91,16 @@ $ico-warning-char:  'w';
 
 /**/
 
+//%misc2-image { @include bg-image-mixin('nwayo.svg', 'common'); }
+%misc3-image { @include bg-image-mixin('nwayo.svg', 'common', $inline:true); }
 
+a {
+	//@extend %misc2-image;
+}
+
+b {
+	@extend %misc3-image;
+}
 
 //-- Placeholders
 %hover-transition {

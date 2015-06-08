@@ -51,11 +51,10 @@ styles:
       - 'Opera 12.1'
 
   collections:
-    editor:
+    editor-pouel:
       - components/common/styles/common
       - components/cms/styles/editor
 
-    main:
+    blog:
       - components/common/styles/common
-      - components/site/styles/site
-      - components/form/styles/form
+      - components/SAMPLE/styles/SAMPLE
