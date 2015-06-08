@@ -4,7 +4,7 @@
 
 //-- Background image
 @mixin bg-image-mixin ($file, $context, $inline:false, $width:false, $height:false) {
-	$uri: if($inline, inline-image($konstan-path-inline + $context + '/' + $file), url($konstan-path-images + $context + '/' + $file));
+	$uri: if($inline, inline-image($konstan-path-inline + '/' + $context + '/' + $file), url($konstan-path-images + '/' + $context + '/' + $file));
 
 	// high density
 	@if str-index($file, '@2x') {
@@ -16,8 +16,11 @@
 			background-image: $uri;
 			background-size: $width/2 $height/2;
 		}
-		$uri: strreplace($uri, '@2x', '');
+		$uri: str-replace($uri, '@2x', '');
 	}
+
+	//$svg: readfile($konstan-path-inline + '/' + $context + '/' + $file);
+	//$uri: svg-data-uri( $svg );
 
 	background-image: #{$uri};
 }
@@ -34,7 +37,7 @@
 
 //-- Font-face
 @mixin load-font-mixin ($name, $filename, $context, $weight:normal, $style:normal) {
-	$url:       $konstan-path-fonts + $context + '/' + $filename;
+	$url:       $konstan-path-fonts + '/' + $context + '/' + $filename;
 	$woff2:     if(fileexists('components/' + $context + '/assets/fonts/' + $filename + '.woff2'), ',' + url($url+'.woff2') format('woff2'), '');
 	@font-face {
 		font-family: $name;

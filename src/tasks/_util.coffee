@@ -52,10 +52,10 @@ util.parse_konstan = (type, root_url) ->
 
 	if type is 'styles'
 		options.escape = ['path.root']
-		paths.cache_inline = util.path.dir.cache_inline
+		paths.inline = util.path.dir.cache_inline
 
 	for key, value of paths
-		data.path[key] = (if key isnt 'cache_inline' then "#{data.path.root}/" else '') + value
+		data.path[key] = (if key isnt 'inline' then "#{data.path.root}/" else '') + value
 		options.escape.push "path.#{key}" if options.escape and options.escape.indexOf 'path.root' isnt -1
 
 

@@ -2,6 +2,7 @@
 //-- Utils: Functions
 //-------------------------------------
 
+//-- Get SCSS calculation between two colors
 @function color-diff($color-a, $color-b) {
 	$hue: hue($color-a) - hue($color-b);
 	$saturation: saturation($color-a) - saturation($color-b);
@@ -16,4 +17,36 @@
 		abs($saturation)#{'),'}
 		(-$hue)#{')'}
 	);
+}
+
+
+//-- String replace
+@function str-replace($string, $search, $replace: '') {
+	$index: str-index($string, $search);
+	@if $index {
+		@return str-slice($string, 1, $index - 1) + $replace +
+		str-replace(str-slice($string, $index +
+		str-length($search)), $search, $replace);
+	}
+	@return $string;
+}
+
+
+//-- SVG optimized for data-uri (http://codepen.io/Tigt/blog/optimizing-svgs-in-data-uris)
+@function svg-data-uri($svg) {
+	$encoded:'';
+	$slice: 2000;
+	$index: 0;
+	$loops: ceil(str-length($svg)/$slice);
+	@for $i from 1 through $loops {
+		$chunk: str-slice($svg, $index, $index + $slice - 1);
+		$chunk: str-replace($chunk,'"','\'');
+		$chunk: str-replace($chunk,'<','%3C');
+		$chunk: str-replace($chunk,'>','%3E');
+		$chunk: str-replace($chunk,'&','%26');
+		$chunk: str-replace($chunk,'#','%23');
+		$encoded: #{$encoded}#{$chunk};
+		$index: $index + $slice;
+	}
+	@return url("data:image/svg+xml;charset=utf8,#{$encoded}");
 }
