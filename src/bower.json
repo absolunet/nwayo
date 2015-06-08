@@ -2,11 +2,10 @@
   "name": "TODO",
   "version": "0.0.0",
   "devDependencies": {
-    "jquery":            "2.1.4",
-    "kafe":              "3.0.1",
-    "lodash":            "3.9.3",
-    "modernizr":         "2.8.3",
-    "underscore.string": "3.0.3",
+    "jquery":    "2.1.4",
+    "lodash":    "3.9.3",
+    "modernizr": "2.8.3",
+    "pubsub-js": "1.5.2",
 
     "meyer-reset":       "master",
     "normalize.scss":    "3.0.2+normalize.3.0.2",
@@ -37,9 +36,11 @@
     "jscrollpane":                   "2.0.21",
     "json2":                         "master",
     "jsrender":                      "master",
+    "kafe":                          "3.0.1",
     "masonry":                       "3.3.0",
     "slick.js":                      "1.5.5",
     "SVGInjector":                   "1.1.2",
+    "underscore.string":             "3.0.3",
     "video.js":                      "5.0.0-22",
     "webfontloader":                 "1.5.21"
   },

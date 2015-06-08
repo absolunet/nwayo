@@ -20,12 +20,11 @@ data:
 
   # colors
   color:
-    bgcolor:   '#cccccc'
-    textcolor: '#666666'
+    windowstile: '#659d32'
 
 
   # classes
-  classes:
+  class:
     gridcentered:      medium-centered medium-9 large-6 columns
     gridsmallcentered: medium-centered medium-7 large-5 columns
 
