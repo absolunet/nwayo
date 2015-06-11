@@ -92,7 +92,8 @@ $ico-warning-char:  'w';
 /**/
 
 //%misc2-image { @include bg-image-mixin('nwayo.svg', 'common'); }
-%misc3-image { @include bg-image-mixin('nwayo.svg', 'common', $inline:true); }
+%misc3-image { @include scalable-icon-mixin('test.svg', 'common', $color:$debug-orange); }
+%misc4-image { @include scalable-icon-mixin('test.svg', 'common', $color:$debug-green); }
 
 a {
 	//@extend %misc2-image;
@@ -100,6 +101,16 @@ a {
 
 b {
 	@extend %misc3-image;
+	display: block;
+	width: 200px;
+	height: 200px;
+}
+
+strong {
+	@extend %misc4-image;
+	display: block;
+	width: 200px;
+	height: 200px;
 }
 
 //-- Placeholders

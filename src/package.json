@@ -2,10 +2,13 @@
   "name":        "TODO",
   "description": " ",
   "repository":  {},
+  "license":     "LicenseRef-LICENSE",
 
   "nwayo": {
     "version": "3.0.0-alpha.4",
-    "cms":     [ "drupal" ],
+    "cms": [
+      { "drupal": "7.0.0" }
+    ],
     "debug":   false
   },
 
