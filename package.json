@@ -6,9 +6,9 @@
   "homepage":    "http://absolunet.github.io/nwayo",
   "author":      { "name": "Absolunet", "url": "http://absolunet.com/" },
 
-  "repository":  { "url":   "git://github.com/absolunet/nwayo.git", "type":"git" },
-  "bugs":        { "url": "https://github.com/absolunet/nwayo/issues" },
-  "licenses":  [ { "url": "https://github.com/absolunet/nwayo/tree/master/LICENSE.md", "type":"MIT" } ],
+  "repository": { "url":   "git://github.com/absolunet/nwayo.git", "type":"git" },
+  "bugs":       { "url": "https://github.com/absolunet/nwayo/issues" },
+  "license":    "MIT",
 
   "bin":     { "nwayo": "bin/nwayo" },
   "engines": { "node":  ">= 0.12.0" },

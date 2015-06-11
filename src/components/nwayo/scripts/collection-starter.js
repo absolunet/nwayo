@@ -17,7 +17,7 @@ app.tmpl = app.tmpl || {};
 // shortcuts
 var __ = (function() {
 	var attr     = ['name'];
-	var attrData = ['action','component','placeholder','field','showfor'];
+	var attrData = ['action','component','placeholder','showfor'];
 
 
 	var calls = {};
