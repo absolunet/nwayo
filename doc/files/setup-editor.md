@@ -1,3 +1,29 @@
+# SublimeText
+> https://packagecontrol.io/installation
+
+#### EditorConfig
+https://packagecontrol.io/packages/EditorConfig
+
+## Linters
+https://packagecontrol.io/packages/SublimeLinter
+
+#### SCSS Lint
+https://packagecontrol.io/packages/SublimeLinter-contrib-scss-lint
+
+#### JSHint
+https://packagecontrol.io/packages/SublimeLinter-jshint
+
+#### Coffee Lint
+https://packagecontrol.io/packages/SublimeLinter-coffeelint
+
+
+
+```
+
+
+
+
+```
 # PHPStorm 
 
 #### EditorConfig
@@ -27,7 +53,7 @@
 #### JSHint
 ```
 > Preferences 
-> Languages & Frameworks > Javaqscript > Code Quality Tools > JSHint 
+> Languages & Frameworks > Javascript > Code Quality Tools > JSHint 
 	- [x] Enable
 	- [x] Use config files
   - Version (latest)
@@ -45,11 +71,7 @@
 
 #### EditorConfig
 https://visualstudiogallery.msdn.microsoft.com/c8bccfe2-650c-4b42-bc5c-845e21f96328
-```
-```
 
 
-#### JSHint
+#### Web Essentials (JSHint)
 https://visualstudiogallery.msdn.microsoft.com/56633663-6799-41d7-9df7-0f2a504ca361
-```
-```
