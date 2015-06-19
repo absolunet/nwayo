@@ -1,9 +1,0 @@
-{
-	"basic":               { "cms":"",         "theme":false, "layout":"desktop" },
-	"basic-foundation":    { "cms":"",         "theme":false, "layout":"foundation" },
-	"drupal-basic":        { "cms":"drupal",   "theme":false, "layout":"desktop" },
-	"drupal-foundation":   { "cms":"drupal",   "theme":false, "layout":"foundation" },
-	"magento-theme":       { "cms":"magento",  "theme":true,  "layout":"desktop" },
-	"sitecore-basic":      { "cms":"sitecore", "theme":false, "layout":"desktop" },
-	"sitecore-foundation": { "cms":"sitecore", "theme":false, "layout":"foundation" }
-}
