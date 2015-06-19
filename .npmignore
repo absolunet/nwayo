@@ -1,7 +1,10 @@
 doc
 media
+src
 test
 .editorconfig
 .travis.yml
 bower.json
 gulpfile.js
+coffeelint.json
+nwayo.sublime-project
