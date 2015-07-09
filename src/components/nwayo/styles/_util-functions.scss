@@ -31,6 +31,20 @@
 	@return $string;
 }
 
+//-- Color replace
+@function color-replace($string, $source, $target) {
+	$string: str-replace($string, #{$source}, #{$target});
+	$string: str-replace($string, #{to-upper-case(to-string($source))}, #{$target});
+	@return $string;
+}
+
+//-- Cast to string
+@function to-string($value) {
+	@return inspect($value);
+}
+
+
+
 
 //-- SVG optimized for data-uri (http://codepen.io/Tigt/blog/optimizing-svgs-in-data-uris)
 @function svg-data-uri($svg) {
