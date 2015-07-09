@@ -14,7 +14,23 @@
 			$svg: readfile($inline-image-path);
 
 			@if $color {
-				$svg: str-replace($svg, #{$svg-replacement}, #{$color});
+
+				// single color
+				@if type-of($color) == 'color' {
+					$svg: color-replace($svg, $svg-replacement-1, $color);
+
+				// list
+				} @else if type-of($color) == 'list' {
+					@for $i from 1 through length($color) {
+						$svg: color-replace($svg, nth($svg-replacement, $i), nth($color, $i));
+					}
+
+				// hash
+				} @else {
+					@each $source, $target in $color {
+						$svg: color-replace($svg, $source, $target);
+					}
+				}
 			}
 
 			$uri: svg-data-uri($svg);
