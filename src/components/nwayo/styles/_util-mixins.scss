@@ -183,3 +183,60 @@
 		left: 0;
 	}
 }
+
+
+//-- Create a list with columns
+// $nb-column - The number of columns (Min.: 2)
+// $bullet-spacing - Spacing reserved outside of <li> for a bullet
+// $column-spacing - Spacing between columns
+// $row-spacing - Spacing between rows
+// $base-style - Wether or not to output base styles (Ex.: set to false in a media query to prevent repeating the styles already defined)
+@mixin column-list($nb-column:2, $bullet-spacing:17px, $column-spacing:30px, $row-spacing:10px, $base-style:true) {
+	// calculate a column offset : $column-spacing * ($column - 1) + $bullet-spacing * $column
+	$total-spacing: $column-spacing * ($nb-column - 1) + $bullet-spacing * $nb-column;
+	@if($base-style) {
+		padding-left: 0;
+	}
+	padding-right: $total-spacing;
+	@if($base-style) {
+		box-sizing: border-box;
+		// clearfix
+		&:before, &:after {
+			content: ' ';
+			display: table;
+		}
+		&:after {
+			clear: both;
+		}
+	}
+	> li {
+		@if($base-style) {
+			position: relative;
+			float: left;
+		}
+		width: percentage(1 / $nb-column);
+		// reset styles for media query usage
+		&:nth-of-type(n) {
+			left: auto;
+			clear: none;
+			margin-top: $row-spacing;
+		}
+		// remove margin from first row
+		&:nth-of-type(-n+#{$nb-column}) {
+			margin-top: 0;
+		}
+		// clear rows
+		&:nth-of-type(#{$nb-column}n+1) {
+			clear: both;
+		}
+		// column offsets
+		@for $i from 1 through $nb-column - 1 {
+			&:nth-of-type(#{$nb-column}n-#{($i)}) {
+				left: $column-spacing * ($nb-column - $i - 1) + $bullet-spacing * ($nb-column - $i);
+			}
+		}
+		&:nth-of-type(#{$nb-column}n) {
+			left: $total-spacing;
+		}
+	}
+}
