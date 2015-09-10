@@ -16,16 +16,20 @@ app.tmpl = app.tmpl || {};
 
 // shortcuts
 var __ = (function() {
+	var attr     = ['name'];
+	var attrData = ['action','component','placeholder','field','showfor'];
+
+
 	var calls = {};
 	var selector = function(key, value) { return '['+key+(value ? '~="'+value+'"' : '' )+']'; };
 
 	// shortcuts
-	_.forEach(['name'], function(key) {
+	_.forEach(attr, function(key) {
 		calls[key] = function() { return selector(key, arguments[0]); };
 	});
 
 	// data - shortcuts
-	_.forEach(['action','component','placeholder','field','showfor'], function(key) {
+	_.forEach(attrData, function(key) {
 		calls[key] = function() { return selector('data-'+key, arguments[0]); };
 	});
 
