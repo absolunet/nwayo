@@ -17,7 +17,7 @@ app.tmpl = app.tmpl || {};
 // shortcuts
 var __ = (function() {
 	var attr     = ['name'];
-	var attrData = ['action','component','placeholder','field','showfor'];
+	var attrData = ['action','component','placeholder','showfor'];
 
 
 	var calls = {};
@@ -26,11 +26,13 @@ var __ = (function() {
 	// shortcuts
 	_.forEach(attr, function(key) {
 		calls[key] = function() { return selector(key, arguments[0]); };
+		calls['$'+key] = function() { return $(calls[key](arguments[0])); };
 	});
 
 	// data - shortcuts
 	_.forEach(attrData, function(key) {
 		calls[key] = function() { return selector('data-'+key, arguments[0]); };
+		calls['$'+key] = function() { return $(calls[key](arguments[0])); };
 	});
 
 	return calls;
