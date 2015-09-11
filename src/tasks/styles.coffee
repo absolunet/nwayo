@@ -78,10 +78,9 @@ gulp.task 'styles_compile', ['styles_lint', 'styles_constants'], ->
 
 		# process all collections from this bundle
 		streams.push(
-			sass "#{cache_path}/#{bname}/collections", {
+			sass "#{cache_path}/#{bname}/collections/*.scss", {
 					loadPath:      path.dir.root
 					cacheLocation: path.dir.cache_sass
-					container:     "gulp-ruby-sass-#{bname}"
 					compass:       true
 					trace:         true
 					sourcemap:     false
