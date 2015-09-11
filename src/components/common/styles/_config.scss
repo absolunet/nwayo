@@ -46,7 +46,7 @@ $section-colorscheme: (
 $text-font: sans-serif;
 $alt-font:  'kreon', $text-font;
 
-@include load-font-mixin('kreon',   'kreon-regular-webfont', 'common');
+@include load-font-mixin('kreon', 'kreon-regular-webfont', 'common');
 /**
 @include load-font-mixin('kreon',   'kreon-regular-webfont', 'common');
 @include load-font-mixin('kreon',   'kreon-light-webfont',   'common', $weight:$light-weight);

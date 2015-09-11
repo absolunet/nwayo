@@ -45,13 +45,13 @@
 
 	// high density
 	@if str-index($file, '@2x') {
-		$path: 'components/' + $context + '/assets/'+ if($inline, 'inline-', '') + 'images/' + $file;
+		$path: 'components/' + $context + '/assets/' + if($inline, 'inline-', '') + 'images/' + $file;
 		$width:  if($width, $width, image-width($path));
 		$height: if($height, $height, image-height($path));
 
 		@media print, (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
 			background-image: $uri;
-			background-size: $width/2 $height/2;
+			background-size: $width / 2 $height / 2;
 		}
 		$uri: str-replace($uri, '@2x', '');
 	}
@@ -72,14 +72,14 @@
 //-- Font-face
 @mixin load-font-mixin ($name, $filename, $context, $weight:normal, $style:normal) {
 	$url:       $konstan-path-fonts + $context + '/' + $filename;
-	$woff2:     if(fileexists('components/' + $context + '/assets/fonts/' + $filename + '.woff2'), ',' + url($url+'.woff2') format('woff2'), '');
+	$woff2:     if(fileexists('components/' + $context + '/assets/fonts/' + $filename + '.woff2'), ',' + url($url + '.woff2') format('woff2'), '');
 	@font-face {
 		font-family: $name;
-		src: url($url+'.eot');
-		src: url($url+'.eot?#iefix') format('embedded-opentype')
+		src: url($url + '.eot');
+		src: url($url + '.eot?#iefix') format('embedded-opentype')
 		     #{$woff2},
-		     url($url+'.woff'),
-		     url($url+'.ttf') format('truetype');
+		     url($url + '.woff'),
+		     url($url + '.ttf') format('truetype');
 		font-weight: $weight;
 		font-style: $style;
 	}

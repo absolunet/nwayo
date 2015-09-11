@@ -48,7 +48,7 @@ gulp.task 'styles_compile', ['styles_lint', 'styles_constants'], ->
 	replace      = require 'gulp-replace'
 	minifycss    = require 'gulp-minify-css'
 
-	return sass path.dir.bundles, {
+	return sass path.files.bundles_styles, {
 			loadPath: path.dir.root
 			cacheLocation: path.dir.cache_sass
 			compass: true
