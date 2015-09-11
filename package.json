@@ -11,7 +11,7 @@
   "licenses":  [ { "url": "https://github.com/absolunet/nwayo/tree/master/LICENSE.md", "type":"MIT" } ],
 
   "bin":     { "nwayo": "bin/nwayo" },
-  "engines": { "node":  ">= 0.12.0" },
+  "engines": { "node":  ">= 0.12.7" },
   "scripts": {
     "test":   "mocha",
     "deploy": "gulp deploy",
