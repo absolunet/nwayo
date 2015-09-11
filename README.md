@@ -10,7 +10,7 @@
 
 ## Installation
 ```
-> sudo npm install -g nwayo
+> npm install -g nwayo
 ```
 
 ## Documentation
