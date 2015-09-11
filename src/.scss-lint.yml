@@ -9,6 +9,9 @@ linters:
     space_before_bang: true
     space_after_bang: false
 
+  BemDepth:
+    enabled: false
+
   BorderZero:
     enabled: true
 
@@ -27,6 +30,9 @@ linters:
   DeclarationOrder:
     enabled: true
 
+  DisableLinterReason:
+    enabled: true
+
   DuplicateProperty:
     enabled: true
 
@@ -39,6 +45,9 @@ linters:
 
   EmptyRule:
     enabled: true
+
+  ExtendDirective:
+    enabled: false
 
   FinalNewline:
     enabled: true
@@ -79,7 +88,9 @@ linters:
     force_nesting: true
 
   NameFormat:
-    enabled: hyphenated_lowercase
+    enabled: true
+    allow_leading_underscore: false
+    convention: hyphenated_lowercase
 
   NestingDepth:
     enabled: false
@@ -206,8 +217,9 @@ linters:
 
   PropertySpelling:
     enabled: true
-    #extra_properties:
-    #  - lorem
+
+  PropertyUnits:
+    enabled: false
 
   QualifyingElement:
     enabled: true
@@ -219,6 +231,7 @@ linters:
     enabled: false
 
   SelectorFormat:
+    enabled: true
     convention: hyphenated_lowercase
 
   Shorthand:
@@ -231,7 +244,8 @@ linters:
     enabled: false
 
   SpaceAfterComma:
-    enabled: false
+    enabled: true
+    style: at_least_one_space
 
   SpaceAfterPropertyColon:
     enabled: true
@@ -239,6 +253,13 @@ linters:
 
   SpaceAfterPropertyName:
     enabled: true
+
+  SpaceAfterVariableName:
+    enabled: true
+
+  SpaceAroundOperator:
+    enabled: true
+    style: one_space
 
   SpaceBeforeBrace:
     enabled: true
@@ -255,8 +276,14 @@ linters:
   TrailingSemicolon:
     enabled: true
 
+  TrailingWhitespace:
+    enabled: true
+
   TrailingZero:
     enabled: true
+
+  TransitionAll:
+    enabled: false
 
   UnnecessaryMantissa:
     enabled: true

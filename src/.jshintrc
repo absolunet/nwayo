@@ -1,29 +1,42 @@
 // http://www.jshint.com/docs/options
 {
   // change to globals
-  "predef": [ "document", "alert", "console", "global", "$", "$Global", "Modernizr", "_", "PubSub", "kafe", "nwayo", "konstan", "app", "__" ],
+  "globals": {
+    "document":  false,
+    "alert":     false,
+    "confirm":   false,
+    "console":   false,
+    "global":    false,
+    "$":         false,
+    "$Global":   false,
+    "Modernizr": false,
+    "_":         false,
+    "PubSub":    false,
+    "kafe":      false,
+    "nwayo":     false,
+    "konstan":   false,
+    "app":       false,
+    "__":        false
+  },
 
   // enforcing options
   "bitwise":       true,
-  "camelcase":     true,
+  "camelcase":     true, // deprecated
   "curly":         true,
-//"enforceall":    true,
   "eqeqeq":        true,
   "es3":           true,
   "es5":           false,
   "forin":         true,
+  "futurehostile": true,
   "freeze":        true,
-  "immed":         true,
-  "indent":        false,
+  "immed":         true, // deprecated
   "latedef":       true,
-  "newcap":        true,
   "noarg":         true,
   "nocomma":       false,
-  "noempty":       true,
   "nonbsp":        true,
   "nonew":         true,
   "plusplus":      false,
-  "quotmark":      "single",
+  "quotmark":      "single", // deprecated
   "singleGroups":  true,
   "undef":         true,
   "unused":        true,
@@ -32,8 +45,8 @@
   "maxdepth":      false,
   "maxstatements": false,
   "maxcomplexity": false,
-  "maxlen":        false,
   "maxerr":        0,
+  "varstmt":       false, // eventually
 
   // relaxing options
   "asi":           false,
@@ -48,18 +61,15 @@
   "globalstrict":  false,
   "iterator":      false,
   "lastsemic":     false,
-  "laxbreak":      false,
-  "laxcomma":      false,
   "loopfunc":      false,
   "maxerr":        false,
   "moz":           false,
-  "multistr":      false,
   "notypeof":      false,
   "noyield":       false,
   "proto":         false,
   "scripturl":     false,
   "shadow":        false,
-  "sub":           true,
+  "sub":           true,  // deprecated
   "supernew":      false,
   "validthis":     false,
   "withstmt":      false

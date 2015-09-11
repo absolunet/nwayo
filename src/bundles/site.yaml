@@ -28,7 +28,6 @@ scripts:
       - konstan
       - bower_components/jquery/dist/jquery
       - bower_components/lodash/lodash
-      - bower_components/underscore.string/dist/underscore.string
       - bower_components/modernizr/modernizr
       - bower_components/pubsub-js/src/pubsub
       - bower_components/kafe/dist/kafe
