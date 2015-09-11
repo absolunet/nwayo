@@ -66,6 +66,15 @@
 	};
 
 
+	//-- Subscribe to topics
+	local.subscribe = function() {
+
+		// PubSub.subscribe('foo.bar',  function() {});
+		// PubSub.subscribe('foo.bar2', function() {});
+
+	};
+
+
 	//-- To execute on start
 	local.start = function() {
 
@@ -99,6 +108,7 @@
 	$(function() {
 		local.cache();
 		local.bind();
+		local.subscribe();
 		local.start();
 	});
 
