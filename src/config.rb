@@ -6,23 +6,26 @@ images_path="."
 additional_import_paths=""
 
 
-
-
 module Sass::Script::Functions
 
-
-  # string replace
-  # source: https://github.com/Team-Sass/Sassy-Strings
-  def strreplace(string, find, replace)
-    assert_type string, :String
-    assert_type replace, :String
-    Sass::Script::String.new(string.value.gsub(find.value,replace.value), string.type)
+  def readfile(file)
+    Sass::Script::String.new( __readfile(file) )
   end
-  declare :strreplace, [:string, :find, :replace]
+  declare :readfile, [:string]
+
 
   def fileexists(file)
     Sass::Script::Bool.new(File.exists?(file.value))
   end
   declare :fileexists, [:string]
+
+
+  def __readfile(real_path)
+    if File.readable?(real_path.value)
+      File.open(real_path.value, "rb") {|io| io.read}
+    else
+      raise Compass::Error, "File not found or cannot be read: #{real_path}"
+    end
+  end
 
 end

@@ -13,6 +13,11 @@ $debug-green:  #76ee00;
 $debug-blue:   #1e90ff;
 $debug-purple: #a020f0;
 
+$svg-replacement-1: #ba0bab;
+$svg-replacement-2: #c0ffee;
+$svg-replacement:   ($svg-replacement-1, $svg-replacement-2);
+
+
 $thin-weight:       100;
 $extralight-weight: 200;
 $light-weight:      300;
