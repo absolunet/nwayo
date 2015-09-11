@@ -3,8 +3,45 @@
 //-------------------------------------
 
 //-- Background image
-@mixin bg-image-mixin ($file, $context, $inline:false, $width:false, $height:false) {
-	$uri: if($inline, inline-image($konstan-path-inline + $context + '/' + $file), url($konstan-path-images + $context + '/' + $file));
+@mixin bg-image-mixin ($file, $context, $inline:false, $width:false, $height:false, $color:false) {
+
+	// uri
+	$uri: '';
+	@if $inline {
+		$inline-image-path: $konstan-path-inline + $context + '/' + $file;
+
+		@if str-index($file, '.svg') {
+			$svg: readfile($inline-image-path);
+
+			@if $color {
+
+				// single color
+				@if type-of($color) == 'color' {
+					$svg: color-replace($svg, $svg-replacement-1, $color);
+
+				// list
+				} @else if type-of($color) == 'list' {
+					@for $i from 1 through length($color) {
+						$svg: color-replace($svg, nth($svg-replacement, $i), nth($color, $i));
+					}
+
+				// hash
+				} @else {
+					@each $source, $target in $color {
+						$svg: color-replace($svg, $source, $target);
+					}
+				}
+			}
+
+			$uri: svg-data-uri($svg);
+
+		} @else {
+			$uri: inline-image($inline-image-path);
+		}
+
+	} @else {
+		$uri: url($konstan-path-images + $context + '/' + $file);
+	}
 
 	// high density
 	@if str-index($file, '@2x') {
@@ -16,7 +53,7 @@
 			background-image: $uri;
 			background-size: $width/2 $height/2;
 		}
-		$uri: strreplace($uri, '@2x', '');
+		$uri: str-replace($uri, '@2x', '');
 	}
 
 	background-image: #{$uri};
@@ -24,8 +61,8 @@
 
 
 //-- Scalable icon
-@mixin scalable-icon-mixin ($file, $context) {
-	@include bg-image-mixin($file, $context, $inline:true);
+@mixin scalable-icon-mixin ($file, $context, $color:false) {
+	@include bg-image-mixin($file, $context, $inline:true, $color:$color);
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: contain;
