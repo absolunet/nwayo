@@ -2,21 +2,23 @@
 {
   // change to globals
   "globals": {
-    "document":  false,
-    "alert":     false,
-    "confirm":   false,
-    "console":   false,
-    "global":    false,
-    "$":         false,
-    "$Global":   false,
-    "Modernizr": false,
-    "_":         false,
-    "PubSub":    false,
-    "kafe":      false,
-    "nwayo":     false,
-    "konstan":   false,
-    "app":       false,
-    "__":        false
+    "document":   false,
+    "alert":      false,
+    "confirm":    false,
+    "console":    false,
+    "global":     false,
+    "$":          false,
+    "$Global":    false,
+    "Modernizr":  false,
+    "_":          false,
+    "PubSub":     false,
+    "kafe":       false,
+    "google":     false,
+    "Foundation": false,
+    "nwayo":      false,
+    "konstan":    false,
+    "app":        false,
+    "__":         false
   },
 
   // enforcing options
