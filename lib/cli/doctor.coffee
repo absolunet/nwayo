@@ -3,9 +3,10 @@
 #-------------------------------------
 'use strict'
 
-helper  = require '../helpers/cli'
-fs      = require 'fs'
-chalk   = require 'chalk'
+helper = require '../helpers/cli'
+fs     = require 'fs'
+chalk  = require 'chalk'
+_      = require 'lodash'
 
 context = null
 
@@ -35,19 +36,49 @@ analyze_node = (callback) ->
 analyze_bower = (callback) ->
 
 	if fs.existsSync "#{context.cwd}/bower.json"
-		bower = require 'bower'
+		bower  = require 'bower'
+		semver = require 'semver'
+
+		isPreVersion = (v1, v2) -> _.includes ['premajor', 'preminor', 'prepatch', 'prerelease'], semver.diff v1, v2
 
 		data = outdated: []
 		bower.commands.list().on 'end', (deps) ->
 
 			for name, info of deps.dependencies
+
 				if info.pkgMeta
+
+					# if there is an update
 					if info.update and info.pkgMeta.version isnt info.update.latest
-						data.outdated.push {
-							name:    name
-							current: info.pkgMeta.version
-							latest:  info.update.latest
-						}
+
+						# if the update is pre-version
+						if isPreVersion info.update.latest, info.pkgMeta.version
+
+							# search all versions
+							for version in info.versions
+
+								# if not a pre-version
+								if not isPreVersion version, info.pkgMeta.version
+
+									# if newer than current version
+									if semver.gt version, info.pkgMeta.version
+										stable = version
+
+									# stop looping since in desc order
+									else
+										break
+
+						# if update is a stable version
+						else
+							stable = info.update.latest
+
+						# if a stable newer version was found
+						if stable
+							data.outdated.push {
+								name:    name
+								current: info.pkgMeta.version
+								latest:  stable
+							}
 				else
 					data.outdated.push {
 						name:    name
