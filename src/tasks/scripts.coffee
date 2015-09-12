@@ -92,5 +92,5 @@ gulp.task 'scripts', (cb) ->
 	list = []
 	list.push "#{bundle.output.build}/#{path.build.scripts}", "#{cache_path}/#{bname}" for bname, bundle of util.bundles
 
-	del list, force:true, ->
-		runsequence 'scripts_compile', cb
+	del.sync list, force:true
+	runsequence 'scripts_compile', cb
