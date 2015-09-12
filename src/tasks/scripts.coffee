@@ -46,5 +46,5 @@ gulp.task 'scripts', (cb) ->
 	del         = require 'del'
 	runsequence = require 'run-sequence'
 
-	del [path.dir.build_scripts], force:true, ->
-		runsequence 'scripts_compile', cb
+	del.sync path.dir.build_scripts, force:true
+	runsequence 'scripts_compile', cb
