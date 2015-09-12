@@ -29,3 +29,10 @@ module Sass::Script::Functions
   end
 
 end
+
+class CSSImporter < Sass::Importers::Filesystem
+  def extensions
+    super.merge('css' => :scss)
+  end
+end
+Sass::Plugin.options[:filesystem_importer] = CSSImporter
