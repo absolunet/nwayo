@@ -153,7 +153,7 @@ gulp.task 'icons', (cb) ->
 	del         = require 'del'
 	runsequence = require 'run-sequence'
 
-	del [path.dir.build_icons], force:true, ->
-		runsequence ['icons_favicon', 'icons_share', 'icons_tile'], cb
+	del.sync path.dir.build_icons, force:true
+	runsequence ['icons_favicon', 'icons_share', 'icons_tile'], cb
 
 

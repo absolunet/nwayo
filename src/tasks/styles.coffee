@@ -102,5 +102,5 @@ gulp.task 'styles', (cb) ->
 	list = [path.dir.cache_inline, path.dir.cache_sass]
 	list.push "#{bundle.output.build}/#{path.build.styles}", "#{cache_path}/#{bname}" for bname, bundle of util.bundles
 
-	del list, force:true, ->
-		runsequence 'styles_images', 'styles_compile', cb
+	del.sync list, force:true
+	runsequence 'styles_images', 'styles_compile', cb
