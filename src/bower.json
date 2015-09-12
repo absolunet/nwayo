@@ -39,7 +39,7 @@
     "json2":                         "master",
     "jsrender":                      "master",
     "masonry":                       "3.3.2",
-    "slick.js":                      "1.5.8"
+    "slick.js":                      "1.5.8",
     "SVGInjector":                   "1.1.3",
     "video.js":                      "4.12.15",
     "webfontloader":                 "1.6.6"

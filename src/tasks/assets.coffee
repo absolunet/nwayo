@@ -66,8 +66,8 @@ gulp.task 'assets_images', (cb) ->
 	del         = require 'del'
 	runsequence = require 'run-sequence'
 
-	del [path.dir.build_images], force:true, ->
-		runsequence ['assets_images_optimization', 'assets_images_highdensity'], cb
+	del.sync [path.dir.build_images], force:true
+	runsequence ['assets_images_optimization', 'assets_images_highdensity'], cb
 
 
 
@@ -76,5 +76,5 @@ gulp.task 'assets', (cb) ->
 	del         = require 'del'
 	runsequence = require 'run-sequence'
 
-	del [path.dir.build_assets], force:true, ->
-		runsequence ['assets_fonts', 'assets_images', 'assets_raw'], cb
+	del.sync [path.dir.build_assets], force:true
+	runsequence ['assets_fonts', 'assets_images', 'assets_raw'], cb

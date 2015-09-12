@@ -66,5 +66,5 @@ gulp.task 'styles', (cb) ->
 	del         = require 'del'
 	runsequence = require 'run-sequence'
 
-	del [path.dir.build_styles, path.dir.cache_inline, path.dir.cache_sass], force:true, ->
-		runsequence 'styles_images', 'styles_compile', cb
+	del.sync [path.dir.build_styles, path.dir.cache_inline, path.dir.cache_sass], force:true
+	runsequence 'styles_images', 'styles_compile', cb
