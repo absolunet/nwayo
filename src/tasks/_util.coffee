@@ -3,7 +3,7 @@ util = {}
 
 #-- sep
 sep = require('path').sep
-util.sep = (path) -> path.replace /\//g, sep
+util.sep = (path) -> path
 
 
 #-- paths
