@@ -116,6 +116,9 @@ util.path = ( ->
 
 	nolint = '{theme,vendor}'
 
+	pattern = {}
+	pattern.anytree = '**'
+
 	ext = {}
 	ext.fonts     = '{eot,svg,ttf,woff,woff2}'
 	ext.images    = '{gif,jpg,png,svg}'
@@ -130,39 +133,39 @@ util.path = ( ->
 	dir.cache_sass     = util.sep "#{dir.cache}/sass"
 	dir.bundles        = util.sep "#{dir.root}/bundles"
 	dir.components     = util.sep "#{dir.root}/components"
-	dir.assets         = util.sep "#{dir.components}/**/assets"
+	dir.assets         = util.sep "#{dir.components}/#{pattern.anytree}/assets"
 	dir.fonts          = util.sep "#{dir.assets}/fonts"
 	dir.icons          = util.sep "#{dir.assets}/icons"
 	dir.images         = util.sep "#{dir.assets}/images"
 	dir.inline         = util.sep "#{dir.assets}/inline-images"
 	dir.raw            = util.sep "#{dir.assets}/raw"
-	dir.scripts        = util.sep "#{dir.components}/**/scripts"
+	dir.scripts        = util.sep "#{dir.components}/#{pattern.anytree}/scripts"
 	dir.scripts_nolint = util.sep "#{dir.components}/#{nolint}-*/scripts"
-	dir.styles         = util.sep "#{dir.components}/**/styles"
+	dir.styles         = util.sep "#{dir.components}/#{pattern.anytree}/styles"
 	dir.styles_nolint  = util.sep "#{dir.components}/#{nolint}-*/styles"
-	dir.templates      = util.sep "#{dir.components}/**/templates"
+	dir.templates      = util.sep "#{dir.components}/#{pattern.anytree}/templates"
 	dir.bower          = util.sep "#{dir.root}/bower_components"
 	dir.misc           = util.sep "#{dir.root}/misc"
 	dir.resources      = util.sep "#{dir.misc}/resources"
 	dir.stubs          = util.sep "#{dir.misc}/stubs"
 
 	files = {}
-	files.bundles_scripts = util.sep "#{dir.bundles}/**/*.#{ext.scripts}"
-	files.bundles_styles  = util.sep "#{dir.bundles}/**/*.#{ext.styles}"
-	files.fonts           = util.sep "#{dir.fonts}/**/*.#{ext.fonts}"
+	files.bundles_scripts = util.sep "#{dir.bundles}/#{pattern.anytree}/*.#{ext.scripts}"
+	files.bundles_styles  = util.sep "#{dir.bundles}/#{pattern.anytree}/*.#{ext.styles}"
+	files.fonts           = util.sep "#{dir.fonts}/#{pattern.anytree}/*.#{ext.fonts}"
 	files.icons_favicon   = util.sep "#{dir.icons}/favicon.png"
 	files.icons_icon      = util.sep "#{dir.icons}/icon.png"
 	files.icons_large     = util.sep "#{dir.icons}/large.png"
 	files.icons_tile      = util.sep "#{dir.icons}/tile.png"
-	files.images          = util.sep "#{dir.images}/**/*.#{ext.images}"
-	files.images2x        = util.sep "#{dir.images}/**/*\@2x.#{ext.images}"
-	files.inline          = util.sep "#{dir.inline}/**/*.#{ext.images}"
-	files.raw             = util.sep "#{dir.raw}/**/*"
-	files.scripts         = util.sep "#{dir.scripts}/**/*.#{ext.scripts}"
-	files.scripts_lint    = [files.bundles_scripts, files.scripts, util.sep("!#{dir.scripts_nolint}/**/*"), util.sep("!#{dir.scripts}/**/?(_)#{nolint}*.#{ext.scripts}")]
-	files.styles          = util.sep "#{dir.styles}/**/*.#{ext.styles}"
-	files.styles_lint     = [files.bundles_styles, files.styles, util.sep("!#{dir.styles_nolint}/**/*"), util.sep("!#{dir.styles}/**/?(_)#{nolint}*.#{ext.styles}")]
-	files.templates       = util.sep "#{dir.templates}/**/*.#{ext.templates}"
+	files.images          = util.sep "#{dir.images}/#{pattern.anytree}/*.#{ext.images}"
+	files.images2x        = util.sep "#{dir.images}/#{pattern.anytree}/*\@2x.#{ext.images}"
+	files.inline          = util.sep "#{dir.inline}/#{pattern.anytree}/*.#{ext.images}"
+	files.raw             = util.sep "#{dir.raw}/#{pattern.anytree}/*"
+	files.scripts         = util.sep "#{dir.scripts}/#{pattern.anytree}/*.#{ext.scripts}"
+	files.scripts_lint    = [files.bundles_scripts, files.scripts, util.sep("!#{dir.scripts_nolint}/#{pattern.anytree}/*"), util.sep("!#{dir.scripts}/#{pattern.anytree}/?(_)#{nolint}*.#{ext.scripts}")]
+	files.styles          = util.sep "#{dir.styles}/#{pattern.anytree}/*.#{ext.styles}"
+	files.styles_lint     = [files.bundles_styles, files.styles, util.sep("!#{dir.styles_nolint}/#{pattern.anytree}/*"), util.sep("!#{dir.styles}/#{pattern.anytree}/?(_)#{nolint}*.#{ext.styles}")]
+	files.templates       = util.sep "#{dir.templates}/#{pattern.anytree}/*.#{ext.templates}"
 
 	build = {}
 	build.fonts   = 'fonts'
@@ -179,10 +182,11 @@ util.path = ( ->
 
 
 	return {
-		dir:    dir
-		files:  files
-		build:  build
-		config: config
+		pattern: pattern
+		dir:     dir
+		files:   files
+		build:   build
+		config:  config
 	}
 )()
 
@@ -221,6 +225,12 @@ util.bundles = ( ->
 )()
 
 
+
+#-- extract bundles components
+util.bundlesComponents = ( ->
+	_ = require 'lodash'
+	return _.uniq( _.flatten( _.pluck(util.bundles, 'assets.components')))
+)()
 
 
 

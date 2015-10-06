@@ -1,26 +1,6 @@
 // http://www.jshint.com/docs/options
 {
-  // change to globals
-  "globals": {
-    "document":   false,
-    "alert":      false,
-    "confirm":    false,
-    "console":    false,
-    "global":     false,
-    "$":          false,
-    "$Global":    false,
-    "Modernizr":  false,
-    "_":          false,
-    "PubSub":     false,
-    "Cookies":    false,
-    "kafe":       false,
-    "google":     false,
-    "Foundation": false,
-    "nwayo":      false,
-    "konstan":    false,
-    "app":        false,
-    "__":         false
-  },
+  "node": true,
 
   // enforcing options
   "bitwise":       true,
@@ -57,7 +37,7 @@
   "debug":         false,
   "elision":       false,
   "eqnull":        false,
-  "esnext":        false,
+  "esnext":        true,
   "evil":          false,
   "expr":          false,
   "funcscope":     false,

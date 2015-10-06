@@ -1,22 +1,55 @@
-#debug  = require 'gulp-debug'
-gulp   = require 'gulp'
-rename = require 'gulp-rename'
+//-------------------------------------
+//-- Assets
+//-------------------------------------
+'use strict';
 
-util = require './_util'
-path = util.path
+//let debug = require('gulp-debug');
+let gulp   = require('gulp');
+let rename = require('gulp-rename');
 
-
-
-
-#-- Fonts copy
-gulp.task 'assets_fonts', ->
-	return gulp.src path.files.fonts, base:path.dir.root
-		.pipe rename (path) -> path.dirname = util.assets_rename path.dirname; return
-		.pipe gulp.dest path.dir.build
+let util = require('./_util');
+let path = util.path;
 
 
 
-#-- Images optimization
+
+//-- Fonts copy
+gulp.task('assets.fonts', () => {
+	let _     = require('lodash');
+	let merge = require('merge-stream');
+
+	let streams = [];
+
+	for (let component of util.bundlesComponents) {
+
+		// Create stream for component
+		let stream = gulp.src( path.files.fonts.replace(path.pattern.anytree, component), {base:path.dir.root})
+			.pipe( rename( path => {
+				path.dirname = util.assets_rename(path.dirname);
+				return;
+			}))
+		;
+
+		// Output to each bundle
+		for (let name in util.bundles) {
+			if (util.bundles.hasOwnProperty(name)) {
+				let bundle = util.bundles[name];
+
+				if ( _.includes(bundle.assets.components, component) ) {
+					stream.pipe( gulp.dest(bundle.output.build) );
+				}
+			}
+		}
+
+		streams.push(stream);
+	}
+
+	return merge.apply(null, streams);
+});
+
+
+/*
+//-- Images optimization
 gulp.task 'assets_images_optimization', ->
 	imagemin = require 'gulp-imagemin'
 
@@ -78,3 +111,4 @@ gulp.task 'assets', (cb) ->
 
 	del.sync [path.dir.build_assets], force:true
 	runsequence ['assets_fonts', 'assets_images', 'assets_raw'], cb
+*/
