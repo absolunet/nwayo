@@ -53,6 +53,7 @@ gulp.task 'icons_share', ( ->
 		120   # For iPhone with @2× display running iOS ≥ 7
 		144   # For iPad with @2× display running iOS ≤ 6
 		152   # For iPad with @2× display running iOS ≤ 7
+		167   # For iPad Pro with @2× display running iOS ≤ 9
 		180   # For iPhone 6 Plus with @3× display
 		192   # For Chrome for Android
 		228   # For Coast for iOS
