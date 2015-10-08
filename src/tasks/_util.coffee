@@ -1,13 +1,10 @@
 colors = require 'colors'
 
-sep  = require('path').sep
 echo = console.log
 util = {}
 
 
 
-#-- sep
-util.sep = (path) -> path.replace /\//g, sep
 
 
 
@@ -97,8 +94,8 @@ util.gm_optimization = (gmfile, info) ->
 
 #-- assets rename
 util.assets_rename = (path) ->
-	elements = path.split sep
-	path = util.sep "#{elements[3]}/#{elements[1]}/#{elements.slice(4).join '/'}"
+	elements = path.split '/'
+	path = "#{elements[3]}/#{elements[1]}/#{elements.slice(4).join '/'}"
 	return path
 
 
@@ -128,44 +125,44 @@ util.path = ( ->
 
 	dir = {}
 	dir.root           = '.'
-	dir.cache          = util.sep "#{dir.root}/.nwayo-cache"
-	dir.cache_inline   = util.sep "#{dir.cache}/inline-images"
-	dir.cache_sass     = util.sep "#{dir.cache}/sass"
-	dir.bundles        = util.sep "#{dir.root}/bundles"
-	dir.components     = util.sep "#{dir.root}/components"
-	dir.assets         = util.sep "#{dir.components}/#{pattern.anytree}/assets"
-	dir.fonts          = util.sep "#{dir.assets}/fonts"
-	dir.icons          = util.sep "#{dir.assets}/icons"
-	dir.images         = util.sep "#{dir.assets}/images"
-	dir.inline         = util.sep "#{dir.assets}/inline-images"
-	dir.raw            = util.sep "#{dir.assets}/raw"
-	dir.scripts        = util.sep "#{dir.components}/#{pattern.anytree}/scripts"
-	dir.scripts_nolint = util.sep "#{dir.components}/#{nolint}-*/scripts"
-	dir.styles         = util.sep "#{dir.components}/#{pattern.anytree}/styles"
-	dir.styles_nolint  = util.sep "#{dir.components}/#{nolint}-*/styles"
-	dir.templates      = util.sep "#{dir.components}/#{pattern.anytree}/templates"
-	dir.bower          = util.sep "#{dir.root}/bower_components"
-	dir.misc           = util.sep "#{dir.root}/misc"
-	dir.resources      = util.sep "#{dir.misc}/resources"
-	dir.stubs          = util.sep "#{dir.misc}/stubs"
+	dir.cache          = "#{dir.root}/.nwayo-cache"
+	dir.cache_inline   = "#{dir.cache}/inline-images"
+	dir.cache_sass     = "#{dir.cache}/sass"
+	dir.bundles        = "#{dir.root}/bundles"
+	dir.components     = "#{dir.root}/components"
+	dir.assets         = "#{dir.components}/#{pattern.anytree}/assets"
+	dir.fonts          = "#{dir.assets}/fonts"
+	dir.icons          = "#{dir.assets}/icons"
+	dir.images         = "#{dir.assets}/images"
+	dir.inline         = "#{dir.assets}/inline-images"
+	dir.raw            = "#{dir.assets}/raw"
+	dir.scripts        = "#{dir.components}/#{pattern.anytree}/scripts"
+	dir.scripts_nolint = "#{dir.components}/#{nolint}-*/scripts"
+	dir.styles         = "#{dir.components}/#{pattern.anytree}/styles"
+	dir.styles_nolint  = "#{dir.components}/#{nolint}-*/styles"
+	dir.templates      = "#{dir.components}/#{pattern.anytree}/templates"
+	dir.bower          = "#{dir.root}/bower_components"
+	dir.misc           = "#{dir.root}/misc"
+	dir.resources      = "#{dir.misc}/resources"
+	dir.stubs          = "#{dir.misc}/stubs"
 
 	files = {}
-	files.bundles_scripts = util.sep "#{dir.bundles}/#{pattern.anytree}/*.#{ext.scripts}"
-	files.bundles_styles  = util.sep "#{dir.bundles}/#{pattern.anytree}/*.#{ext.styles}"
-	files.fonts           = util.sep "#{dir.fonts}/#{pattern.anytree}/*.#{ext.fonts}"
-	files.icons_favicon   = util.sep "#{dir.icons}/favicon.png"
-	files.icons_icon      = util.sep "#{dir.icons}/icon.png"
-	files.icons_large     = util.sep "#{dir.icons}/large.png"
-	files.icons_tile      = util.sep "#{dir.icons}/tile.png"
-	files.images          = util.sep "#{dir.images}/#{pattern.anytree}/*.#{ext.images}"
-	files.images2x        = util.sep "#{dir.images}/#{pattern.anytree}/*\@2x.#{ext.images}"
-	files.inline          = util.sep "#{dir.inline}/#{pattern.anytree}/*.#{ext.images}"
-	files.raw             = util.sep "#{dir.raw}/#{pattern.anytree}/*"
-	files.scripts         = util.sep "#{dir.scripts}/#{pattern.anytree}/*.#{ext.scripts}"
-	files.scripts_lint    = [files.bundles_scripts, files.scripts, util.sep("!#{dir.scripts_nolint}/#{pattern.anytree}/*"), util.sep("!#{dir.scripts}/#{pattern.anytree}/?(_)#{nolint}*.#{ext.scripts}")]
-	files.styles          = util.sep "#{dir.styles}/#{pattern.anytree}/*.#{ext.styles}"
-	files.styles_lint     = [files.bundles_styles, files.styles, util.sep("!#{dir.styles_nolint}/#{pattern.anytree}/*"), util.sep("!#{dir.styles}/#{pattern.anytree}/?(_)#{nolint}*.#{ext.styles}")]
-	files.templates       = util.sep "#{dir.templates}/#{pattern.anytree}/*.#{ext.templates}"
+	files.bundles_scripts = "#{dir.bundles}/#{pattern.anytree}/*.#{ext.scripts}"
+	files.bundles_styles  = "#{dir.bundles}/#{pattern.anytree}/*.#{ext.styles}"
+	files.fonts           = "#{dir.fonts}/#{pattern.anytree}/*.#{ext.fonts}"
+	files.icons_favicon   = "#{dir.icons}/favicon.png"
+	files.icons_icon      = "#{dir.icons}/icon.png"
+	files.icons_large     = "#{dir.icons}/large.png"
+	files.icons_tile      = "#{dir.icons}/tile.png"
+	files.images          = "#{dir.images}/#{pattern.anytree}/*.#{ext.images}"
+	files.images2x        = "#{dir.images}/#{pattern.anytree}/*\@2x.#{ext.images}"
+	files.inline          = "#{dir.inline}/#{pattern.anytree}/*.#{ext.images}"
+	files.raw             = "#{dir.raw}/#{pattern.anytree}/*"
+	files.scripts         = "#{dir.scripts}/#{pattern.anytree}/*.#{ext.scripts}"
+	files.scripts_lint    = [files.bundles_scripts, files.scripts, "!#{dir.scripts_nolint}/#{pattern.anytree}/*", "!#{dir.scripts}/#{pattern.anytree}/?(_)#{nolint}*.#{ext.scripts}"]
+	files.styles          = "#{dir.styles}/#{pattern.anytree}/*.#{ext.styles}"
+	files.styles_lint     = [files.bundles_styles, files.styles, "!#{dir.styles_nolint}/#{pattern.anytree}/*", "!#{dir.styles}/#{pattern.anytree}/?(_)#{nolint}*.#{ext.styles}"]
+	files.templates       = "#{dir.templates}/#{pattern.anytree}/*.#{ext.templates}"
 
 	build = {}
 	build.fonts   = 'fonts'
@@ -176,9 +173,9 @@ util.path = ( ->
 	build.styles  = 'styles'
 
 	config = {}
-	config.konstan  = util.sep "#{dir.root}/konstan.yaml"
-	config.package  = util.sep "#{dir.root}/package.json"
-	config.scsslint = util.sep "#{dir.root}/.scss-lint.yml"
+	config.konstan  = "#{dir.root}/konstan.yaml"
+	config.package  = "#{dir.root}/package.json"
+	config.scsslint = "#{dir.root}/.scss-lint.yml"
 
 
 	return {
