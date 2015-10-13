@@ -3,7 +3,7 @@
 //-------------------------------------
 'use strict';
 
-let debug  = require('gulp-debug');
+//let debug  = require('gulp-debug');
 let gulp   = require('gulp');
 let rename = require('gulp-rename');
 
@@ -32,7 +32,6 @@ gulp.task('assets-images-optimization', () => {
 
 	return Util.assetsProcess(PATH.files.images, stream => {
 		return stream
-			.pipe( debug() )
 			.pipe( imagemin(Util.imageminParams) )
 
 			.pipe( rename( path => {
