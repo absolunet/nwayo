@@ -11,7 +11,7 @@
   "bugs":       { "url": "https://github.com/absolunet/nwayo/issues" },
 
   "bin":     { "nwayo": "bin/nwayo" },
-  "engines": { "node":  ">= 0.12.7" },
+  "engines": { "node":  ">= 4.1.2" },
   "scripts": {
     "test":   "mocha",
     "deploy": "gulp deploy",
@@ -20,11 +20,11 @@
 
   "devDependencies": {
     "gulp":            "3.9.0",
-    "gulp-gh-pages":   "0.5.2",
+    "gulp-gh-pages":   "0.5.3",
     "gulp-preprocess": "1.2.0",
     "gulp-rename":     "1.2.2",
 
-    "mocha":           "2.3.2",
+    "mocha":           "2.3.3",
     "should":          "7.1.0",
     "stripcolorcodes": "0.1.0"
  },
@@ -39,19 +39,19 @@
     "coffee-script": "1.10.0",
     "lodash":        "3.10.1",
     "minimist":      "1.2.0",
-    "request":       "2.61.0",
+    "request":       "2.65.0",
     "execSync":      "1.0.2",
     "semver":        "5.0.3",
     "win-spawn":     "2.0.0",
 
     "chalk":           "1.1.1",
-    "inquirer":        "0.9.0",
-    "download":        "4.2.0",
+    "inquirer":        "0.10.1",
+    "download":        "4.2.1",
     "download-status": "2.2.1",
-    "gulp-ignore":     "1.2.1",
+    "gulp-ignore":     "2.0.1",
 
     "david":     "6.2.0",
-    "bower":     "1.5.2",
+    "bower":     "1.5.3",
     "grunt-cli": "0.1.13"
   }
 }

@@ -1,4 +1,5 @@
 node_modules
+npm-debug.log
 src/bower_components
-src/build
-*.sublime-workspace
+src/__build-path__
+src/__konstan-path__

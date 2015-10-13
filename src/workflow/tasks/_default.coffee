@@ -1,11 +1,8 @@
 #debug = require 'gulp-debug'
 gulp = require 'gulp'
-fs   = require 'fs'
 
-util = require './_util'
-path = util.path
-pkg  = util.pkg
 echo = console.log
+ENV  = global.nwayo.env
 
 
 
@@ -26,12 +23,11 @@ gulp.task 'rebuild-ss', (cb) ->
 
 #-- Default menu
 gulp.task 'default', (cb) ->
-	colors      = require 'colors'
 	runsequence = require 'run-sequence'
 	inquirer    = require 'inquirer'
 
 	echo '\n'
-	echo " #{pkg.name} ".bgGreen.bold + "    [nwayo #{pkg.nwayo.version}]".yellow
+	echo " #{ENV.pkg.name} ".bgGreen.bold + "    [nwayo #{ENV.pkg.nwayo.version}]".yellow
 	echo ''
 
 	inquirer.prompt [
