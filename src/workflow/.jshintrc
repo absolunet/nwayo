@@ -2,7 +2,12 @@
 {
   "node": true,
 
-  // enforcing options
+ // globals
+  "globals": {
+    "JSON": false
+  },
+
+ // enforcing options
   "bitwise":       true,
   "camelcase":     true, // deprecated
   "curly":         true,
