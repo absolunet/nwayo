@@ -1,9 +1,9 @@
 #debug  = require 'gulp-debug'
 gulp   = require 'gulp'
 rename = require 'gulp-rename'
-
-util  = require './_util'
-path  = util.path
+echo = console.log
+PATH = global.nwayo.path
+Util = global.nwayo.util
 
 
 # https://github.com/gleero/grunt-favicons
@@ -14,12 +14,12 @@ path  = util.path
 # https://mathiasbynens.be/notes/rel-shortcut-icon
 gulp.task 'icons_favicon', ->
 	mkdirp = require 'mkdirp'
-	paths  = require 'path'
+	path   = require 'path'
 	im     = require 'imagemagick'
 	glob   = require 'glob'
 
-	for file in (glob.sync path.files.icons_favicon, mark:true)
-		out = paths.dirname( "#{path.dir.build}/" + util.assets_rename( util.sep(file).substring( path.dir.root.length + 1 ) ) )
+	for file in (glob.sync PATH.files.icons_favicon, mark:true)
+		out = path.dirname( "#{PATH.dir.build}/" + Util.assetsRename( file.substring( PATH.dir.root.length + 1 ) ) )
 		mkdirp.sync out
 
 		im.convert [
@@ -33,7 +33,7 @@ gulp.task 'icons_favicon', ->
 		], (err, stdout) ->
 			if err
 				throw err
-				console.log stdout
+				echo stdout
 
 
 
@@ -68,17 +68,17 @@ gulp.task 'icons_share', ( ->
 			imagemin = require 'gulp-imagemin'
 			gm       = require 'gulp-gm'
 
-			return gulp.src path.files.icons_icon, base:path.dir.root
+			return gulp.src PATH.files.iconsIcon, base:PATH.dir.root
 				.pipe gm (gmfile, done) ->
 					gmfile.identify (err, info) ->
-						gmfile = util.gm_optimization gmfile.resize(size,size), info
+						gmfile = Util.gmOptimization gmfile.resize(size,size), info
 						done null, gmfile
 				.pipe rename (path) ->
-					path.dirname = util.assets_rename path.dirname
+					path.dirname = Util.assetsRename path.dirname
 					path.basename = "icon-#{size}"
 					return
-				.pipe imagemin util.imagemin_params()
-				.pipe gulp.dest path.dir.build
+				.pipe imagemin Util.imageminParams
+				.pipe gulp.dest PATH.dir.build
 		)(size)
 
 		tasks.push task
@@ -87,10 +87,10 @@ gulp.task 'icons_share', ( ->
 )(), ->
 	imagemin = require 'gulp-imagemin'
 
-	return gulp.src [path.files.icons_large], base:path.dir.root
-		.pipe imagemin util.imagemin_params()
-		.pipe rename (path) -> path.dirname = util.assets_rename path.dirname; return
-		.pipe gulp.dest path.dir.build
+	return gulp.src [PATH.files.iconsLarge], base:PATH.dir.root
+		.pipe imagemin Util.imageminParams
+		.pipe rename (path) -> path.dirname = Util.assetsRename path.dirname; return
+		.pipe gulp.dest PATH.dir.build
 
 
 
@@ -111,17 +111,17 @@ gulp.task 'icons_tile', ( ->
 			imagemin = require 'gulp-imagemin'
 			gm       = require 'gulp-gm'
 
-			return gulp.src path.files.icons_tile, base:path.dir.root
+			return gulp.src PATH.files.iconsTile, base:PATH.dir.root
 				.pipe gm (gmfile, done) ->
 					gmfile.identify (err, info) ->
-						util.gm_optimization gmfile.resize(size,size), info
+						Util.gmOptimization gmfile.resize(size,size), info
 						done null, gmfile
 				.pipe rename (path) ->
-					path.dirname = util.assets_rename path.dirname
+					path.dirname = Util.assetsRename path.dirname
 					path.basename = "tile-#{name}"
 					return
-				.pipe imagemin util.imagemin_params()
-				.pipe gulp.dest path.dir.build
+				.pipe imagemin Util.imageminParams
+				.pipe gulp.dest PATH.dir.build
 		)(name, size)
 
 		tasks.push task
@@ -131,18 +131,18 @@ gulp.task 'icons_tile', ( ->
 	imagemin = require 'gulp-imagemin'
 	gm       = require 'gulp-gm'
 
-	return gulp.src path.files.icons_tile, base:path.dir.root
+	return gulp.src PATH.files.iconsTile, base:PATH.dir.root
 		.pipe gm (gmfile, done) ->
 			gmfile.identify (err, info) ->
-				gmfile = util.gm_optimization gmfile.resize(270,270), info
+				gmfile = Util.gmOptimization gmfile.resize(270,270), info
 				gmfile.background('transparent').gravity('Center').extent(558,270)   # officially:  310 x 150 | recommended: 558 x 270
 				done null, gmfile
 		.pipe rename (path) ->
-			path.dirname = util.assets_rename path.dirname
+			path.dirname = Util.assetsRename path.dirname
 			path.basename = 'tile-wide'
 			return
-		.pipe imagemin util.imagemin_params()
-		.pipe gulp.dest path.dir.build
+		.pipe imagemin Util.imageminParams
+		.pipe gulp.dest PATH.dir.build
 
 
 
@@ -154,7 +154,7 @@ gulp.task 'icons', (cb) ->
 	del         = require 'del'
 	runsequence = require 'run-sequence'
 
-	del.sync path.dir.build_icons, force:true
+	del.sync PATH.dir.buildIcons, force:true
 	runsequence ['icons_favicon', 'icons_share', 'icons_tile'], cb
 
 

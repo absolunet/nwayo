@@ -4,9 +4,9 @@
 
 #-- output paths (relative to nwayo folder) and output url
 output:
-  konstan: __konstan-output-to-change/siteout
-  build:   __build-output-to-change/siteout
-  url:     /nwayo/__build-output-to-change/siteout
+  konstan: __konstan-path__/site-out
+  build:   __build-path__/site-out
+  url:     /nwayo/__build-path__/site-out
 
 
 

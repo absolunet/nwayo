@@ -1,14 +1,14 @@
-  {
+{
   "name": "TODO",
   "version": "0.0.0",
   "devDependencies": {
     "jquery":     "2.1.4",
-    "kafe":       "3.0.1",
+    "kafe":       "3.0.3",
     "lodash":     "3.10.1",
     "modernizr":  "2.8.3",
-    "pubsub-js":  "1.5.2",
+    "pubsub-js":  "1.5.3",
 
-    "foundation":        "5.5.2",
+    "foundation":        "5.5.3",
     "meyer-reset":       "master",
     "normalize.scss":    "3.0.2+normalize.3.0.2",
     "html5-boilerplate": "5.2.0"
