@@ -9,7 +9,7 @@ Util = global.nwayo.util
 
 
 #-- Convert constants to JSON
-gulp.task 'local_constants', ->
+gulp.task 'local-constants', ->
 	merge = require 'merge-stream'
 
 	streams = []
@@ -41,4 +41,4 @@ gulp.task 'local', (cb) ->
 	list.push "#{bundle.output.konstan}/#{PATH.filename.konstanLocal}" for bname, bundle of ENV.bundles
 
 	del list, force:true, ->
-		runsequence ['local_constants'], cb
+		runsequence ['local-constants'], cb
