@@ -14,6 +14,8 @@ const PATH = global.nwayo.path;
 //-- Watch
 gulp.task('watch', () => {
 
+	global.nwayo.env.watching = true;
+
 	// Assets
 	gulp.watch( [PATH.files.fonts],  ['assets-fonts'] );
 	gulp.watch( [PATH.files.images], ['assets-images'] );

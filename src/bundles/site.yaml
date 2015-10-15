@@ -21,7 +21,7 @@ assets:
 #-- scripts
 scripts:
   options:
-    minify: false
+    minify: true
 
   collections:
     dependencies:

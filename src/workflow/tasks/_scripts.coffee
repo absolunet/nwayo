@@ -10,19 +10,24 @@ Util = global.nwayo.util
 
 
 #-- Lint JS
-gulp.task 'scripts_lint', ->
+gulp.task 'scripts-lint', ->
+	cache   = require 'gulp-cached'
 	jshint  = require 'gulp-jshint'
 	stylish = require 'jshint-stylish'
 
 	return gulp.src PATH.files.scriptsLint
+		.pipe cache('scripts', optimizeMemory:true)
 		.pipe jshint()
+		.pipe jshint.reporter(reporter: (files) ->
+			delete cache.caches.scripts[file.file] for file in files
+		)
 		.pipe jshint.reporter(stylish)
 		.pipe jshint.reporter('fail')
 
 
 
 #-- Convert constants to JS
-gulp.task 'scripts_constants', ->
+gulp.task 'scripts-constants', ->
 	merge = require 'merge-stream'
 
 	streams = []
@@ -45,7 +50,8 @@ gulp.task 'scripts_constants', ->
 
 
 #-- Compile
-gulp.task 'scripts_compile', ['scripts_lint', 'scripts_constants'], ->
+gulp.task 'scripts-compile', ['scripts-lint', 'scripts-constants'], ->
+	_       = require 'lodash'
 	merge   = require 'merge-stream'
 	include = require 'gulp-nwayo-include'
 	replace = require 'gulp-replace'
@@ -57,6 +63,7 @@ gulp.task 'scripts_compile', ['scripts_lint', 'scripts_constants'], ->
 
 		# for each collection
 		for collection, list of bundle.scripts.collections
+			list = _.clone(list)
 
 			# resolve konstan real filepath
 			pos = list.indexOf 'konstan'
@@ -74,11 +81,11 @@ gulp.task 'scripts_compile', ['scripts_lint', 'scripts_constants'], ->
 			streams.push(
 				Util.vinylStream "#{collection}.#{PATH.ext.scripts}", source
 					.pipe include basePath: './', autoExtension:true
-					.pipe gulpif( bundle.scripts.options.minify, uglify(preserveComments:'some') )
+					.pipe gulpif( bundle.scripts.options.minify and !ENV.watching, uglify(preserveComments:'some') )
 					.pipe gulp.dest "#{bundle.output.build}/#{PATH.build.scripts}"
 			)
 
-	return merge.apply null, streams
+	return merge.apply(null, streams).on('end', () -> Util.watchableTaskCompleted 'Scripts compilation')
 
 
 
@@ -91,4 +98,4 @@ gulp.task 'scripts', (cb) ->
 	list.push "#{bundle.output.build}/#{PATH.build.scripts}", "#{PATH.dir.cacheScripts}/#{bname}" for bname, bundle of ENV.bundles
 
 	del.sync list, force:true
-	runsequence 'scripts_compile', cb
+	runsequence 'scripts-compile', cb
