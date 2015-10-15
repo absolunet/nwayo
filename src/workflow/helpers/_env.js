@@ -56,5 +56,5 @@ global.nwayo.env = (() => {
 	})();
 
 
-	return { pkg, konstan, bundles, bundlesComponents };
+	return { pkg, konstan, bundles, bundlesComponents, watching:false };
 })();

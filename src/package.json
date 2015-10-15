@@ -25,6 +25,7 @@
 
     "gulp":         "3.9.0",
     "gulp-debug":   "2.1.2",
+    "gulp-cached":  "1.1.0",
     "gulp-rename":  "1.2.2",
     "gulp-replace": "0.5.4",
     "gulp-if":      "2.0.0",

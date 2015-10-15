@@ -22,7 +22,7 @@ gulp.task('assets-fonts', () => {
 				return;
 			}))
 		;
-	});
+	}, 'Fonts copy');
 });
 
 
@@ -77,6 +77,7 @@ gulp.task('assets-raw', () => {
 				path.dirname = Util.assetsRename(path.dirname);
 				return;
 			}))
+			.on('end', () => Util.watchableTaskCompleted('Raw files copy') )
 		;
 	});
 });
@@ -87,6 +88,7 @@ gulp.task('assets-raw', () => {
 //-- Rebuild images
 gulp.task('assets-images', cb => {
 	Util.taskGrouper({ cb,
+		taskName:    'Images optimization',
 		tasks:       ['assets-images-optimization', 'assets-images-highdensity'],
 		cleanBundle: (name, bundle) => {
 			return [`${bundle.output.build}/${PATH.build.images}`];

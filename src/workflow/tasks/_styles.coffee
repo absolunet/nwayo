@@ -10,7 +10,7 @@ Util = global.nwayo.util
 
 
 #-- Inline images optimization
-gulp.task 'styles_images', ->
+gulp.task 'styles-images', ->
 	imagemin = require 'gulp-imagemin'
 
 	return gulp.src PATH.files.inline, base:PATH.dir.root
@@ -21,19 +21,25 @@ gulp.task 'styles_images', ->
 
 
 #-- Lint SCSS
-gulp.task 'styles_lint', ->
+gulp.task 'styles-lint', ->
+	cache    = require 'gulp-cached'
 	scsslint = require 'gulp-scss-lint'
 
 	return gulp.src PATH.files.stylesLint
+		.pipe cache('styles', optimizeMemory:true)
 		.pipe scsslint({
 			config: PATH.config.scsslint
+			endless: true
+			customReport: (file) ->
+				delete cache.caches.styles[file.path] if not file.scsslint.success
+				scsslint.defaultReporter.apply null, arguments
 		})
 		.pipe scsslint.failReporter()
 
 
 
 #-- Convert constants to SCSS
-gulp.task 'styles_constants', ->
+gulp.task 'styles-constants', ->
 	jsonsass = require 'gulp-json-sass'
 	merge    = require 'merge-stream'
 
@@ -50,7 +56,8 @@ gulp.task 'styles_constants', ->
 
 
 #-- Compile
-gulp.task 'styles_compile', ['styles_lint', 'styles_constants'], ->
+gulp.task 'styles-compile', ['styles-lint', 'styles-constants'], ->
+	_            = require 'lodash'
 	fs           = require 'fs-extra'
 	merge        = require 'merge-stream'
 	sass         = require 'gulp-ruby-sass'
@@ -64,6 +71,7 @@ gulp.task 'styles_compile', ['styles_lint', 'styles_constants'], ->
 
 		# for each collection
 		for collection, list of bundle.styles.collections
+			list = _.clone(list)
 
 			# add konstan
 			list.unshift "#{PATH.dir.cacheStyles}/#{bname}/#{PATH.filename.konstan}"
@@ -86,11 +94,11 @@ gulp.task 'styles_compile', ['styles_lint', 'styles_constants'], ->
 					sourcemap:     false
 				}
 				.pipe autoprefixer browsers: bundle.styles.options.autoprefixer
-				.pipe gulpif( bundle.styles.options.minify, minifycss() )
+				.pipe gulpif( bundle.styles.options.minify and !ENV.watching, minifycss() )
 				.pipe gulp.dest "#{bundle.output.build}/#{PATH.build.styles}"
 		)
 
-	return merge.apply null, streams
+	return merge.apply(null, streams).on('end', () -> Util.taskCompleted 'Styles compilation')
 
 
 
@@ -103,4 +111,4 @@ gulp.task 'styles', (cb) ->
 	list.push "#{bundle.output.build}/#{PATH.build.styles}", "#{PATH.dir.cacheStyles}/#{bname}" for bname, bundle of ENV.bundles
 
 	del.sync list, force:true
-	runsequence 'styles_images', 'styles_compile', cb
+	runsequence 'styles-images', 'styles-compile', cb

@@ -3,6 +3,8 @@
 //-------------------------------------
 'use strict';
 
+const echo = console.log;
+
 
 class Util {
 
@@ -124,7 +126,7 @@ class Util {
 
 
 	//-- Assets processing pattern
-	static assetsProcess(files, customPiping) {
+	static assetsProcess(files, customPiping, taskName) {
 		const PATH = global.nwayo.path;
 		const ENV  = global.nwayo.env;
 
@@ -152,7 +154,11 @@ class Util {
 			streams.push(stream);
 		}
 
-		return merge.apply(null, streams);
+		return merge.apply(null, streams).on('end', () => {
+			if (taskName) {
+				Util.watchableTaskCompleted(taskName);
+			}
+		});
 	}
 
 
@@ -171,7 +177,20 @@ class Util {
 		}
 
 		del.sync(list, {force:true});
-		runsequence(options.tasks, options.cb);
+		runsequence(options.tasks, function() {
+			Util.watchableTaskCompleted(options.taskName);
+			options.cb.apply(null, arguments);
+		});
+	}
+
+
+	//-- Task completed message
+	static watchableTaskCompleted(name) {
+		const ENV = global.nwayo.env;
+
+		if (ENV.watching) {
+			echo(`\n\uD83C\uDF30  ${name} completed`.green);
+		}
 	}
 }
 
