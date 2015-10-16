@@ -6,6 +6,13 @@ PATH = global.nwayo.path
 Util = global.nwayo.util
 
 
+#"mkdirp":      "0.5.1",
+#"gulp-gm":     "0.0.8",
+#"imagemagick": "0.1.3",
+
+
+
+
 # https://github.com/gleero/grunt-favicons
 # https://github.com/audreyr/favicon-cheat-sheet
 
