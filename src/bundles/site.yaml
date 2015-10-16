@@ -44,7 +44,7 @@ scripts:
 #-- styles
 styles:
   options:
-    minify: false
+    minify: true
     autoprefixer:
       - '> 1%'
       - 'last 2 versions'
