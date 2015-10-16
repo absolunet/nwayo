@@ -100,7 +100,7 @@ gulp.task('styles-compile', ['styles-lint', 'styles-constants'], () => {
 				list[i] = `@import '${file}';`;
  			});
 
-			fs.outputFileSync(`${PATH.dir.cacheStyles}/${name}/collections/${collection}.${PATH.ext.styles}`, Util.getGeneratedBanner(name, 'styles')+list.join('\n')+'\n');
+			fs.outputFileSync(`${PATH.dir.cacheStyles}/${name}/collections/${collection}.${PATH.ext.styles}`, Util.getGeneratedBanner(name)+list.join('\n')+'\n');
 		}
 
 		// Process all collections from this bundle
