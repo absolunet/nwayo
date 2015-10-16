@@ -5,6 +5,8 @@
 
 const echo = console.log;
 
+let watchableTaskCompletedCounter = 0;
+
 
 class Util {
 
@@ -189,7 +191,7 @@ class Util {
 		const ENV = global.nwayo.env;
 
 		if (ENV.watching) {
-			echo(`\n\uD83C\uDF30  ${name} completed`.green);
+			echo(`\n\uD83C\uDF30  #${++watchableTaskCompletedCounter} `.bold.green + `${name} completed`.green);
 		}
 	}
 }

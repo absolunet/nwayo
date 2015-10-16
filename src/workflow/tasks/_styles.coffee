@@ -29,7 +29,6 @@ gulp.task 'styles-lint', ->
 		.pipe cache('styles', optimizeMemory:true)
 		.pipe scsslint({
 			config: PATH.config.scsslint
-			endless: true
 			customReport: (file) ->
 				delete cache.caches.styles[file.path] if not file.scsslint.success
 				scsslint.defaultReporter.apply null, arguments
@@ -98,7 +97,7 @@ gulp.task 'styles-compile', ['styles-lint', 'styles-constants'], ->
 				.pipe gulp.dest "#{bundle.output.build}/#{PATH.build.styles}"
 		)
 
-	return merge.apply(null, streams).on('end', () -> Util.taskCompleted 'Styles compilation')
+	return merge.apply(null, streams).on('end', () -> Util.watchableTaskCompleted 'Styles compilation')
 
 
 
