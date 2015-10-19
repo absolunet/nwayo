@@ -3,7 +3,7 @@
 //-------------------------------------
 'use strict';
 
-//let debug  = require('gulp-debug');
+let debug  = require('gulp-debug');
 let gulp   = require('gulp');
 let rename = require('rename');
 
@@ -39,3 +39,4 @@ gulp.task('icons', cb => {
 		}
 	});
 });
+
