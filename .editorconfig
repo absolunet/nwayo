@@ -1,4 +1,3 @@
-## COPY FROM ROOT
 # http://editorconfig.org
 
 root = true
@@ -15,7 +14,7 @@ charset = utf-8
 trim_trailing_whitespace = false
 insert_final_newline = true
 
-[{.bowerrc,.editorconfig,.gitignore,.jshintrc,.npmignore,.scss-lint.yml,bower.json,coffeelint.json,config.rb,konstan.yaml,package.json,.travis.yml,bundles/**.yaml}]
+[{.bowerrc,.editorconfig,.gitignore,.jshintrc,.scss-lint.yml,bower.json,config.rb,konstan.yaml,package.json,bundles/**.yaml}]
 indent_style = space
 indent_size = 2
 charset = utf-8
