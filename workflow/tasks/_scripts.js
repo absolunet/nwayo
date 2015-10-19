@@ -3,8 +3,16 @@
 //-------------------------------------
 'use strict';
 
-//let debug  = require('gulp-debug');
-let gulp   = require('gulp');
+let _       = require('lodash');
+let merge   = require('merge-stream');
+let gulp    = require('gulp');
+let gulpif  = require('gulp-if');
+let cache   = require('gulp-cached');
+let include = require('gulp-nwayo-include');
+let uglify  = require('gulp-uglify');
+let jshint  = require('gulp-jshint');
+let stylish = require('jshint-stylish');
+//let debug = require('gulp-debug');
 
 const PATH = global.nwayo.path;
 const ENV  = global.nwayo.env;
@@ -15,10 +23,6 @@ const Util = global.nwayo.util;
 
 //-- Lint JS
 gulp.task('scripts-lint', () => {
-	let cache   = require('gulp-cached');
-	let jshint  = require('gulp-jshint');
-	let stylish = require('jshint-stylish');
-
 	return gulp.src(PATH.files.scriptsLint)
 		.pipe( cache('scripts', {optimizeMemory:true}) )
 
@@ -37,9 +41,8 @@ gulp.task('scripts-lint', () => {
 
 //-- Convert constants to JS
 gulp.task('scripts-constants', () => {
-	let merge = require('merge-stream');
-
 	let streams = [];
+
 	for (let name of Object.keys(ENV.bundles)) {
 		let data = {
 			nwayo:   ENV.pkg.nwayo.version,
@@ -60,12 +63,6 @@ gulp.task('scripts-constants', () => {
 
 //-- Compile
 gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants'], () => {
-	let _       = require('lodash');
-	let merge   = require('merge-stream');
-	let include = require('gulp-nwayo-include');
-	let gulpif  = require('gulp-if');
-	let uglify  = require('gulp-uglify');
-
 	let streams = [];
 
 	for (let name of Object.keys(ENV.bundles)) {

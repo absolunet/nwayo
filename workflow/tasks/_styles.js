@@ -3,9 +3,20 @@
 //-------------------------------------
 'use strict';
 
-//let debug  = require('gulp-debug');
-let gulp   = require('gulp');
-let rename = require('gulp-rename');
+let _            = require('lodash');
+let fs           = require('fs-extra');
+let merge        = require('merge-stream');
+let gulp         = require('gulp');
+let gulpif       = require('gulp-if');
+let cache        = require('gulp-cached');
+let rename       = require('gulp-rename');
+let imagemin     = require('gulp-imagemin');
+let scsslint     = require('gulp-scss-lint');
+let sass         = require('gulp-ruby-sass');
+let jsonsass     = require('gulp-json-sass');
+let autoprefixer = require('gulp-autoprefixer');
+let minifycss    = require('gulp-minify-css');
+//let debug = require('gulp-debug');
 
 const PATH = global.nwayo.path;
 const ENV  = global.nwayo.env;
@@ -16,16 +27,9 @@ const Util = global.nwayo.util;
 
 //-- Inline images optimization
 gulp.task('styles-images', () => {
-	let imagemin = require('gulp-imagemin');
-
 	return gulp.src(PATH.files.inline, { base:PATH.dir.root })
 		.pipe( imagemin(Util.imageminParams) )
-
-		.pipe( rename( path => {
-			path.dirname = Util.assetsRename(path.dirname);
-			return;
-		}))
-
+		.pipe( rename(Util.assetsRename()) )
 		.pipe( gulp.dest(PATH.dir.cache) )
 	;
 });
@@ -33,9 +37,6 @@ gulp.task('styles-images', () => {
 
 //-- Lint SCSS
 gulp.task('styles-lint', () => {
-	let cache    = require('gulp-cached');
-	let scsslint = require('gulp-scss-lint');
-
 	return gulp.src(PATH.files.stylesLint)
 		.pipe( cache('styles', {optimizeMemory:true}) )
 
@@ -56,9 +57,6 @@ gulp.task('styles-lint', () => {
 
 //-- Convert constants to SCSS
 gulp.task('styles-constants', () => {
-	let jsonsass = require('gulp-json-sass');
-	let merge    = require('merge-stream');
-
 	let streams = [];
 
 	for (let name of Object.keys(ENV.bundles)) {
@@ -75,14 +73,6 @@ gulp.task('styles-constants', () => {
 
 //-- Compile
 gulp.task('styles-compile', ['styles-lint', 'styles-constants'], () => {
-	let _            = require('lodash');
-	let fs           = require('fs-extra');
-	let merge        = require('merge-stream');
-	let sass         = require('gulp-ruby-sass');
-	let autoprefixer = require('gulp-autoprefixer');
-	let gulpif       = require('gulp-if');
-	let minifycss    = require('gulp-minify-css');
-
 	let streams = [];
 
 	for (let name of Object.keys(ENV.bundles)) {

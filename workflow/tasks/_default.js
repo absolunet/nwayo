@@ -3,8 +3,10 @@
 //-------------------------------------
 'use strict';
 
-//let debug  = require('gulp-debug');
-let gulp = require('gulp');
+let runsequence = require('run-sequence');
+let inquirer    = require('inquirer');
+let gulp        = require('gulp');
+//let debug = require('gulp-debug');
 
 const echo = console.log;
 const ENV  = global.nwayo.env;
@@ -14,8 +16,6 @@ const ENV  = global.nwayo.env;
 
 //-- Default menu
 gulp.task('default', cb => {
-	let runsequence = require('run-sequence');
-	let inquirer    = require('inquirer');
 
 	echo('\n');
 	echo(` ${ENV.pkg.name} `.bgGreen.bold + `    [nwayo ${ENV.pkg.nwayo.version}]`.yellow);

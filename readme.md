@@ -1,6 +1,6 @@
 <p align="center">
 	<a href="http://absolunet.github.io/nwayo">
-		<img src="http://absolunet.github.io/nwayo/nwayo/build/images/common/logo-nwayo.svg" width="180" height="180" alt="nwayo">
+		<img src="http://absolunet.github.io/nwayo/media/nwayo.svg" width="180" height="180" alt="nwayo">
 	</a>
 </p>
 
