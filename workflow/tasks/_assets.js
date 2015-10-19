@@ -3,9 +3,11 @@
 //-------------------------------------
 'use strict';
 
-//let debug  = require('gulp-debug');
-let gulp   = require('gulp');
-let rename = require('gulp-rename');
+let gulp     = require('gulp');
+let rename   = require('gulp-rename');
+let imagemin = require('gulp-imagemin');
+let gm       = require('gulp-gm');
+//let debug = require('gulp-debug');
 
 const PATH = global.nwayo.path;
 const Util = global.nwayo.util;
@@ -17,10 +19,7 @@ const Util = global.nwayo.util;
 gulp.task('assets-fonts', () => {
 	return Util.assetsProcess(PATH.files.fonts, stream => {
 		return stream
-			.pipe( rename( path => {
-				path.dirname = Util.assetsRename(path.dirname);
-				return;
-			}))
+			.pipe( rename(Util.assetsRename()) )
 		;
 	}, 'Fonts copy');
 });
@@ -28,16 +27,10 @@ gulp.task('assets-fonts', () => {
 
 //-- Images optimization
 gulp.task('assets-images-optimization', () => {
-	let imagemin = require('gulp-imagemin');
-
 	return Util.assetsProcess(PATH.files.images, stream => {
 		return stream
 			.pipe( imagemin(Util.imageminParams) )
-
-			.pipe( rename( path => {
-				path.dirname = Util.assetsRename(path.dirname);
-				return;
-			}))
+			.pipe( rename(Util.assetsRename()) )
 		;
 	});
 });
@@ -45,9 +38,6 @@ gulp.task('assets-images-optimization', () => {
 
 //-- High density images generation
 gulp.task('assets-images-highdensity', () => {
-	let imagemin = require('gulp-imagemin');
-	let gm       = require('gulp-gm');
-
 	return Util.assetsProcess(PATH.files.images2x, stream => {
 		return stream
 			.pipe( gm( (gmfile, done) => {
@@ -59,11 +49,7 @@ gulp.task('assets-images-highdensity', () => {
 
 			.pipe( imagemin(Util.imageminParams) )
 
-			.pipe( rename( path => {
-				path.dirname  = Util.assetsRename(path.dirname);
-				path.basename = path.basename.slice(0,-3);
-				return;
-			}))
+			.pipe( rename( Util.assetsRename(filename => filename.slice(0,-3)) ) )
 		;
 	});
 });
@@ -73,10 +59,7 @@ gulp.task('assets-images-highdensity', () => {
 gulp.task('assets-raw', () => {
 	return Util.assetsProcess(PATH.files.raw, stream => {
 		return stream
-			.pipe( rename( path => {
-				path.dirname = Util.assetsRename(path.dirname);
-				return;
-			}))
+			.pipe( rename(Util.assetsRename()) )
 			.on('end', () => Util.watchableTaskCompleted('Raw files copy') )
 		;
 	});
@@ -89,7 +72,7 @@ gulp.task('assets-raw', () => {
 gulp.task('assets-images', cb => {
 	Util.taskGrouper({ cb,
 		taskName:    'Images optimization',
-		tasks:       ['assets-images-optimization', 'assets-images-highdensity'],
+		tasks:       [['assets-images-optimization', 'assets-images-highdensity']],
 		cleanBundle: (name, bundle) => {
 			return [`${bundle.output.build}/${PATH.build.images}`];
 		}
@@ -100,7 +83,7 @@ gulp.task('assets-images', cb => {
 //-- Rebuild
 gulp.task('assets', cb => {
 	Util.taskGrouper({ cb,
-		tasks:       ['assets-fonts', 'assets-images', 'assets-raw'],
+		tasks:       [['assets-fonts', 'assets-images', 'assets-raw']],
 		cleanBundle: (name, bundle) => {
 			return [`${bundle.output.build}/${PATH.build.fonts}`, `${bundle.output.build}/${PATH.build.images}`, `${bundle.output.build}/${PATH.build.raw}`];		}
 	});

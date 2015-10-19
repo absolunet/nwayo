@@ -3,9 +3,9 @@
 //-------------------------------------
 'use strict';
 
-//let debug  = require('gulp-debug');
-let gulp        = require('gulp');
 let runsequence = require('run-sequence');
+let gulp        = require('gulp');
+//let debug = require('gulp-debug');
 
 
 

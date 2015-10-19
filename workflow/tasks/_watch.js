@@ -3,10 +3,11 @@
 //-------------------------------------
 'use strict';
 
-//let debug = require('gulp-debug');
 let gulp = require('gulp');
+//let debug = require('gulp-debug');
 
 const PATH = global.nwayo.path;
+const ENV  = global.nwayo.env;
 
 
 
@@ -14,7 +15,7 @@ const PATH = global.nwayo.path;
 //-- Watch
 gulp.task('watch', () => {
 
-	global.nwayo.env.watching = true;
+	ENV.setWatching();
 
 	// Assets
 	gulp.watch( [PATH.files.fonts],  ['assets-fonts'] );
