@@ -17,8 +17,35 @@ const Util = global.nwayo.util;
 
 
 
+// https://github.com/gleero/grunt-favicons
+// https://github.com/audreyr/favicon-cheat-sheet
+
+
 //-- Favicon.ico
 // https://mathiasbynens.be/notes/rel-shortcut-icon
+gulp.task('icons-favicon', () => {
+	let sizes = [
+		16,  // IE9 address bar, Pinned site Jump List/Toolbar/Overlay
+		24,  // IE9 Pinned site browser UI
+		32,  // New tab page in IE, taskbar button in Win 7+, Safari Read Later sidebar
+		48,  // Windows site icons
+		64   // Windows site icons, Safari Reading List sidebar in HiDPI/Retina
+	];
+
+	Util.assetsProcess(PATH.files.iconsFavicon, stream => {
+
+		return stream
+			.pipe( gm( (gmfile) => {
+				return gmfile
+					.define(`icon:auto-resize=${sizes.join(',')}`)
+					.setFormat('ico')
+				;
+			}, { imageMagick:true }))
+
+			.pipe( rename(Util.assetsRename()) )
+		;
+	});
+});
 
 
 //-- Share icons
@@ -136,7 +163,7 @@ gulp.task('icons-tile', () => {
 //-- Rebuild
 gulp.task('icons', cb => {
 	Util.taskGrouper({ cb,
-		tasks:       [['icons-share', 'icons-tile']],
+		tasks:       [['icons-favicon', 'icons-share', 'icons-tile']],
 		cleanBundle: (name, bundle) => {
 			return [`${bundle.output.build}/${PATH.build.icons}`];
 		}
