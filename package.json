@@ -5,9 +5,6 @@
 
   "nwayo": {
     "version": "3.0.0-alpha.5",
-    "cms": [
-      { "drupal": "7.0.0" }
-    ],
     "debug":   false
   },
 

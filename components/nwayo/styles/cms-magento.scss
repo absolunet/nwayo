@@ -1,4 +1,67 @@
 //-------------------------------------
 //-- Magento
 //-------------------------------------
+@mixin --cms-magento--() {
+	$black: #000000;
+	$white: #ffffff;
 
+	//-- Debugger
+
+	// No control over selector
+	// scss-lint:disable SelectorFormat, IdSelector
+	#ascommercebug_link_debug {
+		width: auto !important;
+		padding: 1em 2% 0;
+	}
+
+	#ascommercebug-wrap {
+		padding: 1em 2%;
+	}
+	// scss-lint:enable SelectorFormat, IdSelector
+
+
+	//-- Profiler
+	body > a[onclick*="profiler"] {
+		display: block;
+		padding: 1em 0;
+		border: 2px solid $black;
+		border-bottom: 1px dotted $black;
+		margin: 2em 2% 0;
+		background-color: lighten($black, 95%);
+		color: $black;
+		text-align: center;
+		text-transform: uppercase;
+		cursor: default;
+
+		&:hover {
+			color: $black;
+			text-decoration: none;
+		}
+	}
+
+	// No control over selector
+	// scss-lint:disable SelectorFormat, IdSelector
+	#profiler_section {
+		position: relative;
+		overflow-x: scroll;
+		width: 96%;
+		max-height: 700px;
+		padding: 1em 5px;
+		border: 2px solid $black;
+		border-top: 0;
+		margin: 0 2% 2em;
+		background-color: $white;
+
+		pre {
+			margin: 0 0 1em;
+			text-align: center;
+		}
+		table {
+			margin-right: auto;
+			margin-left: auto;
+		}
+	}
+	// scss-lint:enable SelectorFormat, IdSelector
+}
+
+@include --cms-magento--();
