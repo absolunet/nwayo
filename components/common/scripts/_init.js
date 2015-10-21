@@ -32,10 +32,10 @@
 
 
 		// path
-		app.path = konstan.path;
+		app.path = _.cloneDeep(konstan.path);
 
 		// transition
-		app.transition = konstan.transition;
+		app.transition = _.cloneDeep(konstan.transition);
 
 
 		// tmpl

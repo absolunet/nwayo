@@ -29,3 +29,14 @@ $extrabold-weight:  800;
 $black-weight:      900;
 
 $textfields-selector: 'input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], input[type="date"]';
+
+$bull-char: '\2022';
+
+$social-colors: (
+	facebook:  #3b5998,
+	pinterest: #bd081c,
+	twitter:   #55acee,
+	instagram: #165786,
+	youtube:   #cd201f,
+	vimeo:     #1ab7ea
+);

@@ -11,8 +11,12 @@ a[href="#TODO"] {
 
 
 // powerTip
-//#{'#powerTip'} {
+
+// No control over selector
+// scss-lint:disable IdSelector
+//#powerTip {
 //	position: absolute;
 //	z-index: 2147483647;
 //	display: none;
 //}
+// scss-lint:enable IdSelector

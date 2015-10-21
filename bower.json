@@ -17,6 +17,8 @@
   "_recommendedDependencies": {
     "accounting.js":                 "0.4.1",
     "colorbox":                      "1.6.3",
+    "easy-markerwithlabel":          "0.0.1",
+    "elevatezoom-plus":              "1.1.14",
     "fitvids":                       "1.1.0",
     "gmaps-markerclusterer-plus":    "2.1.4",
     "gsap":                          "1.18.0",

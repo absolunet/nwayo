@@ -3,7 +3,9 @@
 //-------------------------------------
 
 html[data-sitecore-editor="true"] {
-	#{'.scWebEditInput'} {
+	// No control over selector
+	// scss-lint:disable SelectorFormat
+	.scWebEditInput {
 		&[scfieldtype='rich text'] {
 			display: block;
 		}
@@ -11,4 +13,5 @@ html[data-sitecore-editor="true"] {
 			display: inline;
 		}
 	}
+	// scss-lint:enable SelectorFormat
 }

@@ -15,7 +15,7 @@ const ENV  = global.nwayo.env;
 //-- Watch
 gulp.task('watch', () => {
 
-	ENV.setWatching();
+	ENV.setToWatching();
 
 	// Assets
 	gulp.watch( [PATH.files.fonts],  ['assets-fonts'] );
