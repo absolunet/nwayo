@@ -61,7 +61,7 @@ gulp.task('styles-constants', () => {
 
 	for (let name of Object.keys(ENV.bundles)) {
 		streams.push(
-			Util.vinylStream(PATH.filename.konstanStyles, JSON.stringify({ konstan: Util.parseKonstan('styles', ENV.bundles[name].output.url)}))
+			Util.vinylStream(PATH.filename.konstanStyles, JSON.stringify({ konstan: Util.parseKonstan('styles', name, ENV.bundles[name].output.url)}))
 				.pipe( jsonsass() )
 				.pipe( gulp.dest(`${PATH.dir.cacheStyles}/${name}`))
 		);

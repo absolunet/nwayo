@@ -26,7 +26,7 @@ gulp.task('local-constants', () => {
 			nwayo:      ENV.pkg.nwayo.version,
 			project:    ENV.pkg.name,
 			bundle:     name,
-			konstan:    Util.parseKonstan('local', bundle.output.url)
+			konstan:    Util.parseKonstan('local', name, bundle.output.url)
 		};
 
 		streams.push(
