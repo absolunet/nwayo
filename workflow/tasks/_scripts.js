@@ -48,7 +48,7 @@ gulp.task('scripts-constants', () => {
 			nwayo:   ENV.pkg.nwayo.version,
 			project: ENV.pkg.name,
 			bundle:  name,
-			konstan: Util.parseKonstan('scripts', ENV.bundles[name].output.url)
+			konstan: Util.parseKonstan('scripts', name, ENV.bundles[name].output.url)
 		};
 
 		streams.push(

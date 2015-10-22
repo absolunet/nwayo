@@ -68,13 +68,16 @@ class Util {
 
 
 	//-- Constants
-	static parseKonstan(type, rootUrl) {
+	static parseKonstan(type, bundle, rootUrl) {
 		const ENV = global.nwayo.env;
 
 		let parseItem = item => `data['${item.split('.').join(`']['`)}']`;
-		let options   = _.clone(ENV.konstan.options[type], true) || {};
-		let paths     = _.clone(PATH.build, true);
-		let data      = _.clone(ENV.konstan.data, true);
+		let options   = _.cloneDeep(ENV.konstan.options[type]) || {};
+		let paths     = _.cloneDeep(PATH.build);
+		let data      = _.cloneDeep(ENV.konstan.data);
+
+		// Retrieve bundles
+		data.bundles = _.cloneDeep(ENV.konstan.bundles);
 
 		// Output url paths
 		data.path = { root: rootUrl };
@@ -114,6 +117,9 @@ class Util {
 				// jshint evil: false
 			}
 		}
+
+		data.current = _.cloneDeep(data.bundles[bundle]);
+		delete data.bundles[bundle];
 
 		return data;
 	}
