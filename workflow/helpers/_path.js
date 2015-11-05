@@ -61,9 +61,9 @@ files.images2x     = `${dir.images}/${pattern.anytree}/*\@2x.${ext.images}`;
 files.inline       = `${dir.inline}/${pattern.anytree}/*.${ext.images}`;
 files.raw          = `${dir.raw}/${pattern.anytree}/*`;
 files.scripts      = `${dir.scripts}/${pattern.anytree}/*.${ext.scripts}`;
-files.scriptsLint  = [files.scripts, `!${dir.scriptsNolint}/${pattern.anytree}/*`, `!${dir.scripts}/${pattern.anytree}/?(_)${NOLINT}*.${ext.scripts}`];
+files.scriptsLint  = [files.scripts, `!${dir.scriptsNolint}/${pattern.anytree}/*`, `!${dir.scripts}/${pattern.anytree}/?(_)${NOLINT}-*.${ext.scripts}`];
 files.styles       = `${dir.styles}/${pattern.anytree}/*.${ext.styles}`;
-files.stylesLint   = [files.styles, `!${dir.stylesNolint}/${pattern.anytree}/*`, `!${dir.styles}/${pattern.anytree}/?(_)${NOLINT}*.${ext.styles}`];
+files.stylesLint   = [files.styles, `!${dir.stylesNolint}/${pattern.anytree}/*`, `!${dir.styles}/${pattern.anytree}/?(_)${NOLINT}-*.${ext.styles}`];
 files.templates    = `${dir.templates}/${pattern.anytree}/*.${ext.templates}`;
 
 let filename = {};
