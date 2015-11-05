@@ -16,21 +16,16 @@
 	//-- Cache data
 	local.cache = function() {
 
+		// optional scroll
+		//app.scrollTransition = (Modernizr.touch) ? 0 : konstan.transition.animation;
+
 		// addthis
 		//global['addthis_config'] = { 'ui_language': app.env.lang };
 
 		// env
-		//app.env.isUniquePage = (app.env.page == 'UID');
-		//app.env.isTypePage   = _.contains(app.env.tmpl, 'TYPE-ID');
-		//app.env.isOneOfThese = !!_.intersection(app.env.tmpl, ['ID1', 'ID2']).length;
-
-
-		// dom
-		//app.dom.header     = $('.header');
-		//app.dom.content    = $('.content');
-		//app.dom.lateralCol = $('.lateral-col') || undefined;
-		//app.dom.footer     = $('.footer');
-
+		//app.env.isUniquePage = (app.env.pageId == 'UID');
+		//app.env.isTypePage   = _.contains(app.env.pageTags, 'TYPE-ID');
+		//app.env.isOneOfThese = !!_.intersection(app.env.pageTags, ['ID1', 'ID2']).length;
 
 		// colorbox default params
 		/**
@@ -48,7 +43,7 @@
 	//-- Bind events
 	local.bind = function() {
 
-		app.dom.body
+		__.$body
 
 			// external links
 			.on('click', 'a[data-external]', function() {
@@ -59,7 +54,7 @@
 			/**
 			.on('click', 'a[data-anchor="true"]', function(e) {
 				e.preventDefault();
-				$.scrollTo($(this).attr('href'), (Modernizr.touch) ? 0 : 500, {offset:{top:-15}});
+				$.scrollTo($(this).attr('href'), app.scrollTransition, {offset:{top:-15}});
 			})
 			/**/
 		;
@@ -79,7 +74,7 @@
 	local.start = function() {
 
 		// foundation
-		// app.dom.document.foundation();
+		// __.$document.foundation();
 		// $Global(document).foundation();
 
 
@@ -87,17 +82,17 @@
 		/**
 		global.WebFont.load({
 			custom:       { families: ['FontName1','FontName2','FontName3'] },
-			loading:      function() { app.dom.body.trigger('WebFont:loading'); },
-			active:       function() { app.dom.body.trigger('WebFont:active'); },
-			inactive:     function() { app.dom.body.trigger('WebFont:inactive'); },
-			fontloading:  function(familyName, fvd) { app.dom.body.trigger('WebFont:loading_font'); },
-			fontactive:   function(familyName, fvd) { app.dom.body.trigger('WebFont:active_font'); },
-			fontinactive: function(familyName, fvd) { app.dom.body.trigger('WebFont:inactive_font'); }
+			loading:      function() { __.$body.trigger('WebFont:loading'); },
+			active:       function() { __.$body.trigger('WebFont:active'); },
+			inactive:     function() { __.$body.trigger('WebFont:inactive'); },
+			fontloading:  function(familyName, fvd) { __.$body.trigger('WebFont:loading_font'); },
+			fontactive:   function(familyName, fvd) { __.$body.trigger('WebFont:active_font'); },
+			fontinactive: function(familyName, fvd) { __.$body.trigger('WebFont:inactive_font'); }
 		});
 
 
 		// fonts loaded
-		app.dom.body.on('WebFont:active', function() {
+		__.$body.on('WebFont:active', function() {
 
 		});
 		/**/

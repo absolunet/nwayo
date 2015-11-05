@@ -16,32 +16,8 @@
 	//-- Cache data
 	local.cache = function() {
 
-		// env
-		app.env = {};
-		app.env.culture = kafe.env('culture');
-		app.env.lang    = kafe.env('lang');
-		app.env.page    = kafe.env('page');
-		app.env.tmpl    = kafe.env('tmpl');
-
-
-		// dom
-		app.dom = {};
-		app.dom.window     = $(global);
-		app.dom.document   = $(document);
-		app.dom.body       = $('body');
-
-
-		// path
-		app.path = _.cloneDeep(konstan.path);
-
-		// transition
-		app.transition = _.cloneDeep(konstan.transition);
-
-
 		// tmpl
 		/**
-		app.tmpl = app.tmpl || {};
-
 		$('script[type="text/x-jsrender"][id^="jshtml-"]').each(function() {
 			var id = $(this).attr('id');
 			app.tmpl['html-'+id.substring(7)] = $.templates('#'+id);
