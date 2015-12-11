@@ -75,13 +75,15 @@ filename.konstanLocal   = `${filename.konstan}.json`;
 filename.konstanScripts = `${filename.konstan}.${ext.scripts}`;
 filename.konstanStyles  = `${filename.konstan}.json`;
 filename.modernizr      = `modernizr`;
+filename.lodash         = `lodash`;
 
 let config = {};
-config.konstan   = `${dir.root}/konstan.yaml`;
-config.pkg       = `${dir.root}/package.json`;
-config.scsslint  = `${dir.root}/.scss-lint.yml`;
-config.modernizr = `${dir.root}/modernizr.yaml`;
-
+config.konstan       = `${dir.root}/konstan.yaml`;
+config.pkg           = `${dir.root}/package.json`;
+config.scsslint      = `${dir.root}/.scss-lint.yml`;
+config.modernizr     = `${dir.root}/modernizr.yaml`;
+config.lodashRoot    = `${dir.root}/node_modules/lodash-cli`;
+config.lodashPackage = `${config.lodashRoot}/package.json`;
 
 
 

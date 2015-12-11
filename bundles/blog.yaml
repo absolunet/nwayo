@@ -27,7 +27,7 @@ scripts:
     dependencies:
       - ~konstan
       - bower_components/jquery/dist/jquery
-      - bower_components/lodash/lodash
+      - ~lodash
       - ~modernizr
       - bower_components/pubsub-js/src/pubsub
       - components/nwayo/scripts/dependencies-starter

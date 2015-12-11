@@ -6,6 +6,7 @@
 let _         = require('lodash');
 let yaml      = require('js-yaml');
 let fs        = require('fs');
+let exec      = require('child_process').exec;
 let async     = require('async');
 let merge     = require('merge-stream');
 let gulp      = require('gulp');
@@ -85,6 +86,20 @@ gulp.task('scripts-vendors', (cb) => {
 					fs.writeFileSync(`${PATH.dir.cacheScripts}/${PATH.filename.modernizr}.${PATH.ext.scripts}`, result);
 					callback(null);
 				});
+			},
+
+			// lodash
+			(callback) => {
+				//let config = JSON.parse(fs.readFileSync(PATH.config.lodashPackage, 'utf8'));
+				let bin = 'bin/lodash';
+				let options = 'compact';
+
+				exec(`${PATH.config.lodashRoot}/${bin} ${options} --development --output ${PATH.dir.cacheScripts}/${PATH.filename.lodash}.${PATH.ext.scripts}`, (error, stdout, stderr) => {
+					if (error !== null) {
+						console.log(stderr);
+					}
+					callback(null);
+				});
 			}
 
 		], () => { done(); });
@@ -110,6 +125,7 @@ gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants', 'scripts-vend
 			// Resolve real filepaths
 			let replacements = {
 				konstan:   `${PATH.dir.cacheScripts}/${name}/${PATH.filename.konstan}`,
+				lodash:    `${PATH.dir.cacheScripts}/${PATH.filename.lodash}`,
 				modernizr: `${PATH.dir.cacheScripts}/${PATH.filename.modernizr}`
 			};
 			for (let name of Object.keys(replacements)) {
