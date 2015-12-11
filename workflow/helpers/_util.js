@@ -8,10 +8,12 @@ let fs          = require('fs');
 let del         = require('del');
 let glob        = require('glob');
 let yaml        = require('js-yaml');
+let crypto      = require('crypto');
 let Vinyl       = require('vinyl');
 let merge       = require('merge-stream');
 let runsequence = require('run-sequence');
 let gulp        = require('gulp');
+let babel       = require('babel-core');
 
 const echo = console.log;
 const PATH = global.nwayo.path;
@@ -36,6 +38,7 @@ let emoji = {
 
 
 let watchableTaskCompletedCounter = 0;
+let cache = {};
 
 
 
@@ -45,9 +48,27 @@ class Util {
 	static get emoji()          { return emoji; }
 
 
-  //-- Read and parse a YAML file
+	//-- Read and parse a YAML file
 	static readYAML(file) {
 		return yaml.safeLoad(fs.readFileSync(file, 'utf8'));
+	}
+
+
+	//-- Compare value with current cache if different
+	static cache(key, value, process) {
+		let digest = crypto.createHash('sha1').update(value).digest('hex');
+
+		if (!cache[key] || cache[key] && cache[key].digest !== digest) {
+			value = process(value);
+			cache[key] = {
+				digest:  digest,
+				content: value
+			};
+		} else {
+			value = cache[key].content;
+		}
+
+		return value;
 	}
 
 
@@ -140,6 +161,53 @@ class Util {
 		}
 
 		return gmfile;
+	}
+
+
+	//-- Babel processing
+	static babelProcess(options) {
+		let fullPath = options.fullPath;
+		let rawPath  = options.rawPath;
+		let content  = options.content;
+
+		if (fullPath.substr(-3) === '.js') {
+			if (!PATH.pattern.babel.test(rawPath)) {
+
+				content = Util.cache(`babel:${fullPath}`, content, (data) => {
+					return babel.transform(data, {
+						// es2015 preset
+						plugins: [
+							'check-es2015-constants',
+							'transform-es2015-arrow-functions',
+							'transform-es2015-block-scoped-functions',
+							'transform-es2015-block-scoping',
+							'transform-es2015-classes',
+							'transform-es2015-computed-properties',
+							'transform-es2015-destructuring',
+							'transform-es2015-for-of',
+							'transform-es2015-function-name',
+							'transform-es2015-literals',
+							//'transform-es2015-modules-commonjs', // Adds use strict
+							'transform-es2015-object-super',
+							'transform-es2015-parameters',
+							'transform-es2015-shorthand-properties',
+							'transform-es2015-spread',
+							'transform-es2015-sticky-regex',
+							'transform-es2015-template-literals',
+							'transform-es2015-typeof-symbol',
+							'transform-es2015-unicode-regex',
+							'transform-regenerator'
+						],
+						compact:       false,
+						highlightCode: false,
+						ast:           false,
+						retainLines:   true
+					}).code;
+				});
+			}
+		}
+
+		return content;
 	}
 
 

@@ -17,7 +17,7 @@
 	local.cache = function() {
 
 		// optional scroll
-		//app.scrollTransition = (Modernizr.touch) ? 0 : konstan.transition.animation;
+		//app.scrollTransition = (Modernizr.touchevents) ? 0 : konstan.transition.animation;
 
 		// addthis
 		//global['addthis_config'] = { 'ui_language': app.env.lang };
