@@ -25,10 +25,10 @@ scripts:
 
   collections:
     dependencies:
-      - konstan
+      - ~konstan
       - bower_components/jquery/dist/jquery
       - bower_components/lodash/lodash
-      - bower_components/modernizr/modernizr
+      - ~modernizr
       - bower_components/pubsub-js/src/pubsub
       - components/nwayo/scripts/dependencies-starter
 

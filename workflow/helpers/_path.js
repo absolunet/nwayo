@@ -3,10 +3,13 @@
 //-------------------------------------
 'use strict';
 
-const NOLINT = '{theme,vendor}';
+const BOWER  = 'bower_components';
+const CACHE  = '.nwayo-cache';
+const NOLINT = 'vendor';
 
 let pattern = {};
 pattern.anytree = '**';
+pattern.babel   = new RegExp(`^\\${CACHE}|${BOWER}|components\/${NOLINT}\-|components\/.*\/(_?)${NOLINT}\-`);
 
 let ext = {};
 ext.bundles   = 'yaml';
@@ -26,7 +29,7 @@ build.styles  = 'styles';
 
 let dir = {};
 dir.root          = '.';
-dir.cache         = `${dir.root}/.nwayo-cache`;
+dir.cache         = `${dir.root}/${CACHE}`;
 dir.cacheInline   = `${dir.cache}/inline-images`;
 dir.cacheSass     = `${dir.cache}/sass`;
 dir.cacheScripts  = `${dir.cache}/${build.scripts}`;
@@ -44,7 +47,7 @@ dir.scriptsNolint = `${dir.components}/${NOLINT}-*/scripts`;
 dir.styles        = `${dir.components}/${pattern.anytree}/styles`;
 dir.stylesNolint  = `${dir.components}/${NOLINT}-*/styles`;
 dir.templates     = `${dir.components}/${pattern.anytree}/templates`;
-dir.bower         = `${dir.root}/bower_components`;
+dir.bower         = `${dir.root}/${BOWER}`;
 dir.misc          = `${dir.root}/misc`;
 dir.resources     = `${dir.misc}/resources`;
 dir.stubs         = `${dir.misc}/stubs`;
@@ -71,11 +74,13 @@ filename.konstan        = 'konstan';
 filename.konstanLocal   = `${filename.konstan}.json`;
 filename.konstanScripts = `${filename.konstan}.${ext.scripts}`;
 filename.konstanStyles  = `${filename.konstan}.json`;
+filename.modernizr      = `modernizr`;
 
 let config = {};
-config.konstan  = `${dir.root}/konstan.yaml`;
-config.pkg      = `${dir.root}/package.json`;
-config.scsslint = `${dir.root}/.scss-lint.yml`;
+config.konstan   = `${dir.root}/konstan.yaml`;
+config.pkg       = `${dir.root}/package.json`;
+config.scsslint  = `${dir.root}/.scss-lint.yml`;
+config.modernizr = `${dir.root}/modernizr.yaml`;
 
 
 

@@ -3,21 +3,26 @@
 //-------------------------------------
 'use strict';
 
-let _       = require('lodash');
-let merge   = require('merge-stream');
-let gulp    = require('gulp');
-let gulpif  = require('gulp-if');
-let cache   = require('gulp-cached');
-let include = require('gulp-nwayo-include');
-let uglify  = require('gulp-uglify');
-let jshint  = require('gulp-jshint');
-let stylish = require('jshint-stylish');
+let _         = require('lodash');
+let yaml      = require('js-yaml');
+let fs        = require('fs');
+let async     = require('async');
+let merge     = require('merge-stream');
+let gulp      = require('gulp');
+let gulpif    = require('gulp-if');
+let cache     = require('gulp-cached');
+let include   = require('gulp-nwayo-include');
+let uglify    = require('gulp-uglify');
+let jshint    = require('gulp-jshint');
+let stylish   = require('jshint-stylish');
+let modernizr = require('modernizr');
 //let debug = require('gulp-debug');
 
 const PATH = global.nwayo.path;
 const ENV  = global.nwayo.env;
 const Util = global.nwayo.util;
 
+let vendorCached = false;
 
 
 
@@ -61,8 +66,38 @@ gulp.task('scripts-constants', () => {
 });
 
 
+//-- Generate vendor libraries
+gulp.task('scripts-vendors', (cb) => {
+
+	let done = () => {
+		vendorCached = true;
+		cb();
+	};
+
+	// Run once on 'watch'
+	if (!vendorCached) {
+
+		async.parallel([
+
+			// Modernizr
+			(callback) => {
+				modernizr.build(yaml.safeLoad(fs.readFileSync(PATH.config.modernizr, 'utf8')), function (result) {
+					fs.writeFileSync(`${PATH.dir.cacheScripts}/${PATH.filename.modernizr}.${PATH.ext.scripts}`, result);
+					callback(null);
+				});
+			}
+
+		], () => { done(); });
+
+	} else {
+		done();
+	}
+});
+
+
+
 //-- Compile
-gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants'], () => {
+gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants', 'scripts-vendors'], () => {
 	let streams = [];
 
 	for (let name of Object.keys(ENV.bundles)) {
@@ -72,10 +107,16 @@ gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants'], () => {
 		for (let collection of Object.keys(bundle.scripts.collections)) {
 			let list = _.cloneDeep(bundle.scripts.collections[collection]);
 
-			// Resolve konstan real filepath
-			let pos = list.indexOf('konstan');
-			if (pos !== -1) {
-				list[pos] = `${PATH.dir.cacheScripts}/${name}/${PATH.filename.konstan}`;
+			// Resolve real filepaths
+			let replacements = {
+				konstan:   `${PATH.dir.cacheScripts}/${name}/${PATH.filename.konstan}`,
+				modernizr: `${PATH.dir.cacheScripts}/${PATH.filename.modernizr}`
+			};
+			for (let name of Object.keys(replacements)) {
+				let pos = list.indexOf(`~${name}`);
+				if (pos !== -1) {
+					list[pos] = replacements[name];
+				}
 			}
 
 			// Require each file
@@ -88,8 +129,10 @@ gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants'], () => {
 			streams.push(
 				Util.vinylStream(`${collection}.${PATH.ext.scripts}`, source)
 					.pipe( include({
-						basePath:'./',
-						autoExtension:true
+						basePath: './',
+						autoExtension: true,
+						partialPrefix: true,
+						fileProcess: Util.babelProcess
 					}))
 					.pipe( gulpif( bundle.scripts.options.minify && !ENV.watching, uglify({preserveComments:'some'})) )
 					.pipe( gulp.dest(`${bundle.output.build}/${PATH.build.scripts}`) )
