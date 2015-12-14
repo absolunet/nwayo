@@ -14,7 +14,7 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[{.bowerrc,.editorconfig,.jscsrc,.jshintrc,.scss-lint.yml,bower.json,config.rb,konstan.yaml,modernizr.yaml,package.json,bundles/**.yaml}]
+[{.bowerrc,.editorconfig,.jscsrc,.jshintrc,.scss-lint.yml,bower.json,config.rb,lodash.yaml,konstan.yaml,modernizr.yaml,package.json,bundles/**.yaml}]
 indent_style = space
 indent_size = 2
 end_of_line = lf

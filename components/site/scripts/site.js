@@ -24,7 +24,7 @@
 
 		// env
 		//app.env.isUniquePage = (app.env.pageId == 'UID');
-		//app.env.isTypePage   = _.contains(app.env.pageTags, 'TYPE-ID');
+		//app.env.isTypePage   = _.includes(app.env.pageTags, 'TYPE-ID');
 		//app.env.isOneOfThese = !!_.intersection(app.env.pageTags, ['ID1', 'ID2']).length;
 
 		// colorbox default params

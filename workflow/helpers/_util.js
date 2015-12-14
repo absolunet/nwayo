@@ -150,6 +150,21 @@ class Util {
 	}
 
 
+	//-- Parse lodash config
+	static parseLodash() {
+		let config = yaml.safeLoad(fs.readFileSync(PATH.config.lodash, 'utf8'));
+		let cli = '';
+
+		for (let option of Object.keys(config)) {
+			if (config[option].length) {
+				cli += ` ${option}=${config[option].join(',')}`;
+			}
+		}
+
+		return cli;
+	}
+
+
 	//-- GraphicsMagick optimization
 	static gmOptimization(gmfile, info) {
 		if (info.format === 'JPG') {
