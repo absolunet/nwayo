@@ -4,7 +4,6 @@
   "devDependencies": {
     "jquery":     "2.1.4",
     "kafe":       "3.0.4",
-    "lodash":     "3.10.1",
     "pubsub-js":  "1.5.3",
 
     "foundation":        "5.5.3",

@@ -9,7 +9,7 @@ global.nwayo = {
 	vendor:  {
 		jQuery:       global.jQuery.noConflict(true),
 		jQueryGlobal: global.jQuery,
-		LoDash:       global._,
+		lodash:       global._,
 		Modernizr:    global.Modernizr,
 		PubSub:       global.PubSub
 	}
