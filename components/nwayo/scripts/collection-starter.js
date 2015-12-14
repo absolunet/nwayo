@@ -8,7 +8,7 @@ var konstan   = app.konstan;
 var jQuery    = global.nwayo.vendor.jQuery;
 var $         = global.nwayo.vendor.jQuery;
 var $Global   = global.nwayo.vendor.jQueryGlobal;
-var _         = global.nwayo.vendor.LoDash;
+var _         = global.nwayo.vendor.lodash;
 var Modernizr = global.nwayo.vendor.Modernizr;
 var PubSub    = global.nwayo.vendor.PubSub;
 
