@@ -82,6 +82,7 @@ config.konstan       = `${dir.root}/konstan.yaml`;
 config.pkg           = `${dir.root}/package.json`;
 config.scsslint      = `${dir.root}/.scss-lint.yml`;
 config.modernizr     = `${dir.root}/modernizr.yaml`;
+config.lodash        = `${dir.root}/lodash.yaml`;
 config.lodashRoot    = `${dir.root}/node_modules/lodash-cli`;
 config.lodashPackage = `${config.lodashRoot}/package.json`;
 
