@@ -16,18 +16,21 @@
 	//-- Cache data
 	local.cache = function() {
 
-		// optional scroll
+		// Optional scroll
 		//app.scrollTransition = (Modernizr.touchevents) ? 0 : konstan.transition.animation;
 
-		// addthis
+
+		// Addthis
 		//global['addthis_config'] = { 'ui_language': app.env.lang };
 
-		// env
+
+		// Env
 		//app.env.isUniquePage = (app.env.pageId == 'UID');
 		//app.env.isTypePage   = _.includes(app.env.pageTags, 'TYPE-ID');
 		//app.env.isOneOfThese = !!_.intersection(app.env.pageTags, ['ID1', 'ID2']).length;
 
-		// colorbox default params
+
+		// Colorbox default params
 		/**
 		kafe.ext.colorbox.setParams({
 			close:      (app.env.lang == 'en') ? 'Close' : 'Fermer',
@@ -37,6 +40,17 @@
 			// onClosed: function () { window.location = '#/'; }
 		});
 		/**/
+
+
+		// Magento jsrender helper
+		/**
+		$.views.helpers({
+			translate: function(key) {
+				return global.Translator.translate(key);
+			}
+		});
+		/**/
+
 	};
 
 
@@ -45,16 +59,33 @@
 
 		__.$body
 
-			// external links
+			// External links
 			.on('click', 'a[data-external]', function() {
 				$(this).attr('target', '_blank');
 			})
 
-			// anchors
+
+			// Open links in top window
+			/**
+			.on('click', __.action('open-top'), function() {
+				$(this).attr('target', '_top');
+			})
+			/**/
+
+
+			// Anchors
 			/**
 			.on('click', 'a[data-anchor="true"]', function(e) {
 				e.preventDefault();
 				$.scrollTo($(this).attr('href'), app.scrollTransition, {offset:{top:-15}});
+			})
+			/**/
+
+
+			// Simple toggler
+			/**
+			.on('click', __.component('toggle-wrapper')+' '+__.action('toggle-content'), function() {
+				$(this).closest(__.component('toggle-wrapper')).toggleClass('opened');
 			})
 			/**/
 		;
@@ -73,7 +104,7 @@
 	//-- To execute on start
 	local.start = function() {
 
-		// web font loader
+		// Webfont loader
 		/**
 		global.WebFont.load({
 			custom:       { families: ['FontName1','FontName2','FontName3'] },
@@ -86,7 +117,7 @@
 		});
 
 
-		// fonts loaded
+		// Fonts loaded
 		__.$body.on('WebFont:active', function() {
 
 		});
