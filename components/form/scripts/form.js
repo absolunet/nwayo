@@ -2,10 +2,10 @@
 //-- Form
 //-------------------------------------
 
-//= **require     bower_components/foo/bar
-//= **require     components/common/scripts/foobar
-//= **jshtml      components/common/templates/foobar
-//= **jshtml_tree components/common/templates
+//= **require bower_components/jquery.inputmask/dist/inputmask/inputmask
+//= **require bower_components/jquery.inputmask/dist/inputmask/inputmask.extensions
+//= **require bower_components/jquery.inputmask/dist/inputmask/inputmask.numeric.extensions
+//= **require bower_components/jquery.inputmask/dist/inputmask/jquery.inputmask
 
 (function(){
 	'use strict';
@@ -36,6 +36,11 @@
 		$('input[data-mask="postalcode"]').inputmask('A9A 9A9');
 		$('input[data-mask="numeric"]').inputmask('non-negative-decimal', {radixPoint:',', digits:2 });
 		$('input[data-mask="numeric-int"]').inputmask('9', {repeat:6, greedy:false });
+
+		$('input[data-mask="credit-card"]').inputmask('9{10}');
+		$('input[data-mask="credit-card-cvv"]').inputmask('9{4}');
+
+		$('input[data-mask="quantity"]').inputmask('numeric', { min:0, max:10, allowPlus:false, allowMinus:false, digits:0, rightAlign:false });
 		/**/
 
 	};
