@@ -1,0 +1,12 @@
+//= **require bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix
+//= **require bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert
+//= **require bower_components/bootstrap-sass/assets/javascripts/bootstrap/button
+//= **require bower_components/bootstrap-sass/assets/javascripts/bootstrap/carousel
+//= **require bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse
+//= **require bower_components/bootstrap-sass/assets/javascripts/bootstrap/dropdown
+//= **require bower_components/bootstrap-sass/assets/javascripts/bootstrap/modal
+//= **require bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy
+//= **require bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab
+//= **require bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition
+//= **require bower_components/bootstrap-sass/assets/javascripts/bootstrap/tooltip
+//= **require bower_components/bootstrap-sass/assets/javascripts/bootstrap/popover

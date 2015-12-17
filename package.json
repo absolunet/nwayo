@@ -9,7 +9,7 @@
   },
 
   "devDependencies": {
-    "fs-extra": "0.26.2",
+    "fs-extra": "0.26.3",
     "del":      "2.2.0",
     "glob":     "6.0.1",
     "js-yaml":  "3.4.6",

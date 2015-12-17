@@ -1,16 +1,16 @@
 #-------------------------------------
-#-- site
+#-- Site
 #-------------------------------------
 
-#-- output paths (relative to nwayo folder) and output url
+#-- Output paths (relative to nwayo folder) and output url
 output:
-  konstan: __konstan-path__/site-out
-  build:   __build-path__/site-out
-  url:     /nwayo/__build-path__/site-out
+  konstan: ../src/web/build
+  build:   ../src/web/build
+  url:     /build
 
 
 
-#-- assets
+#-- Assets
 assets:
   components:
     - form
@@ -18,10 +18,10 @@ assets:
 
 
 
-#-- scripts
+#-- Scripts
 scripts:
   options:
-    minify: true
+    minify: false
 
   collections:
     dependencies:
@@ -30,34 +30,42 @@ scripts:
       - ~lodash
       - ~modernizr
       - bower_components/pubsub-js/src/pubsub
+      - bower_components/fastclick/lib/fastclick
+      - components/vendor-bootstrap/scripts/vendor-bootstrap
       - components/nwayo/scripts/dependencies-starter
 
     main:
       - components/nwayo/scripts/collection-starter
       - components/common/scripts/common
-      - components/site/scripts/site
       - components/form/scripts/form
+      - components/site/scripts/site
 
 
 
-#-- styles
+#-- Styles
 styles:
   options:
-    minify: true
+    minify: false
     autoprefixer:
       - '> 1%'
       - 'last 2 versions'
-      - 'ie >= 9'
-      - 'Firefox ESR'
-      - 'Opera 12.1'
+      - 'Android 2.3'
+      - 'Android >= 4'
+      - 'Chrome >= 20'
+      - 'Firefox >= 24'
+      - 'Explorer >= 8'
+      - 'iOS >= 6'
+      - 'Opera >= 12'
+      - 'Safari >= 6'
 
   collections:
     main:
       - components/common/styles/common
+      - components/vendor-bootstrap/styles/vendor-bootstrap
       - components/site/styles/site
       - components/form/styles/form
 
     editor:
       - components/common/styles/common
+      - components/vendor-bootstrap/styles/vendor-bootstrap
       - components/cms/styles/editor
-

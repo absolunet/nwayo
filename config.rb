@@ -6,6 +6,9 @@ images_path="."
 additional_import_paths=""
 
 
+# bootstrap
+::Sass::Script::Value::Number.precision = [8, ::Sass::Script::Value::Number.precision].max
+
 module Sass::Script::Functions
 
   def readfile(file)

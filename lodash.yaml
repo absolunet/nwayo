@@ -29,6 +29,7 @@ include:
   - isString
 
   # Object
+  - get
   - merge
 
   # String

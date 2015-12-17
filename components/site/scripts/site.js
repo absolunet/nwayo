@@ -73,11 +73,6 @@
 	//-- To execute on start
 	local.start = function() {
 
-		// foundation
-		// __.$document.foundation();
-		// $Global(document).foundation();
-
-
 		// web font loader
 		/**
 		global.WebFont.load({
