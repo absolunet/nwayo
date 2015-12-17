@@ -23,14 +23,9 @@
 			app.tmpl['html-'+id.substring(7)] = $.templates('#'+id);
 		});
 
-		# https://lodash.com/docs#get
 		$.views.helpers({
 			konstan: function(key) {
-				var value = '';
-				// jshint evil:true
-				eval('value = konstan["' + key.split('.').join('"]["') + '"];');
-				// jshint evil:false
-				return value;
+				return _.get(konstan, key);
 			}
 		});
 		/**/
@@ -40,7 +35,7 @@
 	//-- Bind events
 	local.bind = function() {
 
-		//
+		global.FastClick.attach(document.body);
 
 	};
 

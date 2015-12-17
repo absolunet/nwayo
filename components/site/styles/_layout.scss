@@ -2,8 +2,6 @@
 //-- Layout
 //-------------------------------------
 
-//@import 'components/vendor-foundation/styles/foundation';
-
 //-- Base
 html {
 	//background-color: $bg-color;
@@ -12,8 +10,6 @@ body {
 	//color: $text-color;
 	font-family: $text-font;
 	font-size: 16px;
-	-webkit-font-smoothing: antialiased;
-	text-rendering: optimizeLegibility;
 	line-height: 1.3;
 }
 
@@ -69,8 +65,8 @@ a {
 	//html.no-touchevents & { }
 
 
-	//-- Foundation media exceptions
-	//@media #{$medium-up} { }
+	//-- Bootstrap media exceptions
+	//@media #{bp(sm up)} { }
 
 
 	//-- Colorscheme

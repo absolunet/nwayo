@@ -40,3 +40,30 @@ global.nwayo.vendor.jQuery(function($) {
 	app.env.pageId   = $('body').attr('id');
 	app.env.pageTags = _.compact( $('body').attr('class').split(' ') );
 });
+
+
+// Avoid `console` errors in browsers that lack a console.
+// (c) HTML5 Boilerplate
+(function() {
+	'use strict';
+
+	var method;
+	var noop = function () {};
+	var methods = [
+		'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
+		'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
+		'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
+		'timeStamp', 'trace', 'warn'
+	];
+	var length = methods.length;
+	var console = global.console = global.console || {};
+
+	while (length--) {
+		method = methods[length];
+
+		// Only stub undefined methods.
+		if (!console[method]) {
+			console[method] = noop;
+		}
+	}
+}());

@@ -115,8 +115,8 @@ strong {
 
 //-- Placeholders
 %hover-transition {
-	transition: all #{$konstan-transition-hover}ms ease-out, z-index 1ms;
+	transition: all ($konstan-transition-hover * 1ms) ease-out, z-index 1ms;
 }
 %animation-transition {
-	transition: all #{$konstan-transition-animation}ms ease-out, z-index 1ms;
+	transition: all ($konstan-transition-animation * 1ms) ease-out, z-index 1ms;
 }
