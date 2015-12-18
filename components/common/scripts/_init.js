@@ -7,50 +7,74 @@
 //= **jshtml      components/common/templates/foobar
 //= **jshtml_tree components/common/templates
 
-(function(){
+(() => {
 	'use strict';
 
-	var local = {};
+	let local = {};
 
 
 	//-- Cache data
-	local.cache = function() {
+	local.cache = () => {
+
+		// tmpl
+		/**
+		$.views.helpers({
+			konstan: key => { return _.get(konstan, key); }
+		});
+		/**/
+
+	};
+
+
+	//-- Cache DOM data
+	local.cacheDOM = () => {
 
 		// tmpl
 		/**
 		$('script[type="text/x-jsrender"][id^="jshtml-"]').each(function() {
-			var id = $(this).attr('id');
-			app.tmpl['html-'+id.substring(7)] = $.templates('#'+id);
-		});
-
-		$.views.helpers({
-			konstan: function(key) {
-				return _.get(konstan, key);
-			}
+			let id = $(this).attr('id');
+			app.tmpl[`html-${id.substring(7)}`] = $.templates(`#${id}`);
 		});
 		/**/
+
 	};
 
 
 	//-- Bind events
-	local.bind = function() {
+	local.bind = () => {
 
 		global.FastClick.attach(document.body);
 
 	};
 
 
-	//-- To execute on start
-	local.start = function() {
+	//-- Subscribe to topics
+	local.subscribe = () => {
 
 		//
 
 	};
 
 
-	$(function() {
-		local.cache();
+	//-- To execute on start
+	local.start = () => {
+
+		//
+
+	};
+
+
+
+
+
+
+	// Outline
+	local.cache();
+
+	$(() => {
+		local.cacheDOM();
 		local.bind();
+		local.subscribe();
 		local.start();
 	});
 

@@ -2,5 +2,5 @@
 //-- SAMPLE - MULTI
 //-------------------------------------
 
-//= require components/SAMPLE/scripts/_foo
-//= require components/SAMPLE/scripts/_bar
+//= require components/SAMPLE/scripts/foo
+//= require components/SAMPLE/scripts/bar

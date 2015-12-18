@@ -7,36 +7,38 @@
 //= **jshtml      components/foo/templates/foobar
 //= **jshtml_tree components/foo/templates
 
-(function(){
+(() => {
 	'use strict';
 
-	var local = {};
+	let foo = 1;
+	let local = {};
 
-	//-- Foo
-	local.foo = function() {
-
-	};
 
 	//-- Bar
-	local.bar = function() {
+	local.bar = () => {
+
+		//
 
 	};
 
 
 
-	//-- Public
-	app.foo = {};
 
-	app.foo.bar1 = '';
+	//-- Public class
+	app.foobar = class {
 
-	app.foo.bar2 = function() {
+		// Property foo
+		static get foo() {
+			return foo;
+		}
+
+		// Method bar()
+		static bar( options={} ) {
+			if (options.bar) {
+				local.bar();
+			}
+		}
 
 	};
-
-
-	$(function() {
-		local.foo();
-		local.bar();
-	});
 
 })();
