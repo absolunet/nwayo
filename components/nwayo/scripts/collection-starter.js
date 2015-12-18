@@ -3,44 +3,46 @@
 //-------------------------------------
 
 /* jshint -W079, unused:false, singleGroups:false, strict:false */
-var app       = global[global.nwayo.project];
-var konstan   = app.konstan;
-var jQuery    = global.nwayo.vendor.jQuery;
-var $         = global.nwayo.vendor.jQuery;
-var $Global   = global.nwayo.vendor.jQueryGlobal;
-var _         = global.nwayo.vendor.lodash;
-var Modernizr = global.nwayo.vendor.Modernizr;
-var PubSub    = global.nwayo.vendor.PubSub;
+const app     = global[global.nwayo.project];
+const konstan = app.konstan;
+
+const jQuery    = global.nwayo.vendor.jQuery;
+const $         = global.nwayo.vendor.jQuery;
+const $Global   = global.nwayo.vendor.jQueryGlobal;
+const _         = global.nwayo.vendor.lodash;
+const Modernizr = global.nwayo.vendor.Modernizr;
+const PubSub    = global.nwayo.vendor.PubSub;
+
 
 
 // Shortcuts
-var __ = (function() {
-	var shortcut = {};
-	var selector = function(key, value) { return '['+key+(value ? '~="'+value+'"' : '' )+']'; };
+const __ = (() => {
+	let shortcut = {};
+	let selector = (key, value) => {
+		value = value ? `~="${value}"` : '';
+		return `[${key}${value}]`;
+	};
 
 	// Shortcuts
-	_.forEach(['name'], function(key) {
-		shortcut[key] = function() { return selector(key, arguments[0]); };
-		shortcut['$'+key] = function() { return $(shortcut[key](arguments[0])); };
+	['name'].forEach(key => {
+		shortcut[key]       = value => { return selector(key, value); };
+		shortcut[`$${key}`] = value => { return $(shortcut[key](value)); };
 	});
 
 	// Data - shortcuts
-	_.forEach(['action','component','placeholder','showfor'], function(key) {
-		shortcut[key] = function() { return selector('data-'+key, arguments[0]); };
-		shortcut['$'+key] = function() { return $(shortcut[key](arguments[0])); };
+	['action','component','placeholder','showfor'].forEach(key => {
+		shortcut[key]       = value => { return selector(`data-${key}`, value); };
+		shortcut[`$${key}`] = value => { return $(shortcut[key](value)); };
 	});
 
 	// Window
 	shortcut.window = global;
 
+	// DOM shortcuts
+	shortcut.$window   = $(global);
+	shortcut.$document = $(document);
+	shortcut.$html     = $('html');
+	shortcut.$body     = $('body');
+
 	return shortcut;
 })();
-
-
-// DOM shortcuts
-$(function() {
-	__.$window   = $(global);
-	__.$document = $(document);
-	__.$html     = $('html');
-	__.$body     = $('body');
-});

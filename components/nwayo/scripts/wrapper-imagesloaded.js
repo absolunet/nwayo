@@ -1,4 +1,4 @@
-(function() {
+(() => {
 	/* jshint strict:false */
 
 	this.jQuery = $;

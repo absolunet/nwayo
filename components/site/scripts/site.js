@@ -7,17 +7,17 @@
 //= **jshtml      components/common/templates/foobar
 //= **jshtml_tree components/common/templates
 
-(function(){
+(() => {
 	'use strict';
 
-	var local = {};
+	let local = {};
 
 
 	//-- Cache data
-	local.cache = function() {
+	local.cache = () => {
 
 		// Optional scroll
-		//app.scrollTransition = (Modernizr.touchevents) ? 0 : konstan.transition.animation;
+		//app.scrollTransition = Modernizr.touchevents ? 0 : konstan.transition.animation;
 
 
 		// Addthis
@@ -25,7 +25,7 @@
 
 
 		// Env
-		//app.env.isUniquePage = (app.env.pageId == 'UID');
+		//app.env.isUniquePage = app.env.pageId === 'UID';
 		//app.env.isTypePage   = _.includes(app.env.pageTags, 'TYPE-ID');
 		//app.env.isOneOfThese = !!_.intersection(app.env.pageTags, ['ID1', 'ID2']).length;
 
@@ -33,11 +33,11 @@
 		// Colorbox default params
 		/**
 		kafe.ext.colorbox.setParams({
-			close:      (app.env.lang == 'en') ? 'Close' : 'Fermer',
+			close:      app.env.lang === 'en' ? 'Close' : 'Fermer',
 			opacity:     0.7,
 			transition: 'elastic'
-			// if popup is hash triggered
-			// onClosed: function () { window.location = '#/'; }
+			//if popup is hash triggered
+			onClosed: () => { __.window.location = '#/'; }
 		});
 		/**/
 
@@ -45,17 +45,23 @@
 		// Magento jsrender helper
 		/**
 		$.views.helpers({
-			translate: function(key) {
-				return global.Translator.translate(key);
-			}
+			translate: key => { return global.Translator.translate(key); }
 		});
 		/**/
 
 	};
 
 
+	//-- Cache DOM data
+	local.cacheDOM = () => {
+
+		//
+
+	};
+
+
 	//-- Bind events
-	local.bind = function() {
+	local.bind = () => {
 
 		__.$body
 
@@ -93,32 +99,32 @@
 
 
 	//-- Subscribe to topics
-	local.subscribe = function() {
+	local.subscribe = () => {
 
-		// PubSub.subscribe('foo.bar',  function() {});
-		// PubSub.subscribe('foo.bar2', function() {});
+		// PubSub.subscribe('foo.bar',  () => {});
+		// PubSub.subscribe('foo.bar2', () => {});
 
 	};
 
 
 	//-- To execute on start
-	local.start = function() {
+	local.start = () => {
 
 		// Webfont loader
 		/**
 		global.WebFont.load({
 			custom:       { families: ['FontName1','FontName2','FontName3'] },
-			loading:      function() { __.$body.trigger('WebFont:loading'); },
-			active:       function() { __.$body.trigger('WebFont:active'); },
-			inactive:     function() { __.$body.trigger('WebFont:inactive'); },
-			fontloading:  function(familyName, fvd) { __.$body.trigger('WebFont:loading_font'); },
-			fontactive:   function(familyName, fvd) { __.$body.trigger('WebFont:active_font'); },
-			fontinactive: function(familyName, fvd) { __.$body.trigger('WebFont:inactive_font'); }
+			loading:      () => { __.$body.trigger('WebFont:loading'); },
+			active:       () => { __.$body.trigger('WebFont:active'); },
+			inactive:     () => { __.$body.trigger('WebFont:inactive'); },
+			fontloading:  (familyName, fvd) => { __.$body.trigger('WebFont:loading_font'); },
+			fontactive:   (familyName, fvd) => { __.$body.trigger('WebFont:active_font'); },
+			fontinactive: (familyName, fvd) => { __.$body.trigger('WebFont:inactive_font'); }
 		});
 
 
 		// Fonts loaded
-		__.$body.on('WebFont:active', function() {
+		__.$body.on('WebFont:active', () => {
 
 		});
 		/**/
@@ -126,8 +132,15 @@
 	};
 
 
-	$(function() {
-		local.cache();
+
+
+
+
+	// Outline
+	local.cache();
+
+	$(() => {
+		local.cacheDOM();
 		local.bind();
 		local.subscribe();
 		local.start();

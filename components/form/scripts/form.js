@@ -7,14 +7,22 @@
 //= **require bower_components/jquery.inputmask/dist/inputmask/inputmask.numeric.extensions
 //= **require bower_components/jquery.inputmask/dist/inputmask/jquery.inputmask
 
-(function(){
+(() => {
 	'use strict';
 
-	var local = {};
+	let local = {};
 
 
 	//-- Cache data
-	local.cache = function() {
+	local.cache = () => {
+
+		//
+
+	};
+
+
+	//-- Cache DOM data
+	local.cacheDOM = () => {
 
 		//
 
@@ -22,7 +30,7 @@
 
 
 	//-- Bind events
-	local.bind = function() {
+	local.bind = () => {
 
 		//-- input mask
 		/**
@@ -46,17 +54,33 @@
 	};
 
 
-	//-- To execute on start
-	local.start = function() {
+	//-- Subscribe to topics
+	local.subscribe = () => {
 
 		//
 
 	};
 
 
-	$(function() {
-		local.cache();
+	//-- To execute on start
+	local.start = () => {
+
+		//
+
+	};
+
+
+
+
+
+
+	// Outline
+	local.cache();
+
+	$(() => {
+		local.cacheDOM();
 		local.bind();
+		local.subscribe();
 		local.start();
 	});
 

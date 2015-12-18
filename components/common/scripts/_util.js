@@ -6,20 +6,38 @@
 //= **jshtml      components/common/templates/foobar
 //= **jshtml_tree components/common/templates
 
-(function(){
+(() => {
 	'use strict';
 
-	app.util = {};
+	let foo = 1;
+	let local = {};
 
-	//-- Foo
-	app.util.foo = function() {
-
-	};
 
 	//-- Bar
-	app.util.bar = function() {
+	local.bar = () => {
+
+		//
 
 	};
 
+
+
+
+	//-- Public class
+	app.util = class {
+
+		// Property foo
+		static get foo() {
+			return foo;
+		}
+
+		// Method bar()
+		static bar( options={} ) {
+			if (options.bar) {
+				local.bar();
+			}
+		}
+
+	};
 
 })();
