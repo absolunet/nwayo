@@ -3,13 +3,13 @@
 //-------------------------------------
 'use strict';
 
-//let debug    = require('gulp-debug');
-let gulp     = require('gulp');
-let gulpif   = require('gulp-if');
-let rename   = require('gulp-rename');
-let imagemin = require('gulp-imagemin');
-let gm       = require('gulp-gm');
-let merge    = require('merge-stream');
+const gulp     = require('gulp');
+const gulpif   = require('gulp-if');
+const rename   = require('gulp-rename');
+const imagemin = require('gulp-imagemin');
+const gm       = require('gulp-gm');
+const merge    = require('merge-stream');
+//const debug    = require('gulp-debug');
 
 const PATH = global.nwayo.path;
 const Util = global.nwayo.util;

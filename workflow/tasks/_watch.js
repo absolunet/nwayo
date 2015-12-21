@@ -3,8 +3,8 @@
 //-------------------------------------
 'use strict';
 
-let gulp = require('gulp');
-//let debug = require('gulp-debug');
+const gulp = require('gulp');
+//const debug = require('gulp-debug');
 
 const PATH = global.nwayo.path;
 const ENV  = global.nwayo.env;

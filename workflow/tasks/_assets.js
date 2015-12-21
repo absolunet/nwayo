@@ -3,11 +3,11 @@
 //-------------------------------------
 'use strict';
 
-let gulp     = require('gulp');
-let rename   = require('gulp-rename');
-let imagemin = require('gulp-imagemin');
-let gm       = require('gulp-gm');
-//let debug = require('gulp-debug');
+const gulp     = require('gulp');
+const rename   = require('gulp-rename');
+const imagemin = require('gulp-imagemin');
+const gm       = require('gulp-gm');
+//const debug = require('gulp-debug');
 
 const PATH = global.nwayo.path;
 const Util = global.nwayo.util;

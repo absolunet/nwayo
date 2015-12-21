@@ -3,20 +3,20 @@
 //-------------------------------------
 'use strict';
 
-let _            = require('lodash');
-let fs           = require('fs-extra');
-let merge        = require('merge-stream');
-let gulp         = require('gulp');
-let gulpif       = require('gulp-if');
-let cache        = require('gulp-cached');
-let rename       = require('gulp-rename');
-let imagemin     = require('gulp-imagemin');
-let scsslint     = require('gulp-scss-lint');
-let sass         = require('gulp-ruby-sass');
-let jsonsass     = require('gulp-json-sass');
-let autoprefixer = require('gulp-autoprefixer');
-let minifycss    = require('gulp-minify-css');
-//let debug = require('gulp-debug');
+const _            = require('lodash');
+const fs           = require('fs-extra');
+const merge        = require('merge-stream');
+const gulp         = require('gulp');
+const gulpif       = require('gulp-if');
+const cache        = require('gulp-cached');
+const rename       = require('gulp-rename');
+const imagemin     = require('gulp-imagemin');
+const scsslint     = require('gulp-scss-lint');
+const sass         = require('gulp-ruby-sass');
+const jsonsass     = require('gulp-json-sass');
+const autoprefixer = require('gulp-autoprefixer');
+const minifycss    = require('gulp-minify-css');
+//const debug = require('gulp-debug');
 
 const PATH = global.nwayo.path;
 const ENV  = global.nwayo.env;

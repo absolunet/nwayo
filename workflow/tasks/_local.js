@@ -3,9 +3,9 @@
 //-------------------------------------
 'use strict';
 
-let merge = require('merge-stream');
-let gulp  = require('gulp');
-//let debug = require('gulp-debug');
+const merge = require('merge-stream');
+const gulp  = require('gulp');
+//const debug = require('gulp-debug');
 
 const PATH = global.nwayo.path;
 const ENV  = global.nwayo.env;
