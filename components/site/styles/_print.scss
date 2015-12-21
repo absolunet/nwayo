@@ -6,12 +6,14 @@
 	.body {
 		width: 100%;
 	}
+
 	ul {
 		list-style: disc;
 	}
 
 	//-- Reset what hasn't been redefined
 	* {
+		$black: #000000;
 		position: static !important;
 		overflow: visible !important;
 		border-color: $black !important;
