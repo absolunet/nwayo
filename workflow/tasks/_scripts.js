@@ -16,6 +16,7 @@ const include   = require('gulp-nwayo-include');
 const uglify    = require('gulp-uglify');
 const jshint    = require('gulp-jshint');
 const stylish   = require('jshint-stylish');
+const jscs      = require('gulp-jscs');
 const modernizr = require('modernizr');
 //const debug = require('gulp-debug');
 
@@ -32,15 +33,28 @@ gulp.task('scripts-lint', () => {
 	return gulp.src(PATH.files.scriptsLint)
 		.pipe( cache('scripts', {optimizeMemory:true}) )
 
+		// JSHint
 		.pipe( jshint() )
-
 		.pipe( jshint.reporter({
-			reporter: (files) => {
+			reporter: files => {
 				files.forEach( file => delete cache.caches.scripts[file.file] );
 			}
 		}))
 		.pipe( jshint.reporter(stylish) )
 		.pipe( jshint.reporter('fail') )
+
+		// JSCS
+		.pipe( jscs() )
+		//.pipe( jscs.reporter({
+		//		reporter: (files) => {
+		//			files.forEach( file => delete cache.caches.scripts[file.file] );
+		//		}
+		//}))
+		.pipe( jscs.reporter('workflow/helpers/jscs_reporter.js') )
+		.pipe( jscs.reporter('fail') )
+
+
+		.pipe( gulp.dest('src') )
 	;
 });
 
