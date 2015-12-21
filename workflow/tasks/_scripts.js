@@ -3,21 +3,21 @@
 //-------------------------------------
 'use strict';
 
-let _         = require('lodash');
-let yaml      = require('js-yaml');
-let fs        = require('fs');
-let exec      = require('child_process').exec;
-let async     = require('async');
-let merge     = require('merge-stream');
-let gulp      = require('gulp');
-let gulpif    = require('gulp-if');
-let cache     = require('gulp-cached');
-let include   = require('gulp-nwayo-include');
-let uglify    = require('gulp-uglify');
-let jshint    = require('gulp-jshint');
-let stylish   = require('jshint-stylish');
-let modernizr = require('modernizr');
-//let debug = require('gulp-debug');
+const _         = require('lodash');
+const yaml      = require('js-yaml');
+const fs        = require('fs');
+const exec      = require('child_process').exec;
+const async     = require('async');
+const merge     = require('merge-stream');
+const gulp      = require('gulp');
+const gulpif    = require('gulp-if');
+const cache     = require('gulp-cached');
+const include   = require('gulp-nwayo-include');
+const uglify    = require('gulp-uglify');
+const jshint    = require('gulp-jshint');
+const stylish   = require('jshint-stylish');
+const modernizr = require('modernizr');
+//const debug = require('gulp-debug');
 
 const PATH = global.nwayo.path;
 const ENV  = global.nwayo.env;

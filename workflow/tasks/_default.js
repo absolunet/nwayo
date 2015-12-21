@@ -3,10 +3,10 @@
 //-------------------------------------
 'use strict';
 
-let runsequence = require('run-sequence');
-let inquirer    = require('inquirer');
-let gulp        = require('gulp');
-//let debug = require('gulp-debug');
+const runsequence = require('run-sequence');
+const inquirer    = require('inquirer');
+const gulp        = require('gulp');
+//const debug = require('gulp-debug');
 
 const echo = console.log;
 const ENV  = global.nwayo.env;

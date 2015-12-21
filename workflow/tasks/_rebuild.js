@@ -3,10 +3,10 @@
 //-------------------------------------
 'use strict';
 
-let fs          = require('fs-extra');
-let runsequence = require('run-sequence');
-let gulp        = require('gulp');
-//let debug = require('gulp-debug');
+const fs          = require('fs-extra');
+const runsequence = require('run-sequence');
+const gulp        = require('gulp');
+//const debug = require('gulp-debug');
 
 const Util = global.nwayo.util;
 const ENV  = global.nwayo.env;

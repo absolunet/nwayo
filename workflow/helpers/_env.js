@@ -3,9 +3,9 @@
 //-------------------------------------
 'use strict';
 
-let _        = require('lodash');
-let glob     = require('glob');
-let minimist = require('minimist');
+const _        = require('lodash');
+const glob     = require('glob');
+const minimist = require('minimist');
 
 const echo = console.log;
 const PATH = global.nwayo.path;

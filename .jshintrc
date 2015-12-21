@@ -1,30 +1,5 @@
 // http://www.jshint.com/docs/options
 {
-  "globals": {
-    "document":  false,
-    "global":    false,
-    "$Global":   false,
-    "Modernizr": false,
-    "_":         false,
-    "PubSub":    false,
-    "Cookies":   false,
-    "kafe":      false,
-    "google":    false,
-    "konstan":   false,
-    "app":       false,
-    "__":        false
-  },
-
-
-  // --- Deprecated ---
-  "camelcase": true,
-  "es3":       true,
-  "es5":       false,
-  "esnext":    true,
-  "immed":     true,
-  "quotmark":  "single",
-  "sub":       true,
-
 
   // Enforcing options
   "bitwise":       true,
@@ -95,5 +70,30 @@
   "typed":       false,
   "worker":      false,
   "wsh":         false,
-  "yui":         false
+  "yui":         false,
+
+  // --- Deprecated ---
+  "camelcase": true,
+  "es3":       true,
+  "es5":       false,
+  "esnext":    true,
+  "immed":     true,
+  "quotmark":  "single",
+  "sub":       true,
+
+  // Globals
+  "globals": {
+    "document":  false,
+    "global":    false,
+    "$Global":   false,
+    "Modernizr": false,
+    "_":         false,
+    "PubSub":    false,
+    "Cookies":   false,
+    "kafe":      false,
+    "google":    false,
+    "konstan":   false,
+    "app":       false,
+    "__":        false
+  }
 }

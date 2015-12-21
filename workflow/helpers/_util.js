@@ -3,17 +3,17 @@
 //-------------------------------------
 'use strict';
 
-let _           = require('lodash');
-let fs          = require('fs');
-let del         = require('del');
-let glob        = require('glob');
-let yaml        = require('js-yaml');
-let crypto      = require('crypto');
-let Vinyl       = require('vinyl');
-let merge       = require('merge-stream');
-let runsequence = require('run-sequence');
-let gulp        = require('gulp');
-let babel       = require('babel-core');
+const _           = require('lodash');
+const fs          = require('fs');
+const del         = require('del');
+const glob        = require('glob');
+const yaml        = require('js-yaml');
+const crypto      = require('crypto');
+const Vinyl       = require('vinyl');
+const merge       = require('merge-stream');
+const runsequence = require('run-sequence');
+const gulp        = require('gulp');
+const babel       = require('babel-core');
 
 const echo = console.log;
 const PATH = global.nwayo.path;
