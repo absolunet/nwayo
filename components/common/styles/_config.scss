@@ -6,29 +6,12 @@
 @import 'components/nwayo/styles/util';
 
 
-//-- Palette & colors
-//$analyze-source-color: #545453;
-//$analyze-target-color: #878781;
-//@debug color-diff($analyze-source-color,$analyze-target-color);
+$text-color:   $konstan-color-text;
+$border-color: $konstan-color-border;
+$bg-color:     $konstan-color-bg;
 
-/**
-$grey-palette:  #cccccc;
-$red-palette:   #cc0000;
-$green-palette: #00cc00;
-$blue-palette:  #0000cc;
+$accent-color: $konstan-current-color-accent;
 
-$bg-color:   $grey-palette;
-$text-color: darken($bg-color, 30%);
-
-$link-color:      $blue-palette;
-$link-hover-color: lighten($link-color, 10%);
-
-$alt-color:      $green-palette;
-$alt-faded-color: adjust-hue(desaturate(lighten($alt-color, 26.2%), 39.5%), 64.08deg);  // #75dd94
-
-$error-text-color: $red-palette;
-$error-bg-color:   lighten($error-text-color, 20%);
-/**/
 
 /**
 $section-colorscheme: (
@@ -42,8 +25,6 @@ $section-colorscheme: (
 
 
 //-- Fonts
-@include load-font-mixin('kreon', 'kreon-regular-webfont', 'common');
-
 /**
 @include load-font-mixin('kreon',   'kreon-regular-webfont', 'common');
 @include load-font-mixin('kreon',   'kreon-light-webfont',   'common', $weight:$light-weight);
@@ -104,10 +85,6 @@ $ico-warning-char:  'w';
 //%misc4-image { @include scalable-icon-mixin('test.svg', 'common', $color:$debug-green); }
 
 
-//-- Placeholders
-%hover-transition {
-	transition: all ($konstan-transition-hover * 1ms) ease-out, z-index 1ms;
-}
-%animation-transition {
-	transition: all ($konstan-transition-animation * 1ms) ease-out, z-index 1ms;
-}
+//-- Transitions
+$hover-transition:     $konstan-transition-hover * 1ms;
+$animation-transition: $konstan-transition-animation * 1ms;

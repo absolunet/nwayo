@@ -11,8 +11,13 @@ linters:
 
   BemDepth:
     enabled: false
+    # max_elements: null
 
   BorderZero:
+    enabled: true
+    convention: zero
+
+  ChainedClasses:
     enabled: true
 
   ColorKeyword:
@@ -23,6 +28,8 @@ linters:
 
   Comment:
     enabled: false
+    # allowed: null
+    style: silent
 
   DebugStatement:
     enabled: false
@@ -41,7 +48,7 @@ linters:
     style: same_line
 
   EmptyLineBetweenBlocks:
-    enabled: false
+    enabled: true
 
   EmptyRule:
     enabled: true
@@ -64,7 +71,7 @@ linters:
   HexValidation:
     enabled: true
 
-  IdWithExtraneousSelector:
+  IdSelector:
     enabled: true
 
   ImportantRule:
@@ -77,33 +84,45 @@ linters:
 
   Indentation:
     enabled: true
+    allow_non_nested_indentation: false
     character: tab
     width: 1
 
   LeadingZero:
     enabled: true
+    style: exclude_zero
 
   MergeableSelector:
     enabled: true
     force_nesting: true
+    # whitelist: null
 
   NameFormat:
     enabled: true
     allow_leading_underscore: false
     convention: hyphenated_lowercase
+    # convention_explanation:
+    # {type}_convention:
+    # {type}_convention_explanation:
 
   NestingDepth:
     enabled: false
+    # max_depth: null
+    # ignore_parent_selectors: null
 
   PlaceholderInExtend:
     enabled: true
 
   PropertyCount:
     enabled: false
+    # include_nested: null
+    # max_properties: null
 
   PropertySortOrder:
     enabled: true
     ignore_unspecified: false
+    min_properties: 2
+    separate_groups: false
     order:
       - content
       - quotes
@@ -217,9 +236,16 @@ linters:
 
   PropertySpelling:
     enabled: true
+    # extra_properties: null
+    # disabled_properties: null
 
   PropertyUnits:
     enabled: false
+    # global: null
+    # properties: null
+
+  PseudoElement:
+    enabled: true
 
   QualifyingElement:
     enabled: true
@@ -229,16 +255,24 @@ linters:
 
   SelectorDepth:
     enabled: false
+    # max_depth: null
 
   SelectorFormat:
     enabled: true
     convention: hyphenated_lowercase
+    # convention_explanation: null
+    # ignored_names: null
+    # ignored_types: null
+    # {type}_convention: null
+    # {type}_convention_explanation: null
 
   Shorthand:
     enabled: true
+    allowed_shorthands: [1, 2, 3]
 
   SingleLinePerProperty:
-    enabled: false
+    enabled: true
+    allow_single_line_rule_sets: true
 
   SingleLinePerSelector:
     enabled: false
@@ -264,6 +298,7 @@ linters:
   SpaceBeforeBrace:
     enabled: true
     allow_single_line_padding: true
+    style: space
 
   SpaceBetweenParens:
     enabled: true
@@ -283,7 +318,7 @@ linters:
     enabled: true
 
   TransitionAll:
-    enabled: false
+    enabled: true
 
   UnnecessaryMantissa:
     enabled: true
@@ -299,13 +334,17 @@ linters:
 
   VariableForProperty:
     enabled: false
+    # properties: null
 
   VendorPrefixes:
     enabled: true
     identifier_list: base
+    # additional_identifiers: null
+    # excluded_identifiers: null
 
   ZeroUnit:
     enabled: true
 
   Compass::PropertyWithMixin:
     enabled: false
+    # ignore: null

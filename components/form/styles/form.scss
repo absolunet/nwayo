@@ -4,7 +4,7 @@
 
 //-- Placeholder
 @include placeholder-mixin {
-	color: lighten($black, 50%);
+	color: lighten($text-color, 50%);
 	font-style: italic;
 }
 
@@ -15,6 +15,7 @@
 	line-height: 1;
 	//appearance: none;
 }
+
 textarea, textarea[rows] {
 	//
 }

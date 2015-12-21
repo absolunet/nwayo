@@ -6,6 +6,7 @@
 html {
 	//background-color: $bg-color;
 }
+
 body {
 	//color: $text-color;
 	font-family: $text-font;
@@ -14,18 +15,19 @@ body {
 }
 
 a {
-	@extend %hover-transition;
 	//color: $link-color;
 	text-decoration: none;
+	transition: color $hover-transition ease-out;
 
 	&:hover, &:active, &:focus {
 		//color: $link-hover-color;
 		text-decoration: underline;
 	}
 }
+
 ::selection {
-	background-color: $black;
-	color: $white;
+	background-color: $text-color;
+	color: $bg-color;
 }
 
 

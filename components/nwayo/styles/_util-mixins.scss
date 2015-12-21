@@ -53,6 +53,7 @@
 			background-image: $uri;
 			background-size: $width / 2 $height / 2;
 		}
+
 		$uri: str-replace($uri, '@2x', '');
 	}
 
@@ -205,10 +206,12 @@
 			content: ' ';
 			display: table;
 		}
+
 		&::after {
 			clear: both;
 		}
 	}
+
 	> li {
 		@if($base-style) {
 			position: relative;
@@ -235,6 +238,7 @@
 				left: $column-spacing * ($nb-column - $i - 1) + $bullet-spacing * ($nb-column - $i);
 			}
 		}
+
 		&:nth-of-type(#{$nb-column}n) {
 			left: $total-spacing;
 		}
