@@ -1,6 +1,11 @@
 // http://www.jshint.com/docs/options
 {
 
+  // --- Change to esversion when 2.9.1 is released ---
+  "es3":    true,
+  "es5":    false,
+  "esnext": true,
+
   // Enforcing options
   "bitwise":       true,
   "curly":         true,
@@ -71,15 +76,6 @@
   "worker":      false,
   "wsh":         false,
   "yui":         false,
-
-  // --- Deprecated ---
-  "camelcase": true,
-  "es3":       true,
-  "es5":       false,
-  "esnext":    true,
-  "immed":     true,
-  "quotmark":  "single",
-  "sub":       true,
 
   // Globals
   "globals": {
