@@ -47,8 +47,6 @@ gulp.task('scripts-lint', () => {
 		}))
 
 		.pipe( jshint.reporter('fail') )
-
-		.pipe( gulp.dest('src') )
 	;
 });
 
