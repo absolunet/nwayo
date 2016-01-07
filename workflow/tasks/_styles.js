@@ -15,7 +15,7 @@ const scsslint     = require('gulp-scss-lint');
 const sass         = require('gulp-ruby-sass');
 const jsonsass     = require('gulp-json-sass');
 const autoprefixer = require('gulp-autoprefixer');
-const minifycss    = require('gulp-minify-css');
+const cssnano      = require('gulp-cssnano');
 //const debug = require('gulp-debug');
 
 const PATH = global.nwayo.path;
@@ -91,7 +91,7 @@ gulp.task('styles-compile', ['styles-lint', 'styles-constants'], () => {
 			// Require each file
 			list.forEach((file, i) => {
 				list[i] = `@import '${file}';`;
- 			});
+			});
 
 			fs.outputFileSync(`${PATH.dir.cacheStyles}/${name}/collections/${collection}.${PATH.ext.styles}`, Util.getGeneratedBanner(name)+list.join('\n')+'\n');
 		}
@@ -110,7 +110,7 @@ gulp.task('styles-compile', ['styles-lint', 'styles-constants'], () => {
 					browsers: bundle.styles.options.autoprefixer
 				}))
 
-				.pipe( gulpif( bundle.styles.options.minify && !ENV.watching, minifycss()) )
+				.pipe( gulpif( bundle.styles.options.minify && !ENV.watching, cssnano()) )
 
 				.pipe( gulp.dest(`${bundle.output.build}/${PATH.build.styles}`) )
 		);
