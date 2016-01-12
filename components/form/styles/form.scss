@@ -67,7 +67,7 @@ input[type="checkbox"], input[type="radio"] {
 			display: block;
 			width: 18px;
 			height: 18px;
-			border: 1px solid $black;
+			border: 1px solid $text-color;
 		}
 	}
 	&:checked + label::after {
@@ -78,11 +78,11 @@ input[type="checkbox"], input[type="radio"] {
 		display: block;
 		width: 8px;
 		height: 8px;
-		background-color: $black;
+		background-color: $text-color;
 	}
 
 	&:focus + label::before {
-		outline: 1px dotted $black;
+		outline: 1px dotted $text-color;
 	}
 }
 
