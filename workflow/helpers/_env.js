@@ -51,7 +51,7 @@ let bundles = (() => {
 
 //-- Extract bundles components
 let bundlesComponents = (() => {
-	return _.uniq( _.flatten( _.pluck(bundles, 'assets.components')));
+	return _.uniq( _.flatten( _.map(bundles, _.property('assets.components'))));
 })();
 
 

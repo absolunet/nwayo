@@ -1,16 +1,11 @@
 // http://www.jshint.com/docs/options
 {
 
-  // --- Change to esversion when 2.9.1 is released ---
-  "es3":    true,
-  "es5":    false,
-  "esnext": true,
-
   // Enforcing options
   "bitwise":       true,
   "curly":         true,
   "eqeqeq":        true,
-//  "esversion":     6,
+  "esversion":     6,
   "forin":         true,
   "freeze":        true,
   "funcscope":     false,
