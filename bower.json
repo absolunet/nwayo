@@ -2,7 +2,7 @@
   "name": "TODO",
   "version": "0.0.0",
   "devDependencies": {
-    "jquery":         "2.1.4",
+    "jquery":         "2.2.0",
     "pubsub-js":      "1.5.3",
     "fastclick":      "1.0.6",
     "bootstrap-sass": "3.3.6",
