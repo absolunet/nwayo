@@ -8,7 +8,8 @@ data:
     small:   640
     medium: 1024
     large:  1440
-    max:    1496
+    xlarge: 1920
+    max:    1280
 
 
   # Transition speeds in ms
@@ -28,8 +29,8 @@ data:
 
   # Classes
   class:
-    wide:   cols-xs-9 cols-md-6
-    narrow: cols-xs-7 cols-md-5
+    wide:   columns small-9 medium-6
+    narrow: columns small-7 medium-5
 
 
   # API keys and other accounts identifier

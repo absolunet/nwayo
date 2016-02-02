@@ -67,8 +67,8 @@ a {
 	//html.no-touchevents & { }
 
 
-	//-- Bootstrap media exceptions
-	//@media #{bp(sm up)} { }
+	//-- Foundation media exceptions
+	//@include breakpoint(medium up) { }
 
 
 	//-- Colorscheme

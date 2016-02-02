@@ -31,7 +31,8 @@ scripts:
       - ~modernizr
       - bower_components/pubsub-js/src/pubsub
       - bower_components/fastclick/lib/fastclick
-      - components/vendor-bootstrap/scripts/vendor-bootstrap
+      - bower_components/what-input/what-input
+      - components/vendor-foundation/scripts/vendor-foundation
       - components/nwayo/scripts/dependencies-starter
 
     main:
@@ -49,23 +50,17 @@ styles:
     autoprefixer:
       - '> 1%'
       - 'last 2 versions'
-      - 'Android 2.3'
-      - 'Android >= 4'
-      - 'Chrome >= 20'
-      - 'Firefox >= 24'
-      - 'Explorer >= 8'
-      - 'iOS >= 6'
-      - 'Opera >= 12'
-      - 'Safari >= 6'
+      - 'and_chr >= 2.3'
+      - 'ie >= 9'
 
   collections:
     main:
       - components/common/styles/common
-      - components/vendor-bootstrap/styles/vendor-bootstrap
+      - components/vendor-foundation/styles/vendor-foundation
       - components/site/styles/site
       - components/form/styles/form
 
     editor:
       - components/common/styles/common
-      - components/vendor-bootstrap/styles/vendor-bootstrap
+      - components/vendor-foundation/styles/vendor-foundation
       - components/cms/styles/editor

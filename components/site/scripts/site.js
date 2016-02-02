@@ -110,6 +110,8 @@
 	//-- To execute on start
 	local.start = () => {
 
+		__.$document.foundation();
+
 		// Webfont loader
 		/**
 		global.WebFont.load({
