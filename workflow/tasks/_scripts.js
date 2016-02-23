@@ -99,7 +99,7 @@ gulp.task('scripts-vendors', (cb) => {
 				let config  = JSON.parse(fs.readFileSync(PATH.config.lodashPackage, 'utf8'));
 				let options = Util.parseLodash();
 
-				exec(`${PATH.config.lodashRoot}/${config.bin.lodash} ${options} --development --output ${PATH.dir.cacheScripts}/${PATH.filename.lodash}.${PATH.ext.scripts}`, (error, stdout, stderr) => {
+				exec(`node ${PATH.config.lodashRoot}/${config.bin.lodash} ${options} --development --output ${PATH.dir.cacheScripts}/${PATH.filename.lodash}.${PATH.ext.scripts}`, (error, stdout, stderr) => {
 					if (error !== null) {
 						console.log(stderr);
 					}
