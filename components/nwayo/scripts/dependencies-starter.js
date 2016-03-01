@@ -52,16 +52,19 @@
 	let path = konstan.konstan.path;
 	delete konstan.konstan.path;
 
+	let culture = $('html').attr('lang');
+	let $body = $('body');
+	let bodyClass = $body.attr('class');
 	addProp(global, konstan.project, readonlyObj({
 		bundle:  konstan.bundle,
 		konstan: konstan.konstan,
 		path:    path,
 		tmpl:    {},
 		env:     {
-			culture:  $('html').attr('lang'),
-			lang:     $('html').attr('lang').substr(0,2),
-			pageId:   $('body').attr('id'),
-			pageTags: _.compact( $('body').attr('class').split(' ') )
+			culture:  culture,
+			lang:     culture.substr(0,2),
+			pageId:   $body.attr('id'),
+			pageTags: !!bodyClass ? _.compact( $('body').attr('class').split(' ') ) : []
 		}
 	}));
 
