@@ -64,7 +64,7 @@
 			culture:  culture,
 			lang:     culture.substr(0,2),
 			pageId:   $body.attr('id'),
-			pageTags: !!bodyClass ? _.compact( $('body').attr('class').split(' ') ) : []
+			pageTags: !!bodyClass ? _.compact( bodyClass.split(' ') ) : []
 		}
 	}));
 
