@@ -2,5 +2,5 @@
 //-- Common
 //-------------------------------------
 
-//= require components/common/scripts/_init
-//= require components/common/scripts/_util
+//= require components/common/scripts/init
+//= require components/common/scripts/util
