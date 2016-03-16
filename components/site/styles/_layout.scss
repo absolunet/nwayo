@@ -14,7 +14,7 @@ body {
 	line-height: 1.3;
 }
 
-a {
+a:not(.button) {
 	//color: $link-color;
 	text-decoration: none;
 	transition: color $hover-transition ease-out;

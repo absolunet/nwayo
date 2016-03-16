@@ -228,14 +228,15 @@ class Util {
 
 	//-- Assets rename
 	static assetsRename(filename) {
-		return path => {
-			let elements = path.dirname.split('/');
-			path.dirname = `${elements[3]}/${elements[1]}/${elements.slice(4).join('/')}`;
+		return pathname => {
+			let path = require('path');
+			let elements = pathname.dirname.split(path.sep);
+			pathname.dirname = `${elements[3]}/${elements[1]}/${elements.slice(4).join('/')}`;
 
 			if (typeof filename === 'string') {
-				path.basename = filename;
+				pathname.basename = filename;
 			} else if (typeof filename === 'function') {
-				path.basename = filename(path.basename);
+				pathname.basename = filename(pathname.basename);
 			}
 
 			return;
