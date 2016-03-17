@@ -18,7 +18,7 @@ linters:
     convention: zero
 
   ChainedClasses:
-    enabled: true
+    enabled: false
 
   ColorKeyword:
     enabled: true
@@ -42,6 +42,7 @@ linters:
 
   DuplicateProperty:
     enabled: true
+    #ignore_consecutive: false
 
   ElsePlacement:
     enabled: true
@@ -111,6 +112,9 @@ linters:
     # ignore_parent_selectors: null
 
   PlaceholderInExtend:
+    enabled: true
+
+  PrivateNamingConvention:
     enabled: true
 
   PropertyCount:
@@ -287,6 +291,10 @@ linters:
 
   SpaceAfterPropertyName:
     enabled: true
+
+  SpaceAfterVariableColon:
+    enabled: true
+    style: at_least_one_space
 
   SpaceAfterVariableName:
     enabled: true

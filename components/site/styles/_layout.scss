@@ -57,6 +57,11 @@ a:not(.button) {
 //-- Body
 .body {
 
+	//-- Foundation media exceptions
+	@media #{bp(medium up)} {
+		//
+	}
+
 
 	//-------------------------------------
 	//-- Patterns
@@ -65,10 +70,6 @@ a:not(.button) {
 
 	//-- Modernizr exceptions
 	//html.no-touchevents & { }
-
-
-	//-- Foundation media exceptions
-	//@include breakpoint(medium up) { }
 
 
 	//-- Colorscheme
