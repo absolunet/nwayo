@@ -18,7 +18,7 @@
 		let obj = {};
 		for (let prop of Object.keys(data)) {
 
-			if (typeof data[prop] === 'object') {
+			if (typeof data[prop] === 'object' && !Array.isArray(data[prop])) {
 				data[prop] = readonlyObj(data[prop]);
 			}
 			addProp(obj, prop, data[prop]);
@@ -52,9 +52,10 @@
 	let path = konstan.konstan.path;
 	delete konstan.konstan.path;
 
-	let culture = $('html').attr('lang');
-	let $body = $('body');
+	let culture   = $('html').attr('lang');
+	let $body     = $('body');
 	let bodyClass = $body.attr('class');
+
 	addProp(global, konstan.project, readonlyObj({
 		bundle:  konstan.bundle,
 		konstan: konstan.konstan,

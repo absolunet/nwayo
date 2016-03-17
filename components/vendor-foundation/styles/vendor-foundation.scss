@@ -2,6 +2,10 @@
 //-- Foundation
 //-------------------------------------
 
+@function bp($arguments) {
+	@return 'screen and ' + breakpoint($arguments);
+}
+
 @import 'components/vendor-foundation/styles/settings';
 
 @import 'bower_components/foundation-sites/scss/foundation';
@@ -44,3 +48,4 @@
 @include foundation-title-bar;
 @include foundation-tooltip;
 @include foundation-top-bar;
+
