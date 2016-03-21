@@ -9,7 +9,7 @@ const NOLINT = 'vendor';
 
 let pattern = {};
 pattern.anytree = '**';
-pattern.babel   = new RegExp(`^\\${CACHE}|${BOWER}|components\/${NOLINT}\-|components\/.*\/(_?)${NOLINT}\-`);
+pattern.babel   = new RegExp(`^\\${CACHE}|${BOWER}(?!\/foundation-sites)|components\/${NOLINT}\-|components\/.*\/(_?)${NOLINT}\-`);
 
 let ext = {};
 ext.bundles   = 'yaml';
