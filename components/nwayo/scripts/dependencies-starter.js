@@ -16,13 +16,14 @@
 
 	let readonlyObj = (data) => {
 		let obj = {};
-		for (let prop of Object.keys(data)) {
 
+		Object.keys(data).forEach((prop) => {
 			if (typeof data[prop] === 'object' && !Array.isArray(data[prop])) {
 				data[prop] = readonlyObj(data[prop]);
 			}
 			addProp(obj, prop, data[prop]);
-		}
+		});
+
 		return obj;
 	};
 
