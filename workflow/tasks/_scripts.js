@@ -3,6 +3,7 @@
 //-------------------------------------
 'use strict';
 
+const path      = require('path');
 const _         = require('lodash');
 const yaml      = require('js-yaml');
 const fs        = require('fs');
@@ -42,7 +43,13 @@ gulp.task('scripts-lint', () => {
 
 		.pipe( jshint.reporter({
 			reporter: files => {
-				files.forEach( file => delete cache.caches.scripts[file.file] );
+				files.forEach( file => {
+					let filepath = file.file;
+					if (!path.isAbsolute(filepath)) {
+						filepath = path.normalize(`${__dirname}${path.sep}..${path.sep}..${path.sep}${filepath}`);
+					}
+					delete cache.caches.scripts[filepath];
+				});
 			}
 		}))
 
