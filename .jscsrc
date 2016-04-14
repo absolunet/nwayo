@@ -1,8 +1,5 @@
 // http://jscs.info/rules
 {
-  "esnext": true,
-
-
   "disallowEmptyBlocks": {
     "allExcept": ["comments"]
   },
@@ -26,7 +23,7 @@
 
   "validateIndentation": {
     "value": "\t",
-    "allExcept": ["comments"]
+    "allExcept": ["comments", "emptyLines"]
   },
 
   "validateQuoteMarks": {
