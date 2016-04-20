@@ -72,6 +72,26 @@
   "wsh":         false,
   "yui":         false,
 
+
+  // Deprecated
+  "camelcase":    false,
+  "enforceall":   false,
+  "es3":          false,
+  "es5":          false,
+  "immed":        false,
+  "indent":       false,
+  "maxlen":       false,
+  "newcap":       false,
+  "noempty":      false,
+  "quotmark":     false,
+  //"esnext":       true,
+  "globalstrict": false,
+  "laxbreak":     true,
+  "laxcomma":     true,
+  "multistr":     true,
+  "sub":          true,
+
+
   // Globals
   "globals": {
     "document":  false,

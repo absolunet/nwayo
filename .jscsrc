@@ -23,7 +23,7 @@
 
   "validateIndentation": {
     "value": "\t",
-    "allExcept": ["comments", "emptyLines"]
+    "allExcept": ["comments"]
   },
 
   "validateQuoteMarks": {
