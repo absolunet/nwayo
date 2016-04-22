@@ -199,7 +199,6 @@ class Util {
 		let rawPath  = options.rawPath;
 		let content  = options.content;
 		if (fullPath.substr(-3) === '.js') {
-			console.log(rawPath, !rules.test(rawPath));
 			if (!rules.test(rawPath)) {
 				content = Util.cache(`babel:${fullPath}`, content, (data) => {
 					return babel.transform(data, {
