@@ -130,6 +130,9 @@ gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants', 'scripts-vend
 	for (let name of Object.keys(ENV.bundles)) {
 		let bundle = ENV.bundles[name];
 
+		// Babel rules
+		let babelRules = Util.getBabelRules(bundle.scripts.allowBabel);
+
 		// For each collection
 		for (let collection of Object.keys(bundle.scripts.collections)) {
 			let list = _.cloneDeep(bundle.scripts.collections[collection]);
@@ -160,7 +163,9 @@ gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants', 'scripts-vend
 						basePath: './',
 						autoExtension: true,
 						partialPrefix: true,
-						fileProcess: Util.babelProcess
+						fileProcess: function(options){
+							return Util.babelProcess(options, babelRules);
+						}
 					}))
 					.pipe( gulpif( bundle.scripts.options.minify && !ENV.watching, uglify({preserveComments:'some'})) )
 					.pipe( gulp.dest(`${bundle.output.build}/${PATH.build.scripts}`) )

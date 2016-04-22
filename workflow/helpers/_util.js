@@ -17,6 +17,7 @@ const babel       = require('babel-core');
 
 const echo = console.log;
 const PATH = global.nwayo.path;
+const regexEscapePattern = /[-\/\\^$*+?.()|[\]{}]/g;
 
 
 //-- Image optimization parameters
@@ -179,15 +180,27 @@ class Util {
 	}
 
 
+	//-- Babel rules
+	static getBabelRules(includedFiles) {
+		let includes = '';
+		if(!!includedFiles && includedFiles.length > 0){
+			let includesLength = includedFiles.length - 1;
+			includedFiles.forEach((file, i) => {
+				includes += (i === 0 ? '(?!' : '|') + Util.escapeForRegex(file) + (i === includesLength ? ')' : '')
+			});
+		}
+		return new RegExp(PATH.pattern.babel.replace('##includes##', includes));
+	}
+
+
 	//-- Babel processing
-	static babelProcess(options) {
+	static babelProcess(options, rules) {
 		let fullPath = options.fullPath;
 		let rawPath  = options.rawPath;
 		let content  = options.content;
-
 		if (fullPath.substr(-3) === '.js') {
-			if (!PATH.pattern.babel.test(rawPath)) {
-
+			console.log(rawPath, !rules.test(rawPath));
+			if (!rules.test(rawPath)) {
 				content = Util.cache(`babel:${fullPath}`, content, (data) => {
 					return babel.transform(data, {
 						// es2015 preset
@@ -321,6 +334,11 @@ class Util {
 			case 'text': return `${banner}`;
 			default:     return `/*!\n * ${banner}\n */\n\n`;
 		}
+	}
+
+	//-- Escape for regex usage
+	static escapeForRegex(string) {
+		return string.replace(regexEscapePattern, '\\$&');
 	}
 }
 

@@ -23,6 +23,9 @@ scripts:
   options:
     minify: false
 
+  allowBabel:
+    - bower_components/foundation-sites
+
   collections:
     dependencies:
       - ~konstan
