@@ -7,6 +7,7 @@ const path      = require('path');
 const _         = require('lodash');
 const yaml      = require('js-yaml');
 const fs        = require('fs');
+const fsExtra   = require('fs-extra');
 const exec      = require('child_process').exec;
 const async     = require('async');
 const merge     = require('merge-stream');
@@ -96,7 +97,10 @@ gulp.task('scripts-vendors', (cb) => {
 			// Modernizr
 			(callback) => {
 				modernizr.build(yaml.safeLoad(fs.readFileSync(PATH.config.modernizr, 'utf8')), function (result) {
-					fs.writeFileSync(`${PATH.dir.cacheScripts}/${PATH.filename.modernizr}.${PATH.ext.scripts}`, result);
+					let file = `${PATH.dir.cacheScripts}/${PATH.filename.modernizr}.${PATH.ext.scripts}`;
+					fsExtra.ensureFile(file, () => {
+						fs.writeFileSync(file, result);
+					});
 					callback(null);
 				});
 			},
