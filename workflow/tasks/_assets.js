@@ -29,7 +29,7 @@ gulp.task('assets-fonts', () => {
 gulp.task('assets-images-optimization', () => {
 	return Util.assetsProcess(PATH.files.images, stream => {
 		return stream
-			.pipe( imagemin(Util.imageminParams) )
+			.pipe( imagemin() )
 			.pipe( rename(Util.assetsRename()) )
 		;
 	});
@@ -47,7 +47,7 @@ gulp.task('assets-images-highdensity', () => {
 				});
 			}))
 
-			.pipe( imagemin(Util.imageminParams) )
+			.pipe( imagemin() )
 
 			.pipe( rename( Util.assetsRename(filename => filename.slice(0,-3)) ) )
 		;

@@ -90,7 +90,7 @@ gulp.task('icons-share', () => {
 
 					.pipe( rename(Util.assetsRename(`icon-${size}`)) )
 
-					.pipe( imagemin(Util.imageminParams) )
+					.pipe( imagemin() )
 				;
 			})
 		);
@@ -101,7 +101,7 @@ gulp.task('icons-share', () => {
 		Util.assetsProcess(PATH.files.iconsLarge, stream => {
 			return stream
 				.pipe( rename(Util.assetsRename('large')))
-				.pipe( imagemin(Util.imageminParams) )
+				.pipe( imagemin() )
 			;
 		})
 	);
@@ -148,7 +148,7 @@ gulp.task('icons-tile', () => {
 
 					.pipe( rename(Util.assetsRename(`tile-${name}`)) )
 
-					.pipe( imagemin(Util.imageminParams) )
+					.pipe( imagemin() )
 				;
 			})
 		);
