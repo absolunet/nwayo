@@ -167,7 +167,7 @@ gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants', 'scripts-vend
 						basePath: './',
 						autoExtension: true,
 						partialPrefix: true,
-						fileProcess: function(options){
+						fileProcess: (options) => {
 							return Util.babelProcess(options, babelRules);
 						}
 					}))

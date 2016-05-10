@@ -28,7 +28,7 @@ const Util = global.nwayo.util;
 //-- Inline images optimization
 gulp.task('styles-images', () => {
 	return gulp.src(PATH.files.inline, { base:PATH.dir.root })
-		.pipe( imagemin(Util.imageminParams) )
+		.pipe( imagemin() )
 		.pipe( rename(Util.assetsRename()) )
 		.pipe( gulp.dest(PATH.dir.cache) )
 	;

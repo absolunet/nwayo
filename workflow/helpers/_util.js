@@ -20,18 +20,6 @@ const PATH = global.nwayo.path;
 const regexEscapePattern = /[-\/\\^$*+?.()|[\]{}]/g;
 
 
-//-- Image optimization parameters
-let imageminParams = {
-	optimizationLevel: 7,
-	progressive: true,
-	interlaced:  true,
-	svgoPlugins: [{
-		removeViewBox: false
-		//removeUselessStrokeAndFill: false
-	}]
-};
-
-
 //-- Emoji
 let emoji = {
 	chestnut: '\uD83C\uDF30' // 🌰
@@ -45,8 +33,7 @@ let cache = {};
 
 
 class Util {
-	static get imageminParams() { return imageminParams; }
-	static get emoji()          { return emoji; }
+	static get emoji() { return emoji; }
 
 
 	//-- Read and parse a YAML file
@@ -183,10 +170,10 @@ class Util {
 	//-- Babel rules
 	static getBabelRules(includedFiles) {
 		let includes = '';
-		if(!!includedFiles && includedFiles.length > 0){
+		if (!!includedFiles && includedFiles.length){
 			let includesLength = includedFiles.length - 1;
 			includedFiles.forEach((file, i) => {
-				includes += (i === 0 ? '(?!' : '|') + Util.escapeForRegex(file) + (i === includesLength ? ')' : '')
+				includes += (i === 0 ? '(?!' : '|') + Util.escapeForRegex(file) + (i === includesLength ? ')' : '');
 			});
 		}
 		return new RegExp(PATH.pattern.babel.replace('##includes##', includes));
