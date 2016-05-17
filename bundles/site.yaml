@@ -58,12 +58,12 @@ styles:
 
   collections:
     main:
-      - components/common/styles/common
+      - components/site/styles/config
       - components/vendor-foundation/styles/vendor-foundation
       - components/site/styles/site
       - components/form/styles/form
 
     editor:
-      - components/common/styles/common
+      - components/site/styles/config
       - components/vendor-foundation/styles/vendor-foundation
       - components/cms/styles/editor
