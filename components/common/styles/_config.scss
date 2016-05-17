@@ -45,7 +45,7 @@ $text-fattest-weight: $bold-weight;
 
 
 /**
-%ico-font {
+@mixin ico-font {
 	font-family: 'icomoon';
 	font-weight: $bold-weight !important;
 	-webkit-font-smoothing: antialiased !important;
@@ -65,26 +65,96 @@ $ico-warning-char:  'w';
 /**
 
 // Normal
-%misc1-image { @include bg-image-mixin('misc1.png', 'common'); }
-%logo1-image { @include bg-image-mixin('logo1.png', 'foobar'); }
+@mixin misc1-image { @include bg-image-mixin('misc1.png', 'common'); }
+@mixin logo1-image { @include bg-image-mixin('logo1.png', 'foobar'); }
 
 // High-density
-%misc2-image { @include bg-image-mixin('misc@2x.png', 'common'); }
+@mixin misc2-image { @include bg-image-mixin('misc@2x.png', 'common'); }
 
 // Inline
-%misc3-image { @include bg-image-mixin('misc3.png', 'common', $inline:true); }
-%icon3-image { @include bg-image-mixin('icon3.png', 'foobar', $inline:true); }
+@mixin misc3-image { @include bg-image-mixin('misc3.png', 'common', $inline:true); }
+@mixin icon3-image { @include bg-image-mixin('icon3.png', 'foobar', $inline:true); }
 
 // Scalable
-%icon4-image { @include scalable-icon-mixin('icon4.svg', 'foobar'); }
+@mixin icon4-image { @include scalable-icon-mixin('icon4.svg', 'foobar'); }
 
 /**/
 
-//%misc2-image { @include bg-image-mixin('nwayo.svg', 'common'); }
-//%misc3-image { @include scalable-icon-mixin('test.svg', 'common', $color:$debug-orange); }
-//%misc4-image { @include scalable-icon-mixin('test.svg', 'common', $color:$debug-green); }
+//@mixin misc2-image { @include bg-image-mixin('nwayo.svg', 'common'); }
+//@mixin misc3-image { @include scalable-icon-mixin('test.svg', 'common', $color:$debug-orange); }
+//@mixin misc4-image { @include scalable-icon-mixin('test.svg', 'common', $color:$debug-green); }
 
 
 //-- Transitions
 $hover-transition:     $konstan-transition-hover * 1ms;
 $animation-transition: $konstan-transition-animation * 1ms;
+
+
+
+
+
+
+
+//-- Mixins
+//-------------------------------------
+
+
+//-- Headings
+@mixin title-styles {
+	/* ... */
+}
+
+@mixin subtitle-styles {
+	/* ... */
+}
+
+
+
+//-- Editable content styles
+@mixin editable-styles {
+	h1 {
+		@include title-styles;
+	}
+
+	h2 {
+		@include subtitle-styles;
+	}
+
+	h3 {
+		/* ... */
+	}
+
+	h4 {
+		/* ... */
+	}
+
+	h5 {
+		/* ... */
+	}
+
+	h6 {
+		/* ... */
+	}
+
+	.small {
+		font-size: .8em;
+	}
+
+	p {
+		margin-bottom: 1em;
+	}
+
+	ul {
+		/* ... */
+	}
+
+	ol {
+		/* ... */
+	}
+
+	table.table {
+		td {
+			vertical-align: top;
+		}
+	}
+}

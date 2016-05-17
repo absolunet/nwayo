@@ -99,7 +99,7 @@ a:not(.button) {
 
 //-- Content
 .content {
-	@extend %editable-styles;
+	@include editable-styles;
 	/* ... */
 }
 

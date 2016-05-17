@@ -55,7 +55,7 @@ linters:
     enabled: true
 
   ExtendDirective:
-    enabled: false
+    enabled: true
 
   FinalNewline:
     enabled: true
@@ -112,7 +112,7 @@ linters:
     # ignore_parent_selectors: null
 
   PlaceholderInExtend:
-    enabled: true
+    enabled: false
 
   PrivateNamingConvention:
     enabled: true
