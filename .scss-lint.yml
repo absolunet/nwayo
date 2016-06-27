@@ -198,6 +198,7 @@ linters:
       - background-color
       - background-image
       - background-repeat
+      - background-origin
       - background-position
       - background-size
 
@@ -235,6 +236,10 @@ linters:
 
       - transform
       - transition
+      - transition-property
+      - transition-duration
+      - transition-timing-function
+      - transition-delay
       - cursor
 
 
@@ -287,7 +292,7 @@ linters:
 
   SpaceAfterPropertyColon:
     enabled: true
-    style: one_space
+    style: one_space_or_newline
 
   SpaceAfterPropertyName:
     enabled: true
