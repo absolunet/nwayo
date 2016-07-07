@@ -13,7 +13,7 @@
 	let local = {};
 
 
-	//-- Cache data
+	//-- Cache data instantly
 	local.cache = () => {
 
 		//
@@ -21,7 +21,7 @@
 	};
 
 
-	//-- Cache DOM data
+	//-- Cache data once DOM is loaded
 	local.cacheDOM = () => {
 
 		//
@@ -29,7 +29,7 @@
 	};
 
 
-	//-- Bind events
+	//-- Bind events once DOM is loaded
 	local.bind = () => {
 
 		//-- input mask
@@ -54,7 +54,7 @@
 	};
 
 
-	//-- Subscribe to topics
+	//-- Subscribe to topics once DOM is loaded
 	local.subscribe = () => {
 
 		//
@@ -62,8 +62,16 @@
 	};
 
 
-	//-- To execute on start
+	//-- Execute once DOM is loaded
 	local.start = () => {
+
+		//
+
+	};
+
+
+	//-- Execute once page is loaded
+	local.delayedStart = () => {
 
 		//
 
@@ -82,6 +90,10 @@
 		local.bind();
 		local.subscribe();
 		local.start();
+	});
+
+	__.$window.on('load', () => {
+		local.delayedStart();
 	});
 
 })();
