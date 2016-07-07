@@ -13,7 +13,7 @@
 	let local = {};
 
 
-	//-- Cache data
+	//-- Cache data instantly
 	local.cache = () => {
 
 		// Optional scroll
@@ -52,7 +52,7 @@
 	};
 
 
-	//-- Cache DOM data
+	//-- Cache data once DOM is loaded
 	local.cacheDOM = () => {
 
 		//
@@ -60,7 +60,7 @@
 	};
 
 
-	//-- Bind events
+	//-- Bind events once DOM is loaded
 	local.bind = () => {
 
 		__.$body
@@ -98,7 +98,7 @@
 	};
 
 
-	//-- Subscribe to topics
+	//-- Subscribe to topics once DOM is loaded
 	local.subscribe = () => {
 
 		// PubSub.subscribe('foo.bar',  () => {});
@@ -107,7 +107,7 @@
 	};
 
 
-	//-- To execute on start
+	//-- Execute once DOM is loaded
 	local.start = () => {
 
 		__.$document.foundation();
@@ -134,6 +134,14 @@
 	};
 
 
+	//-- Execute once page is loaded
+	local.delayedStart = () => {
+
+		//
+
+	};
+
+
 
 
 
@@ -146,6 +154,10 @@
 		local.bind();
 		local.subscribe();
 		local.start();
+	});
+
+	__.$window.on('load', () => {
+		local.delayedStart();
 	});
 
 })();

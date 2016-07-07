@@ -13,7 +13,7 @@
 	let local = {};
 
 
-	//-- Cache data
+	//-- Cache data instantly
 	local.cache = () => {
 
 		// tmpl
@@ -26,7 +26,7 @@
 	};
 
 
-	//-- Cache DOM data
+	//-- Cache data once DOM is loaded
 	local.cacheDOM = () => {
 
 		// tmpl
@@ -40,7 +40,7 @@
 	};
 
 
-	//-- Bind events
+	//-- Bind events once DOM is loaded
 	local.bind = () => {
 
 		global.FastClick.attach(document.body);
@@ -48,7 +48,7 @@
 	};
 
 
-	//-- Subscribe to topics
+	//-- Subscribe to topics once DOM is loaded
 	local.subscribe = () => {
 
 		//
@@ -56,10 +56,18 @@
 	};
 
 
-	//-- To execute on start
+	//-- Execute once DOM is loaded
 	local.start = () => {
 
 		//
+
+	};
+
+
+	//-- Execute once page is loaded
+	local.delayedStart = () => {
+
+		__.$body.addClass('page-loaded');
 
 	};
 
@@ -76,6 +84,10 @@
 		local.bind();
 		local.subscribe();
 		local.start();
+	});
+
+	__.$window.on('load', () => {
+		local.delayedStart();
 	});
 
 })();
