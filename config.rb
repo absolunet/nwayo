@@ -6,8 +6,8 @@ images_path="."
 additional_import_paths=""
 
 
-# bootstrap
-::Sass::Script::Value::Number.precision = [8, ::Sass::Script::Value::Number.precision].max
+# Compass
+Encoding.default_external = 'utf-8'
 
 module Sass::Script::Functions
 
