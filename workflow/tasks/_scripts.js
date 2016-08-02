@@ -15,7 +15,8 @@ const gulp      = require('gulp');
 const gulpif    = require('gulp-if');
 const cache     = require('gulp-cached');
 const include   = require('gulp-nwayo-include');
-const uglify    = require('gulp-uglify');
+const uglifyjs  = require('uglify-js');
+const minifier  = require('gulp-uglify/minifier');
 const jshint    = require('gulp-jshint');
 const jscs      = require('gulp-jscs');
 const stylish   = require('gulp-jscs-stylish');
@@ -171,7 +172,7 @@ gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants', 'scripts-vend
 							return Util.babelProcess(options, babelRules);
 						}
 					}))
-					.pipe( gulpif( bundle.scripts.options.minify && !ENV.watching, uglify({preserveComments:'some'})) )
+					.pipe( gulpif( bundle.scripts.options.minify && !ENV.watching, minifier({preserveComments: 'license'}, uglifyjs)) )
 					.pipe( gulp.dest(`${bundle.output.build}/${PATH.build.scripts}`) )
 			);
 		}
