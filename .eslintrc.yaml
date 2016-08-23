@@ -23,34 +23,34 @@ rules:
 
   # Possible Errors
   no-cond-assign: [error, always]
-  #no-console:
-  #no-constant-condition:
-  #no-control-regex:
+  no-console: [warn]  #TODO: check
+  no-constant-condition: [error]
+  no-control-regex: [error]
   no-debugger: [error]
-  #no-dupe-args:
-  #no-dupe-keys:
-  #no-duplicate-case:
-  #no-empty-character-class:
+  no-dupe-args: [error]
+  no-dupe-keys: [error]
+  no-duplicate-case: [error]
+  no-empty-character-class: [error]
   no-empty: [error, {allowEmptyCatch: false}]
-  #no-ex-assign:
-  #no-extra-boolean-cast:
+  no-ex-assign: [error]
+  no-extra-boolean-cast: [error]
   no-extra-parens: [error, all]
-  #no-extra-semi:
-  #no-func-assign:
-  #no-inner-declarations:
-  #no-invalid-regexp:
+  no-extra-semi: [error]
+  no-func-assign: [error]
+  no-inner-declarations: [error, both]
+  no-invalid-regexp: [error]
   no-irregular-whitespace: [error]
-  #no-obj-calls:
-  #no-prototype-builtins:
-  #no-regex-spaces:
+  no-obj-calls: [error]
+  no-prototype-builtins: [error]
+  no-regex-spaces: [error]
   no-sparse-arrays: [error]
-  #no-template-curly-in-string:
-  #no-unexpected-multiline:
-  #no-unreachable:
-  #no-unsafe-finally:
-  #no-unsafe-negation:
-  #use-isnan:
-  #valid-jsdoc:
+  no-template-curly-in-string: [error]
+  no-unexpected-multiline: [error]
+  no-unreachable: [error]
+  no-unsafe-finally: [error]
+  no-unsafe-negation: [error]
+  use-isnan: [error]
+  valid-jsdoc: [off]  #TODO: check
   valid-typeof: [error]
 
 
