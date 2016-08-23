@@ -2,7 +2,7 @@
 //-- Collection starter kit
 //-------------------------------------
 
-/* jshint -W079, unused:false, singleGroups:false, strict:false */
+/* eslint-disable strict, no-unused-vars */
 const app     = global[global.nwayo.project];
 const konstan = app.konstan;
 

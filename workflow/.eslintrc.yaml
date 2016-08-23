@@ -1,0 +1,19 @@
+# http://eslint.org/docs/rules/
+
+# Rules
+rules:
+
+  # Strict Mode
+  strict: [error, global]
+
+
+# Environments
+env:
+  browser: false
+  es6: true
+  jquery: false
+  node: true
+
+# Globals
+globals: []
+

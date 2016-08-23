@@ -3,7 +3,6 @@
 //-------------------------------------
 'use strict';
 
-const path      = require('path');
 const _         = require('lodash');
 const yaml      = require('js-yaml');
 const fs        = require('fs');
@@ -17,9 +16,7 @@ const cache     = require('gulp-cached');
 const include   = require('gulp-nwayo-include');
 const uglifyjs  = require('uglify-js');
 const minifier  = require('gulp-uglify/minifier');
-const jshint    = require('gulp-jshint');
-const jscs      = require('gulp-jscs');
-const stylish   = require('gulp-jscs-stylish');
+const eslint    = require('gulp-eslint');
 const modernizr = require('modernizr');
 //const debug = require('gulp-debug');
 
@@ -37,25 +34,19 @@ gulp.task('scripts-lint', () => {
 	return gulp.src(PATH.files.scriptsLint)
 		.pipe( cache('scripts', {optimizeMemory:true}) )
 
-		.pipe( jshint() )
-		.pipe( jscs() )
+		.pipe( eslint() )
 
-		.pipe( stylish.combineWithHintResults() )
-		.pipe( jshint.reporter('jshint-stylish') )
-
-		.pipe( jshint.reporter({
-			reporter: files => {
-				files.forEach( file => {
-					let filepath = file.file;
-					if (!path.isAbsolute(filepath)) {
-						filepath = path.normalize(`${__dirname}${path.sep}..${path.sep}..${path.sep}${filepath}`);
-					}
-					delete cache.caches.scripts[filepath];
-				});
-			}
+		.pipe ( eslint.results( files => {
+			files.forEach( file => {
+				if (file.errorCount || file.warningCount) {
+					delete cache.caches.scripts[file.filePath];
+				}
+			});
 		}))
 
-		.pipe( jshint.reporter('fail') )
+		.pipe( eslint.format('stylish') )
+
+		.pipe( eslint.failAfterError() )
 	;
 });
 
@@ -148,10 +139,10 @@ gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants', 'scripts-vend
 				lodash:    `${PATH.dir.cacheScripts}/${PATH.filename.lodash}`,
 				modernizr: `${PATH.dir.cacheScripts}/${PATH.filename.modernizr}`
 			};
-			for (let name of Object.keys(replacements)) {
-				let pos = list.indexOf(`~${name}`);
+			for (let title of Object.keys(replacements)) {
+				let pos = list.indexOf(`~${title}`);
 				if (pos !== -1) {
-					list[pos] = replacements[name];
+					list[pos] = replacements[title];
 				}
 			}
 
