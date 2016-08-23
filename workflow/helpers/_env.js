@@ -30,12 +30,12 @@ let bundles = (() => {
 	});
 
 	// Get list
-	let bundles = glob.sync(`${PATH.dir.bundles}/${options.bundle}.${PATH.ext.bundles}`);
+	let bundlesList = glob.sync(`${PATH.dir.bundles}/${options.bundle}.${PATH.ext.bundles}`);
 
 	// Process bundles
 	let data = {};
-	if (bundles.length) {
-		for (let name of bundles) {
+	if (bundlesList.length) {
+		for (let name of bundlesList) {
 			name = name.match(/([^/]+).yaml/)[1];
 			data[name] = Util.readYAML(`${PATH.dir.bundles}/${name}.${PATH.ext.bundles}`);
 		}

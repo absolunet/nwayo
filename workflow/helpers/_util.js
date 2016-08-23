@@ -110,9 +110,7 @@ class Util {
 			for (let item of options.escape) {
 				item = parseItem(item);
 
-				// jshint evil: true
-				eval(`${item} = "'"+${item}.replace("'","\\\\\'")+"'"`);
-				// jshint evil: false
+				eval(`${item} = "'"+${item}.replace("'","\\\\\'")+"'"`); // eslint-disable-line no-eval
 			}
 		}
 
@@ -121,9 +119,7 @@ class Util {
 			for (let item of options.exclude) {
 				item = parseItem(item);
 
-				// jshint evil: true
-				eval(`delete ${item}`);
-				// jshint evil: false
+				eval(`delete ${item}`); // eslint-disable-line no-eval
 			}
 		}
 

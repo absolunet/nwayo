@@ -1,0 +1,18 @@
+{
+  "linters": {
+    "jshint": {
+      "@disable": true
+    },
+    "jscs": {
+      "@disable": true
+    },
+    "eslint": {
+      "excludes": [
+        "**/bower_components/**",
+        "**/node_modules/**",
+        "**/components/vendor-**/**",
+        "**/components/scripts/vendor-**"
+      ]
+    }
+  }
+}

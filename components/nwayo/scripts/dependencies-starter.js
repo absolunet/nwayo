@@ -49,7 +49,7 @@
 
 
 	// Initialize application
-	let $    = vendor.jQuery;
+	let $    = vendor.jQuery; // eslint-disable-line no-shadow
 	let path = konstan.konstan.path;
 	delete konstan.konstan.path;
 
