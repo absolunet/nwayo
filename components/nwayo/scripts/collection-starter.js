@@ -2,7 +2,7 @@
 //-- Collection starter kit
 //-------------------------------------
 
-/* eslint-disable strict, no-unused-vars */
+/* eslint-disable strict, no-unused-vars, no-redeclare */
 const app     = global[global.nwayo.project];
 const konstan = app.konstan;
 
@@ -18,10 +18,7 @@ const PubSub    = global.nwayo.vendor.PubSub;
 // Shortcuts
 const __ = (() => {
 	let shortcut = {};
-	let selector = (key, value) => {
-		value = value ? `~="${value}"` : '';
-		return `[${key}${value}]`;
-	};
+	let selector = (key, value) => `[${key}${value ? `~="${value}"` : ''}]`;
 
 	// Shortcuts
 	['name'].forEach(key => {
