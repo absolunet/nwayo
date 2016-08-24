@@ -126,16 +126,16 @@ rules:
 
 
   # Variables
-  #init-declarations:
-  #no-catch-shadow:
-  #no-delete-var:
-  #no-label-var:
+  init-declarations: [off]
+  no-catch-shadow: [error]
+  no-delete-var: [error]
+  no-label-var: [error]
   no-restricted-globals: [error, window]
-  #no-shadow-restricted-names:
+  no-shadow-restricted-names: [error]
   no-shadow: [error, {builtinGlobals: false, hoist: all}]
-  #no-undef-init:
+  no-undef-init: [error]
   no-undef: [error]
-  #no-undefined:
+  no-undefined: [off]
   no-unused-vars: [error]
   no-use-before-define: [error]
 
