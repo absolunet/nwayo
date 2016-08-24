@@ -23,7 +23,7 @@ rules:
 
   # Possible Errors
   no-cond-assign: [error, always]
-  no-console: [warn]  #TODO: check
+  no-console: [warn]
   no-constant-condition: [error]
   no-control-regex: [error]
   no-debugger: [error]
@@ -55,70 +55,70 @@ rules:
 
 
   # Best Practices
-  #accessor-pairs:
-  #array-callback-return:
+  accessor-pairs: [error, {setWithoutGet: true, getWithoutSet: true}]
+  array-callback-return: [error]
   block-scoped-var: [error]
   complexity: [off]
-  #consistent-return:
+  consistent-return: [error]
   curly: [error, all]
-  #default-case:
-  #dot-location:
+  default-case: [error]
+  dot-location: [error, property]
   dot-notation: [error, {allowKeywords: true}]
   eqeqeq: [error, always]
   guard-for-in: [error]
-  #no-alert:
+  no-alert: [warn]
   no-caller: [error]
-  #no-case-declarations:
-  #no-div-regex:
-  #no-else-return:
-  #no-empty-function:
-  #no-empty-pattern:
+  no-case-declarations: [error]
+  no-div-regex: [error]
+  no-else-return: [error]
+  no-empty-function: [error]
+  no-empty-pattern: [error]
   no-eq-null: [error]
   no-eval: [error]
   no-extend-native: [error]
-  #no-extra-bind:
-  #no-extra-label:
-  #no-fallthrough:
-  #no-floating-decimal:
-  #no-global-assign:
-  #no-implicit-coercion:
-  #no-implicit-globals:
-  #no-implied-eval:
+  no-extra-bind: [error]
+  no-extra-label: [error]
+  no-fallthrough: [error]
+  no-floating-decimal: [error]
+  no-global-assign: [error]
+  no-implicit-coercion: [error]
+  no-implicit-globals: [error]
+  no-implied-eval: [error]
   no-invalid-this: [off]
   no-iterator: [error]
-  #no-labels:
-  #no-lone-blocks:
+  no-labels: [error]
+  no-lone-blocks: [error]
   no-loop-func: [error]
-  #no-magic-numbers:
-  #no-multi-spaces:
+  no-magic-numbers: [off]
+  no-multi-spaces: [off]
   no-multi-str: [error]
   no-new-func: [error]
   no-new-wrappers: [error]
   no-new: [error]
-  #no-octal-escape:
-  #no-octal:
-  #no-param-reassign:
+  no-octal-escape: [error]
+  no-octal: [error]
+  no-param-reassign: [error]
   no-proto: [error]
-  #no-redeclare:
-  #no-return-assign:
+  no-redeclare: [error, {builtinGlobals: true}]
+  no-return-assign: [error, always]
   no-script-url: [error]
-  #no-self-assign:
-  #no-self-compare:
+  no-self-assign: [error, {props: true}]
+  no-self-compare: [error]
   no-sequences: [error]
-  #no-throw-literal:
-  #no-unmodified-loop-condition:
+  no-throw-literal: [error]
+  no-unmodified-loop-condition: [error]
   no-unused-expressions: [error]
-  #no-unused-labels:
-  #no-useless-call:
-  #no-useless-concat:
-  #no-useless-escape:
-  #no-void:
-  #no-warning-comments:
+  no-unused-labels: [error]
+  no-useless-call: [error]
+  no-useless-concat: [error]
+  no-useless-escape: [error]
+  no-void: [error]
+  no-warning-comments: [warn, {location: anywhere}]
   no-with: [error]
-  #radix:
-  #vars-on-top:
+  radix: [error, always]
+  vars-on-top: [error]
   wrap-iife: [error, inside]
-  #yoda:
+  yoda: [error, never]
 
 
   # Strict Mode
