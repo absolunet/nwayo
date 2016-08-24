@@ -1,5 +1,8 @@
 # http://eslint.org/docs/rules/
 
+# Extends - Extend other config
+# extends:
+
 # Parser Options
 root: true
 parser: espree
@@ -12,11 +15,37 @@ parserOptions:
     jsx: false
     experimentalObjectRestSpread: true
 
-# Plugins
-#plugins:
 
-# Extends
-#extends: eslint:all
+# Environments
+env:
+  browser: true
+  es6: true
+  jquery: true
+
+
+# Globals
+globals:
+  global: false
+  $Global: false
+  Modernizr: false
+  Foundation: false
+  _: false
+  PubSub: false
+  Cookies: false
+  kafe: false
+  google: false
+  konstan: false
+  app: false
+  __: false
+
+
+# Plugins - Additional plugins
+# plugins:
+
+
+# Settings - Shared Settings
+# settings:
+
 
 # Rules
 rules:
@@ -26,7 +55,7 @@ rules:
   no-console: [warn]
   no-constant-condition: [error]
   no-control-regex: [error]
-  no-debugger: [error]
+  no-debugger: [warn]
   no-dupe-args: [error]
   no-dupe-keys: [error]
   no-duplicate-case: [error]
@@ -50,7 +79,7 @@ rules:
   no-unsafe-finally: [error]
   no-unsafe-negation: [error]
   use-isnan: [error]
-  valid-jsdoc: [off]  #TODO: check
+  valid-jsdoc: [off]  # CHECK
   valid-typeof: [error]
 
 
@@ -263,48 +292,3 @@ rules:
   #sort-imports:
   #template-curly-spacing:
   #yield-star-spacing:
-
-
-# Environments
-env:
-  browser: true
-  es6: true
-  jquery: true
-  #node: false
-  #commonjs: false
-  #shared-node-browser: false
-  #worker: false
-  #amd: false
-  #mocha: false
-  #jasmine: false
-  #jest: false
-  #phantomjs: false
-  #protractor: false
-  #qunit: false
-  #prototypejs: false
-  #shelljs: false
-  #meteor: false
-  #mongo: false
-  #applescript: false
-  #nashorn: false
-  #serviceworker: false
-  #atomtest: false
-  #embertest: false
-  #webextensions: false
-  #greasemonkey: false
-
-
-# Globals
-globals:
-  global: false
-  $Global: false
-  Modernizr: false
-  Foundation: false
-  _: false
-  PubSub: false
-  Cookies: false
-  kafe: false
-  google: false
-  konstan: false
-  app: false
-  __: false
