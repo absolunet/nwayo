@@ -28,7 +28,7 @@ gulp.task('watch', () => {
 	gulp.watch( [PATH.files.iconsTile],                        ['icons-tile'] );
 
 	// Scripts
-	gulp.watch( [PATH.files.bundles, PATH.files.scripts, PATH.files.templates], ['scripts-compile'] );
+	gulp.watch( [PATH.files.bundles, PATH.files.scripts, PATH.files.templates, PATH.files.bowerScripts], ['scripts-compile'] );
 
 	// Styles
 	gulp.watch( [PATH.files.inline],                     ['styles-images', 'styles-compile'] );
