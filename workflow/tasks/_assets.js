@@ -17,7 +17,7 @@ const Util = global.nwayo.util;
 
 //-- Fonts copy
 gulp.task('assets-fonts', () => {
-	return Util.assetsProcess(PATH.files.fonts, stream => {
+	return Util.assetsProcess(PATH.files.fonts, (stream) => {
 		return stream
 			.pipe( rename(Util.assetsRename()) )
 		;
@@ -27,7 +27,7 @@ gulp.task('assets-fonts', () => {
 
 //-- Images optimization
 gulp.task('assets-images-optimization', () => {
-	return Util.assetsProcess(PATH.files.images, stream => {
+	return Util.assetsProcess(PATH.files.images, (stream) => {
 		return stream
 			.pipe( imagemin() )
 			.pipe( rename(Util.assetsRename()) )
@@ -38,7 +38,7 @@ gulp.task('assets-images-optimization', () => {
 
 //-- High density images generation
 gulp.task('assets-images-highdensity', () => {
-	return Util.assetsProcess(PATH.files.images2x, stream => {
+	return Util.assetsProcess(PATH.files.images2x, (stream) => {
 		return stream
 			.pipe( gm( (gmfile, done) => {
 				gmfile.identify( (err, info) => {
@@ -49,7 +49,7 @@ gulp.task('assets-images-highdensity', () => {
 
 			.pipe( imagemin() )
 
-			.pipe( rename( Util.assetsRename(filename => filename.slice(0,-3)) ) )
+			.pipe( rename( Util.assetsRename((filename) => { return filename.slice(0,-3); }) ) )
 		;
 	});
 });
@@ -57,10 +57,10 @@ gulp.task('assets-images-highdensity', () => {
 
 //-- Raw copy
 gulp.task('assets-raw', () => {
-	return Util.assetsProcess(PATH.files.raw, stream => {
+	return Util.assetsProcess(PATH.files.raw, (stream) => {
 		return stream
 			.pipe( rename(Util.assetsRename()) )
-			.on('end', () => Util.watchableTaskCompleted('Raw files copy') )
+			.on('end', () => { return Util.watchableTaskCompleted('Raw files copy'); } )
 		;
 	});
 });
@@ -69,8 +69,8 @@ gulp.task('assets-raw', () => {
 
 
 //-- Rebuild images
-gulp.task('assets-images', cb => {
-	Util.taskGrouper({ cb,
+gulp.task('assets-images', (cb) => {
+	Util.taskGrouper({ cb: cb,
 		taskName:    'Images optimization',
 		tasks:       [['assets-images-optimization', 'assets-images-highdensity']],
 		cleanBundle: (name, bundle) => {
@@ -81,8 +81,8 @@ gulp.task('assets-images', cb => {
 
 
 //-- Rebuild
-gulp.task('assets', cb => {
-	Util.taskGrouper({ cb,
+gulp.task('assets', (cb) => {
+	Util.taskGrouper({ cb: cb,
 		tasks:       [['assets-fonts', 'assets-images', 'assets-raw']],
 		cleanBundle: (name, bundle) => {
 			return [`${bundle.output.build}/${PATH.build.fonts}`, `${bundle.output.build}/${PATH.build.images}`, `${bundle.output.build}/${PATH.build.raw}`];		}

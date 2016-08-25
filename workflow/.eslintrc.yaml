@@ -1,10 +1,11 @@
 # http://eslint.org/docs/rules/
 
-# Rules
-rules:
+# Extends
+# n/a
 
-  # Strict Mode
-  strict: [error, global]
+
+# Parser Options
+# n/a
 
 
 # Environments
@@ -14,6 +15,87 @@ env:
   jquery: false
   node: true
 
+
 # Globals
 globals: []
 
+
+# Plugins
+# n/a
+
+
+# Settings
+# n/a
+
+
+# Rules
+rules:
+
+  # Possible Errors
+  # n/a
+
+
+  # Best Practices
+  # n/a
+
+
+  # Strict Mode
+  strict: [error, global]
+
+  # Variables
+  # n/a
+
+
+  # Node.js and CommonJS
+  #callback-return:
+  #global-require:
+  #handle-callback-err:
+  #no-mixed-requires:
+  #no-new-require:
+  #no-path-concat:
+  #no-process-env:
+  #no-process-exit:
+  #no-restricted-modules:
+  #no-sync:
+
+
+  # Stylistic Issues
+  # n/a
+
+
+  # ECMAScript 6
+  no-restricted-imports:
+    - error
+    - assert
+    - buffer
+    - child_process
+    - cluster
+    - crypto
+    - dgram
+    - dns
+    - domain
+    - events
+    - freelist
+    - fs
+    - http
+    - https
+    - module
+    - net
+    - os
+    - path
+    - punycode
+    - querystring
+    - readline
+    - repl
+    - smalloc
+    - stream
+    - string_decoder
+    - sys
+    - timers
+    - tls
+    - tracing
+    - tty
+    - url
+    - util
+    - vm
+    - zlib

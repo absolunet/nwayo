@@ -3,6 +3,7 @@
 # Extends - Extend other config
 # extends:
 
+
 # Parser Options
 root: true
 parser: espree
@@ -79,7 +80,7 @@ rules:
   no-unsafe-finally: [error]
   no-unsafe-negation: [error]
   use-isnan: [error]
-  valid-jsdoc: [off]  # CHECK
+  valid-jsdoc: [off]
   valid-typeof: [error]
 
 
@@ -170,16 +171,7 @@ rules:
 
 
   # Node.js and CommonJS
-  #callback-return:
-  #global-require:
-  #handle-callback-err:
-  #no-mixed-requires:
-  #no-new-require:
-  #no-path-concat:
-  #no-process-env:
-  #no-process-exit:
-  #no-restricted-modules:
-  #no-sync:
+  # n/a
 
 
   # Stylistic Issues
@@ -263,32 +255,32 @@ rules:
 
 
   # ECMAScript 6
-  #arrow-body-style:
-  #arrow-parens:
-  #arrow-spacing:
-  #constructor-super:
-  #generator-star-spacing:
-  #no-class-assign:
-  #no-confusing-arrow:
-  #no-const-assign:
-  #no-dupe-class-members:
-  #no-duplicate-imports:
-  #no-new-symbol:
-  #no-restricted-imports:
-  #no-this-before-super:
-  #no-useless-computed-key:
-  #no-useless-constructor:
-  #no-useless-rename:
+  arrow-body-style: [error, always]
+  arrow-parens: [error, always]
+  arrow-spacing: [error, {before: true, after: true}]
+  constructor-super: [error]
+  generator-star-spacing: [error, before]
+  no-class-assign: [error]
+  no-confusing-arrow: [error]
+  no-const-assign: [error]
+  no-dupe-class-members: [error]
+  no-duplicate-imports: [error]
+  no-new-symbol: [error]
+  no-restricted-imports: [error]
+  no-this-before-super: [error]
+  no-useless-computed-key: [error]
+  no-useless-constructor: [error]
+  no-useless-rename: [error]
   no-var: [error]
-  #object-shorthand:
-  #prefer-arrow-callback:
-  #prefer-const:
-  #prefer-reflect:
-  #prefer-rest-params:
-  #prefer-spread:
-  #prefer-template:
+  object-shorthand: [error, consistent]
+  prefer-arrow-callback: [error]
+  prefer-const: [error, {destructuring: any, ignoreReadBeforeAssign: false}]
+  prefer-reflect: [off] # Needs poyfill
+  prefer-rest-params: [error]
+  prefer-spread: [error]
+  prefer-template: [error]
   require-yield: [error]
-  #rest-spread-spacing:
-  #sort-imports:
-  #template-curly-spacing:
-  #yield-star-spacing:
+  rest-spread-spacing: [error, never]
+  sort-imports: [off]
+  template-curly-spacing: [error, never]
+  yield-star-spacing: [error, before]

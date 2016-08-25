@@ -36,8 +36,8 @@ gulp.task('scripts-lint', () => {
 
 		.pipe( eslint() )
 
-		.pipe ( eslint.results( files => {
-			files.forEach( file => {
+		.pipe ( eslint.results( (files) => {
+			files.forEach( (file) => {
 				if (file.errorCount || file.warningCount) {
 					delete cache.caches.scripts[file.filePath];
 				}
@@ -53,10 +53,10 @@ gulp.task('scripts-lint', () => {
 
 //-- Convert constants to JS
 gulp.task('scripts-constants', () => {
-	let streams = [];
+	const streams = [];
 
-	for (let name of Object.keys(ENV.bundles)) {
-		let data = {
+	for (const name of Object.keys(ENV.bundles)) {
+		const data = {
 			nwayo:   ENV.pkg.nwayo.version,
 			project: ENV.pkg.name,
 			bundle:  name,
@@ -69,14 +69,14 @@ gulp.task('scripts-constants', () => {
 		);
 	}
 
-	return merge.apply(null, streams);
+	return merge(...streams);
 });
 
 
 //-- Generate vendor libraries
 gulp.task('scripts-vendors', (cb) => {
 
-	let done = () => {
+	const done = () => {
 		vendorCached = true;
 		cb();
 	};
@@ -88,8 +88,8 @@ gulp.task('scripts-vendors', (cb) => {
 
 			// Modernizr
 			(callback) => {
-				modernizr.build(yaml.safeLoad(fs.readFileSync(PATH.config.modernizr, 'utf8')), function (result) {
-					let file = `${PATH.dir.cacheScripts}/${PATH.filename.modernizr}.${PATH.ext.scripts}`;
+				modernizr.build(yaml.safeLoad(fs.readFileSync(PATH.config.modernizr, 'utf8')), (result) => {
+					const file = `${PATH.dir.cacheScripts}/${PATH.filename.modernizr}.${PATH.ext.scripts}`;
 					fsExtra.ensureFile(file, () => {
 						fs.writeFileSync(file, result);
 					});
@@ -99,12 +99,12 @@ gulp.task('scripts-vendors', (cb) => {
 
 			// lodash
 			(callback) => {
-				let config  = JSON.parse(fs.readFileSync(PATH.config.lodashPackage, 'utf8'));
-				let options = Util.parseLodash();
+				const config  = JSON.parse(fs.readFileSync(PATH.config.lodashPackage, 'utf8'));
+				const options = Util.parseLodash();
 
 				exec(`node ${PATH.config.lodashRoot}/${config.bin.lodash} ${options} --development --output ${PATH.dir.cacheScripts}/${PATH.filename.lodash}.${PATH.ext.scripts}`, (error, stdout, stderr) => {
 					if (error !== null) {
-						console.log(stderr);
+						console.log(stderr); // eslint-disable-line no-console
 					}
 					callback(null);
 				});
@@ -121,26 +121,26 @@ gulp.task('scripts-vendors', (cb) => {
 
 //-- Compile
 gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants', 'scripts-vendors'], () => {
-	let streams = [];
+	const streams = [];
 
-	for (let name of Object.keys(ENV.bundles)) {
-		let bundle = ENV.bundles[name];
+	for (const name of Object.keys(ENV.bundles)) {
+		const bundle = ENV.bundles[name];
 
 		// Babel rules
-		let babelRules = Util.getBabelRules(bundle.scripts.allowBabel);
+		const babelRules = Util.getBabelRules(bundle.scripts.allowBabel);
 
 		// For each collection
-		for (let collection of Object.keys(bundle.scripts.collections)) {
-			let list = _.cloneDeep(bundle.scripts.collections[collection]);
+		for (const collection of Object.keys(bundle.scripts.collections)) {
+			const list = _.cloneDeep(bundle.scripts.collections[collection]);
 
 			// Resolve real filepaths
-			let replacements = {
+			const replacements = {
 				konstan:   `${PATH.dir.cacheScripts}/${name}/${PATH.filename.konstan}`,
 				lodash:    `${PATH.dir.cacheScripts}/${PATH.filename.lodash}`,
 				modernizr: `${PATH.dir.cacheScripts}/${PATH.filename.modernizr}`
 			};
-			for (let title of Object.keys(replacements)) {
-				let pos = list.indexOf(`~${title}`);
+			for (const title of Object.keys(replacements)) {
+				const pos = list.indexOf(`~${title}`);
 				if (pos !== -1) {
 					list[pos] = replacements[title];
 				}
@@ -151,7 +151,7 @@ gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants', 'scripts-vend
 				list[i] = `//= require ${file}`;
 			});
 
-			let source = `${Util.getGeneratedBanner(name)} (function(global, undefined) { \n\t${list.join('\n')}\n })(typeof window !== 'undefined' ? window : this);\n`;
+			const source = `${Util.getGeneratedBanner(name)} (function(global, undefined) { \n\t${list.join('\n')}\n })(typeof window !== 'undefined' ? window : this);\n`;
 
 			streams.push(
 				Util.vinylStream(`${collection}.${PATH.ext.scripts}`, source)
@@ -169,15 +169,15 @@ gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants', 'scripts-vend
 		}
 	}
 
-	return merge.apply(null, streams)
-		.on('end', () => Util.watchableTaskCompleted('Scripts compilation') )
+	return merge(...streams)
+		.on('end', () => { return Util.watchableTaskCompleted('Scripts compilation'); })
 	;
 });
 
 
 //-- Rebuild
-gulp.task('scripts', cb => {
-	Util.taskGrouper({ cb,
+gulp.task('scripts', (cb) => {
+	Util.taskGrouper({ cb: cb,
 		tasks:       ['scripts-compile'],
 		cleanBundle: (name, bundle) => {
 			return [`${bundle.output.build}/${PATH.build.scripts}`, `${PATH.dir.cacheScripts}/${name}`];

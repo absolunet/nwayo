@@ -15,19 +15,19 @@ const runsequence = require('run-sequence');
 const gulp        = require('gulp');
 const babel       = require('babel-core');
 
-const echo = console.log;
+const echo = console.log; // eslint-disable-line no-console
 const PATH = global.nwayo.path;
 const regexEscapePattern = /[-\/\\^$*+?.()|[\]{}]/g;
 
 
 //-- Emoji
-let emoji = {
+const emoji = {
 	chestnut: '\uD83C\uDF30' // 🌰
 };
 
 
 let watchableTaskCompletedCounter = 0;
-let cache = {};
+const cache = {};
 
 
 
@@ -44,25 +44,26 @@ class Util {
 
 	//-- Compare value with current cache if different
 	static cache(key, value, process) {
-		let digest = crypto.createHash('sha1').update(value).digest('hex');
+		const digest = crypto.createHash('sha1').update(value).digest('hex');
+		let val;
 
 		if (!cache[key] || cache[key] && cache[key].digest !== digest) {
-			value = process(value);
+			val = process(value);
 			cache[key] = {
 				digest:  digest,
-				content: value
+				content: val
 			};
 		} else {
-			value = cache[key].content;
+			val = cache[key].content;
 		}
 
-		return value;
+		return val;
 	}
 
 
 	//-- Create a vinyl stream from a text
 	static vinylStream(filename, string) {
-		let src = require('stream').Readable({ objectMode: true });
+		const src = require('stream').Readable({ objectMode: true });
 
 		src._read = function() {
 			this.push(new Vinyl({
@@ -80,10 +81,10 @@ class Util {
 	static parseKonstan(type, bundle, rootUrl) {
 		const ENV = global.nwayo.env;
 
-		let parseItem = item => `data['${item.split('.').join(`']['`)}']`;
-		let options   = _.cloneDeep(ENV.konstan.options[type]) || {};
-		let paths     = _.cloneDeep(PATH.build);
-		let data      = _.cloneDeep(ENV.konstan.data);
+		const parseItem = (item) => { return `data['${item.split('.').join(`']['`)}']`; };
+		const options   = _.cloneDeep(ENV.konstan.options[type]) || {};
+		const paths     = _.cloneDeep(PATH.build);
+		const data      = _.cloneDeep(ENV.konstan.data);
 
 		// Retrieve bundles
 		data.bundles = _.cloneDeep(ENV.konstan.bundles);
@@ -97,7 +98,7 @@ class Util {
 			paths.inline = PATH.dir.cacheInline;
 		}
 
-		for (let key of Object.keys(paths)) {
+		for (const key of Object.keys(paths)) {
 			data.path[key] = (key !== 'inline' ? `${data.path.root}/` : '') + paths[key];
 
 			if (options.escape && options.escape.indexOf('path.root') !== -1) {
@@ -136,10 +137,10 @@ class Util {
 
 	//-- Parse lodash config
 	static parseLodash() {
-		let config = yaml.safeLoad(fs.readFileSync(PATH.config.lodash, 'utf8'));
+		const config = yaml.safeLoad(fs.readFileSync(PATH.config.lodash, 'utf8'));
 		let cli = '';
 
-		for (let option of Object.keys(config)) {
+		for (const option of Object.keys(config)) {
 			if (config[option].length) {
 				cli += ` ${option}=${config[option].join(',')}`;
 			}
@@ -166,8 +167,8 @@ class Util {
 	//-- Babel rules
 	static getBabelRules(includedFiles) {
 		let includes = '';
-		if (!!includedFiles && includedFiles.length){
-			let includesLength = includedFiles.length - 1;
+		if (Boolean(includedFiles) && includedFiles.length){
+			const includesLength = includedFiles.length - 1;
 			includedFiles.forEach((file, i) => {
 				includes += (i === 0 ? '(?!' : '|') + Util.escapeForRegex(file) + (i === includesLength ? ')' : '');
 			});
@@ -178,8 +179,8 @@ class Util {
 
 	//-- Babel processing
 	static babelProcess(options, rules) {
-		let fullPath = options.fullPath;
-		let rawPath  = options.rawPath;
+		const fullPath = options.fullPath;
+		const rawPath  = options.rawPath;
 		let content  = options.content;
 		if (fullPath.substr(-3) === '.js') {
 			if (!rules.test(rawPath)) {
@@ -223,9 +224,9 @@ class Util {
 
 	//-- Assets rename
 	static assetsRename(filename) {
-		return pathname => {
-			let path = require('path');
-			let elements = pathname.dirname.split(path.sep);
+		return (pathname) => {
+			const path = require('path');
+			const elements = pathname.dirname.split(path.sep);
 			pathname.dirname = `${elements[3]}/${elements[1]}/${elements.slice(4).join('/')}`;
 
 			if (typeof filename === 'string') {
@@ -243,11 +244,11 @@ class Util {
 	static assetsProcess(files, customPiping, taskName) {
 		const ENV = global.nwayo.env;
 
-		let streams = [];
-		for (let component of ENV.bundlesComponents) {
+		const streams = [];
+		for (const component of ENV.bundlesComponents) {
 
 			// Check if component has assets
-			let componentFiles = files.replace(PATH.pattern.anytree, component);
+			const componentFiles = files.replace(PATH.pattern.anytree, component);
 			if (glob.sync(componentFiles).length) {
 
 				// Create stream for component
@@ -255,8 +256,8 @@ class Util {
 				stream = customPiping(stream);
 
 				// Output to each bundle
-				for (let name of Object.keys(ENV.bundles)) {
-					let bundle = ENV.bundles[name];
+				for (const name of Object.keys(ENV.bundles)) {
+					const bundle = ENV.bundles[name];
 
 					if ( _.includes(bundle.assets.components, component) ) {
 						stream.pipe( gulp.dest(bundle.output.build) );
@@ -267,7 +268,7 @@ class Util {
 			}
 		}
 
-		return merge.apply(null, streams).on('end', () => {
+		return merge(...streams).on('end', () => {
 			if (taskName) {
 				Util.watchableTaskCompleted(taskName);
 			}
@@ -280,20 +281,20 @@ class Util {
 		const ENV = global.nwayo.env;
 
 		// Global paths to delete
-		let list = options.cleanPaths || [];
+		const list = options.cleanPaths || [];
 
 		// Bundles paths to delete
-		for (let name of Object.keys(ENV.bundles)) {
-			Array.prototype.push.apply(list, options.cleanBundle(name, ENV.bundles[name]) );
+		for (const name of Object.keys(ENV.bundles)) {
+			list.push(...options.cleanBundle(name, ENV.bundles[name]));
 		}
 
 		del.sync(list, {force:true});
-		options.tasks.push(function() {
+		options.tasks.push((...args) => {
 			Util.watchableTaskCompleted(options.taskName);
-			options.cb.apply(null, arguments);
+			options.cb(...args);
 		});
 
-		runsequence.apply(null, options.tasks);
+		runsequence(...options.tasks);
 	}
 
 
@@ -310,7 +311,7 @@ class Util {
 	//-- Generation banner in build
 	static getGeneratedBanner(name, type) {
 		const ENV  = global.nwayo.env;
-		let banner = `Generated by nwayo ${ENV.pkg.nwayo.version} for ${ENV.pkg.name}:${name}`;
+		const banner = `Generated by nwayo ${ENV.pkg.nwayo.version} for ${ENV.pkg.name}:${name}`;
 
 		switch (type) {
 			case 'text': return `${banner}`;
