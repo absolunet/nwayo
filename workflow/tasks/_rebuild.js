@@ -15,14 +15,14 @@ const ENV  = global.nwayo.env;
 
 
 //-- Rebuild scripts & styles
-gulp.task('rebuild-ss', cb => {
+gulp.task('rebuild-ss', (cb) => {
 	runsequence(['scripts', 'styles'], cb);
 });
 
 
 //-- Rebuild
-gulp.task('rebuild', cb => {
-	for (let name of Object.keys(ENV.bundles)) {
+gulp.task('rebuild', (cb) => {
+	for (const name of Object.keys(ENV.bundles)) {
 		fs.outputFileSync(`${ENV.bundles[name].output.build}/readme-nwayo.md`, `# ${Util.getGeneratedBanner(name, 'text')}\n`);
 	}
 

@@ -7,40 +7,42 @@ const _        = require('lodash');
 const glob     = require('glob');
 const minimist = require('minimist');
 
-const echo = console.log;
+const echo = console.log; // eslint-disable-line no-console
 const PATH = global.nwayo.path;
 const Util = global.nwayo.util;
 
 
 //-- Package data
-let pkg = (() => require(`${__dirname}/../../package`))();
+const pkg = (() => { return require(`${__dirname}/../../package`); })();
 
 
 //-- konstan data
-let konstan = (() => Util.readYAML(PATH.config.konstan))();
+const konstan = (() => { return Util.readYAML(PATH.config.konstan); })();
 
 
 //-- Load bundles
-let bundles = (() => {
+const bundles = (() => {
 
 	// Get CLI flag
-	let options = minimist( process.argv.slice(2), {
+	const options = minimist( process.argv.slice(2), {
 		'string':  'bundle',
 		'default': { bundle: '*' }
 	});
 
 	// Get list
-	let bundlesList = glob.sync(`${PATH.dir.bundles}/${options.bundle}.${PATH.ext.bundles}`);
+	const bundlesList = glob.sync(`${PATH.dir.bundles}/${options.bundle}.${PATH.ext.bundles}`);
 
 	// Process bundles
-	let data = {};
+	const data = {};
 	if (bundlesList.length) {
 		for (let name of bundlesList) {
 			name = name.match(/([^/]+).yaml/)[1];
 			data[name] = Util.readYAML(`${PATH.dir.bundles}/${name}.${PATH.ext.bundles}`);
 		}
 	} else {
-		echo(`No bundle ${options.bundle !== '*' ? '\''+options.bundle+'\' ' : ''}found`.red);
+		echo(`No bundle ${
+			options.bundle !== '*' ? `'${options.bundle}' ` : ''
+		}found`.red);
 		if (process) { process.exit(1); }
 	}
 
@@ -50,7 +52,7 @@ let bundles = (() => {
 
 
 //-- Extract bundles components
-let bundlesComponents = (() => {
+const bundlesComponents = (() => {
 	return _.uniq( _.flatten( _.map(bundles, _.property('assets.components'))));
 })();
 

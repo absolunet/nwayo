@@ -8,14 +8,14 @@ const inquirer    = require('inquirer');
 const gulp        = require('gulp');
 //const debug = require('gulp-debug');
 
-const echo = console.log;
+const echo = console.log; // eslint-disable-line no-console
 const ENV  = global.nwayo.env;
 
 
 
 
 //-- Default menu
-gulp.task('default', cb => {
+gulp.task('default', (cb) => {
 
 	echo('\n');
 	echo(` ${ENV.pkg.name} `.bgGreen.bold + `    [nwayo ${ENV.pkg.nwayo.version}]`.yellow);
@@ -35,7 +35,7 @@ gulp.task('default', cb => {
 			{ name:'Styles only',      value:'styles' },
 			{ name:'Local only',       value:'local' }
 		]
-	}], data => {
+	}], (data) => {
 		echo('\n\n');
 		runsequence(data.task, cb);
 	});
