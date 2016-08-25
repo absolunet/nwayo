@@ -68,6 +68,7 @@ files.scriptsLint  = [files.scripts, `!${dir.scriptsNolint}/${pattern.anytree}/*
 files.styles       = `${dir.styles}/${pattern.anytree}/*.${ext.styles}`;
 files.stylesLint   = [files.styles, `!${dir.stylesNolint}/${pattern.anytree}/*`, `!${dir.styles}/${pattern.anytree}/?(_)${NOLINT}-*.${ext.styles}`];
 files.templates    = `${dir.templates}/${pattern.anytree}/*.${ext.templates}`;
+files.bowerScripts = `${dir.bower}/${pattern.anytree}/*.${ext.scripts}`;
 
 let filename = {};
 filename.konstan        = 'konstan';
