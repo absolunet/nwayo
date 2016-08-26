@@ -4,9 +4,11 @@
 'use strict';
 
 const _           = require('lodash');
+const path        = require('path');
 const fs          = require('fs');
 const del         = require('del');
 const glob        = require('glob');
+const stream      = require('stream');
 const yaml        = require('js-yaml');
 const crypto      = require('crypto');
 const Vinyl       = require('vinyl');
@@ -63,7 +65,7 @@ class Util {
 
 	//-- Create a vinyl stream from a text
 	static vinylStream(filename, string) {
-		const src = require('stream').Readable({ objectMode: true });
+		const src = stream.Readable({ objectMode: true });
 
 		src._read = function() {
 			this.push(new Vinyl({
@@ -225,7 +227,6 @@ class Util {
 	//-- Assets rename
 	static assetsRename(filename) {
 		return (pathname) => {
-			const path = require('path');
 			const elements = pathname.dirname.split(path.sep);
 			pathname.dirname = `${elements[3]}/${elements[1]}/${elements.slice(4).join('/')}`;
 
@@ -252,19 +253,19 @@ class Util {
 			if (glob.sync(componentFiles).length) {
 
 				// Create stream for component
-				let stream = gulp.src(componentFiles, {base:PATH.dir.root});
-				stream = customPiping(stream);
+				let componentStream = gulp.src(componentFiles, {base:PATH.dir.root});
+				componentStream = customPiping(componentStream);
 
 				// Output to each bundle
 				for (const name of Object.keys(ENV.bundles)) {
 					const bundle = ENV.bundles[name];
 
 					if ( _.includes(bundle.assets.components, component) ) {
-						stream.pipe( gulp.dest(bundle.output.build) );
+						componentStream.pipe( gulp.dest(bundle.output.build) );
 					}
 				}
 
-				streams.push(stream);
+				streams.push(componentStream);
 			}
 		}
 
