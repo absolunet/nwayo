@@ -11,7 +11,6 @@
 # Environments
 env:
   browser: false
-  es6: true
   jquery: false
   node: true
 
@@ -47,16 +46,16 @@ rules:
 
 
   # Node.js and CommonJS
-  #callback-return:
-  #global-require:
-  #handle-callback-err:
-  #no-mixed-requires:
-  #no-new-require:
-  #no-path-concat:
-  #no-process-env:
-  #no-process-exit:
-  #no-restricted-modules:
-  #no-sync:
+  callback-return: [error]
+  global-require: [error]
+  handle-callback-err: [error]
+  no-mixed-requires: [error]
+  no-new-require: [error]
+  no-path-concat: [error]
+  no-process-env: [error]
+  no-process-exit: [error]
+  no-restricted-modules: [off]
+  no-sync: [off]
 
 
   # Stylistic Issues

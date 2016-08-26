@@ -42,6 +42,9 @@ gulp.task('assets-images-highdensity', () => {
 		return stream
 			.pipe( gm( (gmfile, done) => {
 				gmfile.identify( (err, info) => {
+					if (err) {
+						console.log(err); // eslint-disable-line no-console
+					}
 					Util.gmOptimization( gmfile.resize('50%','50%'), info);
 					done(null, gmfile);
 				});

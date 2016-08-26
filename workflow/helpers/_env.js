@@ -7,17 +7,20 @@ const _        = require('lodash');
 const glob     = require('glob');
 const minimist = require('minimist');
 
-const echo = console.log; // eslint-disable-line no-console
 const PATH = global.nwayo.path;
 const Util = global.nwayo.util;
 
 
 //-- Package data
-const pkg = (() => { return require(`${__dirname}/../../package`); })();
+const pkg = (() => {
+	return require(`${__dirname}/../../package`); // eslint-disable-line global-require
+})();
 
 
 //-- konstan data
-const konstan = (() => { return Util.readYAML(PATH.config.konstan); })();
+const konstan = (() => {
+	return Util.readYAML(PATH.config.konstan);
+})();
 
 
 //-- Load bundles
@@ -40,10 +43,9 @@ const bundles = (() => {
 			data[name] = Util.readYAML(`${PATH.dir.bundles}/${name}.${PATH.ext.bundles}`);
 		}
 	} else {
-		echo(`No bundle ${
+		throw new Error(`No bundle ${
 			options.bundle !== '*' ? `'${options.bundle}' ` : ''
 		}found`.red);
-		if (process) { process.exit(1); }
 	}
 
 	return data;

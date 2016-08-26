@@ -83,6 +83,9 @@ gulp.task('icons-share', () => {
 				return stream
 					.pipe( gulpif(size !== 512, gm( (gmfile, done) => {
 						gmfile.identify( (err, info) => {
+							if (err) {
+								console.log(err); // eslint-disable-line no-console
+							}
 							done(null, Util.gmOptimization(gmfile.resize(size,size), info));
 						});
 					})))
@@ -134,6 +137,9 @@ gulp.task('icons-tile', () => {
 				return stream
 					.pipe( gm( (gmfile, done) => {
 						gmfile.identify( (err, info) => {
+							if (err) {
+								console.log(err); // eslint-disable-line no-console
+							}
 
 							const file = Util.gmOptimization(gmfile.resize(size[0], size[1]), info);
 
