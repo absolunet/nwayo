@@ -7,7 +7,7 @@ const gulp     = require('gulp');
 const rename   = require('gulp-rename');
 const imagemin = require('gulp-imagemin');
 const gm       = require('gulp-gm');
-//const debug = require('gulp-debug');
+// const debug = require('gulp-debug');
 
 const PATH = global.nwayo.path;
 const Util = global.nwayo.util;
@@ -19,7 +19,7 @@ const Util = global.nwayo.util;
 gulp.task('assets-fonts', () => {
 	return Util.assetsProcess(PATH.files.fonts, (stream) => {
 		return stream
-			.pipe( rename(Util.assetsRename()) )
+			.pipe(rename(Util.assetsRename()))
 		;
 	}, 'Fonts copy');
 });
@@ -29,8 +29,8 @@ gulp.task('assets-fonts', () => {
 gulp.task('assets-images-optimization', () => {
 	return Util.assetsProcess(PATH.files.images, (stream) => {
 		return stream
-			.pipe( imagemin() )
-			.pipe( rename(Util.assetsRename()) )
+			.pipe(imagemin())
+			.pipe(rename(Util.assetsRename()))
 		;
 	});
 });
@@ -40,19 +40,19 @@ gulp.task('assets-images-optimization', () => {
 gulp.task('assets-images-highdensity', () => {
 	return Util.assetsProcess(PATH.files.images2x, (stream) => {
 		return stream
-			.pipe( gm( (gmfile, done) => {
-				gmfile.identify( (err, info) => {
+			.pipe(gm((gmfile, done) => {
+				gmfile.identify((err, info) => {
 					if (err) {
 						console.log(err); // eslint-disable-line no-console
 					}
-					Util.gmOptimization( gmfile.resize('50%','50%'), info);
+					Util.gmOptimization(gmfile.resize('50%', '50%'), info);
 					done(null, gmfile);
 				});
 			}))
 
-			.pipe( imagemin() )
+			.pipe(imagemin())
 
-			.pipe( rename( Util.assetsRename((filename) => { return filename.slice(0,-3); }) ) )
+			.pipe(rename(Util.assetsRename((filename) => { return filename.slice(0, -3); })))
 		;
 	});
 });
@@ -62,8 +62,8 @@ gulp.task('assets-images-highdensity', () => {
 gulp.task('assets-raw', () => {
 	return Util.assetsProcess(PATH.files.raw, (stream) => {
 		return stream
-			.pipe( rename(Util.assetsRename()) )
-			.on('end', () => { return Util.watchableTaskCompleted('Raw files copy'); } )
+			.pipe(rename(Util.assetsRename()))
+			.on('end', () => { return Util.watchableTaskCompleted('Raw files copy'); })
 		;
 	});
 });
@@ -73,7 +73,8 @@ gulp.task('assets-raw', () => {
 
 //-- Rebuild images
 gulp.task('assets-images', (cb) => {
-	Util.taskGrouper({ cb: cb,
+	Util.taskGrouper({
+		cb:           cb,
 		taskName:    'Images optimization',
 		tasks:       [['assets-images-optimization', 'assets-images-highdensity']],
 		cleanBundle: (name, bundle) => {
@@ -85,9 +86,11 @@ gulp.task('assets-images', (cb) => {
 
 //-- Rebuild
 gulp.task('assets', (cb) => {
-	Util.taskGrouper({ cb: cb,
+	Util.taskGrouper({
+		cb:          cb,
 		tasks:       [['assets-fonts', 'assets-images', 'assets-raw']],
 		cleanBundle: (name, bundle) => {
-			return [`${bundle.output.build}/${PATH.build.fonts}`, `${bundle.output.build}/${PATH.build.images}`, `${bundle.output.build}/${PATH.build.raw}`];		}
+			return [`${bundle.output.build}/${PATH.build.fonts}`, `${bundle.output.build}/${PATH.build.images}`, `${bundle.output.build}/${PATH.build.raw}`];
+		}
 	});
 });

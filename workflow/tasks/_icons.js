@@ -9,7 +9,7 @@ const rename   = require('gulp-rename');
 const imagemin = require('gulp-imagemin');
 const gm       = require('gulp-gm');
 const merge    = require('merge-stream');
-//const debug    = require('gulp-debug');
+// const debug    = require('gulp-debug');
 
 const PATH = global.nwayo.path;
 const Util = global.nwayo.util;
@@ -35,14 +35,14 @@ gulp.task('icons-favicon', () => {
 	Util.assetsProcess(PATH.files.iconsFavicon, (stream) => {
 
 		return stream
-			.pipe( gm( (gmfile) => {
+			.pipe(gm((gmfile) => {
 				return gmfile
 					.define(`icon:auto-resize=${sizes.join(',')}`)
 					.setFormat('ico')
 				;
 			}, { imageMagick:true }))
 
-			.pipe( rename(Util.assetsRename()) )
+			.pipe(rename(Util.assetsRename()))
 		;
 	});
 });
@@ -55,9 +55,9 @@ gulp.task('icons-favicon', () => {
 // http://operacoast.com/developer
 gulp.task('icons-share', () => {
 	const sizes = [
-		 57,  // For non-Retina (@1× display) iPhone, iPod Touch, and Android 2.1+ devices
-		 72,  // For the iPad mini and the first- and second-generation iPad (@1× display) on iOS ≤ 6
-		 76,  // For the iPad mini and the first- and second-generation iPad (@1× display) on iOS ≥ 7
+		57,   // For non-Retina (@1× display) iPhone, iPod Touch, and Android 2.1+ devices
+		72,   // For the iPad mini and the first- and second-generation iPad (@1× display) on iOS ≤ 6
+		76,   // For the iPad mini and the first- and second-generation iPad (@1× display) on iOS ≥ 7
 		114,  // For iPhone with @2× display running iOS ≤ 6:
 		120,  // For iPhone with @2× display running iOS ≥ 7
 		144,  // For iPad with @2× display running iOS ≤ 6
@@ -66,8 +66,8 @@ gulp.task('icons-share', () => {
 		180,  // For iPhone 6 Plus with @3× display
 		192,  // For Chrome for Android
 		228,  // For Coast for iOS
-		 64,  // Windows site icons, Safari Reading List, Modern browsers
-		 96,  // Google TV Favicon
+		64,   // Windows site icons, Safari Reading List, Modern browsers
+		96,   // Google TV Favicon
 		195,  // Opera Speed Dial icon
 		512   // General share icon
 	];
@@ -81,18 +81,18 @@ gulp.task('icons-share', () => {
 			Util.assetsProcess(PATH.files.iconsIcon, (stream) => {
 
 				return stream
-					.pipe( gulpif(size !== 512, gm( (gmfile, done) => {
-						gmfile.identify( (err, info) => {
+					.pipe(gulpif(size !== 512, gm((gmfile, done) => {
+						gmfile.identify((err, info) => {
 							if (err) {
 								console.log(err); // eslint-disable-line no-console
 							}
-							done(null, Util.gmOptimization(gmfile.resize(size,size), info));
+							done(null, Util.gmOptimization(gmfile.resize(size, size), info));
 						});
 					})))
 
-					.pipe( rename(Util.assetsRename(`icon-${size}`)) )
+					.pipe(rename(Util.assetsRename(`icon-${size}`)))
 
-					.pipe( imagemin() )
+					.pipe(imagemin())
 				;
 			})
 		);
@@ -102,8 +102,8 @@ gulp.task('icons-share', () => {
 	streams.push(
 		Util.assetsProcess(PATH.files.iconsLarge, (stream) => {
 			return stream
-				.pipe( rename(Util.assetsRename('large')))
-				.pipe( imagemin() )
+				.pipe(rename(Util.assetsRename('large')))
+				.pipe(imagemin())
 			;
 		})
 	);
@@ -135,8 +135,8 @@ gulp.task('icons-tile', () => {
 			Util.assetsProcess(PATH.files.iconsTile, (stream) => {
 
 				return stream
-					.pipe( gm( (gmfile, done) => {
-						gmfile.identify( (err, info) => {
+					.pipe(gm((gmfile, done) => {
+						gmfile.identify((err, info) => {
 							if (err) {
 								console.log(err); // eslint-disable-line no-console
 							}
@@ -151,9 +151,9 @@ gulp.task('icons-tile', () => {
 						});
 					}))
 
-					.pipe( rename(Util.assetsRename(`tile-${name}`)) )
+					.pipe(rename(Util.assetsRename(`tile-${name}`)))
 
-					.pipe( imagemin() )
+					.pipe(imagemin())
 				;
 			})
 		);
@@ -167,7 +167,8 @@ gulp.task('icons-tile', () => {
 
 //-- Rebuild
 gulp.task('icons', (cb) => {
-	Util.taskGrouper({ cb: cb,
+	Util.taskGrouper({
+		cb:          cb,
 		tasks:       [['icons-favicon', 'icons-share', 'icons-tile']],
 		cleanBundle: (name, bundle) => {
 			return [`${bundle.output.build}/${PATH.build.icons}`];

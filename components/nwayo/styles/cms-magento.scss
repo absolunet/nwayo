@@ -11,11 +11,11 @@
 	// scss-lint:disable SelectorFormat, IdSelector
 	#ascommercebug_link_debug {
 		width: auto !important;
-		padding: 1em 2% 0;
+		padding: 1em 2vw 0;
 	}
 
 	#ascommercebug-wrap {
-		padding: 1em 2%;
+		padding: 1em 2vw;
 	}
 	// scss-lint:enable SelectorFormat, IdSelector
 
@@ -26,7 +26,7 @@
 		padding: 1em 0;
 		border: 2px solid $black;
 		border-bottom: 1px dotted $black;
-		margin: 2em 2% 0;
+		margin: 2em 2vw 0;
 		background-color: lighten($black, 95%);
 		color: $black;
 		text-align: center;
@@ -44,12 +44,12 @@
 	#profiler_section {
 		position: relative;
 		overflow-x: scroll;
-		width: 96%;
+		width: 96vw;
 		max-height: 700px;
 		padding: 1em 5px;
 		border: 2px solid $black;
 		border-top: 0;
-		margin: 0 2% 2em;
+		margin: 0 2vw 2em;
 		background-color: $white;
 
 		pre {

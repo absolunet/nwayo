@@ -6,7 +6,7 @@
 const fs          = require('fs-extra');
 const runsequence = require('run-sequence');
 const gulp        = require('gulp');
-//const debug = require('gulp-debug');
+// const debug = require('gulp-debug');
 
 const Util = global.nwayo.util;
 const ENV  = global.nwayo.env;

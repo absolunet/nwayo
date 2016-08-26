@@ -18,7 +18,7 @@ const uglifyjs  = require('uglify-js');
 const minifier  = require('gulp-uglify/minifier');
 const eslint    = require('gulp-eslint');
 const modernizr = require('modernizr');
-//const debug = require('gulp-debug');
+// const debug = require('gulp-debug');
 
 const PATH = global.nwayo.path;
 const ENV  = global.nwayo.env;
@@ -32,21 +32,21 @@ let vendorCached = false;
 gulp.task('scripts-lint', () => {
 
 	return gulp.src(PATH.files.scriptsLint)
-		.pipe( cache('scripts', {optimizeMemory:true}) )
+		.pipe(cache('scripts', { optimizeMemory:true }))
 
-		.pipe( eslint() )
+		.pipe(eslint())
 
-		.pipe ( eslint.results( (files) => {
-			files.forEach( (file) => {
+		.pipe(eslint.results((files) => {
+			files.forEach((file) => {
 				if (file.errorCount || file.warningCount) {
 					delete cache.caches.scripts[file.filePath];
 				}
 			});
 		}))
 
-		.pipe( eslint.format('stylish') )
+		.pipe(eslint.format('stylish'))
 
-		.pipe( eslint.failAfterError() )
+		.pipe(eslint.failAfterError())
 	;
 });
 
@@ -65,7 +65,7 @@ gulp.task('scripts-constants', () => {
 
 		streams.push(
 			Util.vinylStream(PATH.filename.konstanScripts, `var konstan = ${JSON.stringify(data, null, '\t')};`)
-				.pipe( gulp.dest(`${PATH.dir.cacheScripts}/${name}`))
+				.pipe(gulp.dest(`${PATH.dir.cacheScripts}/${name}`))
 		);
 	}
 
@@ -155,16 +155,16 @@ gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants', 'scripts-vend
 
 			streams.push(
 				Util.vinylStream(`${collection}.${PATH.ext.scripts}`, source)
-					.pipe( include({
-						basePath: './',
+					.pipe(include({
+						basePath:      './',
 						autoExtension: true,
 						partialPrefix: true,
-						fileProcess: (options) => {
+						fileProcess:   (options) => {
 							return Util.babelProcess(options, babelRules);
 						}
 					}))
-					.pipe( gulpif( bundle.scripts.options.minify && !ENV.watching, minifier({preserveComments: 'license'}, uglifyjs)) )
-					.pipe( gulp.dest(`${bundle.output.build}/${PATH.build.scripts}`) )
+					.pipe(gulpif(bundle.scripts.options.minify && !ENV.watching, minifier({ preserveComments:'license' }, uglifyjs)))
+					.pipe(gulp.dest(`${bundle.output.build}/${PATH.build.scripts}`))
 			);
 		}
 	}
@@ -177,7 +177,8 @@ gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants', 'scripts-vend
 
 //-- Rebuild
 gulp.task('scripts', (cb) => {
-	Util.taskGrouper({ cb: cb,
+	Util.taskGrouper({
+		cb:          cb,
 		tasks:       ['scripts-compile'],
 		cleanBundle: (name, bundle) => {
 			return [`${bundle.output.build}/${PATH.build.scripts}`, `${PATH.dir.cacheScripts}/${name}`];

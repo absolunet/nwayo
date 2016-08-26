@@ -89,6 +89,7 @@ config.lodashPackage = `${config.lodashRoot}/package.json`;
 
 
 class Path {
+
 	static get pattern()  { return pattern; }
 	static get ext()      { return ext; }
 	static get build()    { return build; }
@@ -96,6 +97,7 @@ class Path {
 	static get files()    { return files; }
 	static get filename() { return filename; }
 	static get config()   { return config; }
+
 }
 
 global.nwayo.path = Path;

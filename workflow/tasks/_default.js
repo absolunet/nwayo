@@ -6,7 +6,7 @@
 const runsequence = require('run-sequence');
 const inquirer    = require('inquirer');
 const gulp        = require('gulp');
-//const debug = require('gulp-debug');
+// const debug = require('gulp-debug');
 
 const echo = console.log; // eslint-disable-line no-console
 const ENV  = global.nwayo.env;
