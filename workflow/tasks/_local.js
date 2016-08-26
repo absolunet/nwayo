@@ -5,7 +5,7 @@
 
 const merge = require('merge-stream');
 const gulp  = require('gulp');
-//const debug = require('gulp-debug');
+// const debug = require('gulp-debug');
 
 const PATH = global.nwayo.path;
 const ENV  = global.nwayo.env;
@@ -31,7 +31,7 @@ gulp.task('local-constants', () => {
 
 		streams.push(
 			Util.vinylStream(PATH.filename.konstanLocal, JSON.stringify(data, null, 2))
-				.pipe( gulp.dest(bundle.output.konstan) )
+				.pipe(gulp.dest(bundle.output.konstan))
 		);
 	}
 
@@ -43,7 +43,8 @@ gulp.task('local-constants', () => {
 
 //-- Rebuild
 gulp.task('local', (cb) => {
-	Util.taskGrouper({ cb: cb,
+	Util.taskGrouper({
+		cb:          cb,
 		tasks:       ['local-constants'],
 		cleanBundle: (name, bundle) => {
 			return [`${bundle.output.konstan}/${PATH.filename.konstanLocal}`];

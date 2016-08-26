@@ -17,19 +17,21 @@ const PubSub    = global.nwayo.vendor.PubSub;
 
 // Shortcuts
 const __ = (() => {
-	let shortcut = {};
-	let selector = (key, value) => `[${key}${value ? `~="${value}"` : ''}]`;
+	const shortcut = {};
+	const selector = (key, value) => {
+		return `[${key}${value ? `~="${value}"` : ''}]`;
+	};
 
 	// Shortcuts
-	['name'].forEach(key => {
-		shortcut[key]       = value => { return selector(key, value); };
-		shortcut[`$${key}`] = value => { return $(shortcut[key](value)); };
+	['name'].forEach((key) => {
+		shortcut[key]       = (value) => { return selector(key, value); };
+		shortcut[`$${key}`] = (value) => { return $(shortcut[key](value)); };
 	});
 
 	// Data - shortcuts
-	['action','component','placeholder','showfor'].forEach(key => {
-		shortcut[key]       = value => { return selector(`data-${key}`, value); };
-		shortcut[`$${key}`] = value => { return $(shortcut[key](value)); };
+	['action', 'component', 'placeholder', 'showfor'].forEach((key) => {
+		shortcut[key]       = (value) => { return selector(`data-${key}`, value); };
+		shortcut[`$${key}`] = (value) => { return $(shortcut[key](value)); };
 	});
 
 	// Window

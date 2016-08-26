@@ -10,7 +10,7 @@
 (() => {
 	'use strict';
 
-	let local = {};
+	const local = {};
 
 
 	//-- Cache data instantly

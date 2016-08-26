@@ -16,7 +16,7 @@ const sass         = require('gulp-ruby-sass');
 const jsonsass     = require('gulp-json-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const cssnano      = require('gulp-cssnano');
-//const debug = require('gulp-debug');
+// const debug = require('gulp-debug');
 
 const PATH = global.nwayo.path;
 const ENV  = global.nwayo.env;
@@ -28,9 +28,9 @@ const Util = global.nwayo.util;
 //-- Inline images optimization
 gulp.task('styles-images', () => {
 	return gulp.src(PATH.files.inline, { base:PATH.dir.root })
-		.pipe( imagemin() )
-		.pipe( rename(Util.assetsRename()) )
-		.pipe( gulp.dest(PATH.dir.cache) )
+		.pipe(imagemin())
+		.pipe(rename(Util.assetsRename()))
+		.pipe(gulp.dest(PATH.dir.cache))
 	;
 });
 
@@ -38,10 +38,10 @@ gulp.task('styles-images', () => {
 //-- Lint SCSS
 gulp.task('styles-lint', () => {
 	return gulp.src(PATH.files.stylesLint)
-		.pipe( cache('styles', {optimizeMemory:true}) )
+		.pipe(cache('styles', { optimizeMemory:true }))
 
-		.pipe( scsslint({
-			config: PATH.config.scsslint,
+		.pipe(scsslint({
+			config:       PATH.config.scsslint,
 			customReport: function(file) {
 				if (!file.scsslint.success) {
 					delete cache.caches.styles[file.path];
@@ -50,7 +50,7 @@ gulp.task('styles-lint', () => {
 			}
 		}))
 
-		.pipe( scsslint.failReporter() )
+		.pipe(scsslint.failReporter())
 	;
 });
 
@@ -65,8 +65,8 @@ gulp.task('styles-constants', () => {
 
 		streams.push(
 			Util.vinylStream(PATH.filename.konstanStyles, JSON.stringify({ konstan:data }))
-				.pipe( jsonsass() )
-				.pipe( gulp.dest(`${PATH.dir.cacheStyles}/${name}`))
+				.pipe(jsonsass())
+				.pipe(gulp.dest(`${PATH.dir.cacheStyles}/${name}`))
 		);
 	}
 
@@ -106,25 +106,24 @@ gulp.task('styles-compile', ['styles-lint', 'styles-constants'], () => {
 				sourcemap:     false
 			})
 
-				.pipe( autoprefixer({
-					browsers: bundle.styles.options.autoprefixer
-				}))
+				.pipe(autoprefixer({ browsers:bundle.styles.options.autoprefixer }))
 
-				.pipe( gulpif( bundle.styles.options.minify && !ENV.watching, cssnano()) )
+				.pipe(gulpif(bundle.styles.options.minify && !ENV.watching, cssnano()))
 
-				.pipe( gulp.dest(`${bundle.output.build}/${PATH.build.styles}`) )
+				.pipe(gulp.dest(`${bundle.output.build}/${PATH.build.styles}`))
 		);
 	}
 
 	return merge(...streams)
-		.on('end', () => { return Util.watchableTaskCompleted('Styles compilation'); } )
+		.on('end', () => { return Util.watchableTaskCompleted('Styles compilation'); })
 	;
 });
 
 
 //-- Rebuild
 gulp.task('styles', (cb) => {
-	Util.taskGrouper({ cb: cb,
+	Util.taskGrouper({
+		cb:          cb,
 		tasks:       ['styles-images', 'styles-compile'],
 		cleanPaths:  [PATH.dir.cacheInline, PATH.dir.cacheSass],
 		cleanBundle: (name, bundle) => {

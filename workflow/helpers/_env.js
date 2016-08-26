@@ -27,9 +27,9 @@ const konstan = (() => {
 const bundles = (() => {
 
 	// Get CLI flag
-	const options = minimist( process.argv.slice(2), {
+	const options = minimist(process.argv.slice(2), {
 		'string':  'bundle',
-		'default': { bundle: '*' }
+		'default': { bundle:'*' }
 	});
 
 	// Get list
@@ -55,7 +55,7 @@ const bundles = (() => {
 
 //-- Extract bundles components
 const bundlesComponents = (() => {
-	return _.uniq( _.flatten( _.map(bundles, _.property('assets.components'))));
+	return _.uniq(_.flatten(_.map(bundles, _.property('assets.components'))));
 })();
 
 
@@ -66,6 +66,7 @@ let watching = false;
 
 
 class Env {
+
 	static get pkg()               { return pkg; }
 	static get konstan()           { return konstan; }
 	static get bundles()           { return bundles; }
@@ -77,6 +78,7 @@ class Env {
 	static setToWatching() {
 		watching = true;
 	}
+
 }
 
 global.nwayo.env = Env;
