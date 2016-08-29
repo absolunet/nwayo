@@ -33,7 +33,7 @@ nwayo rebuild
 
 
 
-## Tools &nbsp; <img src="http://absolunet.github.io/nwayo/media/vendors.png" width="450" height="30" alt="nwayo vendors">
+## Tools &nbsp; <img src="http://absolunet.github.io/nwayo/media/vendors.png" width="600" height="30" alt="nwayo vendors">
 `nwayo` is HTML5-ready and uses [gulp](http://gulpjs.com) as a build system
 
 - Based (but not mandatory) on [Zurb Foundation](//foundation.zurb.com)
