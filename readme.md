@@ -33,7 +33,7 @@ nwayo rebuild
 
 
 
-## Tools
+## Tools &nbsp; <img src="http://absolunet.github.io/nwayo/media/vendors.png" width="450" height="30" alt="nwayo vendors">
 `nwayo` is HTML5-ready and uses [gulp](http://gulpjs.com) as a build system
 
 - Based (but not mandatory) on [Zurb Foundation](//foundation.zurb.com)
@@ -50,7 +50,7 @@ nwayo rebuild
 - Builds with [includes](//www.npmjs.com/package/gulp-nwayo-include) and is minified with [UglifyJS](http://lisperator.net/uglifyjs)
 
 #### Other
-- Optimizes images via [gifsicle](//github.com/imagemin/imagemin-gifsicle), [jpegtran](//github.com/imagemin/imagemin-jpegtran), [optipng](//github.com/imagemin/imagemin-optipng), [svgo](//github.com/imagemin/imagemin-svgo)
+- Optimizes images via [gifsicle](//www.lcdf.org/gifsicle), [jpegtran](http://libjpeg-turbo.virtualgl.org), [optipng](http://optipng.sourceforge.net), [svgo](//github.com/svg/svgo)
 - Generates iconography via [GraphicsMagick](http://www.graphicsmagick.org), [ImageMagick](//www.imagemagick.org)
 - Optimized for [Sublime Text 3](//www.sublimetext.com) with [SublimeLinter 3](http://www.sublimelinter.com)
 
