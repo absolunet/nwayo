@@ -9,8 +9,8 @@
 (() => {
 	'use strict';
 
-	let foo = 1;
-	let local = {};
+	const foo = 1;
+	const local = {};
 
 
 	//-- Bar
@@ -32,7 +32,7 @@
 		}
 
 		// Method bar()
-		static bar( options={} ) {
+		static bar(options = {}) {
 			if (options.bar) {
 				local.bar();
 			}

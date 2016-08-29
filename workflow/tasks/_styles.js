@@ -16,7 +16,7 @@ const sass         = require('gulp-ruby-sass');
 const jsonsass     = require('gulp-json-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const cssnano      = require('gulp-cssnano');
-//const debug = require('gulp-debug');
+// const debug = require('gulp-debug');
 
 const PATH = global.nwayo.path;
 const ENV  = global.nwayo.env;
@@ -28,9 +28,9 @@ const Util = global.nwayo.util;
 //-- Inline images optimization
 gulp.task('styles-images', () => {
 	return gulp.src(PATH.files.inline, { base:PATH.dir.root })
-		.pipe( imagemin() )
-		.pipe( rename(Util.assetsRename()) )
-		.pipe( gulp.dest(PATH.dir.cache) )
+		.pipe(imagemin())
+		.pipe(rename(Util.assetsRename()))
+		.pipe(gulp.dest(PATH.dir.cache))
 	;
 });
 
@@ -38,52 +38,52 @@ gulp.task('styles-images', () => {
 //-- Lint SCSS
 gulp.task('styles-lint', () => {
 	return gulp.src(PATH.files.stylesLint)
-		.pipe( cache('styles', {optimizeMemory:true}) )
+		.pipe(cache('styles', { optimizeMemory:true }))
 
-		.pipe( scsslint({
-			config: PATH.config.scsslint,
+		.pipe(scsslint({
+			config:       PATH.config.scsslint,
 			customReport: function(file) {
 				if (!file.scsslint.success) {
 					delete cache.caches.styles[file.path];
 				}
-				scsslint.defaultReporter.apply(null, arguments);
+				scsslint.defaultReporter(file);
 			}
 		}))
 
-		.pipe( scsslint.failReporter() )
+		.pipe(scsslint.failReporter())
 	;
 });
 
 
 //-- Convert constants to SCSS
 gulp.task('styles-constants', () => {
-	let streams = [];
+	const streams = [];
 
-	for (let name of Object.keys(ENV.bundles)) {
-		let data = Util.parseKonstan('styles', name, ENV.bundles[name].output.url);
+	for (const name of Object.keys(ENV.bundles)) {
+		const data = Util.parseKonstan('styles', name, ENV.bundles[name].output.url);
 		data.bundle = `'${name}'`;
 
 		streams.push(
 			Util.vinylStream(PATH.filename.konstanStyles, JSON.stringify({ konstan:data }))
-				.pipe( jsonsass() )
-				.pipe( gulp.dest(`${PATH.dir.cacheStyles}/${name}`))
+				.pipe(jsonsass())
+				.pipe(gulp.dest(`${PATH.dir.cacheStyles}/${name}`))
 		);
 	}
 
-	return merge.apply(null, streams);
+	return merge(...streams);
 });
 
 
 //-- Compile
 gulp.task('styles-compile', ['styles-lint', 'styles-constants'], () => {
-	let streams = [];
+	const streams = [];
 
-	for (let name of Object.keys(ENV.bundles)) {
-		let bundle = ENV.bundles[name];
+	for (const name of Object.keys(ENV.bundles)) {
+		const bundle = ENV.bundles[name];
 
 		// For each collection
-		for (let collection of Object.keys(bundle.styles.collections)) {
-			let list = _.cloneDeep(bundle.styles.collections[collection]);
+		for (const collection of Object.keys(bundle.styles.collections)) {
+			const list = _.cloneDeep(bundle.styles.collections[collection]);
 
 			// Add konstan
 			list.unshift(`${PATH.dir.cacheStyles}/${name}/${PATH.filename.konstan}`);
@@ -93,7 +93,7 @@ gulp.task('styles-compile', ['styles-lint', 'styles-constants'], () => {
 				list[i] = `@import '${file}';`;
 			});
 
-			fs.outputFileSync(`${PATH.dir.cacheStyles}/${name}/collections/${collection}.${PATH.ext.styles}`, Util.getGeneratedBanner(name)+list.join('\n')+'\n');
+			fs.outputFileSync(`${PATH.dir.cacheStyles}/${name}/collections/${collection}.${PATH.ext.styles}`, `${Util.getGeneratedBanner(name)}${list.join('\n')}\n`);
 		}
 
 		// Process all collections from this bundle
@@ -106,25 +106,24 @@ gulp.task('styles-compile', ['styles-lint', 'styles-constants'], () => {
 				sourcemap:     false
 			})
 
-				.pipe( autoprefixer({
-					browsers: bundle.styles.options.autoprefixer
-				}))
+				.pipe(autoprefixer({ browsers:bundle.styles.options.autoprefixer }))
 
-				.pipe( gulpif( bundle.styles.options.minify && !ENV.watching, cssnano()) )
+				.pipe(gulpif(bundle.styles.options.minify && !ENV.watching, cssnano()))
 
-				.pipe( gulp.dest(`${bundle.output.build}/${PATH.build.styles}`) )
+				.pipe(gulp.dest(`${bundle.output.build}/${PATH.build.styles}`))
 		);
 	}
 
-	return merge.apply(null, streams)
-		.on('end', () => Util.watchableTaskCompleted('Styles compilation') )
+	return merge(...streams)
+		.on('end', () => { return Util.watchableTaskCompleted('Styles compilation'); })
 	;
 });
 
 
 //-- Rebuild
-gulp.task('styles', cb => {
-	Util.taskGrouper({ cb,
+gulp.task('styles', (cb) => {
+	Util.taskGrouper({
+		cb:          cb,
 		tasks:       ['styles-images', 'styles-compile'],
 		cleanPaths:  [PATH.dir.cacheInline, PATH.dir.cacheSass],
 		cleanBundle: (name, bundle) => {
