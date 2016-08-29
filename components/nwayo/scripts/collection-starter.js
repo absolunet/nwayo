@@ -3,7 +3,8 @@
 //-------------------------------------
 
 /* eslint-disable strict, no-unused-vars, no-redeclare */
-const app     = global[global.nwayo.project];
+const PROJECT = global.nwayo.project;
+const app     = global[PROJECT];
 const konstan = app.konstan;
 
 const jQuery    = global.nwayo.vendor.jQuery;
