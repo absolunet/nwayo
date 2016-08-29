@@ -36,7 +36,7 @@
 - Builds with [includes](//www.npmjs.com/package/gulp-nwayo-include) and is minified with [UglifyJS](http://lisperator.net/uglifyjs)
 
 ### Other
-- Optimizes images via [gifsicle](github.com/imagemin/imagemin-gifsicle), [jpegtran](github.com/imagemin/imagemin-jpegtran), [optipng](github.com/imagemin/imagemin-optipng), [svgo](github.com/imagemin/imagemin-svgo)
+- Optimizes images via [gifsicle](//github.com/imagemin/imagemin-gifsicle), [jpegtran](//github.com/imagemin/imagemin-jpegtran), [optipng](//github.com/imagemin/imagemin-optipng), [svgo](//github.com/imagemin/imagemin-svgo)
 - Generates iconography via [GraphicsMagick](http://www.graphicsmagick.org), [ImageMagick](//www.imagemagick.org)
 - Optimized for [Sublime Text 3](//www.sublimetext.com) with [SublimeLinter 3](http://www.sublimelinter.com)
 
