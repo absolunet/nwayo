@@ -38,6 +38,7 @@ globals:
   konstan: false
   app: false
   __: false
+  PROJECT: false
 
 
 # Plugins - Additional plugins
