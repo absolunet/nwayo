@@ -10,24 +10,24 @@
 (() => {
 	'use strict';
 
-	let local = {};
+	const local = {};
 
 
 	//-- Cache data instantly
 	local.cache = () => {
 
 		// Optional scroll
-		//app.scrollTransition = Modernizr.touchevents ? 0 : konstan.transition.animation;
+		// app.scrollTransition = Modernizr.touchevents ? 0 : konstan.transition.animation;
 
 
 		// Addthis
-		//global['addthis_config'] = { 'ui_language': app.env.lang };
+		// global['addthis_config'] = { 'ui_language': app.env.lang };
 
 
 		// Env
-		//app.env.isUniquePage = app.env.pageId === 'UID';
-		//app.env.isTypePage   = _.includes(app.env.pageTags, 'TYPE-ID');
-		//app.env.isOneOfThese = !!_.intersection(app.env.pageTags, ['ID1', 'ID2']).length;
+		// app.env.isUniquePage = app.env.pageId === 'UID';
+		// app.env.isTypePage   = _.includes(app.env.pageTags, 'TYPE-ID');
+		// app.env.isOneOfThese = !!_.intersection(app.env.pageTags, ['ID1', 'ID2']).length;
 
 
 		// Colorbox default params

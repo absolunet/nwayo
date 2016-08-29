@@ -7,11 +7,11 @@ const BOWER  = 'bower_components';
 const CACHE  = '.nwayo-cache';
 const NOLINT = 'vendor';
 
-let pattern = {};
+const pattern = {};
 pattern.anytree = '**';
 pattern.babel = `^##includes##(\\${CACHE}|${BOWER}|components\/${NOLINT}\-|components\/.*\/(_?)${NOLINT}\-)`;
 
-let ext = {};
+const ext = {};
 ext.bundles   = 'yaml';
 ext.fonts     = '{eot,svg,ttf,woff,woff2}';
 ext.images    = '{gif,jpg,png,svg}';
@@ -19,7 +19,7 @@ ext.scripts   = 'js';
 ext.styles    = 'scss';
 ext.templates = 'jshtml';
 
-let build = {};
+const build = {};
 build.fonts   = 'fonts';
 build.icons   = 'icons';
 build.images  = 'images';
@@ -27,7 +27,7 @@ build.raw     = 'raw';
 build.scripts = 'scripts';
 build.styles  = 'styles';
 
-let dir = {};
+const dir = {};
 dir.root          = '.';
 dir.cache         = `${dir.root}/${CACHE}`;
 dir.cacheInline   = `${dir.cache}/inline-images`;
@@ -52,7 +52,7 @@ dir.misc          = `${dir.root}/misc`;
 dir.resources     = `${dir.misc}/resources`;
 dir.stubs         = `${dir.misc}/stubs`;
 
-let files = {};
+const files = {};
 files.bundles      = `${dir.bundles}/${pattern.anytree}/*.${ext.bundles}`;
 files.fonts        = `${dir.fonts}/${pattern.anytree}/*.${ext.fonts}`;
 files.iconsFavicon = `${dir.icons}/favicon.png`;
@@ -70,7 +70,7 @@ files.stylesLint   = [files.styles, `!${dir.stylesNolint}/${pattern.anytree}/*`,
 files.templates    = `${dir.templates}/${pattern.anytree}/*.${ext.templates}`;
 files.bowerScripts = `${dir.bower}/${pattern.anytree}/*.${ext.scripts}`;
 
-let filename = {};
+const filename = {};
 filename.konstan        = 'konstan';
 filename.konstanLocal   = `${filename.konstan}.json`;
 filename.konstanScripts = `${filename.konstan}.${ext.scripts}`;
@@ -78,7 +78,7 @@ filename.konstanStyles  = `${filename.konstan}.json`;
 filename.modernizr      = `modernizr`;
 filename.lodash         = `lodash`;
 
-let config = {};
+const config = {};
 config.konstan       = `${dir.root}/konstan.yaml`;
 config.pkg           = `${dir.root}/package.json`;
 config.scsslint      = `${dir.root}/.scss-lint.yml`;
@@ -90,6 +90,7 @@ config.lodashPackage = `${config.lodashRoot}/package.json`;
 
 
 class Path {
+
 	static get pattern()  { return pattern; }
 	static get ext()      { return ext; }
 	static get build()    { return build; }
@@ -97,6 +98,7 @@ class Path {
 	static get files()    { return files; }
 	static get filename() { return filename; }
 	static get config()   { return config; }
+
 }
 
 global.nwayo.path = Path;

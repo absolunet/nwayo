@@ -2,8 +2,9 @@
 //-- Collection starter kit
 //-------------------------------------
 
-/* jshint -W079, unused:false, singleGroups:false, strict:false */
-const app     = global[global.nwayo.project];
+/* eslint-disable strict, no-unused-vars, no-redeclare */
+const PROJECT = global.nwayo.project;
+const app     = global[PROJECT];
 const konstan = app.konstan;
 
 const jQuery    = global.nwayo.vendor.jQuery;
@@ -17,22 +18,21 @@ const PubSub    = global.nwayo.vendor.PubSub;
 
 // Shortcuts
 const __ = (() => {
-	let shortcut = {};
-	let selector = (key, value) => {
-		value = value ? `~="${value}"` : '';
-		return `[${key}${value}]`;
+	const shortcut = {};
+	const selector = (key, value) => {
+		return `[${key}${value ? `~="${value}"` : ''}]`;
 	};
 
 	// Shortcuts
-	['name'].forEach(key => {
-		shortcut[key]       = value => { return selector(key, value); };
-		shortcut[`$${key}`] = value => { return $(shortcut[key](value)); };
+	['name'].forEach((key) => {
+		shortcut[key]       = (value) => { return selector(key, value); };
+		shortcut[`$${key}`] = (value) => { return $(shortcut[key](value)); };
 	});
 
 	// Data - shortcuts
-	['action','component','placeholder','showfor'].forEach(key => {
-		shortcut[key]       = value => { return selector(`data-${key}`, value); };
-		shortcut[`$${key}`] = value => { return $(shortcut[key](value)); };
+	['action', 'component', 'placeholder', 'showfor'].forEach((key) => {
+		shortcut[key]       = (value) => { return selector(`data-${key}`, value); };
+		shortcut[`$${key}`] = (value) => { return $(shortcut[key](value)); };
 	});
 
 	// Window

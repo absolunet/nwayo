@@ -7,41 +7,45 @@ const _        = require('lodash');
 const glob     = require('glob');
 const minimist = require('minimist');
 
-const echo = console.log;
 const PATH = global.nwayo.path;
 const Util = global.nwayo.util;
 
 
 //-- Package data
-let pkg = (() => require(`${__dirname}/../../package`))();
+const pkg = (() => {
+	return require(`${__dirname}/../../package`); // eslint-disable-line global-require
+})();
 
 
 //-- konstan data
-let konstan = (() => Util.readYAML(PATH.config.konstan))();
+const konstan = (() => {
+	return Util.readYAML(PATH.config.konstan);
+})();
 
 
 //-- Load bundles
-let bundles = (() => {
+const bundles = (() => {
 
 	// Get CLI flag
-	let options = minimist( process.argv.slice(2), {
+	const options = minimist(process.argv.slice(2), {
 		'string':  'bundle',
-		'default': { bundle: '*' }
+		'default': { bundle:'*' }
 	});
 
 	// Get list
-	let bundles = glob.sync(`${PATH.dir.bundles}/${options.bundle}.${PATH.ext.bundles}`);
+	const bundlesList = glob.sync(`${PATH.dir.bundles}/${options.bundle}.${PATH.ext.bundles}`);
 
 	// Process bundles
-	let data = {};
-	if (bundles.length) {
-		for (let name of bundles) {
+	const data = {};
+	if (bundlesList.length) {
+		for (let name of bundlesList) {
 			name = name.match(/([^/]+).yaml/)[1];
 			data[name] = Util.readYAML(`${PATH.dir.bundles}/${name}.${PATH.ext.bundles}`);
 		}
 	} else {
-		echo(`No bundle ${options.bundle !== '*' ? '\''+options.bundle+'\' ' : ''}found`.red);
-		if (process) { process.exit(1); }
+		throw new Error(`No bundle ${
+			options.bundle !== '*' ? `'${options.bundle}' ` : ''
+		}found`.red);
 	}
 
 	return data;
@@ -50,8 +54,8 @@ let bundles = (() => {
 
 
 //-- Extract bundles components
-let bundlesComponents = (() => {
-	return _.uniq( _.flatten( _.map(bundles, _.property('assets.components'))));
+const bundlesComponents = (() => {
+	return _.uniq(_.flatten(_.map(bundles, _.property('assets.components'))));
 })();
 
 
@@ -62,6 +66,7 @@ let watching = false;
 
 
 class Env {
+
 	static get pkg()               { return pkg; }
 	static get konstan()           { return konstan; }
 	static get bundles()           { return bundles; }
@@ -73,6 +78,7 @@ class Env {
 	static setToWatching() {
 		watching = true;
 	}
+
 }
 
 global.nwayo.env = Env;
