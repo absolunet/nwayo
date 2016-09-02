@@ -7,6 +7,9 @@ const PROJECT = global.nwayo.project;
 const app     = global[PROJECT];
 const konstan = app.konstan;
 
+const DOM_PARSE     = global.nwayo.promises.DOMParse;
+const DOCUMENT_LOAD = global.nwayo.promises.documentLoad;
+
 const jQuery    = global.nwayo.vendor.jQuery;
 const $         = global.nwayo.vendor.jQuery;
 const $Global   = global.nwayo.vendor.jQueryGlobal;
@@ -34,9 +37,6 @@ const __ = (() => {
 		shortcut[key]       = (value) => { return selector(`data-${key}`, value); };
 		shortcut[`$${key}`] = (value) => { return $(shortcut[key](value)); };
 	});
-
-	// Window
-	shortcut.window = global;
 
 	// DOM shortcuts
 	shortcut.$window   = $(global);

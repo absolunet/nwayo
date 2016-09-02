@@ -20,10 +20,6 @@
 		// app.scrollTransition = Modernizr.touchevents ? 0 : konstan.transition.animation;
 
 
-		// Addthis
-		// global['addthis_config'] = { 'ui_language': app.env.lang };
-
-
 		// Env
 		// app.env.isUniquePage = app.env.pageId === 'UID';
 		// app.env.isTypePage   = _.includes(app.env.pageTags, 'TYPE-ID');
@@ -37,7 +33,7 @@
 			opacity:     0.7,
 			transition: 'elastic'
 			//if popup is hash triggered
-			onClosed: () => { __.window.location = '#/'; }
+			onClosed: () => { location = '#/'; }
 		});
 		/**/
 
@@ -45,7 +41,7 @@
 		// Magento jsrender helper
 		/**
 		$.views.helpers({
-			translate: key => { return global.Translator.translate(key); }
+			translate: key => { return Translator.translate(key); }
 		});
 		/**/
 
@@ -98,7 +94,7 @@
 	};
 
 
-	//-- Subscribe to topics once DOM is loaded
+	//-- Subscribe to topics
 	local.subscribe = () => {
 
 		// PubSub.subscribe('foo.bar',  () => {});
@@ -114,7 +110,7 @@
 
 		// Webfont loader
 		/**
-		global.WebFont.load({
+		WebFont.load({
 			custom:       { families: ['FontName1','FontName2','FontName3'] },
 			loading:      () => { __.$body.trigger('WebFont:loading'); },
 			active:       () => { __.$body.trigger('WebFont:active'); },
@@ -148,15 +144,17 @@
 
 	// Outline
 	local.cache();
+	local.subscribe();
 
-	$(() => {
+	// DOM Ready
+	$.when(DOM_PARSE).done(() => {
 		local.cacheDOM();
 		local.bind();
-		local.subscribe();
 		local.start();
 	});
 
-	__.$window.on('load', () => {
+	// Document loaded
+	$.when(DOCUMENT_LOAD).done(() => {
 		local.delayedStart();
 	});
 

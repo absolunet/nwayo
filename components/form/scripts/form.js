@@ -54,7 +54,7 @@
 	};
 
 
-	//-- Subscribe to topics once DOM is loaded
+	//-- Subscribe to topics
 	local.subscribe = () => {
 
 		//
@@ -84,15 +84,17 @@
 
 	// Outline
 	local.cache();
+	local.subscribe();
 
-	$(() => {
+	// DOM Ready
+	$.when(DOM_PARSE).done(() => {
 		local.cacheDOM();
 		local.bind();
-		local.subscribe();
 		local.start();
 	});
 
-	__.$window.on('load', () => {
+	// Document loaded
+	$.when(DOCUMENT_LOAD).done(() => {
 		local.delayedStart();
 	});
 

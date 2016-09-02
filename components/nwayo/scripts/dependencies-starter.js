@@ -29,14 +29,15 @@
 
 
 
-	// Initialize nwayo
+	//-- Initialize nwayo
 	const nwayo = readonlyObj({
 		project: konstan.project,
 		version: konstan.nwayo
 	});
 
+	// Vendors
 	const vendor = {};
-	addProp(vendor, 'jQuery',       global.jQuery.noConflict(true));
+	addProp(vendor, 'jQuery',       global.jQuery);
 	addProp(vendor, 'jQueryGlobal', global.jQuery);
 	addProp(vendor, 'lodash',       global._);
 	addProp(vendor, 'Modernizr',    global.Modernizr);
@@ -44,12 +45,23 @@
 
 	addProp(nwayo, 'vendor', vendor);
 
+	// Promises
+	const $ = vendor.jQuery;
+	const deferredDOMParse = $.Deferred();
+	const deferredDocumentLoad = $.Deferred();
+
+	const promises = readonlyObj({
+		DOMParse:     deferredDOMParse.promise(),
+		documentLoad: deferredDocumentLoad.promise()
+	});
+
+	addProp(nwayo, 'promises', promises);
+
 	addProp(global, 'nwayo', nwayo);
 
 
 
-	// Initialize application
-	const $    = vendor.jQuery; // eslint-disable-line no-shadow
+	//-- Initialize application
 	const path = konstan.konstan.path;
 	delete konstan.konstan.path;
 
@@ -70,5 +82,16 @@
 			pageTags: bodyClass ? _.compact(bodyClass.split(' ')) : []
 		}
 	}));
+
+
+	// When DOM ready
+	$(() => {
+		deferredDOMParse.resolve();
+	});
+
+	// When document loaded
+	$(window).on('load', () => {  // eslint-disable-line no-restricted-globals
+		deferredDocumentLoad.resolve();
+	});
 
 })();
