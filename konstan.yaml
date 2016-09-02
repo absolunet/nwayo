@@ -3,7 +3,7 @@
 #-------------------------------------
 data:
 
-  # Responsive breakpoints
+  #-- Responsive breakpoints
   dimension:
     small:   640
     medium: 1024
@@ -12,13 +12,13 @@ data:
     max:    1280
 
 
-  # Transition speeds in ms
+  #-- Transition speeds in ms
   transition:
     hover:     100
     animation: 500
 
 
-  # Colors
+  #-- Colors
   color:
 
     # Grey
@@ -27,13 +27,13 @@ data:
     bg:     '#eaeaea'
 
 
-  # Classes
+  #-- Classes
   class:
     wide:   columns small-9 medium-6
     narrow: columns small-7 medium-5
 
 
-  # API keys and other accounts identifier
+  #-- API keys and other accounts identifier
   keychain:
 
     facebook:

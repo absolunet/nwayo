@@ -295,6 +295,12 @@ linters:
     enabled: true
     style: at_least_one_space
 
+  # Enable when we can use //--
+  SpaceAfterComment:
+    enabled: false
+    #allow_empty_comments: true
+    #style: one_space
+
   SpaceAfterPropertyColon:
     enabled: true
     style: one_space_or_newline
