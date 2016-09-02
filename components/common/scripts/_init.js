@@ -43,12 +43,12 @@
 	//-- Bind events once DOM is loaded
 	local.bind = () => {
 
-		global.FastClick.attach(document.body);
+		FastClick.attach(document.body);
 
 	};
 
 
-	//-- Subscribe to topics once DOM is loaded
+	//-- Subscribe to topics
 	local.subscribe = () => {
 
 		//
@@ -67,7 +67,7 @@
 	//-- Execute once page is loaded
 	local.delayedStart = () => {
 
-		__.$body.addClass('page-loaded');
+		__.$body.addClass('document-loaded');
 
 	};
 
@@ -78,15 +78,17 @@
 
 	// Outline
 	local.cache();
+	local.subscribe();
 
-	$(() => {
+	// DOM Ready
+	$.when(DOM_PARSE).done(() => {
 		local.cacheDOM();
 		local.bind();
-		local.subscribe();
 		local.start();
 	});
 
-	__.$window.on('load', () => {
+	// Document loaded
+	$.when(DOCUMENT_LOAD).done(() => {
 		local.delayedStart();
 	});
 

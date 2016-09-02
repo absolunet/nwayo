@@ -3,19 +3,58 @@
 //-------------------------------------
 
 //= **require     bower_components/foo/bar
-//= **require     components/foo/scripts/bar
-//= **jshtml      components/foo/templates/foobar
-//= **jshtml_tree components/foo/templates
+//= **require     components/common/scripts/foobar
+//= **jshtml      components/common/templates/foobar
+//= **jshtml_tree components/common/templates
 
 (() => {
 	'use strict';
 
-	const foo = 1;
 	const local = {};
 
 
-	//-- Bar
-	local.bar = () => {
+	//-- Cache data instantly
+	local.cache = () => {
+
+		//
+
+	};
+
+
+	//-- Cache data once DOM is loaded
+	local.cacheDOM = () => {
+
+		//
+
+	};
+
+
+	//-- Bind events once DOM is loaded
+	local.bind = () => {
+
+		//
+
+	};
+
+
+	//-- Subscribe to topics
+	local.subscribe = () => {
+
+		//
+
+	};
+
+
+	//-- Execute once DOM is loaded
+	local.start = () => {
+
+		//
+
+	};
+
+
+	//-- Execute once page is loaded
+	local.delayedStart = () => {
 
 		//
 
@@ -24,21 +63,22 @@
 
 
 
-	//-- Public class
-	app.foobar = class {
 
-		// Property foo
-		static get foo() {
-			return foo;
-		}
 
-		// Method bar()
-		static bar(options = {}) {
-			if (options.bar) {
-				local.bar();
-			}
-		}
+	// Outline
+	local.cache();
+	local.subscribe();
 
-	};
+	// DOM Ready
+	$.when(DOM_PARSE).done(() => {
+		local.cacheDOM();
+		local.bind();
+		local.start();
+	});
+
+	// Document loaded
+	$.when(DOCUMENT_LOAD).done(() => {
+		local.delayedStart();
+	});
 
 })();
