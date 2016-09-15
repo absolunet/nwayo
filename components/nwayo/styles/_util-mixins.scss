@@ -8,7 +8,7 @@
 	// uri
 	$uri: '';
 	@if $inline {
-		$inline-image-path: $konstan-path-inline + '/' + $context + '/' + $file;
+		$inline-image-path: assets-path($file, $context, 'inline');
 
 		@if str-index($file, '.svg') {
 			$svg: readfile($inline-image-path);
@@ -40,7 +40,7 @@
 		}
 
 	} @else {
-		$uri: url($konstan-path-images + '/' + $context + '/' + $file);
+		$uri: url(assets-path($file, $context, 'images'));
 	}
 
 	// high density
@@ -72,7 +72,7 @@
 
 //-- Font-face
 @mixin load-font-mixin ($name, $filename, $context, $weight:normal, $style:normal) {
-	$url:       $konstan-path-fonts + '/' + $context + '/' + $filename;
+	$url:       assets-path($filename, $context, 'fonts');
 	$woff2:     if(fileexists('components/' + $context + '/assets/fonts/' + $filename + '.woff2'), ',' + url($url + '.woff2') format('woff2'), '');
 	@font-face {
 		font-family: $name;

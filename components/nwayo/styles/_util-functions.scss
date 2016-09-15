@@ -2,6 +2,20 @@
 //-- Utils: Functions
 //-------------------------------------
 
+//-- Assets path
+@function assets-path($file, $context, $type) {
+	@if $type == 'images' {
+		@return $konstan-path-images + '/' + $context + '/' + $file;
+	} @else if $type == 'inline' {
+		@return $konstan-path-inline + '/' + $context + '/' + $file;
+	} @elseif $type == 'fonts' {
+		@return $konstan-path-fonts + '/' + $context + '/' + $file;
+	}
+}
+
+
+
+
 //-- String replace
 @function str-replace($string, $search, $replace: '') {
 	$index: str-index($string, $search);

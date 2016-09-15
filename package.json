@@ -38,7 +38,7 @@
     "gulp-cssnano":      "2.1.2",
     "gulp-json-sass":    "0.0.2",
 
-    "eslint":              "3.4.0",
+    "eslint":              "3.5.0",
     "uglify-js":           "2.7.3",
     "gulp-eslint":         "3.0.1",
     "gulp-nwayo-include":  "0.3.2",
