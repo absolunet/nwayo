@@ -227,8 +227,10 @@ rules:
         on: value
         mode: minimum
   keyword-spacing: [error, {before: true, after: true}]
+  line-comment-position: [off]
   linebreak-style: [error, unix]
   lines-around-comment: [error, {beforeBlockComment: true, afterBlockComment: false, beforeLineComment: false, afterLineComment: false}]
+  lines-around-directive: [error, {before: never, after: always}]
   max-depth: [off]
   max-len: [off]
   max-lines: [off]
@@ -313,6 +315,7 @@ rules:
   object-shorthand: [error, consistent]
   prefer-arrow-callback: [error]
   prefer-const: [error, {destructuring: any, ignoreReadBeforeAssign: false}]
+  prefer-numeric-literals: [error]
   prefer-reflect: [off] # Needs poyfill
   prefer-rest-params: [error]
   prefer-spread: [error]
