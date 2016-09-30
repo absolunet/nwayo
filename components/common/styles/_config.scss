@@ -5,10 +5,18 @@
 //-- nwayo util
 @import 'components/nwayo/styles/util';
 
+//-- Foundation
+$column-gutter-size: 15px;
 
-$text-color:   $konstan-color-text;
-$border-color: $konstan-color-border;
-$bg-color:     $konstan-color-bg;
+//-- Selector
+$hover-selector: 'html.no-touchevents &:hover';
+
+
+//-- Colors
+$bg-site-color: $konstan-color-bgsite;
+$text-color:    $konstan-color-text;
+$border-color:  $konstan-color-border;
+$bg-color:      $konstan-color-bg;
 
 /**
 $accent-color: $konstan-current-color-accent;
