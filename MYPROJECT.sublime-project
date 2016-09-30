@@ -1,11 +1,9 @@
 {
-	"folders": [
+	"folders":
+	[
 		{
-			"folder_exclude_patterns": [
-				".nwayo-cache",
-				"node_modules"
-			],
-			"file_exclude_patterns": [
+			"file_exclude_patterns":
+			[
 				".nwayo-cache",
 				"node_modules",
 				".bowerrc",
@@ -19,14 +17,20 @@
 				"*.sublime-project",
 				"readme.md"
 			],
-			"follow_symlinks": true,
+			"folder_exclude_patterns":
+			[
+				".nwayo-cache",
+				"node_modules"
+			],
 			"path": "."
 		}
 	],
-
-	"settings": {
-		"todoreview": {
-			"exclude_folders": [
+	"settings":
+	{
+		"todoreview":
+		{
+			"exclude_folders":
+			[
 				"*.git*",
 				"*nwayo/.nwayo-cache*",
 				"*nwayo/build*",
