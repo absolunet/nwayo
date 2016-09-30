@@ -38,6 +38,14 @@
 			}
 		}
 
+		/**
+		//-- Cookie options
+		static cookieOptions(days) {
+			return { expires:days, path:'/', domain:`.${location.hostname}` };
+		}
+		/**/
+
+
 	};
 
 })();

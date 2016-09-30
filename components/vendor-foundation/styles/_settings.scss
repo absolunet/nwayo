@@ -57,7 +57,7 @@ $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
 $black: #000000;
 $white: #ffffff;
-$body-background: $white;
+$body-background: $bg-site-color;
 $body-font-color: $text-color;
 $body-font-family: $text-font;
 $body-antialiased: true;
@@ -86,10 +86,7 @@ $breakpoint-classes: (small medium large);
 
 $grid-row-width: $global-width;
 $grid-column-count: 12;
-$grid-column-gutter: (
-  small: 20px,
-  medium: 30px,
-);
+$grid-column-gutter: $column-gutter-size * 2;
 $grid-column-align-edge: true;
 $block-grid-max: 8;
 

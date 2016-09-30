@@ -13,6 +13,7 @@ output:
 #-- Assets
 assets:
   components:
+    - common
     - form
     - site
 
