@@ -19,7 +19,7 @@
     "minimist": "1.2.0",
     "colors":   "1.1.2",
     "crypto":   "0.0.3",
-    "lodash":   "4.16.2",
+    "lodash":   "4.16.3",
 
     "gulp":         "3.9.1",
     "gulp-debug":   "2.1.2",
@@ -39,15 +39,15 @@
     "gulp-cssnano":      "2.1.2",
     "gulp-json-sass":    "0.0.2",
 
-    "eslint":              "3.6.1",
+    "eslint":              "3.7.1",
     "uglify-js":           "2.7.3",
     "gulp-eslint":         "3.0.1",
     "gulp-nwayo-include":  "0.3.2",
-    "babel-core":          "6.16.0",
+    "babel-core":          "6.17.0",
     "babel-preset-es2015": "6.16.0",
     "gulp-uglify":         "2.0.0",
 
     "modernizr":  "3.3.1",
-    "lodash-cli": "4.16.2"
+    "lodash-cli": "4.16.3"
   }
 }
