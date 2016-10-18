@@ -167,7 +167,7 @@ rules:
   no-with: [error]
   radix: [error, always]
   vars-on-top: [error]
-  wrap-iife: [error, inside]
+  wrap-iife: [error, inside, {functionPrototypeMethods: true}]
   yoda: [error, never]
 
 
@@ -206,6 +206,7 @@ rules:
   consistent-this: [error, self]
   eol-last: [error, always]
   func-call-spacing: [error, never]
+  func-name-matching: [error]
   func-names: [error, never]
   func-style: [error, expression]
   id-blacklist: [off]
