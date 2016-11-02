@@ -26,8 +26,9 @@ $black-weight:      900;
 
 $textfields-selector: 'input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], input[type="date"], input[type="number"]';
 
-$bull-char:  '\2022';
-$times-char: '\00D7';
+$bull-char:   '\2022';
+$times-char:  '\00D7';
+$endash-char: '\2013';
 
 $social-colors: (
 	facebook:  #3b5998,

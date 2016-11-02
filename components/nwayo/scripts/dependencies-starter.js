@@ -65,7 +65,7 @@
 	const path = konstan.konstan.path;
 	delete konstan.konstan.path;
 
-	const culture   = $('html').attr('lang');
+	const culture   = $('html').attr('lang') || '';
 	const $body     = $('body');
 	const bodyClass = $body.attr('class');
 
