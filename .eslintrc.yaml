@@ -162,6 +162,7 @@ rules:
   no-useless-call: [error]
   no-useless-concat: [error]
   no-useless-escape: [error]
+  no-useless-return: [error]
   no-void: [error]
   no-warning-comments: [warn, {location: anywhere}]
   no-with: [error]
@@ -212,7 +213,7 @@ rules:
   id-blacklist: [off]
   id-length: [off]
   id-match: [off]
-  indent: [error, tab, {SwitchCase: 1, VariableDeclarator: 1, outerIIFEBody: 1, MemberExpression: 1}]
+  indent: [error, tab, {SwitchCase: 1, VariableDeclarator: 1, outerIIFEBody: 1, CallExpression: {arguments: 1}}]
   jsx-quotes: [error, prefer-double]
   key-spacing:
     - error
@@ -317,7 +318,6 @@ rules:
   prefer-arrow-callback: [error]
   prefer-const: [error, {destructuring: any, ignoreReadBeforeAssign: false}]
   prefer-numeric-literals: [error]
-  prefer-reflect: [off] # Needs poyfill
   prefer-rest-params: [error]
   prefer-spread: [error]
   prefer-template: [error]
