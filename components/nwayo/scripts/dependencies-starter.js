@@ -37,16 +37,24 @@
 
 	// Vendors
 	const vendor = {};
-	addProp(vendor, 'jQuery',       global.jQuery);
-	addProp(vendor, 'jQueryGlobal', global.jQuery);
-	addProp(vendor, 'lodash',       global._);
-	addProp(vendor, 'Modernizr',    global.Modernizr);
-	addProp(vendor, 'PubSub',       global.PubSub);
+	addProp(vendor, 'jQuery',    global.jQuery.noConflict(true)); // Remove .noConflict(true) if only one jQuery
+	addProp(vendor, 'lodash',    global._.noConflict());
+	addProp(vendor, 'Modernizr', global.Modernizr);
+	addProp(vendor, 'PubSub',    global.PubSub);
+
+	if (global.jQuery) {
+		addProp(vendor, 'jQueryGlobal', global.jQuery);
+	}
 
 	addProp(nwayo, 'vendor', vendor);
 
-	// Promises
+	// Redefine
 	const $ = vendor.jQuery;
+	const _ = vendor.lodash;
+
+
+
+	// Promises
 	const deferredDOMParse = $.Deferred();
 	const deferredDocumentLoad = $.Deferred();
 
@@ -92,6 +100,12 @@
 	// When document loaded
 	$(window).on('load', () => {  // eslint-disable-line no-restricted-globals
 		deferredDocumentLoad.resolve();
+	});
+
+	// When jQuery global is loaded
+	PubSub.subscribe('nwayo.jQueryGlobal.loaded', () => {
+		addProp(global.nwayo.vendor, 'jQueryGlobal', global.jQuery);
+		PubSub.publish('nwayo.jQueryGlobal.ready');
 	});
 
 })();

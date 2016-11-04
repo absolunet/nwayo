@@ -2,6 +2,8 @@
 //-- Collection starter kit
 //-------------------------------------
 
+//= require components/nwayo/scripts/exclusion-starter
+
 /* eslint-disable strict, no-unused-vars, no-redeclare */
 const PROJECT = global.nwayo.project;
 const app     = global[PROJECT];
