@@ -51,7 +51,12 @@
 	//-- Subscribe to topics
 	local.subscribe = () => {
 
-		//
+		// When global jQuery is ready
+		/**
+		PubSub.subscribe('nwayo.jQueryGlobal.ready', () => {
+			$Global.on('click');
+		});
+		/**/
 
 	};
 

@@ -35,6 +35,9 @@ include:
   # String
   - template
 
+  # Util
+  - noConflict
+
 
 
 #minus:
