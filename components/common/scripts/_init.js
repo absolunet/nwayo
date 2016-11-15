@@ -32,8 +32,8 @@
 		// tmpl
 		/**
 		$('script[type="text/x-jsrender"][id^="jshtml-"]').each(function() {
-			let id = $(this).attr('id');
-			app.tmpl[`html-${id.substring(7)}`] = $.templates(`#${id}`);
+			const id = $(this).attr('id');
+			app.tmpl[`html${_.upperFirst(_.camelCase(id.substring(7)))}`] = $.templates(`#${id}`);
 		});
 		/**/
 
