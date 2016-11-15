@@ -92,14 +92,26 @@
 	}));
 
 
+	let DOMParsed    = false;
+	let waitingOnDOM = false;
+
 	// When DOM ready
 	$(() => {
 		deferredDOMParse.resolve();
+		DOMParsed = true;
+
+		if (waitingOnDOM) {
+			deferredDocumentLoad.resolve();
+		}
 	});
 
 	// When document loaded
 	$(window).on('load', () => {  // eslint-disable-line no-restricted-globals
-		deferredDocumentLoad.resolve();
+		if (!DOMParsed) {
+			waitingOnDOM = true;
+		} else {
+			deferredDocumentLoad.resolve();
+		}
 	});
 
 	// When jQuery global is loaded
