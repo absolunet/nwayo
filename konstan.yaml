@@ -28,6 +28,11 @@ data:
     bgsite: '#fafafa'
 
 
+  #-- Fomts
+  font:
+    base: 'Open Sans'
+
+
   #-- Classes
   class:
     wide:   columns small-9 medium-6
@@ -64,14 +69,32 @@ data:
 #-- Bundle-specific data
 bundles:
 
-  #-- Store
+  #-- site
   site:
+
+    #-- Colors
+    color:
+
+      # Blue
+      accent: '#25329d'
+
+    #-- Fonts
+    font:
+      alt: 'kreon'
+
+
+  #-- SAMPLE
+  SAMPLE:
 
     #-- Colors
     color:
 
       # Green
       accent: '#659d32'
+
+    #-- Fonts
+    font:
+      alt: 'kreon2'
 
 
 

@@ -5,22 +5,24 @@
 //-- nwayo util
 @import 'components/nwayo/styles/util';
 
+$pxrem: (1 / 16) * 1rem;
+
 //-- Foundation
-$column-gutter-size: 15px;
+$column-gutter-size: 15 * $pxrem;
+$column-small-size:  290 * $pxrem;
+
 
 //-- Selector
-$hover-selector: 'html.no-touchevents &:hover';
+$hover-selector:     'html.no-touchevents &:hover';
+$docloaded-selector: 'body.document-loaded';
 
 
 //-- Colors
-$bg-site-color: $konstan-color-bgsite;
-$text-color:    $konstan-color-text;
-$border-color:  $konstan-color-border;
-$bg-color:      $konstan-color-bg;
-
-/**
-$accent-color: $konstan-current-color-accent;
-/**/
+$bg-site-color: $konstan-color-bgsite;          // #636363
+$text-color:    $konstan-color-text;            // #dddddd
+$border-color:  $konstan-color-border;          // #eaeaea
+$bg-color:      $konstan-color-bg;              // #fafafa
+$accent-color:  $konstan-current-color-accent;  // #25329d  /  #659d32
 
 
 /**
@@ -35,22 +37,17 @@ $section-colorscheme: (
 
 
 //-- Fonts
-/**
-@include load-font-mixin('kreon',   'kreon-regular-webfont', 'common');
-@include load-font-mixin('kreon',   'kreon-light-webfont',   'common', $weight:$light-weight);
-@include load-font-mixin('kreon',   'kreon-bold-webfont',    'common', $weight:bold);
-@include load-font-mixin('kreon',   'kreon-italic-webfont',  'common', $style:italic);
-@include load-font-mixin('icomoon', 'icomoon',               'common');
-/**/
-
-$text-font: sans-serif;
-$alt-font:  'kreon', $text-font;
+$base-font:  Helvetica, Arial, Verdana, sans-serif;
+$text-font:  $konstan-font-base, $base-font;
+$title-font: $konstan-current-font-title, $base-font;
 
 $text-base-weight:    $light-weight;
 $text-fat-weight:     $normal-weight;
 $text-fatter-weight:  $medium-weight;
 $text-fattest-weight: $bold-weight;
 
+$base-text-size:  16 * $pxrem;
+$title-text-size: 24 * $pxrem;
 
 
 

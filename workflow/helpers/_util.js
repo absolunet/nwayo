@@ -73,7 +73,7 @@ class Util {
 		src._read = function() {
 			this.push(new Vinyl({
 				path:     filename,
-				contents: new Buffer(string)
+				contents: Buffer.from(string)
 			}));
 			this.push(null);
 		};
@@ -185,9 +185,8 @@ class Util {
 
 	//-- Babel processing
 	static babelProcess(options, rules) {
-		const fullPath = options.fullPath;
-		const rawPath  = options.rawPath;
-		let content  = options.content;
+		const { fullPath, rawPath } = options;
+		let { content } = options;
 		if (fullPath.substr(-3) === '.js') {
 			if (!rules.test(rawPath)) {
 				content = Util.cache(`babel:${fullPath}`, content, (data) => {
@@ -241,7 +240,7 @@ class Util {
 				pathname.basename = filename(pathname.basename);
 			}
 
-			return;
+			return false;
 		};
 	}
 

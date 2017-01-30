@@ -32,3 +32,4 @@
 //= **require bower_components/foundation-sites/js/foundation.tabs
 //= **require bower_components/foundation-sites/js/foundation.toggler
 //= **require bower_components/foundation-sites/js/foundation.tooltip
+//= **require bower_components/foundation-sites/js/foundation.zf.responsiveAccordionTabs

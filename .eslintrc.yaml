@@ -71,6 +71,7 @@ globals:
 rules:
 
   # Possible Errors
+  no-await-in-loop: [error]
   no-cond-assign: [error, always]
   no-console: [warn]
   no-constant-condition: [error]
@@ -83,7 +84,7 @@ rules:
   no-empty: [error, {allowEmptyCatch: false}]
   no-ex-assign: [error]
   no-extra-boolean-cast: [error]
-  no-extra-parens: [error, all, {nestedBinaryExpressions: false}]
+  no-extra-parens: [error, all, {nestedBinaryExpressions: false, ignoreJSX: 'all'}]
   no-extra-semi: [error]
   no-func-assign: [error]
   no-inner-declarations: [error, both]
@@ -167,7 +168,9 @@ rules:
   no-void: [error]
   no-warning-comments: [warn, {location: anywhere}]
   no-with: [error]
+  prefer-promise-reject-errors: [error]
   radix: [error, always]
+  require-await: [error]
   vars-on-top: [error]
   wrap-iife: [error, inside, {functionPrototypeMethods: true}]
   yoda: [error, never]
@@ -201,6 +204,7 @@ rules:
   block-spacing: [error, always]
   brace-style: [error, 1tbs, {allowSingleLine: true}]
   camelcase: [error, {properties: always}]
+  capitalized-comments: [off]
   comma-dangle: [error, never] #always-multiline
   comma-spacing: [error, {before: false, after: true}]
   comma-style: [error, last]
@@ -214,7 +218,7 @@ rules:
   id-blacklist: [off]
   id-length: [off]
   id-match: [off]
-  indent: [error, tab, {SwitchCase: 1, VariableDeclarator: 1, outerIIFEBody: 1, CallExpression: {arguments: 1}}]
+  indent: [error, tab, {SwitchCase: 1, VariableDeclarator: 1, outerIIFEBody: 1, CallExpression: {arguments: 1}, ArrayExpression: 1, ObjectExpression: 1}]
   jsx-quotes: [error, prefer-double]
   key-spacing:
     - error
@@ -254,6 +258,7 @@ rules:
   no-lonely-if: [error]
   no-mixed-operators: [error, {allowSamePrecedence: true}]
   no-mixed-spaces-and-tabs: [error]
+  no-multi-assign: [error]
   no-multiple-empty-lines: [error, {max: 100, maxEOF: 1, maxBOF: 0}]
   no-negated-condition: [off]
   no-nested-ternary: [off]
@@ -318,6 +323,7 @@ rules:
   object-shorthand: [error, consistent]
   prefer-arrow-callback: [error]
   prefer-const: [error, {destructuring: any, ignoreReadBeforeAssign: false}]
+  prefer-destructuring: [error, {array: true, object: true}, {enforceForRenamedProperties: false}]
   prefer-numeric-literals: [error]
   prefer-rest-params: [error]
   prefer-spread: [error]

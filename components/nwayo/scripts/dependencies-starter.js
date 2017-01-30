@@ -65,12 +65,42 @@
 
 	addProp(nwayo, 'promises', promises);
 
+	// Shortcuts
+	const shortcuts = (() => {
+		const shortcut = {};
+		const selector = (key, value) => {
+			return `[${key}${value ? `~="${value}"` : ''}]`;
+		};
+
+		// Shortcuts
+		['name'].forEach((key) => {
+			shortcut[key]       = (value) => { return selector(key, value); };
+			shortcut[`$${key}`] = (value) => { return $(shortcut[key](value)); };
+		});
+
+		// Data - shortcuts
+		['action', 'component', 'placeholder', 'showfor'].forEach((key) => {
+			shortcut[key]       = (value) => { return selector(`data-${key}`, value); };
+			shortcut[`$${key}`] = (value) => { return $(shortcut[key](value)); };
+		});
+
+		// DOM shortcuts
+		shortcut.$window   = $(global);
+		shortcut.$document = $(document);
+		shortcut.$html     = $('html');
+		shortcut.$body     = $('body');
+
+		return shortcut;
+	})();
+
+	addProp(nwayo, 'shortcuts', shortcuts);
+
 	addProp(global, 'nwayo', nwayo);
 
 
 
 	//-- Initialize application
-	const path = konstan.konstan.path;
+	const { path } = konstan.konstan;
 	delete konstan.konstan.path;
 
 	const culture   = $('html').attr('lang') || '';
