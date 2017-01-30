@@ -3,6 +3,7 @@
 //-------------------------------------
 'use strict';
 
+const events   = require('events');
 const _        = require('lodash');
 const glob     = require('glob');
 const minimist = require('minimist');
@@ -39,7 +40,7 @@ const bundles = (() => {
 	const data = {};
 	if (bundlesList.length) {
 		for (let name of bundlesList) {
-			name = name.match(/([^/]+).yaml/)[1];
+			[, name] = name.match(/([^/]+).yaml/);
 			data[name] = Util.readYAML(`${PATH.dir.bundles}/${name}.${PATH.ext.bundles}`);
 		}
 	} else {
@@ -61,6 +62,10 @@ const bundlesComponents = (() => {
 
 //-- Is in 'watch' mode
 let watching = false;
+
+
+//-- Boost max listeners
+events.EventEmitter.prototype._maxListeners = 100;
 
 
 

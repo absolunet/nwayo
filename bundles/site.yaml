@@ -40,11 +40,18 @@ scripts:
       - components/vendor-foundation/scripts/vendor-foundation
       - components/nwayo/scripts/dependencies-starter
 
-    main:
+    common:
       - components/nwayo/scripts/collection-starter
       - components/common/scripts/common
       - components/form/scripts/form
+
+    site:
+      - components/nwayo/scripts/collection-starter
       - components/site/scripts/site
+
+    SAMPLE:
+      - components/nwayo/scripts/collection-starter
+      - components/SAMPLE/scripts/SAMPLE
 
 
 
@@ -62,10 +69,17 @@ styles:
     main:
       - components/site/styles/config
       - components/vendor-foundation/styles/vendor-foundation
+      - components/common/styles/common
       - components/site/styles/site
       - components/form/styles/form
+
+    SAMPLE:
+      - components/SAMPLE/styles/config
+      - components/SAMPLE/styles/SAMPLE
 
     editor:
       - components/site/styles/config
       - components/vendor-foundation/styles/vendor-foundation
+      - components/site/styles/fonts
+      - components/site/styles/layout
       - components/cms/styles/editor
