@@ -108,7 +108,7 @@ gulp.task('styles-compile', ['styles-lint', 'styles-constants'], () => {
 
 				.pipe(autoprefixer({ browsers:bundle.styles.options.autoprefixer }))
 
-				.pipe(gulpif(bundle.styles.options.minify && !ENV.watching, cssnano()))
+				.pipe(gulpif(bundle.styles.options.minify && !ENV.watching, cssnano({ zindex:false })))
 
 				.pipe(gulp.dest(`${bundle.output.build}/${PATH.build.styles}`))
 		);
