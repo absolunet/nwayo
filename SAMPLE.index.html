@@ -8,8 +8,6 @@
 	<meta http-equiv="cleartype" content="on">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="../src/web/build/styles/main.css">
-
 	<link rel="shortcut icon"    href="../src/web/build/icons/site/favicon.ico">
 	<link rel="apple-touch-icon" href="../src/web/build/icons/site/icon-57.png">
 	<link rel="apple-touch-icon" href="../src/web/build/icons/site/icon-72.png"  sizes="72x72">
@@ -24,6 +22,7 @@
 	<link rel="icon"             href="../src/web/build/icons/site/icon-96.png"  sizes="96x96">
 	<link rel="icon"             href="../src/web/build/icons/site/icon-192.png" sizes="192x192">
 	<link rel="icon"             href="../src/web/build/icons/site/icon-195.png" sizes="195x195">
+	<link rel="icon"             href="../src/web/build/icons/site/icon-196.png" sizes="196x196">
 	<link rel="icon"             href="../src/web/build/icons/site/icon-228.png" sizes="228x228">
 	<link rel="image_src"        href="../src/web/build/icons/site/icon-512.png">
 
@@ -34,17 +33,57 @@
 	<meta name="msapplication-wide310x150logo"   content="../src/web/build/icons/site/tile-wide.png">
 	<meta name="msapplication-square310x310logo" content="../src/web/build/icons/site/tile-large.png">
 
-	<!-- nwayo 3.0.4 (c) 2016 Absolunet -->
+
+
+	<style>
+		.foundation-mq { font-family: "small=0em&medium=40.0625em&large=64.0625em&xlarge=80.0625em&xxlarge=120.0625em"; }
+		html { display:block; box-sizing:border-box; background-color:#eee; color:#659d32; font-family:sans-serif; font-size:100%; }
+		body { display:block; padding:0; margin:0; font-size:1rem; font-weight:400; line-height:1.3; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+		*, *::before, *::after { box-sizing:inherit; }
+		.body { visibility:hidden; }
+	</style>
+
+	<link rel="preload" href="../src/web/build/styles/main.css" as="style" onload="this.rel='stylesheet'">
+
+	<script>
+		/* https://raw.githubusercontent.com/filamentgroup/loadCSS/v1.2.0/src/loadCSS.js */
+		/*! loadCSS: load a CSS file asynchronously. [c]2016 @scottjehl, Filament Group, Inc. Licensed MIT */
+		!function(e){"use strict";var n=function(n,t,o){function i(e){return a.body?e():void setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var s=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=s[s.length-1]}var f=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=f.length;t--;)if(f[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+		/* https://raw.githubusercontent.com/filamentgroup/loadCSS/v1.2.0/src/cssrelpreload.js */
+		/*! CSS rel=preload polyfill. Depends on loadCSS function. [c]2016 @scottjehl, Filament Group, Inc. Licensed MIT  */
+		!function(e){if(e.loadCSS){var t=loadCSS.relpreload={};if(t.support=function(){try{return e.document.createElement("link").relList.supports("preload")}catch(t){return!1}},t.poly=function(){for(var t=e.document.getElementsByTagName("link"),n=0;n<t.length;n++){var r=t[n];"preload"===r.rel&&"style"===r.getAttribute("as")&&(e.loadCSS(r.href,r),r.rel=null)}},!t.support()){t.poly();var n=e.setInterval(t.poly,300);e.addEventListener&&e.addEventListener("load",function(){e.clearInterval(n)}),e.attachEvent&&e.attachEvent("onload",function(){e.clearInterval(n)})}}}(this);
+	</script>
+
+
+
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-XXXXXX');</script>
+	<!-- End Google Tag Manager -->
+
+
+	<!-- nwayo 3.0.4 (c) 2017 Absolunet -->
 </head>
 <body id="uid" class="tag1 tag2 tag3">
 
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
+
+
+
 	<div class="body">
 
-		<h1 id="logo"></h1>
-		<h1 id="logo2"></h1>
-		<h2 id="misc"></h2>
-		<h2 id="icon"></h2>
-		<h2 id="misc-hd"></h2>
+		<h1 class="logo"></h1>
+		<h1 class="logo2"></h1>
+		<h2 class="misc"></h2>
+		<h2 class="icon"></h2>
+		<h2 class="misc-hd"></h2>
 
 		<p class="f-lite">lorem lite</p>
 		<p class="f-norm">lorem normal</p>
@@ -59,8 +98,10 @@
 
 	</div>
 
-	<script src="../src/web/build/scripts/dependencies.js"></script>
-	<script src="../src/web/build/scripts/main.js" async></script>
+
+
+	<script src="../src/web/build/scripts/dependencies.js" defer></script>
+	<script src="../src/web/build/scripts/main.js" defer></script>
 
 </body>
 </html>

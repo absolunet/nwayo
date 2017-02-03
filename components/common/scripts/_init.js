@@ -19,7 +19,8 @@
 		// tmpl
 		/**
 		$.views.helpers({
-			konstan: key => { return _.get(konstan, key); }
+			konstan: (key) => { return _.get(konstan, key); },
+			trans:   (key) => { return app.translation[key]; }
 		});
 		/**/
 
@@ -69,6 +70,15 @@
 
 	//-- Cache data once DOM is loaded
 	local.cacheDOM = () => {
+
+		/**
+		// translation
+		app.translation = {};
+		$('[data-translation]').each(function() {
+			$.extend(app.translation, $(this).data('translation'));
+		});
+		/**/
+
 
 		/** lodash: camelCase
 		// tmpl
@@ -160,9 +170,17 @@
 		/**/
 
 
+	};
+
+
+	//-- Execute once page is loaded
+	local.delayedStart = () => {
+
+		__.$body.addClass('document-loaded');
+
 		/**
-		// Element list
-		app.util.equalizer({
+		// Equalizer
+		kafe.ext.foundation.equalizer({
 			wrapper: __.$component('element-list'),
 			item:    __.$component('element-list-item'),
 			rows:    {
@@ -172,14 +190,6 @@
 			}
 		});
 		/**/
-
-	};
-
-
-	//-- Execute once page is loaded
-	local.delayedStart = () => {
-
-		__.$body.addClass('document-loaded');
 
 	};
 
