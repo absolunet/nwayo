@@ -6,8 +6,8 @@
 <br>
 
 ## What is nwayo ?
-- A completely hackable front-end boilerplate
-- A multi-theme, multi-site, multi-cms front-end framework
+- A completely hackable front end boilerplate
+- A multi-theme, multi-site, multi-cms front end framework
 - A back-end agnostic environment
 
 
@@ -58,10 +58,15 @@ nwayo rebuild
 
 ## Tried and tested
  - Currently deployed on 150+ sites
- - Front-end to [Drupal](//www.drupal.org), [Wordpress](//wordpress.org), [Symfony](//symfony.com), [Magento 1 & 2](//magento.com), [Sitecore](//www.sitecore.net) environments
+ - Front end to [Drupal](//www.drupal.org), [Wordpress](//wordpress.org), [Symfony](//symfony.com), [Magento 1 & 2](//magento.com), [Sitecore](//www.sitecore.net), [Insite](http://www.insitesoft.com) environments
+
+## Components
+Multiple component boilerplates [available](//github.com/absolunet/nwayo-components)
 
 ## Documentation
-*Coming soon*
+*Coming soon...*
+
+Consult [this branch](//github.com/absolunet/nwayo/tree/gh-pages) in the meantime
 
 ## Release history
 See the [releases](//github.com/absolunet/nwayo/releases).
