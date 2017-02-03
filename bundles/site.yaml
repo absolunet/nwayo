@@ -36,7 +36,7 @@ scripts:
       - ~modernizr
       - bower_components/pubsub-js/src/pubsub
       - bower_components/fastclick/lib/fastclick
-      - bower_components/what-input/what-input
+      - bower_components/what-input/dist/what-input
       - components/vendor-foundation/scripts/vendor-foundation
       - components/nwayo/scripts/dependencies-starter
 

@@ -15,7 +15,8 @@
 	const local = {};
 
 	//-- Input mask
-	const bindInputMask = ($context = __.$body) => {
+	const bindInputMask = (/* $context = __.$body */) => {
+
 		/**
 		// Numeric
 		$context.find('input[data-mask="numeric-integer"]').inputmask('integer', {
@@ -63,7 +64,8 @@
 
 
 	//-- Numeric keyboard
-	const bindNumericKeyboard = ($context = __.$body) => {
+	const bindNumericKeyboard = (/* $context = __.$body */) => {
+
 		/**
 		$context.find(`
 			input[data-mask="numeric-integer"],
