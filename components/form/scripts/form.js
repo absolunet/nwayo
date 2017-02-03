@@ -108,6 +108,11 @@
 
 		rebindFormEvent();
 
+		/*
+		// Bind on text field change
+		$('input:text').on('input paste cut keyup', () => {});
+		/**/
+
 	};
 
 

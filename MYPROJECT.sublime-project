@@ -33,7 +33,6 @@
 			[
 				"*.git*",
 				"*nwayo/.nwayo-cache*",
-				"*nwayo/build*",
 				"*nwayo/bower_components*",
 				"*nwayo/node_modules*"
 			]

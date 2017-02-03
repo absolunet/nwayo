@@ -50,7 +50,7 @@ gulp.task('icons-favicon', () => {
 
 //-- Share icons
 // https://mathiasbynens.be/notes/touch-icons
-// https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/IconMatrix.html
+// https://developer.apple.com/ios/human-interface-guidelines/graphics/app-icon/
 // https://developer.chrome.com/multidevice/android/installtohomescreen
 // http://operacoast.com/developer
 gulp.task('icons-share', () => {
@@ -65,6 +65,7 @@ gulp.task('icons-share', () => {
 		167,  // For iPad Pro with @2× display running iOS ≤ 9
 		180,  // For iPhone 6 Plus with @3× display
 		192,  // For Chrome for Android
+		196,  // For Chrome for Android home screen icon
 		228,  // For Coast for iOS
 		64,   // Windows site icons, Safari Reading List, Modern browsers
 		96,   // Google TV Favicon
