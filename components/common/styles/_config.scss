@@ -39,12 +39,12 @@ $section-colorscheme: (
 //-- Fonts
 $base-font:  Helvetica, Arial, Verdana, sans-serif;
 $text-font:  $konstan-font-base, $base-font;
-$title-font: $konstan-current-font-title, $base-font;
+$title-font: $konstan-current-font-alt, $base-font;
 
 $text-base-weight:    $light-weight;
 $text-fat-weight:     $normal-weight;
-$text-fatter-weight:  $medium-weight;
-$text-fattest-weight: $bold-weight;
+$text-fatter-weight:  $bold-weight;
+$text-fattest-weight: $extrabold-weight;
 
 $base-text-size:  16 * $pxrem;
 $title-text-size: 24 * $pxrem;

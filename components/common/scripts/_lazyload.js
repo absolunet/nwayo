@@ -106,6 +106,7 @@
 		static register(types) {
 			_.merge(local.types, types);
 		}
+
 	};
 
 

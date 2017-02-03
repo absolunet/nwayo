@@ -1,0 +1,15 @@
+//-------------------------------------
+//-- Fonts
+//-------------------------------------
+
+//-- Fonts
+@include load-font-mixin('Open Sans',  'opensans-light-webfont',           'common', $weight:$light-weight);
+@include load-font-mixin('Open Sans',  'opensans-lightitalic-webfont',     'common', $weight:$light-weight, $style:italic);
+@include load-font-mixin('Open Sans',  'opensans-regular-webfont',         'common', $weight:$normal-weight);
+@include load-font-mixin('Open Sans',  'opensans-italic-webfont',          'common', $weight:$normal-weight, $style:italic);
+//@include load-font-mixin('Open Sans',  'opensans-semibold-webfont',        'common', $weight:$semibold-weight, $style:italic);
+//@include load-font-mixin('Open Sans',  'opensans-semibolditalic-webfont',  'common', $weight:$semibold-weight, $style:italic);
+@include load-font-mixin('Open Sans',  'opensans-bold-webfont',            'common', $weight:$bold-weight);
+@include load-font-mixin('Open Sans',  'opensans-bolditalic-webfont',      'common', $weight:$bold-weight, $style:italic);
+@include load-font-mixin('Open Sans',  'opensans-extrabold-webfont',       'common', $weight:$extrabold-weight);
+@include load-font-mixin('Open Sans',  'opensans-extrabolditalic-webfont', 'common', $weight:$extrabold-weight, $style:italic);
