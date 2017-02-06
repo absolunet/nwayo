@@ -7,6 +7,7 @@ const events   = require('events');
 const _        = require('lodash');
 const glob     = require('glob');
 const minimist = require('minimist');
+const os       = require('os');
 
 const PATH = global.nwayo.path;
 const Util = global.nwayo.util;
@@ -77,6 +78,7 @@ class Env {
 	static get bundles()           { return bundles; }
 	static get bundlesComponents() { return bundlesComponents; }
 	static get watching()          { return watching; }
+	static get isWindows()         { return os.platform() === 'win32'; }
 
 
 	//-- Set to 'watch' mode

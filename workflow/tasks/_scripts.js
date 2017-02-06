@@ -17,6 +17,7 @@ const include   = require('gulp-nwayo-include');
 const uglifyjs  = require('uglify-js');
 const minifier  = require('gulp-uglify/minifier');
 const eslint    = require('gulp-eslint');
+const lec       = require('gulp-line-ending-corrector');
 const modernizr = require('modernizr');
 // const debug = require('gulp-debug');
 
@@ -33,6 +34,8 @@ gulp.task('scripts-lint', () => {
 
 	return gulp.src(PATH.files.scriptsLint)
 		.pipe(cache('scripts', { optimizeMemory:true }))
+
+		.pipe(gulpif(ENV.isWindows, lec()))
 
 		.pipe(eslint())
 
