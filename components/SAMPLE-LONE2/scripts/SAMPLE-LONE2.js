@@ -1,11 +1,11 @@
 //-------------------------------------
-//-- SITE2 SUB
+//-- SAMPLE LONE 2
 //-------------------------------------
 
 //= **require     bower_components/foobar
 //= **require     components/nwayo/scripts/wrapper-foobar
-//= **jshtml      components/SITE2-SUB/templates/foobar
-//= **jshtml_tree components/SITE2-SUB/templates
+//= **jshtml      components/SAMPLE-LONE2/templates/foobar
+//= **jshtml_tree components/SAMPLE-LONE2/templates
 
 (() => {
 	'use strict';

@@ -16,7 +16,7 @@ assets:
     - common
     - form
     - SITE2
-    - SITE2-SUB
+    - SAMPLE-LONE2
 
 
 
@@ -49,7 +49,7 @@ scripts:
 
     sub:
       - components/nwayo/scripts/collection-starter
-      - components/SITE2-SUB/scripts/SITE2-SUB
+      - components/SAMPLE-LONE2/scripts/SAMPLE-LONE2
 
 
 
@@ -72,5 +72,5 @@ styles:
       - components/form/styles/form
 
     sub:
-      - components/SITE2-SUB/styles/config
-      - components/SITE2-SUB/styles/SITE2-SUB
+      - components/SAMPLE-LONE2/styles/config
+      - components/SAMPLE-LONE2/styles/SAMPLE-LONE2
