@@ -61,7 +61,6 @@ styles:
     autoprefixer:
       - '> 1%'
       - 'last 2 versions'
-      - 'and_chr >= 2.3'
       - 'ie >= 9'
 
   collections:

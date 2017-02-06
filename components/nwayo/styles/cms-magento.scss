@@ -24,8 +24,8 @@
 	body > a[onclick*="profiler"] {
 		display: block;
 		padding: 1em 0;
-		border: 2px solid $black;
-		border-bottom: 1px dotted $black;
+		border: .125em solid $black;
+		border-bottom: .0625em dotted $black;
 		margin: 2em 2vw 0;
 		background-color: lighten($black, 95%);
 		color: $black;
@@ -45,9 +45,9 @@
 		position: relative;
 		overflow-x: scroll;
 		width: 96vw;
-		max-height: 700px;
-		padding: 1em 5px;
-		border: 2px solid $black;
+		max-height: 44em;
+		padding: 1em .3125em;
+		border: .125em solid $black;
 		border-top: 0;
 		margin: 0 2vw 2em;
 		background-color: $white;
