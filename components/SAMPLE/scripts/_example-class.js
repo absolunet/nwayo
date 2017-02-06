@@ -1,11 +1,11 @@
 //-------------------------------------
-//-- Bar
+//-- SAMPLE - Example Class
 //-------------------------------------
 
-//= **require     bower_components/foo/bar
-//= **require     components/foo/scripts/bar
-//= **jshtml      components/foo/templates/foobar
-//= **jshtml_tree components/foo/templates
+//= **require     bower_components/foobar
+//= **require     components/nwayo/scripts/wrapper-foobar
+//= **jshtml      components/SAMPLE/templates/foobar
+//= **jshtml_tree components/SAMPLE/templates
 
 (() => {
 	'use strict';

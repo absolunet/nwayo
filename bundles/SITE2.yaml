@@ -41,11 +41,16 @@ scripts:
       - components/vendor-foundation/scripts/vendor-foundation
       - components/nwayo/scripts/dependencies-starter
 
-    SITE2:
+    main:
       - components/nwayo/scripts/collection-starter
       - components/common/scripts/common
-      - components/form/scripts/form
       - components/SITE2/scripts/SITE2
+      - components/form/scripts/form
+
+    sub:
+      - components/nwayo/scripts/collection-starter
+      - components/SITE2-SUB/scripts/SITE2-SUB
+
 
 
 
