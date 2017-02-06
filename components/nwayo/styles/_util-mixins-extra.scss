@@ -1,91 +1,6 @@
 //-------------------------------------
-//-- Utils: Mixins
+//-- Utils: Mixins extra
 //-------------------------------------
-
-//-- Background image
-@mixin bg-image-mixin ($file, $context, $inline:false, $width:false, $height:false, $color:false) {
-
-	// uri
-	$uri: '';
-	@if $inline {
-		$inline-image-path: assets-path($file, $context, 'inline');
-
-		@if str-index($file, '.svg') {
-			$svg: readfile($inline-image-path);
-
-			@if $color {
-
-				// single color
-				@if type-of($color) == 'color' {
-					$svg: color-replace($svg, $svg-replacement-1, $color);
-
-				// list
-				} @else if type-of($color) == 'list' {
-					@for $i from 1 through length($color) {
-						$svg: color-replace($svg, nth($svg-replacement, $i), nth($color, $i));
-					}
-
-				// hash
-				} @else {
-					@each $source, $target in $color {
-						$svg: color-replace($svg, $source, $target);
-					}
-				}
-			}
-
-			$uri: svg-data-uri($svg);
-
-		} @else {
-			$uri: inline-image($inline-image-path);
-		}
-
-	} @else {
-		$uri: url(assets-path($file, $context, 'images'));
-	}
-
-	// high density
-	@if str-index($file, '@2x') {
-		$path: 'components/' + $context + '/assets/' + if($inline, 'inline-', '') + 'images/' + $file;
-		$width:  if($width, $width, image-width($path));
-		$height: if($height, $height, image-height($path));
-
-		@media print, (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
-			background-image: $uri;
-			background-size: $width / 2 $height / 2;
-		}
-
-		$uri: str-replace($uri, '@2x', '');
-	}
-
-	background-image: #{$uri};
-}
-
-
-//-- Scalable icon
-@mixin scalable-icon-mixin ($file, $context, $color:false) {
-	@include bg-image-mixin($file, $context, $inline:true, $color:$color);
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: contain;
-}
-
-
-//-- Font-face
-@mixin load-font-mixin ($name, $filename, $context, $weight:normal, $style:normal) {
-	$url:       assets-path($filename, $context, 'fonts');
-	$woff2:     if(fileexists('components/' + $context + '/assets/fonts/' + $filename + '.woff2'), ',' + url($url + '.woff2') format('woff2'), '');
-	@font-face {
-		font-family: $name;
-		src: url($url + '.eot');
-		src: url($url + '.eot?#iefix') format('embedded-opentype')
-		     #{$woff2},
-		     url($url + '.woff'),
-		     url($url + '.ttf') format('truetype');
-		font-weight: $weight;
-		font-style: $style;
-	}
-}
-
 
 //-- Placeholder
 @mixin placeholder-mixin () {
@@ -93,7 +8,6 @@
 	input.placeholder { @content; }
 	input::placeholder { @content; }
 }
-
 
 //-- Select reset
 @mixin select-reset-mixin() {
@@ -108,21 +22,11 @@
 }
 
 
-//-- Replace text
-@mixin replace-text-mixin ($width: auto, $height:auto) {
-	display: block;
-	overflow: hidden;
-	width: $width;
-	height: $height;
-	text-align: left;
-	text-indent: 1000%;
-	white-space: nowrap;
-}
 
 
 
 //-- Arrow
-@mixin arrow-mixin ($direction:right, $size:10px, $color:$text-color) {
+@mixin arrow-mixin ($direction:right, $size:.625em, $color:$text-color) {
 	display: inline-block;
 	border: 0;
 
@@ -151,6 +55,9 @@
 }
 
 
+
+
+
 //-- Vertical center the child within the parent
 @mixin valign-parent {
 	font-size: 0;
@@ -167,6 +74,9 @@
 		vertical-align: middle;
 	}
 }
+
+
+
 
 
 //-- Create a block that scale within a ratio
@@ -186,13 +96,16 @@
 }
 
 
+
+
+
 //-- Create a list with columns
 // $nb-column - The number of columns (Min.: 2)
 // $bullet-spacing - Spacing reserved outside of <li> for a bullet
 // $column-spacing - Spacing between columns
 // $row-spacing - Spacing between rows
 // $base-style - Wether or not to output base styles (Ex.: set to false in a media query to prevent repeating the styles already defined)
-@mixin column-list($nb-column:2, $bullet-spacing:17px, $column-spacing:30px, $row-spacing:10px, $base-style:true) {
+@mixin column-list($nb-column:2, $bullet-spacing:1.0625em, $column-spacing:1.875em, $row-spacing:.625em, $base-style:true) {
 	// calculate a column offset : $column-spacing * ($column - 1) + $bullet-spacing * $column
 	$total-spacing: $column-spacing * ($nb-column - 1) + $bullet-spacing * $nb-column;
 	@if($base-style) {

@@ -2,6 +2,7 @@
 //-- Utils: Variables
 //-------------------------------------
 
+// Debug colors
 $debug-red:    #ee2c2c;
 $debug-orange: #ffa500;
 $debug-yellow: #ffdf33;
@@ -9,11 +10,25 @@ $debug-green:  #76ee00;
 $debug-blue:   #1e90ff;
 $debug-purple: #a020f0;
 
+
+// SVG colors
 $svg-replacement-1: #ba0bab;
 $svg-replacement-2: #c0ffee;
 $svg-replacement:   ($svg-replacement-1, $svg-replacement-2);
 
 
+// Social network colors
+$social-colors: (
+	facebook:  #3b5998,
+	pinterest: #bd081c,
+	twitter:   #55acee,
+	instagram: #bc2a8d,
+	youtube:   #cd201f,
+	vimeo:     #1ab7ea
+);
+
+
+// Font weights
 $thin-weight:       100;
 $extralight-weight: 200;
 $light-weight:      300;
@@ -24,18 +39,12 @@ $bold-weight:       700;
 $extrabold-weight:  800;
 $black-weight:      900;
 
-$textfields-selector: 'input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], input[type="date"], input[type="number"]';
 
+// Characters
 $bull-char:   '\2022';
 $times-char:  '\00D7';
 $endash-char: '\2013';
 
-$social-colors: (
-	facebook:  #3b5998,
-	pinterest: #bd081c,
-	twitter:   #55acee,
-	instagram: #bc2a8d,
-	youtube:   #cd201f,
-	vimeo:     #1ab7ea
-);
 
+// All text-like fields
+$textfields-selector: 'input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], input[type="date"], input[type="number"]';
