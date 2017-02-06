@@ -8,7 +8,7 @@
 root: true
 parser: espree
 parserOptions:
-  ecmaVersion: 2015
+  ecmaVersion: 2017
   sourceType: script
   ecmaFeatures:
     globalReturn: false
@@ -298,6 +298,7 @@ rules:
       markers: ['=', '--']
       block:
         balanced: true
+  template-tag-spacing: [error, never]
   unicode-bom: [error, never]
   wrap-regex: [error]
 

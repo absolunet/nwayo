@@ -42,11 +42,16 @@ scripts:
       - components/vendor-foundation/scripts/vendor-foundation
       - components/nwayo/scripts/dependencies-starter
 
-    site:
+    main:
       - components/nwayo/scripts/collection-starter
       - components/common/scripts/common
-      - components/form/scripts/form
       - components/site/scripts/site
+      - components/form/scripts/form
+      - components/SAMPLE/scripts/SAMPLE
+
+    SAMPLE-LONE:
+      - components/nwayo/scripts/collection-starter
+      - components/SAMPLE-LONE/scripts/SAMPLE-LONE
 
 
 
