@@ -1,12 +1,12 @@
 #-------------------------------------
-#-- Site
+#-- SITE2
 #-------------------------------------
 
 #-- Output paths (relative to nwayo folder) and output url
 output:
-  konstan: ../src/web/build
-  build:   ../src/web/build
-  url:     /build
+  konstan: ../src/web/build-SITE2
+  build:   ../src/web/build-SITE2
+  url:     /build-SITE2
 
 
 
@@ -15,9 +15,8 @@ assets:
   components:
     - common
     - form
-    - site
-    - SAMPLE
-    - SAMPLE-LONE
+    - SITE2
+    - SITE2-SUB
 
 
 
@@ -42,11 +41,11 @@ scripts:
       - components/vendor-foundation/scripts/vendor-foundation
       - components/nwayo/scripts/dependencies-starter
 
-    site:
+    SITE2:
       - components/nwayo/scripts/collection-starter
       - components/common/scripts/common
       - components/form/scripts/form
-      - components/site/scripts/site
+      - components/SITE2/scripts/SITE2
 
 
 
@@ -62,20 +61,12 @@ styles:
 
   collections:
     main:
-      - components/site/styles/config
+      - components/SITE2/styles/config
       - components/vendor-foundation/styles/vendor-foundation
       - components/common/styles/common
-      - components/site/styles/site
+      - components/SITE2/styles/SITE2
       - components/form/styles/form
-      - components/SAMPLE/styles/SAMPLE
 
-    SAMPLE-LONE:
-      - components/SAMPLE-LONE/styles/config
-      - components/SAMPLE-LONE/styles/SAMPLE-LONE
-
-    editor:
-      - components/site/styles/config
-      - components/vendor-foundation/styles/vendor-foundation
-      - components/site/styles/fonts
-      - components/site/styles/layout
-      - components/cms/styles/editor
+    sub:
+      - components/SITE2-SUB/styles/config
+      - components/SITE2-SUB/styles/SITE2-SUB

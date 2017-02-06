@@ -1,0 +1,11 @@
+//-------------------------------------
+//-- SITE2 - Fonts
+//-------------------------------------
+
+//-- Fonts
+@include load-font-mixin('Kreon2',  'kreon2-light-webfont',       'SITE2', $weight:$light-weight);
+@include load-font-mixin('Kreon2',  'kreon2-lightitalic-webfont', 'SITE2', $weight:$light-weight, $style:italic);
+@include load-font-mixin('Kreon2',  'kreon2-regular-webfont',     'SITE2', $weight:$normal-weight);
+@include load-font-mixin('Kreon2',  'kreon2-italic-webfont',      'SITE2', $weight:$normal-weight, $style:italic);
+@include load-font-mixin('Kreon2',  'kreon2-bold-webfont',        'SITE2', $weight:$bold-weight);
+@include load-font-mixin('Kreon2',  'kreon2-bolditalic-webfont',  'SITE2', $weight:$bold-weight, $style:italic);
