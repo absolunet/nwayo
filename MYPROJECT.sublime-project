@@ -14,8 +14,7 @@
 				".sublimelinterrc",
 				"config.rb",
 				"gulpfile.js",
-				"*.sublime-project",
-				"readme.md"
+				"*.sublime-project"
 			],
 			"folder_exclude_patterns":
 			[
