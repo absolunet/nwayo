@@ -76,4 +76,4 @@ See the [releases](//github.com/absolunet/nwayo/releases).
 [Issues](//github.com/absolunet/nwayo/issues) | [Pull requests](//github.com/absolunet/nwayo/pulls)
 
 ## License
-The code is available under the [MIT license](//github.com/absolunet/nwayo/blob/master/license.md).
+The code is available under the [MIT license](license).
