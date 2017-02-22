@@ -21,6 +21,7 @@
 
 
 ## Get started
+ - Get the files under `dist`
  - Replace `MYPROJECT` in `bower.json` and `package.json` with your project's name
  - Rename `MYPROJECT.sublime-project` with your project's name
 
