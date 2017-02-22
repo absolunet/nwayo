@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="ressources/images/nwayo.svg" width="250" height="250" alt="nwayo">
+	<img src="ressources/images/nwayo.png" width="250" height="250" alt="nwayo">
 </p>
 <h1 align="center"><strong>nwayo</strong></h1>
 <p align="center">/nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.</p>
