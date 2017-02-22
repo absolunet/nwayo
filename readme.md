@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="http://absolunet.github.io/nwayo/media/nwayo.svg" width="250" height="250" alt="nwayo">
+	<img src="ressources/images/nwayo.svg" width="250" height="250" alt="nwayo">
 </p>
 <h1 align="center"><strong>nwayo</strong></h1>
 <p align="center">/nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.</p>
@@ -21,7 +21,7 @@
 
 
 ## Get started
- - Get the files under `dist`
+ - Get the files under [dist](dist)
  - Replace `MYPROJECT` in `bower.json` and `package.json` with your project's name
  - Rename `MYPROJECT.sublime-project` with your project's name
 
@@ -34,7 +34,7 @@ nwayo rebuild
 
 
 
-## Tools &nbsp; <img src="http://absolunet.github.io/nwayo/media/vendors.png" width="600" height="30" alt="nwayo vendors">
+## Tools &nbsp; <img src="ressources/images/vendors.png" width="600" height="30" alt="nwayo vendors">
 `nwayo` is HTML5-ready and uses [gulp](http://gulpjs.com) as a build system
 
 - Based (but not mandatory) on [Zurb Foundation](//foundation.zurb.com)
@@ -67,7 +67,7 @@ Multiple component boilerplates [available](//github.com/absolunet/nwayo-compone
 ## Documentation
 *Coming soon...*
 
-Consult [this branch](//github.com/absolunet/nwayo/tree/gh-pages) in the meantime
+Consult [this folder](docs) in the meantime
 
 ## Release history
 See the [releases](//github.com/absolunet/nwayo/releases).
