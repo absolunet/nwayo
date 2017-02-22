@@ -3,4 +3,4 @@
 - [Component](component.md)
 
 
-!(Architecture)[../../ressources/images/architecture.png]
+![Architecture](../../ressources/images/architecture.png)
