@@ -3,6 +3,7 @@
 </p>
 <h1 align="center"><strong>nwayo</strong></h1>
 <p align="center">/nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.</p>
+[![Build Status][travis-image]][travis-url]
 <br>
 
 ## What is nwayo ?
@@ -77,3 +78,7 @@ See the [releases](//github.com/absolunet/nwayo/releases).
 
 ## License
 The code is available under the [MIT license](license).
+
+
+[travis-url]: https://travis-ci.org/absolunet/nwayo
+[travis-image]: https://img.shields.io/travis/absolunet/nwayo/master.svg
