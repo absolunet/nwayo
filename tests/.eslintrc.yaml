@@ -1,0 +1,5 @@
+# http://eslint.org/docs/rules/
+
+# Environments
+env:
+  mocha: true

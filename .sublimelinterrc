@@ -1,0 +1,10 @@
+{
+  "linters": {
+    "jshint": {
+      "@disable": true
+    },
+    "jscs": {
+      "@disable": true
+    }
+  }
+}
