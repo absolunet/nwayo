@@ -54,7 +54,7 @@ gulp.task('icons-favicon', () => {
 // https://developer.chrome.com/multidevice/android/installtohomescreen
 // http://operacoast.com/developer
 gulp.task('icons-share', () => {
-	const sizes = [
+	const touchSizes = [
 		57,   // For non-Retina (@1× display) iPhone, iPod Touch, and Android 2.1+ devices
 		72,   // For the iPad mini and the first- and second-generation iPad (@1× display) on iOS ≤ 6
 		76,   // For the iPad mini and the first- and second-generation iPad (@1× display) on iOS ≥ 7
@@ -64,25 +64,52 @@ gulp.task('icons-share', () => {
 		152,  // For iPad with @2× display running iOS ≤ 7
 		167,  // For iPad Pro with @2× display running iOS ≤ 9
 		180,  // For iPhone 6 Plus with @3× display
-		192,  // For Chrome for Android
-		196,  // For Chrome for Android home screen icon
-		228,  // For Coast for iOS
+		512   // General share icon
+	];
+
+	const iconSizes = [
 		64,   // Windows site icons, Safari Reading List, Modern browsers
 		96,   // Google TV Favicon
+		192,  // For Chrome for Android
 		195,  // Opera Speed Dial icon
-		512   // General share icon
+		196,  // For Chrome for Android home screen icon
+		228   // For Coast for iOS
 	];
 
 	const streams = [];
 
 	// Foreach each sizes
-	for (const size of sizes) {
+	for (const size of touchSizes) {
+
+		streams.push(
+			Util.assetsProcess(PATH.files.iconsTouch, (stream) => {
+
+				return stream
+					.pipe(gulpif(size !== 512, gm((gmfile, done) => {
+						gmfile.identify((err, info) => {
+							if (err) {
+								console.log(err); // eslint-disable-line no-console
+							}
+							done(null, Util.gmOptimization(gmfile.resize(size, size), info));
+						});
+					})))
+
+					.pipe(rename(Util.assetsRename(`touch-${size}`)))
+
+					.pipe(imagemin())
+				;
+			})
+		);
+	}
+
+	// Foreach each sizes
+	for (const size of iconSizes) {
 
 		streams.push(
 			Util.assetsProcess(PATH.files.iconsIcon, (stream) => {
 
 				return stream
-					.pipe(gulpif(size !== 512, gm((gmfile, done) => {
+					.pipe(gulpif(size !== 256, gm((gmfile, done) => {
 						gmfile.identify((err, info) => {
 							if (err) {
 								console.log(err); // eslint-disable-line no-console
