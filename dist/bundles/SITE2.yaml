@@ -58,6 +58,7 @@ scripts:
 styles:
   options:
     minify: false
+    sourcemaps: false
     autoprefixer:
       - '> 1%'
       - 'last 2 versions'

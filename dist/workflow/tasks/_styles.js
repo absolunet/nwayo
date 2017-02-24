@@ -16,6 +16,7 @@ const sass         = require('gulp-ruby-sass');
 const jsonsass     = require('gulp-json-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const cssnano      = require('gulp-cssnano');
+const sourcemaps   = require('gulp-sourcemaps');
 // const debug = require('gulp-debug');
 
 const PATH = global.nwayo.path;
@@ -103,12 +104,17 @@ gulp.task('styles-compile', ['styles-lint', 'styles-constants'], () => {
 				cacheLocation: PATH.dir.cacheSass,
 				compass:       true,
 				trace:         true,
-				sourcemap:     false
+				sourcemap:     bundle.styles.options.sourcemaps
 			})
 
 				.pipe(autoprefixer({ browsers:bundle.styles.options.autoprefixer }))
 
 				.pipe(gulpif(bundle.styles.options.minify && !ENV.watching, cssnano({ zindex:false })))
+
+				.pipe(gulpif(bundle.styles.options.sourcemaps, sourcemaps.write('maps', {
+					includeContent: false,
+					sourceRoot:     'source'
+				})))
 
 				.pipe(gulp.dest(`${bundle.output.build}/${PATH.build.styles}`))
 		);
