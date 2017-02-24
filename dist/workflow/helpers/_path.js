@@ -56,6 +56,7 @@ const files = {};
 files.bundles      = `${dir.bundles}/${pattern.anytree}/*.${ext.bundles}`;
 files.fonts        = `${dir.fonts}/${pattern.anytree}/*.${ext.fonts}`;
 files.iconsFavicon = `${dir.icons}/favicon.png`;
+files.iconsTouch   = `${dir.icons}/touch.png`;
 files.iconsIcon    = `${dir.icons}/icon.png`;
 files.iconsLarge   = `${dir.icons}/large.png`;
 files.iconsTile    = `${dir.icons}/tile.png`;
