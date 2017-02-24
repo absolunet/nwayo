@@ -19,7 +19,7 @@ const babel       = require('babel-core');
 
 const echo = console.log; // eslint-disable-line no-console
 const PATH = global.nwayo.path;
-const regexEscapePattern = /[-\/\\^$*+?.()|[\]{}]/g;
+const regexEscapePattern = /[-/\\^$*+?.()|[\]{}]/g;
 
 
 //-- Emoji
@@ -116,7 +116,7 @@ class Util {
 			for (let item of options.escape) {
 				item = parseItem(item);
 
-				eval(`${item} = "'"+${item}.replace("'","\\\\\'")+"'"`); // eslint-disable-line no-eval
+				eval(`${item} = "'"+${item}.replace("'","\\\\\'")+"'"`); // eslint-disable-line no-eval, no-useless-escape
 			}
 		}
 

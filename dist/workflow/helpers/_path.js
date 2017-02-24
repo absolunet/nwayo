@@ -9,7 +9,7 @@ const NOLINT = 'vendor';
 
 const pattern = {};
 pattern.anytree = '**';
-pattern.babel = `^##includes##(\\${CACHE}|${BOWER}|components\/${NOLINT}\-|components\/.*\/(_?)${NOLINT}\-)`;
+pattern.babel = `^##includes##(\\${CACHE}|${BOWER}|components/${NOLINT}-|components/.*/(_?)${NOLINT}-)`;
 
 const ext = {};
 ext.bundles   = 'yaml';
@@ -61,7 +61,7 @@ files.iconsIcon    = `${dir.icons}/icon.png`;
 files.iconsLarge   = `${dir.icons}/large.png`;
 files.iconsTile    = `${dir.icons}/tile.png`;
 files.images       = `${dir.images}/${pattern.anytree}/*.${ext.images}`;
-files.images2x     = `${dir.images}/${pattern.anytree}/*\@2x.${ext.images}`;
+files.images2x     = `${dir.images}/${pattern.anytree}/*@2x.${ext.images}`;
 files.inline       = `${dir.inline}/${pattern.anytree}/*.${ext.images}`;
 files.raw          = `${dir.raw}/${pattern.anytree}/*`;
 files.scripts      = `${dir.scripts}/${pattern.anytree}/*.${ext.scripts}`;

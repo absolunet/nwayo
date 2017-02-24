@@ -1,0 +1,26 @@
+{
+  "name":        "nwayo",
+  "version":     "3.1.0",
+  "description": "A modern website boilerplate",
+  "definition":  "/nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.",
+  "homepage":    "http://absolunet.github.io/nwayo",
+  "author":      { "name": "Absolunet", "url": "http://absolunet.com/" },
+
+  "license":    "MIT",
+  "repository": { "url":   "git://github.com/absolunet/nwayo.git", "type":"git" },
+  "bugs":       { "url": "https://github.com/absolunet/nwayo/issues" },
+
+  "engines": { "node":  ">= 7.6.0" },
+
+  "scripts": {
+    "test": "mocha tests/index.js"
+  },
+
+  "devDependencies": {
+    "eslint":       "3.15.0",
+    "mocha":        "3.2.0",
+    "mocha-eslint": "3.0.1"
+  },
+
+  "dependencies": { }
+}
