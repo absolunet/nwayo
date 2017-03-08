@@ -72,6 +72,7 @@ rules:
 
   # Possible Errors
   no-await-in-loop: [error]
+  no-compare-neg-zero: [error]
   no-cond-assign: [error, always]
   no-console: [warn]
   no-constant-condition: [error]
@@ -271,6 +272,7 @@ rules:
   no-underscore-dangle: [off]
   no-unneeded-ternary: [error, {defaultAssignment: false}]
   no-whitespace-before-property: [error]
+  nonblock-statement-body-position: [error, beside]
   object-curly-newline: [error, {multiline: true, minProperties: 5}]
   object-curly-spacing: [error, always]
   object-property-newline: [off]
