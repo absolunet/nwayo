@@ -28,7 +28,7 @@ Le mixin utilisé pour générer le `@font-face`au niveau du css.
 - `$style` = Le style de la police. `normal` est mis par défaut.
 
 ## Comment utiliser
-Pour générer le bon code, vous devez au moins fournir `$name`, `$filename`, `$context`.
+Pour générer le bon code, vous devez au moins fournir `$name`, `$filename` et `$context`.
 ```scss
 //-- Ligne de code appelé pour générer la font-family
 @include load-font-mixin('roboto', 'roboto-light-webfont', 'common', $weight:$light-weight);
