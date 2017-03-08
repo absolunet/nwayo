@@ -2,7 +2,7 @@
   "name":    "MYPROJECT",
   "license": "UNLICENSED",
   "private": true,
-  "engines": { "node": ">= 7.5.0" },
+  "engines": { "node": ">= 7.7.1" },
 
   "nwayo": {
     "version": "3.1.1",
@@ -13,8 +13,8 @@
     "fs-extra": "2.0.0",
     "del":      "2.2.2",
     "glob":     "7.1.1",
-    "js-yaml":  "3.8.1",
-    "inquirer": "3.0.4",
+    "js-yaml":  "3.8.2",
+    "inquirer": "3.0.6",
     "async":    "2.1.5",
     "minimist": "1.2.0",
     "colors":   "1.1.2",
@@ -40,8 +40,8 @@
     "gulp-json-sass":    "0.0.2",
     "gulp-sourcemaps":   "2.4.1",
 
-    "eslint":                     "3.16.1",
-    "uglify-js":                  "2.7.5",
+    "eslint":                     "3.17.1",
+    "uglify-js":                  "2.8.7",
     "gulp-eslint":                "3.0.1",
     "gulp-nwayo-include":         "0.3.2",
     "babel-core":                 "6.23.1",
