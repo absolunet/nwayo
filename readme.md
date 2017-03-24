@@ -51,7 +51,7 @@ nwayo rebuild
 #### Scripting
 - ES2015-ready via [Babel](//babeljs.io) and linted via [ESLint](http://eslint.org)
 - Comes with [jQuery](//jquery.com), [Modernizr](//modernizr.com), [lodash](//lodash.com), [PubSubJs](//github.com/mroderick/PubSubJS), [JsRender](//www.jsviews.com), [kafe](http://absolunet.github.io/kafe)
-- Builds with [includes](//www.npmjs.com/package/gulp-nwayo-include) and is minified with [UglifyJS](http://lisperator.net/uglifyjs)
+- Builds with [gulp-include](//www.npmjs.com/package/@absolunet/gulp-include) and is minified with [UglifyJS](http://lisperator.net/uglifyjs)
 
 #### Other
 - Optimizes images via [gifsicle](//www.lcdf.org/gifsicle), [jpegtran](http://libjpeg-turbo.virtualgl.org), [optipng](http://optipng.sourceforge.net), [svgo](//github.com/svg/svgo)
