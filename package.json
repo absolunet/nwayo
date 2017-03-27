@@ -10,16 +10,15 @@
   "repository": { "url":   "git://github.com/absolunet/nwayo.git", "type":"git" },
   "bugs":       { "url": "https://github.com/absolunet/nwayo/issues" },
 
-  "engines": { "node":  ">= 7.7.1" },
+  "engines": { "node":  ">= 7.7.4" },
 
   "scripts": {
-    "test": "mocha tests/index.js"
+    "test": "mocha"
   },
 
   "devDependencies": {
-    "eslint":       "3.18.0",
-    "mocha":        "3.2.0",
-    "mocha-eslint": "3.0.1"
+    "@absolunet/eslint-config-nwayo": "0.0.1",
+    "@absolunet/tester":              "0.0.3"
   },
 
   "dependencies": { }

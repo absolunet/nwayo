@@ -2,7 +2,7 @@
   "name":    "MYPROJECT",
   "license": "UNLICENSED",
   "private": true,
-  "engines": { "node": ">= 7.7.3" },
+  "engines": { "node": ">= 7.7.4" },
 
   "nwayo": {
     "version": "3.1.1",
@@ -15,11 +15,13 @@
     "glob":     "7.1.1",
     "js-yaml":  "3.8.2",
     "inquirer": "3.0.6",
-    "async":    "2.1.5",
+    "async":    "2.2.0",
     "minimist": "1.2.0",
     "colors":   "1.1.2",
     "crypto":   "0.0.3",
     "lodash":   "4.17.4",
+
+    "@absolunet/eslint-config-node": "0.0.4",
 
     "gulp":         "3.9.1",
     "gulp-debug":   "3.1.0",
@@ -31,7 +33,7 @@
     "merge-stream": "1.0.1",
 
     "gulp-gm":       "0.0.8",
-    "gulp-imagemin": "3.1.1",
+    "gulp-imagemin": "3.2.0",
 
     "gulp-scss-lint":    "0.4.0",
     "gulp-ruby-sass":    "2.1.1",
@@ -40,14 +42,15 @@
     "gulp-json-sass":    "0.0.2",
     "gulp-sourcemaps":   "2.4.1",
 
-    "eslint":                     "3.18.0",
-    "uglify-js":                  "2.8.15",
+    "uglify-js":                  "2.8.16",
     "gulp-eslint":                "3.0.1",
-    "@absolunet/gulp-include":    "0.4.0",
     "babel-core":                 "6.24.0",
     "babel-preset-latest":        "6.24.0",
     "gulp-uglify":                "2.1.2",
     "gulp-line-ending-corrector": "1.0.1",
+
+    "@absolunet/eslint-config-nwayo": "0.0.1",
+    "@absolunet/gulp-include":        "0.4.0",
 
     "modernizr":  "3.4.0",
     "lodash-cli": "4.17.4"
