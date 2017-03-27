@@ -1,6 +1,1 @@
-# http://eslint.org/docs/rules/
-
-# Extends - Extend other config
-extends:
-  - ./dist/.eslintrc.yaml
-  - ./dist/workflow/.eslintrc.yaml
+extends: '@absolunet/eslint-config-node'
