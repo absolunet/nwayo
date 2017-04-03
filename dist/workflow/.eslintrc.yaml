@@ -1,1 +1,1 @@
-extends: '@absolunet/eslint-config-node'
+extends: '@absolunet/node'
