@@ -1,4 +1,4 @@
-extends: '@absolunet/eslint-config-nwayo'
+extends: '@absolunet/nwayo'
 
 
 # Environments
