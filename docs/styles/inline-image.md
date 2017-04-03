@@ -71,18 +71,21 @@ Le mixin utilisé pour générer les images au niveau du css. Il sera ensuite po
 - `$height` = Assigner la hauteur d'une image @2x.
 - `$color` = La couleur utilisée pour les svg.
 
-Il est aussi possible d'utiliser `scalable-icon-mixin` pour les icônes 
+Il est aussi possible d'utiliser `scalable-icon-mixin` pour les icônes et ainsi avoir des style de base pour les différentes propriétés de background importantes.
+
+```scss
+//-- Scalable icon
+@mixin scalable-icon-mixin ($file, $context, $color:false) {
+	@include bg-image-mixin($file, $context, $inline:true, $color:$color);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+```
 
 ## Comment utiliser
 Pour générer le bon code, vous devez au moins fournir `$file`, `$context` et `$inline`.
 ```scss
-// Normal
-@mixin misc1-image { @include bg-image-mixin('misc1.png', 'common'); }
-@mixin logo1-image { @include bg-image-mixin('logo1.png', 'foobar'); }
-
-// High-density
-@mixin misc2-image { @include bg-image-mixin('misc@2x.png', 'common'); }
-
 // Inline
 @mixin misc3-image { @include bg-image-mixin('misc3.png', 'common', $inline:true); }
 @mixin icon3-image { @include bg-image-mixin('icon3.png', 'foobar', $inline:true); }
@@ -94,4 +97,10 @@ Pour générer le bon code, vous devez au moins fournir `$file`, `$context` et `
 .logo {
 	@include logo1-image;
 }
+```
+Pour générer un svg d'une couleur spécifique, le svg doit absolument être rempli avec la couleur `#BA0BAB`
+```scss
+// Scalable
+fill="#BA0BAB"
+$color
 ```
