@@ -25,6 +25,10 @@ assets:
 scripts:
   options:
     minify: false
+    babel:
+      - '> 1%'
+      - 'last 2 versions'
+      - 'ie >= 9'
 
   allowBabel:
     - bower_components/foundation-sites

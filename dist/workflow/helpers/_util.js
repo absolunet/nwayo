@@ -169,8 +169,8 @@ class Util {
 	}
 
 
-	//-- Babel rules
-	static getBabelRules(includedFiles) {
+	//-- Babel allowed rules
+	static getBabelAllowedRules(includedFiles) {
 		let includes = '';
 		if (Boolean(includedFiles) && includedFiles.length) {
 			const includesLength = includedFiles.length - 1;
@@ -184,14 +184,19 @@ class Util {
 
 
 	//-- Babel processing
-	static babelProcess(options, rules) {
+	static babelProcess(options, targets, allowed) {
 		const { fullPath, rawPath } = options;
 		let { content } = options;
 		if (fullPath.substr(-3) === '.js') {
-			if (!rules.test(rawPath)) {
-				content = Util.cache(`babel:${fullPath}`, content, (data) => {
+			if (!allowed.test(rawPath)) {
+				const targetsDigest = crypto.createHash('sha1').update(JSON.stringify(targets)).digest('hex');
+				content = Util.cache(`babel:${fullPath}:${targetsDigest}`, content, (data) => {
+
 					return babel.transform(data, {
-						presets:       [['latest', { es2015:{ modules:false } }]], // Everything except modules because of 'use strict'
+						presets: [['env', {
+							modules: false,
+							targets: { browsers:targets }
+						}]],
 						compact:       false,
 						highlightCode: false,
 						ast:           false,
