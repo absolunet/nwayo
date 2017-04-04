@@ -129,8 +129,8 @@ gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants', 'scripts-vend
 	for (const name of Object.keys(ENV.bundles)) {
 		const bundle = ENV.bundles[name];
 
-		// Babel rules
-		const babelRules = Util.getBabelRules(bundle.scripts.allowBabel);
+		// Babel extra allowed
+		const babelExtraAllowed = Util.getBabelAllowedRules(bundle.scripts.allowBabel);
 
 		// For each collection
 		for (const collection of Object.keys(bundle.scripts.collections)) {
@@ -163,7 +163,7 @@ gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants', 'scripts-vend
 						autoExtension: true,
 						partialPrefix: true,
 						fileProcess:   (options) => {
-							return Util.babelProcess(options, babelRules);
+							return Util.babelProcess(options, bundle.scripts.options.babel, babelExtraAllowed);
 						}
 					}))
 					.pipe(gulpif(bundle.scripts.options.minify && !ENV.watching, minifier({ preserveComments:'license' }, uglifyjs)))
