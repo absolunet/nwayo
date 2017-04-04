@@ -84,7 +84,8 @@ Il est aussi possible d'utiliser `scalable-icon-mixin` pour les icônes et ainsi
 ```
 
 ## Comment utiliser
-Pour générer le bon code, vous devez au moins fournir `$file`, `$context` et `$inline`.
+Pour générer le bon code, vous devez au moins fournir `$file` et `$context`. La variable `$inline` est nécessaire lors de l'utilisation au niveau du `bg-image-mixin`. Pour le mixin `scalable-icon-mixin`, la variable `$inline` est automatiquement ajouté à `true`.
+
 ```scss
 // Inline
 @mixin misc3-image { @include bg-image-mixin('misc3.png', 'common', $inline:true); }
@@ -98,9 +99,27 @@ Pour générer le bon code, vous devez au moins fournir `$file`, `$context` et `
 	@include logo1-image;
 }
 ```
-Pour générer un svg d'une couleur spécifique, le svg doit absolument être rempli avec la couleur `#BA0BAB`
+
+Pour générer un svg d'une ou plusieurs couleurs, le svg doit absolument conrresponde à l'une de ces options.
+1. **Couleur simple**: la couleur passé en paramètre remplacera la couleur `#BA0BAB` du svg.
+2. **Liste**: deux couleurs doivent être passé en paramètre sous ce format `($firstColor, $secondColor)`. Ces couleurs remplaceront les couleurs du svg dans l'ordre `#BA0BAB`, `#C0FFEE`.
+3. **Hash**: À l'aide d'un map auquel la valeur remplacera la key. `(key1: value1, key2: value2, key3: value3)`
+
 ```scss
-// Scalable
-fill="#BA0BAB"
-$color
+// Scalable with color
+$firstColor  = #25329d;
+$secondColor = #636363;
+$firstKey    = #ff0000;
+$secondKey   = #00ff00;
+$map: ($firstKey: $firstColor, $secondKey: $secondColor);
+
+//-- Single color
+@mixin icon-single-color { @include scalable-icon-mixin('icon-single.svg', 'foobar', $color:$firstColor); }
+
+//-- List
+@mixin icon-list-color { @include scalable-icon-mixin('icon-list.svg', 'foobar', $color:($firstColor, $secondColor)); }
+
+//-- Hash
+@mixin icon-hash-color { @include scalable-icon-mixin('icon-map.svg', 'foobar', $color:$map); }
+
 ```
