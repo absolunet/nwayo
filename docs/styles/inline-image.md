@@ -1,4 +1,5 @@
 # Inline image
+La différence entre les `images inline` et les `images` est que l'`image inline` intégrera le contenu de l'image directement dans la feuille de styles, ce qui élimine une autre requête HTTP.
 Les images sont situées sous le dossier `inline-images`, sous la composante associée à l'image en question.
 
 ## Mixin
@@ -71,7 +72,7 @@ Le mixin utilisé pour générer les images au niveau du css. Il sera ensuite po
 - `$height` = Assigner la hauteur d'une image @2x.
 - `$color` = La couleur utilisée pour les svg.
 
-Il est aussi possible d'utiliser `scalable-icon-mixin` pour les icônes et ainsi avoir des style de base pour les différentes propriétés de background importantes.
+Il est aussi possible d'utiliser `scalable-icon-mixin` pour les icônes et ainsi avoir des styles de bases pour les différentes propriétés de background importantes.
 
 ```scss
 //-- Scalable icon
@@ -100,9 +101,9 @@ Pour générer le bon code, vous devez au moins fournir `$file` et `$context`. L
 }
 ```
 
-Pour générer un svg d'une ou plusieurs couleurs, le svg doit absolument conrresponde à l'une de ces options.
-1. **Couleur simple**: la couleur passé en paramètre remplacera la couleur `#BA0BAB` du svg.
-2. **Liste**: deux couleurs doivent être passé en paramètre sous ce format `($firstColor, $secondColor)`. Ces couleurs remplaceront les couleurs du svg dans l'ordre `#BA0BAB`, `#C0FFEE`.
+Pour générer un svg d'une ou plusieurs couleurs, le svg doit absolument corresponde à l'une de ces options.
+1. **Couleur simple**: la couleur passée en paramètre remplacera la couleur `#BA0BAB` du svg.
+2. **Liste**: deux couleurs doivent être passées en paramètre sous ce format `($firstColor, $secondColor)`. Ces couleurs remplaceront les couleurs du svg dans l'ordre `#BA0BAB`, `#C0FFEE`.
 3. **Hash**: À l'aide d'un map auquel la valeur remplacera la key. `(key1: value1, key2: value2, key3: value3)`
 
 ```scss
