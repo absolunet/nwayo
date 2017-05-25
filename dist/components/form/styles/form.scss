@@ -52,7 +52,8 @@ input[type="file"] {
 /**
 $checkbox-width: 18px;
 $checkbox-height: $checkbox-width;
-$checkbox-ratio: 8 / 18; // 8px, (wanted pixel / pixel width) for checked
+$checkedbox-width: 8px;
+$checkedbox-height: $checkedbox-width;
 input[type="checkbox"], input[type="radio"] {
 	position: absolute;
 	clip: rect(1px, 1px, 1px, 1px);
@@ -79,11 +80,11 @@ input[type="checkbox"], input[type="radio"] {
 		content: '';
 		position: absolute;
 		top: 50%;
-		left: ($checkbox-width / 2) - ($checkbox-width * $checkbox-ratio / 2);
+		left: ($checkbox-width / 2) - ($checkedbox-width / 2);
 		display: block;
-		width: $checkbox-width * $checkbox-ratio;
-		height: $checkbox-height * $checkbox-ratio;
-		margin-top: -($checkbox-height * $checkbox-ratio / 2);
+		width: $checkedbox-width;
+		height: $checkedbox-height;
+		margin-top: -($checkedbox-height / 2);
 		background-color: $text-color;
 	}
 
