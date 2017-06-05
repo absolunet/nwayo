@@ -14,8 +14,7 @@ const gulp      = require('gulp');
 const gulpif    = require('gulp-if');
 const cache     = require('gulp-cached');
 const include   = require('@absolunet/gulp-include');
-const uglifyjs  = require('uglify-js');
-const minifier  = require('gulp-uglify/minifier');
+const uglify    = require('gulp-uglify');
 const eslint    = require('gulp-eslint');
 const lec       = require('gulp-line-ending-corrector');
 const modernizr = require('modernizr');
@@ -166,7 +165,7 @@ gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants', 'scripts-vend
 							return Util.babelProcess(options, bundle.scripts.options.babel, babelExtraAllowed);
 						}
 					}))
-					.pipe(gulpif(bundle.scripts.options.minify && !ENV.watching, minifier({ preserveComments:'license' }, uglifyjs)))
+					.pipe(gulpif(bundle.scripts.options.minify && !ENV.watching, uglify({ output:{ comments:'some' } })))
 					.pipe(gulp.dest(`${bundle.output.build}/${PATH.build.scripts}`))
 			);
 		}

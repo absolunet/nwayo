@@ -303,7 +303,7 @@ class Util {
 		switch (type) {
 
 			case 'text': return `${banner}`;
-			default:     return `/*!\n * ${banner}\n */\n\n`;
+			default:     return `/*!\n * @preserve ${banner}\n */\n\n`;
 
 		}
 	}

@@ -9,6 +9,7 @@
 				".bowerrc",
 				".editorconfig",
 				".eslintrc.yaml",
+				".gitattributes",
 				".gitignore",
 				".scss-lint.yml",
 				".sublimelinterrc",
