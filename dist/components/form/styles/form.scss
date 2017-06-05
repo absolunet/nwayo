@@ -50,6 +50,10 @@ input[type="file"] {
 
 //-- Radio / Checkbox
 /**
+$checkbox-width: 18px;
+$checkbox-height: $checkbox-width;
+$checkedbox-width: 8px;
+$checkedbox-height: $checkedbox-width;
 input[type="checkbox"], input[type="radio"] {
 	position: absolute;
 	clip: rect(1px, 1px, 1px, 1px);
@@ -62,22 +66,25 @@ input[type="checkbox"], input[type="radio"] {
 		&::before {
 			content: '';
 			position: absolute;
-			top: 0;
+			top: 50%;
 			left: 0;
 			display: block;
-			width: 18px;
-			height: 18px;
+			width: $checkbox-width;
+			height: $checkbox-height;
 			border: 1px solid $text-color;
+			margin-top: -($checkbox-height / 2);
 		}
 	}
-	&:checked + label::after {
+	&:checked + label::after,
+	&:checked + label:hover::after {
 		content: '';
 		position: absolute;
-		top: 5px;
-		left: 5px;
+		top: 50%;
+		left: ($checkbox-width / 2) - ($checkedbox-width / 2);
 		display: block;
-		width: 8px;
-		height: 8px;
+		width: $checkedbox-width;
+		height: $checkedbox-height;
+		margin-top: -($checkedbox-height / 2);
 		background-color: $text-color;
 	}
 
