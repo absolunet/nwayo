@@ -109,7 +109,7 @@ gulp.task('styles-compile', ['styles-lint', 'styles-constants'], () => {
 
 				.pipe(autoprefixer({ browsers:bundle.styles.options.autoprefixer }))
 
-				.pipe(gulpif(bundle.styles.options.minify && !ENV.watching, cssnano({ zindex:false })))
+				.pipe(gulpif(bundle.styles.options.minify && !ENV.watching, cssnano({ reduceIdents:false, zindex:false })))
 
 				.pipe(gulpif(bundle.styles.options.sourcemaps, sourcemaps.write('maps', {
 					includeContent: false,
