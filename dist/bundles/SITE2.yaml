@@ -66,12 +66,18 @@ styles:
 
   collections:
     main:
-      - components/SITE2/styles/config
-      - components/vendor-foundation/styles/vendor-foundation
-      - components/common/styles/common
-      - components/SITE2/styles/SITE2
-      - components/form/styles/form
+      options:
+        style: 'nested'
+      files:
+        - components/SITE2/styles/config
+        - components/vendor-foundation/styles/vendor-foundation
+        - components/common/styles/common
+        - components/SITE2/styles/SITE2
+        - components/form/styles/form
 
     sub:
-      - components/SAMPLE-LONE2/styles/config
-      - components/SAMPLE-LONE2/styles/SAMPLE-LONE2
+      options:
+        style: 'nested'
+      files:
+        - components/SAMPLE-LONE2/styles/config
+        - components/SAMPLE-LONE2/styles/SAMPLE-LONE2
