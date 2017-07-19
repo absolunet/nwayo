@@ -1,5 +1,4 @@
 # https://github.com/causes/scss-lint/blob/master/lib/scss_lint/linter/README.md
-# https://github.com/causes/scss-lint/blob/master/lib/scss_lint/linter/compass/README.md
 
 exclude: 'bower_components/**/*.scss,components/theme-*/**/*.scss,components/vendor-*/**/*.scss'
 
@@ -368,7 +367,3 @@ linters:
 
   ZeroUnit:
     enabled: true
-
-  Compass::PropertyWithMixin:
-    enabled: false
-    # ignore: null
