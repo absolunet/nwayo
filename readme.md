@@ -17,7 +17,7 @@
 
 ## Requirements (All latest)
 - [Node.js](//nodejs.org) ([Bower](//bower.io), [nwayo](//www.npmjs.com/package/nwayo))
-- [Ruby](//www.ruby-lang.org) ([Sass](http://sass-lang.com), [Compass](http://compass-style.org), [scss-lint](//github.com/causes/scss-lint))
+- [Ruby](//www.ruby-lang.org) ([Sass](http://sass-lang.com), [scss-lint](//github.com/causes/scss-lint))
 - [GraphicsMagick](http://www.graphicsmagick.org) / [ImageMagick](//www.imagemagick.org)
 - [Python2](//www.python.org) (Windows only)
 
@@ -45,7 +45,7 @@ nwayo rebuild
 
 #### Styling
 - CSS3-ready via [Autoprefixer](//github.com/postcss/autoprefixer) and linted via [scss-lint](//github.com/brigade/scss-lint)
-- Comes with [Sass](http://sass-lang.com) and [Compass](http://compass-style.org)
+- Comes with [Sass](http://sass-lang.com)
 - Minifies with [cssnano](http://cssnano.co)
 
 #### Scripting
