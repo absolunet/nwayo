@@ -193,10 +193,14 @@ class Util {
 				content = Util.cache(`babel:${fullPath}:${targetsDigest}`, content, (data) => {
 
 					return babel.transform(data, {
-						presets: [['env', {
-							modules: false,
-							targets: { browsers:targets }
-						}]],
+						presets: [
+							[
+								'env', {
+									modules: false,
+									targets: { browsers:targets }
+								}
+							]
+						],
 						compact:       false,
 						highlightCode: false,
 						ast:           false,
