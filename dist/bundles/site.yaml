@@ -67,20 +67,29 @@ styles:
 
   collections:
     main:
-      - components/site/styles/config
-      - components/vendor-foundation/styles/vendor-foundation
-      - components/common/styles/common
-      - components/site/styles/site
-      - components/form/styles/form
-      - components/SAMPLE/styles/SAMPLE
+      options:
+        style: 'nested'
+      files:
+        - components/site/styles/config
+        - components/vendor-foundation/styles/vendor-foundation
+        - components/common/styles/common
+        - components/site/styles/site
+        - components/form/styles/form
+        - components/SAMPLE/styles/SAMPLE
 
     SAMPLE-LONE:
-      - components/SAMPLE-LONE/styles/config
-      - components/SAMPLE-LONE/styles/SAMPLE-LONE
+      options:
+        style: 'nested' # use compressed for Magento2 email
+      files:
+        - components/SAMPLE-LONE/styles/config
+        - components/SAMPLE-LONE/styles/SAMPLE-LONE
 
     editor:
-      - components/site/styles/config
-      - components/vendor-foundation/styles/vendor-foundation
-      - components/site/styles/fonts
-      - components/site/styles/layout
-      - components/cms/styles/editor
+      options:
+        style: 'nested'
+      files:
+        - components/site/styles/config
+        - components/vendor-foundation/styles/vendor-foundation
+        - components/site/styles/fonts
+        - components/site/styles/layout
+        - components/cms/styles/editor
