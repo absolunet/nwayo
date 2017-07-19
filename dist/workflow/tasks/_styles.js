@@ -84,7 +84,7 @@ gulp.task('styles-compile', ['styles-lint', 'styles-constants'], () => {
 
 		// For each collection
 		for (const collection of Object.keys(bundle.styles.collections)) {
-			const list = _.cloneDeep(bundle.styles.collections[collection]);
+			const list = _.cloneDeep(bundle.styles.collections[collection].files);
 
 			// Add konstan
 			list.unshift(`${PATH.dir.cacheStyles}/${name}/${PATH.filename.konstan}`);
@@ -95,29 +95,29 @@ gulp.task('styles-compile', ['styles-lint', 'styles-constants'], () => {
 			});
 
 			fs.outputFileSync(`${PATH.dir.cacheStyles}/${name}/collections/${collection}.${PATH.ext.styles}`, `${Util.getGeneratedBanner(name)}${list.join('\n')}\n`);
+			// Process all collections from this bundle
+			streams.push(
+				sass(`${PATH.dir.cacheStyles}/${name}/${collection}/*.${PATH.ext.styles}`, {
+					loadPath:      PATH.dir.root,
+					cacheLocation: PATH.dir.cacheSass,
+					compass:       true,
+					trace:         true,
+					sourcemap:     bundle.styles.options.sourcemaps,
++					style:         bundle.styles.collections[collection].options.style
+				})
+
+					.pipe(autoprefixer({ browsers:bundle.styles.options.autoprefixer }))
+
+					.pipe(gulpif(bundle.styles.options.minify && !ENV.watching, cssnano({ zindex:false })))
+
+					.pipe(gulpif(bundle.styles.options.sourcemaps, sourcemaps.write('maps', {
+						includeContent: false,
+						sourceRoot:     'source'
+					})))
+
+					.pipe(gulp.dest(`${bundle.output.build}/${PATH.build.styles}`))
+			);
 		}
-
-		// Process all collections from this bundle
-		streams.push(
-			sass(`${PATH.dir.cacheStyles}/${name}/collections/*.${PATH.ext.styles}`, {
-				loadPath:      PATH.dir.root,
-				cacheLocation: PATH.dir.cacheSass,
-				compass:       true,
-				trace:         true,
-				sourcemap:     bundle.styles.options.sourcemaps
-			})
-
-				.pipe(autoprefixer({ browsers:bundle.styles.options.autoprefixer }))
-
-				.pipe(gulpif(bundle.styles.options.minify && !ENV.watching, cssnano({ zindex:false })))
-
-				.pipe(gulpif(bundle.styles.options.sourcemaps, sourcemaps.write('maps', {
-					includeContent: false,
-					sourceRoot:     'source'
-				})))
-
-				.pipe(gulp.dest(`${bundle.output.build}/${PATH.build.styles}`))
-		);
 	}
 
 	return merge(...streams)
