@@ -3,7 +3,9 @@
 </p>
 <h1 align="center"><strong>nwayo</strong></h1>
 <p align="center">/nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.</p>
-[![Build Status][travis-image]][travis-url]
+
+[![Travis build](https://api.travis-ci.org/absolunet/nwayo.svg?branch=master)](https://travis-ci.org/absolunet/nwayo/builds)
+[![Dev dependencies](https://david-dm.org/absolunet/nwayo/dev-status.svg)](https://david-dm.org/absolunet/nwayo?type=dev)
 <br>
 
 ## What is nwayo ?
@@ -49,7 +51,7 @@ nwayo rebuild
 #### Scripting
 - ES2015-ready via [Babel](//babeljs.io) and linted via [ESLint](http://eslint.org)
 - Comes with [jQuery](//jquery.com), [Modernizr](//modernizr.com), [lodash](//lodash.com), [PubSubJs](//github.com/mroderick/PubSubJS), [JsRender](//www.jsviews.com), [kafe](http://absolunet.github.io/kafe)
-- Builds with [includes](//www.npmjs.com/package/gulp-nwayo-include) and is minified with [UglifyJS](http://lisperator.net/uglifyjs)
+- Builds with [gulp-include](//www.npmjs.com/package/@absolunet/gulp-include) and is minified with [UglifyJS](http://lisperator.net/uglifyjs)
 
 #### Other
 - Optimizes images via [gifsicle](//www.lcdf.org/gifsicle), [jpegtran](http://libjpeg-turbo.virtualgl.org), [optipng](http://optipng.sourceforge.net), [svgo](//github.com/svg/svgo)
@@ -80,5 +82,3 @@ See the [releases](//github.com/absolunet/nwayo/releases).
 The code is available under the [MIT license](license).
 
 
-[travis-url]: https://travis-ci.org/absolunet/nwayo
-[travis-image]: https://img.shields.io/travis/absolunet/nwayo/master.svg

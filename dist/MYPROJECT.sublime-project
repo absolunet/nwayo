@@ -9,6 +9,7 @@
 				".bowerrc",
 				".editorconfig",
 				".eslintrc.yaml",
+				".gitattributes",
 				".gitignore",
 				".scss-lint.yml",
 				".sublimelinterrc",
@@ -16,6 +17,7 @@
 				"gulpfile.js",
 				"*.sublime-project"
 			],
+			"follow_symlinks": true,
 			"folder_exclude_patterns":
 			[
 				".nwayo-cache",

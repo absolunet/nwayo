@@ -1,6 +1,6 @@
 # http://editorconfig.org
 
-[*.{css,less,scss,js,html,md,gitignore}]
+[*.{css,less,scss,js,html,jshtml,md,gitignore}]
 indent_style = tab
 end_of_line = lf
 charset = utf-8
