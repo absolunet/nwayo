@@ -17,14 +17,14 @@
     "url": "https://github.com/absolunet/nwayo/issues"
   },
   "engines": {
-    "node": ">= 8.0.0"
+    "node": ">= 8.1.4"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "ava"
   },
   "devDependencies": {
-    "@absolunet/eslint-config-nwayo": "0.0.2",
-    "@absolunet/tester": "0.0.5"
+    "@absolunet/eslint-config-nwayo": "0.1.1",
+    "@absolunet/tester": "1.0.1"
   },
   "dependencies": {}
 }
