@@ -82,6 +82,7 @@ filename.lodash         = `lodash`;
 const config = {};
 config.konstan       = `${dir.root}/konstan.yaml`;
 config.pkg           = `${dir.root}/package.json`;
+config.sass          = `${dir.root}/sass.rb`;
 config.scsslint      = `${dir.root}/.scss-lint.yml`;
 config.modernizr     = `${dir.root}/modernizr.yaml`;
 config.lodash        = `${dir.root}/lodash.yaml`;

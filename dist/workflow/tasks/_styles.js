@@ -102,7 +102,7 @@ gulp.task('styles-compile', ['styles-lint', 'styles-constants'], () => {
 			sass(`${PATH.dir.cacheStyles}/${name}/collections/*.${PATH.ext.styles}`, {
 				loadPath:      PATH.dir.root,
 				cacheLocation: PATH.dir.cacheSass,
-				compass:       true,
+				require:       PATH.config.sass,
 				trace:         true,
 				sourcemap:     bundle.styles.options.sourcemaps
 			})

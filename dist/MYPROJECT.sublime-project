@@ -13,8 +13,8 @@
 				".gitignore",
 				".scss-lint.yml",
 				".sublimelinterrc",
-				"config.rb",
 				"gulpfile.js",
+				"sass.rb",
 				"*.sublime-project"
 			],
 			"follow_symlinks": true,
