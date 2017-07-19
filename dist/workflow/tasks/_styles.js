@@ -103,7 +103,7 @@ gulp.task('styles-compile', ['styles-lint', 'styles-constants'], () => {
 					compass:       true,
 					trace:         true,
 					sourcemap:     bundle.styles.options.sourcemaps,
-          style:         bundle.styles.collections[collection].options.style
+					style:         bundle.styles.collections[collection].options.style
 				})
 
 					.pipe(autoprefixer({ browsers:bundle.styles.options.autoprefixer }))
