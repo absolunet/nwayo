@@ -1,6 +1,18 @@
-require 'sass'
+require 'sass/plugin'
 
 Encoding.default_external = 'utf-8'
+
+
+
+class CSSImporter < Sass::Importers::Filesystem
+  def extensions
+    super.merge('css' => :scss)
+  end
+end
+Sass::Plugin.options[:filesystem_importer] = CSSImporter
+
+
+
 
 module Sass::Script::Functions
 
@@ -75,11 +87,3 @@ private
   end
 
 end
-
-
-#class CSSImporter < Sass::Importers::Filesystem
-#  def extensions
-#    super.merge('css' => :scss)
-#  end
-#end
-#Sass::Plugin.options[:filesystem_importer] = CSSImporter
