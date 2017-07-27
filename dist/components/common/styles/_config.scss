@@ -5,16 +5,11 @@
 //-- nwayo util
 @import 'components/nwayo/styles/util';
 
-$pxrem: (1 / 16) * 1rem;
 
 //-- Foundation
-$column-gutter-size: 15 * $pxrem;
-$column-small-size:  290 * $pxrem;
-
-
-//-- Selector
-$hover-selector:     'html.no-touchevents &:hover';
-$docloaded-selector: 'body.document-loaded';
+$common-column-gutter-size: rem-calc(15);
+$common-column-small-size:  rem-calc(290);
+$common-max-width-size:     rem-calc($konstan-dimension-max);
 
 
 //-- Colors
@@ -25,46 +20,25 @@ $bg-color:      $konstan-color-bg;              // #fafafa
 $accent-color:  $konstan-current-color-accent;  // #25329d  /  #659d32
 
 
-/**
-$section-colorscheme: (
-	default: (body:'',               class:'',       base:#888888, lite:#dddddd, dark:#333333),
-	alpha:   (body:'.section-alpha', class:'.alpha', base:#880000, lite:#dd0000, dark:#330000),
-	beta:    (body:'.section-beta',  class:'.beta',  base:#008800, lite:#00dd00, dark:#003300),
-	gamma:   (body:'.section-gamma', class:'.gamma', base:#000088, lite:#0000dd, dark:#000033),
-);
-/**/
-
-
-
 //-- Fonts
-$base-font:  Helvetica, Arial, Verdana, sans-serif;
-$text-font:  $konstan-font-base, $base-font;
-$title-font: $konstan-current-font-alt, $base-font;
+$common-text-font:  $konstan-font-base, $nwayo-sansserif-font;
+$common-title-font: $konstan-font-alt, $nwayo-sansserif-font;
 
-$text-base-weight:    $light-weight;
-$text-fat-weight:     $normal-weight;
-$text-fatter-weight:  $bold-weight;
-$text-fattest-weight: $extrabold-weight;
+$common-text-base-weight:    $nwayo-light-weight;
+$common-text-fat-weight:     $nwayo-normal-weight;
+$common-text-fatter-weight:  $nwayo-bold-weight;
+$common-text-fattest-weight: $nwayo-extrabold-weight;
 
-$base-text-size:  16 * $pxrem;
-$title-text-size: 24 * $pxrem;
-
-
-
-/**
-@mixin ico-font {
-	font-family: 'icomoon';
-	font-weight: $bold-weight !important;
-	-webkit-font-smoothing: antialiased !important;
-	font-style: normal !important;
-	text-transform: none !important;
-	line-height: 1 !important;
-	font-variant: normal !important;
-}
-$ico-music-char:    'm';
-$ico-settings-char: 's';
-$ico-warning-char:  'w';
-/**/
+$common-tiny-text-size:     rem-calc(12);
+$common-small-text-size:    rem-calc(14);
+$common-base-text-size:     rem-calc($nwayo-basic-size);
+$common-medium-text-size:   rem-calc(18);
+$common-title-size:         rem-calc(24);
+$common-big-title-size:     rem-calc(30);
+$common-bigger-title-size:  rem-calc(36);
+$common-biggest-title-size: rem-calc(42);
+$common-mega-title-size:    rem-calc(50);
+$common-ultra-title-size:   rem-calc(60);
 
 
 
@@ -72,29 +46,29 @@ $ico-warning-char:  'w';
 /**
 
 // Normal
-@mixin misc1-image { @include bg-image-mixin('misc1.png', 'common'); }
-@mixin logo1-image { @include bg-image-mixin('logo1.png', 'foobar'); }
+@mixin common-misc1-image { @include nwayo-bg-image-mixin('misc1.png', 'common'); }
+@mixin common-logo1-image { @include nwayo-bg-image-mixin('logo1.png', 'foobar'); }
 
 // High-density
-@mixin misc2-image { @include bg-image-mixin('misc@2x.png', 'common'); }
+@mixin common-misc2-image { @include nwayo-bg-image-mixin('misc@2x.png', 'common'); }
 
 // Inline
-@mixin misc3-image { @include bg-image-mixin('misc3.png', 'common', $inline:true); }
-@mixin icon3-image { @include bg-image-mixin('icon3.png', 'foobar', $inline:true); }
+@mixin common-misc3-image { @include nwayo-bg-image-mixin('misc3.png', 'common', $inline:true); }
+@mixin common-icon3-image { @include nwayo-bg-image-mixin('icon3.png', 'foobar', $inline:true); }
 
 // Scalable
-@mixin icon4-image { @include scalable-icon-mixin('icon4.svg', 'foobar'); }
+@mixin common-icon4-image { @include nwayo-scalable-icon-mixin('icon4.svg', 'foobar'); }
 
 /**/
 
-//@mixin misc2-image { @include bg-image-mixin('nwayo.svg', 'common'); }
-//@mixin misc3-image { @include scalable-icon-mixin('test.svg', 'common', $color:$debug-orange); }
-//@mixin misc4-image { @include scalable-icon-mixin('test.svg', 'common', $color:$debug-green); }
+//@mixin common-misc2-image { @include nwayo-bg-image-mixin('nwayo.svg', 'common'); }
+//@mixin common-misc3-image { @include nwayo-scalable-icon-mixin('test.svg', 'common', $color:$debug-orange); }
+//@mixin common-misc4-image { @include nwayo-scalable-icon-mixin('test.svg', 'common', $color:$debug-green); }
 
 
 //-- Transitions
-$hover-transition:     $konstan-transition-hover * 1ms;
-$animation-transition: $konstan-transition-animation * 1ms;
+$common-hover-transition:     $konstan-transition-hover * 1ms;
+$common-animation-transition: $konstan-transition-animation * 1ms;
 
 
 

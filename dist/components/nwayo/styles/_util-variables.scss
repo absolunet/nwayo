@@ -2,23 +2,17 @@
 //-- Utils: Variables
 //-------------------------------------
 
-// Debug colors
-$debug-red:    #ee2c2c;
-$debug-orange: #ffa500;
-$debug-yellow: #ffdf33;
-$debug-green:  #76ee00;
-$debug-blue:   #1e90ff;
-$debug-purple: #a020f0;
+// All rem / em sizes depend on this
+$nwayo-basic-size: 16;
 
 
 // SVG colors
-$svg-replacement-1: #ba0bab;
-$svg-replacement-2: #c0ffee;
-$svg-replacement:   ($svg-replacement-1, $svg-replacement-2);
-
+$nwayo-svg-replacement-1-color: #ba0bab;
+$nwayo-svg-replacement-2-color: #c0ffee;
+$nwayo-svg-replacement-colors:  ($nwayo-svg-replacement-1-color, $nwayo-svg-replacement-2-color);
 
 // Social network colors
-$social-colors: (
+$nwayo-social-colors: (
 	facebook:  #3b5998,
 	pinterest: #bd081c,
 	twitter:   #55acee,
@@ -28,23 +22,44 @@ $social-colors: (
 );
 
 
+
+// Font family
+$nwayo-sansserif-font: Helvetica, Arial, Verdana, sans-serif;
+$nwayo-serif-font:     'Times New Roman', Times, serif;
+
 // Font weights
-$thin-weight:       100;
-$extralight-weight: 200;
-$light-weight:      300;
-$normal-weight:     400;
-$medium-weight:     500;
-$semibold-weight:   600;
-$bold-weight:       700;
-$extrabold-weight:  800;
-$black-weight:      900;
+$nwayo-thin-weight:       100;
+$nwayo-extralight-weight: 200;
+$nwayo-light-weight:      300;
+$nwayo-normal-weight:     400;
+$nwayo-medium-weight:     500;
+$nwayo-semibold-weight:   600;
+$nwayo-bold-weight:       700;
+$nwayo-extrabold-weight:  800;
+$nwayo-black-weight:      900;
+
 
 
 // Characters
-$bull-char:   '\2022';
-$times-char:  '\00D7';
-$endash-char: '\2013';
+$nwayo-bull-char:   '\2022';
+$nwayo-times-char:  '\00D7';
+$nwayo-endash-char: '\2013';
+
 
 
 // All text-like fields
-$textfields-selector: 'input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], input[type="date"], input[type="number"]';
+$nwayo-textfields-selector: 'input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], input[type="date"], input[type="number"]';
+
+// Selectors
+$nwayo-hover-selector:     'html.no-touchevents &:hover';
+$nwayo-docloaded-selector: 'body.document-loaded';
+
+
+
+// Debug colors
+$debug-red:    #ee2c2c;
+$debug-orange: #ffa500;
+$debug-yellow: #ffdf33;
+$debug-green:  #76ee00;
+$debug-blue:   #1e90ff;
+$debug-purple: #a020f0;

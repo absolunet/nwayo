@@ -13,10 +13,10 @@
 
 	//-- Reset what hasn't been redefined
 	* {
-		$black: #000000;
+		$_black: #000000;
 		position: static !important;
 		overflow: visible !important;
-		border-color: $black !important;
+		border-color: $_black !important;
 		text-indent: 0 !important; // float: none !important;
 
 		&::before, &::after {
