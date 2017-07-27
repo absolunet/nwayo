@@ -16,23 +16,23 @@ Sass::Plugin.options[:filesystem_importer] = CSSImporter
 
 module Sass::Script::Functions
 
-  def readfile(file)
-    Sass::Script::String.new( __readfile(file) )
+  def nwayorb_read_file(file)
+    Sass::Script::String.new(readfile(file) )
   end
-  declare :readfile, [:string]
+  declare :nwayorb_read_file, [:string]
 
 
-  def fileexists(file)
+  def nwayorb_file_exists(file)
     Sass::Script::Bool.new(File.exists?(file.value))
   end
-  declare :fileexists, [:string]
+  declare :nwayorb_file_exists, [:string]
 
-  def inline_image(path, mime_type = nil)
+  def nwayorb_inline_image(path, mime_type = nil)
     path = path.value
     real_path = path
     inline_image_string(data(real_path), compute_mime_type(path, mime_type))
   end
-  declare :inline_image, [:string]
+  declare :nwayorb_inline_image, [:string]
 
 protected
   def inline_image_string(data, mime_type)
@@ -42,7 +42,7 @@ protected
   end
 
 private
-  def __readfile(real_path)
+  def readfile(real_path)
     if File.readable?(real_path.value)
       File.open(real_path.value, "rb") {|io| io.read}
     else

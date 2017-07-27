@@ -3,49 +3,49 @@
 //-------------------------------------
 
 //-- Background image
-@mixin bg-image-mixin ($file, $context, $inline:false, $width:false, $height:false, $color:false) {
+@mixin nwayo-bg-image-mixin ($file, $component, $inline:false, $width:false, $height:false, $color:false) {
 
 	// uri
 	$uri: '';
 	@if $inline {
-		$inline-image-path: assets-path($file, $context, 'inline');
+		$inline-image-path: nwayo-assets-path($file, $component, 'inline');
 
 		@if str-index($file, '.svg') {
-			$svg: readfile($inline-image-path);
+			$svg: nwayorb-read-file($inline-image-path);
 
 			@if $color {
 
 				// single color
 				@if type-of($color) == 'color' {
-					$svg: color-replace($svg, $svg-replacement-1, $color);
+					$svg: nwayo-color-replace($svg, $nwayo-svg-replacement-1-color, $color);
 
 				// list
 				} @else if type-of($color) == 'list' {
 					@for $i from 1 through length($color) {
-						$svg: color-replace($svg, nth($svg-replacement, $i), nth($color, $i));
+						$svg: nwayo-color-replace($svg, nth($nwayo-svg-replacement-colors, $i), nth($color, $i));
 					}
 
 				// hash
 				} @else {
 					@each $source, $target in $color {
-						$svg: color-replace($svg, $source, $target);
+						$svg: nwayo-color-replace($svg, $source, $target);
 					}
 				}
 			}
 
-			$uri: svg-data-uri($svg);
+			$uri: nwayo-svg-data-uri($svg);
 
 		} @else {
-			$uri: inline-image($inline-image-path);
+			$uri: nwayorb-inline-image($inline-image-path);
 		}
 
 	} @else {
-		$uri: url(assets-path($file, $context, 'images'));
+		$uri: url(nwayo-assets-path($file, $component, 'images'));
 	}
 
 	// high density
 	@if str-index($file, '@2x') {
-		$path: 'components/' + $context + '/assets/' + if($inline, 'inline-', '') + 'images/' + $file;
+		$path: 'components/' + $component + '/assets/' + if($inline, 'inline-', '') + 'images/' + $file;
 		$width:  if($width, $width, image-width($path));
 		$height: if($height, $height, image-height($path));
 
@@ -54,7 +54,7 @@
 			background-size: $width / 2 $height / 2;
 		}
 
-		$uri: str-replace($uri, '@2x', '');
+		$uri: nwayo-str-replace($uri, '@2x', '');
 	}
 
 	background-image: #{$uri};
@@ -62,8 +62,8 @@
 
 
 //-- Scalable icon
-@mixin scalable-icon-mixin ($file, $context, $color:false) {
-	@include bg-image-mixin($file, $context, $inline:true, $color:$color);
+@mixin nwayo-scalable-icon-mixin ($file, $component, $color:false) {
+	@include nwayo-bg-image-mixin($file, $component, $inline:true, $color:$color);
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: contain;
@@ -73,9 +73,9 @@
 
 
 //-- Font-face
-@mixin load-font-mixin ($name, $filename, $context, $weight:normal, $style:normal) {
-	$url:   assets-path($filename, $context, 'fonts');
-	$woff2: if(fileexists('components/' + $context + '/assets/fonts/' + $filename + '.woff2'), url($url + '.woff2') format('woff2') + ',', '');
+@mixin nwayo-load-font-mixin ($name, $filename, $component, $weight:normal, $style:normal) {
+	$url:   nwayo-assets-path($filename, $component, 'fonts');
+	$woff2: if(nwayorb-file-exists('components/' + $component + '/assets/fonts/' + $filename + '.woff2'), url($url + '.woff2') format('woff2') + ',', '');
 	@font-face {
 		font-family: $name;
 		font-weight: $weight;

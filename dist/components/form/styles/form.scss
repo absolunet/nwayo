@@ -4,13 +4,13 @@
 
 //-- Placeholder
 input::placeholder {
-	color: lighten($text-color, 50%);
+	color: lighten($common-text-color, 50%);
 	font-style: italic;
 }
 
 
 //-- Textfields
-#{$textfields-selector}, textarea, select {
+#{$nwayo-textfields-selector}, textarea, select {
 	//border-radius: 0;
 	line-height: 1;
 	//appearance: none;
@@ -23,7 +23,7 @@ textarea, textarea[rows] {
 
 //-- Reset select
 /**
-@include select-reset-mixin {
+@include nwayo-select-reset-mixin {
 	background-image: none;
 }
 select {
@@ -40,7 +40,7 @@ input[type="file"] {
 	//@include form-element;
 	height: auto;
 
-	@include input-file-button-mixin {
+	@include nwayo-input-file-button-mixin {
 		//@include button();
 		margin: 0;
 	}
@@ -49,47 +49,46 @@ input[type="file"] {
 
 
 //-- Radio / Checkbox
-/**
-$checkbox-width: 18px;
-$checkbox-height: $checkbox-width;
-$checkedbox-width: 8px;
-$checkedbox-height: $checkedbox-width;
+/**/
+$_choice-input-size: rem-calc(18);
+$_choice-input-selection-size: rem-calc(8);
+$_choice-input-position-size: ($_choice-input-size - $_choice-input-selection-size) / 2;
+
 input[type="checkbox"], input[type="radio"] {
 	position: absolute;
-	clip: rect(1px, 1px, 1px, 1px);
+	clip: rect(rem-calc(1), rem-calc(1), rem-calc(1), rem-calc(1));
 
 	+ label {
 		position: relative;
-		padding-left: 26px;
+		padding-left: $_choice-input-size + rem-cal(10);
 		cursor: pointer;
 
 		&::before {
 			content: '';
 			position: absolute;
-			top: 50%;
+			top: 0;
 			left: 0;
 			display: block;
-			width: $checkbox-width;
-			height: $checkbox-height;
-			border: 1px solid $text-color;
-			margin-top: -($checkbox-height / 2);
+			width: $_choice-input-size;
+			height: $_choice-input-size;
+			border: rem-calc(1) solid $common-text-color;
 		}
 	}
+
 	&:checked + label::after,
 	&:checked + label:hover::after {
 		content: '';
 		position: absolute;
-		top: 50%;
-		left: ($checkbox-width / 2) - ($checkedbox-width / 2);
+		top: $_choice-input-position-size;
+		left: $_choice-input-position-size;
 		display: block;
-		width: $checkedbox-width;
-		height: $checkedbox-height;
-		margin-top: -($checkedbox-height / 2);
-		background-color: $text-color;
+		width: $_choice-input-selection-size;
+		height: $_choice-input-selection-size;
+		background-color: $common-text-color;
 	}
 
 	&:focus + label::before {
-		outline: 1px dotted $text-color;
+		outline: rem-calc(1) dotted $common-text-color;
 	}
 }
 

@@ -7,9 +7,9 @@ html {
 }
 
 body {
-	width: 960px;
+	width: 60em;
 	font-family: $text-font;
-	font-size: 16px;
+	font-size: $common-base-text-size;
 	line-height: 1.3;
 }
 

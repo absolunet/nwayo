@@ -2,8 +2,16 @@
 //-- Utils: Functions
 //-------------------------------------
 
+//-- Foundation function mockup so it works before Foundation is loaded
+@function rem-calc($val) {
+	@return ($val / $nwayo-basic-size) * 1rem;
+}
+
+
+
+
 //-- Assets path
-@function assets-path($file, $context, $type) {
+@function nwayo-assets-path($file, $context, $type) {
 	@if $type == 'images' {
 		@return $konstan-path-images + '/' + $context + '/' + $file;
 	} @else if $type == 'inline' {
@@ -17,23 +25,23 @@
 
 
 //-- String replace
-@function str-replace($string, $search, $replace: '') {
+@function nwayo-str-replace($string, $search, $replace: '') {
 	$index: str-index($string, $search);
 	@if $index {
-		@return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+		@return str-slice($string, 1, $index - 1) + $replace + nwayo-str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
 	}
 	@return $string;
 }
 
 //-- Color replace
-@function color-replace($string, $source, $target) {
-	$string: str-replace($string, to-string($source), to-string($target));
-	$string: str-replace($string, to-upper-case(to-string($source)), to-string($target));
+@function nwayo-color-replace($string, $source, $target) {
+	$string: nwayo-str-replace($string, nwayo-to-string($source), nwayo-to-string($target));
+	$string: nwayo-str-replace($string, to-upper-case(nwayo-to-string($source)), nwayo-to-string($target));
 	@return $string;
 }
 
 //-- Cast to string
-@function to-string($value) {
+@function nwayo-to-string($value) {
 	@return inspect($value);
 }
 
@@ -41,18 +49,18 @@
 
 
 //-- SVG optimized for data-uri (http://codepen.io/Tigt/blog/optimizing-svgs-in-data-uris)
-@function svg-data-uri($svg) {
+@function nwayo-svg-data-uri($svg) {
 	$encoded: '';
 	$slice: 2000;
 	$index: 0;
 	$loops: ceil(str-length($svg) / $slice);
 	@for $i from 1 through $loops {
 		$chunk: str-slice($svg, $index, $index + $slice - 1);
-		$chunk: str-replace($chunk, '"', "'");
-		$chunk: str-replace($chunk, '<', '%3C');
-		$chunk: str-replace($chunk, '>', '%3E');
-		$chunk: str-replace($chunk, '&', '%26');
-		$chunk: str-replace($chunk, '#', '%23');
+		$chunk: nwayo-str-replace($chunk, '"', "'");
+		$chunk: nwayo-str-replace($chunk, '<', '%3C');
+		$chunk: nwayo-str-replace($chunk, '>', '%3E');
+		$chunk: nwayo-str-replace($chunk, '&', '%26');
+		$chunk: nwayo-str-replace($chunk, '#', '%23');
 		$encoded: #{$encoded}#{$chunk};
 		$index: $index + $slice;
 	}

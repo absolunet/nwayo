@@ -28,7 +28,7 @@ data:
     bgsite: '#fafafa'
 
 
-  #-- Fomts
+  #-- Fonts
   font:
     base: 'Open Sans'
 
