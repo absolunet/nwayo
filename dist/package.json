@@ -37,15 +37,15 @@
     "gulp-scss-lint": "0.5.0",
     "gulp-sourcemaps": "2.6.0",
     "gulp-uglify": "3.0.0",
-    "inquirer": "3.2.0",
+    "inquirer": "3.2.1",
     "js-yaml": "3.9.0",
     "lodash": "4.17.4",
     "lodash-cli": "4.17.4",
     "merge-stream": "1.0.1",
     "minimist": "1.2.0",
     "modernizr": "3.5.0",
-    "run-sequence": "2.0.0",
-    "uglify-js": "3.0.25",
+    "run-sequence": "2.1.0",
+    "uglify-js": "3.0.26",
     "vinyl": "2.1.0"
   }
 }

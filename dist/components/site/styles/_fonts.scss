@@ -3,9 +3,9 @@
 //-------------------------------------
 
 //-- Fonts
-@include nwayo-load-font-mixin('Kreon', 'kreon-light-webfont',       'site', $weight:$common-light-weight);
-@include nwayo-load-font-mixin('Kreon', 'kreon-lightitalic-webfont', 'site', $weight:$common-light-weight, $style:italic);
-@include nwayo-load-font-mixin('Kreon', 'kreon-regular-webfont',     'site', $weight:$common-normal-weight);
-@include nwayo-load-font-mixin('Kreon', 'kreon-italic-webfont',      'site', $weight:$common-normal-weight, $style:italic);
-@include nwayo-load-font-mixin('Kreon', 'kreon-bold-webfont',        'site', $weight:$common-bold-weight);
-@include nwayo-load-font-mixin('Kreon', 'kreon-bolditalic-webfont',  'site', $weight:$common-bold-weight, $style:italic);
+@include nwayo-load-font-mixin('Kreon', 'kreon-light-webfont',       'site', $weight:$nwayo-light-weight);
+@include nwayo-load-font-mixin('Kreon', 'kreon-lightitalic-webfont', 'site', $weight:$nwayo-light-weight, $style:italic);
+@include nwayo-load-font-mixin('Kreon', 'kreon-regular-webfont',     'site', $weight:$nwayo-normal-weight);
+@include nwayo-load-font-mixin('Kreon', 'kreon-italic-webfont',      'site', $weight:$nwayo-normal-weight, $style:italic);
+@include nwayo-load-font-mixin('Kreon', 'kreon-bold-webfont',        'site', $weight:$nwayo-bold-weight);
+@include nwayo-load-font-mixin('Kreon', 'kreon-bolditalic-webfont',  'site', $weight:$nwayo-bold-weight, $style:italic);
