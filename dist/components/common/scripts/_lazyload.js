@@ -107,6 +107,10 @@
 			_.merge(local.types, types);
 		}
 
+		static repass() {
+			local.firstPass();
+		}
+
 	};
 
 

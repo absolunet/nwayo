@@ -13,16 +13,32 @@ $common-max-width-size:     rem-calc($konstan-dimension-max);
 
 
 //-- Colors
-$bg-site-color: $konstan-color-bgsite;          // #636363
-$text-color:    $konstan-color-text;            // #dddddd
-$border-color:  $konstan-color-border;          // #eaeaea
-$bg-color:      $konstan-color-bg;              // #fafafa
-$accent-color:  $konstan-current-color-accent;  // #25329d  /  #659d32
+$common-base-color:    $konstan-color-grey;         // #333333
+$common-primary-color: $konstan-color-brand-green;  // #659d32
+$common-bg-color:      $konstan-color-white;
+$common-bg-site-color: $konstan-color-grey4;        // #eeeeee
+
+$common-text-color:      $common-base-color;
+$common-text-lite-color: $konstan-color-grey2;  // #999999
+$common-text-dark-color: $konstan-color-black;
+
+$common-border-color:      $konstan-color-grey1;  // #666666
+$common-border-lite-color: $konstan-color-grey3;  // #bbbbbb
+
+$common-link-color: $common-primary-color;
+$common-link-color: $konstan-color-brand-green-dark;  // #618931
+
+$common-button-bg-color:       $konstan-color-brand-brown;       // #423228
+$common-button-bg-hover-color: $konstan-color-brand-brown-lite;  // #5e483c
+$common-button-text-color:     $konstan-color-white;
+
+$common-accent-color: $konstan-current-color-accent;  // #ff0000 / #0000ff
+
 
 
 //-- Fonts
 $common-text-font:  $konstan-font-base, $nwayo-sansserif-font;
-$common-title-font: $konstan-font-alt, $nwayo-sansserif-font;
+$common-title-font: $konstan-current-font-alt, $nwayo-sansserif-font;
 
 $common-text-base-weight:    $nwayo-light-weight;
 $common-text-fat-weight:     $nwayo-normal-weight;
@@ -69,73 +85,3 @@ $common-ultra-title-size:   rem-calc(60);
 //-- Transitions
 $common-hover-transition:     $konstan-transition-hover * 1ms;
 $common-animation-transition: $konstan-transition-animation * 1ms;
-
-
-
-
-
-
-
-//-- Mixins
-//-------------------------------------
-
-
-//-- Headings
-@mixin title-styles {
-	/* ... */
-}
-
-@mixin subtitle-styles {
-	/* ... */
-}
-
-
-
-//-- Editable content styles
-@mixin editable-styles {
-	h1 {
-		@include title-styles;
-	}
-
-	h2 {
-		@include subtitle-styles;
-	}
-
-	h3 {
-		/* ... */
-	}
-
-	h4 {
-		/* ... */
-	}
-
-	h5 {
-		/* ... */
-	}
-
-	h6 {
-		/* ... */
-	}
-
-	.small {
-		font-size: .8em;
-	}
-
-	p {
-		margin-bottom: 1em;
-	}
-
-	ul {
-		/* ... */
-	}
-
-	ol {
-		/* ... */
-	}
-
-	table.table {
-		td {
-			vertical-align: top;
-		}
-	}
-}

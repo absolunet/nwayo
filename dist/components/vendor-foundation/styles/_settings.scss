@@ -50,25 +50,25 @@ $global-font-size: 100%;
 $global-width: rem-calc($konstan-dimension-max);
 $global-lineheight: 1.3;
 $foundation-palette: (
-  primary: #1779ba,
-  secondary: #767676,
-  success: #3adb76,
-  warning: #ffae00,
-  alert: #cc4b37,
+	primary: #1779ba,
+	secondary: #767676,
+	success: #3adb76,
+	warning: #ffae00,
+	alert: #cc4b37,
 );
 $light-gray: #e6e6e6;
 $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
 $black: #000000;
 $white: #ffffff;
-$body-background: $bg-site-color;
-$body-font-color: $text-color;
-$body-font-family: $text-font;
+$body-background: $common-bg-site-color;
+$body-font-color: $common-text-color;
+$body-font-family: $common-text-font;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;
-$global-weight-normal: $text-base-weight;
-$global-weight-bold: $text-fat-weight;
+$global-weight-normal: $common-text-base-weight;
+$global-weight-bold: $common-text-fat-weight;
 $global-radius: 0;
 $global-text-direction: ltr;
 $global-flexbox: false;
@@ -80,7 +80,7 @@ $print-transparent-backgrounds: true;
 // --------------
 
 $breakpoints: (
-  small:   0,
+	small:   0,
 	medium:  $konstan-dimension-small + 1,
 	large:   $konstan-dimension-medium + 1,
 	xlarge:  $konstan-dimension-large + 1,
@@ -95,8 +95,8 @@ $breakpoint-classes: (small medium large);
 $grid-row-width: $global-width;
 $grid-column-count: 12;
 $grid-column-gutter: (
-  small:  $column-gutter-size * 2,
-  medium: $column-gutter-size * 2,
+	small:  $common-column-gutter-size * 2,
+	medium: $common-column-gutter-size * 2,
 );
 $grid-column-align-edge: true;
 $block-grid-max: 8;
@@ -112,22 +112,22 @@ $header-color: inherit;
 $header-lineheight: 1.4;
 $header-margin-bottom: .5rem;
 $header-styles: (
-  small: (
-    'h1': ('font-size': 24),
-    'h2': ('font-size': 20),
-    'h3': ('font-size': 19),
-    'h4': ('font-size': 18),
-    'h5': ('font-size': 17),
-    'h6': ('font-size': 16),
-  ),
-  medium: (
-    'h1': ('font-size': 48),
-    'h2': ('font-size': 40),
-    'h3': ('font-size': 31),
-    'h4': ('font-size': 25),
-    'h5': ('font-size': 20),
-    'h6': ('font-size': 16),
-  ),
+	small: (
+		'h1': ('font-size': 24),
+		'h2': ('font-size': 20),
+		'h3': ('font-size': 19),
+		'h4': ('font-size': 18),
+		'h5': ('font-size': 17),
+		'h6': ('font-size': 16),
+	),
+	medium: (
+		'h1': ('font-size': 48),
+		'h2': ('font-size': 40),
+		'h3': ('font-size': 31),
+		'h4': ('font-size': 25),
+		'h5': ('font-size': 20),
+		'h6': ('font-size': 16),
+	),
 );
 $header-text-rendering: optimizeLegibility;
 $small-font-size: 80%;
@@ -249,10 +249,10 @@ $button-color: $white;
 $button-color-alt: $black;
 $button-radius: $global-radius;
 $button-sizes: (
-  tiny: .6rem,
-  small: .75rem,
-  default: .9rem,
-  large: 1.25rem,
+	tiny: .6rem,
+	small: .75rem,
+	default: .9rem,
+	large: 1.25rem,
 );
 $button-palette: $foundation-palette;
 $button-opacity-disabled: .25;
@@ -299,16 +299,16 @@ $card-margin: $global-margin;
 
 $closebutton-position: right top;
 $closebutton-offset-horizontal: (
-  small: .66rem,
-  medium: 1rem,
+	small: .66rem,
+	medium: 1rem,
 );
 $closebutton-offset-vertical: (
-  small: .33em,
-  medium: .5rem,
+	small: .33em,
+	medium: .5rem,
 );
 $closebutton-size: (
-  small: 1.5em,
-  medium: 2em,
+	small: 1.5em,
+	medium: 2em,
 );
 $closebutton-lineheight: 1;
 $closebutton-color: $dark-gray;
@@ -333,9 +333,9 @@ $dropdown-font-size: 1rem;
 $dropdown-width: rem-calc(300);
 $dropdown-radius: $global-radius;
 $dropdown-sizes: (
-  tiny: rem-calc(100),
-  small: rem-calc(200),
-  large: rem-calc(400),
+	tiny: rem-calc(100),
+	small: rem-calc(200),
+	large: rem-calc(400),
 );
 
 // 18. Dropdown Menu
@@ -491,8 +491,8 @@ $progress-radius: $global-radius;
 
 $responsive-embed-margin-bottom: rem-calc(16);
 $responsive-embed-ratios: (
-  default: 4 by 3,
-  widescreen: 16 by 9,
+	default: 4 by 3,
+	widescreen: 16 by 9,
 );
 
 // 29. Reveal

@@ -21,41 +21,27 @@ data:
   #-- Colors
   color:
 
+    # Base
+    black: '#000000'
+    white: '#ffffff'
+
+    # Brand
+    brand-green:      '#659d32'
+    brand-green-dark: '#618931'
+    brand-brown:      '#423228'
+    brand-brown-lite: '#5e483c'
+
     # Grey
-    text:   '#636363'
-    border: '#dddddd'
-    bg:     '#eaeaea'
-    bgsite: '#fafafa'
+    grey:  '#333333'
+    grey1: '#666666'
+    grey2: '#999999'
+    grey3: '#bbbbbb'
+    grey4: '#eeeeee'
 
 
   #-- Fonts
   font:
     base: 'Open Sans'
-
-
-  #-- Classes
-  class:
-    wide:   columns small-9 medium-6
-    narrow: columns small-7 medium-5
-
-
-  #-- API keys and other accounts identifier
-  keychain:
-
-    facebook:
-      version: v2.3
-      appid:   1234567890
-      secret:  qwertyuiopasdfghjkl
-
-    linkedin:
-      appid:  qwertyuiopasdfghjkl
-      secret: qwertyuiopasdfghjkl
-
-    addthis:
-      campaign: ra-123456789
-
-    google:
-      tagmanager: GTM-1234
 
 
   #-- Misc utils
@@ -75,8 +61,8 @@ bundles:
     #-- Colors
     color:
 
-      # Blue
-      accent: '#25329d'
+      # Red
+      accent: '#ff0000'
 
     #-- Fonts
     font:
@@ -89,8 +75,8 @@ bundles:
     #-- Colors
     color:
 
-      # Green
-      accent: '#659d32'
+      # Blue
+      accent: '#0000ff'
 
     #-- Fonts
     font:
@@ -105,12 +91,9 @@ options:
 
   scripts:
     exclude:
-      - keychain.facebook.secret
-      - keychain.linkedin.secret
+      - font.base
 
 
   styles:
     exclude:
-      - keychain.facebook.secret
-      - keychain.linkedin.secret
       - util.emptyimage

@@ -4,30 +4,30 @@
 
 //-- Base
 html {
-	//background-color: $bg-color;
+	//background-color: $common-bg-color;
 }
 
 body {
-	//color: $text-color;
-	font-family: $text-font;
-	font-size: 16px;
+	//color: $common-text-color;
+	font-family: $common-text-font;
+	font-size: $common-base-text-size;
 	line-height: 1.3;
 }
 
 a:not(.button) {
-	//color: $link-color;
+	//color: $common-link-color;
 	text-decoration: none;
-	transition: color $hover-transition ease-out;
+	transition: color $common-hover-transition ease-out;
 
 	&:hover, &:active, &:focus {
-		//color: $link-hover-color;
+		//color: $common-link-hover-color;
 		text-decoration: underline;
 	}
 }
 
 ::selection {
-	background-color: $text-color;
-	color: $bg-color;
+	background-color: $common-text-color;
+	color: $common-bg-color;
 }
 
 
@@ -58,48 +58,63 @@ a:not(.button) {
 .body {
 
 	//-- Foundation media exceptions
-	@media #{bp(medium up)} {
+	@media #{bp(small only)} {
+		//
+	}
+
+	@media #{bp(medium)} {
+		//
+	}
+
+	@media #{bp(medium down)} {
+		//
+	}
+
+	@media #{bp(medium only)} {
+		//
+	}
+
+	@media #{bp(large)} {
+		//
+	}
+
+	@media #{bp(large down)} {
+		//
+	}
+
+	@media #{bp(large only)} {
 		//
 	}
 
 
-	//-------------------------------------
-	//-- Patterns
-	//-------------------------------------
 
+	//-- Only on touch devices
+	html.touchevents & {
+		//
+	}
 
-	//-- Modernizr exceptions
-	//html.no-touchevents & { }
+	//-- Only on mouse devices
+	html.no-touchevents & {
+		//
+	}
 
+	//-- Hover only on mouse devices :)
+	a {
+		#{$nwayo-hover-selector} {
+			//
+		}
+	}
 
-	//-- Colorscheme
-	//.blocks {
-	//	@each $id, $data in $section-colorscheme {
-	//		$body:  map-get($data, body);
-	//		$class: map-get($data, class);
-	//		$base:  map-get($data, base);
-	//		$lite:  map-get($data, lite);
-	//		$dark:  map-get($data, dark);
-	//
-	//		body#{$body} & { background-color:$lite; }
-	//		&#{$class}     { color:$base; background-color:$dark; }
-	//
-	//		@if $id == beta {
-	//			&::before { content:'BETA'; }
-	//		}
-	//	}
-	//}
-
-
-
-	// ----------------------------
-
+	//-- Apply only when document is loaded (great for heavy imagery)
+	#{$nwayo-docloaded-selector} & {
+		//
+	}
 
 }
 
 //-- Content
 .content {
-	@include editable-styles;
+	@include site-editable-styles;
 	/* ... */
 }
 
