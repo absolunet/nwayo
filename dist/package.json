@@ -2,50 +2,7 @@
   "name": "MYPROJECT",
   "license": "UNLICENSED",
   "private": true,
-  "engines": {
-    "node": ">= 8.1.4"
-  },
-  "nwayo": {
-    "version": "3.1.7",
-    "debug": false
-  },
   "dependencies": {
-    "@absolunet/eslint-config-node": "0.1.1",
-    "@absolunet/eslint-config-nwayo": "0.1.1",
-    "@absolunet/gulp-include": "0.4.1",
-    "async": "2.5.0",
-    "babel-core": "6.25.0",
-    "babel-preset-env": "1.6.0",
-    "colors": "1.1.2",
-    "crypto": "0.0.3",
-    "del": "3.0.0",
-    "fs-extra": "4.0.0",
-    "glob": "7.1.2",
-    "gulp": "3.9.1",
-    "gulp-autoprefixer": "4.0.0",
-    "gulp-cached": "1.1.1",
-    "gulp-cssnano": "2.1.2",
-    "gulp-debug": "3.1.0",
-    "gulp-eslint": "4.0.0",
-    "gulp-gm": "0.0.8",
-    "gulp-if": "2.0.2",
-    "gulp-imagemin": "3.3.0",
-    "gulp-json-sass": "0.0.2",
-    "gulp-line-ending-corrector": "1.0.1",
-    "gulp-rename": "1.2.2",
-    "gulp-ruby-sass": "2.1.1",
-    "gulp-scss-lint": "0.5.0",
-    "gulp-sourcemaps": "2.6.0",
-    "gulp-uglify": "3.0.0",
-    "inquirer": "3.2.1",
-    "js-yaml": "3.9.0",
-    "lodash": "4.17.4",
-    "lodash-cli": "4.17.4",
-    "merge-stream": "1.0.1",
-    "minimist": "1.2.0",
-    "modernizr": "3.5.0",
-    "run-sequence": "2.1.0",
-    "uglify-js": "3.0.26",
-    "vinyl": "2.1.0"
+    "@absolunet/nwayo-workflow": "3.2.2"
   }
 }

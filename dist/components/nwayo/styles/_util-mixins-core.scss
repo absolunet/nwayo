@@ -75,7 +75,7 @@
 //-- Font-face
 @mixin nwayo-load-font-mixin ($name, $filename, $component, $weight:normal, $style:normal) {
 	$url:   nwayo-assets-path($filename, $component, 'fonts');
-	$woff2: if(nwayorb-file-exists('components/' + $component + '/assets/fonts/' + $filename + '.woff2'), url($url + '.woff2') format('woff2') + ',', '');
+	$woff2: if(nwayorb-file-exists($konstan-path-nwayoroot + '/components/' + $component + '/assets/fonts/' + $filename + '.woff2'), url($url + '.woff2') format('woff2') + ',', '');
 	@font-face {
 		font-family: $name;
 		font-weight: $weight;

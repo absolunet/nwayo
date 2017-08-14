@@ -1,0 +1,18 @@
+#-------------------------------------
+#-- Site - Dependencies
+#-------------------------------------
+
+#-- Scripts
+scripts:
+  collections:
+    dependencies:
+      - components/nwayo/scripts/exclusion-starter
+      - ~konstan
+      - bower_components/jquery/dist/jquery
+      - ~lodash
+      - ~modernizr
+      - bower_components/pubsub-js/src/pubsub
+      - bower_components/fastclick/lib/fastclick
+      - bower_components/what-input/dist/what-input
+      - components/vendor-foundation/scripts/vendor-foundation
+      - components/nwayo/scripts/dependencies-starter
