@@ -1,0 +1,13 @@
+#-------------------------------------
+#-- Site - Editor
+#-------------------------------------
+
+#-- Styles
+styles:
+  collections:
+    editor:
+      - components/site/styles/config
+      - components/vendor-foundation/styles/vendor-foundation
+      - components/site/styles/fonts
+      - components/site/styles/layout
+      - components/cms/styles/editor

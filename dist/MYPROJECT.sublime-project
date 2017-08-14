@@ -4,17 +4,12 @@
 		{
 			"file_exclude_patterns":
 			[
-				".nwayo-cache",
-				"node_modules",
-				".bowerrc",
 				".editorconfig",
 				".eslintrc.yaml",
 				".gitattributes",
 				".gitignore",
 				".scss-lint.yml",
 				".sublimelinterrc",
-				"gulpfile.js",
-				"sass.rb",
 				"*.sublime-project"
 			],
 			"follow_symlinks": true,
