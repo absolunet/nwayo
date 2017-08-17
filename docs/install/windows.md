@@ -1,5 +1,5 @@
 # Installation de nwayo sous Windows
-Ouvrir un invite de commandes en mode administrateur et exévuter les commandes suivantes :
+Ouvrir un invite de commandes en mode administrateur et exécuter les commandes suivantes :
 
 ## [Chocolatey Packages](https://chocolatey.org/)
 ```sh
