@@ -1,2 +1,2 @@
 # Install
-- [Windows](windows)
+- [Windows](windows.md)
