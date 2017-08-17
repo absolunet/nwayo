@@ -1,0 +1,2 @@
+# Install
+- [Windows](windows)
