@@ -1,8 +1,8 @@
 # Installation de nwayo sous Windows
-**Ouvrir un invite de commandes en mode Administrateur**
+Ouvrir un invite de commandes en mode administrateur et exévuter les commandes suivantes :
 
 ## [Chocolatey Packages](https://chocolatey.org/)
-```winbatch
+```sh
 # Chocolatey (https://chocolatey.org/)
 @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
 choco install chocolatey --confirm
@@ -26,7 +26,7 @@ choco install nodejs.install --confirm
 ```
 
 ## [RubyGems](https://rubygems.org/)
-```winbatch
+```sh
 # Set http source
 chcp 1252
 gem source -a http://rubygems.org/
@@ -42,7 +42,7 @@ gem install scss_lint
 ```
 
 ## [Node packages](https://www.npmjs.com/)
-```winbatch
+```sh
 # Bower (http://bower.io)
 npm install bower -g
 
