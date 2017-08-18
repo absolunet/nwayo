@@ -1,5 +1,5 @@
 # nwayo
-- [Install](install)
+- [Installation](install)
 - [Architecture](architecture)
 - [Assets](assets)
 - [Scripts](scripts)

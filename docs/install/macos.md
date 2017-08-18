@@ -1,4 +1,4 @@
-# Installation de nwayo sous OSX
+# Installation de nwayo sous macOS
 Ouvrir un terminal et exécuter les commandes suivantes :
 
 ## [Xcode](https://developer.apple.com/xcode/)
@@ -29,11 +29,11 @@ brew install node
 # Sass (http://sass-lang.com)
 gem install sass
 
-# Compass (http://compass-style.org)
-gem install compass
-
 # SCSS-Lint (https://github.com/causes/scss-lint)
 gem install scss_lint
+
+# Compass (http://compass-style.org) [Legacy]
+gem install compass
 ```
 
 ## [Node packages](https://www.npmjs.com/)
@@ -41,12 +41,12 @@ gem install scss_lint
 # Bower (http://bower.io)
 npm install bower -g
 
-# JSHint (http://jshint.com/)
-npm install jshint -g
-
-# JSCS (http://jscs.info/)
-npm install jscs -g
-
 # nwayo (http://absolunet.github.io/nwayo)
 npm install nwayo -g
+
+# JSHint (http://jshint.com/) [Legacy]
+npm install jshint -g
+
+# JSCS (http://jscs.info/) [Legacy]
+npm install jscs -g
 ```

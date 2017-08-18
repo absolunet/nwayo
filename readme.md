@@ -15,7 +15,7 @@
 
 
 
-## Requirements (All latest)
+## Requirements (All latest) - [Installation guide](docs/install)
 - [Node.js](//nodejs.org) ([Bower](//bower.io), [nwayo](//www.npmjs.com/package/nwayo))
 - [Ruby](//www.ruby-lang.org) ([Sass](http://sass-lang.com), [scss-lint](//github.com/causes/scss-lint))
 - [GraphicsMagick](http://www.graphicsmagick.org) / [ImageMagick](//www.imagemagick.org)
@@ -48,7 +48,7 @@ nwayo rebuild
 - Minifies with [cssnano](http://cssnano.co)
 
 #### Scripting
-- ES2015-ready via [Babel](//babeljs.io) and linted via [ESLint](http://eslint.org)
+- ES2017-ready via [Babel](//babeljs.io) and linted via [ESLint](http://eslint.org)
 - Comes with [jQuery](//jquery.com), [Modernizr](//modernizr.com), [lodash](//lodash.com), [PubSubJs](//github.com/mroderick/PubSubJS), [JsRender](//www.jsviews.com), [kafe](http://absolunet.github.io/kafe)
 - Builds with [gulp-include](//www.npmjs.com/package/@absolunet/gulp-include) and is minified with [UglifyJS](http://lisperator.net/uglifyjs)
 
