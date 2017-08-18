@@ -1,3 +1,3 @@
-# Install
-- [OSX](osx.md)
+# Installation
+- [macOS](macos.md)
 - [Windows](windows.md)

@@ -28,11 +28,12 @@ gem source -a http://rubygems.org/
 # Sass (http://sass-lang.com)
 gem install sass -v 3.4.25
 
-# Compass (http://compass-style.org)
-gem install compass
-
 # SCSS-Lint (https://github.com/causes/scss-lint)
 gem install scss_lint
+
+# Compass (http://compass-style.org) [Legacy]
+gem install compass
+
 ```
 
 ## [Node packages](https://www.npmjs.com/)
@@ -40,12 +41,13 @@ gem install scss_lint
 # Bower (http://bower.io)
 npm install bower -g
 
-# JSHint (http://jshint.com/)
-npm install jshint -g
-
-# JSCS (http://jscs.info/)
-npm install jscs -g
-
 # nwayo (http://absolunet.github.io/nwayo)
 npm install nwayo -g
+
+# JSHint (http://jshint.com/) [Legacy]
+npm install jshint -g
+
+# JSCS (http://jscs.info/) [Legacy]
+npm install jscs -g
+
 ```
