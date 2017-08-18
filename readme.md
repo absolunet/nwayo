@@ -19,7 +19,6 @@
 - [Node.js](//nodejs.org) ([Bower](//bower.io), [nwayo](//www.npmjs.com/package/nwayo))
 - [Ruby](//www.ruby-lang.org) ([Sass](http://sass-lang.com), [scss-lint](//github.com/causes/scss-lint))
 - [GraphicsMagick](http://www.graphicsmagick.org) / [ImageMagick](//www.imagemagick.org)
-- [Python2](//www.python.org) (Windows only)
 
 
 
