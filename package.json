@@ -1,13 +1,16 @@
 {
-  "name": "nwayo",
-  "version": "3.2.0",
-  "description": "A modern website boilerplate",
+  "name": "@absolunet/nwayo-workflow",
+  "version": "3.2.3",
+  "description": "Workflow for nwayo",
   "definition": "/nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.",
   "homepage": "http://absolunet.github.io/nwayo",
   "author": {
     "name": "Absolunet",
     "url": "http://absolunet.com/"
   },
+  "keywords": [
+    "nwayo"
+  ],
   "license": "MIT",
   "repository": {
     "url": "git://github.com/absolunet/nwayo.git",
@@ -17,14 +20,50 @@
     "url": "https://github.com/absolunet/nwayo/issues"
   },
   "engines": {
-    "node": ">= 8.1.4"
+    "node": ">= 8.2.1"
   },
   "scripts": {
-    "test": "ava"
+    "test": "ava test/index.js"
   },
   "devDependencies": {
-    "@absolunet/eslint-config-nwayo": "0.1.1",
     "@absolunet/tester": "1.0.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@absolunet/eslint-config-nwayo": "0.1.1",
+    "@absolunet/gulp-include": "0.5.0",
+    "async": "2.5.0",
+    "babel-core": "6.26.0",
+    "babel-preset-env": "1.6.0",
+    "colors": "1.1.2",
+    "crypto": "1.0.1",
+    "del": "3.0.0",
+    "fs-extra": "4.0.1",
+    "glob": "7.1.2",
+    "gulp": "3.9.1",
+    "gulp-autoprefixer": "4.0.0",
+    "gulp-cached": "1.1.1",
+    "gulp-cssnano": "2.1.2",
+    "gulp-debug": "3.1.0",
+    "gulp-eslint": "4.0.0",
+    "gulp-gm": "0.0.8",
+    "gulp-if": "2.0.2",
+    "gulp-imagemin": "3.3.0",
+    "gulp-json-sass": "0.0.2",
+    "gulp-line-ending-corrector": "1.0.1",
+    "gulp-rename": "1.2.2",
+    "gulp-ruby-sass": "2.1.1",
+    "gulp-scss-lint": "0.5.0",
+    "gulp-sourcemaps": "2.6.1",
+    "gulp-uglify": "3.0.0",
+    "inquirer": "3.2.2",
+    "js-yaml": "3.9.1",
+    "lodash": "4.17.4",
+    "lodash-cli": "4.17.4",
+    "merge-stream": "1.0.1",
+    "minimist": "1.2.0",
+    "modernizr": "3.5.0",
+    "run-sequence": "2.1.0",
+    "uglify-js": "3.0.28",
+    "vinyl": "2.1.0"
+  }
 }

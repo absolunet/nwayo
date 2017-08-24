@@ -1,0 +1,11 @@
+boilerplate
+docs
+ressources
+test
+.editorconfig
+.eslintrc.yaml
+.gitignore
+.npmignore
+.sublimelinterrc
+.travis.yml
+*.sublime-project

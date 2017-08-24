@@ -4,8 +4,10 @@
 <h1 align="center"><strong>nwayo</strong></h1>
 <p align="center">/nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.</p>
 
-[![Travis build](https://api.travis-ci.org/absolunet/nwayo.svg?branch=master)](https://travis-ci.org/absolunet/nwayo/builds)
-[![Dev dependencies](https://david-dm.org/absolunet/nwayo/dev-status.svg)](https://david-dm.org/absolunet/nwayo?type=dev)
+[![NPM version](https://img.shields.io/npm/v/@absolunet/nwayo-workflow.svg)](https://www.npmjs.com/package/@absolunet/nwayo-workflow)
+[![Travis build](https://api.travis-ci.org/absolunet/nwayo-workflow.svg?branch=master)](https://travis-ci.org/absolunet/nwayo-workflow/builds)
+[![Dependencies](https://david-dm.org/absolunet/nwayo-workflow/status.svg)](https://david-dm.org/absolunet/nwayo-workflow)
+[![Dev dependencies](https://david-dm.org/absolunet/nwayo-workflow/dev-status.svg)](https://david-dm.org/absolunet/nwayo-workflow?type=dev)
 <br>
 
 ## What is nwayo ?
@@ -23,7 +25,7 @@
 
 
 ## Get started
- - Get the files under [dist](dist)
+ - Get the files under [boilerplate](boilerplate)
  - Replace `MYPROJECT` in `bower.json` and `package.json` with your project's name
  - Rename `MYPROJECT.sublime-project` with your project's name
 
@@ -78,6 +80,4 @@ See the [releases](//github.com/absolunet/nwayo/releases).
 [Issues](//github.com/absolunet/nwayo/issues) | [Pull requests](//github.com/absolunet/nwayo/pulls)
 
 ## License
-The code is available under the [MIT license](license).
-
-
+MIT © [Absolunet](https://absolunet.com)
