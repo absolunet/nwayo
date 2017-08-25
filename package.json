@@ -20,10 +20,10 @@
     "url": "https://github.com/absolunet/nwayo/issues"
   },
   "engines": {
-    "node": ">= 8.2.1"
+    "node": ">= 8.4.0"
   },
   "scripts": {
-    "test": "ava test/index.js"
+    "test": "ava test"
   },
   "devDependencies": {
     "@absolunet/tester": "1.0.1"
@@ -64,6 +64,14 @@
     "modernizr": "3.5.0",
     "run-sequence": "2.1.0",
     "uglify-js": "3.0.28",
-    "vinyl": "2.1.0"
+    "vinyl": "2.1.0",
+
+    "bower": "1.8.0",
+    "chalk": "2.1.0",
+    "cli-spinner": "0.2.6",
+    "coffee-script": "1.12.7",
+    "david": "11.0.0",
+    "semver": "5.4.1",
+    "win-spawn": "2.0.0"
   }
 }
