@@ -42,7 +42,7 @@ gem install compass
 npm install bower -g
 
 # nwayo (http://absolunet.github.io/nwayo)
-npm install nwayo -g
+npm install @absolunet/nwayo-cli -g
 
 # JSHint (http://jshint.com/) [Legacy]
 npm install jshint -g
