@@ -18,7 +18,7 @@
 
 
 ## Requirements (All latest) - [Installation guide](docs/install)
-- [Node.js](//nodejs.org) ([Bower](//bower.io), [nwayo](//www.npmjs.com/package/nwayo))
+- [Node.js](//nodejs.org) ([Bower](//bower.io), [nwayo](//www.npmjs.com/package/@absolunet/nwayo-cli))
 - [Ruby](//www.ruby-lang.org) ([Sass](http://sass-lang.com), [scss-lint](//github.com/causes/scss-lint))
 - [GraphicsMagick](http://www.graphicsmagick.org) / [ImageMagick](//www.imagemagick.org)
 
