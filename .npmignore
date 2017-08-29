@@ -1,6 +1,7 @@
 boilerplate
 docs
 ressources
+src
 test
 .editorconfig
 .eslintrc.yaml
