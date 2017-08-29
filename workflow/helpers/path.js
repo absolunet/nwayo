@@ -89,9 +89,8 @@ filename.modernizr      = `modernizr`;
 filename.lodash         = `lodash`;
 
 const pkg = {};
-pkg.root        = path.normalize(`${__dirname}/../..`);
-pkg.nodeModules = `${pkg.root}/node_modules`;
-pkg.workflow    = `${pkg.root}/workflow`;
+pkg.root     = path.normalize(`${__dirname}/../..`);
+pkg.workflow = `${pkg.root}/workflow`;
 
 const config = {};
 config.konstan        = `${dir.root}/konstan.yaml`;
@@ -101,9 +100,8 @@ config.sass           = `${pkg.workflow}/sass.rb`;
 config.scsslint       = `${dir.root}/.scss-lint.yml`;
 config.modernizr      = `${dir.root}/modernizr.yaml`;
 config.lodash         = `${dir.root}/lodash.yaml`;
-config.lodashRoot     = `${pkg.nodeModules}/lodash-cli`;
-config.lodashPackage  = `${config.lodashRoot}/package.json`;
-config.babelPresetEnv = `${pkg.nodeModules}/babel-preset-env`;
+config.lodashBin      = require.resolve('lodash-cli');
+config.babelPresetEnv = require.resolve('babel-preset-env');
 
 
 
