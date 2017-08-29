@@ -54,12 +54,13 @@ module.exports =
 
 	#-- Run
 	run: (task, context) ->
-		fs = require 'fs'
+		fs   = require 'fs'
+		path = require 'path'
 
-		base = "#{context.cwd}/node_modules/@absolunet/nwayo-workflow/node_modules/gulp"
+		base = path.dirname require.resolve "gulp"
 
 		pkg = require "#{base}/package"
-		bin = "#{base}/#{pkg.bin.gulp}"
+		bin = path.normalize "#{base}/#{pkg.bin.gulp}"
 
 		arg = [task]
 		arg.push '--cwd', context.cwd
