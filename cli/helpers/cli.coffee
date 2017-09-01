@@ -26,6 +26,7 @@ module.exports =
 	usage: (context) ->
 		chalk = require 'chalk'
 		path  = require 'path'
+		slash = require 'slash'
 
 		@echo [
 			'\n'
@@ -46,7 +47,7 @@ module.exports =
 			chalk.yellow('nwayo --pronounce') + '       How to pronounce'
 			''
 			"     cli#{chalk.yellow('@')}#{context.cli.version} #{context.cli.path}"
-			"workflow#{chalk.yellow('@')}#{@pkg.version} #{path.normalize "#{__dirname}/../"}"
+			"workflow#{chalk.yellow('@')}#{@pkg.version} #{slash path.normalize "#{__dirname}/../../"}"
 			''
 		].join '\n '
 

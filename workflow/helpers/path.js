@@ -3,7 +3,8 @@
 //-------------------------------------
 'use strict';
 
-const path = require('path');
+const path  = require('path');
+const slash = require('slash');
 
 const BOWER  = 'bower_components';
 const CACHE  = '.nwayo-cache';
@@ -37,7 +38,7 @@ folder.cacheScripts = `${folder.cache}/${build.scripts}`;
 folder.cacheStyles  = `${folder.cache}/${build.styles}`;
 
 const dir = {};
-dir.root          = process.cwd();
+dir.root          = slash(process.cwd());
 dir.cache         = `${dir.root}/${folder.cache}`;
 dir.cacheInline   = `${dir.root}/${folder.cacheInline}`;
 dir.cacheSass     = `${dir.root}/${folder.cacheSass}`;
@@ -89,7 +90,7 @@ filename.modernizr      = `modernizr`;
 filename.lodash         = `lodash`;
 
 const pkg = {};
-pkg.root     = path.normalize(`${__dirname}/../..`);
+pkg.root     = slash(path.normalize(`${__dirname}/../..`));
 pkg.workflow = `${pkg.root}/workflow`;
 
 const config = {};
@@ -100,8 +101,8 @@ config.sass           = `${pkg.workflow}/sass.rb`;
 config.scsslint       = `${dir.root}/.scss-lint.yml`;
 config.modernizr      = `${dir.root}/modernizr.yaml`;
 config.lodash         = `${dir.root}/lodash.yaml`;
-config.lodashBin      = require.resolve('lodash-cli');
-config.babelPresetEnv = require.resolve('babel-preset-env');
+config.lodashBin      = slash(require.resolve('lodash-cli'));
+config.babelPresetEnv = slash(require.resolve('babel-preset-env'));
 
 
 

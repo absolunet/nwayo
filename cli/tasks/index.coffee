@@ -10,8 +10,9 @@ module.exports =
 
 	#-- Arguments value
 	argv: (argv, cwd, infos) ->
-		path = require 'path'
-		fs   = require 'fs'
+		path  = require 'path'
+		fs    = require 'fs'
+		slash = require 'slash'
 
 		# make echos trappable in tests
 		helper.echo = console.log
@@ -21,7 +22,7 @@ module.exports =
 			command: argv[0] or ''
 			target:  argv[1] or ''
 			targets: argv.slice 1
-			cwd:     cwd
+			cwd:     slash cwd
 			cli:     infos
 
 		isFlag = context.command.substring(0,2) is '--'

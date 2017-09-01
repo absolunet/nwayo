@@ -62,6 +62,7 @@
     "minimist": "1.2.0",
     "modernizr": "3.5.0",
     "run-sequence": "2.1.0",
+    "slash": "1.0.0",
     "uglify-js": "3.0.28",
     "vinyl": "2.1.0",
 
