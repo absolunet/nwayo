@@ -10,9 +10,12 @@ module.exports =
 
 	#-- Arguments value
 	argv: (argv, cwd, infos) ->
-		path  = require 'path'
-		fs    = require 'fs'
-		slash = require 'slash'
+		path   = require 'path'
+		fs     = require 'fs'
+		slash  = require 'slash'
+		semver = require 'semver'
+		chalk  = require 'chalk'
+		boxen  = require 'boxen'
 
 		# make echos trappable in tests
 		helper.echo = console.log
@@ -36,6 +39,23 @@ module.exports =
 				# get project package.json file
 				if fs.existsSync "#{context.cwd}/package.json"
 					context.pkg = require "#{context.cwd}/package"
+
+					# check for asked version vs installed version
+					requiredVersion  = context.pkg.dependencies['@absolunet/nwayo-workflow']
+					installedVersion = helper.pkg.version
+
+					if semver.gt requiredVersion, installedVersion
+						helper.echo boxen(
+							"nwayo workflow update #{chalk.dim(installedVersion)} #{chalk.reset('→')} #{chalk.green(requiredVersion)}\n\nThe required version in your project's package.json\nis greater than the installed one\n\nPlease update via #{chalk.yellow('npm install')}",
+							{
+								padding:     1,
+								margin:      0.5,
+								align:       'left',
+								borderColor: 'yellow'
+							}
+						);
+						helper.error()
+
 				else helper.error 'No package.json file found'
 
 
