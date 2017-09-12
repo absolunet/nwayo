@@ -71,7 +71,7 @@
 
 
 //-- Vertical center the child within the parent
-@mixin nwayo-valign-parent {
+@mixin nwayo-valign-parent-mixin {
 	font-size: 0;
 
 	&::before {
@@ -92,7 +92,7 @@
 
 
 //-- Create a block that scale within a ratio
-@mixin nwayo-scaling-block($w: 2, $h:1) {
+@mixin nwayo-scaling-block-mixin($w: 2, $h:1) {
 	position: relative;
 	display: block;
 	height: 0;
@@ -117,7 +117,7 @@
 // $column-spacing - Spacing between columns
 // $row-spacing - Spacing between rows
 // $base-style - Wether or not to output base styles (Ex.: set to false in a media query to prevent repeating the styles already defined)
-@mixin nwayo-column-list($nb-column:2, $bullet-spacing:1.0625em, $column-spacing:1.875em, $row-spacing:.625em, $base-style:true) {
+@mixin nwayo-column-list-mixin($nb-column:2, $bullet-spacing:1.0625em, $column-spacing:1.875em, $row-spacing:.625em, $base-style:true) {
 	// calculate a column offset : $column-spacing * ($column - 1) + $bullet-spacing * $column
 	$total-spacing: $column-spacing * ($nb-column - 1) + $bullet-spacing * $nb-column;
 	@if($base-style) {
