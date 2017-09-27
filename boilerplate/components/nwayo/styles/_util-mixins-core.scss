@@ -61,6 +61,7 @@
 }
 
 
+
 //-- Scalable icon
 @mixin nwayo-scalable-icon-mixin ($file, $component, $color:false) {
 	@include nwayo-bg-image-mixin($file, $component, $inline:true, $color:$color);
@@ -69,6 +70,12 @@
 	background-size: contain;
 }
 
+
+
+//-- Scalable icon multicolored states
+@mixin nwayo-scalable-icon-colored-states-mixin($name, $component, $state:default, $states:()) {
+	@include nwayo-scalable-icon-mixin($name, $component, $color:map-get($states, $state));
+}
 
 
 
