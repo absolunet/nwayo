@@ -42,10 +42,6 @@
 	addProp(vendor, 'Modernizr', global.Modernizr);
 	addProp(vendor, 'PubSub',    global.PubSub);
 
-	if (global.jQuery) {
-		addProp(vendor, 'jQueryGlobal', global.jQuery);
-	}
-
 	addProp(nwayo, 'vendor', vendor);
 
 	// Redefine
@@ -144,10 +140,17 @@
 		}
 	});
 
-	// When jQuery global is loaded
+	// When global jQuery is loaded
 	PubSub.subscribe('nwayo.jQueryGlobal.loaded', () => {
 		addProp(global.nwayo.vendor, 'jQueryGlobal', global.jQuery);
-		PubSub.publish('nwayo.jQueryGlobal.ready');
+		PubSub.publish('nwayo.jQueryGlobal.ready', global.jQuery);
 	});
+
+
+
+	// If global jQuery is already loaded
+	if (global.jQuery) {
+		PubSub.publish('nwayo.jQueryGlobal.loaded');
+	}
 
 })();

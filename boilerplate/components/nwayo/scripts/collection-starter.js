@@ -16,7 +16,6 @@ const __ = global.nwayo.shortcuts;
 
 const jQuery    = global.nwayo.vendor.jQuery;
 const $         = global.nwayo.vendor.jQuery;
-const $Global   = global.nwayo.vendor.jQueryGlobal;
 const _         = global.nwayo.vendor.lodash;
 const Modernizr = global.nwayo.vendor.Modernizr;
 const PubSub    = global.nwayo.vendor.PubSub;

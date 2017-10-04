@@ -137,7 +137,7 @@
 
 		// When global jQuery is ready
 		/**
-		PubSub.subscribe('nwayo.jQueryGlobal.ready', () => {
+		PubSub.subscribe('nwayo.jQueryGlobal.ready', (msg, $Global) => {
 			$Global.on('click');
 		});
 		/**/
