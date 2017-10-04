@@ -12,7 +12,7 @@ const NOLINT = 'vendor';
 
 const pattern = {};
 pattern.anytree = '**';
-pattern.babel = `^\/?##includes##(\\${CACHE}|${BOWER}|components/${NOLINT}-|components/.*/(_?)${NOLINT}-|components\/.*\/${NOLINT}\/)`;    // https://regex101.com/r/GMQHIe/1
+pattern.babel = `^/?##includes##(\\${CACHE}|${BOWER}|components/${NOLINT}-|components/.*/(_?)${NOLINT}-|components/.*/${NOLINT}/)`;    // https://regex101.com/r/GMQHIe/1
 
 const ext = {};
 ext.bundles   = 'yaml';
