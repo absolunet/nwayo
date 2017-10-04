@@ -51,12 +51,14 @@
 
 
 	// Promises
-	const deferredDOMParse = $.Deferred();
-	const deferredDocumentLoad = $.Deferred();
+	const deferredDOMParse         = $.Deferred();
+	const deferredDocumentLoad     = $.Deferred();
+	const deferredGlobalJQueryLoad = $.Deferred();
 
 	const promises = readonlyObj({
-		DOMParse:     deferredDOMParse.promise(),
-		documentLoad: deferredDocumentLoad.promise()
+		DOMParse:         deferredDOMParse.promise(),
+		documentLoad:     deferredDocumentLoad.promise(),
+		globalJQueryLoad: deferredGlobalJQueryLoad.promise()
 	});
 
 	addProp(nwayo, 'promises', promises);
@@ -143,7 +145,7 @@
 	// When global jQuery is loaded
 	PubSub.subscribe('nwayo.jQueryGlobal.loaded', () => {
 		addProp(global.nwayo.vendor, 'jQueryGlobal', global.jQuery);
-		PubSub.publish('nwayo.jQueryGlobal.ready', global.jQuery);
+		deferredGlobalJQueryLoad.resolve(global.jQuery);
 	});
 
 
