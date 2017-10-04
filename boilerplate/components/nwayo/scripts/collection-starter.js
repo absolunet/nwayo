@@ -9,8 +9,9 @@ const PROJECT = global.nwayo.project;
 const app     = global[PROJECT];
 const konstan = app.konstan;
 
-const DOM_PARSE     = global.nwayo.promises.DOMParse;
-const DOCUMENT_LOAD = global.nwayo.promises.documentLoad;
+const DOM_PARSE          = global.nwayo.promises.DOMParse;
+const DOCUMENT_LOAD      = global.nwayo.promises.documentLoad;
+const GLOBAL_JQUERY_LOAD = global.nwayo.promises.globalJQueryLoad;
 
 const __ = global.nwayo.shortcuts;
 

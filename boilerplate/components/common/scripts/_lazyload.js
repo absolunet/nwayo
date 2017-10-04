@@ -120,13 +120,13 @@
 	// Outline
 
 	// DOM Ready
-	$.when(DOM_PARSE).done(() => {
+	$.when(DOM_PARSE).then(() => {
 		local.bind();
 		local.preprocess();
 	});
 
 	// Document loaded
-	$.when(DOCUMENT_LOAD).done(() => {
+	$.when(DOCUMENT_LOAD).then(() => {
 		local.firstPass();
 	});
 
