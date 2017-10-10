@@ -19,8 +19,8 @@
 		// tmpl
 		/**
 		$.views.helpers({
-			konstan: (key) => { return _.get(konstan, key); },
-			trans:   (key) => { return app.translation[key]; }
+			konstan:   (key) => { return _.get(konstan, key); },
+			translate: (key) => { return app.translation[key]; }
 		});
 		/**/
 
