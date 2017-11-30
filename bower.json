@@ -25,11 +25,9 @@
     "toolbox/styles/config.scss"
   ],
   "ignore": [
-    ".git",
     "boilerplate",
     "cli",
     "docs",
-    "node_modules",
     "ressources",
     "src",
     "test",
@@ -40,8 +38,6 @@
     ".npmignore",
     ".sublimelinterrc",
     ".travis.yml",
-    "bower.json",
-    "license",
     "nwayo.sublime-project",
     "package-lock.json",
     "package.json"
