@@ -1,12 +1,9 @@
 //-------------------------------------
-//-- Utils: Functions
+//-- nwayo - Functions
 //-------------------------------------
 
-//-- Foundation function mockup so it works before Foundation is loaded
-@function rem-calc($val) {
-	@return ($val / $nwayo-basic-size) * 1rem;
-}
-
+//-- Foundation's rem-calc asap
+@import 'bower_components/foundation-sites/scss/util/unit';
 
 
 
@@ -20,6 +17,8 @@
 		@return $konstan-path-fonts + '/' + $context + '/' + $file;
 	}
 }
+
+
 
 
 
@@ -44,6 +43,20 @@
 @function nwayo-to-string($value) {
 	@return inspect($value);
 }
+
+//-- Check if list contains value
+//     @mixin xyz($options:()) {
+//       $a: nwayo-list-contains($options, a);
+//       $b: nwayo-list-contains($options, b);
+//     }
+@function nwayo-list-contains($list, $var) {
+	@if (index($list, $var)) {
+		@return true;
+	}
+	@return false;
+}
+
+
 
 
 

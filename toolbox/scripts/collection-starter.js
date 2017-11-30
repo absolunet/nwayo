@@ -2,7 +2,7 @@
 //-- Collection starter kit
 //-------------------------------------
 
-//= require components/nwayo/scripts/exclusion-starter
+//= require bower_components/nwayo-toolbox/toolbox/scripts/exclusion-starter
 
 /* eslint-disable strict, no-unused-vars, no-redeclare, prefer-destructuring */
 const PROJECT = global.nwayo.project;

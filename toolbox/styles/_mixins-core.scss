@@ -1,9 +1,9 @@
 //-------------------------------------
-//-- Utils: Mixins core
+//-- nwayo - Mixins - Core
 //-------------------------------------
 
 //-- Background image
-@mixin nwayo-bg-image-mixin ($file, $component, $inline:false, $width:false, $height:false, $color:false) {
+@mixin nwayo-bg-image-mixin($file, $component, $inline:false, $width:false, $height:false, $color:false) {
 
 	// uri
 	$uri: '';
@@ -61,15 +61,13 @@
 }
 
 
-
 //-- Scalable icon
-@mixin nwayo-scalable-icon-mixin ($file, $component, $color:false) {
+@mixin nwayo-scalable-icon-mixin($file, $component, $color:false) {
 	@include nwayo-bg-image-mixin($file, $component, $inline:true, $color:$color);
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: contain;
 }
-
 
 
 //-- Scalable icon multicolored states
@@ -78,9 +76,29 @@
 }
 
 
+//-- Images in ::before/::after pseudo-elements
+@mixin nwayo-pseudo-image-mixin($width, $height:$width) {
+	content: '';
+	width: $width;
+	height: $height;
+}
+
+
+//-- Images which replaces text
+@mixin nwayo-textreplace-image-mixin($width, $height:$width) {
+	overflow: hidden;
+	width: 0;
+	height: 0;
+	padding: $height 0 0 $width;
+}
+
+
+
+
+
 
 //-- Font-face
-@mixin nwayo-load-font-mixin ($name, $filename, $component, $weight:normal, $style:normal) {
+@mixin nwayo-load-font-mixin($name, $filename, $component, $weight:normal, $style:normal) {
 	$url:   nwayo-assets-path($filename, $component, 'fonts');
 	$woff2: if(nwayorb-file-exists($konstan-path-nwayoroot + '/components/' + $component + '/assets/fonts/' + $filename + '.woff2'), url($url + '.woff2') format('woff2') + ',', '');
 	@font-face {

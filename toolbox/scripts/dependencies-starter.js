@@ -1,6 +1,7 @@
 //-------------------------------------
 //-- Dependencies starter kit
 //-------------------------------------
+/* global nwayoStarterConfig */
 
 (() => {
 	'use strict';
@@ -36,8 +37,18 @@
 	});
 
 	// Vendors
+	let jQueryScoped;
+	switch (nwayoStarterConfig.jQuery.scope) {
+
+		case 'private': jQueryScoped = global.jQuery.noConflict(true); break;
+		case 'semi':    jQueryScoped = global.jQuery.noConflict(); break;
+		case 'public':  jQueryScoped = global.jQuery; break;
+		default: break;
+
+	}
+
 	const vendor = {};
-	addProp(vendor, 'jQuery',    global.jQuery.noConflict(true)); // Remove .noConflict(true) if only one jQuery
+	addProp(vendor, 'jQuery',    jQueryScoped);
 	addProp(vendor, 'lodash',    global._.noConflict());
 	addProp(vendor, 'Modernizr', global.Modernizr);
 	addProp(vendor, 'PubSub',    global.PubSub);
