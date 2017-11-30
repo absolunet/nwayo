@@ -1,6 +1,6 @@
 {
   "name": "nwayo-toolbox",
-  "version": "3.4.0-test-bower",
+  "version": "3.4.0-bower.1",
   "description": "Toolbox for nwayo",
   "definition": "/nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.",
    "homepage": "http://absolunet.github.io/nwayo",
@@ -20,7 +20,6 @@
     "url": "https://github.com/absolunet/nwayo/issues"
   },
   "main": [
-    "toolbox/scripts/collection-starter.js",
     "toolbox/scripts/dependencies-starter.js",
     "toolbox/styles/config.scss"
   ],
