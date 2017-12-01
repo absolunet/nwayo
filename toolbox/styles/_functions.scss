@@ -79,3 +79,10 @@
 	}
 	@return url("data:image/svg+xml;charset=utf8,#{$encoded}");
 }
+
+
+
+//-- Get a relative z-index for the scope
+@function nwayo-zindex($scopes, $scope, $delta:0) {
+	@return map-get($scopes, $scope) + $delta;
+}
