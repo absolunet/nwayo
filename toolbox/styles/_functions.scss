@@ -91,8 +91,8 @@
 //-- Simulate a breakpoint
 @function nwayo-breakpoint-media($bp, $direction) {
 	@if ($direction == up) {
-		@return 'only screen and (min-width: #{($bp + 1) / $nwayo-basic-size * 1em})';
+		@return 'screen and (min-width: #{($bp + 1) / $nwayo-basic-size * 1em})';
 	} @else if ($direction == down) {
-		@return 'only screen and (max-width: #{$bp / $nwayo-basic-size * 1em})';
+		@return 'screen and (max-width: #{$bp / $nwayo-basic-size * 1em})';
 	}
 }
