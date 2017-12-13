@@ -4,16 +4,14 @@
 
 //-- Placeholder
 input::placeholder {
-	color: lighten($common-text-color, 50%);
+	color: $form-input-placeholder-color;
 	font-style: italic;
 }
 
 
 //-- Textfields
 #{$nwayo-textfields-selector}, textarea, select {
-	//border-radius: 0;
-	line-height: 1;
-	//appearance: none;
+	//
 }
 
 textarea, textarea[rows] {
@@ -50,17 +48,17 @@ input[type="file"] {
 
 //-- Radio / Checkbox
 /**
-$_choice-input-size: rem-calc(18);
-$_choice-input-selection-size: rem-calc(8);
+$_choice-input-size: 1.125em;
+$_choice-input-selection-size: .5em;
 $_choice-input-position-size: ($_choice-input-size - $_choice-input-selection-size) / 2;
 
 input[type="checkbox"], input[type="radio"] {
 	position: absolute;
-	clip: rect(rem-calc(1), rem-calc(1), rem-calc(1), rem-calc(1));
+	clip: rect(.0625em, .0625em, .0625em, .0625em);
 
 	+ label {
 		position: relative;
-		padding-left: $_choice-input-size + rem-cal(10);
+		padding-left: $_choice-input-size + .125em;
 		cursor: pointer;
 
 		&::before {
@@ -71,24 +69,25 @@ input[type="checkbox"], input[type="radio"] {
 			display: block;
 			width: $_choice-input-size;
 			height: $_choice-input-size;
-			border: rem-calc(1) solid $common-text-color;
+			border: common-border(1, solid, $common-text-color);
 		}
 	}
 
-	&:checked + label::after,
-	&:checked + label:hover::after {
-		content: '';
-		position: absolute;
-		top: $_choice-input-position-size;
-		left: $_choice-input-position-size;
-		display: block;
-		width: $_choice-input-selection-size;
-		height: $_choice-input-selection-size;
-		background-color: $common-text-color;
+	&:checked + label {
+		&::after, &:hover::after {
+			content: '';
+			position: absolute;
+			top: $_choice-input-position-size;
+			left: $_choice-input-position-size;
+			display: block;
+			width: $_choice-input-selection-size;
+			height: $_choice-input-selection-size;
+			background-color: $common-text-color;
+		}
 	}
 
 	&:focus + label::before {
-		outline: rem-calc(1) dotted $common-text-color;
+		outline: common-border(1, dotted, $common-text-color);
 	}
 }
 

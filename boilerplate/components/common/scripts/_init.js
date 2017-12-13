@@ -2,10 +2,8 @@
 //-- Init
 //-------------------------------------
 
-//= **require     bower_components/foo/bar
-//= **require     components/common/scripts/foobar
-//= **jshtml      components/common/templates/foobar
-//= **jshtml_tree components/common/templates
+//= **require bower_components/kafe/dist/kafe
+//= **require bower_components/nwayo-toolbox/toolbox/scripts/wrapper/jsrender
 
 (() => {
 	'use strict';
@@ -24,42 +22,42 @@
 		});
 		/**/
 
-		app.lazyload.register({
-			'image': {
-				firstPass: ($this, options) => {
-					$this.attr('src', options.url);
-				}
-			},
-
-			'bg-image': {
-				firstPass: ($this, options) => {
-					$this.css('background-image', `url('${options.url}')`);
-				}
-			},
-
-			'SAMPLE': {
-				preprocess: ($this/* , options */) => {
-					setTimeout(() => { $this.addClass('placeholder'); }, 1000);
-				},
-				firstPass: ($this, options) => {
-					if (options.url) {
-						$this.find(`${__.component('main-image')} > img`).attr('src', options.url);
-					}
-				},
-				secondPass: ($this, options) => {
-					if (options.hoverUrl && !Modernizr.touchevents) {
-						const $hover = $this.find(__.component('main-image'));
-						$hover.css('background-image', `url('${options.hoverUrl}')`);
-
-						$hover.imagesLoaded({ background:true })
-							.then(() => {
-								$hover.addClass('hover');
-							})
-						;
-					}
-				}
-			}
-		});
+		// app.lazyload.register({
+		// 	'image': {
+		// 		firstPass: ($this, options) => {
+		// 			$this.attr('src', options.url);
+		// 		}
+		// 	},
+		//
+		// 	'bg-image': {
+		// 		firstPass: ($this, options) => {
+		// 			$this.css('background-image', `url('${options.url}')`);
+		// 		}
+		// 	},
+		//
+		// 	'SAMPLE': {
+		// 		preprocess: ($this/* , options */) => {
+		// 			setTimeout(() => { $this.addClass('placeholder'); }, 1000);
+		// 		},
+		// 		firstPass: ($this, options) => {
+		// 			if (options.url) {
+		// 				$this.find(`${__.component('main-image')} > img`).attr('src', options.url);
+		// 			}
+		// 		},
+		// 		secondPass: ($this, options) => {
+		// 			if (options.hoverUrl && !Modernizr.touchevents) {
+		// 				const $hover = $this.find(__.component('main-image'));
+		// 				$hover.css('background-image', `url('${options.hoverUrl}')`);
+		//
+		// 				$hover.imagesLoaded({ background:true })
+		// 					.then(() => {
+		// 						$hover.addClass('hover');
+		// 					})
+		// 				;
+		// 			}
+		// 		}
+		// 	}
+		// });
 
 
 		// Optional scroll

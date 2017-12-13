@@ -1,15 +1,15 @@
 //-------------------------------------
-//-- Fonts
+//-- Common - Fonts
 //-------------------------------------
 
 //-- Fonts
-@include nwayo-load-font-mixin('Open Sans', 'opensans-light-webfont',           'common', $weight:$nwayo-light-weight);
-@include nwayo-load-font-mixin('Open Sans', 'opensans-lightitalic-webfont',     'common', $weight:$nwayo-light-weight, $style:italic);
-@include nwayo-load-font-mixin('Open Sans', 'opensans-regular-webfont',         'common', $weight:$nwayo-normal-weight);
-@include nwayo-load-font-mixin('Open Sans', 'opensans-italic-webfont',          'common', $weight:$nwayo-normal-weight, $style:italic);
-//@include nwayo-load-font-mixin('Open Sans', 'opensans-semibold-webfont',        'common', $weight:$nwayo-semibold-weight, $style:italic);
-//@include nwayo-load-font-mixin('Open Sans', 'opensans-semibolditalic-webfont',  'common', $weight:$nwayo-semibold-weight, $style:italic);
-@include nwayo-load-font-mixin('Open Sans', 'opensans-bold-webfont',            'common', $weight:$nwayo-bold-weight);
-@include nwayo-load-font-mixin('Open Sans', 'opensans-bolditalic-webfont',      'common', $weight:$nwayo-bold-weight, $style:italic);
-@include nwayo-load-font-mixin('Open Sans', 'opensans-extrabold-webfont',       'common', $weight:$nwayo-extrabold-weight);
-@include nwayo-load-font-mixin('Open Sans', 'opensans-extrabolditalic-webfont', 'common', $weight:$nwayo-extrabold-weight, $style:italic);
+// @include nwayo-load-font-mixin('Open Sans', 'opensans-light-webfont',           'common', $weight:$nwayo-light-weight);
+// @include nwayo-load-font-mixin('Open Sans', 'opensans-lightitalic-webfont',     'common', $weight:$nwayo-light-weight, $style:italic);
+// @include nwayo-load-font-mixin('Open Sans', 'opensans-regular-webfont',         'common', $weight:$nwayo-normal-weight);
+// @include nwayo-load-font-mixin('Open Sans', 'opensans-italic-webfont',          'common', $weight:$nwayo-normal-weight, $style:italic);
+// @include nwayo-load-font-mixin('Open Sans', 'opensans-semibold-webfont',        'common', $weight:$nwayo-semibold-weight, $style:italic);
+// @include nwayo-load-font-mixin('Open Sans', 'opensans-semibolditalic-webfont',  'common', $weight:$nwayo-semibold-weight, $style:italic);
+// @include nwayo-load-font-mixin('Open Sans', 'opensans-bold-webfont',            'common', $weight:$nwayo-bold-weight);
+// @include nwayo-load-font-mixin('Open Sans', 'opensans-bolditalic-webfont',      'common', $weight:$nwayo-bold-weight, $style:italic);
+// @include nwayo-load-font-mixin('Open Sans', 'opensans-extrabold-webfont',       'common', $weight:$nwayo-extrabold-weight);
+// @include nwayo-load-font-mixin('Open Sans', 'opensans-extrabolditalic-webfont', 'common', $weight:$nwayo-extrabold-weight, $style:italic);

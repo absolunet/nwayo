@@ -1,0 +1,26 @@
+//-------------------------------------
+//-- Common - Config - Mixins
+//-------------------------------------
+
+//-- Images
+/**
+
+// Normal
+@mixin common-misc1-image { @include nwayo-bg-image-mixin('misc1.png', 'common'); }
+@mixin common-logo1-image { @include nwayo-bg-image-mixin('logo1.png', 'foobar'); }
+
+// High-density
+@mixin common-misc2-image { @include nwayo-bg-image-mixin('misc@2x.png', 'common'); }
+
+// Inline
+@mixin common-misc3-image { @include nwayo-bg-image-mixin('misc3.png', 'common', $inline:true); }
+@mixin common-icon3-image { @include nwayo-bg-image-mixin('icon3.png', 'foobar', $inline:true); }
+
+// Scalable
+@mixin common-icon4-image { @include nwayo-scalable-icon-mixin('icon4.svg', 'foobar'); }
+
+/**/
+
+//@mixin common-misc2-image { @include nwayo-bg-image-mixin('nwayo.svg', 'common'); }
+//@mixin common-misc3-image { @include nwayo-scalable-icon-mixin('test.svg', 'common', $color:$debug-orange); }
+//@mixin common-misc4-image { @include nwayo-scalable-icon-mixin('test.svg', 'common', $color:$debug-green); }
