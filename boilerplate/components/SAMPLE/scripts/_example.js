@@ -70,14 +70,14 @@
 	local.subscribe();
 
 	// DOM Ready
-	$.when(DOM_PARSE).then(() => {
+	$.when(DOM_PARSE).done(() => {
 		local.cacheDOM();
 		local.bind();
 		local.start();
 	});
 
 	// Document loaded
-	$.when(DOCUMENT_LOAD).then(() => {
+	$.when(DOCUMENT_LOAD).done(() => {
 		local.delayedStart();
 	});
 

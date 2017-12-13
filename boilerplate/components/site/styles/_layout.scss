@@ -1,5 +1,5 @@
 //-------------------------------------
-//-- Layout
+//-- Site - Layout
 //-------------------------------------
 
 //-- Base
@@ -8,19 +8,19 @@ html {
 }
 
 body {
-	//color: $common-text-color;
+	color: $common-text-color;
 	font-family: $common-text-font;
 	font-size: $common-base-text-size;
 	line-height: 1.3;
 }
 
 a:not(.button) {
-	//color: $common-link-color;
+	color: $common-link-color;
 	text-decoration: none;
 	transition: color $common-hover-transition ease-out;
 
 	&:hover, &:active, &:focus {
-		//color: $common-link-hover-color;
+		color: $common-link-hover-color;
 		text-decoration: underline;
 	}
 }
