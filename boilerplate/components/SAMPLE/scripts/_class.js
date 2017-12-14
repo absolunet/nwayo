@@ -1,5 +1,5 @@
 //-------------------------------------
-//-- SAMPLE - Example Class
+//-- SAMPLE - Class
 //-------------------------------------
 
 //= **require     bower_components/foobar
@@ -17,15 +17,13 @@
 	//-- Bar
 	local.bar = () => {
 
-		//
+		/* ... */
 
 	};
 
 
-
-
 	//-- Public class
-	app.foobar = class {
+	app.class = class {
 
 		// Property foo
 		static get foo() {

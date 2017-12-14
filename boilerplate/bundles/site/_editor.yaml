@@ -9,5 +9,5 @@ styles:
       - components/site/styles/config
       - components/foundation/styles/foundation
       - components/site/styles/fonts
-      - components/site/styles/layout
+      - components/site/styles/base
       - components/cms/styles/editor
