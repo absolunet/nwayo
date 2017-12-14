@@ -1,7 +1,5 @@
 # https://github.com/causes/scss-lint/blob/master/lib/scss_lint/linter/README.md
 
-exclude: 'bower_components/**/*.scss,components/theme-*/**/*.scss,components/vendor-*/**/*.scss'
-
 linters:
   BangFormat:
     enabled: true
