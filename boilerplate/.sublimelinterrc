@@ -10,13 +10,13 @@
       "excludes": [
         "*/nwayo/bower_components/*.js",
         "*/nwayo/node_modules/*.js",
-        "*/nwayo/components/*/vendor/*.js"
+        "*/nwayo/components/*/scripts/vendor/*.js"
       ]
     },
     "scss": {
       "excludes": [
         "*/nwayo/bower_components/*.scss",
-        "*/nwayo/components/*/vendor/*.scss"
+        "*/nwayo/components/*/styles/vendor/*.scss"
       ]
     }
   }

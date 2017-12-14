@@ -12,7 +12,7 @@ const NOLINT = 'vendor';
 
 const pattern = {};
 pattern.anytree = '**';
-pattern.babel = `^/?##includes##(\\${CACHE}|${BOWER}|components/${NOLINT}-|components/.*/(_?)${NOLINT}-|components/.*/${NOLINT}/)`;    // https://regex101.com/r/GMQHIe/1
+pattern.babel = `^/?##includes##(\\${CACHE}|${BOWER}|components/.*/scripts/${NOLINT}/)`; // https://regex101.com/r/kIKuJW/1
 
 const ext = {};
 ext.bundles   = 'yaml';
@@ -53,9 +53,7 @@ dir.images        = `${dir.assets}/images`;
 dir.inline        = `${dir.assets}/inline-images`;
 dir.raw           = `${dir.assets}/raw`;
 dir.scripts       = `${dir.components}/${pattern.anytree}/scripts`;
-dir.scriptsNolint = `${dir.components}/${NOLINT}-*/scripts`;
 dir.styles        = `${dir.components}/${pattern.anytree}/styles`;
-dir.stylesNolint  = `${dir.components}/${NOLINT}-*/styles`;
 dir.templates     = `${dir.components}/${pattern.anytree}/templates`;
 dir.bower         = `${dir.root}/${BOWER}`;
 dir.misc          = `${dir.root}/misc`;
@@ -75,9 +73,9 @@ files.images2x     = `${dir.images}/${pattern.anytree}/*@2x.${ext.images}`;
 files.inline       = `${dir.inline}/${pattern.anytree}/*.${ext.images}`;
 files.raw          = `${dir.raw}/${pattern.anytree}/*`;
 files.scripts      = `${dir.scripts}/${pattern.anytree}/*.${ext.scripts}`;
-files.scriptsLint  = [files.scripts, `!${dir.scriptsNolint}/${pattern.anytree}/*`, `!${dir.scripts}/${NOLINT}/${pattern.anytree}/*`, `!${dir.scripts}/${pattern.anytree}/?(_)${NOLINT}-*.${ext.scripts}`];
+files.scriptsLint  = [files.scripts, `!${dir.scripts}/${NOLINT}/${pattern.anytree}/*`];
 files.styles       = `${dir.styles}/${pattern.anytree}/*.${ext.styles}`;
-files.stylesLint   = [files.styles, `!${dir.stylesNolint}/${pattern.anytree}/*`, `!${dir.styles}/${NOLINT}/${pattern.anytree}/*`, `!${dir.styles}/${pattern.anytree}/?(_)${NOLINT}-*.${ext.styles}`];
+files.stylesLint   = [files.styles, `!${dir.styles}/${NOLINT}/${pattern.anytree}/*`];
 files.templates    = `${dir.templates}/${pattern.anytree}/*.${ext.templates}`;
 files.bowerScripts = `${dir.bower}/${pattern.anytree}/*.${ext.scripts}`;
 
