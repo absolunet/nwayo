@@ -10,7 +10,6 @@ assets:
     - site
 
 
-
 #-- Scripts
 scripts:
   collections:
@@ -19,7 +18,6 @@ scripts:
       - components/common/scripts/common
       - components/form/scripts/form
       - components/site/scripts/site
-
 
 
 #-- Styles

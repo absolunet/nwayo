@@ -1,9 +1,10 @@
 //-------------------------------------
-//-- Init
+//-- Common - Base
 //-------------------------------------
 
 //= **require bower_components/kafe/dist/kafe
 //= **require bower_components/nwayo-toolbox/toolbox/scripts/wrapper/jsrender
+//= **require bower_components/nwayo-toolbox/toolbox/scripts/helpers/lazyload
 
 (() => {
 	'use strict';
@@ -190,8 +191,6 @@
 		/**/
 
 	};
-
-
 
 
 

@@ -1,8 +1,7 @@
 //-------------------------------------
-//-- Site - Layout
+//-- Site - Base
 //-------------------------------------
 
-//-- Base
 html {
 	//background-color: $common-bg-color;
 }
@@ -31,10 +30,6 @@ a:not(.button) {
 }
 
 
-
-
-
-
 //-- Header
 .header {
 	/* ... */
@@ -51,7 +46,6 @@ a:not(.button) {
 .main-nav {
 	/* ... */
 }
-
 
 
 //-- Body
@@ -112,6 +106,7 @@ a:not(.button) {
 
 }
 
+
 //-- Content
 .content {
 	@include site-editable-styles;
@@ -129,4 +124,3 @@ a:not(.button) {
 .footer {
 	/* ... */
 }
-

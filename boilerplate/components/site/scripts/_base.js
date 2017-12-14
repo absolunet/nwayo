@@ -1,11 +1,6 @@
 //-------------------------------------
-//-- SAMPLE LONE
+//-- Site - Base
 //-------------------------------------
-
-//= **require     bower_components/foobar
-//= **require     components/nwayo/scripts/wrapper-foobar
-//= **jshtml      components/SAMPLE-LONE/templates/foobar
-//= **jshtml_tree components/SAMPLE-LONE/templates
 
 (() => {
 	'use strict';
@@ -16,7 +11,18 @@
 	//-- Cache data instantly
 	local.cache = () => {
 
-		//
+		// Env
+		// app.env.isUniquePage = app.env.pageId === 'UID';
+		// app.env.isTypePage   = _.includes(app.env.pageTags, 'TYPE-ID');
+		// app.env.isOneOfThese = !!_.intersection(app.env.pageTags, ['ID1', 'ID2']).length;
+
+
+		// Magento jsrender helper
+		/**
+		$.views.helpers({
+			translate: key => { return Translator.translate(key); }
+		});
+		/**/
 
 	};
 
@@ -40,7 +46,8 @@
 	//-- Subscribe to topics
 	local.subscribe = () => {
 
-		//
+		// PubSub.subscribe('foo.bar',  () => {});
+		// PubSub.subscribe('foo.bar2', () => {});
 
 	};
 
@@ -63,21 +70,19 @@
 
 
 
-
-
 	// Outline
 	local.cache();
 	local.subscribe();
 
 	// DOM Ready
-	$.when(DOM_PARSE).done(() => {
+	$.when(DOM_PARSE).then(() => {
 		local.cacheDOM();
 		local.bind();
 		local.start();
 	});
 
 	// Document loaded
-	$.when(DOCUMENT_LOAD).done(() => {
+	$.when(DOCUMENT_LOAD).then(() => {
 		local.delayedStart();
 	});
 
