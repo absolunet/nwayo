@@ -50,6 +50,7 @@ a:not(.button) {
 
 //-- Body
 .body {
+	visibility: visible;
 
 	//-- Foundation media exceptions
 	@media #{bp(small only)} {
