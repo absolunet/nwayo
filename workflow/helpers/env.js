@@ -52,49 +52,48 @@ const bundles = (() => {
 		for (const folder of bundlesList) {
 			const matches = folder.match(/\/([0-9a-zA-Z]+)\/$/);
 
-			if (!matches) {
-				continue;
-			}
+			if (matches) {
 
-			const [, name] = matches;
-			data[name] = Util.readYAML(`${folder}/${name}.${PATH.ext.bundles}`);
+				const [, name] = matches;
+				data[name] = Util.readYAML(`${folder}/${name}.${PATH.ext.bundles}`);
 
-			if (!data[name].assets) {
-				data[name].assets = {};
-			}
-
-			if (!data[name].assets.components) {
-				data[name].assets.components = [];
-			}
-
-			if (!data[name].scripts.collections) {
-				data[name].scripts.collections = {};
-			}
-
-			if (!data[name].styles.collections) {
-				data[name].styles.collections = {};
-			}
-
-			const subBundlesList = glob.sync(`${PATH.dir.bundles}/${name}/_${requiredSubname}.${PATH.ext.bundles}`);
-			if (subBundlesList.length) {
-				for (const subBundleFile of subBundlesList) {
-
-					const subBundleData = Util.readYAML(subBundleFile);
-					if (subBundleData.assets && subBundleData.assets.components) {
-						data[name].assets.components = [...new Set([...data[name].assets.components, ...subBundleData.assets.components])];
-					}
-
-					if (subBundleData.scripts && subBundleData.scripts.collections) {
-						Object.assign(data[name].scripts.collections, subBundleData.scripts.collections);
-					}
-
-					if (subBundleData.styles && subBundleData.styles.collections) {
-						Object.assign(data[name].styles.collections, subBundleData.styles.collections);
-					}
+				if (!data[name].assets) {
+					data[name].assets = {};
 				}
 
-			} else if (requiredSubname !== '*') {
-				throw new Error(`No subbundle '${options.bundle}' found`.red);
+				if (!data[name].assets.components) {
+					data[name].assets.components = [];
+				}
+
+				if (!data[name].scripts.collections) {
+					data[name].scripts.collections = {};
+				}
+
+				if (!data[name].styles.collections) {
+					data[name].styles.collections = {};
+				}
+
+				const subBundlesList = glob.sync(`${PATH.dir.bundles}/${name}/_${requiredSubname}.${PATH.ext.bundles}`);
+				if (subBundlesList.length) {
+					for (const subBundleFile of subBundlesList) {
+
+						const subBundleData = Util.readYAML(subBundleFile);
+						if (subBundleData.assets && subBundleData.assets.components) {
+							data[name].assets.components = [...new Set([...data[name].assets.components, ...subBundleData.assets.components])];
+						}
+
+						if (subBundleData.scripts && subBundleData.scripts.collections) {
+							Object.assign(data[name].scripts.collections, subBundleData.scripts.collections);
+						}
+
+						if (subBundleData.styles && subBundleData.styles.collections) {
+							Object.assign(data[name].styles.collections, subBundleData.styles.collections);
+						}
+					}
+
+				} else if (requiredSubname !== '*') {
+					throw new Error(`No subbundle '${options.bundle}' found`.red);
+				}
 			}
 		}
 	} else {
