@@ -50,7 +50,13 @@ const bundles = (() => {
 	if (bundlesList.length) {
 
 		for (const folder of bundlesList) {
-			const [, name] = folder.match(/\/([0-9a-zA-Z]+)\/$/);
+			const matches = folder.match(/\/([0-9a-zA-Z]+)\/$/);
+
+			if (!matches) {
+				continue;
+			}
+
+			const [, name] = matches;
 			data[name] = Util.readYAML(`${folder}/${name}.${PATH.ext.bundles}`);
 
 			if (!data[name].assets) {
