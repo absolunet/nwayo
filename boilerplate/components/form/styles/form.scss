@@ -53,6 +53,7 @@ input[type="file"] {
 $_choice-input-size: rem-calc(18);
 $_choice-input-selection-size: rem-calc(8);
 $_choice-input-position-size: ($_choice-input-size - $_choice-input-selection-size) / 2;
+$_choice-input-margin-size: rem-calc(10);
 
 input[type="checkbox"], input[type="radio"] {
 	position: absolute;
@@ -60,18 +61,19 @@ input[type="checkbox"], input[type="radio"] {
 
 	+ label {
 		position: relative;
-		padding-left: $_choice-input-size + rem-cal(10);
+		padding-left: $_choice-input-size + $_choice-input-margin-size;
 		cursor: pointer;
 
 		&::before {
 			content: '';
 			position: absolute;
-			top: 0;
+			top: 50%;
 			left: 0;
 			display: block;
 			width: $_choice-input-size;
 			height: $_choice-input-size;
 			border: rem-calc(1) solid $common-text-color;
+			margin-top: rem-calc(1) - ($_choice-input-size / 2);
 		}
 	}
 
@@ -79,11 +81,12 @@ input[type="checkbox"], input[type="radio"] {
 	&:checked + label:hover::after {
 		content: '';
 		position: absolute;
-		top: $_choice-input-position-size;
+		top: 50%;
 		left: $_choice-input-position-size;
 		display: block;
 		width: $_choice-input-selection-size;
 		height: $_choice-input-selection-size;
+		margin-top: rem-calc(1) - ($_choice-input-selection-size / 2);
 		background-color: $common-text-color;
 	}
 
