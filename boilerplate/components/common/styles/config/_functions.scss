@@ -1,0 +1,23 @@
+//-------------------------------------
+//-- Common - Config - Functions
+//-------------------------------------
+
+@function common-zindex($scope, $delta:0) {
+	@return nwayo-zindex((
+		max:          2147483647,  // For reference only do not use - 2,147,483,647
+
+		reveal:       1000000000,
+		offcanvas:     100000000,
+
+		header:           100000,
+
+
+		min:                   0   // For reference only do not use - 0
+
+	), $scope, $delta);
+}
+
+
+@function common-border($width:1, $style:solid, $color:$common-border-color) {
+	@return rem-calc($width) $style $color
+};

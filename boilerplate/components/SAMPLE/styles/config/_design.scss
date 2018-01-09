@@ -1,0 +1,15 @@
+//-------------------------------------
+//-- SAMPLE - Config - Design
+//-------------------------------------
+
+/*
+
+//-- Colors
+$SAMPLE-bg-color: #ffffff;
+$SAMPLE-text-color: #000000;
+
+//-- Images
+@mixin common-misc1-image { @include nwayo-bg-image-mixin('test.svg', 'SAMPLE'); }
+@mixin common-misc2-image { @include nwayo-scalable-icon-mixin('test.svg', 'SAMPLE', $color:$debug-orange); }
+
+*/

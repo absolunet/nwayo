@@ -2,3 +2,4 @@ boilerplate/bower_components
 node_modules
 npm-debug.log
 *.sublime-workspace
+src

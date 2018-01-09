@@ -7,7 +7,7 @@ styles:
   collections:
     editor:
       - components/site/styles/config
-      - components/vendor-foundation/styles/vendor-foundation
+      - components/foundation/styles/foundation
       - components/site/styles/fonts
-      - components/site/styles/layout
+      - components/site/styles/base
       - components/cms/styles/editor
