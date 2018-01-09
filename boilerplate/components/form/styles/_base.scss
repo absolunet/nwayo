@@ -51,6 +51,7 @@ input[type="file"] {
 $_choice-input-size: 1.125em;
 $_choice-input-selection-size: .5em;
 $_choice-input-position-size: ($_choice-input-size - $_choice-input-selection-size) / 2;
+$_choice-input-margin-size: .625em;
 
 input[type="checkbox"], input[type="radio"] {
 	position: absolute;
@@ -58,18 +59,19 @@ input[type="checkbox"], input[type="radio"] {
 
 	+ label {
 		position: relative;
-		padding-left: $_choice-input-size + .125em;
+		padding-left: $_choice-input-size + $_choice-input-margin-size;
 		cursor: pointer;
 
 		&::before {
 			content: '';
 			position: absolute;
-			top: 0;
+			top: 50%;
 			left: 0;
 			display: block;
 			width: $_choice-input-size;
 			height: $_choice-input-size;
 			border: common-border(1, solid, $common-text-color);
+			margin-top: .0625em - ($_choice-input-size / 2);
 		}
 	}
 
@@ -77,11 +79,12 @@ input[type="checkbox"], input[type="radio"] {
 		&::after, &:hover::after {
 			content: '';
 			position: absolute;
-			top: $_choice-input-position-size;
+			top: 50%;
 			left: $_choice-input-position-size;
 			display: block;
 			width: $_choice-input-selection-size;
 			height: $_choice-input-selection-size;
+			margin-top: .0625em - ($_choice-input-selection-size / 2);
 			background-color: $common-text-color;
 		}
 	}
