@@ -9,7 +9,6 @@ output:
   url:     /build
 
 
-
 #-- Scripts
 scripts:
   options:
@@ -21,7 +20,7 @@ scripts:
 
   allowBabel:
     - bower_components/foundation-sites
-
+    - bower_components/nwayo-toolbox
 
 
 #-- Styles
