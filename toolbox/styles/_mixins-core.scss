@@ -3,7 +3,7 @@
 //-------------------------------------
 
 //-- Background image
-@mixin nwayo-bg-image-mixin($file, $component, $inline:false, $width:false, $height:false, $color:false) {
+@mixin nwayo-bg-image-mixin($file, $component, $inline:false, $color:false) {
 
 	// uri
 	$uri: '';
@@ -46,12 +46,9 @@
 	// high density
 	@if str-index($file, '@2x') {
 		$path: 'components/' + $component + '/assets/' + if($inline, 'inline-', '') + 'images/' + $file;
-		$width:  if($width, $width, image-width($path));
-		$height: if($height, $height, image-height($path));
 
 		@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
 			background-image: $uri;
-			background-size: $width / 2 $height / 2;
 		}
 
 		$uri: nwayo-str-replace($uri, '@2x', '');

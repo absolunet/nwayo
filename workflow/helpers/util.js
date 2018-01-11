@@ -130,13 +130,6 @@ class Util {
 			}
 		}
 
-		if (data.bundles && data.bundles[bundle]) {
-			data.current = _.cloneDeep(data.bundles[bundle]);
-			delete data.bundles[bundle];
-		} else {
-			data.current = {};
-		}
-
 		return data;
 	}
 

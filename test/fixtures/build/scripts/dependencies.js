@@ -56,8 +56,7 @@ var konstan = {
 			"raw": "/build/raw",
 			"scripts": "/build/scripts",
 			"styles": "/build/styles"
-		},
-		"current": {}
+		}
 	}
 };
 
