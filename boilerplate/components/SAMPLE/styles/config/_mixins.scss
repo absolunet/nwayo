@@ -2,11 +2,13 @@
 //-- SAMPLE - Config - Mixins
 //-------------------------------------
 
-/*
-
-@mixin SAMPLE-mixin($bg-color:$SAMPLE-bg-color, $text-color:$SAMPLE-text-color) {
+@mixin sample-block-mixin($bg-color:$sample-bg-color, $text-color:$sample-text-color) {
 	background-color: $bg-color;
 	color: $text-color;
 };
 
-*/
+
+@mixin sample-kit-styles {
+	width: $common-column-small-size;
+	border: common-border($color:$common-border-alt-color);
+};

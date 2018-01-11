@@ -4,6 +4,7 @@
 
 /* eslint-disable no-unused-vars */
 const nwayoStarterConfig = {
+
 	// jQuery scope
 	//   'private': .noConflit(true)
 	//   'semi':    .noConflit()

@@ -23,7 +23,7 @@
 
 
 	//-- Public class
-	app.class = class {
+	app.myclass = class {
 
 		// Property foo
 		static get foo() {

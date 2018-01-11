@@ -1,0 +1,119 @@
+//-------------------------------------
+//-- Site - Config - Design editable
+//-------------------------------------
+
+//-- Editable content styles
+@mixin _subtitle-styles {
+	font-family: $common-title-font;
+	color: $common-text-var1-color;
+	font-weight: $common-text-fat-weight;
+	line-height: $common-title-lineheight;
+}
+
+
+
+@mixin site-h1-styles {
+	padding: 1em 0;
+	margin: 0;
+	color: $common-text-color;
+	font-family: $common-title-font;
+	font-size: $common-title-size;
+	font-weight: $common-text-fat-weight;
+	text-transform: uppercase;
+
+	@media #{bp(medium)} {
+		font-size: $common-title-biggest-size;
+	}
+}
+
+@mixin site-h2-styles {
+	@include _subtitle-styles;
+	margin: .4em 0;
+	color: $common-text-color;
+	font-size: $common-title-size;
+
+	@media #{bp(medium)} {
+		font-size: $common-title-big-size;
+	}
+}
+
+@mixin site-h3-styles {
+	@include _subtitle-styles;
+	font-size: $common-text-medium-size;
+
+	@media #{bp(medium)} {
+		font-size: $common-title-size;
+	}
+}
+
+@mixin site-h4-styles {
+	@include _subtitle-styles;
+	font-size: $common-text-medium-size;
+	line-height: $common-text-lineheight;
+
+	@media #{bp(medium)} {
+		font-size: $common-text-medium-size;
+	}
+}
+
+@mixin site-h5-styles {
+	@include _subtitle-styles;
+	font-size: $common-text-small-size;
+	line-height: $common-text-lineheight;
+}
+
+@mixin site-h6-styles {
+	@include _subtitle-styles;
+	font-size: $common-text-small-size;
+	line-height: $common-text-lineheight;
+}
+
+
+
+@mixin site-editable-styles {
+	margin-bottom: 1em;
+	font-size: $common-text-small-size;
+	font-weight: $common-text-base-weight;
+	line-height: $common-content-lineheight;
+
+	h1, .h1 { @include site-h1-styles; }
+	h2, .h2 { @include site-h2-styles; }
+	h3, .h3 { @include site-h3-styles; }
+	h4, .h4 { @include site-h4-styles; }
+	h5, .h5 { @include site-h5-styles; }
+	h6, .h6 { @include site-h6-styles; }
+
+	.small {
+		font-size: .8em;
+	}
+
+	p {
+		margin-bottom: 1em;
+		font-size: $common-text-small-size;
+		font-weight: $common-text-base-weight;
+		line-height: $common-content-lineheight;
+
+		+ h1, + h2, + h3, + h4, + h5, + h6 {
+			margin-top: 1em;
+		}
+	}
+
+	table.table td {
+		vertical-align: top;
+	}
+
+	blockquote {
+		padding: 0 0 0 1.25em;
+		border-left: common-border(3);
+		margin: 0 0 2em;
+		color: $common-text-color;
+
+		p {
+			margin: 0;
+			color: $common-text-color;
+			font-size: $common-text-small-size;
+			font-style: initial;
+			line-height: $common-content-lineheight;
+		}
+	}
+}

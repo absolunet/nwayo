@@ -2,4 +2,97 @@
 //-- SAMPLE - Base
 //-------------------------------------
 
-/* ... */
+.box {
+	background-color: $sample-bg-color;
+	color: $sample-text-color;
+}
+
+
+.failure {
+	@include sample-failure-image;
+}
+
+
+.picture {
+	&.foo1 {
+		@include sample-foo1-image;
+	}
+
+	&.foo2 {
+		@include sample-foo2-image;
+	}
+
+	&.foo3 {
+		@include sample-foo3-image;
+	}
+
+	&.foo4 {
+		@include sample-foo4-image;
+	}
+
+	&.foo5 {
+		@include sample-foo5-image;
+	}
+
+
+	&.bar1 {
+		@include sample-bar1-image;
+	}
+
+	&.bar2 {
+		@include sample-bar2-image;
+	}
+
+	&.bar3 {
+		@include sample-bar3-image;
+	}
+
+	&.bar4 {
+		@include sample-bar4-image;
+	}
+}
+
+
+.icon {
+	&.i1 {
+		@include sample-ico1-image;
+	}
+
+	&.i2 {
+		@include sample-ico2-image;
+	}
+
+	&.i3 {
+		@include sample-ico3-image;
+	}
+}
+
+
+.multi1 {
+	@include sample-multi1-image;
+
+	&:hover {
+		@include sample-multi1-image(hover);
+	}
+
+	&.active {
+		@include sample-multi1-image(active);
+	}
+}
+
+
+.multi2 {
+	@include sample-multi2-image;
+
+	&:hover {
+		@include sample-multi2-image(hover);
+	}
+
+	&.active {
+		@include sample-multi2-image(active);
+
+		&.flip {
+			@include sample-multi2-image(active-flip);
+		}
+	}
+}

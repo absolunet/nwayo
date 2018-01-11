@@ -4,8 +4,8 @@
 
 #-- Output paths (relative to nwayo folder) and output url
 output:
-  konstan: ../src/web/build
-  build:   ../src/web/build
+  konstan: ../test/fixtures/build
+  build:   ../test/fixtures/build
   url:     /build
 
 
@@ -16,11 +16,12 @@ scripts:
     babel:
       - '> 1%'
       - 'last 2 versions'
-      - 'ie >= 9'
+      - 'ie 11'
 
   allowBabel:
     - bower_components/foundation-sites
     - bower_components/nwayo-toolbox
+
 
 
 #-- Styles
@@ -31,4 +32,4 @@ styles:
     autoprefixer:
       - '> 1%'
       - 'last 2 versions'
-      - 'ie >= 9'
+      - 'ie 11'
