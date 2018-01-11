@@ -16,7 +16,7 @@
 	//-- Cache data instantly
 	local.cache = () => {
 
-		//
+		/* ... */
 
 	};
 
@@ -24,7 +24,7 @@
 	//-- Cache data once DOM is loaded
 	local.cacheDOM = () => {
 
-		//
+		/* ... */
 
 	};
 
@@ -32,7 +32,7 @@
 	//-- Bind events once DOM is loaded
 	local.bind = () => {
 
-		//
+		/* ... */
 
 	};
 
@@ -40,7 +40,7 @@
 	//-- Subscribe to topics
 	local.subscribe = () => {
 
-		//
+		/* ... */
 
 	};
 
@@ -48,7 +48,7 @@
 	//-- Execute once DOM is loaded
 	local.start = () => {
 
-		//
+		/* ... */
 
 	};
 
@@ -56,7 +56,7 @@
 	//-- Execute once page is loaded
 	local.delayedStart = () => {
 
-		//
+		/* ... */
 
 	};
 

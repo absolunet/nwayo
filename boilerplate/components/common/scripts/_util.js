@@ -5,6 +5,7 @@
 (() => {
 	'use strict';
 
+	//-- Public class
 	app.util = class {
 
 		/**

@@ -2,7 +2,13 @@
 //-- Site - Print
 //-------------------------------------
 
+$site-print-color: $konstan-color-black;
+
 @media print {
+	@page {
+		margin: 1cm;
+	}
+
 	.body {
 		width: 100%;
 	}
@@ -13,11 +19,15 @@
 
 	//-- Reset what hasn't been redefined
 	* {
-		$_black: #000000;
 		position: static !important;
 		overflow: visible !important;
-		border-color: $_black !important;
-		text-indent: 0 !important; // float: none !important;
+		border-color: $site-print-color !important;
+		box-shadow: none !important;
+		background: transparent !important;
+		color: $site-print-color !important;
+		text-indent: 0 !important;
+		text-shadow: none !important;
+		filter: none !important;
 
 		&::before, &::after {
 			display: none !important;

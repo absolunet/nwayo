@@ -5,11 +5,13 @@ data:
 
   #-- Responsive breakpoints
   dimension:
-    small:   640
-    medium: 1024
-    large:  1440
-    xlarge: 1920
-    max:    1280
+    small:    600
+    medium:   900
+    large:   1200
+    xlarge:  1500
+
+    xsmall:   450
+    max:     1500
 
 
   #-- Transition speeds in ms
@@ -26,61 +28,39 @@ data:
     white: '#ffffff'
 
     # Brand
-    brand-green:      '#659d32'
-    brand-green-dark: '#618931'
-    brand-brown:      '#423228'
-    brand-brown-lite: '#5e483c'
+    logo-shell:       '#659d32'
+    logo-shell-shade: '#618931'
+    logo-fruit:       '#423228'
+    logo-fruit-shade: '#5e483c'
 
     # Grey
-    grey:  '#333333'
-    grey1: '#666666'
-    grey2: '#999999'
-    grey3: '#bbbbbb'
-    grey4: '#eeeeee'
+    charcoal:   '#36454f'
+    nickel:     '#727472'
+    battleship: '#848482'
+    ash:        '#b2beb5'
+    platinum:   '#e5e4e2'
+
+    # Messages
+    success: '#4fb980'
+    warning: '#ffd061'
+    error:   '#d66161'
+
+
+
+
+
 
 
   #-- Fonts
   font:
     base: 'Open Sans'
+    alt:  'Merriweather'
 
 
   #-- Misc utils
   util:
     emptyimage: data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7
 
-
-
-
-
-#-- Bundle-specific data
-bundles:
-
-  #-- site
-  site:
-
-    #-- Colors
-    color:
-
-      # Red
-      accent: '#ff0000'
-
-    #-- Fonts
-    font:
-      alt: 'kreon'
-
-
-  #-- SITE2
-  SITE2:
-
-    #-- Colors
-    color:
-
-      # Blue
-      accent: '#0000ff'
-
-    #-- Fonts
-    font:
-      alt: 'kreon2'
 
 
 
@@ -92,6 +72,7 @@ options:
   scripts:
     exclude:
       - font.base
+      - font.alt
 
 
   styles:

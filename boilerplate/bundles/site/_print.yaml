@@ -1,0 +1,10 @@
+#-------------------------------------
+#-- Site - Print
+#-------------------------------------
+
+#-- Styles
+styles:
+  collections:
+    print:
+      - components/site/styles/config
+      - components/site/styles/print

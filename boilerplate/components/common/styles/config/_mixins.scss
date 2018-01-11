@@ -1,0 +1,96 @@
+//-------------------------------------
+//-- Common - Config - Mixins
+//-------------------------------------
+
+//-- Button
+@mixin common-button-mixin($type:false, $size:false, $action:false) {
+	$_padding:          .75em 1.5em;
+	$_border-color:     $common-button-border-color;
+	$_background-color: $common-button-bg-color;
+	$_color:            $common-button-text-color;
+	$_font-size:        $common-text-small-size;
+
+	@if $type == secondary {
+		$_border-color:     $common-button-secondary-border-color;
+		$_background-color: $common-button-secondary-bg-color;
+		$_color:            $common-button-secondary-text-color;
+	} @else if $type == cta {
+		$_border-color:     $common-button-cta-border-color;
+		$_background-color: $common-button-cta-bg-color;
+		$_color:            $common-button-cta-text-color;
+	}
+
+	@if $size == icon {
+		$_padding:   .75em;
+		$_font-size: $common-text-small-size;
+	} @else if $size == large {
+		$_padding:   .75em 1em;
+		$_font-size: $common-text-medium-size;
+	} @else if $size == small {
+		$_padding:   .5em .75em;
+		$_font-size: $common-text-micro-size;
+	}
+
+	display: inline-block;
+	vertical-align: middle;
+	box-sizing: border-box;
+	padding: $_padding;
+	border: common-border($width:2, $color:$_border-color);
+	margin: 0;
+	background: $_background-color;
+	color: $_color;
+	font-family: $common-text-font;
+	font-size: $_font-size;
+	font-weight: $common-text-base-weight;
+	text-align: center;
+	text-decoration: none;
+	line-height: 1.2;
+	letter-spacing: .02em;
+	text-transform: uppercase;
+	cursor: pointer;
+	transition-property: background-color, border-color, color;
+	transition-duration: $common-hover-transition;
+	transition-timing-function: ease-out;
+
+	&:hover, &:focus, &:active {
+		$_border-color:     $common-button-border-hover-color;
+		$_background-color: $common-button-bg-hover-color;
+		$_color:            $common-button-text-hover-color;
+
+		@if $type == secondary {
+			$_border-color:     $common-button-secondary-border-hover-color;
+			$_background-color: $common-button-secondary-bg-hover-color;
+			$_color:            $common-button-secondary-text-hover-color;
+		} @else if $type == cta {
+			$_border-color:     $common-button-cta-border-hover-color;
+			$_background-color: $common-button-cta-bg-hover-color;
+			$_color:            $common-button-cta-text-hover-color;
+		}
+		border-color: $_border-color;
+		background-color: $_background-color;
+		color: $_color;
+		text-decoration: none;
+	}
+
+	&.disabled, &[disabled], fieldset[disabled] & {
+		$_border-color:     $common-button-border-disabled-color;
+		$_background-color: $common-button-bg-disabled-color;
+		$_color:            $common-button-text-disabled-color;
+
+		@if $type == secondary {
+			$_border-color:     $common-button-secondary-border-disabled-color;
+			$_background-color: $common-button-secondary-bg-disabled-color;
+			$_color:            $common-button-secondary-text-disabled-color;
+		} @else if $type == cta {
+			$_border-color:     $common-button-cta-border-disabled-color;
+			$_background-color: $common-button-cta-bg-disabled-color;
+			$_color:            $common-button-cta-text-disabled-color;
+		}
+		border-color: $_border-color;
+		background-color: $_background-color;
+		color: $_color;
+		text-decoration: none;
+		cursor: not-allowed;
+		pointer-events: none;
+	}
+}
