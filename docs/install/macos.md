@@ -31,9 +31,6 @@ gem install sass
 
 # SCSS-Lint (https://github.com/causes/scss-lint)
 gem install scss_lint
-
-# Compass (http://compass-style.org) [Legacy]
-gem install compass
 ```
 
 ## [Node packages](https://www.npmjs.com/)

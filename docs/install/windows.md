@@ -10,7 +10,7 @@ Ouvrir un invite de commandes en mode administrateur et exécuter les commandes 
 ```sh
 # Image processors (http://www.graphicsmagick.org / http://www.imagemagick.org)
 choco install graphicsmagick --confirm
-choco install imagemagick.app --version 6.9.9.7 --confirm
+choco install imagemagick.app -packageparameters legacysupport=true --confirm
 
 # Ruby (https://www.ruby-lang.org)
 choco install ruby --confirm
@@ -23,17 +23,13 @@ choco install nodejs.install --confirm
 ```sh
 # Set http source
 chcp 1252
-gem source -a http://rubygems.org/
+gem source -a https://rubygems.org/
 
 # Sass (http://sass-lang.com)
-gem install sass -v 3.4.25
+gem install sass
 
 # SCSS-Lint (https://github.com/causes/scss-lint)
 gem install scss_lint
-
-# Compass (http://compass-style.org) [Legacy]
-gem install compass
-
 ```
 
 ## [Node packages](https://www.npmjs.com/)
@@ -49,5 +45,4 @@ npm install jshint -g
 
 # JSCS (http://jscs.info/) [Legacy]
 npm install jscs -g
-
 ```
