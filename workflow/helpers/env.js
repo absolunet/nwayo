@@ -50,7 +50,7 @@ const bundles = (() => {
 	if (bundlesList.length) {
 
 		for (const folder of bundlesList) {
-			const matches = folder.match(/\/([0-9a-zA-Z]+)\/$/);
+			const matches = folder.match(/\/([0-9a-zA-Z-]+)\/$/);
 
 			if (matches) {
 

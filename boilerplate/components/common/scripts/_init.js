@@ -19,8 +19,8 @@
 		// tmpl
 		/**
 		$.views.helpers({
-			konstan: (key) => { return _.get(konstan, key); },
-			trans:   (key) => { return app.translation[key]; }
+			konstan:   (key) => { return _.get(konstan, key); },
+			translate: (key) => { return app.translation[key]; }
 		});
 		/**/
 
@@ -52,7 +52,7 @@
 						$hover.css('background-image', `url('${options.hoverUrl}')`);
 
 						$hover.imagesLoaded({ background:true })
-							.done(() => {
+							.then(() => {
 								$hover.addClass('hover');
 							})
 						;
@@ -137,8 +137,8 @@
 
 		// When global jQuery is ready
 		/**
-		PubSub.subscribe('nwayo.jQueryGlobal.ready', () => {
-			$Global.on('click');
+		$.when(GLOBAL_JQUERY_LOAD).then(($Global) => {
+			$Global().on('click');
 		});
 		/**/
 
@@ -203,14 +203,14 @@
 	local.subscribe();
 
 	// DOM Ready
-	$.when(DOM_PARSE).done(() => {
+	$.when(DOM_PARSE).then(() => {
 		local.cacheDOM();
 		local.bind();
 		local.start();
 	});
 
 	// Document loaded
-	$.when(DOCUMENT_LOAD).done(() => {
+	$.when(DOCUMENT_LOAD).then(() => {
 		local.delayedStart();
 	});
 

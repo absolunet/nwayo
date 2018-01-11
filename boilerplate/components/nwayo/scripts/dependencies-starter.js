@@ -42,10 +42,6 @@
 	addProp(vendor, 'Modernizr', global.Modernizr);
 	addProp(vendor, 'PubSub',    global.PubSub);
 
-	if (global.jQuery) {
-		addProp(vendor, 'jQueryGlobal', global.jQuery);
-	}
-
 	addProp(nwayo, 'vendor', vendor);
 
 	// Redefine
@@ -55,12 +51,14 @@
 
 
 	// Promises
-	const deferredDOMParse = $.Deferred();
-	const deferredDocumentLoad = $.Deferred();
+	const deferredDOMParse         = $.Deferred();
+	const deferredDocumentLoad     = $.Deferred();
+	const deferredGlobalJQueryLoad = $.Deferred();
 
 	const promises = readonlyObj({
-		DOMParse:     deferredDOMParse.promise(),
-		documentLoad: deferredDocumentLoad.promise()
+		DOMParse:         deferredDOMParse.promise(),
+		documentLoad:     deferredDocumentLoad.promise(),
+		globalJQueryLoad: deferredGlobalJQueryLoad.promise()
 	});
 
 	addProp(nwayo, 'promises', promises);
@@ -144,10 +142,17 @@
 		}
 	});
 
-	// When jQuery global is loaded
+	// When global jQuery is loaded
 	PubSub.subscribe('nwayo.jQueryGlobal.loaded', () => {
 		addProp(global.nwayo.vendor, 'jQueryGlobal', global.jQuery);
-		PubSub.publish('nwayo.jQueryGlobal.ready');
+		deferredGlobalJQueryLoad.resolve(global.jQuery);
 	});
+
+
+
+	// If global jQuery is already loaded
+	if (global.jQuery) {
+		PubSub.publish('nwayo.jQueryGlobal.loaded');
+	}
 
 })();
