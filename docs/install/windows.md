@@ -23,7 +23,7 @@ choco install nodejs.install --confirm
 ```sh
 # Set http source
 chcp 1252
-gem source -a https://rubygems.org/
+gem source -a http://rubygems.org/
 
 # Sass (http://sass-lang.com)
 gem install sass
