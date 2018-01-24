@@ -3,7 +3,7 @@
 //-------------------------------------
 
 //-- Background image
-@mixin nwayo-bg-image-mixin($file, $component, $inline:false, $color:false) {
+@mixin nwayo-bg-image-styles($file, $component, $inline:false, $color:false) {
 
 	// uri
 	$uri: '';
@@ -59,8 +59,8 @@
 
 
 //-- Scalable icon
-@mixin nwayo-scalable-icon-mixin($file, $component, $color:false) {
-	@include nwayo-bg-image-mixin($file, $component, $inline:true, $color:$color);
+@mixin nwayo-scalable-icon-styles($file, $component, $color:false) {
+	@include nwayo-bg-image-styles($file, $component, $inline:true, $color:$color);
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: contain;
@@ -68,13 +68,13 @@
 
 
 //-- Scalable icon multicolored states
-@mixin nwayo-scalable-icon-colored-states-mixin($name, $component, $state:default, $states:()) {
-	@include nwayo-scalable-icon-mixin($name, $component, $color:map-get($states, $state));
+@mixin nwayo-scalable-icon-colored-states-styles($name, $component, $state:default, $states:()) {
+	@include nwayo-scalable-icon-styles($name, $component, $color:map-get($states, $state));
 }
 
 
 //-- Images in ::before/::after pseudo-elements
-@mixin nwayo-pseudo-image-mixin($width, $height:$width) {
+@mixin nwayo-pseudo-image-styles($width, $height:$width) {
 	content: '';
 	width: $width;
 	height: $height;
@@ -82,7 +82,7 @@
 
 
 //-- Images which replaces text
-@mixin nwayo-textreplace-image-mixin($width, $height:$width) {
+@mixin nwayo-textreplace-image-styles($width, $height:$width) {
 	overflow: hidden;
 	width: 0;
 	height: 0;
@@ -95,7 +95,7 @@
 
 
 //-- Font-face
-@mixin nwayo-load-font-mixin($name, $filename, $component, $weight:normal, $style:normal) {
+@mixin nwayo-load-font-styles($name, $filename, $component, $weight:normal, $style:normal) {
 	$url:   nwayo-assets-path($filename, $component, 'fonts');
 	$woff2: if(nwayorb-file-exists($konstan-path-nwayoroot + '/components/' + $component + '/assets/fonts/' + $filename + '.woff2'), url($url + '.woff2') format('woff2') + ',', '');
 	@font-face {
