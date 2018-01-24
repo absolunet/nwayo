@@ -11,7 +11,7 @@ const gulpif       = require('gulp-if');
 const cache        = require('gulp-cached');
 const rename       = require('gulp-rename');
 const imagemin     = require('gulp-imagemin');
-const scsslint     = require('gulp-scss-lint');
+const stylelint    = require('gulp-stylelint');
 const sass         = require('gulp-ruby-sass');
 const jsonsass     = require('gulp-json-sass');
 const autoprefixer = require('gulp-autoprefixer');
@@ -38,20 +38,30 @@ gulp.task('styles-images', () => {
 
 //-- Lint SCSS
 gulp.task('styles-lint', () => {
+
 	return gulp.src(PATH.files.stylesLint)
 		.pipe(cache('styles', { optimizeMemory:true }))
 
-		.pipe(scsslint({
-			config:       PATH.config.scsslint,
-			customReport: function(file) {
-				if (!file.scsslint.success) {
-					delete cache.caches.styles[file.path];
+		.pipe(stylelint({
+			configFile:     PATH.config.stylelint,
+			syntax:         'scss',
+			failAfterError: true,
+			reporters: [
+				{
+					formatter: (results) => {
+						results.forEach((item) => {
+							if (item.warnings.length || item.deprecations.length || item.invalidOptionWarnings.length) {
+								delete cache.caches.styles[item.source];
+							}
+						});
+					}
+				},
+				{
+					formatter: 'string',
+					console:   true
 				}
-				scsslint.defaultReporter(file);
-			}
+			]
 		}))
-
-		.pipe(scsslint.failReporter())
 	;
 });
 

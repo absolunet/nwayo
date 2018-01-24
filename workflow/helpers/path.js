@@ -31,11 +31,11 @@ build.scripts = 'scripts';
 build.styles  = 'styles';
 
 const folder = {};
-folder.cache        = CACHE;
-folder.cacheInline  = `${folder.cache}/inline-images`;
-folder.cacheSass    = `${folder.cache}/sass`;
-folder.cacheScripts = `${folder.cache}/${build.scripts}`;
-folder.cacheStyles  = `${folder.cache}/${build.styles}`;
+folder.cache          = CACHE;
+folder.cacheInline    = `${folder.cache}/inline-images`;
+folder.cacheSass      = `${folder.cache}/sass`;
+folder.cacheScripts   = `${folder.cache}/${build.scripts}`;
+folder.cacheStyles    = `${folder.cache}/${build.styles}`;
 
 const dir = {};
 dir.root          = slash(process.cwd());
@@ -96,7 +96,7 @@ config.konstan        = `${dir.root}/konstan.yaml`;
 config.projectPackage = `${dir.root}/package.json`;
 config.pkgPackage     = `${pkg.root}/package.json`;
 config.sass           = `${pkg.workflow}/sass.rb`;
-config.scsslint       = `${dir.root}/.scss-lint.yml`;
+config.stylelint      = `${dir.root}/.stylelintrc.yaml`;
 config.modernizr      = `${dir.root}/modernizr.yaml`;
 config.lodash         = `${dir.root}/lodash.yaml`;
 config.lodashBin      = slash(require.resolve('lodash-cli'));
