@@ -6,6 +6,9 @@
     "jscs": {
       "@disable": true
     },
+    "scss": {
+      "@disable": true
+    },
     "eslint": {
       "excludes": [
         "*/nwayo/bower_components/*.js",
@@ -13,7 +16,7 @@
         "*/nwayo/components/*/scripts/vendor/*.js"
       ]
     },
-    "scss": {
+    "stylelint": {
       "excludes": [
         "*/nwayo/bower_components/*.scss",
         "*/nwayo/components/*/styles/vendor/*.scss"

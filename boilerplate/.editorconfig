@@ -8,7 +8,7 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 
 
-[{.editorconfig,.eslintrc.yaml,.scss-lint.yml,.sublimelinterrc,bower.json,konstan.yaml,lodash.yaml,modernizr.yaml,package.json,bundles/**/*.yaml}]
+[{.editorconfig,.eslintrc.yaml,.stylelintrc.yaml,.sublimelinterrc,bower.json,konstan.yaml,lodash.yaml,modernizr.yaml,package.json,bundles/**/*.yaml}]
 indent_style = space
 indent_size = 2
 end_of_line = lf

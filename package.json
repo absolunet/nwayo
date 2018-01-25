@@ -20,13 +20,13 @@
     "url": "https://github.com/absolunet/nwayo/issues"
   },
   "engines": {
-    "node": ">= 8.6.0"
+    "node": ">= 9.4.0"
   },
   "scripts": {
     "test": "ava test"
   },
   "devDependencies": {
-    "@absolunet/tester": "1.1.0"
+    "@absolunet/tester": "1.2.0"
   },
   "dependencies": {
     "@absolunet/eslint-config-nwayo": "0.2.1",

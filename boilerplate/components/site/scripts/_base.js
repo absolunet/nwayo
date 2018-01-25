@@ -40,11 +40,6 @@
 
 		// PubSub.subscribe('foo.bar',  () => {});
 
-		// Bind on the global jQuery elements
-		// PubSub.subscribe('nwayo.jQueryGlobal.ready', (msg, $Global) => {
-		// 	$Global('[data-block="minicart"]').dropdownDialog('close');
-		// });
-
 	};
 
 
