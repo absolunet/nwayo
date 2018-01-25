@@ -15,50 +15,53 @@
 	//-- Cache data instantly
 	local.cache = () => {
 
-		// tmpl
 		/**
+		// JSRender
 		$.views.helpers({
 			konstan:   (key) => { return _.get(konstan, key); },
 			translate: (key) => { return app.translation[key]; }
 		});
 		/**/
 
-		// app.lazyload.register({
-		// 	'image': {
-		// 		firstPass: ($this, options) => {
-		// 			$this.attr('src', options.url);
-		// 		}
-		// 	},
-		//
-		// 	'bg-image': {
-		// 		firstPass: ($this, options) => {
-		// 			$this.css('background-image', `url('${options.url}')`);
-		// 		}
-		// 	},
-		//
-		// 	'SAMPLE': {
-		// 		preprocess: ($this/* , options */) => {
-		// 			setTimeout(() => { $this.addClass('placeholder'); }, 1000);
-		// 		},
-		// 		firstPass: ($this, options) => {
-		// 			if (options.url) {
-		// 				$this.find(`${__.component('main-image')} > img`).attr('src', options.url);
-		// 			}
-		// 		},
-		// 		secondPass: ($this, options) => {
-		// 			if (options.hoverUrl && !Modernizr.touchevents) {
-		// 				const $hover = $this.find(__.component('main-image'));
-		// 				$hover.css('background-image', `url('${options.hoverUrl}')`);
-		//
-		// 				$hover.imagesLoaded({ background:true })
-		// 					.then(() => {
-		// 						$hover.addClass('hover');
-		// 					})
-		// 				;
-		// 			}
-		// 		}
-		// 	}
-		// });
+		/**
+		// Lazyload
+		app.lazyload.register({
+			'image': {
+				firstPass: ($this, options) => {
+					$this.attr('src', options.url);
+				}
+			},
+
+			'bg-image': {
+				firstPass: ($this, options) => {
+					$this.css('background-image', `url('${options.url}')`);
+				}
+			},
+
+			'SAMPLE': {
+				preprocess: ($this) => {
+					setTimeout(() => { $this.addClass('placeholder'); }, 1000);
+				},
+				firstPass: ($this, options) => {
+					if (options.url) {
+						$this.find(`${__.component('main-image')} > img`).attr('src', options.url);
+					}
+				},
+				secondPass: ($this, options) => {
+					if (options.hoverUrl && !Modernizr.touchevents) {
+						const $hover = $this.find(__.component('main-image'));
+						$hover.css('background-image', `url('${options.hoverUrl}')`);
+
+						$hover.imagesLoaded({ background:true })
+							.then(() => {
+								$hover.addClass('hover');
+							})
+						;
+					}
+				}
+			}
+		});
+		/**/
 
 
 		// Optional scroll
@@ -71,7 +74,7 @@
 	local.cacheDOM = () => {
 
 		/**
-		// translation
+		// Translation
 		app.translation = {};
 		$('[data-translation]').each(function() {
 			$.extend(app.translation, $(this).data('translation'));
@@ -134,12 +137,7 @@
 	//-- Subscribe to topics
 	local.subscribe = () => {
 
-		// When global jQuery is ready
-		/**
-		$.when(GLOBAL_JQUERY_LOAD).then(($Global) => {
-			$Global().on('click');
-		});
-		/**/
+		// PubSub.subscribe('foo.bar', () => {});
 
 	};
 
@@ -148,6 +146,13 @@
 	local.start = () => {
 
 		__.$document.foundation();
+
+		/**
+		// When global jQuery is ready
+		$.when(GLOBAL_JQUERY_LOAD).then(($Global) => {
+			$Global().on('click');
+		});
+		/**/
 
 		/**
 		// Webfont loader
@@ -176,19 +181,6 @@
 	local.delayedStart = () => {
 
 		__.$body.addClass('document-loaded');
-
-		/**
-		// Equalizer
-		kafe.ext.foundation.equalizer({
-			wrapper: __.$component('element-list'),
-			item:    __.$component('element-list-item'),
-			rows:    {
-				small:  2,
-				medium: 3,
-				large:  4
-			}
-		});
-		/**/
 
 	};
 

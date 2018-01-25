@@ -8,8 +8,9 @@
 				".eslintrc.yaml",
 				".gitattributes",
 				".gitignore",
-				".scss-lint.yml",
+				".stylelintrc.yaml",
 				".sublimelinterrc",
+				"package-lock.json",
 				"*.sublime-project"
 			],
 			"follow_symlinks": true,
