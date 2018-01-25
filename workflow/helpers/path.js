@@ -88,14 +88,13 @@ filename.modernizr      = `modernizr`;
 filename.lodash         = `lodash`;
 
 const pkg = {};
-pkg.root     = slash(path.normalize(`${__dirname}/../..`));
-pkg.workflow = `${pkg.root}/workflow`;
+pkg.root     = slash(path.normalize(`${__dirname}/..`));
 
 const config = {};
 config.konstan        = `${dir.root}/konstan.yaml`;
 config.projectPackage = `${dir.root}/package.json`;
 config.pkgPackage     = `${pkg.root}/package.json`;
-config.sass           = `${pkg.workflow}/sass.rb`;
+config.sass           = `${pkg.root}/sass.rb`;
 config.stylelint      = `${dir.root}/.stylelintrc.yaml`;
 config.modernizr      = `${dir.root}/modernizr.yaml`;
 config.lodash         = `${dir.root}/lodash.yaml`;
