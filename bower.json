@@ -25,20 +25,15 @@
   ],
   "ignore": [
     "boilerplate",
-    "cli",
     "docs",
     "ressources",
-    "src",
     "test",
     "workflow",
     ".editorconfig",
     ".eslintrc.yaml",
     ".gitignore",
-    ".npmignore",
     ".sublimelinterrc",
     ".travis.yml",
-    "nwayo.sublime-project",
-    "package-lock.json",
-    "package.json"
+    "nwayo.sublime-project"
   ]
 }

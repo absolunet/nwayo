@@ -5,6 +5,9 @@
     },
     "jscs": {
       "@disable": true
+    },
+    "scss": {
+      "@disable": true
     }
   }
 }
