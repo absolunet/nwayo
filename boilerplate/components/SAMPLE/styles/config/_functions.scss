@@ -3,5 +3,5 @@
 //-------------------------------------
 
 @function sample-is-foobar($param1:true, $param2:true) {
-	@return $param1 == $param2
-};
+	@return $param1 == $param2;
+}

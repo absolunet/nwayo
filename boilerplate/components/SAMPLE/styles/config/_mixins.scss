@@ -5,10 +5,10 @@
 @mixin sample-block-styles($bg-color:$sample-bg-color, $text-color:$sample-text-color) {
 	background-color: $bg-color;
 	color: $text-color;
-};
+}
 
 
-@mixin sample-kit-styles {
+@mixin sample-kit-styles() {
 	width: $common-column-small-size;
 	border: common-border($color:$common-border-alt-color);
-};
+}
