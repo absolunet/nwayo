@@ -10,19 +10,24 @@ const tester = require('@absolunet/tester');
 const rootPath = slash(path.normalize(`${__dirname}/..`));
 
 tester.lintJs([
-	`**/*.js`,
-	`!boilerplate/node_modules/**/*`,
+	`*.js`,
+	`*/*.js`,
+	`*/!(node_modules)/**/*.js`,
 	`!boilerplate/bower_components/**/*`,
 	`!boilerplate/components/**/scripts/vendor/**/*.js`,
-	`!test/fixtures/**/*.js`,
-	`!test/node_modules/**/*`,
-	`!workflow/node_modules/**/*`
+	`!test/fixtures/**/*.js`
 ], {
 	cwd: rootPath
 });
 
 
-tester.lintScss(['boilerplate/components/**/*.scss'], {
-	cwd:        rootPath,
-	configPath: slash(path.normalize(`${rootPath}/boilerplate/.stylelintrc.yaml`))
+tester.lintScss([
+	`*.scss`,
+	`*/*.scss`,
+	`*/!(node_modules)/**/*.scss`,
+	`!boilerplate/bower_components/**/*`,
+	`!boilerplate/components/**/styles/vendor/**/*.scss`
+], {
+	cwd: rootPath
 });
+

@@ -145,15 +145,15 @@ a:not(.button) {
 
 	.button {
 		&.primary {
-			@include common-button-mixin();
+			@include common-button-styles();
 		}
 
 		&.secondary {
-			@include common-button-mixin($type:secondary);
+			@include common-button-styles($type:secondary);
 		}
 
 		&.cta {
-			@include common-button-mixin($type:cta);
+			@include common-button-styles($type:cta);
 		}
 	}
 
@@ -163,7 +163,7 @@ a:not(.button) {
 		color: $common-text-var2-color;
 
 		&::before {
-			@include nwayo-pseudo-image-mixin(1em);
+			@include nwayo-pseudo-image-styles(1em);
 			position: absolute;
 			top: .8em;
 			left: .65em;
