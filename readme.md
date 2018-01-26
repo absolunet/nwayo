@@ -19,7 +19,7 @@
 
 ## Requirements (All latest) - [Installation guide](docs/install)
 - [Node.js](//nodejs.org) ([Bower](//bower.io), [nwayo](//www.npmjs.com/package/@absolunet/nwayo-cli))
-- [Ruby](//www.ruby-lang.org) ([Sass](http://sass-lang.com), [scss-lint](//github.com/causes/scss-lint))
+- [Ruby](//www.ruby-lang.org) ([Sass](http://sass-lang.com))
 - [GraphicsMagick](http://www.graphicsmagick.org) / [ImageMagick](//www.imagemagick.org)
 
 
@@ -45,12 +45,12 @@ nwayo rebuild
 - Uses [Bower](//bower.io) as dependencies manager and [EditorConfig](http://editorconfig.org) for consistency
 
 #### Styling
-- CSS3-ready via [Autoprefixer](//github.com/postcss/autoprefixer) and linted via [scss-lint](//github.com/brigade/scss-lint)
+- CSS3-ready via [Autoprefixer](//github.com/postcss/autoprefixer) and linted via [stylelint](//stylelint.io/)
 - Comes with [Sass](http://sass-lang.com)
 - Minifies with [cssnano](http://cssnano.co)
 
 #### Scripting
-- ES2017-ready via [Babel](//babeljs.io) and linted via [ESLint](http://eslint.org)
+- ES2018-ready via [Babel](//babeljs.io) and linted via [ESLint](http://eslint.org)
 - Comes with [jQuery](//jquery.com), [Modernizr](//modernizr.com), [lodash](//lodash.com), [PubSubJs](//github.com/mroderick/PubSubJS), [JsRender](//www.jsviews.com), [kafe](http://absolunet.github.io/kafe)
 - Builds with [gulp-include](//www.npmjs.com/package/@absolunet/gulp-include) and is minified with [UglifyJS](http://lisperator.net/uglifyjs)
 

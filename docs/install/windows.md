@@ -28,7 +28,7 @@ gem source -a http://rubygems.org/
 # Sass (http://sass-lang.com)
 gem install sass
 
-# SCSS-Lint (https://github.com/causes/scss-lint)
+# SCSS-Lint (https://github.com/causes/scss-lint) [nwayo < 3.5.0]
 gem install scss_lint
 ```
 
@@ -40,9 +40,9 @@ npm install bower -g
 # nwayo (http://absolunet.github.io/nwayo)
 npm install @absolunet/nwayo-cli -g
 
-# JSHint (http://jshint.com/) [Legacy]
+# JSHint (http://jshint.com/) [nwayo < 3.0.0]
 npm install jshint -g
 
-# JSCS (http://jscs.info/) [Legacy]
+# JSCS (http://jscs.info/) [nwayo < 3.0.0]
 npm install jscs -g
 ```
