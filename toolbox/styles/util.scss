@@ -2,9 +2,9 @@
 //-- nwayo - Util
 //-------------------------------------
 
-a[href="#TODO"] {
-	$_todopatch-color: #ee2c2c;
-	color: $_todopatch-color !important;
+a[href='#TODO'] {
+	$nwayo-todopatch-color: #ee2c2c;
+	color: $nwayo-todopatch-color !important;
 	font-weight: $nwayo-black-weight !important;
 	text-decoration: underline !important;
 }

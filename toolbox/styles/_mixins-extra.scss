@@ -4,21 +4,41 @@
 
 //-- Placeholder
 @mixin nwayo-placeholder-styles() {
-	select.placeholder { @content; }
-	input.placeholder { @content; }
-	input::placeholder { @content; }
+	select.placeholder {
+		@content;
+	}
+
+	input.placeholder {
+		@content;
+	}
+
+	input::placeholder {
+		@content;
+	}
 }
 
 //-- Select reset
 @mixin nwayo-select-reset-styles() {
-	@-moz-document url-prefix() { select { @content; } }
-	html.lt-ie10 select { @content; }
+	@-moz-document url-prefix() {
+		select {
+			@content;
+		}
+	}
+
+	html.lt-ie10 select {
+		@content;
+	}
 }
 
 //-- Input type file button
 @mixin nwayo-input-file-button-styles() {
-	&::-webkit-file-upload-button { @content; }
-	//&::-ms-browse { @content; }
+	&::-webkit-file-upload-button {
+		@content;
+	}
+
+	//&::-ms-browse {
+	//	@content;
+	//}
 }
 
 
@@ -90,11 +110,11 @@
 @mixin nwayo-column-list-styles($nb-column:2, $bullet-spacing:1.0625em, $column-spacing:1.875em, $row-spacing:.625em, $base-style:true) {
 	// calculate a column offset : $column-spacing * ($column - 1) + $bullet-spacing * $column
 	$total-spacing: $column-spacing * ($nb-column - 1) + $bullet-spacing * $nb-column;
-	@if($base-style) {
+	@if ($base-style) {
 		padding-left: 0;
 	}
 	padding-right: $total-spacing;
-	@if($base-style) {
+	@if ($base-style) {
 		box-sizing: border-box;
 		// clearfix
 		&::before, &::after {
@@ -108,7 +128,7 @@
 	}
 
 	> li {
-		@if($base-style) {
+		@if ($base-style) {
 			position: relative;
 			float: left;
 		}
