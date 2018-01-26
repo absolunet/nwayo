@@ -7,14 +7,11 @@ https://packagecontrol.io/packages/EditorConfig
 ## Linters
 https://packagecontrol.io/packages/SublimeLinter
 
-#### SCSS Lint
-https://packagecontrol.io/packages/SublimeLinter-contrib-scss-lint
+#### ESlint
+https://packagecontrol.io/packages/SublimeLinter-eslint
 
-#### JSHint
-https://packagecontrol.io/packages/SublimeLinter-jshint
-
-#### Coffee Lint
-https://packagecontrol.io/packages/SublimeLinter-coffeelint
+#### stylelint
+https://packagecontrol.io/packages/SublimeLinter-contrib-stylelint
 
 
 
@@ -24,11 +21,11 @@ https://packagecontrol.io/packages/SublimeLinter-coffeelint
 
 
 ```
-# PHPStorm 
+# PHPStorm
 
 #### EditorConfig
 ```
-> Preferences 
+> Preferences
 > Plugins > Browse Repositories...
 	- Search 'EditorConfig'
 	- Install plugin
@@ -36,14 +33,14 @@ https://packagecontrol.io/packages/SublimeLinter-coffeelint
 
 #### SCSS Lint
 ```
-> Preferences 
+> Preferences
 > Plugins > Browse Repositories...
 	- Search 'scss-lint'
 	- Install plugin
 
 [Restart]
 
-> Preferences 
+> Preferences
 > Other settings > SCSS Lint
 	- [x] Enable
 	- SCSS Lint exe : /usr/local/bin/scss-lint
@@ -52,8 +49,8 @@ https://packagecontrol.io/packages/SublimeLinter-coffeelint
 
 #### JSHint
 ```
-> Preferences 
-> Languages & Frameworks > Javascript > Code Quality Tools > JSHint 
+> Preferences
+> Languages & Frameworks > Javascript > Code Quality Tools > JSHint
 	- [x] Enable
 	- [x] Use config files
   - Version (latest)
@@ -67,7 +64,7 @@ https://packagecontrol.io/packages/SublimeLinter-coffeelint
 
 
 ```
-# Visual Studio 
+# Visual Studio
 
 #### EditorConfig
 https://visualstudiogallery.msdn.microsoft.com/c8bccfe2-650c-4b42-bc5c-845e21f96328
