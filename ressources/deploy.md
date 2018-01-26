@@ -45,7 +45,7 @@
 
 ### Sous `boilerplate`
 
-- Ajuster la version dans le `bower.json`, `package.json` et `SAMPLE.index.html`
+- Ajuster la version dans le `bower.json`, `package.json`, `SAMPLE.index.html` et `./bower.json`
 
 - Supprimer `package-lock.json` et `node_modules`
 
