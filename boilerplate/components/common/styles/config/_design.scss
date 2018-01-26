@@ -129,9 +129,9 @@ $common-button-cta-border-disabled-color:       lighten(desaturate($konstan-colo
 
 
 //-- Images
-@mixin common-success-image { @include nwayo-scalable-icon-mixin('success.svg', 'common', $color:$common-text-var2-color); }
-@mixin common-warning-image { @include nwayo-scalable-icon-mixin('warning.svg', 'common', $color:$common-text-var2-color); }
-@mixin common-error-image   { @include nwayo-scalable-icon-mixin('error.svg',   'common', $color:$common-text-var2-color); }
+@mixin common-success-image { @include nwayo-scalable-icon-styles('success.svg', 'common', $color:$common-text-var2-color); }
+@mixin common-warning-image { @include nwayo-scalable-icon-styles('warning.svg', 'common', $color:$common-text-var2-color); }
+@mixin common-error-image   { @include nwayo-scalable-icon-styles('error.svg',   'common', $color:$common-text-var2-color); }
 
 
 

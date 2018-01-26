@@ -21,7 +21,7 @@ textarea, textarea[rows] {
 
 //-- Reset select
 /**
-@include nwayo-select-reset-mixin {
+@include nwayo-select-reset-styles {
 	background-image: none;
 }
 select {
@@ -38,7 +38,7 @@ input[type="file"] {
 	//@include form-element;
 	height: auto;
 
-	@include nwayo-input-file-button-mixin {
+	@include nwayo-input-file-button-styles {
 		//@include button();
 		margin: 0;
 	}

@@ -3,7 +3,7 @@
 //-------------------------------------
 
 //-- Button
-@mixin common-button-mixin($type:false, $size:false, $action:false) {
+@mixin common-button-styles($type:false, $size:false, $action:false) {
 	$_padding:          .75em 1.5em;
 	$_border-color:     $common-button-border-color;
 	$_background-color: $common-button-bg-color;

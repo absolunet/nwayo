@@ -2,7 +2,7 @@
 //-- SAMPLE - Config - Mixins
 //-------------------------------------
 
-@mixin sample-block-mixin($bg-color:$sample-bg-color, $text-color:$sample-text-color) {
+@mixin sample-block-styles($bg-color:$sample-bg-color, $text-color:$sample-text-color) {
 	background-color: $bg-color;
 	color: $text-color;
 };
