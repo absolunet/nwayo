@@ -13,7 +13,7 @@
 		@return $konstan-path-images + '/' + $context + '/' + $file;
 	} @else if $type == 'inline' {
 		@return $konstan-path-inline + '/' + $context + '/' + $file;
-	} @elseif $type == 'fonts' {
+	} @else if $type == 'fonts' {
 		@return $konstan-path-fonts + '/' + $context + '/' + $file;
 	}
 }
@@ -77,7 +77,7 @@
 		$encoded: #{$encoded}#{$chunk};
 		$index: $index + $slice;
 	}
-	@return url("data:image/svg+xml;charset=utf8,#{$encoded}");
+	@return url("data:image/svg+xml;charset=utf8,#{$encoded}");  // stylelint-disable-line string-quotes
 }
 
 

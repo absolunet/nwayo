@@ -5,7 +5,7 @@
 //-- Background image
 @mixin nwayo-bg-image-styles($file, $component, $inline:false, $color:false) {
 
-	// uri
+	// URI
 	$uri: '';
 	@if $inline {
 		$inline-image-path: nwayo-assets-path($file, $component, 'inline');
@@ -15,17 +15,17 @@
 
 			@if $color {
 
-				// single color
+				// Single color
 				@if type-of($color) == 'color' {
 					$svg: nwayo-color-replace($svg, $nwayo-svg-replacement-1-color, $color);
 
-				// list
+					// List
 				} @else if type-of($color) == 'list' {
 					@for $i from 1 through length($color) {
 						$svg: nwayo-color-replace($svg, nth($nwayo-svg-replacement-colors, $i), nth($color, $i));
 					}
 
-				// hash
+					// Hash
 				} @else {
 					@each $source, $target in $color {
 						$svg: nwayo-color-replace($svg, $source, $target);
@@ -40,20 +40,21 @@
 		}
 
 	} @else {
-		$uri: url(nwayo-assets-path($file, $component, 'images'));
+		$uri: url(nwayo-assets-path($file, $component, images));  // stylelint-disable-line function-url-quotes
 	}
 
-	// high density
+	// High density
 	@if str-index($file, '@2x') {
 		$path: 'components/' + $component + '/assets/' + if($inline, 'inline-', '') + 'images/' + $file;
 
-		@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
+		@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {  // stylelint-disable-line
 			background-image: $uri;
 		}
 
 		$uri: nwayo-str-replace($uri, '@2x', '');
 	}
 
+	// Output
 	background-image: #{$uri};
 }
 
@@ -62,8 +63,8 @@
 @mixin nwayo-scalable-icon-styles($file, $component, $color:false) {
 	@include nwayo-bg-image-styles($file, $component, $inline:true, $color:$color);
 	background-position: center center;
-	background-repeat: no-repeat;
 	background-size: contain;
+	background-repeat: no-repeat;
 }
 
 
