@@ -80,6 +80,11 @@ a:not(.button) {
 
 
 
+	//-- Apply only when document is loaded (great for heavy imagery)
+	#{$nwayo-docloaded-selector} & {
+		/* ... */
+	}
+
 	//-- Only on touch devices
 	html.touchevents & {
 		/* ... */
@@ -97,17 +102,13 @@ a:not(.button) {
 		}
 	}
 
-	//-- Apply only when document is loaded (great for heavy imagery)
-	#{$nwayo-docloaded-selector} & {
-		/* ... */
-	}
-
 }
 
 
 //-- Content
 .content {
-	@include site-editable-styles;
+	@include site-editable-styles();
+
 	/* ... */
 }
 
@@ -174,7 +175,7 @@ a:not(.button) {
 			background-color: $common-success-text-color;
 
 			&::before {
-				@include common-success-image;
+				@include common-success-image();
 			}
 		}
 
@@ -182,7 +183,7 @@ a:not(.button) {
 			background-color: $common-warning-text-color;
 
 			&::before {
-				@include common-warning-image;
+				@include common-warning-image();
 			}
 		}
 
@@ -190,7 +191,7 @@ a:not(.button) {
 			background-color: $common-error-text-color;
 
 			&::before {
-				@include common-error-image;
+				@include common-error-image();
 			}
 		}
 	}

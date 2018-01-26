@@ -94,7 +94,7 @@ $global-button-cursor:                 auto;
 $global-color-pick-contrast-tolerance: 0;
 $print-transparent-backgrounds:        true;
 
-@include add-foundation-colors;
+@include add-foundation-colors();
 
 // 2. Breakpoints
 // --------------
@@ -266,8 +266,8 @@ $breadcrumbs-item-color-disabled:     $common-bg-var2-color;
 $breadcrumbs-item-margin:             1em;
 $breadcrumbs-item-uppercase:          true;
 $breadcrumbs-item-separator:          true;
-$breadcrumbs-item-separator-item:     '/';
-$breadcrumbs-item-separator-item-rtl: '\\';
+$breadcrumbs-item-separator-item:     '\002f'; // '/'
+$breadcrumbs-item-separator-item-rtl: '\005c'; // '\'
 $breadcrumbs-item-separator-color:    $common-bg-var2-color;
 
 // 11. Button
@@ -661,8 +661,7 @@ $prototype-separator-margin-top:  $global-margin;
 // --------------------
 
 $prototype-shadow-breakpoints: $global-prototype-breakpoints;
-$prototype-box-shadow: 0 .125em .3125em 0 rgba($common-shadow-color, .16),
-                       0 .125em .625em  0 rgba($common-shadow-color, .12);
+$prototype-box-shadow: 0 .125em .3125em 0 rgba($common-shadow-color, .16), 0 .125em .625em  0 rgba($common-shadow-color, .12);
 
 // 41. Prototype Sizing
 // --------------------
@@ -673,9 +672,9 @@ $prototype-sizing: (
 	height
 );
 $prototype-sizes: (
-	 25:  25%,
-	 50:  50%,
-	 75:  75%,
+	25:   25%,
+	50:   50%,
+	75:   75%,
 	100: 100%
 );
 

@@ -66,7 +66,7 @@ $common-error-text-color:      $konstan-color-error;
 //-- Fonts
 $common-text-font:            $konstan-font-base, $nwayo-sansserif-font;
 $common-title-font:           $konstan-font-alt, $nwayo-sansserif-font;
-$common-monospace-font:       Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', Courier, monospace;
+$common-monospace-font:       Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', Courier, monospace;  // stylelint-disable-line value-keyword-case
 
 $common-text-slimmest-weight: $nwayo-thin-weight;
 $common-text-slimmer-weight:  $nwayo-extralight-weight;
@@ -129,9 +129,18 @@ $common-button-cta-border-disabled-color:       lighten(desaturate($konstan-colo
 
 
 //-- Images
-@mixin common-success-image { @include nwayo-scalable-icon-styles('success.svg', 'common', $color:$common-text-var2-color); }
-@mixin common-warning-image { @include nwayo-scalable-icon-styles('warning.svg', 'common', $color:$common-text-var2-color); }
-@mixin common-error-image   { @include nwayo-scalable-icon-styles('error.svg',   'common', $color:$common-text-var2-color); }
+@mixin common-success-image {
+	@include nwayo-scalable-icon-styles('success.svg', 'common', $color:$common-text-var2-color);
+}
+
+@mixin common-warning-image {
+	@include nwayo-scalable-icon-styles('warning.svg', 'common', $color:$common-text-var2-color);
+}
+
+@mixin common-error-image {
+	@include nwayo-scalable-icon-styles('error.svg',   'common', $color:$common-text-var2-color);
+}
+
 
 
 
