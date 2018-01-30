@@ -65,7 +65,7 @@
 // ---------
 
 $global-font-size:                     100%;
-$global-width:                         rem-calc($konstan-dimension-max);
+$global-width:                         rem-calc($konstan-dimension-max);  // stylelint-disable-line declaration-property-value-blacklist
 $global-lineheight:                    $common-text-lineheight;
 $foundation-palette:                   (
 	primary:   $common-primary-color,

@@ -21,11 +21,11 @@
 	position: absolute;
 	overflow: hidden;
 	clip: rect(0, 0, 0, 0);
-	width: rem-calc(1);
-	height: rem-calc(1);
+	width: rem-calc(1);   // stylelint-disable-line declaration-property-value-blacklist
+	height: rem-calc(1);  // stylelint-disable-line declaration-property-value-blacklist
 	padding: 0;
 	border: 0;
-	margin: rem-calc(-1);
+	margin: rem-calc(-1);  // stylelint-disable-line declaration-property-value-blacklist
 }
 
 
