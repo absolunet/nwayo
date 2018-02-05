@@ -30,4 +30,3 @@ tester.lintScss([
 ], {
 	cwd: rootPath
 });
-
