@@ -8,12 +8,12 @@ scripts:
     dependencies:
       - bower_components/nwayo-toolbox/toolbox/scripts/exclusion-starter
       - ~konstan
-      - bower_components/jquery/dist/jquery
+      - bower_components/nwayo-toolbox/toolbox/scripts/wrapper/jquery
       - ~lodash
       - ~modernizr
-      - bower_components/pubsub-js/src/pubsub
-      - bower_components/fastclick/lib/fastclick
-      - bower_components/what-input/dist/what-input
+      - bower_components/nwayo-toolbox/toolbox/scripts/wrapper/pubsub-js
+      - bower_components/nwayo-toolbox/toolbox/scripts/wrapper/fastclick
+      - bower_components/nwayo-toolbox/toolbox/scripts/wrapper/what-input
       - components/foundation/scripts/foundation
       - components/common/scripts/nwayo-config
       - bower_components/nwayo-toolbox/toolbox/scripts/dependencies-starter
