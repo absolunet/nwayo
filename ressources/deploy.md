@@ -47,11 +47,11 @@
 
 - Ajuster la version dans le `bower.json`, `package.json`, `SAMPLE.index.html` et `./bower.json`
 
-- Supprimer `package-lock.json`, `node_modules` et `bower_components`
-
-- Faire un `bower install`
+- Supprimer `package-lock.json` et `node_modules`
 
 - Faire un `npm install`
+
+- Copier `./toolbox` sous `bower_components/nwayo-toolbox/toolbox`
 
 - Rouler un `nwayo rebuild`
 
