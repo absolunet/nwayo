@@ -47,7 +47,9 @@
 
 - Ajuster la version dans le `bower.json`, `package.json`, `SAMPLE.index.html` et `./bower.json`
 
-- Supprimer `package-lock.json` et `node_modules`
+- Supprimer `package-lock.json`, `node_modules` et `bower_components`
+
+- Faire un `bower install`
 
 - Faire un `npm install`
 
@@ -63,4 +65,3 @@
 - `Tag version` et `Release title` sont le numéro de version
 - Ajouter dans la description le changelog
 - Enjoy  🥂
-
