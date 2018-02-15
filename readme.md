@@ -17,7 +17,7 @@
 
 
 
-## Requirements (All latest) - [Installation guide](docs/install)
+## Requirements (All latest) - [Installation guide](docs/requirements)
 - [Node.js](//nodejs.org) ([Bower](//bower.io), [nwayo](//www.npmjs.com/package/@absolunet/nwayo-cli))
 - [Ruby](//www.ruby-lang.org) ([Sass](http://sass-lang.com))
 - [GraphicsMagick](http://www.graphicsmagick.org) / [ImageMagick](//www.imagemagick.org)
@@ -71,7 +71,7 @@ Multiple component boilerplates [available](//github.com/absolunet/nwayo-compone
 ## Documentation
 *Coming soon...*
 
-Consult [this folder](docs) in the meantime
+Consult [this folder](docs) and [these CodePen](//codepen.io/collection/XJWozK/) in the meantime
 
 ## Release history
 See the [releases](//github.com/absolunet/nwayo/releases).
@@ -80,4 +80,4 @@ See the [releases](//github.com/absolunet/nwayo/releases).
 [Issues](//github.com/absolunet/nwayo/issues) | [Pull requests](//github.com/absolunet/nwayo/pulls)
 
 ## License
-MIT © [Absolunet](https://absolunet.com)
+MIT © [Absolunet](//absolunet.com)
