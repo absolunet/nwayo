@@ -3,35 +3,36 @@
 //-------------------------------------
 'use strict';
 
-const _            = require('lodash');
-const fs           = require('fs-extra');
-const merge        = require('merge-stream');
-const gulp         = require('gulp');
-const gulpif       = require('gulp-if');
-const cache        = require('gulp-cached');
-const rename       = require('gulp-rename');
-const imagemin     = require('gulp-imagemin');
-const stylelint    = require('gulp-stylelint');
-const sass         = require('gulp-ruby-sass');
-const jsonsass     = require('gulp-json-sass');
-const autoprefixer = require('gulp-autoprefixer');
-const cssnano      = require('gulp-cssnano');
-const sourcemaps   = require('gulp-sourcemaps');
 // const debug = require('gulp-debug');
+const fs           = require('fs-extra');
+const gulp         = require('gulp');
+const autoprefixer = require('gulp-autoprefixer');
+const cache        = require('gulp-cached');
+const cssnano      = require('gulp-cssnano');
+const gulpif       = require('gulp-if');
+const imagemin     = require('gulp-imagemin');
+const jsonsass     = require('gulp-json-sass');
+const rename       = require('gulp-rename');
+const sass         = require('gulp-ruby-sass');
+const sourcemaps   = require('gulp-sourcemaps');
+const stylelint    = require('gulp-stylelint');
+const _            = require('lodash');
+const merge        = require('merge-stream');
+const env          = require('../helpers/env');
+const paths        = require('../helpers/paths');
+const util         = require('../helpers/util');
 
-const PATH = global.nwayo.path;
-const ENV  = global.nwayo.env;
-const Util = global.nwayo.util;
+
 
 
 
 
 //-- Inline images optimization
 gulp.task('styles-images', () => {
-	return gulp.src(PATH.files.inline, { base:PATH.dir.root })
+	return gulp.src(paths.files.inline, { base:paths.dir.root })
 		.pipe(imagemin())
-		.pipe(rename(Util.assetsRename()))
-		.pipe(gulp.dest(PATH.dir.cache))
+		.pipe(rename(util.assetsRename()))
+		.pipe(gulp.dest(paths.dir.cache))
 	;
 });
 
@@ -39,11 +40,11 @@ gulp.task('styles-images', () => {
 //-- Lint SCSS
 gulp.task('styles-lint', () => {
 
-	return gulp.src(PATH.files.stylesLint)
+	return gulp.src(paths.files.stylesLint)
 		.pipe(cache('styles', { optimizeMemory:true }))
 
 		.pipe(stylelint({
-			configFile:     PATH.config.stylelint,
+			configFile:     paths.config.stylelint,
 			syntax:         'scss',
 			failAfterError: true,
 			reporters: [
@@ -70,14 +71,14 @@ gulp.task('styles-lint', () => {
 gulp.task('styles-constants', () => {
 	const streams = [];
 
-	for (const name of Object.keys(ENV.bundles)) {
-		const data = Util.parseKonstan('styles', name, ENV.bundles[name].output.url);
+	for (const name of Object.keys(env.bundles)) {
+		const data = util.parseKonstan('styles', name, env.bundles[name].output.url);
 		data.bundle = `'${name}'`;
 
 		streams.push(
-			Util.vinylStream(PATH.filename.konstanStyles, JSON.stringify({ konstan:data }))
+			util.vinylStream(paths.filename.konstanStyles, JSON.stringify({ konstan:data }))
 				.pipe(jsonsass())
-				.pipe(gulp.dest(`${PATH.dir.cacheStyles}/${name}`))
+				.pipe(gulp.dest(`${paths.dir.cacheStyles}/${name}`))
 		);
 	}
 
@@ -89,61 +90,61 @@ gulp.task('styles-constants', () => {
 gulp.task('styles-compile', ['styles-lint', 'styles-constants'], () => {
 	const streams = [];
 
-	for (const name of Object.keys(ENV.bundles)) {
-		const bundle = ENV.bundles[name];
+	for (const name of Object.keys(env.bundles)) {
+		const bundle = env.bundles[name];
 
 		// For each collection
 		for (const collection of Object.keys(bundle.styles.collections)) {
 			const list = _.cloneDeep(bundle.styles.collections[collection]);
 
 			// Add konstan
-			list.unshift(`${PATH.dir.cacheStyles}/${name}/${PATH.filename.konstan}`);
+			list.unshift(`${paths.dir.cacheStyles}/${name}/${paths.filename.konstan}`);
 
 			// Require each file
 			list.forEach((file, i) => {
 				list[i] = `@import '${file}';`;
 			});
 
-			fs.outputFileSync(`${PATH.dir.cacheStyles}/${name}/collections/${collection}.${PATH.ext.styles}`, `${Util.getGeneratedBanner(name)}${list.join('\n')}\n`);
+			fs.outputFileSync(`${paths.dir.cacheStyles}/${name}/collections/${collection}.${paths.ext.styles}`, `${util.getGeneratedBanner(name)}${list.join('\n')}\n`);
 		}
 
 		// Process all collections from this bundle
 		streams.push(
-			sass(`${PATH.dir.cacheStyles}/${name}/collections/*.${PATH.ext.styles}`, {
-				loadPath:      PATH.dir.root,
-				cacheLocation: PATH.dir.cacheSass,
-				require:       PATH.config.sass,
+			sass(`${paths.dir.cacheStyles}/${name}/collections/*.${paths.ext.styles}`, {
+				loadPath:      paths.dir.root,
+				cacheLocation: paths.dir.cacheSass,
+				require:       paths.config.sass,
 				trace:         true,
 				sourcemap:     bundle.styles.options.sourcemaps
 			})
 
 				.pipe(autoprefixer({ browsers:bundle.styles.options.autoprefixer }))
 
-				.pipe(gulpif(bundle.styles.options.minify && !ENV.watching, cssnano({ reduceIdents:false, zindex:false })))
+				.pipe(gulpif(bundle.styles.options.minify && !env.watching, cssnano({ reduceIdents:false, zindex:false })))
 
 				.pipe(gulpif(bundle.styles.options.sourcemaps, sourcemaps.write('maps', {
 					includeContent: false,
 					sourceRoot:     'source'
 				})))
 
-				.pipe(gulp.dest(`${PATH.dir.root}/${bundle.output.build}/${PATH.build.styles}`))
+				.pipe(gulp.dest(`${paths.dir.root}/${bundle.output.build}/${paths.build.styles}`))
 		);
 	}
 
 	return merge(...streams)
-		.on('end', () => { return Util.watchableTaskCompleted('Styles compilation'); })
+		.on('end', () => { return util.watchableTaskCompleted('Styles compilation'); })
 	;
 });
 
 
 //-- Rebuild
 gulp.task('styles', (cb) => {
-	Util.taskGrouper({
+	util.taskGrouper({
 		cb:          cb,
 		tasks:       ['styles-images', 'styles-compile'],
-		cleanPaths:  [PATH.dir.cacheInline, PATH.dir.cacheSass],
+		cleanPaths:  [paths.dir.cacheInline, paths.dir.cacheSass],
 		cleanBundle: (name, bundle) => {
-			return [`${PATH.dir.root}/${bundle.output.build}/${PATH.build.styles}`, `${PATH.dir.cacheStyles}/${name}`];
+			return [`${paths.dir.root}/${bundle.output.build}/${paths.build.styles}`, `${paths.dir.cacheStyles}/${name}`];
 		}
 	});
 });

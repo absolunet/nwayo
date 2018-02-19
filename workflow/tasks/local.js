@@ -3,13 +3,14 @@
 //-------------------------------------
 'use strict';
 
-const merge = require('merge-stream');
-const gulp  = require('gulp');
 // const debug = require('gulp-debug');
+const gulp  = require('gulp');
+const merge = require('merge-stream');
+const env   = require('../helpers/env');
+const paths = require('../helpers/paths');
+const util  = require('../helpers/util');
 
-const PATH = global.nwayo.path;
-const ENV  = global.nwayo.env;
-const Util = global.nwayo.util;
+
 
 
 
@@ -18,20 +19,20 @@ const Util = global.nwayo.util;
 gulp.task('local-constants', () => {
 	const streams = [];
 
-	for (const name of Object.keys(ENV.bundles)) {
-		const bundle = ENV.bundles[name];
+	for (const name of Object.keys(env.bundles)) {
+		const bundle = env.bundles[name];
 
 		const data = {
-			GENERATION: Util.getGeneratedBanner(name, 'text'),
-			nwayo:      ENV.workflowPkg.version,
-			project:    ENV.pkg.name,
+			GENERATION: util.getGeneratedBanner(name, 'text'),
+			nwayo:      env.workflowPkg.version,
+			project:    env.pkg.name,
 			bundle:     name,
-			konstan:    Util.parseKonstan('local', name, bundle.output.url)
+			konstan:    util.parseKonstan('local', name, bundle.output.url)
 		};
 
 		streams.push(
-			Util.vinylStream(PATH.filename.konstanLocal, JSON.stringify(data, null, 2))
-				.pipe(gulp.dest(`${PATH.dir.root}/${bundle.output.konstan}`))
+			util.vinylStream(paths.filename.konstanLocal, JSON.stringify(data, null, 2))
+				.pipe(gulp.dest(`${paths.dir.root}/${bundle.output.konstan}`))
 		);
 	}
 
@@ -43,11 +44,11 @@ gulp.task('local-constants', () => {
 
 //-- Rebuild
 gulp.task('local', (cb) => {
-	Util.taskGrouper({
+	util.taskGrouper({
 		cb:          cb,
 		tasks:       ['local-constants'],
 		cleanBundle: (name, bundle) => {
-			return [`${PATH.dir.root}/${bundle.output.konstan}/${PATH.filename.konstanLocal}`];
+			return [`${paths.dir.root}/${bundle.output.konstan}/${paths.filename.konstanLocal}`];
 		}
 	});
 });

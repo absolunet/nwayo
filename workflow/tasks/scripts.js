@@ -3,38 +3,41 @@
 //-------------------------------------
 'use strict';
 
-const _         = require('lodash');
-const yaml      = require('js-yaml');
+// const debug = require('gulp-debug');
+const async     = require('async');
+const { exec }  = require('child_process');
 const fs        = require('fs');
 const fsExtra   = require('fs-extra');
-const { exec }  = require('child_process');
-const async     = require('async');
-const merge     = require('merge-stream');
 const gulp      = require('gulp');
-const gulpif    = require('gulp-if');
 const cache     = require('gulp-cached');
-const include   = require('@absolunet/gulp-include');
-const uglify    = require('gulp-uglify');
 const eslint    = require('gulp-eslint');
+const gulpif    = require('gulp-if');
 const lec       = require('gulp-line-ending-corrector');
+const uglify    = require('gulp-uglify');
+const yaml      = require('js-yaml');
+const _         = require('lodash');
+const merge     = require('merge-stream');
 const modernizr = require('modernizr');
-// const debug = require('gulp-debug');
+const include   = require('@absolunet/gulp-include');
+const env       = require('../helpers/env');
+const paths     = require('../helpers/paths');
+const util      = require('../helpers/util');
 
-const PATH = global.nwayo.path;
-const ENV  = global.nwayo.env;
-const Util = global.nwayo.util;
 
 let vendorCached = false;
+
+
+
 
 
 
 //-- Lint JS
 gulp.task('scripts-lint', () => {
 
-	return gulp.src(PATH.files.scriptsLint)
+	return gulp.src(paths.files.scriptsLint)
 		.pipe(cache('scripts', { optimizeMemory:true }))
 
-		.pipe(gulpif(ENV.isWindows, lec()))
+		.pipe(gulpif(env.isWindows, lec()))
 
 		.pipe(eslint())
 
@@ -57,17 +60,17 @@ gulp.task('scripts-lint', () => {
 gulp.task('scripts-constants', () => {
 	const streams = [];
 
-	for (const name of Object.keys(ENV.bundles)) {
+	for (const name of Object.keys(env.bundles)) {
 		const data = {
-			nwayo:   ENV.workflowPkg.version,
-			project: ENV.pkg.name,
+			nwayo:   env.workflowPkg.version,
+			project: env.pkg.name,
 			bundle:  name,
-			konstan: Util.parseKonstan('scripts', name, ENV.bundles[name].output.url)
+			konstan: util.parseKonstan('scripts', name, env.bundles[name].output.url)
 		};
 
 		streams.push(
-			Util.vinylStream(PATH.filename.konstanScripts, `var konstan = ${JSON.stringify(data, null, '\t')};`)
-				.pipe(gulp.dest(`${PATH.dir.cacheScripts}/${name}`))
+			util.vinylStream(paths.filename.konstanScripts, `var konstan = ${JSON.stringify(data, null, '\t')};`)
+				.pipe(gulp.dest(`${paths.dir.cacheScripts}/${name}`))
 		);
 	}
 
@@ -90,8 +93,8 @@ gulp.task('scripts-vendors', (cb) => {
 
 			// Modernizr
 			(callback) => {
-				modernizr.build(yaml.safeLoad(fs.readFileSync(PATH.config.modernizr, 'utf8')), (result) => {
-					const file = `${PATH.dir.cacheScripts}/${PATH.filename.modernizr}.${PATH.ext.scripts}`;
+				modernizr.build(yaml.safeLoad(fs.readFileSync(paths.config.modernizr, 'utf8')), (result) => {
+					const file = `${paths.dir.cacheScripts}/${paths.filename.modernizr}.${paths.ext.scripts}`;
 					fsExtra.ensureFile(file, () => {
 						fs.writeFileSync(file, result);
 					});
@@ -101,9 +104,9 @@ gulp.task('scripts-vendors', (cb) => {
 
 			// lodash
 			(callback) => {
-				const options = Util.parseLodash();
+				const options = util.parseLodash();
 
-				exec(`node ${PATH.config.lodashBin} ${options} --development --output ${PATH.dir.cacheScripts}/${PATH.filename.lodash}.${PATH.ext.scripts}`, (error, stdout, stderr) => {
+				exec(`node ${paths.config.lodashBin} ${options} --development --output ${paths.dir.cacheScripts}/${paths.filename.lodash}.${paths.ext.scripts}`, (error, stdout, stderr) => {
 					if (error !== null) {
 						console.log(stderr); // eslint-disable-line no-console
 					}
@@ -124,11 +127,11 @@ gulp.task('scripts-vendors', (cb) => {
 gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants', 'scripts-vendors'], () => {
 	const streams = [];
 
-	for (const name of Object.keys(ENV.bundles)) {
-		const bundle = ENV.bundles[name];
+	for (const name of Object.keys(env.bundles)) {
+		const bundle = env.bundles[name];
 
 		// Babel extra allowed
-		const babelExtraAllowed = Util.getBabelAllowedRules(bundle.scripts.allowBabel);
+		const babelExtraAllowed = util.getBabelAllowedRules(bundle.scripts.allowBabel);
 
 		// For each collection
 		for (const collection of Object.keys(bundle.scripts.collections)) {
@@ -136,9 +139,9 @@ gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants', 'scripts-vend
 
 			// Resolve real filepaths
 			const replacements = {
-				konstan:   `${PATH.folder.cacheScripts}/${name}/${PATH.filename.konstan}`,
-				lodash:    `${PATH.folder.cacheScripts}/${PATH.filename.lodash}`,
-				modernizr: `${PATH.folder.cacheScripts}/${PATH.filename.modernizr}`
+				konstan:   `${paths.folder.cacheScripts}/${name}/${paths.filename.konstan}`,
+				lodash:    `${paths.folder.cacheScripts}/${paths.filename.lodash}`,
+				modernizr: `${paths.folder.cacheScripts}/${paths.filename.modernizr}`
 			};
 			for (const title of Object.keys(replacements)) {
 				const pos = list.indexOf(`~${title}`);
@@ -152,36 +155,36 @@ gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants', 'scripts-vend
 				list[i] = `//= require ${file}`;
 			});
 
-			const source = `${Util.getGeneratedBanner(name)} (function(global, undefined) { \n\t${list.join('\n')}\n })(typeof window !== 'undefined' ? window : this);\n`;
+			const source = `${util.getGeneratedBanner(name)} (function(global, undefined) { \n\t${list.join('\n')}\n })(typeof window !== 'undefined' ? window : this);\n`;
 			streams.push(
-				Util.vinylStream(`${collection}.${PATH.ext.scripts}`, source)
+				util.vinylStream(`${collection}.${paths.ext.scripts}`, source)
 					.pipe(include({
-						basePath:      PATH.dir.root,
+						basePath:      paths.dir.root,
 						autoExtension: true,
 						partialPrefix: true,
 						fileProcess:   (options) => {
-							return Util.babelProcess(options, bundle.scripts.options.babel, babelExtraAllowed);
+							return util.babelProcess(options, bundle.scripts.options.babel, babelExtraAllowed);
 						}
 					}))
-					.pipe(gulpif(bundle.scripts.options.minify && !ENV.watching, uglify({ output:{ comments:'some' } })))
-					.pipe(gulp.dest(`${PATH.dir.root}/${bundle.output.build}/${PATH.build.scripts}`))
+					.pipe(gulpif(bundle.scripts.options.minify && !env.watching, uglify({ output:{ comments:'some' } })))
+					.pipe(gulp.dest(`${paths.dir.root}/${bundle.output.build}/${paths.build.scripts}`))
 			);
 		}
 	}
 
 	return merge(...streams)
-		.on('end', () => { return Util.watchableTaskCompleted('Scripts compilation'); })
+		.on('end', () => { return util.watchableTaskCompleted('Scripts compilation'); })
 	;
 });
 
 
 //-- Rebuild
 gulp.task('scripts', (cb) => {
-	Util.taskGrouper({
+	util.taskGrouper({
 		cb:          cb,
 		tasks:       ['scripts-compile'],
 		cleanBundle: (name, bundle) => {
-			return [`${PATH.dir.root}/${bundle.output.build}/${PATH.build.scripts}`, `${PATH.dir.cacheScripts}/${name}`];
+			return [`${paths.dir.root}/${bundle.output.build}/${paths.build.scripts}`, `${paths.dir.cacheScripts}/${name}`];
 		}
 	});
 });

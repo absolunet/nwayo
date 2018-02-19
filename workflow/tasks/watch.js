@@ -3,11 +3,11 @@
 //-------------------------------------
 'use strict';
 
-const gulp = require('gulp');
 // const debug = require('gulp-debug');
+const gulp  = require('gulp');
+const env   = require('../helpers/env');
+const paths = require('../helpers/paths');
 
-const PATH = global.nwayo.path;
-const ENV  = global.nwayo.env;
 
 
 
@@ -15,23 +15,23 @@ const ENV  = global.nwayo.env;
 //-- Watch
 gulp.task('watch', () => {
 
-	ENV.setToWatching();
+	env.setToWatching();
 
 	// Assets
-	gulp.watch([PATH.files.fonts],  ['assets-fonts']);
-	gulp.watch([PATH.files.images], ['assets-images']);
-	gulp.watch([PATH.files.raw],    ['assets-raw']);
+	gulp.watch([paths.files.fonts],  ['assets-fonts']);
+	gulp.watch([paths.files.images], ['assets-images']);
+	gulp.watch([paths.files.raw],    ['assets-raw']);
 
 	// Icons
-	gulp.watch([PATH.files.iconsFavicon],                     ['icons-favicon']);
-	gulp.watch([PATH.files.iconsIcon, PATH.files.iconsLarge], ['icons-share']);
-	gulp.watch([PATH.files.iconsTile],                        ['icons-tile']);
+	gulp.watch([paths.files.iconsFavicon],                      ['icons-favicon']);
+	gulp.watch([paths.files.iconsIcon, paths.files.iconsLarge], ['icons-share']);
+	gulp.watch([paths.files.iconsTile],                         ['icons-tile']);
 
 	// Scripts
-	gulp.watch([PATH.files.bundles, PATH.files.scripts, PATH.files.templates, PATH.files.bowerScripts], ['scripts-compile']);
+	gulp.watch([paths.files.bundles, paths.files.scripts, paths.files.templates, paths.files.bowerScripts], ['scripts-compile']);
 
 	// Styles
-	gulp.watch([PATH.files.inline],                     ['styles-images', 'styles-compile']);
-	gulp.watch([PATH.files.bundles, PATH.files.styles], ['styles-compile']);
+	gulp.watch([paths.files.inline],                      ['styles-images', 'styles-compile']);
+	gulp.watch([paths.files.bundles, paths.files.styles], ['styles-compile']);
 
 });
