@@ -23,8 +23,8 @@ const readYAML = (file) => {
 
 //-- Static properties
 const STATIC = global.___NwayoEnv___ ? global.___NwayoEnv___ : global.___NwayoEnv___ = {
-	pkg:         require(paths.config.projectPackage),  // eslint-disable-line global-require,
-	workflowPkg: require(paths.config.pkgPackage),      // eslint-disable-line global-require
+	pkg:         require(paths.config.projectPackage),   // eslint-disable-line global-require
+	workflowPkg: require(paths.config.workflowPackage),  // eslint-disable-line global-require
 	konstan:     readYAML(paths.config.konstan),
 	watching:    false,
 	isWindows:   os.platform() === 'win32'
@@ -110,8 +110,7 @@ if (!STATIC.bundlesComponents) {
 
 
 
-
-module.export = class {
+module.exports = class {
 
 	static get pkg()               { return STATIC.pkg; }
 	static get workflowPkg()       { return STATIC.workflowPkg; }

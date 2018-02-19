@@ -17,7 +17,7 @@ const NOLINT = 'vendor';
 
 const pattern = {};
 pattern.anytree = '**';
-pattern.babel   = `^/?##includes##(\\${CACHE}|${BOWER}|components/.*/scripts/${NOLINT}/)`; // https://regex101.com/r/kIKuJW/1
+pattern.babel   = `^/?##includes##(\\${CACHE}|${BOWER}|components/.*/scripts/${NOLINT}/)`;  // https://regex101.com/r/kIKuJW/1
 
 const ext = {};
 ext.bundles   = 'yaml';
@@ -92,19 +92,21 @@ filename.konstanStyles  = `${filename.konstan}.json`;
 filename.modernizr      = `modernizr`;
 filename.lodash         = `lodash`;
 
-const pkg = {};
-pkg.root = slash(path.normalize(`${__dirname}/..`));
+const workflow = {};
+workflow.root     = slash(path.normalize(`${__dirname}/..`));
+workflow.cli      = `${workflow.root}/cli`;
+workflow.cliTasks = `${workflow.cli}/tasks`;
 
 const config = {};
-config.konstan        = `${dir.root}/konstan.yaml`;
-config.projectPackage = `${dir.root}/package.json`;
-config.pkgPackage     = `${pkg.root}/package.json`;
-config.sass           = `${pkg.root}/sass.rb`;
-config.stylelint      = `${dir.root}/.stylelintrc.yaml`;
-config.modernizr      = `${dir.root}/modernizr.yaml`;
-config.lodash         = `${dir.root}/lodash.yaml`;
-config.lodashBin      = slash(require.resolve('lodash-cli'));
-config.babelPresetEnv = slash(require.resolve('babel-preset-env'));
+config.konstan         = `${dir.root}/konstan.yaml`;
+config.projectPackage  = `${dir.root}/package.json`;
+config.workflowPackage = `${workflow.root}/package.json`;
+config.sass            = `${workflow.root}/sass.rb`;
+config.stylelint       = `${dir.root}/.stylelintrc.yaml`;
+config.modernizr       = `${dir.root}/modernizr.yaml`;
+config.lodash          = `${dir.root}/lodash.yaml`;
+config.lodashBin       = slash(require.resolve('lodash-cli'));
+config.babelPresetEnv  = slash(require.resolve('babel-preset-env'));
 
 
 
@@ -120,7 +122,7 @@ module.exports = class {
 	static get dir()      { return dir; }
 	static get files()    { return files; }
 	static get filename() { return filename; }
-	static get pkg()      { return pkg; }
+	static get workflow() { return workflow; }
 	static get config()   { return config; }
 
 };
