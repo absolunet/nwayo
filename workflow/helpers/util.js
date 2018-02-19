@@ -3,68 +3,65 @@
 //-------------------------------------
 'use strict';
 
-const _           = require('lodash');
-const path        = require('path');
-const fs          = require('fs');
-const del         = require('del');
-const glob        = require('glob');
-const stream      = require('stream');
-const yaml        = require('js-yaml');
-const crypto      = require('crypto');
-const Vinyl       = require('vinyl');
-const merge       = require('merge-stream');
-const runsequence = require('run-sequence');
-const gulp        = require('gulp');
+// const debug = require('gulp-debug');
 const babel       = require('babel-core');
+const crypto      = require('crypto');
+const del         = require('del');
+const emoji       = require('emoji');
+const fs          = require('fs');
+const glob        = require('glob');
+const gulp        = require('gulp');
+const yaml        = require('js-yaml');
+const _           = require('lodash');
+const merge       = require('merge-stream');
+const path        = require('path');
+const runsequence = require('run-sequence');
+const stream      = require('stream');
+const Vinyl       = require('vinyl');
+const terminal    = require('@absolunet/terminal');
+const env         = require('../helpers/env');
+const paths       = require('../helpers/paths');
 
-const echo = console.log; // eslint-disable-line no-console
-const PATH = global.nwayo.path;
-const regexEscapePattern = /[-/\\^$*+?.()|[\]{}]/g;
 
-
-//-- Emoji
-const emoji = {
-
-	// 🌰
-	chestnut: '\uD83C\uDF30'
+//-- Static properties
+const STATIC = global.___NwayoUtil___ ? global.___NwayoUtil___ : global.___NwayoUtil___ = {
+	cache:            {},
+	watchableCounter: 0
 };
 
 
-let watchableTaskCompletedCounter = 0;
-const cache = {};
+// Logo
+const logo = emoji.get('chestnut'); // 🌰
 
+//-- Escape for regex usage
+const escapeForRegex = (string) => {
+	return string.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+};
 
+//-- Compare value with current cache if different
+const cache = (key, value, process) => {
+	const digest = crypto.createHash('sha1').update(value).digest('hex');
+	let val;
 
-
-class Util {
-
-	static get emoji() { return emoji; }
-
-
-	//-- Read and parse a YAML file
-	static readYAML(file) {
-		return yaml.safeLoad(fs.readFileSync(file, 'utf8'));
+	if (!STATIC.cache[key] || (STATIC.cache[key] && STATIC.cache[key].digest !== digest)) {
+		val = process(value);
+		STATIC.cache[key] = {
+			digest:  digest,
+			content: val
+		};
+	} else {
+		val = STATIC.cache[key].content;
 	}
 
+	return val;
+};
 
-	//-- Compare value with current cache if different
-	static cache(key, value, process) {
-		const digest = crypto.createHash('sha1').update(value).digest('hex');
-		let val;
 
-		if (!cache[key] || (cache[key] && cache[key].digest !== digest)) {
-			val = process(value);
-			cache[key] = {
-				digest:  digest,
-				content: val
-			};
-		} else {
-			val = cache[key].content;
-		}
 
-		return val;
-	}
 
+
+
+module.exports = class {
 
 	//-- Create a vinyl stream from a text
 	static vinylStream(filename, string) {
@@ -84,15 +81,13 @@ class Util {
 
 	//-- Constants
 	static parseKonstan(type, bundle, rootUrl) {
-		const ENV = global.nwayo.env;
-
 		const parseItem = (item) => { return `data['${item.split('.').join(`']['`)}']`; };
-		const options   = _.cloneDeep(ENV.konstan.options[type]) || {};
-		const paths     = _.cloneDeep(PATH.build);
-		const data      = _.cloneDeep(ENV.konstan.data);
+		const options   = _.cloneDeep(env.konstan.options[type]) || {};
+		const urls      = _.cloneDeep(paths.build);
+		const data      = _.cloneDeep(env.konstan.data);
 
 		// Retrieve bundles
-		data.bundles = _.cloneDeep(ENV.konstan.bundles);
+		data.bundles = _.cloneDeep(env.konstan.bundles);
 
 		// Output url paths
 		data.path = { root:rootUrl };
@@ -100,12 +95,12 @@ class Util {
 		if (type === 'styles') {
 			options.escape = options.escape || [];
 			options.escape.push('path.root');
-			paths.inline = PATH.dir.cacheInline;
-			paths.nwayoroot = PATH.dir.root;
+			urls.inline = paths.dir.cacheInline;
+			urls.nwayoroot = paths.dir.root;
 		}
 
-		for (const key of Object.keys(paths)) {
-			data.path[key] = (!['inline', 'nwayoroot'].includes(key) ? `${data.path.root}/` : '') + paths[key];
+		for (const key of Object.keys(urls)) {
+			data.path[key] = (!['inline', 'nwayoroot'].includes(key) ? `${data.path.root}/` : '') + urls[key];
 
 			if (options.escape && options.escape.indexOf('path.root') !== -1) {
 				options.escape.push(`path.${key}`);
@@ -134,18 +129,18 @@ class Util {
 	}
 
 
-	//-- Parse lodash config
+	//-- Parse Lodash config
 	static parseLodash() {
-		const config = yaml.safeLoad(fs.readFileSync(PATH.config.lodash, 'utf8'));
-		let cli = '';
+		const config = yaml.safeLoad(fs.readFileSync(paths.config.lodash, 'utf8'));
+		let cliParams = '';
 
 		for (const option of Object.keys(config)) {
 			if (config[option].length) {
-				cli += ` ${option}=${config[option].join(',')}`;
+				cliParams += ` ${option}=${config[option].join(',')}`;
 			}
 		}
 
-		return cli;
+		return cliParams;
 	}
 
 
@@ -169,11 +164,11 @@ class Util {
 		if (Boolean(includedFiles) && includedFiles.length) {
 			const includesLength = includedFiles.length - 1;
 			includedFiles.forEach((file, i) => {
-				includes += (i === 0 ? '(?!' : '|') + Util.escapeForRegex(file) + (i === includesLength ? ')' : '');
+				includes += (i === 0 ? '(?!' : '|') + escapeForRegex(file) + (i === includesLength ? ')' : '');
 			});
 		}
 
-		return new RegExp(PATH.pattern.babel.replace('##includes##', includes));
+		return new RegExp(paths.pattern.babel.replace('##includes##', includes));
 	}
 
 
@@ -184,12 +179,12 @@ class Util {
 		if (fullPath.substr(-3) === '.js') {
 			if (!allowed.test(rawPath)) {
 				const targetsDigest = crypto.createHash('sha1').update(JSON.stringify(targets)).digest('hex');
-				content = Util.cache(`babel:${fullPath}:${targetsDigest}`, content, (data) => {
+				content = cache(`babel:${fullPath}:${targetsDigest}`, content, (data) => {
 
 					return babel.transform(data, {
 						presets: [
 							[
-								PATH.config.babelPresetEnv, {
+								paths.config.babelPresetEnv, {
 									modules: false,
 									targets: { browsers:targets }
 								}
@@ -227,25 +222,23 @@ class Util {
 
 	//-- Assets processing pattern
 	static assetsProcess(files, customPiping, taskName) {
-		const ENV = global.nwayo.env;
-
 		const streams = [];
-		for (const component of ENV.bundlesComponents) {
+		for (const component of env.bundlesComponents) {
 
 			// Check if component has assets
-			const componentFiles = files.replace(PATH.pattern.anytree, component);
+			const componentFiles = files.replace(paths.pattern.anytree, component);
 			if (glob.sync(componentFiles).length) {
 
 				// Create stream for component
-				let componentStream = gulp.src(componentFiles, { base:PATH.dir.root });
+				let componentStream = gulp.src(componentFiles, { base:paths.dir.root });
 				componentStream = customPiping(componentStream);
 
 				// Output to each bundle
-				for (const name of Object.keys(ENV.bundles)) {
-					const bundle = ENV.bundles[name];
+				for (const name of Object.keys(env.bundles)) {
+					const bundle = env.bundles[name];
 
 					if (_.includes(bundle.assets.components, component)) {
-						componentStream.pipe(gulp.dest(`${PATH.dir.root}/${bundle.output.build}`));
+						componentStream.pipe(gulp.dest(`${paths.dir.root}/${bundle.output.build}`));
 					}
 				}
 
@@ -255,7 +248,7 @@ class Util {
 
 		return merge(...streams).on('end', () => {
 			if (taskName) {
-				Util.watchableTaskCompleted(taskName);
+				this.watchableTaskCompleted(taskName);
 			}
 		});
 	}
@@ -263,19 +256,17 @@ class Util {
 
 	//-- Task grouper
 	static taskGrouper(options) {
-		const ENV = global.nwayo.env;
-
 		// Global paths to delete
 		const list = options.cleanPaths || [];
 
 		// Bundles paths to delete
-		for (const name of Object.keys(ENV.bundles)) {
-			list.push(...options.cleanBundle(name, ENV.bundles[name]));
+		for (const name of Object.keys(env.bundles)) {
+			list.push(...options.cleanBundle(name, env.bundles[name]));
 		}
 
 		del.sync(list, { force:true });
 		options.tasks.push((...args) => {
-			Util.watchableTaskCompleted(options.taskName);
+			this.watchableTaskCompleted(options.taskName);
 			options.cb(...args);
 		});
 
@@ -285,18 +276,15 @@ class Util {
 
 	//-- Task completed message
 	static watchableTaskCompleted(name) {
-		const ENV = global.nwayo.env;
-
-		if (ENV.watching) {
-			echo(`\n${Util.emoji.chestnut}  #${++watchableTaskCompletedCounter} `.bold.green + `${name} completed`.green);
+		if (env.watching) {
+			terminal.echo(`\n${logo}  #${++STATIC.watchableCounter} `.bold.green + `${name} completed`.green);
 		}
 	}
 
 
 	//-- Generation banner in build
 	static getGeneratedBanner(name, type) {
-		const ENV = global.nwayo.env;
-		const banner = `Generated by nwayo ${ENV.workflowPkg.version} for ${ENV.pkg.name}:${name}`;
+		const banner = `Generated by nwayo ${env.workflowPkg.version} for ${env.pkg.name}:${name}`;
 
 		switch (type) {
 
@@ -306,11 +294,6 @@ class Util {
 		}
 	}
 
-	//-- Escape for regex usage
-	static escapeForRegex(string) {
-		return string.replace(regexEscapePattern, '\\$&');
-	}
 
-}
 
-global.nwayo.util = Util;
+};

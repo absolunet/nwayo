@@ -3,14 +3,10 @@
 //--------------------------------------------------------
 'use strict';
 
-global.nwayo = {};
+const events = require('events');
 
-require('colors');
-
-require('./helpers/path');
-require('./helpers/util');
-require('./helpers/env');
-
+//-- Boost max listeners
+events.EventEmitter.prototype._maxListeners = 100;
 
 
 require('./tasks/default');

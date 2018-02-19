@@ -3,14 +3,15 @@
 //-------------------------------------
 'use strict';
 
-const fs          = require('fs-extra');
-const runsequence = require('run-sequence');
-const gulp        = require('gulp');
 // const debug = require('gulp-debug');
+const fs          = require('fs-extra');
+const gulp        = require('gulp');
+const runsequence = require('run-sequence');
+const env         = require('../helpers/env');
+const paths       = require('../helpers/paths');
+const util        = require('../helpers/util');
 
-const Util = global.nwayo.util;
-const PATH = global.nwayo.path;
-const ENV  = global.nwayo.env;
+
 
 
 
@@ -23,8 +24,8 @@ gulp.task('rebuild-ss', (cb) => {
 
 //-- Rebuild
 gulp.task('rebuild', (cb) => {
-	for (const name of Object.keys(ENV.bundles)) {
-		fs.outputFileSync(`${PATH.dir.root}/${ENV.bundles[name].output.build}/readme-nwayo.md`, `# ${Util.getGeneratedBanner(name, 'text')}\n`);
+	for (const name of Object.keys(env.bundles)) {
+		fs.outputFileSync(`${paths.dir.root}/${env.bundles[name].output.build}/readme-nwayo.md`, `# ${util.getGeneratedBanner(name, 'text')}\n`);
 	}
 
 	runsequence(['assets', 'icons', 'local', 'scripts', 'styles'], cb);

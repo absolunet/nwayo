@@ -3,36 +3,36 @@
 //-------------------------------------
 'use strict';
 
-const events   = require('events');
-const _        = require('lodash');
+const fs       = require('fs');
 const glob     = require('glob');
+const yaml     = require('js-yaml');
+const _        = require('lodash');
 const minimist = require('minimist');
 const os       = require('os');
-
-const PATH = global.nwayo.path;
-const Util = global.nwayo.util;
+const paths    = require('../helpers/paths');
 
 
-//-- Package data
-const pkg = (() => {
-	return require(PATH.config.projectPackage); // eslint-disable-line global-require
-})();
+const readYAML = (file) => {
+	return yaml.safeLoad(fs.readFileSync(file, 'utf8'));
+};
 
 
-//-- Package data
-const workflowPkg = (() => {
-	return require(PATH.config.pkgPackage); // eslint-disable-line global-require
-})();
 
 
-//-- konstan data
-const konstan = (() => {
-	return Util.readYAML(PATH.config.konstan);
-})();
+
+
+//-- Static properties
+const STATIC = global.___NwayoEnv___ ? global.___NwayoEnv___ : global.___NwayoEnv___ = {
+	pkg:         require(paths.config.projectPackage),  // eslint-disable-line global-require,
+	workflowPkg: require(paths.config.pkgPackage),      // eslint-disable-line global-require
+	konstan:     readYAML(paths.config.konstan),
+	watching:    false,
+	isWindows:   os.platform() === 'win32'
+};
 
 
 //-- Load bundles
-const bundles = (() => {
+if (!STATIC.bundles) {
 
 	// Get CLI flag
 	const options = minimist(process.argv.slice(2), {
@@ -43,7 +43,7 @@ const bundles = (() => {
 	const [requiredName, requiredSubname = '*'] = options.bundle.split(':');
 
 	// Get list
-	const bundlesList = glob.sync(`${PATH.dir.bundles}/${requiredName}/`);
+	const bundlesList = glob.sync(`${paths.dir.bundles}/${requiredName}/`);
 
 	// Process bundles
 	const data = {};
@@ -51,7 +51,7 @@ const bundles = (() => {
 
 		for (const folder of bundlesList) {
 			const [, name] = folder.match(/\/([0-9a-zA-Z-]+)\/$/);
-			data[name] = Util.readYAML(`${folder}/${name}.${PATH.ext.bundles}`);
+			data[name] = readYAML(`${folder}/${name}.${paths.ext.bundles}`);
 
 			if (!data[name].assets) {
 				data[name].assets = {};
@@ -69,11 +69,11 @@ const bundles = (() => {
 				data[name].styles.collections = {};
 			}
 
-			const subBundlesList = glob.sync(`${PATH.dir.bundles}/${name}/_${requiredSubname}.${PATH.ext.bundles}`);
+			const subBundlesList = glob.sync(`${paths.dir.bundles}/${name}/_${requiredSubname}.${paths.ext.bundles}`);
 			if (subBundlesList.length) {
 				for (const subBundleFile of subBundlesList) {
 
-					const subBundleData = Util.readYAML(subBundleFile);
+					const subBundleData = readYAML(subBundleFile);
 					if (subBundleData.assets && subBundleData.assets.components) {
 						data[name].assets.components = [...new Set([...data[name].assets.components, ...subBundleData.assets.components])];
 					}
@@ -97,43 +97,34 @@ const bundles = (() => {
 		}found`.red);
 	}
 
-	return data;
-})();
-
+	STATIC.bundles = data;
+}
 
 
 //-- Extract bundles components
-const bundlesComponents = (() => {
-	return _.uniq(_.flatten(_.map(bundles, _.property('assets.components'))));
-})();
-
-
-//-- Is in 'watch' mode
-let watching = false;
-
-
-//-- Boost max listeners
-events.EventEmitter.prototype._maxListeners = 100;
+if (!STATIC.bundlesComponents) {
+	STATIC.bundlesComponents = _.uniq(_.flatten(_.map(STATIC.bundles, _.property('assets.components'))));
+}
 
 
 
 
-class Env {
 
-	static get pkg()               { return pkg; }
-	static get workflowPkg()       { return workflowPkg; }
-	static get konstan()           { return konstan; }
-	static get bundles()           { return bundles; }
-	static get bundlesComponents() { return bundlesComponents; }
-	static get watching()          { return watching; }
-	static get isWindows()         { return os.platform() === 'win32'; }
+
+module.export = class {
+
+	static get pkg()               { return STATIC.pkg; }
+	static get workflowPkg()       { return STATIC.workflowPkg; }
+	static get konstan()           { return STATIC.konstan; }
+	static get bundles()           { return STATIC.bundles; }
+	static get bundlesComponents() { return STATIC.bundlesComponents; }
+	static get watching()          { return STATIC.watching; }
+	static get isWindows()         { return STATIC.isWindows; }
 
 
 	//-- Set to 'watch' mode
 	static setToWatching() {
-		watching = true;
+		STATIC.watching = true;
 	}
 
-}
-
-global.nwayo.env = Env;
+};

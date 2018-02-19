@@ -1,10 +1,15 @@
 //-------------------------------------
-//-- Path
+//-- Paths
 //-------------------------------------
 'use strict';
 
 const path  = require('path');
 const slash = require('slash');
+
+
+
+
+
 
 const BOWER  = 'bower_components';
 const CACHE  = '.nwayo-cache';
@@ -12,7 +17,7 @@ const NOLINT = 'vendor';
 
 const pattern = {};
 pattern.anytree = '**';
-pattern.babel = `^/?##includes##(\\${CACHE}|${BOWER}|components/.*/scripts/${NOLINT}/)`; // https://regex101.com/r/kIKuJW/1
+pattern.babel   = `^/?##includes##(\\${CACHE}|${BOWER}|components/.*/scripts/${NOLINT}/)`; // https://regex101.com/r/kIKuJW/1
 
 const ext = {};
 ext.bundles   = 'yaml';
@@ -31,34 +36,34 @@ build.scripts = 'scripts';
 build.styles  = 'styles';
 
 const folder = {};
-folder.cache          = CACHE;
-folder.cacheInline    = `${folder.cache}/inline-images`;
-folder.cacheSass      = `${folder.cache}/sass`;
-folder.cacheScripts   = `${folder.cache}/${build.scripts}`;
-folder.cacheStyles    = `${folder.cache}/${build.styles}`;
+folder.cache        = CACHE;
+folder.cacheInline  = `${folder.cache}/inline-images`;
+folder.cacheSass    = `${folder.cache}/sass`;
+folder.cacheScripts = `${folder.cache}/${build.scripts}`;
+folder.cacheStyles  = `${folder.cache}/${build.styles}`;
 
 const dir = {};
-dir.root          = slash(process.cwd());
-dir.cache         = `${dir.root}/${folder.cache}`;
-dir.cacheInline   = `${dir.root}/${folder.cacheInline}`;
-dir.cacheSass     = `${dir.root}/${folder.cacheSass}`;
-dir.cacheScripts  = `${dir.root}/${folder.cacheScripts}`;
-dir.cacheStyles   = `${dir.root}/${folder.cacheStyles}`;
-dir.bundles       = `${dir.root}/bundles`;
-dir.components    = `${dir.root}/components`;
-dir.assets        = `${dir.components}/${pattern.anytree}/assets`;
-dir.fonts         = `${dir.assets}/fonts`;
-dir.icons         = `${dir.assets}/icons`;
-dir.images        = `${dir.assets}/images`;
-dir.inline        = `${dir.assets}/inline-images`;
-dir.raw           = `${dir.assets}/raw`;
-dir.scripts       = `${dir.components}/${pattern.anytree}/scripts`;
-dir.styles        = `${dir.components}/${pattern.anytree}/styles`;
-dir.templates     = `${dir.components}/${pattern.anytree}/templates`;
-dir.bower         = `${dir.root}/${BOWER}`;
-dir.misc          = `${dir.root}/misc`;
-dir.resources     = `${dir.misc}/resources`;
-dir.stubs         = `${dir.misc}/stubs`;
+dir.root         = slash(process.cwd());
+dir.cache        = `${dir.root}/${folder.cache}`;
+dir.cacheInline  = `${dir.root}/${folder.cacheInline}`;
+dir.cacheSass    = `${dir.root}/${folder.cacheSass}`;
+dir.cacheScripts = `${dir.root}/${folder.cacheScripts}`;
+dir.cacheStyles  = `${dir.root}/${folder.cacheStyles}`;
+dir.bundles      = `${dir.root}/bundles`;
+dir.components   = `${dir.root}/components`;
+dir.assets       = `${dir.components}/${pattern.anytree}/assets`;
+dir.fonts        = `${dir.assets}/fonts`;
+dir.icons        = `${dir.assets}/icons`;
+dir.images       = `${dir.assets}/images`;
+dir.inline       = `${dir.assets}/inline-images`;
+dir.raw          = `${dir.assets}/raw`;
+dir.scripts      = `${dir.components}/${pattern.anytree}/scripts`;
+dir.styles       = `${dir.components}/${pattern.anytree}/styles`;
+dir.templates    = `${dir.components}/${pattern.anytree}/templates`;
+dir.bower        = `${dir.root}/${BOWER}`;
+dir.misc         = `${dir.root}/misc`;
+dir.resources    = `${dir.misc}/resources`;
+dir.stubs        = `${dir.misc}/stubs`;
 
 const files = {};
 files.bundles      = `${dir.bundles}/${pattern.anytree}/*.${ext.bundles}`;
@@ -88,7 +93,7 @@ filename.modernizr      = `modernizr`;
 filename.lodash         = `lodash`;
 
 const pkg = {};
-pkg.root     = slash(path.normalize(`${__dirname}/..`));
+pkg.root = slash(path.normalize(`${__dirname}/..`));
 
 const config = {};
 config.konstan        = `${dir.root}/konstan.yaml`;
@@ -106,7 +111,7 @@ config.babelPresetEnv = slash(require.resolve('babel-preset-env'));
 
 
 
-class Path {
+module.exports = class {
 
 	static get pattern()  { return pattern; }
 	static get ext()      { return ext; }
@@ -118,6 +123,4 @@ class Path {
 	static get pkg()      { return pkg; }
 	static get config()   { return config; }
 
-}
-
-global.nwayo.path = Path;
+};

@@ -3,16 +3,17 @@
 //-------------------------------------
 'use strict';
 
+// const debug = require('gulp-debug');
 const gulp     = require('gulp');
-const gulpif   = require('gulp-if');
-const rename   = require('gulp-rename');
-const imagemin = require('gulp-imagemin');
 const gm       = require('gulp-gm');
+const gulpif   = require('gulp-if');
+const imagemin = require('gulp-imagemin');
+const rename   = require('gulp-rename');
 const merge    = require('merge-stream');
-// const debug    = require('gulp-debug');
+const paths    = require('../helpers/paths');
+const util     = require('../helpers/util');
 
-const PATH = global.nwayo.path;
-const Util = global.nwayo.util;
+
 
 
 
@@ -32,7 +33,7 @@ gulp.task('icons-favicon', () => {
 		64   // Windows site icons, Safari Reading List sidebar in HiDPI/Retina
 	];
 
-	Util.assetsProcess(PATH.files.iconsFavicon, (stream) => {
+	util.assetsProcess(paths.files.iconsFavicon, (stream) => {
 
 		return stream
 			.pipe(gm((gmfile) => {
@@ -42,7 +43,7 @@ gulp.task('icons-favicon', () => {
 				;
 			}, { imageMagick:true }))
 
-			.pipe(rename(Util.assetsRename()))
+			.pipe(rename(util.assetsRename()))
 		;
 	});
 });
@@ -82,7 +83,7 @@ gulp.task('icons-share', () => {
 	for (const size of touchSizes) {
 
 		streams.push(
-			Util.assetsProcess(PATH.files.iconsTouch, (stream) => {
+			util.assetsProcess(paths.files.iconsTouch, (stream) => {
 
 				return stream
 					.pipe(gulpif(size !== 512, gm((gmfile, done) => {
@@ -90,11 +91,11 @@ gulp.task('icons-share', () => {
 							if (err) {
 								console.log(err); // eslint-disable-line no-console
 							}
-							done(null, Util.gmOptimization(gmfile.resize(size, size), info));
+							done(null, util.gmOptimization(gmfile.resize(size, size), info));
 						});
 					})))
 
-					.pipe(rename(Util.assetsRename(`touch-${size}`)))
+					.pipe(rename(util.assetsRename(`touch-${size}`)))
 
 					.pipe(imagemin())
 				;
@@ -106,7 +107,7 @@ gulp.task('icons-share', () => {
 	for (const size of iconSizes) {
 
 		streams.push(
-			Util.assetsProcess(PATH.files.iconsIcon, (stream) => {
+			util.assetsProcess(paths.files.iconsIcon, (stream) => {
 
 				return stream
 					.pipe(gulpif(size !== 256, gm((gmfile, done) => {
@@ -114,11 +115,11 @@ gulp.task('icons-share', () => {
 							if (err) {
 								console.log(err); // eslint-disable-line no-console
 							}
-							done(null, Util.gmOptimization(gmfile.resize(size, size), info));
+							done(null, util.gmOptimization(gmfile.resize(size, size), info));
 						});
 					})))
 
-					.pipe(rename(Util.assetsRename(`icon-${size}`)))
+					.pipe(rename(util.assetsRename(`icon-${size}`)))
 
 					.pipe(imagemin())
 				;
@@ -128,16 +129,16 @@ gulp.task('icons-share', () => {
 
 	// Large
 	streams.push(
-		Util.assetsProcess(PATH.files.iconsLarge, (stream) => {
+		util.assetsProcess(paths.files.iconsLarge, (stream) => {
 			return stream
-				.pipe(rename(Util.assetsRename('large')))
+				.pipe(rename(util.assetsRename('large')))
 				.pipe(imagemin())
 			;
 		})
 	);
 
 	return merge(...streams).on('end', () => {
-		Util.watchableTaskCompleted('Share icons generation');
+		util.watchableTaskCompleted('Share icons generation');
 	});
 });
 
@@ -160,7 +161,7 @@ gulp.task('icons-tile', () => {
 		const size = sizes[name];
 
 		streams.push(
-			Util.assetsProcess(PATH.files.iconsTile, (stream) => {
+			util.assetsProcess(paths.files.iconsTile, (stream) => {
 
 				return stream
 					.pipe(gm((gmfile, done) => {
@@ -169,7 +170,7 @@ gulp.task('icons-tile', () => {
 								console.log(err); // eslint-disable-line no-console
 							}
 
-							const file = Util.gmOptimization(gmfile.resize(size[0], size[1]), info);
+							const file = util.gmOptimization(gmfile.resize(size[0], size[1]), info);
 
 							if (name === 'wide') {
 								file.background('transparent').gravity('Center').extent(size[0], size[1]);
@@ -179,7 +180,7 @@ gulp.task('icons-tile', () => {
 						});
 					}))
 
-					.pipe(rename(Util.assetsRename(`tile-${name}`)))
+					.pipe(rename(util.assetsRename(`tile-${name}`)))
 
 					.pipe(imagemin())
 				;
@@ -188,19 +189,18 @@ gulp.task('icons-tile', () => {
 	}
 
 	return merge(...streams).on('end', () => {
-		Util.watchableTaskCompleted('Windows metro tile generation');
+		util.watchableTaskCompleted('Windows metro tile generation');
 	});
 });
 
 
 //-- Rebuild
 gulp.task('icons', (cb) => {
-	Util.taskGrouper({
+	util.taskGrouper({
 		cb:          cb,
 		tasks:       [['icons-favicon', 'icons-share', 'icons-tile']],
 		cleanBundle: (name, bundle) => {
-			return [`${PATH.dir.root}/${bundle.output.build}/${PATH.build.icons}`];
+			return [`${paths.dir.root}/${bundle.output.build}/${paths.build.icons}`];
 		}
 	});
 });
-

@@ -3,13 +3,14 @@
 //-------------------------------------
 'use strict';
 
-const runsequence = require('run-sequence');
-const inquirer    = require('inquirer');
-const gulp        = require('gulp');
 // const debug = require('gulp-debug');
+const gulp        = require('gulp');
+const inquirer    = require('inquirer');
+const runsequence = require('run-sequence');
+const terminal    = require('@absolunet/terminal');
+const env         = require('../helpers/env');
 
-const echo = console.log; // eslint-disable-line no-console
-const ENV  = global.nwayo.env;
+
 
 
 
@@ -17,9 +18,9 @@ const ENV  = global.nwayo.env;
 //-- Default menu
 gulp.task('default', (cb) => {
 
-	echo('\n');
-	echo(` ${ENV.pkg.name} `.bgGreen.bold + `    [nwayo ${ENV.workflowPkg.version}]`.yellow);
-	echo('');
+	terminal.echo('\n');
+	terminal.echo(` ${env.pkg.name} `.bgGreen.bold + `    [nwayo ${env.workflowPkg.version}]`.yellow);
+	terminal.echo('');
 
 	inquirer.prompt([
 		{
@@ -38,7 +39,7 @@ gulp.task('default', (cb) => {
 			]
 		}
 	], (data) => {
-		echo('\n\n');
+		terminal.echo('\n\n');
 		runsequence(data.task, cb);
 	});
 });
