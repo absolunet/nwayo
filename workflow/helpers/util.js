@@ -5,19 +5,21 @@
 
 // const debug = require('gulp-debug');
 const babel       = require('babel-core');
+const spawn       = require('cross-spawn');
 const crypto      = require('crypto');
 const del         = require('del');
-const emoji       = require('emoji');
 const fs          = require('fs');
 const glob        = require('glob');
 const gulp        = require('gulp');
 const yaml        = require('js-yaml');
 const _           = require('lodash');
 const merge       = require('merge-stream');
+const emoji       = require('node-emoji');
 const path        = require('path');
 const runsequence = require('run-sequence');
 const stream      = require('stream');
 const Vinyl       = require('vinyl');
+const cli         = require('@absolunet/cli');
 const terminal    = require('@absolunet/terminal');
 const env         = require('../helpers/env');
 const paths       = require('../helpers/paths');
@@ -29,9 +31,6 @@ const STATIC = global.___NwayoUtil___ ? global.___NwayoUtil___ : global.___Nwayo
 	watchableCounter: 0
 };
 
-
-// Logo
-const logo = emoji.get('chestnut'); // 🌰
 
 //-- Escape for regex usage
 const escapeForRegex = (string) => {
@@ -62,6 +61,12 @@ const cache = (key, value, process) => {
 
 
 module.exports = class {
+
+	//-- Logo
+	static get logo() {
+		return emoji.get('chestnut');  // 🌰;
+	}
+
 
 	//-- Create a vinyl stream from a text
 	static vinylStream(filename, string) {
@@ -277,7 +282,7 @@ module.exports = class {
 	//-- Task completed message
 	static watchableTaskCompleted(name) {
 		if (env.watching) {
-			terminal.echo(`\n${logo}  #${++STATIC.watchableCounter} `.bold.green + `${name} completed`.green);
+			terminal.echo(`\n${this.logo}  #${++STATIC.watchableCounter} `.bold.green + `${name} completed`.green);
 		}
 	}
 
@@ -295,5 +300,66 @@ module.exports = class {
 	}
 
 
+	// Init CLI
+	static initCLI() {
+		terminal.setDefault({
+			logo:   this.logo,
+			color: 'green',
+			lang:  'en'
+		});
+
+		cli.init({
+			pkg: { name:'nwayo' }
+		});
+
+		cli.initTasksList(paths.workflow.tasks);
+
+
+
+		const tasks = ['assets', 'icons', 'local', 'scripts', 'styles'];
+
+		/* eslint-disable quote-props */
+		cli.setUsageTasks({
+
+			// Project
+			'run':     [`run ${cli.placeholder('<task>')} ${cli.optionalPlaceholder('<bundle>')}`, `Run a task ex:[${tasks.join('|')}]`, [tasks]],
+			'rebuild': [`rebuild ${cli.optionalPlaceholder('<bundle>')}`, `Rebuild the entire project from scratch`],
+			'watch':   [`watch ${cli.optionalPlaceholder('<bundle>')}`, `Listens for changes on files and run appropriate tasks`],
+			'doctor':  [`doctor`, `Checks Node.js / Bower packages for updates`],
+
+			// Options
+			'--help':      [`-h, --help`, `Show help`],
+			'--version':   [`-v, --version`, 'Show CLI version'],
+			'--pronounce': [`--pronounce`, 'Listen to nwayo pronunciation']
+
+		});
+
+		cli.setFullUsage({
+			'Project': ['run', 'rebuild', 'watch', 'doctor'],
+			'Options': ['--help', '--version', '--pronounce']
+		}, { showBin:false });
+		/* eslint-enable quote-props */
+	}
+
+
+	//-- Run workflow task
+	static runWorkflowTask(task, context) {
+		const base = path.dirname(require.resolve('gulp'));
+		const pkg  = require(`${base}/package`);  // eslint-disable-line global-require
+		const bin  = path.normalize(`${base}/${pkg.bin.gulp}`);
+
+		const arg  = [task];
+		arg.push('--cwd', context.cwd);
+		arg.push('--gulpfile', `${context.cwd}/node_modules/@absolunet/nwayo-workflow/gulpfile.js`);
+
+		const cmd = spawn(`${bin}`, arg, {
+			env:   process.env,  // eslint-disable-line no-process-env
+			stdio: 'inherit'
+		});
+
+		cmd.on('close', (code) => {
+			return code && code === !65 ? terminal.echo(code) : undefined;
+		});
+	}
 
 };
