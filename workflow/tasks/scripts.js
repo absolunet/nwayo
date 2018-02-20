@@ -6,8 +6,6 @@
 // const debug = require('gulp-debug');
 const async     = require('async');
 const { exec }  = require('child_process');
-const fs        = require('fs');
-const fsExtra   = require('fs-extra');
 const gulp      = require('gulp');
 const cache     = require('gulp-cached');
 const eslint    = require('gulp-eslint');
@@ -18,6 +16,8 @@ const yaml      = require('js-yaml');
 const _         = require('lodash');
 const merge     = require('merge-stream');
 const modernizr = require('modernizr');
+const fsp       = require('@absolunet/fsp');
+const fss       = require('@absolunet/fss');
 const include   = require('@absolunet/gulp-include');
 const env       = require('../helpers/env');
 const paths     = require('../helpers/paths');
@@ -93,10 +93,10 @@ gulp.task('scripts-vendors', (cb) => {
 
 			// Modernizr
 			(callback) => {
-				modernizr.build(yaml.safeLoad(fs.readFileSync(paths.config.modernizr, 'utf8')), (result) => {
+				modernizr.build(yaml.safeLoad(fss.readFile(paths.config.modernizr, 'utf8')), (result) => {
 					const file = `${paths.dir.cacheScripts}/${paths.filename.modernizr}.${paths.ext.scripts}`;
-					fsExtra.ensureFile(file, () => {
-						fs.writeFileSync(file, result);
+					fsp.ensureFile(file).then(() => {
+						fss.writeFile(file, result);
 					});
 					callback(null);
 				});

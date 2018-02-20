@@ -4,7 +4,6 @@
 'use strict';
 
 // const debug = require('gulp-debug');
-const fs           = require('fs-extra');
 const gulp         = require('gulp');
 const autoprefixer = require('gulp-autoprefixer');
 const cache        = require('gulp-cached');
@@ -18,6 +17,7 @@ const sourcemaps   = require('gulp-sourcemaps');
 const stylelint    = require('gulp-stylelint');
 const _            = require('lodash');
 const merge        = require('merge-stream');
+const fss          = require('@absolunet/fss');
 const env          = require('../helpers/env');
 const paths        = require('../helpers/paths');
 const util         = require('../helpers/util');
@@ -105,7 +105,7 @@ gulp.task('styles-compile', ['styles-lint', 'styles-constants'], () => {
 				list[i] = `@import '${file}';`;
 			});
 
-			fs.outputFileSync(`${paths.dir.cacheStyles}/${name}/collections/${collection}.${paths.ext.styles}`, `${util.getGeneratedBanner(name)}${list.join('\n')}\n`);
+			fss.outputFile(`${paths.dir.cacheStyles}/${name}/collections/${collection}.${paths.ext.styles}`, `${util.getGeneratedBanner(name)}${list.join('\n')}\n`);
 		}
 
 		// Process all collections from this bundle
