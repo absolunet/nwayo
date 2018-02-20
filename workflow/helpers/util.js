@@ -5,10 +5,11 @@
 
 // const debug = require('gulp-debug');
 const babel       = require('babel-core');
+const boxen       = require('boxen');
+const chalk       = require('chalk');
 const spawn       = require('cross-spawn');
 const crypto      = require('crypto');
 const del         = require('del');
-const fs          = require('fs');
 const glob        = require('glob');
 const gulp        = require('gulp');
 const yaml        = require('js-yaml');
@@ -17,9 +18,11 @@ const merge       = require('merge-stream');
 const emoji       = require('node-emoji');
 const path        = require('path');
 const runsequence = require('run-sequence');
+const semver      = require('semver');
 const stream      = require('stream');
 const Vinyl       = require('vinyl');
 const cli         = require('@absolunet/cli');
+const fss         = require('@absolunet/fss');
 const terminal    = require('@absolunet/terminal');
 const env         = require('../helpers/env');
 const paths       = require('../helpers/paths');
@@ -136,7 +139,7 @@ module.exports = class {
 
 	//-- Parse Lodash config
 	static parseLodash() {
-		const config = yaml.safeLoad(fs.readFileSync(paths.config.lodash, 'utf8'));
+		const config = yaml.safeLoad(fss.readFile(paths.config.lodash, 'utf8'));
 		let cliParams = '';
 
 		for (const option of Object.keys(config)) {
@@ -312,7 +315,7 @@ module.exports = class {
 			pkg: { name:'nwayo' }
 		});
 
-		cli.initTasksList(paths.workflow.tasks);
+		cli.initTasksList(paths.workflow.cliTasks);
 
 
 
@@ -342,6 +345,42 @@ module.exports = class {
 	}
 
 
+	//-- Init CLI project task
+	static initCLIProjectTask({ bundle }) {
+
+		// Check for asked version vs installed version
+		const requiredVersion  = env.pkg.dependencies['@absolunet/nwayo-workflow'];
+		const installedVersion = env.workflowPkg.version;
+
+		if (semver.gt(requiredVersion, installedVersion)) {
+			terminal.echo(boxen(
+`Workflow update available ${chalk.dim(installedVersion)} ${chalk.reset('→')} ${chalk.green(requiredVersion)}
+
+The required version in your project's package.json
+is greater than the installed one
+
+Run ${chalk.cyan('npm install')} to update`,
+			{
+				padding:     1,
+				margin:      0.5,
+				align:       'center',
+				borderColor: 'yellow'
+			}));
+
+			terminal.exit();
+		}
+
+		// Validate bundle
+		if (bundle) {
+			const [main, sub] = bundle.split(':');
+
+			if (!fss.exists(`${paths.dir.bundles}/${main}/${sub ? `_${sub}` : main}.${paths.ext.bundles}`)) {
+				terminal.exit(`No bundle ${chalk.underline(bundle)} found.`);
+			}
+		}
+	}
+
+
 	//-- Run workflow task
 	static runWorkflowTask(task, context) {
 		const base = path.dirname(require.resolve('gulp'));
@@ -349,8 +388,8 @@ module.exports = class {
 		const bin  = path.normalize(`${base}/${pkg.bin.gulp}`);
 
 		const arg  = [task];
-		arg.push('--cwd', context.cwd);
-		arg.push('--gulpfile', `${context.cwd}/node_modules/@absolunet/nwayo-workflow/gulpfile.js`);
+		arg.push('--cwd', paths.dir.root);
+		arg.push('--gulpfile', `${paths.dir.root}/node_modules/@absolunet/nwayo-workflow/gulpfile.js`);
 
 		const cmd = spawn(`${bin}`, arg, {
 			env:   process.env,  // eslint-disable-line no-process-env

@@ -37,7 +37,6 @@
     "babel-preset-env": "1.6.1",
     "colors": "1.1.2",
     "del": "3.0.0",
-    "fs-extra": "5.0.0",
     "glob": "7.1.2",
     "gulp": "3.9.1",
     "gulp-autoprefixer": "4.1.0",
@@ -68,9 +67,13 @@
     "vinyl": "2.1.0",
 
     "@absolunet/cli": "0.5.0",
+    "@absolunet/fsp": "0.1.0",
+    "@absolunet/fss": "0.5.0",
     "@absolunet/terminal": "0.4.4",
+    "boxen": "1.8.2",
     "cross-spawn": "6.0.4",
     "meow": "4.0.0",
-    "node-emoji": "1.8.1"
+    "node-emoji": "1.8.1",
+    "semver": "5.5.0"
   }
 }

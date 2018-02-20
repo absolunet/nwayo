@@ -3,17 +3,18 @@
 //-------------------------------------
 'use strict';
 
-const fs       = require('fs');
 const glob     = require('glob');
 const yaml     = require('js-yaml');
 const _        = require('lodash');
 const minimist = require('minimist');
 const os       = require('os');
+const fss      = require('@absolunet/fss');
+const terminal = require('@absolunet/terminal');
 const paths    = require('../helpers/paths');
 
 
 const readYAML = (file) => {
-	return yaml.safeLoad(fs.readFileSync(file, 'utf8'));
+	return yaml.safeLoad(fss.readFile(file, 'utf8'));
 };
 
 
@@ -23,12 +24,21 @@ const readYAML = (file) => {
 
 //-- Static properties
 const STATIC = global.___NwayoEnv___ ? global.___NwayoEnv___ : global.___NwayoEnv___ = {
-	pkg:         require(paths.config.projectPackage),   // eslint-disable-line global-require
 	workflowPkg: require(paths.config.workflowPackage),  // eslint-disable-line global-require
 	konstan:     readYAML(paths.config.konstan),
 	watching:    false,
 	isWindows:   os.platform() === 'win32'
 };
+
+
+//-- Project package
+if (!STATIC.pkg) {
+	if (fss.exists(paths.config.projectPackage)) {
+		STATIC.pkg = require(paths.config.projectPackage);  // eslint-disable-line global-require
+	} else {
+		terminal.exit('No package.json file found');
+	}
+}
 
 
 //-- Load bundles
