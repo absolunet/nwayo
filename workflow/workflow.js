@@ -19,11 +19,11 @@ env.initWorkflow();
 
 
 //-- Load tasks
-require('./tasks/default');
-require('./tasks/assets');
-require('./tasks/icons');
-require('./tasks/local');
-require('./tasks/scripts');
-require('./tasks/styles');
-require('./tasks/rebuild');
+// require('./tasks/default');
+// require('./tasks/assets');
+// require('./tasks/icons');
+// require('./tasks/local');
+// require('./tasks/scripts');
+// require('./tasks/styles');
+// require('./tasks/rebuild');
 require('./tasks/watch');
