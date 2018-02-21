@@ -38,7 +38,7 @@
     "colors": "1.1.2",
     "del": "3.0.0",
     "glob": "7.1.2",
-    "gulp": "3.9.1",
+    "gulp": "4.0.0",
     "gulp-autoprefixer": "4.1.0",
     "gulp-cached": "1.1.1",
     "gulp-cssnano": "2.1.2",
