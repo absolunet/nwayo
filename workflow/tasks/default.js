@@ -19,7 +19,7 @@ const env         = require('../helpers/env');
 gulp.task('default', (cb) => {
 
 	terminal.echo('\n');
-	terminal.echo(` ${env.pkg.name} `.bgGreen.bold + `    [nwayo ${env.workflowPkg.version}]`.yellow);
+	terminal.echo(` ${env.pkg.name} `.bgGreen.bold + `    [${env.name} ${env.workflowPkg.version}]`.yellow);
 	terminal.echo('');
 
 	inquirer.prompt([
