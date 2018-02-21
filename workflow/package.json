@@ -72,6 +72,7 @@
     "@absolunet/terminal": "0.4.4",
     "boxen": "1.3.0",
     "cross-spawn": "6.0.4",
+    "gulp-hub": "4.2.0",
     "meow": "4.0.0",
     "node-emoji": "1.8.1",
     "semver": "5.5.0"

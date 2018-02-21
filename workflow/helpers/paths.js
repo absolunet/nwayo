@@ -3,13 +3,20 @@
 //-------------------------------------
 'use strict';
 
-const path  = require('path');
-const slash = require('slash');
+const findUp  = require('find-up');
+const path    = require('path');
+const slash   = require('slash');
+const toolbox = require('./toolbox');
 
 
 //-- Static properties
 const STATIC = global.___NwayoPaths___ ? global.___NwayoPaths___ : global.___NwayoPaths___ = {
-	root: global.nwayoCLIProjectRoot || slash(process.cwd())
+	root: (() => {
+		const prjConfigFilepath = findUp.sync('nwayo.yaml', { cwd:process.cwd() });
+		const prjConfig         = toolbox.readYAML(prjConfigFilepath);
+
+		return path.normalize(`${path.dirname(prjConfigFilepath)}/${prjConfig.root}`);
+	})()
 };
 
 
@@ -119,7 +126,7 @@ config.babelPresetEnv  = slash(require.resolve('babel-preset-env'));
 
 
 
-module.exports = class {
+module.exports = class paths {
 
 	static get pattern()  { return pattern; }
 	static get ext()      { return ext; }

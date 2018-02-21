@@ -4,47 +4,41 @@
 'use strict';
 
 const glob     = require('glob');
-const yaml     = require('js-yaml');
 const _        = require('lodash');
 const minimist = require('minimist');
+const emoji    = require('node-emoji');
 const os       = require('os');
 const fss      = require('@absolunet/fss');
 const terminal = require('@absolunet/terminal');
-const paths    = require('../helpers/paths');
-
-
-const readYAML = (file) => {
-	return yaml.safeLoad(fss.readFile(file, 'utf8'));
-};
-
-
-
-
+const paths    = require('./paths');
+const toolbox  = require('./toolbox');
 
 
 //-- Static properties
 const STATIC = global.___NwayoEnv___ ? global.___NwayoEnv___ : global.___NwayoEnv___ = {
+
 	workflowPkg: require(paths.config.workflowPackage),  // eslint-disable-line global-require
+
 	watching:    false,
-	isWindows:   os.platform() === 'win32'
+
+	isWindows:   os.platform() === 'win32',
+
+	pkg:         (() => {
+		if (fss.exists(paths.config.projectPackage)) {
+			return require(paths.config.projectPackage);  // eslint-disable-line global-require
+		}
+
+		return terminal.exit('No package.json file found');
+	})()
+
 };
 
 
-//-- Project package
-if (!STATIC.pkg) {
-	if (fss.exists(paths.config.projectPackage)) {
-		STATIC.pkg = require(paths.config.projectPackage);  // eslint-disable-line global-require
-	} else {
-		terminal.exit('No package.json file found');
-	}
-}
 
 
 
 
-
-
-module.exports = class {
+module.exports = class env {
 
 	static get pkg()               { return STATIC.pkg; }
 	static get workflowPkg()       { return STATIC.workflowPkg; }
@@ -53,6 +47,18 @@ module.exports = class {
 	static get bundlesComponents() { return STATIC.bundlesComponents; }
 	static get watching()          { return STATIC.watching; }
 	static get isWindows()         { return STATIC.isWindows; }
+
+
+	//-- Logo
+	static get logo() {
+		return emoji.get('chestnut');  // 🌰;
+	}
+
+
+	//-- Name
+	static get name() {
+		return 'nwayo';
+	}
 
 
 	//-- Set to 'watch' mode
@@ -65,7 +71,7 @@ module.exports = class {
 	static initWorkflow() {
 
 		// Load konstan
-		STATIC.konstan = readYAML(paths.config.konstan);
+		STATIC.konstan = toolbox.readYAML(paths.config.konstan);
 
 
 
@@ -86,7 +92,7 @@ module.exports = class {
 
 			for (const folder of bundlesList) {
 				const [, name] = folder.match(/\/([0-9a-zA-Z-]+)\/$/);
-				data[name] = readYAML(`${folder}/${name}.${paths.ext.bundles}`);
+				data[name] = toolbox.readYAML(`${folder}/${name}.${paths.ext.bundles}`);
 
 				if (!data[name].assets) {
 					data[name].assets = {};
@@ -108,7 +114,7 @@ module.exports = class {
 				if (subBundlesList.length) {
 					for (const subBundleFile of subBundlesList) {
 
-						const subBundleData = readYAML(subBundleFile);
+						const subBundleData = toolbox.readYAML(subBundleFile);
 						if (subBundleData.assets && subBundleData.assets.components) {
 							data[name].assets.components = [...new Set([...data[name].assets.components, ...subBundleData.assets.components])];
 						}

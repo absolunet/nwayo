@@ -25,7 +25,7 @@ gulp.task('rebuild-ss', (cb) => {
 //-- Rebuild
 gulp.task('rebuild', (cb) => {
 	for (const name of Object.keys(env.bundles)) {
-		fss.outputFile(`${paths.dir.root}/${env.bundles[name].output.build}/readme-nwayo.md`, `# ${util.getGeneratedBanner(name, 'text')}\n`);
+		fss.outputFile(`${paths.dir.root}/${env.bundles[name].output.build}/readme-${env.name}.md`, `# ${util.getGeneratedBanner(name, 'text')}\n`);
 	}
 
 	runsequence(['assets', 'icons', 'local', 'scripts', 'styles'], cb);

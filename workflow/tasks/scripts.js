@@ -12,7 +12,6 @@ const eslint    = require('gulp-eslint');
 const gulpif    = require('gulp-if');
 const lec       = require('gulp-line-ending-corrector');
 const uglify    = require('gulp-uglify');
-const yaml      = require('js-yaml');
 const _         = require('lodash');
 const merge     = require('merge-stream');
 const modernizr = require('modernizr');
@@ -21,6 +20,7 @@ const fss       = require('@absolunet/fss');
 const include   = require('@absolunet/gulp-include');
 const env       = require('../helpers/env');
 const paths     = require('../helpers/paths');
+const toolbox   = require('../helpers/toolbox');
 const util      = require('../helpers/util');
 
 
@@ -93,7 +93,7 @@ gulp.task('scripts-vendors', (cb) => {
 
 			// Modernizr
 			(callback) => {
-				modernizr.build(yaml.safeLoad(fss.readFile(paths.config.modernizr, 'utf8')), (result) => {
+				modernizr.build(toolbox.readYAML(paths.config.modernizr), (result) => {
 					const file = `${paths.dir.cacheScripts}/${paths.filename.modernizr}.${paths.ext.scripts}`;
 					fsp.ensureFile(file).then(() => {
 						fss.writeFile(file, result);
