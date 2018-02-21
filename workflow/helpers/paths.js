@@ -99,15 +99,15 @@ filename.modernizr      = `modernizr`;
 filename.lodash         = `lodash`;
 
 const workflow = {};
-workflow.root     = slash(path.normalize(`${__dirname}/..`));
-workflow.cli      = `${workflow.root}/cli`;
-workflow.cliTasks = `${workflow.cli}/tasks`;
+workflow.root       = slash(path.normalize(`${__dirname}/..`));
+workflow.cliTasks   = `${workflow.root}/cli`;
+workflow.ressources = `${workflow.root}/ressources`;
 
 const config = {};
 config.konstan         = `${dir.root}/konstan.yaml`;
 config.projectPackage  = `${dir.root}/package.json`;
 config.workflowPackage = `${workflow.root}/package.json`;
-config.sass            = `${workflow.root}/sass.rb`;
+config.sass            = `${workflow.ressources}/sass.rb`;
 config.stylelint       = `${dir.root}/.stylelintrc.yaml`;
 config.modernizr       = `${dir.root}/modernizr.yaml`;
 config.lodash          = `${dir.root}/lodash.yaml`;
