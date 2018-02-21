@@ -4,7 +4,7 @@
 'use strict';
 
 const cli  = require('@absolunet/cli');
-const util = require('../../helpers/util');
+const util = require('../helpers/util');
 
 
 module.exports = class {
@@ -24,4 +24,5 @@ module.exports = class {
 			cli.showTaskUsage(meowCli);
 		}
 	}
+
 };

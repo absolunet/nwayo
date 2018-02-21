@@ -354,18 +354,19 @@ module.exports = class {
 
 		if (semver.gt(requiredVersion, installedVersion)) {
 			terminal.echo(boxen(
-`Workflow update available ${chalk.dim(installedVersion)} ${chalk.reset('→')} ${chalk.green(requiredVersion)}
+				`Workflow update available ${chalk.dim(installedVersion)} ${chalk.reset('→')} ${chalk.green(requiredVersion)}
 
 The required version in your project's package.json
 is greater than the installed one
 
 Run ${chalk.cyan('npm install')} to update`,
-			{
-				padding:     1,
-				margin:      0.5,
-				align:       'center',
-				borderColor: 'yellow'
-			}));
+				{
+					padding:     1,
+					margin:      0.5,
+					align:       'center',
+					borderColor: 'yellow'
+				}
+			));
 
 			terminal.exit();
 		}
@@ -382,14 +383,14 @@ Run ${chalk.cyan('npm install')} to update`,
 
 
 	//-- Run workflow task
-	static runWorkflowTask(task, context) {
+	static runWorkflowTask(task) {
 		const base = path.dirname(require.resolve('gulp'));
 		const pkg  = require(`${base}/package`);  // eslint-disable-line global-require
 		const bin  = path.normalize(`${base}/${pkg.bin.gulp}`);
 
 		const arg  = [task];
 		arg.push('--cwd', paths.dir.root);
-		arg.push('--gulpfile', `${paths.dir.root}/node_modules/@absolunet/nwayo-workflow/gulpfile.js`);
+		arg.push('--gulpfile', `${paths.dir.root}/node_modules/@absolunet/nwayo-workflow/workflow.js`);
 
 		const cmd = spawn(`${bin}`, arg, {
 			env:   process.env,  // eslint-disable-line no-process-env

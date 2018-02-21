@@ -23,9 +23,9 @@ const chalk    = require('chalk');
 const meow     = require('meow');
 const cli      = require('@absolunet/cli');
 const terminal = require('@absolunet/terminal');
-const env      = require('../helpers/env');
-const paths    = require('../helpers/paths');
-const util     = require('../helpers/util');
+const env      = require('./helpers/env');
+const paths    = require('./helpers/paths');
+const util     = require('./helpers/util');
 
 
 

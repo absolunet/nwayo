@@ -14,10 +14,10 @@ module.exports = class {
 
 			//-- Pronounce
 			if (meowCli.flags.pronounce === true) {
-				terminal.echo('/nwajo/')
+				terminal.echo('/nwajo/');
 
 				if (process.platform === 'darwin') {
-					spawn('say', ['nwaw','yo']);
+					spawn('say', ['nwaw', 'yo']);
 				}
 
 				return;
@@ -27,7 +27,6 @@ module.exports = class {
 
 
 		meowCli.showHelp();
-		return;
 	}
 
 };
