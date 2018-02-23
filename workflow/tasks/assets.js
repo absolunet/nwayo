@@ -1,3 +1,4 @@
+/*
 //-------------------------------------
 //-- Assets
 //-------------------------------------
@@ -9,6 +10,7 @@ const gm       = require('gulp-gm');
 const imagemin = require('gulp-imagemin');
 const rename   = require('gulp-rename');
 const paths    = require('../helpers/paths');
+const toolbox  = require('../helpers/toolbox');
 const util     = require('../helpers/util');
 
 
@@ -46,7 +48,7 @@ gulp.task('assets-images-highdensity', () => {
 					if (err) {
 						console.log(err); // eslint-disable-line no-console
 					}
-					util.gmOptimization(gmfile.resize('50%', '50%'), info);
+					toolbox.gmOptimization(gmfile.resize('50%', '50%'), info);
 					done(null, gmfile);
 				});
 			}))
@@ -95,3 +97,4 @@ gulp.task('assets', (cb) => {
 		}
 	});
 });
+*/

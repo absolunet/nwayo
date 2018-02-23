@@ -3,22 +3,21 @@
 //--------------------------------------------------------
 'use strict';
 
-const cli     = require('@absolunet/cli');
-const cliUtil = require('../helpers/cli-util');
+const cli  = require('@absolunet/cli');
+const util = require('../helpers/util');
+
+
+
+
 
 
 module.exports = class {
 
 	static cli(meowCli) {
-
-		cliUtil.initProjectTask({
-			bundle: meowCli.input[1]
-		});
-
+		util.checkInstalledWorkflow();
 
 		if (meowCli.input.length <= 2) {
-
-			cliUtil.runWorkflowTask('watch');
+			util.runWorkflowTask('watch', { bundle:meowCli.input[1] });
 
 		} else {
 			cli.showTaskUsage(meowCli);

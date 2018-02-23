@@ -108,6 +108,7 @@ filename.lodash         = `lodash`;
 const workflow = {};
 workflow.root       = slash(path.normalize(`${__dirname}/..`));
 workflow.cliTasks   = `${workflow.root}/cli`;
+workflow.tasks      = `${workflow.root}/tasks`;
 workflow.ressources = `${workflow.root}/ressources`;
 
 const config = {};
