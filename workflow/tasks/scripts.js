@@ -1,3 +1,4 @@
+/*
 //-------------------------------------
 //-- Scripts
 //-------------------------------------
@@ -69,7 +70,7 @@ gulp.task('scripts-constants', () => {
 		};
 
 		streams.push(
-			util.vinylStream(paths.filename.konstanScripts, `var konstan = ${JSON.stringify(data, null, '\t')};`)
+			toolbox.vinylStream(paths.filename.konstanScripts, `var konstan = ${JSON.stringify(data, null, '\t')};`)
 				.pipe(gulp.dest(`${paths.dir.cacheScripts}/${name}`))
 		);
 	}
@@ -157,7 +158,7 @@ gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants', 'scripts-vend
 
 			const source = `${util.getGeneratedBanner(name)} (function(global, undefined) { \n\t${list.join('\n')}\n })(typeof window !== 'undefined' ? window : this);\n`;
 			streams.push(
-				util.vinylStream(`${collection}.${paths.ext.scripts}`, source)
+				toolbox.vinylStream(`${collection}.${paths.ext.scripts}`, source)
 					.pipe(include({
 						basePath:      paths.dir.root,
 						autoExtension: true,
@@ -188,3 +189,4 @@ gulp.task('scripts', (cb) => {
 		}
 	});
 });
+*/

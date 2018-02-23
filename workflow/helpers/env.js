@@ -3,9 +3,9 @@
 //-------------------------------------
 'use strict';
 
+const chalk    = require('chalk');
 const glob     = require('glob');
 const _        = require('lodash');
-const minimist = require('minimist');
 const emoji    = require('node-emoji');
 const os       = require('os');
 const fss      = require('@absolunet/fss');
@@ -68,22 +68,14 @@ module.exports = class env {
 
 
 	//-- Init workflow env
-	static initWorkflow() {
+	static initWorkflow({ bundle = '*' }) {
 
 		// Load konstan
 		STATIC.konstan = toolbox.readYAML(paths.config.konstan);
 
 
-
-		// Get CLI flag
-		const options = minimist(process.argv.slice(2), {
-			'string':  'bundle',
-			'default': { bundle:'*' }
-		});
-
-		const [requiredName, requiredSubname = '*'] = options.bundle.split(':');
-
-		// Get list
+		// Get bundle list
+		const [requiredName, requiredSubname = '*'] = bundle.split(':');
 		const bundlesList = glob.sync(`${paths.dir.bundles}/${requiredName}/`);
 
 		// Process bundles
@@ -129,13 +121,11 @@ module.exports = class env {
 					}
 
 				} else if (requiredSubname !== '*') {
-					throw new Error(`No subbundle '${options.bundle}' found`.red);
+					terminal.exit(`Bundle ${chalk.underline(bundle)} does not exists`);
 				}
 			}
 		} else {
-			throw new Error(`No bundle ${
-				requiredName !== '*' ? `'${options.bundle}' ` : ''
-			}found`.red);
+			terminal.exit(`${requiredName !== '*' ? `Bundle ${chalk.underline(bundle)} does not exists` : `No bundle found`}`);
 		}
 
 		STATIC.bundles = data;

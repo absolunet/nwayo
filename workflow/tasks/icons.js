@@ -1,3 +1,4 @@
+/*
 //-------------------------------------
 //-- Icons
 //-------------------------------------
@@ -11,6 +12,7 @@ const imagemin = require('gulp-imagemin');
 const rename   = require('gulp-rename');
 const merge    = require('merge-stream');
 const paths    = require('../helpers/paths');
+const toolbox  = require('../helpers/toolbox');
 const util     = require('../helpers/util');
 
 
@@ -91,7 +93,7 @@ gulp.task('icons-share', () => {
 							if (err) {
 								console.log(err); // eslint-disable-line no-console
 							}
-							done(null, util.gmOptimization(gmfile.resize(size, size), info));
+							done(null, toolbox.gmOptimization(gmfile.resize(size, size), info));
 						});
 					})))
 
@@ -115,7 +117,7 @@ gulp.task('icons-share', () => {
 							if (err) {
 								console.log(err); // eslint-disable-line no-console
 							}
-							done(null, util.gmOptimization(gmfile.resize(size, size), info));
+							done(null, toolbox.gmOptimization(gmfile.resize(size, size), info));
 						});
 					})))
 
@@ -170,7 +172,7 @@ gulp.task('icons-tile', () => {
 								console.log(err); // eslint-disable-line no-console
 							}
 
-							const file = util.gmOptimization(gmfile.resize(size[0], size[1]), info);
+							const file = toolbox.gmOptimization(gmfile.resize(size[0], size[1]), info);
 
 							if (name === 'wide') {
 								file.background('transparent').gravity('Center').extent(size[0], size[1]);
@@ -204,3 +206,4 @@ gulp.task('icons', (cb) => {
 		}
 	});
 });
+*/

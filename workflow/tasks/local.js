@@ -1,14 +1,16 @@
+/*
 //-------------------------------------
 //-- Local
 //-------------------------------------
 'use strict';
 
 // const debug = require('gulp-debug');
-const gulp  = require('gulp');
-const merge = require('merge-stream');
-const env   = require('../helpers/env');
-const paths = require('../helpers/paths');
-const util  = require('../helpers/util');
+const gulp    = require('gulp');
+const merge   = require('merge-stream');
+const env     = require('../helpers/env');
+const paths   = require('../helpers/paths');
+const toolbox = require('../helpers/toolbox');
+const util    = require('../helpers/util');
 
 
 
@@ -31,7 +33,7 @@ gulp.task('local-constants', () => {
 		};
 
 		streams.push(
-			util.vinylStream(paths.filename.konstanLocal, JSON.stringify(data, null, 2))
+			toolbox.vinylStream(paths.filename.konstanLocal, JSON.stringify(data, null, 2))
 				.pipe(gulp.dest(`${paths.dir.root}/${bundle.output.konstan}`))
 		);
 	}
@@ -52,3 +54,4 @@ gulp.task('local', (cb) => {
 		}
 	});
 });
+*/

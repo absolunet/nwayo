@@ -1,3 +1,4 @@
+/*
 //-------------------------------------
 //-- Rebuild
 //-------------------------------------
@@ -10,6 +11,8 @@ const fss         = require('@absolunet/fss');
 const env         = require('../helpers/env');
 const paths       = require('../helpers/paths');
 const util        = require('../helpers/util');
+
+requireDir(paths.workflow.tasks);
 
 
 
@@ -30,3 +33,4 @@ gulp.task('rebuild', (cb) => {
 
 	runsequence(['assets', 'icons', 'local', 'scripts', 'styles'], cb);
 });
+*/

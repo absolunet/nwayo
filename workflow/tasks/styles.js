@@ -1,3 +1,4 @@
+/*
 //-------------------------------------
 //-- Styles
 //-------------------------------------
@@ -20,6 +21,7 @@ const merge        = require('merge-stream');
 const fss          = require('@absolunet/fss');
 const env          = require('../helpers/env');
 const paths        = require('../helpers/paths');
+const toolbox      = require('../helpers/toolbox');
 const util         = require('../helpers/util');
 
 
@@ -76,7 +78,7 @@ gulp.task('styles-constants', () => {
 		data.bundle = `'${name}'`;
 
 		streams.push(
-			util.vinylStream(paths.filename.konstanStyles, JSON.stringify({ konstan:data }))
+			toolbox.vinylStream(paths.filename.konstanStyles, JSON.stringify({ konstan:data }))
 				.pipe(jsonsass())
 				.pipe(gulp.dest(`${paths.dir.cacheStyles}/${name}`))
 		);
@@ -148,3 +150,4 @@ gulp.task('styles', (cb) => {
 		}
 	});
 });
+*/
