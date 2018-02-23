@@ -1,4 +1,3 @@
-/*
 //-------------------------------------
 //-- Local
 //-------------------------------------
@@ -8,6 +7,7 @@
 const gulp    = require('gulp');
 const merge   = require('merge-stream');
 const env     = require('../helpers/env');
+const flow    = require('../helpers/flow');
 const paths   = require('../helpers/paths');
 const toolbox = require('../helpers/toolbox');
 const util    = require('../helpers/util');
@@ -18,7 +18,7 @@ const util    = require('../helpers/util');
 
 
 //-- Convert constants to JSON
-gulp.task('local-constants', () => {
+flow.createTask('local-constants', () => {
 	const streams = [];
 
 	for (const name of Object.keys(env.bundles)) {
@@ -44,14 +44,11 @@ gulp.task('local-constants', () => {
 
 
 
+
+
 //-- Rebuild
-gulp.task('local', (cb) => {
-	util.taskGrouper({
-		cb:          cb,
-		tasks:       ['local-constants'],
-		cleanBundle: (name, bundle) => {
-			return [`${paths.dir.root}/${bundle.output.konstan}/${paths.filename.konstanLocal}`];
-		}
-	});
+flow.createSequence('local', gulp.series('local-constants'), {
+	cleanBundle: ({ name, bundle }) => {
+		return [`${paths.dir.root}/${bundle.output.konstan}/${paths.filename.konstanLocal}`];
+	}
 });
-*/

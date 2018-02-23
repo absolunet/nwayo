@@ -218,11 +218,7 @@ module.exports = class util {
 			}
 		}
 
-		return merge(...streams).on('end', () => {
-			if (taskName) {
-				this.watchableTaskCompleted(taskName);
-			}
-		});
+		return merge(...streams);
 	}
 
 
