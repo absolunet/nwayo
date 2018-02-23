@@ -1,4 +1,3 @@
-/*
 //-------------------------------------
 //-- Icons
 //-------------------------------------
@@ -11,6 +10,7 @@ const gulpif   = require('gulp-if');
 const imagemin = require('gulp-imagemin');
 const rename   = require('gulp-rename');
 const merge    = require('merge-stream');
+const flow     = require('../helpers/flow');
 const paths    = require('../helpers/paths');
 const toolbox  = require('../helpers/toolbox');
 const util     = require('../helpers/util');
@@ -26,7 +26,7 @@ const util     = require('../helpers/util');
 
 //-- Favicon.ico
 // https://mathiasbynens.be/notes/rel-shortcut-icon
-gulp.task('icons-favicon', () => {
+flow.createTask('icons-favicon', () => {
 	const sizes = [
 		16,  // IE9 address bar, Pinned site Jump List/Toolbar/Overlay
 		24,  // IE9 Pinned site browser UI
@@ -35,7 +35,7 @@ gulp.task('icons-favicon', () => {
 		64   // Windows site icons, Safari Reading List sidebar in HiDPI/Retina
 	];
 
-	util.assetsProcess(paths.files.iconsFavicon, (stream) => {
+	return util.assetsProcess(paths.files.iconsFavicon, (stream) => {
 
 		return stream
 			.pipe(gm((gmfile) => {
@@ -56,7 +56,9 @@ gulp.task('icons-favicon', () => {
 // https://developer.apple.com/ios/human-interface-guidelines/graphics/app-icon/
 // https://developer.chrome.com/multidevice/android/installtohomescreen
 // http://operacoast.com/developer
-gulp.task('icons-share', () => {
+
+//-- Touch
+flow.createTask('icons-touch', () => {
 	const touchSizes = [
 		57,   // For non-Retina (@1× display) iPhone, iPod Touch, and Android 2.1+ devices
 		72,   // For the iPad mini and the first- and second-generation iPad (@1× display) on iOS ≤ 6
@@ -68,15 +70,6 @@ gulp.task('icons-share', () => {
 		167,  // For iPad Pro with @2× display running iOS ≤ 9
 		180,  // For iPhone 6 Plus with @3× display
 		512   // General share icon
-	];
-
-	const iconSizes = [
-		64,   // Windows site icons, Safari Reading List, Modern browsers
-		96,   // Google TV Favicon
-		192,  // For Chrome for Android
-		195,  // Opera Speed Dial icon
-		196,  // For Chrome for Android home screen icon
-		228   // For Coast for iOS
 	];
 
 	const streams = [];
@@ -105,6 +98,23 @@ gulp.task('icons-share', () => {
 		);
 	}
 
+	return merge(...streams);
+});
+
+
+//-- Icons
+flow.createTask('icons-icon', () => {
+	const iconSizes = [
+		64,   // Windows site icons, Safari Reading List, Modern browsers
+		96,   // Google TV Favicon
+		192,  // For Chrome for Android
+		195,  // Opera Speed Dial icon
+		196,  // For Chrome for Android home screen icon
+		228   // For Coast for iOS
+	];
+
+	const streams = [];
+
 	// Foreach each sizes
 	for (const size of iconSizes) {
 
@@ -129,18 +139,17 @@ gulp.task('icons-share', () => {
 		);
 	}
 
-	// Large
-	streams.push(
-		util.assetsProcess(paths.files.iconsLarge, (stream) => {
-			return stream
-				.pipe(rename(util.assetsRename('large')))
-				.pipe(imagemin())
-			;
-		})
-	);
+	return merge(...streams);
+});
 
-	return merge(...streams).on('end', () => {
-		util.watchableTaskCompleted('Share icons generation');
+
+//-- Large
+flow.createTask('icons-large', () => {
+	return util.assetsProcess(paths.files.iconsLarge, (stream) => {
+		return stream
+			.pipe(rename(util.assetsRename('large')))
+			.pipe(imagemin())
+		;
 	});
 });
 
@@ -148,7 +157,7 @@ gulp.task('icons-share', () => {
 //-- Windows metro tile
 // http://msdn.microsoft.com/en-us/library/ie/dn455106(v=vs.85).aspx
 // http://msdn.microsoft.com/en-us/library/ie/bg183312(v=vs.85).aspx
-gulp.task('icons-tile', () => {
+flow.createTask('icons-tile', () => {
 	const sizes = {
 		small:  [128, 128],  // Officially:  70 x  70 | Recommended: 128 x 128
 		medium: [270, 270],  // Officially: 150 x 150 | Recommended: 270 x 270
@@ -190,20 +199,17 @@ gulp.task('icons-tile', () => {
 		);
 	}
 
-	return merge(...streams).on('end', () => {
-		util.watchableTaskCompleted('Windows metro tile generation');
-	});
+	return merge(...streams);
 });
+
+
+
+
 
 
 //-- Rebuild
-gulp.task('icons', (cb) => {
-	util.taskGrouper({
-		cb:          cb,
-		tasks:       [['icons-favicon', 'icons-share', 'icons-tile']],
-		cleanBundle: (name, bundle) => {
-			return [`${paths.dir.root}/${bundle.output.build}/${paths.build.icons}`];
-		}
-	});
+flow.createSequence('icons', gulp.parallel('icons-favicon', 'icons-touch', 'icons-icon', 'icons-large', 'icons-tile'), {
+	cleanBundle: ({ name, bundle }) => {
+		return [`${paths.dir.root}/${bundle.output.build}/${paths.build.icons}`];
+	}
 });
-*/

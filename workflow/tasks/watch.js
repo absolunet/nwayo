@@ -22,23 +22,24 @@ gulp.task('watch', () => {
 
 	env.setToWatching();
 
-	//	// Assets
+	// Assets
 	//	gulp.watch([paths.files.fonts],  flow.watcherSequence('assets-fonts'));
 	//	gulp.watch([paths.files.images], flow.watcherSequence('assets-images'));
 	//	gulp.watch([paths.files.raw],    flow.watcherSequence('assets-raw'));
-	//
-	//	// Icons
-	//	gulp.watch([paths.files.iconsFavicon],                      flow.watcherSequence('icons-favicon'));
-	//	gulp.watch([paths.files.iconsIcon, paths.files.iconsLarge], flow.watcherSequence('icons-share'));
-	//	gulp.watch([paths.files.iconsTile],                         flow.watcherSequence('icons-tile'));
-	//
-	//	// Scripts
+
+	// Icons
+	flow.watchSequence([paths.files.iconsFavicon], ['icons-favicon']);
+	flow.watchSequence([paths.files.iconsTouch],   ['icons-touch']);
+	//gulp.watch([paths.files.iconsIcon],    ['icons-icon']);
+	//gulp.watch([paths.files.iconsLarge],   ['icons-large']);
+	//gulp.watch([paths.files.iconsTile],    ['icons-tile']);
+
+	// Scripts
 	//	gulp.watch([paths.files.bundles, paths.files.scripts, paths.files.templates, paths.files.bowerScripts], flow.watcherSequence('scripts-compile'));
 	//
 	//	// Styles
 	//	gulp.watch([paths.files.inline],                      flow.watcherSequence('styles-images', 'styles-compile'));
 	//	gulp.watch([paths.files.bundles, paths.files.styles], flow.watcherSequence('styles-compile'));
-
 
 	flow.startWatchSpinner('Watching...');
 });

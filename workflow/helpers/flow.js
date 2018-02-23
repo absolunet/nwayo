@@ -5,7 +5,10 @@
 
 const gulp     = require('gulp');
 const ora      = require('ora');
+const fss      = require('@absolunet/fss');
 const terminal = require('@absolunet/terminal');
+const env      = require('../helpers/env');
+const paths    = require('../helpers/paths');
 
 
 //-- Static properties
@@ -27,44 +30,53 @@ module.exports = class flow {
 			const start = new Date();
 			terminal.echo(`${name} Start`);
 
-			return task().on('end', () => {
-				terminal.echo(`/${name} End - [${(new Date() - start) / 1000}s]`);
+			return task().on('finish', () => {
+				terminal.echo(`/${name} Finish - [${(new Date() - start) / 1000}s]`);
 			});
 		});
 	}
 
 
 	//-- Create tasks sequence
-	static createSequence(name, ...sequence) {
-		gulp.task(name, (cb) => {
+	static createSequence(name, sequence, { cleanPaths = [], cleanBundle } = {}) {
+		gulp.task(name, () => {
 			const start = new Date();
 			terminal.echo(`${name} Start`);
 
-			gulp.series(...sequence, () => {
+			// Global paths to delete
+			const list = cleanPaths;
+
+			// Bundles paths to delete
+			if (cleanBundle) {
+				for (const name of Object.keys(env.bundles)) {
+					list.push(...cleanBundle({ name:name, bundle:env.bundles[name] }));
+				}
+			}
+
+			// Delete
+			fss.del(list);
+
+			gulp.series(sequence, () => {
 				terminal.echo(`/${name} End - [${(new Date() - start) / 1000}s]`);
-				cb();
 			})();
 		});
 	}
 
 
 	//-- Watcher sequence
-	static watcherSequence(...tasks) {
-		return gulp.series(
-			(cb) => {
-				STATIC.watchSpinner.stop();
-				terminal.echo(`Watcher Start #${++STATIC.watchTicker}`);
-				cb();
-			},
-
+	static watchSequence(files, ...tasks) {
+		return gulp.watch(files, gulp.series(
 			...tasks,
 
 			(cb) => {
-				terminal.echo(`Watcher End #${STATIC.watchTicker}\n`);
+				terminal.echo(`Scout #${STATIC.watchTicker} shift ended\n`);
 				this.startWatchSpinner();
 				cb();
 			}
-		);
+		)).on('all', (action, triggeredPath) => {
+			STATIC.watchSpinner.stop();
+			terminal.echo(`Scout #${STATIC.watchTicker} alerted by ${triggeredPath.split(`${paths.dir.root}/`)[1]} calling ${tasks.join(', ')}`);
+		});
 	}
 
 
@@ -73,7 +85,7 @@ module.exports = class flow {
 		terminal.spacer();
 
 		STATIC.watchSpinner = ora({
-			text:    'Watching...',
+			text:    `Scout #${++STATIC.watchTicker} recceing...`,
 			spinner: {
 				interval: 250,
 				frames: [
