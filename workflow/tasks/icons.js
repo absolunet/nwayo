@@ -209,7 +209,7 @@ flow.createTask('icons-tile', () => {
 
 //-- Rebuild
 flow.createSequence('icons', gulp.parallel('icons-favicon', 'icons-touch', 'icons-icon', 'icons-large', 'icons-tile'), {
-	cleanBundle: ({ name, bundle }) => {
+	cleanBundle: ({ bundle }) => {
 		return [`${paths.dir.root}/${bundle.output.build}/${paths.build.icons}`];
 	}
 });

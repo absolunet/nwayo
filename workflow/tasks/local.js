@@ -48,7 +48,7 @@ flow.createTask('local-constants', () => {
 
 //-- Rebuild
 flow.createSequence('local', gulp.series('local-constants'), {
-	cleanBundle: ({ name, bundle }) => {
+	cleanBundle: ({ bundle }) => {
 		return [`${paths.dir.root}/${bundle.output.konstan}/${paths.filename.konstanLocal}`];
 	}
 });

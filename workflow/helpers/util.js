@@ -4,25 +4,23 @@
 'use strict';
 
 // const debug = require('gulp-debug');
-const babel       = require('babel-core');
-const boxen       = require('boxen');
-const chalk       = require('chalk');
-const crypto      = require('crypto');
-const del         = require('del');
-const events      = require('events');
-const glob        = require('glob');
-const gulp        = require('gulp');
-const _           = require('lodash');
-const merge       = require('merge-stream');
-const path        = require('path');
-const runsequence = require('run-sequence');
-const semver      = require('semver');
-const cli         = require('@absolunet/cli');
-const fss         = require('@absolunet/fss');
-const terminal    = require('@absolunet/terminal');
-const env         = require('./env');
-const paths       = require('./paths');
-const toolbox     = require('./toolbox');
+const babel    = require('babel-core');
+const boxen    = require('boxen');
+const chalk    = require('chalk');
+const crypto   = require('crypto');
+const events   = require('events');
+const glob     = require('glob');
+const gulp     = require('gulp');
+const _        = require('lodash');
+const merge    = require('merge-stream');
+const path     = require('path');
+const semver   = require('semver');
+const cli      = require('@absolunet/cli');
+const fss      = require('@absolunet/fss');
+const terminal = require('@absolunet/terminal');
+const env      = require('./env');
+const paths    = require('./paths');
+const toolbox  = require('./toolbox');
 
 
 
@@ -193,7 +191,7 @@ module.exports = class util {
 
 
 	//-- Assets processing pattern
-	static assetsProcess(files, customPiping, taskName) {
+	static assetsProcess(files, customPiping) {
 		const streams = [];
 		for (const component of env.bundlesComponents) {
 
@@ -219,26 +217,6 @@ module.exports = class util {
 		}
 
 		return merge(...streams);
-	}
-
-
-	//-- Task grouper
-	static taskGrouper(options) {
-		// Global paths to delete
-		const list = options.cleanPaths || [];
-
-		// Bundles paths to delete
-		for (const name of Object.keys(env.bundles)) {
-			list.push(...options.cleanBundle(name, env.bundles[name]));
-		}
-
-		del.sync(list, { force:true });
-		options.tasks.push((...args) => {
-			this.watchableTaskCompleted(options.taskName);
-			options.cb(...args);
-		});
-
-		runsequence(...options.tasks);
 	}
 
 
@@ -353,14 +331,6 @@ Run ${chalk.cyan('npm install')} to update`,
 			'Options': ['--help', '--version', '--pronounce']
 		}, { showBin:false });
 		/* eslint-enable quote-props */
-	}
-
-
-	//-- TODO: Task completed message
-	static watchableTaskCompleted(name) {
-		if (env.watching) {
-			terminal.echo(`\n${env.logo}  #${'X'} `.bold.green + `${name} completed`.green);
-		}
 	}
 
 };

@@ -3,18 +3,20 @@
 //-------------------------------------
 'use strict';
 
-const gulp     = require('gulp');
-const ora      = require('ora');
-const fss      = require('@absolunet/fss');
-const terminal = require('@absolunet/terminal');
-const env      = require('../helpers/env');
-const paths    = require('../helpers/paths');
+const gulp         = require('gulp');
+const minimatchAll = require('minimatch-all');
+const ora          = require('ora');
+const fss          = require('@absolunet/fss');
+const terminal     = require('@absolunet/terminal');
+const env          = require('../helpers/env');
+const paths        = require('../helpers/paths');
 
 
 //-- Static properties
 const STATIC = global.___NwayoFlow___ ? global.___NwayoFlow___ : global.___NwayoFlow___ = {
-	watchSpinner: false,
-	watchTicker:  0
+	watchSpinner:     false,
+	watchTicker:      0,
+	currentlyRunning: 0
 };
 
 
@@ -48,8 +50,8 @@ module.exports = class flow {
 
 			// Bundles paths to delete
 			if (cleanBundle) {
-				for (const name of Object.keys(env.bundles)) {
-					list.push(...cleanBundle({ name:name, bundle:env.bundles[name] }));
+				for (const bundleName of Object.keys(env.bundles)) {
+					list.push(...cleanBundle({ name:bundleName, bundle:env.bundles[bundleName] }));
 				}
 			}
 
@@ -63,29 +65,40 @@ module.exports = class flow {
 	}
 
 
-	//-- Watcher sequence
-	static watchSequence(files, ...tasks) {
-		return gulp.watch(files, gulp.series(
-			...tasks,
+	//-- Create watch tasks sequence
+	static watchSequence(files, tasks) {
+		return gulp.watch(
+			files,
 
-			(cb) => {
-				terminal.echo(`Scout #${STATIC.watchTicker} shift ended\n`);
-				this.startWatchSpinner();
-				cb();
-			}
-		)).on('all', (action, triggeredPath) => {
+			// Can't trust chokidar
+			{ ignored:(currPath) => { return minimatchAll(currPath, files); } },
+
+			gulp.series(
+				...tasks,
+
+				(cb) => {
+					--STATIC.currentlyRunning;
+					terminal.echo(`Scout #${STATIC.watchTicker - STATIC.currentlyRunning} shift ended\n`);
+
+					if (STATIC.currentlyRunning === 0) {
+						this.startWatchSpinner();
+					}
+
+					cb();
+				}
+			)
+		).on('all', (action, triggeredPath) => {
+			++STATIC.currentlyRunning;
 			STATIC.watchSpinner.stop();
-			terminal.echo(`Scout #${STATIC.watchTicker} alerted by ${triggeredPath.split(`${paths.dir.root}/`)[1]} calling ${tasks.join(', ')}`);
+			terminal.echo(`Scout #${++STATIC.watchTicker} alerted by ${triggeredPath.split(`${paths.dir.root}/`)[1]} calling ${tasks.join(', ')}`);
 		});
 	}
 
 
-	//-- Watch spinner
+	//-- Start watch spinner
 	static startWatchSpinner() {
-		terminal.spacer();
-
 		STATIC.watchSpinner = ora({
-			text:    `Scout #${++STATIC.watchTicker} recceing...`,
+			text:    `Scout #${STATIC.watchTicker + 1} recceing...`,
 			spinner: {
 				interval: 250,
 				frames: [
