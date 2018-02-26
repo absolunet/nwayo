@@ -5,7 +5,6 @@
 
 // const debug = require('gulp-debug');
 const gulp    = require('gulp');
-const merge   = require('merge-stream');
 const env     = require('../helpers/env');
 const flow    = require('../helpers/flow');
 const paths   = require('../helpers/paths');
@@ -38,7 +37,7 @@ flow.createTask('local-constants', () => {
 		);
 	}
 
-	return merge(...streams);
+	return toolbox.mergeStreams(streams);
 });
 
 

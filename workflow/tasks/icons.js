@@ -9,7 +9,7 @@ const gm       = require('gulp-gm');
 const gulpif   = require('gulp-if');
 const imagemin = require('gulp-imagemin');
 const rename   = require('gulp-rename');
-const merge    = require('merge-stream');
+const terminal = require('@absolunet/terminal');
 const flow     = require('../helpers/flow');
 const paths    = require('../helpers/paths');
 const toolbox  = require('../helpers/toolbox');
@@ -84,7 +84,7 @@ flow.createTask('icons-touch', () => {
 					.pipe(gulpif(size !== 512, gm((gmfile, done) => {
 						gmfile.identify((err, info) => {
 							if (err) {
-								console.log(err); // eslint-disable-line no-console
+								terminal.error(err);
 							}
 							done(null, toolbox.gmOptimization(gmfile.resize(size, size), info));
 						});
@@ -98,7 +98,7 @@ flow.createTask('icons-touch', () => {
 		);
 	}
 
-	return merge(...streams);
+	return toolbox.mergeStreams(streams);
 });
 
 
@@ -125,7 +125,7 @@ flow.createTask('icons-icon', () => {
 					.pipe(gulpif(size !== 256, gm((gmfile, done) => {
 						gmfile.identify((err, info) => {
 							if (err) {
-								console.log(err); // eslint-disable-line no-console
+								terminal.error(err);
 							}
 							done(null, toolbox.gmOptimization(gmfile.resize(size, size), info));
 						});
@@ -139,7 +139,7 @@ flow.createTask('icons-icon', () => {
 		);
 	}
 
-	return merge(...streams);
+	return toolbox.mergeStreams(streams);
 });
 
 
@@ -178,7 +178,7 @@ flow.createTask('icons-tile', () => {
 					.pipe(gm((gmfile, done) => {
 						gmfile.identify((err, info) => {
 							if (err) {
-								console.log(err); // eslint-disable-line no-console
+								terminal.error(err);
 							}
 
 							const file = toolbox.gmOptimization(gmfile.resize(size[0], size[1]), info);
@@ -199,7 +199,7 @@ flow.createTask('icons-tile', () => {
 		);
 	}
 
-	return merge(...streams);
+	return toolbox.mergeStreams(streams);
 });
 
 

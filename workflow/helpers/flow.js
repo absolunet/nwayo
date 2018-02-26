@@ -32,6 +32,7 @@ const color = {
 
 
 
+
 module.exports = class flow {
 
 	//-- Create gulp task
@@ -41,7 +42,7 @@ module.exports = class flow {
 			terminal.echo(`[Starting task ${color.task(name)}]`);
 
 			return task().on('finish', () => {
-				terminal.echo(`[Finished task ${color.task(name)} after ${color.duration(`${(new Date() - start) / 1000}s`)}]`);
+				terminal.echo(`[/Finished task ${color.task(name)} after ${color.duration(`${(new Date() - start) / 1000}s`)}]`);
 			});
 		});
 	}
@@ -49,7 +50,7 @@ module.exports = class flow {
 
 	//-- Create tasks sequence
 	static createSequence(name, sequence, { cleanPaths = [], cleanBundle } = {}) {
-		gulp.task(name, () => {
+		gulp.task(name, (cb) => {
 			const start = new Date();
 			terminal.echo(`[Starting sequence ${color.sequence(name)}]`);
 
@@ -67,19 +68,21 @@ module.exports = class flow {
 			fss.del(list, { force:true });
 
 			gulp.series(sequence, () => {
-				terminal.echo(`[Finished sequence ${color.sequence(name)} after ${color.duration(`${(new Date() - start) / 1000}s`)}]`);
+				terminal.echo(`[/Finished sequence ${color.sequence(name)} after ${color.duration(`${(new Date() - start) / 1000}s`)}]`);
+
+				return cb ? cb() : undefined;
 			})();
 		});
 	}
 
 
 	//-- Create watch tasks sequence
-	static watchSequence(name, patterns, tasks) {
+	static watchSequence(name, patterns, sequence) {
 
 		// Can't trust chokidar to do globbing
 		const files = globAll.sync(patterns);
 
-		return gulp.watch(files, gulp.series(tasks, (cb) => {
+		return gulp.watch(files, gulp.series(sequence, (cb) => {
 			--STATIC.currentlyRunning;
 			terminal.echo(`${emoji.get('zzz')}  Scout #${STATIC.watchTicker - STATIC.currentlyRunning} shift ended\n`);
 

@@ -24,9 +24,9 @@ gulp.task('watch', () => {
 	env.setToWatching();
 
 	// Assets
-	// flow.watchSequence([paths.files.fonts],  gulp.series('assets-fonts'));
-	// flow.watchSequence([paths.files.images], gulp.series('assets-images'));
-	// flow.watchSequence([paths.files.raw],    gulp.series('assets-raw'));
+	flow.watchSequence('Fonts copy',        [paths.files.fonts],  gulp.series('assets-fonts'));
+	flow.watchSequence('Images generation', [paths.files.images], gulp.series('assets-images'));
+	flow.watchSequence('Raw copy',          [paths.files.raw],    gulp.series('assets-raw'));
 
 	// Icons
 	flow.watchSequence('Favicon generation',           [paths.files.iconsFavicon], gulp.series('icons-favicon'));
@@ -41,6 +41,7 @@ gulp.task('watch', () => {
 	// Styles
 	// flow.watchSequence([paths.files.inline],                      gulp.series('styles-images', 'styles-compile'));
 	// flow.watchSequence([paths.files.bundles, paths.files.styles], gulp.series('styles-compile'));
+
 
 	terminal.spacer();
 	flow.startWatchSpinner();
