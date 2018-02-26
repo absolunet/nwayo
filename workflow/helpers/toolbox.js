@@ -4,6 +4,7 @@
 'use strict';
 
 const yaml   = require('js-yaml');
+const merge  = require('merge-stream');
 const stream = require('stream');
 const Vinyl  = require('vinyl');
 const fss    = require('@absolunet/fss');
@@ -34,6 +35,19 @@ module.exports = class toolbox {
 		};
 
 		return src;
+	}
+
+
+	//-- Return merged streams or self closed streams
+	static mergeStreams(streams) {
+		if (streams.length) {
+			return merge(...streams);
+		}
+
+		const selfClosing = stream.Writable({ write:(chunk, encoding, callback) => { callback(); } });
+		selfClosing.end('Self-closing stream');
+
+		return selfClosing;
 	}
 
 

@@ -17,7 +17,6 @@ const sass         = require('gulp-ruby-sass');
 const sourcemaps   = require('gulp-sourcemaps');
 const stylelint    = require('gulp-stylelint');
 const _            = require('lodash');
-const merge        = require('merge-stream');
 const fss          = require('@absolunet/fss');
 const env          = require('../helpers/env');
 const paths        = require('../helpers/paths');
@@ -84,7 +83,7 @@ gulp.task('styles-constants', () => {
 		);
 	}
 
-	return merge(...streams);
+	return toolbox.mergeStreams(streams);
 });
 
 
@@ -133,7 +132,7 @@ gulp.task('styles-compile', ['styles-lint', 'styles-constants'], () => {
 		);
 	}
 
-	return merge(...streams)
+	return toolbox.mergeStreams(streams)
 		.on('end', () => { return util.watchableTaskCompleted('Styles compilation'); })
 	;
 });

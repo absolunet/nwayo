@@ -12,7 +12,6 @@ const events   = require('events');
 const glob     = require('glob');
 const gulp     = require('gulp');
 const _        = require('lodash');
-const merge    = require('merge-stream');
 const path     = require('path');
 const semver   = require('semver');
 const cli      = require('@absolunet/cli');
@@ -216,7 +215,7 @@ module.exports = class util {
 			}
 		}
 
-		return merge(...streams);
+		return toolbox.mergeStreams(streams);
 	}
 
 

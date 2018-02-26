@@ -14,7 +14,6 @@ const gulpif    = require('gulp-if');
 const lec       = require('gulp-line-ending-corrector');
 const uglify    = require('gulp-uglify');
 const _         = require('lodash');
-const merge     = require('merge-stream');
 const modernizr = require('modernizr');
 const fsp       = require('@absolunet/fsp');
 const fss       = require('@absolunet/fss');
@@ -75,7 +74,7 @@ gulp.task('scripts-constants', () => {
 		);
 	}
 
-	return merge(...streams);
+	return toolbox.mergeStreams(streams);
 });
 
 
@@ -109,7 +108,7 @@ gulp.task('scripts-vendors', (cb) => {
 
 				exec(`node ${paths.config.lodashBin} ${options} --development --output ${paths.dir.cacheScripts}/${paths.filename.lodash}.${paths.ext.scripts}`, (error, stdout, stderr) => {
 					if (error !== null) {
-						console.log(stderr); // eslint-disable-line no-console
+						terminal.error(stderr);
 					}
 					callback(null);
 				});
@@ -173,7 +172,7 @@ gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants', 'scripts-vend
 		}
 	}
 
-	return merge(...streams)
+	return toolbox.mergeStreams(streams)
 		.on('end', () => { return util.watchableTaskCompleted('Scripts compilation'); })
 	;
 });
