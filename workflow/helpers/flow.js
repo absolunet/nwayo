@@ -3,13 +3,15 @@
 //-------------------------------------
 'use strict';
 
-const gulp         = require('gulp');
-const minimatchAll = require('minimatch-all');
-const ora          = require('ora');
-const fss          = require('@absolunet/fss');
-const terminal     = require('@absolunet/terminal');
-const env          = require('../helpers/env');
-const paths        = require('../helpers/paths');
+const chalk    = require('chalk');
+const globAll  = require('glob-all');
+const gulp     = require('gulp');
+const ora      = require('ora');
+const emoji    = require('node-emoji');
+const fss      = require('@absolunet/fss');
+const terminal = require('@absolunet/terminal');
+const env      = require('../helpers/env');
+const paths    = require('../helpers/paths');
 
 
 //-- Static properties
@@ -19,6 +21,12 @@ const STATIC = global.___NwayoFlow___ ? global.___NwayoFlow___ : global.___Nwayo
 	currentlyRunning: 0
 };
 
+const color = {
+	task:     chalk.cyan,
+	sequence: chalk.cyan.underline,
+	duration: chalk.magenta,
+	file:     chalk.magenta
+};
 
 
 
@@ -30,10 +38,10 @@ module.exports = class flow {
 	static createTask(name, task) {
 		gulp.task(name, () => {
 			const start = new Date();
-			terminal.echo(`${name} Start`);
+			terminal.echo(`[Starting task ${color.task(name)}]`);
 
 			return task().on('finish', () => {
-				terminal.echo(`/${name} Finish - [${(new Date() - start) / 1000}s]`);
+				terminal.echo(`[Finished task ${color.task(name)} after ${color.duration(`${(new Date() - start) / 1000}s`)}]`);
 			});
 		});
 	}
@@ -43,7 +51,7 @@ module.exports = class flow {
 	static createSequence(name, sequence, { cleanPaths = [], cleanBundle } = {}) {
 		gulp.task(name, () => {
 			const start = new Date();
-			terminal.echo(`${name} Start`);
+			terminal.echo(`[Starting sequence ${color.sequence(name)}]`);
 
 			// Global paths to delete
 			const list = cleanPaths;
@@ -56,41 +64,34 @@ module.exports = class flow {
 			}
 
 			// Delete
-			fss.del(list);
+			fss.del(list, { force:true });
 
 			gulp.series(sequence, () => {
-				terminal.echo(`/${name} End - [${(new Date() - start) / 1000}s]`);
+				terminal.echo(`[Finished sequence ${color.sequence(name)} after ${color.duration(`${(new Date() - start) / 1000}s`)}]`);
 			})();
 		});
 	}
 
 
 	//-- Create watch tasks sequence
-	static watchSequence(files, tasks) {
-		return gulp.watch(
-			files,
+	static watchSequence(name, patterns, tasks) {
 
-			// Can't trust chokidar
-			{ ignored:(currPath) => { return minimatchAll(currPath, files); } },
+		// Can't trust chokidar to do globbing
+		const files = globAll.sync(patterns);
 
-			gulp.series(
-				...tasks,
+		return gulp.watch(files, gulp.series(tasks, (cb) => {
+			--STATIC.currentlyRunning;
+			terminal.echo(`${emoji.get('zzz')}  Scout #${STATIC.watchTicker - STATIC.currentlyRunning} shift ended\n`);
 
-				(cb) => {
-					--STATIC.currentlyRunning;
-					terminal.echo(`Scout #${STATIC.watchTicker - STATIC.currentlyRunning} shift ended\n`);
+			if (STATIC.currentlyRunning === 0) {
+				this.startWatchSpinner();
+			}
 
-					if (STATIC.currentlyRunning === 0) {
-						this.startWatchSpinner();
-					}
-
-					cb();
-				}
-			)
-		).on('all', (action, triggeredPath) => {
+			cb();
+		})).on('all', (action, triggeredPath) => {
 			++STATIC.currentlyRunning;
 			STATIC.watchSpinner.stop();
-			terminal.echo(`Scout #${++STATIC.watchTicker} alerted by ${triggeredPath.split(`${paths.dir.root}/`)[1]} calling ${tasks.join(', ')}`);
+			terminal.echo(`${emoji.get('mega')}  Scout #${++STATIC.watchTicker} alerted by ${color.file(triggeredPath.split(`${paths.dir.root}/`)[1])} calling ${color.task(name)}`);
 		});
 	}
 
@@ -98,7 +99,7 @@ module.exports = class flow {
 	//-- Start watch spinner
 	static startWatchSpinner() {
 		STATIC.watchSpinner = ora({
-			text:    `Scout #${STATIC.watchTicker + 1} recceing...`,
+			text:    `${emoji.get('guardsman')}  Scout #${STATIC.watchTicker + 1} recceing...`,
 			spinner: {
 				interval: 250,
 				frames: [

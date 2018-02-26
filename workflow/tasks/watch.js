@@ -6,10 +6,10 @@
 // const debug    = require('gulp-debug');
 const gulp       = require('gulp');
 const requireDir = require('require-dir');
+const terminal   = require('@absolunet/terminal');
 const env        = require('../helpers/env');
 const flow       = require('../helpers/flow');
 const paths      = require('../helpers/paths');
-const terminal   = require('../helpers/terminal');
 
 requireDir(paths.workflow.tasks);
 
@@ -29,11 +29,11 @@ gulp.task('watch', () => {
 	// flow.watchSequence([paths.files.raw],    gulp.series('assets-raw'));
 
 	// Icons
-	flow.watchSequence([paths.files.iconsFavicon], gulp.series('icons-favicon'));
-	flow.watchSequence([paths.files.iconsTouch],   gulp.series('icons-touch'));
-	flow.watchSequence([paths.files.iconsIcon],    gulp.series('icons-icon'));
-	flow.watchSequence([paths.files.iconsLarge],   gulp.series('icons-large'));
-	flow.watchSequence([paths.files.iconsTile],    gulp.series('icons-tile'));
+	flow.watchSequence('Favicon generation',           [paths.files.iconsFavicon], gulp.series('icons-favicon'));
+	flow.watchSequence('iOS icons generation',         [paths.files.iconsTouch],   gulp.series('icons-touch'));
+	flow.watchSequence('Share icons generation',       [paths.files.iconsIcon],    gulp.series('icons-icon'));
+	flow.watchSequence('Large share image generation', [paths.files.iconsLarge],   gulp.series('icons-large'));
+	flow.watchSequence('Windows tiles generation',     [paths.files.iconsTile],    gulp.series('icons-tile'));
 
 	// Scripts
 	// flow.watchSequence([paths.files.bundles, paths.files.scripts, paths.files.templates, paths.files.bowerScripts], gulp.series('scripts-compile'));
