@@ -1,4 +1,3 @@
-/*
 //-------------------------------------
 //-- Scripts
 //-------------------------------------
@@ -18,7 +17,9 @@ const modernizr = require('modernizr');
 const fsp       = require('@absolunet/fsp');
 const fss       = require('@absolunet/fss');
 const include   = require('@absolunet/gulp-include');
+const terminal  = require('@absolunet/terminal');
 const env       = require('../helpers/env');
+const flow      = require('../helpers/flow');
 const paths     = require('../helpers/paths');
 const toolbox   = require('../helpers/toolbox');
 const util      = require('../helpers/util');
@@ -32,8 +33,7 @@ let vendorCached = false;
 
 
 //-- Lint JS
-gulp.task('scripts-lint', () => {
-
+flow.createTask('scripts-lint', () => {
 	return gulp.src(paths.files.scriptsLint)
 		.pipe(cache('scripts', { optimizeMemory:true }))
 
@@ -57,7 +57,7 @@ gulp.task('scripts-lint', () => {
 
 
 //-- Convert constants to JS
-gulp.task('scripts-constants', () => {
+flow.createTask('scripts-constants', () => {
 	const streams = [];
 
 	for (const name of Object.keys(env.bundles)) {
@@ -79,52 +79,54 @@ gulp.task('scripts-constants', () => {
 
 
 //-- Generate vendor libraries
-gulp.task('scripts-vendors', (cb) => {
+flow.createTask('scripts-vendors', () => {
+	return toolbox.fakeStream((cb) => {
 
-	const done = () => {
-		vendorCached = true;
-		cb();
-	};
+		const done = () => {
+			vendorCached = true;
+			cb();
+		};
 
-	// Run once on 'watch'
-	if (!vendorCached) {
+		// Run once on 'watch'
+		if (!vendorCached) {
 
-		async.parallel([
+			async.parallel([
 
-			// Modernizr
-			(callback) => {
-				modernizr.build(toolbox.readYAML(paths.config.modernizr), (result) => {
-					const file = `${paths.dir.cacheScripts}/${paths.filename.modernizr}.${paths.ext.scripts}`;
-					fsp.ensureFile(file).then(() => {
-						fss.writeFile(file, result);
+				// Modernizr
+				(callback) => {
+					modernizr.build(toolbox.readYAML(paths.config.modernizr), (result) => {
+						const file = `${paths.dir.cacheScripts}/${paths.filename.modernizr}.${paths.ext.scripts}`;
+						fsp.ensureFile(file).then(() => {
+							fss.writeFile(file, result);
+						});
+						callback(null);
 					});
-					callback(null);
-				});
-			},
+				},
 
-			// lodash
-			(callback) => {
-				const options = util.parseLodash();
+				// lodash
+				(callback) => {
+					const options = util.parseLodash();
 
-				exec(`node ${paths.config.lodashBin} ${options} --development --output ${paths.dir.cacheScripts}/${paths.filename.lodash}.${paths.ext.scripts}`, (error, stdout, stderr) => {
-					if (error !== null) {
-						terminal.error(stderr);
-					}
-					callback(null);
-				});
-			}
+					exec(`node ${paths.config.lodashBin} ${options} --development --output ${paths.dir.cacheScripts}/${paths.filename.lodash}.${paths.ext.scripts}`, (error, stdout, stderr) => {
+						if (error !== null) {
+							terminal.error(stderr);
+						}
+						callback(null);
+					});
+				}
 
-		], () => { done(); });
+			], () => { done(); });
 
-	} else {
-		done();
-	}
+		} else {
+			done();
+		}
+
+	});
 });
 
 
-
 //-- Compile
-gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants', 'scripts-vendors'], () => {
+flow.createTask('scripts-compile', gulp.series(gulp.parallel('scripts-lint', 'scripts-constants', 'scripts-vendors'), () => {
 	const streams = [];
 
 	for (const name of Object.keys(env.bundles)) {
@@ -172,20 +174,20 @@ gulp.task('scripts-compile', ['scripts-lint', 'scripts-constants', 'scripts-vend
 		}
 	}
 
-	return toolbox.mergeStreams(streams)
-		.on('end', () => { return util.watchableTaskCompleted('Scripts compilation'); })
-	;
-});
+	return toolbox.mergeStreams(streams);
+}));
+
+
+
+
 
 
 //-- Rebuild
-gulp.task('scripts', (cb) => {
-	util.taskGrouper({
-		cb:          cb,
-		tasks:       ['scripts-compile'],
-		cleanBundle: (name, bundle) => {
-			return [`${paths.dir.root}/${bundle.output.build}/${paths.build.scripts}`, `${paths.dir.cacheScripts}/${name}`];
-		}
-	});
+flow.createSequence('scripts', gulp.series('scripts-compile'), {
+	cleanBundle: ({ name, bundle }) => {
+		return [
+			`${paths.dir.root}/${bundle.output.build}/${paths.build.scripts}`,
+			`${paths.dir.cacheScripts}/${name}`
+		];
+	}
 });
-*/

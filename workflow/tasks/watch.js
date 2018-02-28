@@ -6,7 +6,6 @@
 // const debug    = require('gulp-debug');
 const gulp       = require('gulp');
 const requireDir = require('require-dir');
-const terminal   = require('@absolunet/terminal');
 const env        = require('../helpers/env');
 const flow       = require('../helpers/flow');
 const paths      = require('../helpers/paths');
@@ -36,13 +35,20 @@ gulp.task('watch', () => {
 	flow.watchSequence('Windows tiles generation',     [paths.files.iconsTile],    gulp.series('icons-tile'));
 
 	// Scripts
-	// flow.watchSequence([paths.files.bundles, paths.files.scripts, paths.files.templates, paths.files.bowerScripts], gulp.series('scripts-compile'));
+	flow.watchSequence(
+		'Scripts generation',
+		[
+			paths.files.scripts,
+			paths.files.templates,
+			paths.files.bowerScripts
+		],
+		gulp.series('scripts')
+	);
 
 	// Styles
 	// flow.watchSequence([paths.files.inline],                      gulp.series('styles-images', 'styles-compile'));
 	// flow.watchSequence([paths.files.bundles, paths.files.styles], gulp.series('styles-compile'));
 
 
-	terminal.spacer();
 	flow.startWatchSpinner();
 });

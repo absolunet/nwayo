@@ -16,7 +16,7 @@ const fss    = require('@absolunet/fss');
 
 module.exports = class toolbox {
 
-	//-- Safely  read and parse a YAML file
+	//-- Safely read and parse a YAML file
 	static readYAML(file) {
 		return yaml.safeLoad(fss.readFile(file, 'utf8'));
 	}
@@ -38,14 +38,28 @@ module.exports = class toolbox {
 	}
 
 
-	//-- Return merged streams or self closed streams
+	//-- Return merged streams or self-closing stream
 	static mergeStreams(streams) {
-		if (streams.length) {
-			return merge(...streams);
-		}
+		return streams.length ? merge(...streams) : toolbox.selfClosingStream();
+	}
 
+
+	//-- Fakes a stream waiting for a callback
+	static fakeStream(cb) {
+		const fake = stream.Writable({ write:(chunk, encoding, callback) => { callback(); } });
+
+		cb(() => {
+			fake.end('End fake stream');
+		});
+
+		return fake;
+	}
+
+
+	//-- Get a self-closing stream
+	static selfClosingStream() {
 		const selfClosing = stream.Writable({ write:(chunk, encoding, callback) => { callback(); } });
-		selfClosing.end('Self-closing stream');
+		selfClosing.end('End self-closing stream');
 
 		return selfClosing;
 	}

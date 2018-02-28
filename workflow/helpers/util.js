@@ -284,7 +284,8 @@ Run ${chalk.cyan('npm install')} to update`,
 
 		//-- Run task
 		if (gulp.task(task)) {
-			gulp.task(task)();
+			terminal.spacer();
+			gulp.series(task)();
 		} else {
 			terminal.exit(`Task ${chalk.underline(task)} does not exists`);
 		}
