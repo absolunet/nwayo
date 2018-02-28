@@ -14,6 +14,7 @@ const lec       = require('gulp-line-ending-corrector');
 const uglify    = require('gulp-uglify');
 const _         = require('lodash');
 const modernizr = require('modernizr');
+const pluralize = require('pluralize');
 const fsp       = require('@absolunet/fsp');
 const fss       = require('@absolunet/fss');
 const include   = require('@absolunet/gulp-include');
@@ -25,15 +26,12 @@ const toolbox   = require('../helpers/toolbox');
 const util      = require('../helpers/util');
 
 
-let vendorCached = false;
-
-
 
 
 
 
 //-- Lint JS
-flow.createTask('scripts-lint', () => {
+flow.createTask('scripts-lint', ({ taskName }) => {
 	return gulp.src(paths.files.scriptsLint)
 		.pipe(cache('scripts', { optimizeMemory:true }))
 
@@ -42,11 +40,18 @@ flow.createTask('scripts-lint', () => {
 		.pipe(eslint())
 
 		.pipe(eslint.results((files) => {
+			let hasErrors = false;
+
 			files.forEach((file) => {
 				if (file.errorCount || file.warningCount) {
 					delete cache.caches.scripts[file.filePath];
+					hasErrors = true;
 				}
 			});
+
+			if (!hasErrors) {
+				toolbox.log(taskName, `${pluralize('file', files.length, true)} linted`);
+			}
 		}))
 
 		.pipe(eslint.format('stylish'))
@@ -57,7 +62,7 @@ flow.createTask('scripts-lint', () => {
 
 
 //-- Convert constants to JS
-flow.createTask('scripts-constants', () => {
+flow.createTask('scripts-constants', ({ taskName }) => {
 	const streams = [];
 
 	for (const name of Object.keys(env.bundles)) {
@@ -74,59 +79,63 @@ flow.createTask('scripts-constants', () => {
 		);
 	}
 
-	return toolbox.mergeStreams(streams);
+	return toolbox.mergeStreams(streams).on('finish', () => {
+		flow.skipOnWatch(taskName);
+		toolbox.log(taskName, `${pluralize('file', streams.length, true)} generated`);
+	});
+
 });
 
 
 //-- Generate vendor libraries
-flow.createTask('scripts-vendors', () => {
+flow.createTask('scripts-vendors', ({ taskName }) => {
+
+	const log = (name, file) => {
+		toolbox.log(taskName, `${name} built`, toolbox.filesize(file));
+	};
+
 	return toolbox.fakeStream((cb) => {
 
-		const done = () => {
-			vendorCached = true;
+		async.parallel([
+
+			// Modernizr
+			(callback) => {
+				modernizr.build(toolbox.readYAML(paths.config.modernizr), (result) => {
+					const file = `${paths.dir.cacheScripts}/${paths.filename.modernizr}.${paths.ext.scripts}`;
+					fsp.ensureFile(file).then(() => {
+						fss.writeFile(file, result);
+						log('Modernizr', file);
+						callback(null);
+					});
+				});
+			},
+
+			// Lodash
+			(callback) => {
+				const options = util.parseLodash();
+				const file    = `${paths.dir.cacheScripts}/${paths.filename.lodash}.${paths.ext.scripts}`;
+
+				exec(`node ${paths.config.lodashBin} ${options} --development --output ${file}`, (error, stdout, stderr) => {
+					if (error !== null) {
+						terminal.error(stderr);
+					}
+					log('Lodash', file);
+					callback(null);
+				});
+			}
+
+		], () => {
+			flow.skipOnWatch(taskName);
 			cb();
-		};
-
-		// Run once on 'watch'
-		if (!vendorCached) {
-
-			async.parallel([
-
-				// Modernizr
-				(callback) => {
-					modernizr.build(toolbox.readYAML(paths.config.modernizr), (result) => {
-						const file = `${paths.dir.cacheScripts}/${paths.filename.modernizr}.${paths.ext.scripts}`;
-						fsp.ensureFile(file).then(() => {
-							fss.writeFile(file, result);
-						});
-						callback(null);
-					});
-				},
-
-				// lodash
-				(callback) => {
-					const options = util.parseLodash();
-
-					exec(`node ${paths.config.lodashBin} ${options} --development --output ${paths.dir.cacheScripts}/${paths.filename.lodash}.${paths.ext.scripts}`, (error, stdout, stderr) => {
-						if (error !== null) {
-							terminal.error(stderr);
-						}
-						callback(null);
-					});
-				}
-
-			], () => { done(); });
-
-		} else {
-			done();
-		}
+		});
 
 	});
+
 });
 
 
 //-- Compile
-flow.createTask('scripts-compile', gulp.series(gulp.parallel('scripts-lint', 'scripts-constants', 'scripts-vendors'), () => {
+flow.createTask('scripts-compile', ({ taskName }) => {
 	const streams = [];
 
 	for (const name of Object.keys(env.bundles)) {
@@ -157,9 +166,12 @@ flow.createTask('scripts-compile', gulp.series(gulp.parallel('scripts-lint', 'sc
 				list[i] = `//= require ${file}`;
 			});
 
-			const source = `${util.getGeneratedBanner(name)} (function(global, undefined) { \n\t${list.join('\n')}\n })(typeof window !== 'undefined' ? window : this);\n`;
+			const filename = `${collection}.${paths.ext.scripts}`;
+			const dest     = `${bundle.output.build}/${paths.build.scripts}`;
+			const source   = `${util.getGeneratedBanner(name)} (function(global, undefined) { \n\t${list.join('\n')}\n })(typeof window !== 'undefined' ? window : this);\n`;
+
 			streams.push(
-				toolbox.vinylStream(`${collection}.${paths.ext.scripts}`, source)
+				toolbox.vinylStream(filename, source)
 					.pipe(include({
 						basePath:      paths.dir.root,
 						autoExtension: true,
@@ -169,13 +181,17 @@ flow.createTask('scripts-compile', gulp.series(gulp.parallel('scripts-lint', 'sc
 						}
 					}))
 					.pipe(gulpif(bundle.scripts.options.minify && !env.watching, uglify({ output:{ comments:'some' } })))
-					.pipe(gulp.dest(`${paths.dir.root}/${bundle.output.build}/${paths.build.scripts}`))
+					.pipe(gulp.dest(`${paths.dir.root}/${dest}`))
+					.on('finish', () => {
+						toolbox.log(taskName, `'${dest}/${filename}' written`, toolbox.filesize(`${paths.dir.root}/${dest}/${filename}`));
+					})
 			);
 		}
 	}
 
 	return toolbox.mergeStreams(streams);
-}));
+
+}, gulp.parallel('scripts-lint', 'scripts-constants', 'scripts-vendors'));
 
 
 

@@ -42,7 +42,7 @@ gulp.task('watch', () => {
 			paths.files.templates,
 			paths.files.bowerScripts
 		],
-		gulp.series('scripts')
+		gulp.series('scripts-compile')
 	);
 
 	// Styles
