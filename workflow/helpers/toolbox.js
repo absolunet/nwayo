@@ -3,11 +3,14 @@
 //-------------------------------------
 'use strict';
 
-const yaml   = require('js-yaml');
-const merge  = require('merge-stream');
-const stream = require('stream');
-const Vinyl  = require('vinyl');
-const fss    = require('@absolunet/fss');
+const chalk       = require('chalk');
+const log         = require('fancy-log');
+const yaml        = require('js-yaml');
+const merge       = require('merge-stream');
+const prettyBytes = require('pretty-bytes');
+const stream      = require('stream');
+const Vinyl       = require('vinyl');
+const fss         = require('@absolunet/fss');
 
 
 
@@ -76,6 +79,18 @@ module.exports = class toolbox {
 		}
 
 		return gmfile;
+	}
+
+
+	//-- Get human-readable filesize
+	static filesize(file) {
+		return prettyBytes(fss.stat(file).size);
+	}
+
+
+	//-- Task logging
+	static log(task, msg, extra) {
+		log(`${task}: ${msg} ${extra ? chalk.dim(`(${extra})`) : ''}`);
 	}
 
 };

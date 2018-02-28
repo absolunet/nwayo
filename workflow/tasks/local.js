@@ -17,7 +17,7 @@ const util    = require('../helpers/util');
 
 
 //-- Convert constants to JSON
-flow.createTask('local-constants', () => {
+flow.createTask('local-constants', ({ taskName }) => {
 	const streams = [];
 
 	for (const name of Object.keys(env.bundles)) {
@@ -34,6 +34,9 @@ flow.createTask('local-constants', () => {
 		streams.push(
 			toolbox.vinylStream(paths.filename.konstanLocal, JSON.stringify(data, null, 2))
 				.pipe(gulp.dest(`${paths.dir.root}/${bundle.output.konstan}`))
+				.on('finish', () => {
+					toolbox.log(taskName, `'${bundle.output.konstan}/${paths.filename.konstanLocal}' written`, toolbox.filesize(`${paths.dir.root}/${bundle.output.konstan}/${paths.filename.konstanLocal}`));
+				})
 		);
 	}
 
