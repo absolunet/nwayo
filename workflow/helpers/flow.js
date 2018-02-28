@@ -12,20 +12,28 @@ const fss      = require('@absolunet/fss');
 const terminal = require('@absolunet/terminal');
 const env      = require('../helpers/env');
 const paths    = require('../helpers/paths');
+const toolbox  = require('../helpers/toolbox');
 
 
 //-- Static properties
 const STATIC = global.___NwayoFlow___ ? global.___NwayoFlow___ : global.___NwayoFlow___ = {
-	watchSpinner:     false,
-	watchTicker:      0,
-	currentlyRunning: 0
+	recceingSpinner: false,  // Recceing spinner
+	totalWatchers:   0,      // Total of called watchers
+	activeWatchers:  0,      // Number of currently running watchers
+	cascadeSkip:     false   // In watch mode, is currently skipping tasks because of one failed task ?
 };
+
 
 const color = {
 	task:     chalk.cyan,
 	sequence: chalk.cyan.underline,
 	duration: chalk.magenta,
-	file:     chalk.magenta
+	file:     chalk.magenta,
+	halting:  chalk.yellow
+};
+
+const log = (str) => {
+	terminal.echo(`${env.watching ? '   ' : ''}${str}`);
 };
 
 
@@ -38,12 +46,43 @@ module.exports = class flow {
 	//-- Create gulp task
 	static createTask(name, task) {
 		gulp.task(name, () => {
-			const start = new Date();
-			terminal.echo(`[Starting task ${color.task(name)}]`);
 
-			return task().on('finish', () => {
-				terminal.echo(`[/Finished task ${color.task(name)} after ${color.duration(`${(new Date() - start) / 1000}s`)}]`);
-			});
+			// Run task if not skipping tasks
+			if (!STATIC.cascadeSkip) {
+				const start = new Date();
+				log(`Starting task ${color.task(name)}`);
+
+				return task()
+
+					// Log task as completed
+					.on('finish', () => {
+						if (!STATIC.cascadeSkip) {
+							log(`/Finished task ${color.task(name)} after ${color.duration(`${(new Date() - start) / 1000}s`)}`);
+						} else {
+							log(`${color.halting('Halting')} task ${color.task(name)}`);
+						}
+					})
+
+					// Error
+					.on('error', function() {
+
+						// In watch mode, cascade skip all pending tasks
+						if (env.watching) {
+							STATIC.cascadeSkip = true;
+
+						// In run mode, rage quit  (╯°□°）╯︵ ┻━┻
+						} else {
+							terminal.exit();
+						}
+
+						// Close stream
+						this.emit('end');
+					})
+				;
+			}
+
+			// Else skip task
+			return toolbox.selfClosingStream();
 		});
 	}
 
@@ -52,7 +91,7 @@ module.exports = class flow {
 	static createSequence(name, sequence, { cleanPaths = [], cleanBundle } = {}) {
 		gulp.task(name, (cb) => {
 			const start = new Date();
-			terminal.echo(`[Starting sequence ${color.sequence(name)}]`);
+			log(`Starting sequence ${color.sequence(name)}`);
 
 			// Global paths to delete
 			const list = cleanPaths;
@@ -67,9 +106,17 @@ module.exports = class flow {
 			// Delete
 			fss.del(list, { force:true });
 
+			// Run sequence
 			gulp.series(sequence, () => {
-				terminal.echo(`[/Finished sequence ${color.sequence(name)} after ${color.duration(`${(new Date() - start) / 1000}s`)}]`);
 
+				// Log sequence as completed
+				if (!STATIC.cascadeSkip) {
+					log(`/Finished sequence ${color.sequence(name)} after ${color.duration(`${(new Date() - start) / 1000}s`)}`);
+				} else {
+					log(`${color.halting('Halting')} sequence ${color.sequence(name)}`);
+				}
+
+				// Close stream
 				return cb ? cb() : undefined;
 			})();
 		});
@@ -83,26 +130,36 @@ module.exports = class flow {
 		const files = globAll.sync(patterns);
 
 		return gulp.watch(files, gulp.series(sequence, (cb) => {
-			--STATIC.currentlyRunning;
-			terminal.echo(`${emoji.get('zzz')}  Scout #${STATIC.watchTicker - STATIC.currentlyRunning} shift ended\n`);
 
-			if (STATIC.currentlyRunning === 0) {
+			// Log watcher as completed
+			--STATIC.activeWatchers;
+			terminal.echo(`${emoji.get('zzz')}  Scout #${STATIC.totalWatchers - STATIC.activeWatchers} shift ended\n`);
+
+			// When there is no more running watchers
+			if (STATIC.activeWatchers === 0) {
 				this.startWatchSpinner();
 			}
 
 			cb();
-		})).on('all', (action, triggeredPath) => {
-			++STATIC.currentlyRunning;
-			STATIC.watchSpinner.stop();
-			terminal.echo(`${emoji.get('mega')}  Scout #${++STATIC.watchTicker} alerted by ${color.file(triggeredPath.split(`${paths.dir.root}/`)[1])} calling ${color.task(name)}`);
-		});
+		}))
+
+			// When watcher triggered
+			.on('all', (action, triggeredPath) => {
+				++STATIC.activeWatchers;
+				STATIC.recceingSpinner.stop();
+				terminal.echo(`${emoji.get('mega')}  Scout #${++STATIC.totalWatchers} alerted by ${color.file(triggeredPath.split(`${paths.dir.root}/`)[1])} calling ${color.task(name)}`);
+			})
+		;
 	}
 
 
 	//-- Start watch spinner
 	static startWatchSpinner() {
-		STATIC.watchSpinner = ora({
-			text:    `${emoji.get('guardsman')}  Scout #${STATIC.watchTicker + 1} recceing...`,
+		STATIC.cascadeSkip = false;
+
+		terminal.spacer();
+		STATIC.recceingSpinner = ora({
+			text:    `${emoji.get('guardsman')}  Scout #${STATIC.totalWatchers + 1} recceing...`,
 			spinner: {
 				interval: 250,
 				frames: [
