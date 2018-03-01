@@ -1,16 +1,17 @@
-/*
 //-------------------------------------
 //-- Rebuild
 //-------------------------------------
 'use strict';
 
 // const debug = require('gulp-debug');
-const gulp        = require('gulp');
-const runsequence = require('run-sequence');
-const fss         = require('@absolunet/fss');
-const env         = require('../helpers/env');
-const paths       = require('../helpers/paths');
-const util        = require('../helpers/util');
+const gulp       = require('gulp');
+const requireDir = require('require-dir');
+const fss        = require('@absolunet/fss');
+const env        = require('../helpers/env');
+const flow       = require('../helpers/flow');
+const paths      = require('../helpers/paths');
+const toolbox    = require('../helpers/toolbox');
+const util       = require('../helpers/util');
 
 requireDir(paths.workflow.tasks);
 
@@ -20,17 +21,17 @@ requireDir(paths.workflow.tasks);
 
 
 //-- Rebuild scripts & styles
-gulp.task('rebuild-ss', (cb) => {
-	runsequence(['scripts', 'styles'], cb);
-});
+flow.createSequence('rebuild-ss', gulp.series('scripts', 'styles'));
 
 
 //-- Rebuild
-gulp.task('rebuild', (cb) => {
-	for (const name of Object.keys(env.bundles)) {
-		fss.outputFile(`${paths.dir.root}/${env.bundles[name].output.build}/readme-${env.name}.md`, `# ${util.getGeneratedBanner(name, 'text')}\n`);
-	}
+flow.createSequence('rebuild', gulp.series(() => {
 
-	runsequence(['assets', 'icons', 'local', 'scripts', 'styles'], cb);
-});
-*/
+	return toolbox.fakeStream((cb) => {
+		for (const name of Object.keys(env.bundles)) {
+			fss.outputFile(`${paths.dir.root}/${env.bundles[name].output.build}/readme-${env.name}.md`, `# ${util.getGeneratedBanner(name, 'text')}\n`);
+		}
+		cb();
+	});
+
+}, 'assets', 'icons', 'local', 'scripts', 'styles'));

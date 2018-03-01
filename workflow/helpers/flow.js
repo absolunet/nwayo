@@ -22,7 +22,8 @@ const STATIC = global.___NwayoFlow___ ? global.___NwayoFlow___ : global.___Nwayo
 	totalWatchers:   0,      // Total of called watchers
 	activeWatchers:  0,      // Number of currently running watchers
 	cascadeSkip:     false,  // In watch mode, is currently skipping tasks because of one failed task ?
-	watchSkip:       {}      // In watch mode, skip these tasks
+	watchSkip:       {},     // In watch mode, skip these tasks
+	delayedLog:      false   // Patch for stylelint reporter
 };
 
 
@@ -84,7 +85,13 @@ const runTask = ({ name, task, start }) => {
 		// Log task as completed
 		.on('finish', () => {
 			if (!STATIC.cascadeSkip) {
-				logStep(END, TASK, name, start);
+
+				// Patch for stylelint to make reporter show this
+				if (name === 'styles-lint') {
+					STATIC.delayedLog = { name, start };
+				} else {
+					logStep(END, TASK, name, start);
+				}
 			} else {
 				logStep(HALT, TASK, name);
 			}
@@ -253,6 +260,16 @@ module.exports = class flow {
 	//-- Add a task to skip
 	static skipOnWatch(task) {
 		STATIC.watchSkip[task] = true;
+	}
+
+
+	//-- Show delayed log
+	static showDelayedLog(error) {
+		if (!(error && !env.watching)) {
+			const { name, start } = STATIC.delayedLog;
+			logStep(error ? HALT : END, TASK, name, start);
+			STATIC.delayedLog = undefined;
+		}
 	}
 
 };
