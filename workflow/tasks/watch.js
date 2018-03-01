@@ -46,8 +46,8 @@ gulp.task('watch', () => {
 	);
 
 	// Styles
-	// flow.watchSequence([paths.files.inline],                      gulp.series('styles-images', 'styles-compile'));
-	// flow.watchSequence([paths.files.bundles, paths.files.styles], gulp.series('styles-compile'));
+	flow.watchSequence('Styles generation',                    [paths.files.styles], gulp.series('styles-compile'));
+	flow.watchSequence('Styles generation with inline images', [paths.files.inline], gulp.series('styles-images', 'styles-compile'));
 
 
 	flow.startWatchSpinner();

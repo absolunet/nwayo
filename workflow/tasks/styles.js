@@ -1,4 +1,3 @@
-/*
 //-------------------------------------
 //-- Styles
 //-------------------------------------
@@ -17,8 +16,10 @@ const sass         = require('gulp-ruby-sass');
 const sourcemaps   = require('gulp-sourcemaps');
 const stylelint    = require('gulp-stylelint');
 const _            = require('lodash');
+const pluralize    = require('pluralize');
 const fss          = require('@absolunet/fss');
 const env          = require('../helpers/env');
+const flow         = require('../helpers/flow');
 const paths        = require('../helpers/paths');
 const toolbox      = require('../helpers/toolbox');
 const util         = require('../helpers/util');
@@ -29,7 +30,7 @@ const util         = require('../helpers/util');
 
 
 //-- Inline images optimization
-gulp.task('styles-images', () => {
+flow.createTask('styles-images', () => {
 	return gulp.src(paths.files.inline, { base:paths.dir.root })
 		.pipe(imagemin())
 		.pipe(rename(util.assetsRename()))
@@ -39,7 +40,9 @@ gulp.task('styles-images', () => {
 
 
 //-- Lint SCSS
-gulp.task('styles-lint', () => {
+flow.createTask('styles-lint', ({ taskName }) => {
+
+	let hasErrors = false;
 
 	return gulp.src(paths.files.stylesLint)
 		.pipe(cache('styles', { optimizeMemory:true }))
@@ -51,16 +54,35 @@ gulp.task('styles-lint', () => {
 			reporters: [
 				{
 					formatter: (results) => {
+						hasErrors = false;
+
 						results.forEach((item) => {
 							if (item.warnings.length || item.deprecations.length || item.invalidOptionWarnings.length) {
 								delete cache.caches.styles[item.source];
+
+								if (!hasErrors) {
+									item.warnings.forEach((flag) => {
+										if (flag.severity === 'error') {
+											hasErrors = true;
+										}
+									});
+								}
 							}
 						});
+
+						if (!hasErrors) {
+							toolbox.log(taskName, `${pluralize('file', results.length, true)} linted`);
+						}
 					}
 				},
 				{
 					formatter: 'string',
 					console:   true
+				},
+				{
+					formatter: () => {
+						flow.showDelayedLog(hasErrors);
+					}
 				}
 			]
 		}))
@@ -69,7 +91,7 @@ gulp.task('styles-lint', () => {
 
 
 //-- Convert constants to SCSS
-gulp.task('styles-constants', () => {
+flow.createTask('styles-constants', ({ taskName }) => {
 	const streams = [];
 
 	for (const name of Object.keys(env.bundles)) {
@@ -83,12 +105,15 @@ gulp.task('styles-constants', () => {
 		);
 	}
 
-	return toolbox.mergeStreams(streams);
+	return toolbox.mergeStreams(streams).on('finish', () => {
+		flow.skipOnWatch(taskName);
+		toolbox.log(taskName, `${pluralize('file', streams.length, true)} generated`);
+	});
 });
 
 
 //-- Compile
-gulp.task('styles-compile', ['styles-lint', 'styles-constants'], () => {
+flow.createTask('styles-compile', () => {
 	const streams = [];
 
 	for (const name of Object.keys(env.bundles)) {
@@ -132,21 +157,22 @@ gulp.task('styles-compile', ['styles-lint', 'styles-constants'], () => {
 		);
 	}
 
-	return toolbox.mergeStreams(streams)
-		.on('end', () => { return util.watchableTaskCompleted('Styles compilation'); })
-	;
-});
+	return toolbox.mergeStreams(streams);
+
+}, gulp.parallel('styles-lint', 'styles-constants'));
+
+
+
+
 
 
 //-- Rebuild
-gulp.task('styles', (cb) => {
-	util.taskGrouper({
-		cb:          cb,
-		tasks:       ['styles-images', 'styles-compile'],
-		cleanPaths:  [paths.dir.cacheInline, paths.dir.cacheSass],
-		cleanBundle: (name, bundle) => {
-			return [`${paths.dir.root}/${bundle.output.build}/${paths.build.styles}`, `${paths.dir.cacheStyles}/${name}`];
-		}
-	});
+flow.createSequence('styles', gulp.series('styles-images', 'styles-compile'), {
+	cleanPaths:  [paths.dir.cacheInline, paths.dir.cacheSass],
+	cleanBundle: ({ name, bundle }) => {
+		return [
+			`${paths.dir.root}/${bundle.output.build}/${paths.build.styles}`,
+			`${paths.dir.cacheStyles}/${name}`
+		];
+	}
 });
-*/
