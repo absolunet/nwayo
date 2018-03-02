@@ -15,9 +15,17 @@ module.exports = class {
 
 	static cli(meowCli) {
 		util.checkInstalledWorkflow();
+		cli.refuseFlags(meowCli);
 
-		if (meowCli.input.length >= 2 && meowCli.input.length <= 3) {
-			util.runWorkflowTask(meowCli.input[1], { bundle:meowCli.input[2] });
+		if (meowCli.input.length <= 3) {
+			const [, task, bundle] = meowCli.input;
+
+			if (task) {
+				util.runWorkflowTask(task, { bundle });
+
+			} else {
+				cli.showTaskUsage(meowCli);
+			}
 
 		} else {
 			cli.showTaskUsage(meowCli);

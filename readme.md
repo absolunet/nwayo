@@ -30,8 +30,8 @@
 
 Run in nwayo root folder
 ```shell
-npm install
-bower install
+nwayo install vendors
+nwayo install workflow
 nwayo rebuild
 ```
 
@@ -62,7 +62,7 @@ nwayo rebuild
 
 ## Tried and tested
  - Currently deployed on 200+ sites
- - Front end to [Drupal](//www.drupal.org), [Wordpress](//wordpress.org), [Symfony](//symfony.com), [Magento 1 & 2](//magento.com), [Sitecore](//www.sitecore.net), [Insite](http://www.insitesoft.com) environments
+ - Front end to [Drupal](//www.drupal.org), [Wordpress](//wordpress.org), [Symfony](//symfony.com), [Magento 1 & 2](//magento.com), [Sitecore](//www.sitecore.net), [Insite](http://www.insitesoft.com), [Shopify](//www.shopify.ca) environments
 
 ## Components
 Multiple component boilerplates [available](//github.com/absolunet/nwayo-components)

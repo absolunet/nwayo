@@ -296,7 +296,7 @@ Run ${chalk.cyan('npm install')} to update`,
 	static initCli() {
 		terminal.setDefault({
 			logo:   env.logo,
-			color: 'green',
+			color: 'cyan',
 			lang:  'en'
 		});
 
@@ -308,7 +308,8 @@ Run ${chalk.cyan('npm install')} to update`,
 
 
 
-		const tasks = ['assets', 'icons', 'local', 'scripts', 'styles'];
+		const tasks         = ['assets', 'icons', 'local', 'scripts', 'styles'];
+		const installScopes = ['workflow', 'vendors'];
 
 		/* eslint-disable quote-props */
 		cli.setUsageTasks({
@@ -317,6 +318,7 @@ Run ${chalk.cyan('npm install')} to update`,
 			'run':     [`run ${cli.placeholder('<task>')} ${cli.optionalPlaceholder('<bundle>')}`, `Run a task ex:[${tasks.join('|')}]`, [tasks]],
 			'rebuild': [`rebuild ${cli.optionalPlaceholder('<bundle>')}`, `Rebuild the entire project from scratch`],
 			'watch':   [`watch ${cli.optionalPlaceholder('<bundle>')}`, `Listens for changes on files and run appropriate tasks`],
+			'install': [`install ${cli.optionalPlaceholder('<scope>')}`, `Install dependencies ex:[${installScopes.join('|')}]`, [installScopes]],
 			'doctor':  [`doctor`, `Checks Node.js / Bower packages for updates`],
 
 			// Options
