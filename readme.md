@@ -27,7 +27,6 @@
 ## Get started
  - Get the files under [boilerplate](boilerplate)
  - Replace `PROJECT_NAME` in `bower.json` and `package.json` with your project's name
- - Rename `PROJECT_NAME.sublime-project` with your project's name
 
 Run in nwayo root folder
 ```shell
@@ -57,7 +56,7 @@ nwayo rebuild
 #### Other
 - Optimizes images via [gifsicle](//www.lcdf.org/gifsicle), [jpegtran](http://libjpeg-turbo.virtualgl.org), [optipng](http://optipng.sourceforge.net), [svgo](//github.com/svg/svgo)
 - Generates iconography via [GraphicsMagick](http://www.graphicsmagick.org), [ImageMagick](//www.imagemagick.org)
-- Optimized for [Sublime Text 3](//www.sublimetext.com) with [SublimeLinter 3](http://www.sublimelinter.com)
+- Optimized for [Atom](//atom.io) with [AtomLinter](//atomlinter.github.io)
 
 
 
