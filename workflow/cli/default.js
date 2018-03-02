@@ -24,7 +24,7 @@ module.exports = class {
 					spawn('say', ['nwaw', 'yo']);
 				}
 
-				return;
+				terminal.exit();
 			}
 
 		}
