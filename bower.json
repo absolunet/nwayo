@@ -33,8 +33,6 @@
     ".eslintrc.yaml",
     ".gitignore",
     ".stylelintrc.yaml",
-    ".sublimelinterrc",
-    ".travis.yml",
-    "nwayo.sublime-project"
+    ".travis.yml"
   ]
 }
