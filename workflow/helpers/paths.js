@@ -112,6 +112,7 @@ workflow.tasks      = `${workflow.root}/tasks`;
 workflow.ressources = `${workflow.root}/ressources`;
 
 const config = {};
+config.bower           = `${dir.root}/bower.json`;
 config.konstan         = `${dir.root}/konstan.yaml`;
 config.projectPackage  = `${dir.root}/package.json`;
 config.workflowPackage = `${workflow.root}/package.json`;
