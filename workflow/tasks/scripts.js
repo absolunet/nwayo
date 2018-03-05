@@ -166,6 +166,7 @@ flow.createTask('scripts-compile', ({ taskName }) => {
 				list[i] = `//= require ${file}`;
 			});
 
+			const toMinify = (bundle.scripts.options.minify && !env.watching) || env.prod;
 			const filename = `${collection}.${paths.ext.scripts}`;
 			const dest     = `${bundle.output.build}/${paths.build.scripts}`;
 			const source   = `${util.getGeneratedBanner(name)} (function(global, undefined) { \n\t${list.join('\n')}\n })(typeof window !== 'undefined' ? window : this);\n`;
@@ -180,7 +181,7 @@ flow.createTask('scripts-compile', ({ taskName }) => {
 							return util.babelProcess(options, bundle.scripts.options.babel, babelExtraAllowed);
 						}
 					}))
-					.pipe(gulpif(bundle.scripts.options.minify && !env.watching, uglify({ output:{ comments:'some' } })))
+					.pipe(gulpif(toMinify, uglify({ output:{ comments:'some' } })))
 					.pipe(gulp.dest(`${paths.dir.root}/${dest}`))
 					.on('finish', () => {
 						toolbox.log(taskName, `'${dest}/${filename}' written`, toolbox.filesize(`${paths.dir.root}/${dest}/${filename}`));

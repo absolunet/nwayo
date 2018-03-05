@@ -135,6 +135,9 @@ flow.createTask('styles-compile', () => {
 		}
 
 		// Process all collections from this bundle
+		const toMinify     = (bundle.styles.options.minify && !env.watching) || env.prod;
+		const toSourcemaps = bundle.styles.options.sourcemaps && !env.prod;
+
 		streams.push(
 			sass(`${paths.dir.cacheStyles}/${name}/collections/*.${paths.ext.styles}`, {
 				loadPath:      paths.dir.root,
@@ -146,9 +149,9 @@ flow.createTask('styles-compile', () => {
 
 				.pipe(autoprefixer({ browsers:bundle.styles.options.autoprefixer }))
 
-				.pipe(gulpif(bundle.styles.options.minify && !env.watching, cssnano({ reduceIdents:false, zindex:false })))
+				.pipe(gulpif(toMinify, cssnano({ reduceIdents:false, zindex:false })))
 
-				.pipe(gulpif(bundle.styles.options.sourcemaps, sourcemaps.write('maps', {
+				.pipe(gulpif(toSourcemaps, sourcemaps.write('maps', {
 					includeContent: false,
 					sourceRoot:     'source'
 				})))

@@ -21,6 +21,8 @@ const STATIC = global.___NwayoEnv___ ? global.___NwayoEnv___ : global.___NwayoEn
 
 	watching:    false,
 
+	deployTier:  'local',
+
 	isWindows:   os.platform() === 'win32',
 
 	pkg:         (() => {
@@ -46,6 +48,7 @@ module.exports = class env {
 	static get bundles()           { return STATIC.bundles; }
 	static get bundlesComponents() { return STATIC.bundlesComponents; }
 	static get watching()          { return STATIC.watching; }
+	static get deployTier()        { return STATIC.deployTier; }
 	static get isWindows()         { return STATIC.isWindows; }
 
 
@@ -64,6 +67,18 @@ module.exports = class env {
 	//-- Package name
 	static get pkgName() {
 		return '@absolunet/nwayo-workflow';
+	}
+
+
+	//-- Is deployment tier production
+	static get prod() {
+		return STATIC.deployTier === 'prod';
+	}
+
+
+	//-- Set deployment tier to production
+	static setToProd() {
+		STATIC.deployTier = 'prod';
 	}
 
 
