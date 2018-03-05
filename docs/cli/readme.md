@@ -37,7 +37,9 @@ Runs a specific task and its dependencies.
 	- assets-images
 - icons
 	- icons-favicon
-	- icons-share
+	- icons-touch
+	- icons-icon
+	- icons-large
 	- icons-tile
 - local
 	- local-constants
@@ -62,7 +64,7 @@ $ nwayo run scripts-lint site
 
 
 ### rebuild
-`nwayo rebuild [<bundle>]`
+`nwayo rebuild [<bundle>] [--prod]`
 
 Rebuilds the entire project from scratch, removing all cache, running all tasks.
 
@@ -71,11 +73,15 @@ Should be run:
  - Files are added or removed
  - Config files are modified
 
+`--prod` flag forces minification ignoring bundle config
+
 **Examples:**
 ```shell
 $ nwayo rebuild
 
 $ nwayo rebuild site
+
+$ nwayo rebuild --prod
 ```
 
 ### watch
@@ -84,7 +90,7 @@ $ nwayo rebuild site
 Listens for changes on files under `components` and runs the appropriate tasks.
 
 The `watch` command is build with rapidity in mind so here's what it **DOESN'T** do:
- - Build custom `Modernizr` and `LoDash`
+ - Build custom `Modernizr` and `Lodash`
  - Optimize and cache inline images
  - Minify CSS/JS
 
@@ -97,6 +103,22 @@ $ nwayo watch
 $ nwayo watch site
 ```
 
+### install
+`nwayo install [<scope>]`
+
+Install project dependencies.
+
+The `workflow` scope installs the workflow via `npm`
+
+The `vendors` scope installs the vendor dependencies via `bower`
+
+**Examples:**
+```shell
+$ nwayo install workflow
+
+$ nwayo install vendors
+```
+
 ### doctor
 `nwayo doctor`
 
@@ -106,20 +128,20 @@ Checks Node.js / Bower packages for updates and lists what is outdated.
 ```shell
 $ nwayo doctor
 
-  Node diagnosis
-    You are cutting edge   (^_^)
+  Workflow diagnosis
+    ✓  You are cutting edge   (^_^)
 
 
   Bower diagnosis
-    You are a dull blade   ಠ_ಠ
+    ✘  You are a dull blade   ಠ_ಠ
 
-    [foundation-sites] : 6.3.1 ➝  6.4.0
-    [imagesloaded] : 4.1.3 ➝  4.1.4
-    [jquery] : 3.2.1 ➝  3.3.1
-    [jsrender] : 0.9.86 ➝  0.9.87
-    [kafe] : 3.2.1 ➝  3.2.4
-    [pubsub-js] : 1.5.7 ➝  1.6.0
-    [slick.js] : 1.6.0 ➝  1.8.1
+    [foundation-sites] : 6.3.1 → 6.4.0
+    [imagesloaded] : 4.1.3 → 4.1.4
+    [jquery] : 3.2.1 → 3.3.1
+    [jsrender] : 0.9.86 → 0.9.87
+    [kafe] : 3.2.1 → 3.2.4
+    [pubsub-js] : 1.5.7 → 1.6.0
+    [slick.js] : 1.6.0 → 1.8.1
 ```
 
 ### \<bundle\> param
@@ -146,7 +168,7 @@ Outputs nwayo CLI's version
 **Example:**
 ```shell
 $ nwayo --version
-1.0.0
+1.1.0
 ```
 
 ### -h or --help
@@ -155,23 +177,27 @@ $ nwayo --version
 Outputs nwayo CLI's manual
 
 **Example:**
-```shell
+```
 $ nwayo --help
 
-Usage: nwayo <command>
+  🌰  /nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.
 
- Project commands
- nwayo run [<task> [<bundle>]]   Run a task
- nwayo rebuild [<bundle>]        Run rebuild task
- nwayo watch [<bundle>]          Run watch task
- nwayo doctor                    Diagnose project dependencies
+  Usage: nwayo <command>
 
- Flag commands
- nwayo --version        Get cli version
- nwayo --pronounce      How to pronounce
+  Project
+  run <task> [<bundle>] [--prod]     Run a task ex:[assets|icons|local|scripts|styles]
+  rebuild [<bundle>]                 Rebuild the entire project from scratch
+  watch [<bundle>]                   Listens for changes on files and run appropriate tasks
+  install [<scope>]                  Install dependencies ex:[workflow|vendors]
+  doctor                             Checks Node.js / Bower packages for updates
 
-      cli@1.0.0 /usr/local/bin/nwayo
- workflow@3.3.3 /Users/absolunet/www/project-name/nwayo/node_modules/@absolunet/nwayo-workflow/
+  Options
+  -h, --help                         Show help
+  -v, --version                      Show CLI version
+  --pronounce                        Listen to nwayo pronunciation
+
+       cli@1.1.0 /usr/local/bin/nwayo
+  workflow@3.3.3 /Users/absolunet/www/project-name/nwayo/node_modules/@absolunet/nwayo-workflow
 ```
 
 ### --pronounce
