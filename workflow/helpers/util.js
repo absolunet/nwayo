@@ -240,7 +240,7 @@ module.exports = class util {
 	static checkInstalledWorkflow() {
 
 		// Check for asked version vs installed version
-		const requiredVersion  = env.pkg.dependencies['@absolunet/nwayo-workflow'];
+		const requiredVersion  = env.pkg.dependencies[env.pkgName];
 		const installedVersion = env.workflowPkg.version;
 
 		if (semver.gt(requiredVersion, installedVersion)) {

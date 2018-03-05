@@ -61,6 +61,12 @@ module.exports = class env {
 	}
 
 
+	//-- Package name
+	static get pkgName() {
+		return '@absolunet/nwayo-workflow';
+	}
+
+
 	//-- Set to 'watch' mode
 	static setToWatching() {
 		STATIC.watching = true;
