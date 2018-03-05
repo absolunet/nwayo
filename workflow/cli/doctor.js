@@ -140,6 +140,21 @@ const report = (title, data) => {
 };
 
 
+const colorize = (reward) => {
+	const color = {
+		pink:  chalk.hex('#ff69b4'),
+		green: chalk.hex('#198c19')
+	};
+
+	return reward
+		.replace(/_.--._/g, `_${color.pink('.--.')}_`)
+		.replace(/`--'/g, color.pink('`--\''))
+		.replace(/\(\)/g, color.pink('()'))
+		.replace(/.==./g, color.green('.==.'))
+	;
+};
+
+
 
 
 
@@ -165,7 +180,7 @@ module.exports = class {
 			// Reward
 			if (workflowReward && bowerReward) {
 				const reward = fss.readFile(`${paths.workflow.ressources}/doctor-reward`, 'utf8');
-				terminal.echo(reward);
+				terminal.echo(colorize(reward));
 				terminal.spacer();
 			}
 		});
