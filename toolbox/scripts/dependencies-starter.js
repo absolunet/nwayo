@@ -8,7 +8,7 @@
 
 	const addProp = (obj, prop, value) => {
 		Object.defineProperty(obj, prop, {
-			enumerable:   false,
+			enumerable:   true,
 			writable:     false,
 			configurable: false,
 			value:        value
