@@ -112,6 +112,23 @@ const analyzeBower = (cb) => {
 };
 
 
+const compareWorflowToolbox = (cb) => {
+	if (fss.exists(paths.config.bower)) {
+		const bowerConfig     = require(paths.config.bower);  // eslint-disable-line global-require
+		const workflowVersion = env.workflowPkg.version;
+		const toolboxVersion  = bowerConfig.devDependencies['nwayo-toolbox'];
+
+		if (workflowVersion !== toolboxVersion) {
+			return cb(null, { error:`Workflow ${workflowVersion} / Toolbox ${toolboxVersion} not in sync` });
+		}
+
+		return cb(null, { outdated:[] });
+	}
+
+	return cb(null, { error:'No bower.json file found' });
+};
+
+
 const report = (title, data) => {
 	let reward = false;
 	terminal.echoIndent(`${chalk.cyan(title)} diagnosis`);
@@ -169,16 +186,18 @@ module.exports = class {
 
 		async.parallel({
 			workflow: analyzeWorkflow,
-			bower:    analyzeBower
+			bower:    analyzeBower,
+			compare:  compareWorflowToolbox
 		}, (error, data) => {
 
 			spinner.stop();
 
 			const workflowReward = report('Workflow', data.workflow);
 			const bowerReward    = report('Bower', data.bower);
+			const compareReward  = report('Synchronization', data.compare);
 
 			// Reward
-			if (workflowReward && bowerReward) {
+			if (workflowReward && bowerReward && compareReward) {
 				const reward = fss.readFile(`${paths.workflow.ressources}/doctor-reward`, 'utf8');
 				terminal.echo(colorize(reward));
 				terminal.spacer();
