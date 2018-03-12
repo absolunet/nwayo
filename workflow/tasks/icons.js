@@ -77,6 +77,7 @@ flow.createTask('icons-touch', () => {
 	// Foreach each sizes
 	for (const size of touchSizes) {
 
+		/* eslint-disable function-paren-newline */
 		streams.push(
 			util.assetsProcess(paths.files.iconsTouch, (stream) => {
 
@@ -96,6 +97,7 @@ flow.createTask('icons-touch', () => {
 				;
 			})
 		);
+		/* eslint-disable function-paren-newline */
 	}
 
 	return toolbox.mergeStreams(streams);
@@ -118,6 +120,7 @@ flow.createTask('icons-icon', () => {
 	// Foreach each sizes
 	for (const size of iconSizes) {
 
+		/* eslint-disable function-paren-newline */
 		streams.push(
 			util.assetsProcess(paths.files.iconsIcon, (stream) => {
 
@@ -137,6 +140,7 @@ flow.createTask('icons-icon', () => {
 				;
 			})
 		);
+		/* eslint-disable function-paren-newline */
 	}
 
 	return toolbox.mergeStreams(streams);
@@ -171,6 +175,7 @@ flow.createTask('icons-tile', () => {
 	for (const name of Object.keys(sizes)) {
 		const size = sizes[name];
 
+		/* eslint-disable function-paren-newline */
 		streams.push(
 			util.assetsProcess(paths.files.iconsTile, (stream) => {
 
@@ -197,6 +202,7 @@ flow.createTask('icons-tile', () => {
 				;
 			})
 		);
+		/* eslint-enable function-paren-newline */
 	}
 
 	return toolbox.mergeStreams(streams);

@@ -98,11 +98,13 @@ flow.createTask('styles-constants', ({ taskName }) => {
 		const data = util.parseKonstan('styles', name, env.bundles[name].output.url);
 		data.bundle = `'${name}'`;
 
+		/* eslint-disable function-paren-newline */
 		streams.push(
 			toolbox.vinylStream(paths.filename.konstanStyles, JSON.stringify({ konstan:data }))
 				.pipe(jsonsass())
 				.pipe(gulp.dest(`${paths.dir.cacheStyles}/${name}`))
 		);
+		/* eslint-enable function-paren-newline */
 	}
 
 	return toolbox.mergeStreams(streams).on('finish', () => {
@@ -138,6 +140,7 @@ flow.createTask('styles-compile', () => {
 		const toMinify     = (bundle.styles.options.minify && !env.watching) || env.prod;
 		const toSourcemaps = bundle.styles.options.sourcemaps && !env.prod;
 
+		/* eslint-disable function-paren-newline */
 		streams.push(
 			sass(`${paths.dir.cacheStyles}/${name}/collections/*.${paths.ext.styles}`, {
 				loadPath:      paths.dir.root,
@@ -158,6 +161,7 @@ flow.createTask('styles-compile', () => {
 
 				.pipe(gulp.dest(`${paths.dir.root}/${bundle.output.build}/${paths.build.styles}`))
 		);
+		/* eslint-enable function-paren-newline */
 	}
 
 	return toolbox.mergeStreams(streams);
