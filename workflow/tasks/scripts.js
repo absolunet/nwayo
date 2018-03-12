@@ -73,10 +73,12 @@ flow.createTask('scripts-constants', ({ taskName }) => {
 			konstan: util.parseKonstan('scripts', name, env.bundles[name].output.url)
 		};
 
+		/* eslint-disable function-paren-newline */
 		streams.push(
 			toolbox.vinylStream(paths.filename.konstanScripts, `var konstan = ${JSON.stringify(data, null, '\t')};`)
 				.pipe(gulp.dest(`${paths.dir.cacheScripts}/${name}`))
 		);
+		/* eslint-enable function-paren-newline */
 	}
 
 	return toolbox.mergeStreams(streams).on('finish', () => {
@@ -171,6 +173,7 @@ flow.createTask('scripts-compile', ({ taskName }) => {
 			const dest     = `${bundle.output.build}/${paths.build.scripts}`;
 			const source   = `${util.getGeneratedBanner(name)} (function(global, undefined) { \n\t${list.join('\n')}\n })(typeof window !== 'undefined' ? window : this);\n`;
 
+			/* eslint-disable function-paren-newline */
 			streams.push(
 				toolbox.vinylStream(filename, source)
 					.pipe(include({
@@ -187,6 +190,7 @@ flow.createTask('scripts-compile', ({ taskName }) => {
 						toolbox.log(taskName, `'${dest}/${filename}' written`, toolbox.filesize(`${paths.dir.root}/${dest}/${filename}`));
 					})
 			);
+			/* eslint-enable function-paren-newline */
 		}
 	}
 

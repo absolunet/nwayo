@@ -244,6 +244,8 @@ module.exports = class util {
 		const installedVersion = env.workflowPkg.version;
 
 		if (semver.gt(requiredVersion, installedVersion)) {
+
+			/* eslint-disable function-paren-newline */
 			terminal.echo(boxen(
 				`Workflow update available ${chalk.dim(installedVersion)} ${chalk.reset('→')} ${chalk.green(requiredVersion)}
 
@@ -258,6 +260,7 @@ Run ${chalk.cyan('npm install')} to update`,
 					borderColor: 'yellow'
 				}
 			));
+			/* eslint-enable function-paren-newline */
 
 			terminal.exit();
 		}

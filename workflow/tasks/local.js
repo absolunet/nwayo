@@ -31,6 +31,7 @@ flow.createTask('local-constants', ({ taskName }) => {
 			konstan:    util.parseKonstan('local', name, bundle.output.url)
 		};
 
+		/* eslint-disable function-paren-newline */
 		streams.push(
 			toolbox.vinylStream(paths.filename.konstanLocal, JSON.stringify(data, null, 2))
 				.pipe(gulp.dest(`${paths.dir.root}/${bundle.output.konstan}`))
@@ -38,6 +39,7 @@ flow.createTask('local-constants', ({ taskName }) => {
 					toolbox.log(taskName, `'${bundle.output.konstan}/${paths.filename.konstanLocal}' written`, toolbox.filesize(`${paths.dir.root}/${bundle.output.konstan}/${paths.filename.konstanLocal}`));
 				})
 		);
+		/* eslint-enable function-paren-newline */
 	}
 
 	return toolbox.mergeStreams(streams);
