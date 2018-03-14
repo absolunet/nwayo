@@ -252,7 +252,7 @@ module.exports = class util {
 The required version in your project's package.json
 is greater than the installed one
 
-Run ${chalk.cyan('npm install')} to update`,
+Run ${chalk.cyan('nwayo install workflow')} to update`,
 				{
 					padding:     1,
 					margin:      0.5,
