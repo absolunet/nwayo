@@ -30,15 +30,11 @@
 
 - Ajuster la version dans le `package.json`
 
-- Supprimer `package-lock.json` et `node_modules`
-
-- Faire un `npm install --production`
-
-- Le fichier `package-lock.json` ne devrait pas contenir des références à `@absolunet/tester`
+- S'assurer qu'il n'y a pas un `npm-shrinkwrap.json`
 
 - Copier les fichiers `./readme.md` et `./license` sous `workflow`
 
-- Faire un `npm publish` ⚠️ **ATTENTION C'EST UNE COMMANDE SANS LENDEMAIN**
+- Faire un `npm publish` (`--tag next` pour les pre-releases) ⚠️ **ATTENTION C'EST UNE COMMANDE SANS LENDEMAIN**
 
 - Supprimer les fichiers `./readme.md` et `./license` sous `workflow`
 ​
