@@ -7,9 +7,19 @@ const cli      = require('@absolunet/cli');
 const fss      = require('@absolunet/fss');
 const terminal = require('@absolunet/terminal');
 const paths    = require('../helpers/paths');
+const util     = require('../helpers/util');
 
 
-const availableScopes = ['vendors'];
+const availableScopes = ['workflow', 'vendors'];
+
+
+const npmInstall = () => {
+	terminal.print(`
+		Installing worflow via NPM
+	`);
+
+	util.workflowInstaller();
+};
 
 
 const bowerInstall = () => {
@@ -56,7 +66,8 @@ module.exports = class {
 
 				switch (scope) {
 
-					case 'vendors': bowerInstall(); break;
+					case 'workflow': npmInstall();   break;
+					case 'vendors':  bowerInstall(); break;
 					default: break;
 
 				}
