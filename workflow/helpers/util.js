@@ -4,13 +4,11 @@
 'use strict';
 
 // const debug = require('gulp-debug');
-const babel    = require('babel-core');
 const boxen    = require('boxen');
 const chalk    = require('chalk');
 const crypto   = require('crypto');
 const events   = require('events');
 const glob     = require('glob');
-const gulp     = require('gulp');
 const _        = require('lodash');
 const path     = require('path');
 const semver   = require('semver');
@@ -61,6 +59,16 @@ const cache = (key, value, process) => {
 
 
 module.exports = class util {
+
+	//-- Get / Set workflow installer from CLI
+	static set workflowInstaller(func) {
+		STATIC.workflowInstaller = func;
+	}
+
+	static get workflowInstaller() {
+		return STATIC.workflowInstaller;
+	}
+
 
 	//-- Constants
 	static parseKonstan(type, bundle, rootUrl) {
@@ -143,6 +151,8 @@ module.exports = class util {
 
 	//-- Babel processing
 	static babelProcess(options, targets, allowed) {
+		const babel = require('babel-core');  // eslint-disable-line global-require, Babel is really heavy on load
+
 		const { fullPath, rawPath } = options;
 		let { content } = options;
 		if (fullPath.substr(-3) === '.js') {
@@ -191,6 +201,8 @@ module.exports = class util {
 
 	//-- Assets processing pattern
 	static assetsProcess(files, customPiping) {
+		const gulp = require('gulp');   // eslint-disable-line global-require, gulp.js is really heavy on load
+
 		const streams = [];
 		for (const component of env.bundlesComponents) {
 
@@ -282,8 +294,17 @@ Run ${chalk.cyan('nwayo install workflow')} to update`,
 		//-- Init env
 		env.initWorkflow({ bundle });
 
+
 		//-- Load tasks
-		require(taskFile);  // eslint-disable-line global-require
+		/* eslint-disable global-require */
+		process.stdout.write(`\n${env.logo}  Gathering intel... `);
+
+		const gulp = require('gulp');  // gulp.js is really heavy on load
+		require(taskFile);
+
+		terminal.echo(chalk.green(`\r${env.logo}  Ready to roll  `));
+		/* eslint-enable global-require */
+
 
 		//-- Run task
 		if (gulp.task(task)) {
