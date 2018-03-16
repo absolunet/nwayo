@@ -88,7 +88,7 @@
 		});
 
 		// Data - shortcuts
-		['action', 'component', 'placeholder', 'showfor'].forEach((key) => {
+		['action', 'component', 'placeholder'].forEach((key) => {
 			shortcut[key]       = (value) => { return selector(`data-${key}`, value); };
 			shortcut[`$${key}`] = (value) => { return $(shortcut[key](value)); };
 		});
