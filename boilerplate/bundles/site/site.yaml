@@ -16,7 +16,7 @@ scripts:
     babel:
       - '> 1%'
       - 'last 2 versions'
-      - 'ie 11'
+      - 'not ie < 11'
 
   allowBabel:
     - bower_components/foundation-sites
@@ -32,4 +32,4 @@ styles:
     autoprefixer:
       - '> 1%'
       - 'last 2 versions'
-      - 'ie 11'
+      - 'not ie < 11'
