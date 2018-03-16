@@ -10,12 +10,14 @@ $ npm install @absolunet/nwayo-cli -g
 
 
 ## Usage
-In each project under the `nwayo` folder, install the project's Node.js packages
+In any subfolder of the project's root folder, where the `nwayo.yaml` is located
+
+### In each project, install the project's workflow
 ```shell
-$ npm install
+$ nwayo install workflow
 ```
 
-In any subfolder of the project's root folder, where the `nwayo.yaml` is located
+### Then you can run any `nwayo` command
 ```shell
 $ nwayo ...
 ```
@@ -124,6 +126,8 @@ $ nwayo install vendors
 
 Checks Node.js / Bower packages for updates and lists what is outdated.
 
+Checks if the toolbox version in bower is the same as the workflow version.
+
 **Examples:**
 ```shell
 $ nwayo doctor
@@ -142,9 +146,15 @@ $ nwayo doctor
     [kafe] : 3.2.1 → 3.2.4
     [pubsub-js] : 1.5.7 → 1.6.0
     [slick.js] : 1.6.0 → 1.8.1
+
+
+  Synchronization diagnosis
+    ✓  You are cutting edge   (^_^)
+
+
 ```
 
-### \<bundle\> param
+## \<bundle\> param
 
 If a bundle is specified, the command will be run against this bundle only.
 
@@ -168,7 +178,7 @@ Outputs nwayo CLI's version
 **Example:**
 ```shell
 $ nwayo --version
-1.1.0
+1.1.1
 ```
 
 ### -h or --help
@@ -196,7 +206,7 @@ $ nwayo --help
   -v, --version                      Show CLI version
   --pronounce                        Listen to nwayo pronunciation
 
-       cli@1.1.0 /usr/local/bin/nwayo
+       cli@1.1.1 /usr/local/bin/nwayo
   workflow@3.3.3 /Users/absolunet/www/project-name/nwayo/node_modules/@absolunet/nwayo-workflow
 ```
 
