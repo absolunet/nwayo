@@ -19,6 +19,17 @@
 
 
 
+@function common-radius($type:default) {
+	@return map-get((
+		default:  0,
+		button:   0,
+		select:   0,
+		checkbox: 0,
+		radio:    50%
+	), $type);
+}
+
+
 
 @function common-border($width:1, $style:solid, $color:$common-border-color) {
 	@return rem-calc($width) $style $color;
