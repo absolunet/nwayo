@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en-CA" class="no-js">
+<head>
+	<meta charset="utf-8">
+	<title>nwayo x.x.x</title>
+
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="/nwayo/static/styles/main.css">
+	<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,500,700|Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+	<!-- (c) 2011-2018 Absolunet -->
+</head>
+<body>
+
+	<div class="content">
+		<h1>CLI  <a href="https://www.npmjs.com/package/@absolunet/nwayo-cli"><img src="https://img.shields.io/npm/v/@absolunet/nwayo-cli.svg" alt="NPM version"></a></h1>
+<p>The nwayo CLI is essentially a <a href="https://www.npmjs.com/package/gulp-cli">gulp CLI</a> wrapper with additional commands.</p>
+<h2>Installation</h2>
+<pre><code class="language-shell">$ npm install @absolunet/nwayo-cli -g
+</code></pre>
+<h2>Usage</h2>
+<p>In any subfolder of the project's root folder, where the <code>nwayo.yaml</code> is located</p>
+<h3>In each project, install the project's workflow</h3>
+<pre><code class="language-shell">$ nwayo install workflow
+</code></pre>
+<h3>Then you can run any <code>nwayo</code> command</h3>
+<pre><code class="language-shell">$ nwayo ...
+</code></pre>
+<h2>Commands</h2>
+<h3>run</h3>
+<p><code>nwayo run &lt;task&gt; [&lt;bundle&gt;]</code></p>
+<p>Runs a specific task and its dependencies.</p>
+<p><strong>Available tasks:</strong></p>
+<ul>
+<li>assets
+<ul>
+<li>assets-fonts</li>
+<li>assets-images-optimization</li>
+<li>assets-images-highdensity</li>
+<li>assets-raw</li>
+<li>assets-images</li>
+</ul>
+</li>
+<li>icons
+<ul>
+<li>icons-favicon</li>
+<li>icons-touch</li>
+<li>icons-icon</li>
+<li>icons-large</li>
+<li>icons-tile</li>
+</ul>
+</li>
+<li>local
+<ul>
+<li>local-constants</li>
+</ul>
+</li>
+<li>scripts
+<ul>
+<li>scripts-lint</li>
+<li>scripts-constants</li>
+<li>scripts-vendors</li>
+<li>scripts-compile</li>
+</ul>
+</li>
+<li>styles
+<ul>
+<li>styles-images</li>
+<li>styles-lint</li>
+<li>styles-constants</li>
+<li>styles-compile</li>
+</ul>
+</li>
+<li>rebuild-ss</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<pre><code class="language-shell">$ nwayo run styles
+
+$ nwayo run scripts-lint site
+</code></pre>
+<h3>rebuild</h3>
+<p><code>nwayo rebuild [&lt;bundle&gt;] [--prod]</code></p>
+<p>Rebuilds the entire project from scratch, removing all cache, running all tasks.</p>
+<p>Should be run:</p>
+<ul>
+<li>Whenever tasks behave weirdly to rebuild cached items</li>
+<li>Files are added or removed</li>
+<li>Config files are modified</li>
+</ul>
+<p><code>--prod</code> flag forces minification ignoring bundle config</p>
+<p><strong>Examples:</strong></p>
+<pre><code class="language-shell">$ nwayo rebuild
+
+$ nwayo rebuild site
+
+$ nwayo rebuild --prod
+</code></pre>
+<h3>watch</h3>
+<p><code>nwayo watch [&lt;bundle&gt;]</code></p>
+<p>Listens for changes on files under <code>components</code> and runs the appropriate tasks.</p>
+<p>The <code>watch</code> command is build with rapidity in mind so here's what it <strong>DOESN'T</strong> do:</p>
+<ul>
+<li>Build custom <code>Modernizr</code> and <code>Lodash</code></li>
+<li>Optimize and cache inline images</li>
+<li>Minify CSS/JS</li>
+</ul>
+<p>Whenever <code>watch</code> behaves weirdly, restart it and/or run a <code>rebuild</code>.</p>
+<p><strong>Examples:</strong></p>
+<pre><code class="language-shell">$ nwayo watch
+
+$ nwayo watch site
+</code></pre>
+<h3>install</h3>
+<p><code>nwayo install [&lt;scope&gt;]</code></p>
+<p>Install project dependencies.</p>
+<p>The <code>workflow</code> scope installs the workflow via <code>npm</code></p>
+<p>The <code>vendors</code> scope installs the vendor dependencies via <code>bower</code></p>
+<p><strong>Examples:</strong></p>
+<pre><code class="language-shell">$ nwayo install workflow
+
+$ nwayo install vendors
+</code></pre>
+<h3>doctor</h3>
+<p><code>nwayo doctor</code></p>
+<p>Checks Node.js / Bower packages for updates and lists what is outdated.</p>
+<p>Checks if the toolbox version in bower is the same as the workflow version.</p>
+<p><strong>Examples:</strong></p>
+<pre><code class="language-shell">$ nwayo doctor
+
+  Workflow diagnosis
+    ✓  You are cutting edge   (^_^)
+
+
+  Bower diagnosis
+    ✘  You are a dull blade   ಠ_ಠ
+
+    [foundation-sites] : 6.3.1 → 6.4.0
+    [imagesloaded] : 4.1.3 → 4.1.4
+    [jquery] : 3.2.1 → 3.3.1
+    [jsrender] : 0.9.86 → 0.9.87
+    [kafe] : 3.2.1 → 3.2.4
+    [pubsub-js] : 1.5.7 → 1.6.0
+    [slick.js] : 1.6.0 → 1.8.1
+
+
+  Synchronization diagnosis
+    ✓  You are cutting edge   (^_^)
+
+
+</code></pre>
+<h2>&lt;bundle&gt; param</h2>
+<p>If a bundle is specified, the command will be run against this bundle only.</p>
+<p>If a sub-bundle is specified, the command will be run against this sub-bundle only.</p>
+<p><strong>Examples:</strong></p>
+<pre><code class="language-shell">$ nwayo rebuild site
+
+$ nwayo watch site:editor
+</code></pre>
+<h2>Flags</h2>
+<h3>-v or --version</h3>
+<p><code>nwayo --version</code></p>
+<p>Outputs nwayo CLI's version</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-shell">$ nwayo --version
+1.1.1
+</code></pre>
+<h3>-h or --help</h3>
+<p><code>nwayo --help</code></p>
+<p>Outputs nwayo CLI's manual</p>
+<p><strong>Example:</strong></p>
+<pre><code>$ nwayo --help
+
+  🌰  /nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.
+
+  Usage: nwayo &lt;command&gt;
+
+  Project
+  run &lt;task&gt; [&lt;bundle&gt;] [--prod]     Run a task ex:[assets|icons|local|scripts|styles]
+  rebuild [&lt;bundle&gt;]                 Rebuild the entire project from scratch
+  watch [&lt;bundle&gt;]                   Listens for changes on files and run appropriate tasks
+  install [&lt;scope&gt;]                  Install dependencies ex:[workflow|vendors]
+  doctor                             Checks Node.js / Bower packages for updates
+
+  Options
+  -h, --help                         Show help
+  -v, --version                      Show CLI version
+  --pronounce                        Listen to nwayo pronunciation
+
+       cli@1.1.1 /usr/local/bin/nwayo
+  workflow@3.3.3 /Users/absolunet/www/project-name/nwayo/node_modules/@absolunet/nwayo-workflow
+</code></pre>
+<h3>--pronounce</h3>
+<p><code>nwayo --pronounce</code></p>
+<p>Uses macOS <code>say</code> to show how nwayo sounds</p>
+
+	</div>
+
+	<script src="/nwayo/static/scripts/main.js" defer></script>
+
+</body>
+</html>

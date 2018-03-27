@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en-CA" class="no-js">
+<head>
+	<meta charset="utf-8">
+	<title>nwayo x.x.x</title>
+
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="/nwayo/static/styles/main.css">
+	<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,500,700|Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+	<!-- (c) 2011-2018 Absolunet -->
+</head>
+<body>
+
+	<div class="content">
+		<h1>Requirements installation under Windows</h1>
+<p>In a command prompt <strong>AS AN ADMINISTRATOR</strong> run these</p>
+<h2><a href="https://chocolatey.org/">Chocolatey</a></h2>
+<p>Chocolatey is the entry point to install many tools</p>
+<pre><code class="language-shell">@&quot;%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe&quot; -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command &quot;iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))&quot; &amp;&amp; SET &quot;PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin&quot;
+</code></pre>
+<h4>Image processors ( <a href="http://www.graphicsmagick.org">GraphicsMagick</a> / <a href="http://www.imagemagick.org">ImageMagick</a> )</h4>
+<p>These are used to manipulate images for the iconography</p>
+<pre><code class="language-shell">choco install graphicsmagick --confirm
+choco install imagemagick.app -packageparameters legacysupport=true --confirm
+</code></pre>
+<h2><a href="https://www.ruby-lang.org">Ruby</a></h2>
+<p>Ruby is used solely to build SCSS</p>
+<pre><code class="language-shell">choco install ruby --confirm
+chcp 1252
+gem source -a http://rubygems.org/
+</code></pre>
+<h4><a href="http://sass-lang.com">Sass</a></h4>
+<p>Sass is the original native compiler of SCSS</p>
+<pre><code class="language-shell">gem install sass
+</code></pre>
+<h4><a href="https://github.com/causes/scss-lint">SCSS-Lint</a> <em>[deprecated]</em></h4>
+<p>SCSS-Lint was the SCSS linter used by nwayo prior to 3.5.0</p>
+<pre><code class="language-shell">gem install scss_lint
+</code></pre>
+<h2><a href="http://nodejs.org">Node.js</a></h2>
+<p>Node.js is the backbone of the workflow</p>
+<pre><code class="language-shell">choco install nodejs.install --confirm
+</code></pre>
+<h4><a href="http://bower.io">Bower</a></h4>
+<p>Bower is used for front end plugins dependencies</p>
+<pre><code class="language-shell">npm install bower -g
+</code></pre>
+<h4><a href="http://absolunet.github.io/nwayo">nwayo CLI</a></h4>
+<p>Well duh...</p>
+<pre><code class="language-shell">npm install @absolunet/nwayo-cli -g
+</code></pre>
+<h4><a href="http://jshint.com/">JSHint</a> <em>[deprecated]</em></h4>
+<p>JSHint was a JS linter used by nwayo prior to 3.0.0</p>
+<pre><code class="language-shell">npm install jshint -g
+</code></pre>
+<h4><a href="http://jscs.info/">JSCS</a> <em>[deprecated]</em></h4>
+<p>JSCS was a JS linter used by nwayo prior to 3.0.0</p>
+<pre><code class="language-shell">npm install jscs -g
+</code></pre>
+
+	</div>
+
+	<script src="/nwayo/static/scripts/main.js" defer></script>
+
+</body>
+</html>

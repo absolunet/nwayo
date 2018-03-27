@@ -13,8 +13,10 @@ tester.lintJs([
 	`*.js`,
 	`*/*.js`,
 	`*/!(node_modules)/**/*.js`,
-	`!boilerplate/bower_components/**/*`,
+	`!boilerplate/bower_components/**/*.js`,
 	`!boilerplate/components/**/scripts/vendor/**/*.js`,
+	`!ressources/docs-builder/bower_components/**/*.js`,
+	`!ressources/docs-builder/node_modules/**/*.js`,
 	`!test/fixtures/**/*.js`
 ], {
 	cwd: rootPath
@@ -26,7 +28,9 @@ tester.lintScss([
 	`*/*.scss`,
 	`*/!(node_modules)/**/*.scss`,
 	`!boilerplate/bower_components/**/*`,
-	`!boilerplate/components/**/styles/vendor/**/*.scss`
+	`!boilerplate/components/**/styles/vendor/**/*.scss`,
+	`!ressources/docs-builder/bower_components/**/*.scss`,
+	`!ressources/docs-builder/node_modules/**/*.scss`
 ], {
 	cwd: rootPath
 });

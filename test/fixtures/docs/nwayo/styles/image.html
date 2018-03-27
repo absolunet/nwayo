@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en-CA" class="no-js">
+<head>
+	<meta charset="utf-8">
+	<title>nwayo x.x.x</title>
+
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="/nwayo/static/styles/main.css">
+	<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,500,700|Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+	<!-- (c) 2011-2018 Absolunet -->
+</head>
+<body>
+
+	<div class="content">
+		<h1>Images</h1>
+<p>Les images sont situées sous le dossier <code>images</code>, sous la composante associée à l'image en question.</p>
+<h2>Mixin</h2>
+<p>Le mixin utilisé pour générer les images au niveau du css. Il sera ensuite possible de les inclure par <code>@include</code> sous le sélecteur voulu.
+<strong>Note:</strong> Le fonctionnement des images <code>inline</code> et <code>Scalable</code> seront traitées dans la section <a href="inline-image">inline-image</a></p>
+<h2>Fonctionnement</h2>
+<pre><code class="language-scss">//-- Background image
+@mixin bg-image-mixin ($file, $context, $inline:false, $width:false, $height:false, $color:false) {
+	
+	// uri
+	$uri: '';
+	@if $inline {
+		// Portion détaillé dans la section inline-image
+	} @else {
+		$uri: url(assets-path($file, $context, 'images'));
+	}
+	
+	// high density
+	@if str-index($file, '@2x') {
+		$path: 'components/' + $context + '/assets/' + if($inline, 'inline-', '') + 'images/' + $file;
+		$width:  if($width, $width, image-width($path));
+		$height: if($height, $height, image-height($path));
+
+		@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
+			background-image: $uri;
+			background-size: $width / 2 $height / 2;
+		}
+
+		$uri: str-replace($uri, '@2x', '');
+	}
+
+	background-image: #{$uri};
+}
+</code></pre>
+<ul>
+<li><code>$file</code> = Le nom du fichier image.</li>
+<li><code>$context</code> = Le contexte dans lequel se situe l'image.</li>
+<li><code>$inline</code> = Si l'image est inline ou non.</li>
+<li><code>$width</code> = Assigner la largeur d'une image @2x.</li>
+<li><code>$height</code> = Assigner la hauteur d'une image @2x.</li>
+<li><code>$color</code> = La couleur utilisée pour les svg. Voir la section <a href="inline-image">inline-image</a> pour plus de détails.</li>
+</ul>
+<h2>Comment utiliser</h2>
+<p>Pour générer le bon code, vous devez au moins fournir <code>$file</code> et <code>$context</code>.</p>
+<pre><code class="language-scss">// Normal
+@mixin misc1-image { @include bg-image-mixin('misc1.png', 'common'); }
+@mixin logo1-image { @include bg-image-mixin('logo1.png', 'foobar'); }
+
+// High-density
+@mixin misc2-image { @include bg-image-mixin('misc@2x.png', 'common'); }
+
+// Inline
+@mixin misc3-image { @include bg-image-mixin('misc3.png', 'common', $inline:true); }
+@mixin icon3-image { @include bg-image-mixin('icon3.png', 'foobar', $inline:true); }
+
+// Scalable
+@mixin icon4-image { @include scalable-icon-mixin('icon4.svg', 'foobar'); }
+
+//-- Appel dans le css
+.logo {
+	@include logo1-image;
+}
+</code></pre>
+
+	</div>
+
+	<script src="/nwayo/static/scripts/main.js" defer></script>
+
+</body>
+</html>

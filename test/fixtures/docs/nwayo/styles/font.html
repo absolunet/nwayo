@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en-CA" class="no-js">
+<head>
+	<meta charset="utf-8">
+	<title>nwayo x.x.x</title>
+
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="/nwayo/static/styles/main.css">
+	<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,500,700|Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+	<!-- (c) 2011-2018 Absolunet -->
+</head>
+<body>
+
+	<div class="content">
+		<h1>Polices</h1>
+<p>Les polices sont situées sous le dossier <code>fonts</code>, sous la composante associée à la police en question.
+Il faut les 4 formats de police sous le dossier <code>fonts</code> avec le même nom de fichier:</p>
+<ul>
+<li><code>eot</code></li>
+<li><code>ttf</code></li>
+<li><code>woff</code></li>
+<li><code>woff2</code></li>
+</ul>
+<h2>Mixin</h2>
+<p>Le mixin utilisé pour générer le <code>@font-face</code>au niveau du css.</p>
+<pre><code class="language-scss">//-- Font-face
+@mixin load-font-mixin ($name, $filename, $context, $weight:normal, $style:normal) {
+	$url:   assets-path($filename, $context, 'fonts');
+	$woff2: if(fileexists('components/' + $context + '/assets/fonts/' + $filename + '.woff2'), url($url + '.woff2') format('woff2') + ',', '');
+	@font-face {
+		font-family: $name;
+		font-weight: $weight;
+		font-style: $style;
+		src: #{$woff2} url($url + '.woff');
+	}
+}
+</code></pre>
+<ul>
+<li><code>$name</code> = Le nom de la police utilisé pour la <code>font-family</code> dans le css.</li>
+<li><code>$filename</code> = Le nom du fichier de la police.</li>
+<li><code>$context</code> = Le contexte dans lequel se situe la police.</li>
+<li><code>$weight</code> = Le poids de la police. <code>normal</code> est mis par défaut.</li>
+<li><code>$style</code> = Le style de la police. <code>normal</code> est mis par défaut.</li>
+</ul>
+<h2>Comment utiliser</h2>
+<p>Pour générer le bon code, vous devez au moins fournir <code>$name</code>, <code>$filename</code> et <code>$context</code>.</p>
+<pre><code class="language-scss">//-- Ligne de code appelé pour générer la font-family
+@include load-font-mixin('roboto', 'roboto-light-webfont', 'common', $weight:$light-weight);
+
+//-- Utilisation au niveau d'une variable
+$text-font: 'Open Sans', sans-serif;
+</code></pre>
+<h2>Gestion de font-weight</h2>
+<p>Il est préférable d'avoir une police pour chacune des graisses utilisées dans la composante et d'utiliser le même <code>$name</code>pour chacun d'eux. Il est ainsi plus facile de gérer la graisse de manière globale.</p>
+<pre><code class="language-scss">//-- Chargement des différentes graisses
+@include load-font-mixin('roboto', 'roboto-light-webfont', 'common', $light-weight);
+@include load-font-mixin('roboto', 'roboto-regular-webfont', 'common', $normal-weight);
+@include load-font-mixin('roboto', 'roboto-bold-webfont', 'common', $bold-weight);
+@include load-font-mixin('roboto', 'roboto-black-webfont', 'common', $black-weight);
+
+//-- Appel dans le css
+$text-font: 'roboto', sans-serif;
+
+body {
+	font-family: $text-font;
+	font-weight: $light-weight;
+}
+
+h1 {
+	font-weight: $black-weight;
+}
+</code></pre>
+
+	</div>
+
+	<script src="/nwayo/static/scripts/main.js" defer></script>
+
+</body>
+</html>
