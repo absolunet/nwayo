@@ -1,0 +1,9 @@
+{
+  "name": "doc-builder",
+  "version": "0.0.0",
+  "devDependencies": {
+    "fastclick":        "1.0.6",
+    "foundation-sites": "6.4.3"
+  },
+  "private": true
+}

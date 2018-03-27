@@ -1,0 +1,31 @@
+//-------------------------------------
+//-- Docs - Main
+//-------------------------------------
+
+//-- Get nwayo toolbox
+@import '../../toolbox/styles/config';
+
+//-- Get doc config
+@import 'styles/config';
+
+//-- Get Foundation
+@import 'bower_components/foundation-sites/scss/util/util';
+@import '../../boilerplate/components/foundation/styles/config/functions';
+@import 'styles/foundation-settings';
+@import 'bower_components/foundation-sites/scss/foundation';
+
+@include foundation-global-styles();
+@include foundation-typography();
+
+
+//-- Go to town
+.content {
+	max-width: 60em;
+	padding: 1em;
+	margin: 0 auto;
+}
+
+code[class] {
+	display: inline-block;
+	padding: 1em;
+}

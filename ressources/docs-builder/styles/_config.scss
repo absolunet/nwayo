@@ -1,0 +1,17 @@
+//-------------------------------------
+//-- Docs - Configuration
+//-------------------------------------
+
+$docs-bp-small:    600;
+$docs-bp-medium:   900;
+$docs-bp-large:   1200;
+$docs-bp-xlarge:  1500;
+
+
+// stylelint-disable value-keyword-case
+$docs-text-font:      Lato, $nwayo-sansserif-font;
+$docs-title-font:     Poppins, $nwayo-sansserif-font;
+$docs-monospace-font: 'Fira Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', Courier, monospace;
+// stylelint-enable value-keyword-case
+
+$docs-bgcolor: #ff0000;
