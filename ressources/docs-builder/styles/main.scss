@@ -19,13 +19,17 @@
 
 
 //-- Go to town
-.content {
+main {
 	max-width: 60em;
 	padding: 1em;
 	margin: 0 auto;
 }
 
 code[class] {
-	display: inline-block;
+	display: block;
 	padding: 1em;
+}
+
+nav .active {
+	font-weight: $nwayo-bold-weight;
 }
