@@ -3,19 +3,19 @@
 //--------------------------------------------------------
 'use strict';
 
-const cssnano    = require('gulp-cssnano');
-const ghpages    = require('gh-pages');
-const gulp       = require('gulp');
-const inquirer   = require('inquirer');
-const jsrender   = require('jsrender');
-const MarkdownIt = require('markdown-it');
-const minimist   = require('minimist');
-const sass       = require('gulp-ruby-sass');
-const fss        = require('@absolunet/fss');
+const ghpages       = require('gh-pages');
+const gulp          = require('gulp');
+const cssnano       = require('gulp-cssnano');
+const sass          = require('gulp-ruby-sass');
+const inquirer      = require('inquirer');
+const jsrender      = require('jsrender');
+const MarkdownIt    = require('markdown-it');
+const minimist      = require('minimist');
+const scandirectory = require('scandirectory');
+const fss           = require('@absolunet/fss');
 
 // Temp wrappers
-fss.readdirRecursive = require('fs-readdir-recursive');
-fss.ensureFile       = require('fs-extra').ensureFileSync;
+fss.ensureFile = require('fs-extra').ensureFileSync;
 
 
 const paths      = {};
@@ -26,9 +26,49 @@ paths.builder    = `${paths.ressources}/docs-builder`;
 paths.out        = `${paths.root}/test/fixtures/docs/nwayo`;
 paths.static     = `${paths.out}/static`;
 
+const ROOT = '/nwayo';
+
 
 const getTmpl = (file) => {
-	return jsrender.templates(fss.readFile(`${paths.builder}/tmpl/${file}.jshtml`, 'utf8'));
+	return jsrender.templates(file, fss.readFile(`${paths.builder}/tmpl/${file}.jshtml`, 'utf8'));
+};
+
+const rename = (file) => {
+	return `${file.replace('readme.md', 'index.html').replace('.md', '.html')}`;
+};
+
+const parseTitle = (str) => {
+	return str.split('\n').shift().match(/^# ([^[]+)/)[1];
+};
+
+const processNav = (tree, path = ROOT) => {
+	const data = {};
+
+	Object.keys(tree).forEach((page) => {
+		const name    = rename(page).replace('.html', '');
+		const content = tree[page];
+		const url     = `${path}/${name}`;
+
+		if (typeof content === 'string') {
+			if (page !== 'readme.md') {
+				data[name] = {
+					url:   url,
+					title: parseTitle(content)
+				};
+			}
+		} else {
+			data[name] = {
+				url:   url,
+				title: parseTitle(content['readme.md'])
+			};
+
+			if (Object.keys(content).length > 1) {
+				data[name]._children = processNav(content, url);
+			}
+		}
+	});
+
+	return data;
 };
 
 
@@ -50,33 +90,57 @@ switch (task) {
 
 		//-- Templates
 		const tmpl = {
-			layout: getTmpl('layout')
+			layout: getTmpl('layout'),
+			nav:    getTmpl('nav')
 		};
 
-		//-- Convert md to html
-		const md = new MarkdownIt();
-		md.normalizeLink = (link) => {
-			if (/^(http|\/)/.test(link)) {
-				return link;
+		//-- Pages
+		scandirectory(paths.docs, { readFiles:true }, (err, list, tree) => {
+			if (!err) {
+
+				//-- Build nav
+				const nav = processNav(tree);
+
+
+				//-- Convert md to html
+				const md = new MarkdownIt();
+				md.normalizeLink = (link) => {
+					if (/^(http|\/)/.test(link)) {
+						return link;
+					}
+
+					return link
+						.replace(/(.md)$/, '')
+						.replace('../../ressources/images/', `${ROOT}/static/images/`)
+					;
+				};
+
+				Object.keys(list).forEach((file) => {
+					const content = list[file];
+
+					if (content !== 'dir') {
+						const outFile   = `${paths.out}/${rename(file)}`;
+						const canonical = `${ROOT}/${rename(file).replace('/index.html', '').replace('.html', '')}`;
+
+						fss.ensureFile(outFile);
+
+						fss.writeFile(outFile, tmpl.layout.render({
+							path: {
+								'root':   ROOT,
+								'static': `${ROOT}/static`
+							},
+							version:   require(`${paths.root}/workflow/package`).version,  // eslint-disable-line global-require
+							year:      new Date().getFullYear(),
+							nav:       { _children:nav },
+
+							canonical: canonical,
+							title:     parseTitle(content),
+							content:   md.render(content),
+							source:    `https://github.com/absolunet/nwayo/blob/master/docs/${file}`
+						}));
+					}
+				});
 			}
-
-			return link
-				.replace(/(.md)$/, '')
-				.replace('../../ressources/images/', '/nwayo/static/images/')
-			;
-		};
-
-		fss.readdirRecursive(paths.docs).forEach((file) => {
-			const source  = fss.readFile(`${paths.docs}/${file}`, 'utf8');
-			const outFile = `${paths.out}/${file.replace('readme.md', 'index.html').replace('.md', '.html')}`;
-
-			fss.ensureFile(outFile);
-
-			fss.writeFile(outFile, tmpl.layout.render({
-				content: md.render(source),
-				version: 'x.x.x',
-				year:    new Date().getFullYear()
-			}));
 		});
 
 

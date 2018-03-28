@@ -1,0 +1,11 @@
+<ul>
+	{{props _children}}
+		<li>
+			<a href="{{>prop.url}}"{{if ~root.canonical.startsWith(prop.url) }} class="active"{{/if}}>{{>prop.title}}</a>
+
+			{{if prop._children}}
+				{{include prop tmpl="nav" /}}
+			{{/if}}
+		</li>
+	{{/props}}
+</ul>
