@@ -19,6 +19,7 @@
 
 	<header>
 		<a href="{{:path.root}}">nwayo</a> {{:version}}
+		<a href="https://github.com/absolunet/nwayo/">View on github</a>
 	</header>
 
 	<nav>

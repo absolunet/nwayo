@@ -1,0 +1,16 @@
+extends: '@absolunet/nwayo'
+
+
+# Environments
+#env:
+
+
+# Globals
+#globals:
+  #spConfig: false
+  #Translator: false
+  #Validation: false
+
+
+# Rules
+#rules:
