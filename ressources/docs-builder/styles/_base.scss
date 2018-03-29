@@ -1,0 +1,17 @@
+//-------------------------------------
+//-- Docs - Base
+//-------------------------------------
+
+main {
+	max-width: 60em;
+	padding: 1em;
+	margin: 0 auto;
+}
+
+code[class] {
+	font-family: $docs-monospace-font !important;
+}
+
+nav .active {
+	font-weight: $nwayo-bold-weight;
+}

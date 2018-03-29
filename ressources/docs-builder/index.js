@@ -3,16 +3,19 @@
 //--------------------------------------------------------
 'use strict';
 
+const babel         = require('babel-core');
 const ghpages       = require('gh-pages');
 const gulp          = require('gulp');
 const cssnano       = require('gulp-cssnano');
 const sass          = require('gulp-ruby-sass');
+const uglify        = require('gulp-uglify');
 const inquirer      = require('inquirer');
 const jsrender      = require('jsrender');
 const MarkdownIt    = require('markdown-it');
 const minimist      = require('minimist');
 const scandirectory = require('scandirectory');
 const fss           = require('@absolunet/fss');
+const include       = require('@absolunet/gulp-include');
 
 // Temp wrappers
 fss.ensureFile = require('fs-extra').ensureFileSync;
@@ -25,6 +28,7 @@ paths.ressources = `${paths.root}/ressources`;
 paths.builder    = `${paths.ressources}/docs-builder`;
 paths.out        = `${paths.root}/test/fixtures/docs/nwayo`;
 paths.static     = `${paths.out}/static`;
+paths.workflow   = `${paths.root}/workflow`;
 
 const ROOT = '/nwayo';
 
@@ -129,7 +133,7 @@ switch (task) {
 								'root':   ROOT,
 								'static': `${ROOT}/static`
 							},
-							version:   require(`${paths.root}/workflow/package`).version,  // eslint-disable-line global-require
+							version:   require(`${paths.workflow}/package`).version,  // eslint-disable-line global-require
 							year:      new Date().getFullYear(),
 							nav:       { _children:nav },
 
@@ -151,10 +155,43 @@ switch (task) {
 		// SCSS
 		sass(`${paths.builder}/styles/main.scss`, {
 			loadPath:      paths.builder,
-			cacheLocation: '/tmp'
+			cacheLocation: '/tmp',
+			require:       `${paths.workflow}/sass.rb`
 		})
 			.pipe(cssnano({ reduceIdents:false, zindex:false }))
 			.pipe(gulp.dest(`${paths.static}/styles`))
+		;
+
+		// JS
+		gulp.src(`${paths.builder}/scripts/main.js`)
+			.pipe(include({
+				basePath:      paths.builder,
+				autoExtension: true,
+				partialPrefix: true,
+				fileProcess:   (options) => {
+
+					return babel.transform(options.content, {
+						presets: [
+							[
+								require.resolve('babel-preset-env'), {
+									modules: false,
+									targets: { browsers: [
+										'> 1%',
+					      		'last 2 versions',
+					      		'not ie < 11'
+									]}
+								}
+							]
+						],
+						compact:       false,
+						highlightCode: false,
+						ast:           false,
+						retainLines:   true
+					}).code;
+				}
+			}))
+			.pipe(uglify({ output:{ comments:'some' } }))
+			.pipe(gulp.dest(`${paths.static}/scripts`))
 		;
 
 		break;

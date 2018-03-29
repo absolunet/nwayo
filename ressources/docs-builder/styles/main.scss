@@ -17,19 +17,8 @@
 @include foundation-global-styles();
 @include foundation-typography();
 
+//-- Prism
+@import 'bower_components/prism/themes/prism-tomorrow';
 
 //-- Go to town
-main {
-	max-width: 60em;
-	padding: 1em;
-	margin: 0 auto;
-}
-
-code[class] {
-	display: block;
-	padding: 1em;
-}
-
-nav .active {
-	font-weight: $nwayo-bold-weight;
-}
+@import 'styles/base';
