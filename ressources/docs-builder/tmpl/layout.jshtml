@@ -8,7 +8,7 @@
 	<meta http-equiv="cleartype" content="on">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="canonical" href="https://absolunet.github.io{{:canonical}}" />
+	<link rel="canonical" href="https://absolunet.github.io{{:path.canonical}}" />
 
 	<link rel="stylesheet" href="{{:path.static}}/styles/main.css">
 	<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,500,700|Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -18,21 +18,27 @@
 <body>
 
 	<header>
-		<a href="{{:path.root}}">nwayo</a> {{:version}}
-		<a href="https://github.com/absolunet/nwayo/">View on github</a>
+		<p class="nwayo"><a href="{{:path.root}}"><img src="{{:path.static}}/images/nwayo.svg" class="logo"> nwayo</a> <span class="version">{{:version}}</span></p>
+		<a href="{{:path.github}}" class="github">{{:images.github}} View on GitHub</a>
 	</header>
 
-	<nav>
-		{{include nav tmpl="nav" /}}
-	</nav>
+	<div class="container">
+		<nav>
+			{{include nav tmpl="nav" /}}
+		</nav>
 
-	<main>
-		{{:content}}
-	</main>
+		<main>
+			{{:content}}
+			<p class="edit-page"><a href="{{:path.source}}">Edit this page</a></p>
+		</main>
+	</div>
 
 	<footer>
-		<p><a href="https://github.com/absolunet/nwayo/blob/master/license">MIT</a> &copy; 2011-{{:year}} <a href="https://absolunet.com">Absolunet</a></p>
-		<a href="{{:source}}">[source]</a>
+			<a href="{{:path.github}}/blob/master/license">MIT</a> &copy; 2011-{{:year}}
+			<span class="made">
+				Made with <span class="adjective" data-component="adjective">&#x2764;</span> by
+				<a href="https://absolunet.com">{{:images.absolunet}} Absolunet</a>
+			</span>
 	</footer>
 
 	<script src="{{:path.static}}/scripts/main.js" defer></script>

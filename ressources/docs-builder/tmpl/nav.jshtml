@@ -1,8 +1,12 @@
 <ul>
 	{{props _children}}
 		<li>
-			<a href="{{>prop.url}}"{{if ~root.canonical.startsWith(prop.url) }} class="active"{{/if}}>{{>prop.title}}</a>
-
+			{{if prop.url === ~root.path.canonical}}
+				<span>{{>prop.title}}</span>
+			{{else}}
+				<a href="{{>prop.url}}" {{if ~root.path.canonical.startsWith(prop.url) }}class="active"{{/if}}>{{>prop.title}}</a>
+			{{/if}}
+			
 			{{if prop._children}}
 				{{include prop tmpl="nav" /}}
 			{{/if}}
