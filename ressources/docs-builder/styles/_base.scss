@@ -2,16 +2,171 @@
 //-- Docs - Base
 //-------------------------------------
 
-main {
-	max-width: 60em;
-	padding: 1em;
-	margin: 0 auto;
+html, body {
+	background-color: $docs-footer-bg-color;
 }
 
-code[class] {
+a {
+	transition: color, $docs-transition;
+}
+
+path {
+	transition: fill, $docs-transition;
+}
+
+code[class*='language-'] {
 	font-family: $docs-monospace-font !important;
 }
 
-nav .active {
-	font-weight: $nwayo-bold-weight;
+
+
+
+
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 1em 1em 1em 5em;
+	background-color: $docs-header-bg-color;
+
+	.nwayo {
+		display: inline;
+		margin: 0;
+		line-height: 1.3;
+
+		a {
+			color: $docs-header-name-color;
+			font-family: $docs-title-font;
+			font-size: $docs-header-name-size;
+			font-weight: $docs-title-weight;
+		}
+
+		.logo {
+			position: absolute;
+			top: .5em;
+			left: 1em;
+			width: 2.7em;
+			height: 2.1em;
+		}
+
+		.version {
+			position: relative;
+			top: -.1em;
+			padding: 0 0 0 .5em;
+			color: $docs-header-version-color;
+			font-family: $docs-monospace-font;
+			font-size: $docs-header-version-size;
+		}
+	}
+
+	.github {
+		position: relative;
+		float: right;
+		color: $vendor-github-color;
+
+		&:hover {
+			color: $vendor-github-alt-color;
+
+			.logo path {
+				fill: $vendor-github-alt-color;
+			}
+		}
+
+		.logo {
+			position: absolute;
+			top: 0;
+			left: -2em;
+			width: 1.5em;
+			height: 1.5em;
+
+			path {
+				fill: $vendor-github-color;
+			}
+		}
+	}
+}
+
+
+.container {
+	@include xy-grid();
+	margin: 3.5em 0 0;
+	background-color: $docs-main-bg-color;
+}
+
+nav {
+	@include xy-cell(1 of 4);
+	padding: 1em;
+	margin-left: 0;
+	background-color: $docs-nav-bg-color;
+
+	a {
+		color: $docs-nav-link-color;
+
+		&.active {
+			font-weight: $docs-nav-active-weight;
+		}
+	}
+
+	span {
+		color: $docs-nav-current-color;
+		font-weight: $docs-nav-active-weight;
+	}
+}
+
+main {
+	@include xy-cell(3 of 4);
+	max-width: 60em;
+	padding: 1em;
+	margin: 0 auto;
+
+	.edit-page {
+		&::before {
+			content: '[ ';
+		}
+
+		&::after {
+			content: ' ]';
+		}
+	}
+}
+
+footer {
+	padding: .5em 1em 1em;
+	color: $docs-footer-text-color;
+	text-align: center;
+
+	a {
+		color: $docs-footer-text-color;
+
+		&:hover {
+			color: $docs-footer-link-color;
+		}
+	}
+
+	.made {
+		&::before {
+			content: $nwayo-bull-char;
+			margin: 0 1em;
+		}
+
+		.adjective {
+			margin: 0 .2em;
+			color: $docs-footer-link-color;
+		}
+
+		.logo {
+			position: relative;
+			top: .4em;
+			display: inline-block;
+			width: 1.5em;
+			height: 1.5em;
+			margin: 0 .2em 0 .5em;
+			background-color: $docs-footer-text-color;
+
+			path {
+				fill: $docs-footer-link-color;
+			}
+		}
+	}
 }

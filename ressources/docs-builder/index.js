@@ -30,12 +30,9 @@ paths.out        = `${paths.root}/test/fixtures/docs/nwayo`;
 paths.static     = `${paths.out}/static`;
 paths.workflow   = `${paths.root}/workflow`;
 
-const ROOT = '/nwayo';
+const ROOT   = '/nwayo';
+const GITHUB = 'https://github.com/absolunet/nwayo';
 
-
-const getTmpl = (file) => {
-	return jsrender.templates(file, fss.readFile(`${paths.builder}/tmpl/${file}.jshtml`, 'utf8'));
-};
 
 const rename = (file) => {
 	return `${file.replace('readme.md', 'index.html').replace('.md', '.html')}`;
@@ -93,10 +90,19 @@ switch (task) {
 
 
 		//-- Templates
-		const tmpl = {
-			layout: getTmpl('layout'),
-			nav:    getTmpl('nav')
-		};
+		const tmpl = {};
+		fss.readdir(`${paths.builder}/tmpl`).forEach((filename) => {
+			const [file] = filename.split('.');
+			tmpl[file] = jsrender.templates(file, fss.readFile(`${paths.builder}/tmpl/${filename}`, 'utf8'));
+		});
+
+		//-- Images
+		const images = {};
+		fss.readdir(`${paths.builder}/images`).forEach((filename) => {
+			const [file] = filename.split('.');
+			images[file] = fss.readFile(`${paths.builder}/images/${filename}`, 'utf8');
+		});
+
 
 		//-- Pages
 		scandirectory(paths.docs, { readFiles:true }, (err, list, tree) => {
@@ -130,20 +136,24 @@ switch (task) {
 
 						fss.writeFile(outFile, tmpl.layout.render({
 							path: {
-								'root':   ROOT,
-								'static': `${ROOT}/static`
+								'root':      ROOT,
+								'static':    `${ROOT}/static`,
+								'canonical': canonical,
+								'github':    GITHUB,
+								'source':    `${GITHUB}/blob/master/docs/${file}`
 							},
-							version:   require(`${paths.workflow}/package`).version,  // eslint-disable-line global-require
-							year:      new Date().getFullYear(),
-							nav:       { _children:nav },
+							images:  images,
+							version: require(`${paths.workflow}/package`).version,  // eslint-disable-line global-require
+							year:    new Date().getFullYear(),
+							nav:     { _children:nav },
 
-							canonical: canonical,
-							title:     parseTitle(content),
-							content:   md.render(content),
-							source:    `https://github.com/absolunet/nwayo/blob/master/docs/${file}`
+							title:   parseTitle(content),
+							content: md.render(content)
 						}));
 					}
 				});
+			} else {
+				throw err;
 			}
 		});
 
@@ -175,11 +185,13 @@ switch (task) {
 							[
 								require.resolve('babel-preset-env'), {
 									modules: false,
-									targets: { browsers: [
-										'> 1%',
-					      		'last 2 versions',
-					      		'not ie < 11'
-									]}
+									targets: {
+										browsers: [
+											'> 1%',
+											'last 2 versions',
+											'not ie < 11'
+										]
+									}
 								}
 							]
 						],
