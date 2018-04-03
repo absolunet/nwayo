@@ -1,3 +1,3 @@
-# Scripts
+# Conventions
 
 > Being written

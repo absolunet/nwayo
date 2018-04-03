@@ -1,7 +1,7 @@
 # Requirements
-- [Node.js](//nodejs.org) ([Bower](//bower.io), [nwayo CLI](//www.npmjs.com/package/@absolunet/nwayo-cli))
-- [Ruby](//www.ruby-lang.org) ([Sass](http://sass-lang.com))
-- [GraphicsMagick](http://www.graphicsmagick.org) / [ImageMagick](//www.imagemagick.org)
+- [Node.js](https://nodejs.org) ([Bower](https://bower.io), [nwayo CLI](https://www.npmjs.com/package/@absolunet/nwayo-cli))
+- [Ruby](https://www.ruby-lang.org) ([Sass](http://sass-lang.com))
+- [GraphicsMagick](http://www.graphicsmagick.org) / [ImageMagick](https://www.imagemagick.org)
 
 ## Installation guides
 - [macOS](macos.md)

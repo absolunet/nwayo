@@ -1,3 +1,3 @@
-# Scripts
+# Icons
 
 > Being written

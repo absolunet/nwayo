@@ -39,7 +39,11 @@ const rename = (file) => {
 };
 
 const parseTitle = (str) => {
-	return str.split('\n').shift().match(/^# ([^[]+)/)[1];
+	return (str.split('\n').shift().match(/^# ([^[]+)/) || ['', 'Untitled'])[1];
+};
+
+const isBeingWritten = (str) => {
+	return (/> Being written/).test(str);
 };
 
 const processNav = (tree, path = ROOT) => {
@@ -50,23 +54,26 @@ const processNav = (tree, path = ROOT) => {
 		const content = tree[page];
 		const url     = `${path}/${name}`;
 
-		if (typeof content === 'string') {
-			if (page !== 'readme.md') {
+		if (!isBeingWritten(content) && !isBeingWritten(content['readme.md'])) {
+			if (typeof content === 'string') {
+				if (page !== 'readme.md') {
+					data[name] = {
+						url:   url,
+						title: parseTitle(content)
+					};
+				}
+			} else {
 				data[name] = {
 					url:   url,
-					title: parseTitle(content)
+					title: parseTitle(content['readme.md'])
 				};
-			}
-		} else {
-			data[name] = {
-				url:   url,
-				title: parseTitle(content['readme.md'])
-			};
 
-			if (Object.keys(content).length > 1) {
-				data[name]._children = processNav(content, url);
+				if (Object.keys(content).length > 1) {
+					data[name]._children = processNav(content, url);
+				}
 			}
 		}
+
 	});
 
 	return data;
@@ -108,11 +115,18 @@ switch (task) {
 		scandirectory(paths.docs, { readFiles:true }, (err, list, tree) => {
 			if (!err) {
 
+				const mainReadme = fss.readFile(`${paths.root}/readme.md`, 'utf8');
+				list['readme.md'] = mainReadme;
+				tree['readme.md'] = mainReadme;
+
 				//-- Build nav
 				const nav = processNav(tree);
 
 
 				//-- Convert md to html
+				const { version } = require(`${paths.workflow}/package`);  // eslint-disable-line global-require
+				const year        = new Date().getFullYear();
+
 				const md = new MarkdownIt();
 				md.normalizeLink = (link) => {
 					if (/^(http|\/)/.test(link)) {
@@ -121,16 +135,37 @@ switch (task) {
 
 					return link
 						.replace(/(.md)$/, '')
-						.replace('../../ressources/images/', `${ROOT}/static/images/`)
+						.replace(/^(\.\.\/\.\.\/ressources\/images)/, `${ROOT}/static/images/`)
 					;
 				};
 
 				Object.keys(list).forEach((file) => {
-					const content = list[file];
+					let content = list[file];
+					let title = '';
 
-					if (content !== 'dir') {
+					// Exceptions for main readme
+					if (file === 'readme.md') {
+						md.set({ html:true });
+						content = content
+							.replace(/\]\(docs\//g, `](${ROOT}/`)
+							.replace(/\]\(boilerplate\)/g, `](${GITHUB}/tree/master/boilerplate)`)
+							.replace(/https:\/\/github.com\/absolunet\/nwayo\/raw\/master\/ressources\/images\//g, `${ROOT}/static/images/`)
+							.replace(/nwayo\.png/g, `nwayo.svg`)
+							.replace(/\[\/\/\]: # \(Doc\)([\s\S]*?)\[\/\/\]: # \(\/Doc\)/g, '')
+						;
+
+						title = `nwayo ${version} - Documentation`;
+
+					} else {
+						md.set({ html:false });
+						title = `${parseTitle(content)} - nwayo`;
+					}
+
+
+
+					if (content !== 'dir' && !isBeingWritten(content)) {
 						const outFile   = `${paths.out}/${rename(file)}`;
-						const canonical = `${ROOT}/${rename(file).replace('/index.html', '').replace('.html', '')}`;
+						const canonical = `${ROOT}/${rename(file).replace('/index.html', '').replace('.html', '')}`.replace('/index', '');
 
 						fss.ensureFile(outFile);
 
@@ -143,11 +178,11 @@ switch (task) {
 								'source':    `${GITHUB}/blob/master/docs/${file}`
 							},
 							images:  images,
-							version: require(`${paths.workflow}/package`).version,  // eslint-disable-line global-require
-							year:    new Date().getFullYear(),
+							version: version,
+							year:    year,
 							nav:     { _children:nav },
 
-							title:   parseTitle(content),
+							title:   title,
 							content: md.render(content)
 						}));
 					}
@@ -161,6 +196,7 @@ switch (task) {
 		//-- Build static assets
 		fss.ensureDir(paths.static);
 		fss.copy(`${paths.ressources}/images`, `${paths.static}/images`);
+		fss.copy(`${paths.root}/test/fixtures/build/icons/site`, `${paths.static}/icons`);
 
 		// SCSS
 		sass(`${paths.builder}/styles/main.scss`, {
@@ -221,7 +257,7 @@ switch (task) {
 		]).then(({ message }) => {
 
 			ghpages.publish(paths.out, {
-				branch: 'gh-pages-test',
+				branch: 'gh-pages',
 				repo:   'git@github.com:absolunet/nwayo.git',
 				message: message
 			});

@@ -2,13 +2,13 @@
 <html lang="en-CA" class="no-js">
 <head>
 	<meta charset="utf-8">
-	<title>nwayo 3.4.2 - Documentation</title>
+	<title>Polices - nwayo</title>
 
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta http-equiv="cleartype" content="on">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="canonical" href="https://absolunet.github.io/nwayo" />
+	<link rel="canonical" href="https://absolunet.github.io/nwayo/styles/fonts" />
 
 	<link rel="shortcut icon"    href="/nwayo/static/icons/favicon.ico">
 	<link rel="apple-touch-icon" href="/nwayo/static/icons/touch-57.png">
@@ -104,7 +104,7 @@
 	
 		<li>
 			
-				<a href="/nwayo/styles" >Styles</a>
+				<a href="/nwayo/styles" class="active">Styles</a>
 			
 
 			
@@ -112,7 +112,7 @@
 	
 		<li>
 			
-				<a href="/nwayo/styles/fonts" >Polices</a>
+				<span>Polices</span>
 			
 
 			
@@ -144,76 +144,66 @@
 		</nav>
 
 		<main>
-			<p align="center">
-	<img src="/nwayo/static/images/nwayo.svg" width="250" height="250" alt="nwayo">
-</p>
-<h1 align="center"><strong>nwayo</strong></h1>
-<p align="center">/nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.</p>
-<p><a href="https://www.npmjs.com/package/@absolunet/nwayo-workflow"><img src="https://img.shields.io/npm/v/@absolunet/nwayo-workflow.svg" alt="NPM version"></a>
-<a href="https://travis-ci.org/absolunet/nwayo/builds"><img src="https://api.travis-ci.org/absolunet/nwayo.svg?branch=master" alt="Travis build"></a>
-<a href="https://david-dm.org/absolunet/nwayo"><img src="https://david-dm.org/absolunet/nwayo/status.svg" alt="Dependencies"></a>
-<a href="https://david-dm.org/absolunet/nwayo?type=dev"><img src="https://david-dm.org/absolunet/nwayo/dev-status.svg" alt="Dev dependencies"></a>
-<br></p>
-<h2>What is nwayo ?</h2>
+			<h1>Polices</h1>
+<p>Les polices sont situées sous le dossier <code>fonts</code>, sous la composante associée à la police en question.
+Il faut les 4 formats de police sous le dossier <code>fonts</code> avec le même nom de fichier:</p>
 <ul>
-<li>A completely hackable front end boilerplate</li>
-<li>A multi-theme, multi-site, multi-cms front end framework</li>
-<li>A back-end agnostic environment</li>
+<li><code>eot</code></li>
+<li><code>ttf</code></li>
+<li><code>woff</code></li>
+<li><code>woff2</code></li>
 </ul>
-<h2>Requirements (All latest) - <a href="/nwayo/requirements">Installation guide</a></h2>
-<ul>
-<li><a href="https://nodejs.org">Node.js</a> (<a href="https://bower.io">Bower</a>, <a href="https://www.npmjs.com/package/@absolunet/nwayo-cli">nwayo</a>)</li>
-<li><a href="https://www.ruby-lang.org">Ruby</a> (<a href="http://sass-lang.com">Sass</a>)</li>
-<li><a href="http://www.graphicsmagick.org">GraphicsMagick</a> / <a href="https://www.imagemagick.org">ImageMagick</a></li>
-</ul>
-<h2>Get started</h2>
-<ul>
-<li>Get the files under <a href="https://github.com/absolunet/nwayo/tree/master/boilerplate">boilerplate</a></li>
-<li>Replace <code>PROJECT_NAME</code> in <code>bower.json</code> and <code>package.json</code> with your project's name</li>
-<li>Rename <code>PROJECT_NAME.sublime-project</code> with your project's name</li>
-</ul>
-<p>Run in nwayo root folder</p>
-<pre><code class="language-shell">npm install
-bower install
-nwayo rebuild
+<h2>Mixin</h2>
+<p>Le mixin utilisé pour générer le <code>@font-face</code>au niveau du css.</p>
+<pre><code class="language-scss">//-- Font-face
+@mixin load-font-mixin ($name, $filename, $context, $weight:normal, $style:normal) {
+	$url:   assets-path($filename, $context, 'fonts');
+	$woff2: if(fileexists('components/' + $context + '/assets/fonts/' + $filename + '.woff2'), url($url + '.woff2') format('woff2') + ',', '');
+	@font-face {
+		font-family: $name;
+		font-weight: $weight;
+		font-style: $style;
+		src: #{$woff2} url($url + '.woff');
+	}
+}
 </code></pre>
-<h2>Tools   <img src="/nwayo/static/images/vendors.png" width="600" height="30" alt="nwayo vendors"></h2>
-<p><code>nwayo</code> is HTML5-ready and uses <a href="http://gulpjs.com">gulp</a> as a build system</p>
 <ul>
-<li>Based (but not mandatory) on <a href="https://foundation.zurb.com">Zurb Foundation</a></li>
-<li>Uses <a href="https://bower.io">Bower</a> as dependencies manager and <a href="http://editorconfig.org">EditorConfig</a> for consistency</li>
+<li><code>$name</code> = Le nom de la police utilisé pour la <code>font-family</code> dans le css.</li>
+<li><code>$filename</code> = Le nom du fichier de la police.</li>
+<li><code>$context</code> = Le contexte dans lequel se situe la police.</li>
+<li><code>$weight</code> = Le poids de la police. <code>normal</code> est mis par défaut.</li>
+<li><code>$style</code> = Le style de la police. <code>normal</code> est mis par défaut.</li>
 </ul>
-<h4>Styling</h4>
-<ul>
-<li>CSS3-ready via <a href="https://github.com/postcss/autoprefixer">Autoprefixer</a> and linted via <a href="https://stylelint.io/">stylelint</a></li>
-<li>Comes with <a href="http://sass-lang.com">Sass</a></li>
-<li>Minifies with <a href="http://cssnano.co">cssnano</a></li>
-</ul>
-<h4>Scripting</h4>
-<ul>
-<li>ES2018-ready via <a href="https://babeljs.io">Babel</a> and linted via <a href="http://eslint.org">ESLint</a></li>
-<li>Comes with <a href="https://jquery.com">jQuery</a>, <a href="https://modernizr.com">Modernizr</a>, <a href="https://lodash.com">lodash</a>, <a href="https://github.com/mroderick/PubSubJS">PubSubJs</a>, <a href="https://www.jsviews.com">JsRender</a>, <a href="http://absolunet.github.io/kafe">kafe</a></li>
-<li>Builds with <a href="https://www.npmjs.com/package/@absolunet/gulp-include">gulp-include</a> and is minified with <a href="http://lisperator.net/uglifyjs">UglifyJS</a></li>
-</ul>
-<h4>Other</h4>
-<ul>
-<li>Optimizes images via <a href="https://www.lcdf.org/gifsicle">gifsicle</a>, <a href="http://libjpeg-turbo.virtualgl.org">jpegtran</a>, <a href="http://optipng.sourceforge.net">optipng</a>, <a href="https://github.com/svg/svgo">svgo</a></li>
-<li>Generates iconography via <a href="http://www.graphicsmagick.org">GraphicsMagick</a>, <a href="https://www.imagemagick.org">ImageMagick</a></li>
-<li>Optimized for <a href="https://www.sublimetext.com">Sublime Text 3</a> with <a href="http://www.sublimelinter.com">SublimeLinter 3</a></li>
-</ul>
-<h2>Tried and tested</h2>
-<ul>
-<li>Currently deployed on 200+ sites</li>
-<li>Front end to <a href="https://www.drupal.org">Drupal</a>, <a href="https://wordpress.org">Wordpress</a>, <a href="https://symfony.com">Symfony</a>, <a href="https://magento.com">Magento 1 &amp; 2</a>, <a href="https://www.sitecore.net">Sitecore</a>, <a href="http://www.insitesoft.com">Insite</a> environments</li>
-</ul>
-<h2>Components</h2>
-<p>Multiple component boilerplates <a href="https://github.com/absolunet/nwayo-components">available</a></p>
-<h2>Release history</h2>
-<p>See the <a href="https://github.com/absolunet/nwayo/releases">releases</a>.</p>
-<h2>Contributing</h2>
-<p><a href="https://github.com/absolunet/nwayo/issues">Issues</a> | <a href="https://github.com/absolunet/nwayo/pulls">Pull requests</a></p>
+<h2>Comment utiliser</h2>
+<p>Pour générer le bon code, vous devez au moins fournir <code>$name</code>, <code>$filename</code> et <code>$context</code>.</p>
+<pre><code class="language-scss">//-- Ligne de code appelé pour générer la font-family
+@include load-font-mixin('roboto', 'roboto-light-webfont', 'common', $weight:$light-weight);
 
-			<p class="edit-page"><a href="https://github.com/absolunet/nwayo/blob/master/docs/readme.md">Edit this page</a></p>
+//-- Utilisation au niveau d'une variable
+$text-font: 'Open Sans', sans-serif;
+</code></pre>
+<h2>Gestion de font-weight</h2>
+<p>Il est préférable d'avoir une police pour chacune des graisses utilisées dans la composante et d'utiliser le même <code>$name</code>pour chacun d'eux. Il est ainsi plus facile de gérer la graisse de manière globale.</p>
+<pre><code class="language-scss">//-- Chargement des différentes graisses
+@include load-font-mixin('roboto', 'roboto-light-webfont', 'common', $light-weight);
+@include load-font-mixin('roboto', 'roboto-regular-webfont', 'common', $normal-weight);
+@include load-font-mixin('roboto', 'roboto-bold-webfont', 'common', $bold-weight);
+@include load-font-mixin('roboto', 'roboto-black-webfont', 'common', $black-weight);
+
+//-- Appel dans le css
+$text-font: 'roboto', sans-serif;
+
+body {
+	font-family: $text-font;
+	font-weight: $light-weight;
+}
+
+h1 {
+	font-weight: $black-weight;
+}
+</code></pre>
+
+			<p class="edit-page"><a href="https://github.com/absolunet/nwayo/blob/master/docs/styles/fonts.md">Edit this page</a></p>
 		</main>
 	</div>
 
