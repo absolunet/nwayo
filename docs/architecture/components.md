@@ -1,3 +1,3 @@
-# Scripts
+# Components
 
 > Being written

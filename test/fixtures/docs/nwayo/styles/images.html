@@ -2,13 +2,13 @@
 <html lang="en-CA" class="no-js">
 <head>
 	<meta charset="utf-8">
-	<title>nwayo 3.4.2 - Documentation</title>
+	<title>Images - nwayo</title>
 
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta http-equiv="cleartype" content="on">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="canonical" href="https://absolunet.github.io/nwayo" />
+	<link rel="canonical" href="https://absolunet.github.io/nwayo/styles/images" />
 
 	<link rel="shortcut icon"    href="/nwayo/static/icons/favicon.ico">
 	<link rel="apple-touch-icon" href="/nwayo/static/icons/touch-57.png">
@@ -104,7 +104,7 @@
 	
 		<li>
 			
-				<a href="/nwayo/styles" >Styles</a>
+				<a href="/nwayo/styles" class="active">Styles</a>
 			
 
 			
@@ -120,7 +120,7 @@
 	
 		<li>
 			
-				<a href="/nwayo/styles/images" >Images</a>
+				<span>Images</span>
 			
 
 			
@@ -144,76 +144,71 @@
 		</nav>
 
 		<main>
-			<p align="center">
-	<img src="/nwayo/static/images/nwayo.svg" width="250" height="250" alt="nwayo">
-</p>
-<h1 align="center"><strong>nwayo</strong></h1>
-<p align="center">/nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.</p>
-<p><a href="https://www.npmjs.com/package/@absolunet/nwayo-workflow"><img src="https://img.shields.io/npm/v/@absolunet/nwayo-workflow.svg" alt="NPM version"></a>
-<a href="https://travis-ci.org/absolunet/nwayo/builds"><img src="https://api.travis-ci.org/absolunet/nwayo.svg?branch=master" alt="Travis build"></a>
-<a href="https://david-dm.org/absolunet/nwayo"><img src="https://david-dm.org/absolunet/nwayo/status.svg" alt="Dependencies"></a>
-<a href="https://david-dm.org/absolunet/nwayo?type=dev"><img src="https://david-dm.org/absolunet/nwayo/dev-status.svg" alt="Dev dependencies"></a>
-<br></p>
-<h2>What is nwayo ?</h2>
-<ul>
-<li>A completely hackable front end boilerplate</li>
-<li>A multi-theme, multi-site, multi-cms front end framework</li>
-<li>A back-end agnostic environment</li>
-</ul>
-<h2>Requirements (All latest) - <a href="/nwayo/requirements">Installation guide</a></h2>
-<ul>
-<li><a href="https://nodejs.org">Node.js</a> (<a href="https://bower.io">Bower</a>, <a href="https://www.npmjs.com/package/@absolunet/nwayo-cli">nwayo</a>)</li>
-<li><a href="https://www.ruby-lang.org">Ruby</a> (<a href="http://sass-lang.com">Sass</a>)</li>
-<li><a href="http://www.graphicsmagick.org">GraphicsMagick</a> / <a href="https://www.imagemagick.org">ImageMagick</a></li>
-</ul>
-<h2>Get started</h2>
-<ul>
-<li>Get the files under <a href="https://github.com/absolunet/nwayo/tree/master/boilerplate">boilerplate</a></li>
-<li>Replace <code>PROJECT_NAME</code> in <code>bower.json</code> and <code>package.json</code> with your project's name</li>
-<li>Rename <code>PROJECT_NAME.sublime-project</code> with your project's name</li>
-</ul>
-<p>Run in nwayo root folder</p>
-<pre><code class="language-shell">npm install
-bower install
-nwayo rebuild
-</code></pre>
-<h2>Tools   <img src="/nwayo/static/images/vendors.png" width="600" height="30" alt="nwayo vendors"></h2>
-<p><code>nwayo</code> is HTML5-ready and uses <a href="http://gulpjs.com">gulp</a> as a build system</p>
-<ul>
-<li>Based (but not mandatory) on <a href="https://foundation.zurb.com">Zurb Foundation</a></li>
-<li>Uses <a href="https://bower.io">Bower</a> as dependencies manager and <a href="http://editorconfig.org">EditorConfig</a> for consistency</li>
-</ul>
-<h4>Styling</h4>
-<ul>
-<li>CSS3-ready via <a href="https://github.com/postcss/autoprefixer">Autoprefixer</a> and linted via <a href="https://stylelint.io/">stylelint</a></li>
-<li>Comes with <a href="http://sass-lang.com">Sass</a></li>
-<li>Minifies with <a href="http://cssnano.co">cssnano</a></li>
-</ul>
-<h4>Scripting</h4>
-<ul>
-<li>ES2018-ready via <a href="https://babeljs.io">Babel</a> and linted via <a href="http://eslint.org">ESLint</a></li>
-<li>Comes with <a href="https://jquery.com">jQuery</a>, <a href="https://modernizr.com">Modernizr</a>, <a href="https://lodash.com">lodash</a>, <a href="https://github.com/mroderick/PubSubJS">PubSubJs</a>, <a href="https://www.jsviews.com">JsRender</a>, <a href="http://absolunet.github.io/kafe">kafe</a></li>
-<li>Builds with <a href="https://www.npmjs.com/package/@absolunet/gulp-include">gulp-include</a> and is minified with <a href="http://lisperator.net/uglifyjs">UglifyJS</a></li>
-</ul>
-<h4>Other</h4>
-<ul>
-<li>Optimizes images via <a href="https://www.lcdf.org/gifsicle">gifsicle</a>, <a href="http://libjpeg-turbo.virtualgl.org">jpegtran</a>, <a href="http://optipng.sourceforge.net">optipng</a>, <a href="https://github.com/svg/svgo">svgo</a></li>
-<li>Generates iconography via <a href="http://www.graphicsmagick.org">GraphicsMagick</a>, <a href="https://www.imagemagick.org">ImageMagick</a></li>
-<li>Optimized for <a href="https://www.sublimetext.com">Sublime Text 3</a> with <a href="http://www.sublimelinter.com">SublimeLinter 3</a></li>
-</ul>
-<h2>Tried and tested</h2>
-<ul>
-<li>Currently deployed on 200+ sites</li>
-<li>Front end to <a href="https://www.drupal.org">Drupal</a>, <a href="https://wordpress.org">Wordpress</a>, <a href="https://symfony.com">Symfony</a>, <a href="https://magento.com">Magento 1 &amp; 2</a>, <a href="https://www.sitecore.net">Sitecore</a>, <a href="http://www.insitesoft.com">Insite</a> environments</li>
-</ul>
-<h2>Components</h2>
-<p>Multiple component boilerplates <a href="https://github.com/absolunet/nwayo-components">available</a></p>
-<h2>Release history</h2>
-<p>See the <a href="https://github.com/absolunet/nwayo/releases">releases</a>.</p>
-<h2>Contributing</h2>
-<p><a href="https://github.com/absolunet/nwayo/issues">Issues</a> | <a href="https://github.com/absolunet/nwayo/pulls">Pull requests</a></p>
+			<h1>Images</h1>
+<p>Les images sont situées sous le dossier <code>images</code>, sous la composante associée à l'image en question.</p>
+<h2>Mixin</h2>
+<p>Le mixin utilisé pour générer les images au niveau du css. Il sera ensuite possible de les inclure par <code>@include</code> sous le sélecteur voulu.
+<strong>Note:</strong> Le fonctionnement des images <code>inline</code> et <code>Scalable</code> seront traitées dans la section <a href="inline-image">inline-image</a></p>
+<h2>Fonctionnement</h2>
+<pre><code class="language-scss">//-- Background image
+@mixin bg-image-mixin ($file, $context, $inline:false, $width:false, $height:false, $color:false) {
+	
+	// uri
+	$uri: '';
+	@if $inline {
+		// Portion détaillé dans la section inline-image
+	} @else {
+		$uri: url(assets-path($file, $context, 'images'));
+	}
+	
+	// high density
+	@if str-index($file, '@2x') {
+		$path: 'components/' + $context + '/assets/' + if($inline, 'inline-', '') + 'images/' + $file;
+		$width:  if($width, $width, image-width($path));
+		$height: if($height, $height, image-height($path));
 
-			<p class="edit-page"><a href="https://github.com/absolunet/nwayo/blob/master/docs/readme.md">Edit this page</a></p>
+		@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
+			background-image: $uri;
+			background-size: $width / 2 $height / 2;
+		}
+
+		$uri: str-replace($uri, '@2x', '');
+	}
+
+	background-image: #{$uri};
+}
+</code></pre>
+<ul>
+<li><code>$file</code> = Le nom du fichier image.</li>
+<li><code>$context</code> = Le contexte dans lequel se situe l'image.</li>
+<li><code>$inline</code> = Si l'image est inline ou non.</li>
+<li><code>$width</code> = Assigner la largeur d'une image @2x.</li>
+<li><code>$height</code> = Assigner la hauteur d'une image @2x.</li>
+<li><code>$color</code> = La couleur utilisée pour les svg. Voir la section <a href="inline-image">inline-image</a> pour plus de détails.</li>
+</ul>
+<h2>Comment utiliser</h2>
+<p>Pour générer le bon code, vous devez au moins fournir <code>$file</code> et <code>$context</code>.</p>
+<pre><code class="language-scss">// Normal
+@mixin misc1-image { @include bg-image-mixin('misc1.png', 'common'); }
+@mixin logo1-image { @include bg-image-mixin('logo1.png', 'foobar'); }
+
+// High-density
+@mixin misc2-image { @include bg-image-mixin('misc@2x.png', 'common'); }
+
+// Inline
+@mixin misc3-image { @include bg-image-mixin('misc3.png', 'common', $inline:true); }
+@mixin icon3-image { @include bg-image-mixin('icon3.png', 'foobar', $inline:true); }
+
+// Scalable
+@mixin icon4-image { @include scalable-icon-mixin('icon4.svg', 'foobar'); }
+
+//-- Appel dans le css
+.logo {
+	@include logo1-image;
+}
+</code></pre>
+
+			<p class="edit-page"><a href="https://github.com/absolunet/nwayo/blob/master/docs/styles/images.md">Edit this page</a></p>
 		</main>
 	</div>
 

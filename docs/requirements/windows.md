@@ -1,4 +1,4 @@
-# Requirements installation under Windows
+# Installation under Windows
 In a command prompt **AS AN ADMINISTRATOR** run these
 
 ## [Chocolatey](https://chocolatey.org/)

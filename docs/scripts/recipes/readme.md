@@ -1,1 +1,3 @@
-# Recettes
+# Recipes
+
+> Being written

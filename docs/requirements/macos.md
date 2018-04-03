@@ -1,4 +1,4 @@
-# Requirements installation under macOS
+# Installation under macOS
 In a terminal run these
 
 ## [Xcode](https://developer.apple.com/xcode/)

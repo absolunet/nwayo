@@ -2,13 +2,38 @@
 <html lang="en-CA" class="no-js">
 <head>
 	<meta charset="utf-8">
-	<title>{{:title}} - nwayo 🌰</title>
+	<title>{{:title}}</title>
 
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta http-equiv="cleartype" content="on">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link rel="canonical" href="https://absolunet.github.io{{:path.canonical}}" />
+
+	<link rel="shortcut icon"    href="{{:path.static}}/icons/favicon.ico">
+	<link rel="apple-touch-icon" href="{{:path.static}}/icons/touch-57.png">
+	<link rel="apple-touch-icon" href="{{:path.static}}/icons/touch-72.png"  sizes="72x72">
+	<link rel="apple-touch-icon" href="{{:path.static}}/icons/touch-76.png"  sizes="76x76">
+	<link rel="apple-touch-icon" href="{{:path.static}}/icons/touch-114.png" sizes="114x114">
+	<link rel="apple-touch-icon" href="{{:path.static}}/icons/touch-120.png" sizes="120x120">
+	<link rel="apple-touch-icon" href="{{:path.static}}/icons/touch-144.png" sizes="144x144">
+	<link rel="apple-touch-icon" href="{{:path.static}}/icons/touch-152.png" sizes="152x152">
+	<link rel="apple-touch-icon" href="{{:path.static}}/icons/touch-167.png" sizes="167x167">
+	<link rel="apple-touch-icon" href="{{:path.static}}/icons/touch-180.png" sizes="180x180">
+	<link rel="image_src"        href="{{:path.static}}/icons/touch-512.png">
+	<link rel="icon"             href="{{:path.static}}/icons/icon-64.png"  sizes="64x64">
+	<link rel="icon"             href="{{:path.static}}/icons/icon-96.png"  sizes="96x96">
+	<link rel="icon"             href="{{:path.static}}/icons/icon-192.png" sizes="192x192">
+	<link rel="icon"             href="{{:path.static}}/icons/icon-195.png" sizes="195x195">
+	<link rel="icon"             href="{{:path.static}}/icons/icon-196.png" sizes="196x196">
+	<link rel="icon"             href="{{:path.static}}/icons/icon-228.png" sizes="228x228">
+
+	<meta name="application-name"                content="nwayo">
+	<meta name="msapplication-TileColor"         content="#659d32">
+	<meta name="msapplication-square70x70logo"   content="{{:path.static}}/icons/tile-small.png">
+	<meta name="msapplication-square150x150logo" content="{{:path.static}}/icons/tile-medium.png">
+	<meta name="msapplication-wide310x150logo"   content="{{:path.static}}/icons/tile-wide.png">
+	<meta name="msapplication-square310x310logo" content="{{:path.static}}/icons/tile-large.png">
 
 	<link rel="stylesheet" href="{{:path.static}}/styles/main.css">
 	<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,500,700|Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">

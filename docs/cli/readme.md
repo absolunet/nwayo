@@ -1,4 +1,6 @@
-# CLI  [![NPM version](https://img.shields.io/npm/v/@absolunet/nwayo-cli.svg)](https://www.npmjs.com/package/@absolunet/nwayo-cli)
+# CLI
+[View on npm](https://www.npmjs.com/package/@absolunet/nwayo-cli)
+
 The nwayo CLI is essentially a [gulp CLI](https://www.npmjs.com/package/gulp-cli) wrapper with additional commands.
 
 
@@ -18,7 +20,7 @@ $ nwayo install workflow
 
 ### Then you can run any `nwayo` command
 ```shell
-$ nwayo ...
+$ nwayo [...]
 ```
 
 
@@ -149,8 +151,6 @@ $ nwayo doctor
 
   Synchronization diagnosis
     ✓  You are cutting edge   (^_^)
-
-
 ```
 
 ## \<bundle\> param
@@ -186,7 +186,7 @@ $ nwayo --version
 Outputs nwayo CLI's manual
 
 **Example:**
-```
+```shell
 $ nwayo --help
 
   🌰  /nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.
