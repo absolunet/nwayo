@@ -14,10 +14,25 @@ path {
 	transition: fill, $docs-transition;
 }
 
-code[class*='language-'] {
-	font-family: $docs-monospace-font !important;
+pre[class*='language-'] {
+	border-radius: .2em;
 }
 
+code[class*='language-'] {
+	font-family: $docs-monospace-font !important;
+	font-size: $docs-code-size;
+}
+
+code:not([class]) {
+	padding: .2em .5em;
+	border-radius: .2em;
+	margin: 0 .2em;
+	font-size: $docs-code-size;
+}
+
+h2, h3, h4, h5, h6 {
+	margin-top: 1.5em;
+}
 
 
 
@@ -100,6 +115,10 @@ nav {
 	margin-left: 0;
 	background-color: $docs-nav-bg-color;
 
+	ul {
+		list-style: none;
+	}
+
 	a {
 		color: $docs-nav-link-color;
 
@@ -112,15 +131,22 @@ nav {
 		color: $docs-nav-current-color;
 		font-weight: $docs-nav-active-weight;
 	}
+
+	> ul {
+		margin: 0;
+	}
 }
 
 main {
 	@include xy-cell(3 of 4);
 	max-width: 60em;
-	padding: 1em;
+	padding: 3em 1em 1em;
 	margin: 0 auto;
 
 	.edit-page {
+		float: right;
+		margin: 3em 0 0;
+
 		&::before {
 			content: '[ ';
 		}
