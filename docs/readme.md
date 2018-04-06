@@ -1,5 +1,7 @@
 # nwayo
-- [Installation](install)
+
+- [Requirements](requirements)
+- [CLI](cli)
 - [Architecture](architecture)
 - [Assets](assets)
 - [Scripts](scripts)

@@ -17,10 +17,10 @@
 
 
 
-## Requirements (All latest) - [Installation guide](docs/install)
-- [Node.js](//nodejs.org) ([Bower](//bower.io), [nwayo](//www.npmjs.com/package/@absolunet/nwayo-cli))
-- [Ruby](//www.ruby-lang.org) ([Sass](http://sass-lang.com))
-- [GraphicsMagick](http://www.graphicsmagick.org) / [ImageMagick](//www.imagemagick.org)
+## Requirements (All latest) - [Installation guide](docs/requirements)
+- [Node.js](https://nodejs.org) ([Bower](https://bower.io), [nwayo](https://www.npmjs.com/package/@absolunet/nwayo-cli))
+- [Ruby](https://www.ruby-lang.org) ([Sass](http://sass-lang.com))
+- [GraphicsMagick](http://www.graphicsmagick.org) / [ImageMagick](https://www.imagemagick.org)
 
 
 
@@ -40,43 +40,50 @@ nwayo rebuild
 ## Tools &nbsp; <img src="https://github.com/absolunet/nwayo/raw/master/ressources/images/vendors.png" width="600" height="30" alt="nwayo vendors">
 `nwayo` is HTML5-ready and uses [gulp](http://gulpjs.com) as a build system
 
-- Based (but not mandatory) on [Zurb Foundation](//foundation.zurb.com)
-- Uses [Bower](//bower.io) as dependencies manager and [EditorConfig](http://editorconfig.org) for consistency
+- Based (but not mandatory) on [Zurb Foundation](https://foundation.zurb.com)
+- Uses [Bower](https://bower.io) as dependencies manager and [EditorConfig](http://editorconfig.org) for consistency
 
 #### Styling
-- CSS3-ready via [Autoprefixer](//github.com/postcss/autoprefixer) and linted via [stylelint](//stylelint.io/)
+- CSS3-ready via [Autoprefixer](https://github.com/postcss/autoprefixer) and linted via [stylelint](https://stylelint.io/)
 - Comes with [Sass](http://sass-lang.com)
 - Minifies with [cssnano](http://cssnano.co)
 
 #### Scripting
-- ES2018-ready via [Babel](//babeljs.io) and linted via [ESLint](http://eslint.org)
-- Comes with [jQuery](//jquery.com), [Modernizr](//modernizr.com), [lodash](//lodash.com), [PubSubJs](//github.com/mroderick/PubSubJS), [JsRender](//www.jsviews.com), [kafe](http://absolunet.github.io/kafe)
-- Builds with [gulp-include](//www.npmjs.com/package/@absolunet/gulp-include) and is minified with [UglifyJS](http://lisperator.net/uglifyjs)
+- ES2018-ready via [Babel](https://babeljs.io) and linted via [ESLint](http://eslint.org)
+- Comes with [jQuery](https://jquery.com), [Modernizr](https://modernizr.com), [lodash](https://lodash.com), [PubSubJs](https://github.com/mroderick/PubSubJS), [JsRender](https://www.jsviews.com), [kafe](http://absolunet.github.io/kafe)
+- Builds with [gulp-include](https://www.npmjs.com/package/@absolunet/gulp-include) and is minified with [UglifyJS](http://lisperator.net/uglifyjs)
 
 #### Other
-- Optimizes images via [gifsicle](//www.lcdf.org/gifsicle), [jpegtran](http://libjpeg-turbo.virtualgl.org), [optipng](http://optipng.sourceforge.net), [svgo](//github.com/svg/svgo)
-- Generates iconography via [GraphicsMagick](http://www.graphicsmagick.org), [ImageMagick](//www.imagemagick.org)
-- Optimized for [Atom](//atom.io) with [AtomLinter](//atomlinter.github.io)
+- Optimizes images via [gifsicle](https://www.lcdf.org/gifsicle), [jpegtran](http://libjpeg-turbo.virtualgl.org), [optipng](http://optipng.sourceforge.net), [svgo](https://github.com/svg/svgo)
+- Generates iconography via [GraphicsMagick](http://www.graphicsmagick.org), [ImageMagick](https://www.imagemagick.org)
+- Optimized for [Atom](https://atom.io) with [AtomLinter](https://atomlinter.github.io)
 
 
 
 ## Tried and tested
  - Currently deployed on 200+ sites
- - Front end to [Drupal](//www.drupal.org), [Wordpress](//wordpress.org), [Symfony](//symfony.com), [Magento 1 & 2](//magento.com), [Sitecore](//www.sitecore.net), [Insite](http://www.insitesoft.com), [Shopify](//www.shopify.ca) environments
+ - Front end to [Drupal](https://www.drupal.org), [Wordpress](https://wordpress.org), [Symfony](https://symfony.com), [Magento 1 & 2](https://magento.com), [Sitecore](https://www.sitecore.net), [Insite](http://www.insitesoft.com), [Shopify](https://www.shopify.ca) environments
 
 ## Components
-Multiple component boilerplates [available](//github.com/absolunet/nwayo-components)
+Multiple component boilerplates [available](https://github.com/absolunet/nwayo-components)
+
+[//]: # (Doc)
 
 ## Documentation
-*Coming soon...*
+- [Full documentation](https://absolunet.github.io/nwayo) ([source](docs))  &nbsp; &nbsp; _[in progress...]_
+- [CodePen examples](https://codepen.io/collection/XJWozK/)
 
-Consult [this folder](docs) in the meantime
+[//]: # (/Doc)
 
 ## Release history
-See the [releases](//github.com/absolunet/nwayo/releases).
+See the [releases](https://github.com/absolunet/nwayo/releases).
 
 ## Contributing
-[Issues](//github.com/absolunet/nwayo/issues) | [Pull requests](//github.com/absolunet/nwayo/pulls)
+[Issues](https://github.com/absolunet/nwayo/issues) | [Pull requests](https://github.com/absolunet/nwayo/pulls)
+
+[//]: # (Doc)
 
 ## License
 MIT © [Absolunet](https://absolunet.com)
+
+[//]: # (/Doc)
