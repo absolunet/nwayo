@@ -1,1 +1,3 @@
-# Architecture globale
+# Global architecture
+
+> Being written
