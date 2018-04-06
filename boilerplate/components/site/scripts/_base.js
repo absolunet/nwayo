@@ -38,7 +38,7 @@
 	//-- Subscribe to topics
 	local.subscribe = () => {
 
-		// PubSub.subscribe('foo.bar',  () => {});
+		// pinki.subscribe('foo.bar',  () => {});
 
 	};
 
@@ -68,14 +68,14 @@
 	local.subscribe();
 
 	// DOM Ready
-	$.when(DOM_PARSE).then(() => {
+	pinki.vow.when(DOM_PARSED).then(() => {
 		local.cacheDOM();
 		local.bind();
 		local.start();
 	});
 
 	// Document loaded
-	$.when(DOCUMENT_LOAD).then(() => {
+	pinki.vow.when(DOCUMENT_LOADED).then(() => {
 		local.delayedStart();
 	});
 

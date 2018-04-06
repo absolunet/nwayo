@@ -21,6 +21,7 @@ scripts:
   allowBabel:
     - bower_components/foundation-sites
     - bower_components/nwayo-toolbox
+    - bower_components/pinki/index.js
 
 
 

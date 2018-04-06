@@ -50,7 +50,7 @@ nwayo rebuild
 
 #### Scripting
 - ES2018-ready via [Babel](https://babeljs.io) and linted via [ESLint](http://eslint.org)
-- Comes with [jQuery](https://jquery.com), [Modernizr](https://modernizr.com), [lodash](https://lodash.com), [PubSubJs](https://github.com/mroderick/PubSubJS), [JsRender](https://www.jsviews.com), [kafe](http://absolunet.github.io/kafe)
+- Comes with [jQuery](https://jquery.com), [Modernizr](https://modernizr.com), [lodash](https://lodash.com), [pinki](https://github.com/absolunet/pinki), [JsRender](https://www.jsviews.com), [kafe](http://absolunet.github.io/kafe)
 - Builds with [gulp-include](https://www.npmjs.com/package/@absolunet/gulp-include) and is minified with [UglifyJS](http://lisperator.net/uglifyjs)
 
 #### Other

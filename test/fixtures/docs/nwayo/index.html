@@ -2,7 +2,7 @@
 <html lang="en-CA" class="no-js">
 <head>
 	<meta charset="utf-8">
-	<title>nwayo 3.4.2 - Documentation</title>
+	<title>nwayo 3.5.0-beta.4 - Documentation</title>
 
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta http-equiv="cleartype" content="on">
@@ -43,7 +43,7 @@
 <body>
 
 	<header>
-		<p class="nwayo"><a href="/nwayo"><img src="/nwayo/static/images/nwayo.svg" class="logo"> nwayo</a> <span class="version">3.4.2</span></p>
+		<p class="nwayo"><a href="/nwayo"><img src="/nwayo/static/images/nwayo.svg" class="logo"> nwayo</a> <span class="version">3.5.0-beta.4</span></p>
 		<a href="https://github.com/absolunet/nwayo" class="github"><svg class="logo" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
  View on GitHub</a>
 	</header>
@@ -170,11 +170,10 @@
 <ul>
 <li>Get the files under <a href="https://github.com/absolunet/nwayo/tree/master/boilerplate">boilerplate</a></li>
 <li>Replace <code>PROJECT_NAME</code> in <code>bower.json</code> and <code>package.json</code> with your project's name</li>
-<li>Rename <code>PROJECT_NAME.sublime-project</code> with your project's name</li>
 </ul>
 <p>Run in nwayo root folder</p>
-<pre><code class="language-shell">npm install
-bower install
+<pre><code class="language-shell">nwayo install vendors
+nwayo install workflow
 nwayo rebuild
 </code></pre>
 <h2>Tools   <img src="/nwayo/static/images/vendors.png" width="600" height="30" alt="nwayo vendors"></h2>
@@ -192,19 +191,19 @@ nwayo rebuild
 <h4>Scripting</h4>
 <ul>
 <li>ES2018-ready via <a href="https://babeljs.io">Babel</a> and linted via <a href="http://eslint.org">ESLint</a></li>
-<li>Comes with <a href="https://jquery.com">jQuery</a>, <a href="https://modernizr.com">Modernizr</a>, <a href="https://lodash.com">lodash</a>, <a href="https://github.com/mroderick/PubSubJS">PubSubJs</a>, <a href="https://www.jsviews.com">JsRender</a>, <a href="http://absolunet.github.io/kafe">kafe</a></li>
+<li>Comes with <a href="https://jquery.com">jQuery</a>, <a href="https://modernizr.com">Modernizr</a>, <a href="https://lodash.com">lodash</a>, <a href="https://github.com/absolunet/pinki">pinki</a>, <a href="https://www.jsviews.com">JsRender</a>, <a href="http://absolunet.github.io/kafe">kafe</a></li>
 <li>Builds with <a href="https://www.npmjs.com/package/@absolunet/gulp-include">gulp-include</a> and is minified with <a href="http://lisperator.net/uglifyjs">UglifyJS</a></li>
 </ul>
 <h4>Other</h4>
 <ul>
 <li>Optimizes images via <a href="https://www.lcdf.org/gifsicle">gifsicle</a>, <a href="http://libjpeg-turbo.virtualgl.org">jpegtran</a>, <a href="http://optipng.sourceforge.net">optipng</a>, <a href="https://github.com/svg/svgo">svgo</a></li>
 <li>Generates iconography via <a href="http://www.graphicsmagick.org">GraphicsMagick</a>, <a href="https://www.imagemagick.org">ImageMagick</a></li>
-<li>Optimized for <a href="https://www.sublimetext.com">Sublime Text 3</a> with <a href="http://www.sublimelinter.com">SublimeLinter 3</a></li>
+<li>Optimized for <a href="https://atom.io">Atom</a> with <a href="https://atomlinter.github.io">AtomLinter</a></li>
 </ul>
 <h2>Tried and tested</h2>
 <ul>
 <li>Currently deployed on 200+ sites</li>
-<li>Front end to <a href="https://www.drupal.org">Drupal</a>, <a href="https://wordpress.org">Wordpress</a>, <a href="https://symfony.com">Symfony</a>, <a href="https://magento.com">Magento 1 &amp; 2</a>, <a href="https://www.sitecore.net">Sitecore</a>, <a href="http://www.insitesoft.com">Insite</a> environments</li>
+<li>Front end to <a href="https://www.drupal.org">Drupal</a>, <a href="https://wordpress.org">Wordpress</a>, <a href="https://symfony.com">Symfony</a>, <a href="https://magento.com">Magento 1 &amp; 2</a>, <a href="https://www.sitecore.net">Sitecore</a>, <a href="http://www.insitesoft.com">Insite</a>, <a href="https://www.shopify.ca">Shopify</a> environments</li>
 </ul>
 <h2>Components</h2>
 <p>Multiple component boilerplates <a href="https://github.com/absolunet/nwayo-components">available</a></p>

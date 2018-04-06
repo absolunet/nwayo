@@ -20,7 +20,7 @@
 			});
 			modal.open();
 
-			PubSub.publish(`${PROJECT}.common.util.showViaReveal`);
+			pinki.publish(`${PROJECT}.common.util.showViaReveal`);
 		}
 		/**/
 

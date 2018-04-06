@@ -83,7 +83,7 @@
 		bindInputMask($context);
 		bindNumericKeyboard($context);
 
-		PubSub.publish(`${PROJECT}.form.rebindFormEvent`);
+		pinki.publish(`${PROJECT}.form.rebindFormEvent`);
 	};
 
 
@@ -121,7 +121,7 @@
 	//-- Subscribe to topics
 	local.subscribe = () => {
 
-		PubSub.subscribe('SAMPLE', (msg, data) => {
+		pinki.subscribe('SAMPLE', (msg, data) => {
 			rebindFormEvent(data.$context);
 		});
 
@@ -153,14 +153,14 @@
 	local.subscribe();
 
 	// DOM Ready
-	$.when(DOM_PARSE).then(() => {
+	pinki.vow.when(DOM_PARSED).then(() => {
 		local.cacheDOM();
 		local.bind();
 		local.start();
 	});
 
 	// Document loaded
-	$.when(DOCUMENT_LOAD).then(() => {
+	pinki.vow.when(DOCUMENT_LOADED).then(() => {
 		local.delayedStart();
 	});
 

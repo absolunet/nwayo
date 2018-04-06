@@ -145,7 +145,6 @@ $ nwayo doctor
     [jquery] : 3.2.1 → 3.3.1
     [jsrender] : 0.9.86 → 0.9.87
     [kafe] : 3.2.1 → 3.2.4
-    [pubsub-js] : 1.5.7 → 1.6.0
     [slick.js] : 1.6.0 → 1.8.1
 
 

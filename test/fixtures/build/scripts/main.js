@@ -20,9 +20,9 @@
 	var app = global[PROJECT];
 	var konstan = app.konstan;
 	
-	var DOM_PARSE = global.nwayo.promises.DOMParse;
-	var DOCUMENT_LOAD = global.nwayo.promises.documentLoad;
-	var GLOBAL_JQUERY_LOAD = global.nwayo.promises.globalJQueryLoad;
+	var DOM_PARSED = global.nwayo.vows.DOMParsed;
+	var DOCUMENT_LOADED = global.nwayo.vows.documentLoaded;
+	var GLOBAL_JQUERY_LOADED = global.nwayo.vows.globaljqueryLoaded;
 	
 	var __ = global.nwayo.shortcuts;
 	
@@ -30,7 +30,7 @@
 	var $ = global.nwayo.vendor.jQuery;
 	var _ = global.nwayo.vendor.lodash;
 	var Modernizr = global.nwayo.vendor.Modernizr;
-	var PubSub = global.nwayo.vendor.PubSub;
+	var pinki = global.nwayo.vendor.pinki;
 
 //-------------------------------------
 //-- Common
@@ -260,7 +260,7 @@ function _classCallCheck(instance, Constructor) {if (!(instance instanceof Const
 	//-- Subscribe to topics
 	local.subscribe = function () {
 
-		// PubSub.subscribe('foo.bar', () => {});
+		// pinki.subscribe('foo.bar', () => {});
 
 	};
 
@@ -272,7 +272,7 @@ function _classCallCheck(instance, Constructor) {if (!(instance instanceof Const
 
 		/**
                              // When global jQuery is ready
-                             $.when(GLOBAL_JQUERY_LOAD).then(($Global) => {
+                             pinki.vow.when(GLOBAL_JQUERY_LOADED).then(($Global) => {
                              	$Global().on('click');
                              });
                              /**/
@@ -317,14 +317,14 @@ function _classCallCheck(instance, Constructor) {if (!(instance instanceof Const
 	local.subscribe();
 
 	// DOM Ready
-	$.when(DOM_PARSE).then(function () {
+	pinki.vow.when(DOM_PARSED).then(function () {
 		local.cacheDOM();
 		local.bind();
 		local.start();
 	});
 
 	// Document loaded
-	$.when(DOCUMENT_LOAD).then(function () {
+	pinki.vow.when(DOCUMENT_LOADED).then(function () {
 		local.delayedStart();
 	});
 
@@ -419,7 +419,7 @@ function _classCallCheck(instance, Constructor) {if (!(instance instanceof Const
 		bindInputMask($context);
 		bindNumericKeyboard($context);
 
-		PubSub.publish(PROJECT + '.form.rebindFormEvent');
+		pinki.publish(PROJECT + '.form.rebindFormEvent');
 	};
 
 
@@ -457,7 +457,7 @@ function _classCallCheck(instance, Constructor) {if (!(instance instanceof Const
 	//-- Subscribe to topics
 	local.subscribe = function () {
 
-		PubSub.subscribe('SAMPLE', function (msg, data) {
+		pinki.subscribe('SAMPLE', function (msg, data) {
 			rebindFormEvent(data.$context);
 		});
 
@@ -489,14 +489,14 @@ function _classCallCheck(instance, Constructor) {if (!(instance instanceof Const
 	local.subscribe();
 
 	// DOM Ready
-	$.when(DOM_PARSE).then(function () {
+	pinki.vow.when(DOM_PARSED).then(function () {
 		local.cacheDOM();
 		local.bind();
 		local.start();
 	});
 
 	// Document loaded
-	$.when(DOCUMENT_LOAD).then(function () {
+	pinki.vow.when(DOCUMENT_LOADED).then(function () {
 		local.delayedStart();
 	});
 
@@ -546,7 +546,7 @@ function _classCallCheck(instance, Constructor) {if (!(instance instanceof Const
 	//-- Subscribe to topics
 	local.subscribe = function () {
 
-		// PubSub.subscribe('foo.bar',  () => {});
+		// pinki.subscribe('foo.bar',  () => {});
 
 	};
 
@@ -576,14 +576,14 @@ function _classCallCheck(instance, Constructor) {if (!(instance instanceof Const
 	local.subscribe();
 
 	// DOM Ready
-	$.when(DOM_PARSE).then(function () {
+	pinki.vow.when(DOM_PARSED).then(function () {
 		local.cacheDOM();
 		local.bind();
 		local.start();
 	});
 
 	// Document loaded
-	$.when(DOCUMENT_LOAD).then(function () {
+	pinki.vow.when(DOCUMENT_LOADED).then(function () {
 		local.delayedStart();
 	});
 
