@@ -51,7 +51,7 @@
 	addProp(vendor, 'jQuery',    jQueryScoped);
 	addProp(vendor, 'lodash',    global._.noConflict());
 	addProp(vendor, 'Modernizr', global.Modernizr);
-	addProp(vendor, 'PubSub',    global.PubSub);
+	addProp(vendor, 'pinki',     global.pinki);
 
 	addProp(nwayo, 'vendor', vendor);
 
@@ -61,18 +61,14 @@
 
 
 
-	// Promises
-	const deferredDOMParse         = $.Deferred();
-	const deferredDocumentLoad     = $.Deferred();
-	const deferredGlobalJQueryLoad = $.Deferred();
-
-	const promises = readonlyObj({
-		DOMParse:         deferredDOMParse.promise(),
-		documentLoad:     deferredDocumentLoad.promise(),
-		globalJQueryLoad: deferredGlobalJQueryLoad.promise()
+	// Vows
+	const vows = readonlyObj({
+		DOMParsed:          'nwayo-core.dom-parsed',
+		documentLoaded:     'nwayo-core.document-loaded',
+		globaljqueryLoaded: 'nwayo-core.globaljquery-loaded'
 	});
 
-	addProp(nwayo, 'promises', promises);
+	addProp(nwayo, 'vows', vows);
 
 	// Shortcuts
 	const shortcuts = (() => {
@@ -136,11 +132,11 @@
 
 	// When DOM ready
 	$(() => {
-		deferredDOMParse.resolve();
+		pinki.vow.fulfill(vows.DOMParsed);
 		DOMParsed = true;
 
 		if (waitingOnDOM) {
-			deferredDocumentLoad.resolve();
+			pinki.vow.fulfill(vows.documentLoaded);
 		}
 	});
 
@@ -149,21 +145,13 @@
 		if (!DOMParsed) {
 			waitingOnDOM = true;
 		} else {
-			deferredDocumentLoad.resolve();
+			pinki.vow.fulfill(vows.documentLoaded);
 		}
 	});
 
-	// When global jQuery is loaded
-	PubSub.subscribe('nwayo.jQueryGlobal.loaded', () => {
-		addProp(global.nwayo.vendor, 'jQueryGlobal', global.jQuery);
-		deferredGlobalJQueryLoad.resolve(global.jQuery);
-	});
-
-
-
 	// If global jQuery is already loaded
 	if (global.jQuery) {
-		PubSub.publish('nwayo.jQueryGlobal.loaded');
+		pinki.vow.fulfill(vows.globaljqueryLoaded, global.jQuery);
 	}
 
 })();

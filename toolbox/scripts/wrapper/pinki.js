@@ -1,5 +1,5 @@
 //-------------------------------------
-//-- Wrapper for PubSubJS
+//-- Wrapper for pinki
 //-------------------------------------
 
 /* eslint-disable strict */
@@ -9,6 +9,8 @@
 	global.define = undefined;
 
 	//= require bower_components/pubsub-js/src/pubsub
+	//= require bower_components/pinki/vendor/rsvp
+	//= require bower_components/pinki/index
 
 	global.define = ORIGINAL_GLOBAL;
 

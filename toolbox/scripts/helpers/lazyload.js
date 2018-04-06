@@ -53,7 +53,7 @@
 			})
 		;
 
-		PubSub.publish(`${PROJECT}.common.lazyload.preprocess-completed`);
+		pinki.publish(`${PROJECT}.common.lazyload.preprocess-completed`);
 	};
 
 
@@ -74,7 +74,7 @@
 
 		$(`[${STATUS}="${PROCESSING2}"]`).imagesLoaded({ background:true }).always(local.secondPass);
 
-		PubSub.publish(`${PROJECT}.common.lazyload.firstPass-completed`);
+		pinki.publish(`${PROJECT}.common.lazyload.firstPass-completed`);
 	};
 
 
@@ -92,7 +92,7 @@
 			})
 		;
 
-		PubSub.publish(`${PROJECT}.common.lazyload.secondPass-completed`);
+		pinki.publish(`${PROJECT}.common.lazyload.secondPass-completed`);
 	};
 
 
@@ -120,13 +120,13 @@
 	// Outline
 
 	// DOM Ready
-	$.when(DOM_PARSE).then(() => {
+	pinki.vow.when(DOM_PARSED).then(() => {
 		local.bind();
 		local.preprocess();
 	});
 
 	// Document loaded
-	$.when(DOCUMENT_LOAD).then(() => {
+	pinki.vow.when(DOCUMENT_LOADED).then(() => {
 		local.firstPass();
 	});
 

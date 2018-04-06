@@ -137,7 +137,7 @@
 	//-- Subscribe to topics
 	local.subscribe = () => {
 
-		// PubSub.subscribe('foo.bar', () => {});
+		// pinki.subscribe('foo.bar', () => {});
 
 	};
 
@@ -149,7 +149,7 @@
 
 		/**
 		// When global jQuery is ready
-		$.when(GLOBAL_JQUERY_LOAD).then(($Global) => {
+		pinki.vow.when(GLOBAL_JQUERY_LOADED).then(($Global) => {
 			$Global().on('click');
 		});
 		/**/
@@ -194,14 +194,14 @@
 	local.subscribe();
 
 	// DOM Ready
-	$.when(DOM_PARSE).then(() => {
+	pinki.vow.when(DOM_PARSED).then(() => {
 		local.cacheDOM();
 		local.bind();
 		local.start();
 	});
 
 	// Document loaded
-	$.when(DOCUMENT_LOAD).then(() => {
+	pinki.vow.when(DOCUMENT_LOADED).then(() => {
 		local.delayedStart();
 	});
 
