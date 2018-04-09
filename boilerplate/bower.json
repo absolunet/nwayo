@@ -10,7 +10,7 @@
     "kafe":             "3.2.4",
     "motion-ui":        "1.2.3",
     "nwayo-toolbox":    "3.4.2",
-    "pinki":            "0.2.0"
+    "pinki":            "0.3.0"
   },
 
   "_recommendedDependencies": {

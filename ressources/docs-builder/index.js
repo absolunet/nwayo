@@ -202,7 +202,7 @@ switch (task) {
 		sass(`${paths.builder}/styles/main.scss`, {
 			loadPath:      paths.builder,
 			cacheLocation: '/tmp',
-			require:       `${paths.workflow}/sass.rb`
+			require:       `${paths.workflow}/ressources/sass.rb`
 		})
 			.pipe(cssnano({ reduceIdents:false, zindex:false }))
 			.pipe(gulp.dest(`${paths.static}/styles`))
