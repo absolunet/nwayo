@@ -56,7 +56,7 @@ folder.cacheScripts = `${folder.cache}/${build.scripts}`;
 folder.cacheStyles  = `${folder.cache}/${build.styles}`;
 
 const dir = {};
-dir.root         = STATIC.root;
+dir.root         = slash(STATIC.root);
 dir.cache        = `${dir.root}/${folder.cache}`;
 dir.cacheInline  = `${dir.root}/${folder.cacheInline}`;
 dir.cacheSass    = `${dir.root}/${folder.cacheSass}`;
