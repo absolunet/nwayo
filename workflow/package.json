@@ -20,7 +20,7 @@
     "url": "https://github.com/absolunet/nwayo/issues"
   },
   "engines": {
-    "node": ">= 9.9.0"
+    "node": ">= 9.11.1"
   },
   "scripts": {
     "test": "ava index.js"
@@ -29,7 +29,7 @@
     "@absolunet/tester": "1.4.0"
   },
   "dependencies": {
-    "@absolunet/eslint-config-nwayo": "0.3.0",
+    "@absolunet/eslint-config-nwayo": "0.3.1",
     "@absolunet/stylelint-config-nwayo": "0.1.2",
     "@absolunet/cli": "0.5.1",
     "@absolunet/fsp": "0.1.0",

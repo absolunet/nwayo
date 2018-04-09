@@ -2896,14 +2896,14 @@
 		
 								//-- When all vows are fulfilled or broke
 								value: function when() {
-									var promises = {};
+									var promises = [];
 		
 									// Group all vows Promises
 									for (var _len = arguments.length, names = Array(_len), _key = 0; _key < _len; _key++) {names[_key] = arguments[_key];}names.forEach(function (vow) {
-										promises[vow] = getDeferredVow(vow).promise;
+										promises.push(getDeferredVow(vow).promise);
 									});
 		
-									return RSVP.hash(promises);
+									return RSVP.all(promises);
 								}
 		
 		
