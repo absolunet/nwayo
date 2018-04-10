@@ -2,13 +2,13 @@
 <html lang="en-CA" class="no-js">
 <head>
 	<meta charset="utf-8">
-	<title>Installation under Windows - nwayo</title>
+	<title>Fonts - nwayo</title>
 
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta http-equiv="cleartype" content="on">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="canonical" href="https://absolunet.github.io/nwayo/requirements/windows" />
+	<link rel="canonical" href="https://absolunet.github.io/nwayo/assets/fonts" />
 
 	<link rel="shortcut icon"    href="/nwayo/static/icons/favicon.ico">
 	<link rel="apple-touch-icon" href="/nwayo/static/icons/touch-57.png">
@@ -67,7 +67,7 @@
 	
 		<li>
 			
-				<a href="/nwayo/assets" >Assets</a>
+				<a href="/nwayo/assets" class="active">Assets</a>
 			
 
 			
@@ -75,7 +75,7 @@
 	
 		<li>
 			
-				<a href="/nwayo/assets/fonts" >Fonts</a>
+				<span>Fonts</span>
 			
 
 			
@@ -128,7 +128,7 @@
 	
 		<li>
 			
-				<a href="/nwayo/requirements" class="active">Requirements</a>
+				<a href="/nwayo/requirements" >Requirements</a>
 			
 
 			
@@ -144,7 +144,7 @@
 	
 		<li>
 			
-				<span>Installation under Windows</span>
+				<a href="/nwayo/requirements/windows" >Installation under Windows</a>
 			
 
 			
@@ -197,53 +197,37 @@
 		</nav>
 
 		<main>
-			<h1>Installation under Windows</h1>
-<p>In a command prompt <strong>AS AN ADMINISTRATOR</strong> run these</p>
-<h2 id="chocolatey"><a class="anchor" href="#chocolatey" aria-hidden="true">⚭</a> <a href="https://chocolatey.org/" class="external" rel="external">Chocolatey</a></h2>
-<p>Chocolatey is the entry point to install many tools</p>
-<pre><code class="language-shell">@&quot;%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe&quot; -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command &quot;iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))&quot; &amp;&amp; SET &quot;PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin&quot;
-</code></pre>
-<h4 id="image-processors-graphicsmagick-imagemagick"><a class="anchor" href="#image-processors-graphicsmagick-imagemagick" aria-hidden="true">⚭</a> Image processors ( <a href="http://www.graphicsmagick.org" class="external" rel="external">GraphicsMagick</a> / <a href="http://www.imagemagick.org" class="external" rel="external">ImageMagick</a> )</h4>
-<p>These are used to manipulate images for the iconography</p>
-<pre><code class="language-shell">choco install graphicsmagick --confirm
-choco install imagemagick.app -packageparameters legacysupport=true --confirm
-</code></pre>
-<h2 id="ruby"><a class="anchor" href="#ruby" aria-hidden="true">⚭</a> <a href="https://www.ruby-lang.org" class="external" rel="external">Ruby</a></h2>
-<p>Ruby is used solely to build SCSS</p>
-<pre><code class="language-shell">choco install ruby --confirm
-chcp 1252
-gem source -a http://rubygems.org/
-</code></pre>
-<h4 id="sass"><a class="anchor" href="#sass" aria-hidden="true">⚭</a> <a href="http://sass-lang.com" class="external" rel="external">Sass</a></h4>
-<p>Sass is the original native compiler of SCSS</p>
-<pre><code class="language-shell">gem install sass
-</code></pre>
-<h4 id="scss-lint-deprecated"><a class="anchor" href="#scss-lint-deprecated" aria-hidden="true">⚭</a> <a href="https://github.com/causes/scss-lint" class="external" rel="external">SCSS-Lint</a> <em>[deprecated]</em></h4>
-<p>SCSS-Lint was the SCSS linter used by nwayo prior to 3.5.0</p>
-<pre><code class="language-shell">gem install scss_lint
-</code></pre>
-<h2 id="nodejs"><a class="anchor" href="#nodejs" aria-hidden="true">⚭</a> <a href="http://nodejs.org" class="external" rel="external">Node.js</a></h2>
-<p>Node.js is the backbone of the workflow</p>
-<pre><code class="language-shell">choco install nodejs.install --confirm
-</code></pre>
-<h4 id="bower"><a class="anchor" href="#bower" aria-hidden="true">⚭</a> <a href="http://bower.io" class="external" rel="external">Bower</a></h4>
-<p>Bower is used for front end plugins dependencies</p>
-<pre><code class="language-shell">npm install bower -g
-</code></pre>
-<h4 id="nwayo-cli"><a class="anchor" href="#nwayo-cli" aria-hidden="true">⚭</a> <a href="http://absolunet.github.io/nwayo" class="external" rel="external">nwayo CLI</a></h4>
-<p>Well duh...</p>
-<pre><code class="language-shell">npm install @absolunet/nwayo-cli -g
-</code></pre>
-<h4 id="jshint-deprecated"><a class="anchor" href="#jshint-deprecated" aria-hidden="true">⚭</a> <a href="http://jshint.com/" class="external" rel="external">JSHint</a> <em>[deprecated]</em></h4>
-<p>JSHint was a JS linter used by nwayo prior to 3.0.0</p>
-<pre><code class="language-shell">npm install jshint -g
-</code></pre>
-<h4 id="jscs-deprecated"><a class="anchor" href="#jscs-deprecated" aria-hidden="true">⚭</a> <a href="http://jscs.info/" class="external" rel="external">JSCS</a> <em>[deprecated]</em></h4>
-<p>JSCS was a JS linter used by nwayo prior to 3.0.0</p>
-<pre><code class="language-shell">npm install jscs -g
-</code></pre>
+			<h1>Fonts</h1>
+<blockquote>
+<p>Fonts assets are font files (WOFF, WOFF2) that will be directly referenced by a page via its URL.</p>
+</blockquote>
+<h2 id="paths"><a class="anchor" href="#paths" aria-hidden="true">⚭</a> Paths</h2>
+<ul>
+<li>The source files are located under <code>[NWAYO_ROOT]/components/[NAME]/assets/fonts/</code>.</li>
+<li>The built files are located under <code>[BUILD_ROOT]/fonts/[NAME]/</code>.</li>
+</ul>
+<h2 id="processing"><a class="anchor" href="#processing" aria-hidden="true">⚭</a> Processing</h2>
+<p>Files are only copied since optimization has to be done manually.</p>
+<h2 id="best-practices"><a class="anchor" href="#best-practices" aria-hidden="true">⚭</a> Best practices</h2>
+<ul>
+<li>Do not use CDN if possible (paid services only).</li>
+<li>Never convert fonts files, ask clients for WOFF/WOFF2.</li>
+<li>For Google Fonts use <a href="https://google-webfonts-helper.herokuapp.com/fonts" class="external" rel="external">this helper</a> to download fonts.</li>
+</ul>
+<h2 id="usage"><a class="anchor" href="#usage" aria-hidden="true">⚭</a> Usage</h2>
+<p>In scripts, the path to these files can be access via <code>app.path.fonts</code>.</p>
+<p>In styles, these fonts can be accessed via the <a href="../styles/fonts">fonts mixin</a>.</p>
+<h2 id="bundles"><a class="anchor" href="#bundles" aria-hidden="true">⚭</a> Bundles</h2>
+<p>Fonts are selected for build via the <code>assets</code> property of the bundle file.</p>
+<h2 id="tasks"><a class="anchor" href="#tasks" aria-hidden="true">⚭</a> Tasks</h2>
+<p>These tasks interact with the fonts:</p>
+<ul>
+<li>assets</li>
+<li>assets-fonts</li>
+<li>rebuild</li>
+</ul>
 
-			<p class="edit-page"><a href="https://github.com/absolunet/nwayo/blob/master/docs/requirements/windows.md" rel="external">Edit this page</a></p>
+			<p class="edit-page"><a href="https://github.com/absolunet/nwayo/blob/master/docs/assets/fonts.md" rel="external">Edit this page</a></p>
 		</main>
 	</div>
 

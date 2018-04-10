@@ -17,4 +17,8 @@
 	];
 
 	document.querySelector('[data-component="adjective"]').innerHTML = adjectives[Math.floor(Math.random() * adjectives.length)];
+
+	document.querySelectorAll('a[rel="external"]').forEach((link) => {
+		link.target = '_blank';
+	});
 })();
