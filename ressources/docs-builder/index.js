@@ -12,6 +12,8 @@ const uglify        = require('gulp-uglify');
 const inquirer      = require('inquirer');
 const jsrender      = require('jsrender');
 const MarkdownIt    = require('markdown-it');
+const anchor        = require('markdown-it-anchor');
+const externalLinks = require('markdown-it-external-links');
 const minimist      = require('minimist');
 const scandirectory = require('scandirectory');
 const fss           = require('@absolunet/fss');
@@ -138,6 +140,19 @@ switch (task) {
 						.replace(/^(\.\.\/\.\.\/ressources\/images)/, `${ROOT}/static/images/`)
 					;
 				};
+
+				md.use(anchor, {
+					level:           2,
+					permalink:       true,
+					permalinkClass:  'anchor',
+					permalinkSymbol: '⚭',
+					permalinkBefore: true
+				});
+
+				md.use(externalLinks, {
+					externalClassName: 'external',
+					externalRel:       'external'
+				});
 
 				Object.keys(list).forEach((file) => {
 					let content = list[file];
