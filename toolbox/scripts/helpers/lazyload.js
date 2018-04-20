@@ -53,7 +53,7 @@
 			})
 		;
 
-		pinki.publish(`${PROJECT}.common.lazyload.preprocess-completed`);
+		pinki.message.publish(`${PROJECT}.common.lazyload.preprocess-completed`);
 	};
 
 
@@ -74,7 +74,7 @@
 
 		$(`[${STATUS}="${PROCESSING2}"]`).imagesLoaded({ background:true }).always(local.secondPass);
 
-		pinki.publish(`${PROJECT}.common.lazyload.firstPass-completed`);
+		pinki.message.publish(`${PROJECT}.common.lazyload.firstPass-completed`);
 	};
 
 
@@ -92,7 +92,7 @@
 			})
 		;
 
-		pinki.publish(`${PROJECT}.common.lazyload.secondPass-completed`);
+		pinki.message.publish(`${PROJECT}.common.lazyload.secondPass-completed`);
 	};
 
 

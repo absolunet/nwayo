@@ -137,7 +137,7 @@
 	//-- Subscribe to topics
 	local.subscribe = () => {
 
-		// pinki.subscribe('foo.bar', () => {});
+		// pinki.message.subscribe('foo.bar', () => {});
 
 	};
 
