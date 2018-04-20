@@ -83,7 +83,7 @@
 		bindInputMask($context);
 		bindNumericKeyboard($context);
 
-		pinki.publish(`${PROJECT}.form.rebindFormEvent`);
+		pinki.message.publish(`${PROJECT}.form.rebindFormEvent`);
 	};
 
 
@@ -121,7 +121,7 @@
 	//-- Subscribe to topics
 	local.subscribe = () => {
 
-		pinki.subscribe('SAMPLE', (msg, data) => {
+		pinki.message.subscribe('SAMPLE', (msg, data) => {
 			rebindFormEvent(data.$context);
 		});
 
