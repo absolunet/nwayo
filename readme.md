@@ -4,16 +4,21 @@
 <h1 align="center"><strong>nwayo</strong></h1>
 <p align="center">/nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.</p>
 
-[![NPM version](https://img.shields.io/npm/v/@absolunet/nwayo-workflow.svg)](https://www.npmjs.com/package/@absolunet/nwayo-workflow)
-[![Travis build](https://api.travis-ci.org/absolunet/nwayo.svg?branch=master)](https://travis-ci.org/absolunet/nwayo/builds)
-[![Dependencies](https://david-dm.org/absolunet/nwayo/status.svg)](https://david-dm.org/absolunet/nwayo)
-[![Dev dependencies](https://david-dm.org/absolunet/nwayo/dev-status.svg)](https://david-dm.org/absolunet/nwayo?type=dev)
+[![npm](https://img.shields.io/npm/v/@absolunet/nwayo-workflow.svg)](https://www.npmjs.com/package/@absolunet/nwayo-workflow)
+[![npm dependencies](https://david-dm.org/absolunet/nwayo/status.svg?path=workflow)](https://david-dm.org/absolunet/nwayo?path=workflow)
+[![npms](https://badges.npms.io/%40absolunet%2Fnwayo-workflow.svg)](https://npms.io/search?q=%40absolunet%2Fnwayo-workflow)
+[![Travis CI](https://api.travis-ci.org/absolunet/nwayo.svg?branch=master)](https://travis-ci.org/absolunet/nwayo/builds)
+
+[![Code style ESLint](https://img.shields.io/badge/code_style-ESLint_@absolunet/node-659d32.svg)](https://github.com/absolunet/eslint-config-node)
+[![Code style ESLint](https://img.shields.io/badge/code_style-ESLint_@absolunet/nwayo-659d32.svg)](https://github.com/absolunet/eslint-config-nwayo)
+[![Code style stylelint](https://img.shields.io/badge/code_style-stylelint_@absolunet/nwayo-659d32.svg)](https://github.com/absolunet/stylelint-config-nwayo)
+
 <br>
 
 ## What is nwayo ?
 - A completely hackable front end boilerplate
-- A multi-theme, multi-site, multi-cms front end framework
-- A back-end agnostic environment
+- A multi-theme, multi-site, multi-CMS front end framework
+- A back end agnostic environment
 
 
 
@@ -61,8 +66,14 @@ nwayo rebuild
 
 
 ## Tried and tested
- - Currently deployed on 200+ sites
- - Front end to [Drupal](https://www.drupal.org), [Wordpress](https://wordpress.org), [Symfony](https://symfony.com), [Magento 1 & 2](https://magento.com), [Sitecore](https://www.sitecore.net), [Insite](http://www.insitesoft.com), [Shopify](https://www.shopify.ca) environments
+Currently deployed on 200+ sites including:
+- [Drupal](https://www.drupal.org)
+- [Wordpress](https://wordpress.org)
+- [Symfony](https://symfony.com)
+- [Magento 1 & 2 (On Premise & Cloud)](https://magento.com)
+- [Sitecore](https://www.sitecore.net)
+- [Insite (On Premise & Cloud)](http://www.insitesoft.com)
+- [Shopify](https://www.shopify.ca)
 
 ## Components
 Multiple component boilerplates [available](https://github.com/absolunet/nwayo-components)
