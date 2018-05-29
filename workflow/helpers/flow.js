@@ -3,24 +3,26 @@
 //-------------------------------------
 'use strict';
 
-const chalk    = require('chalk');
-const globAll  = require('glob-all');
-const gulp     = require('gulp');
-const log      = require('fancy-log');
-const ora      = require('ora');
-const emoji    = require('node-emoji');
-const fss      = require('@absolunet/fss');
-const terminal = require('@absolunet/terminal');
-const env      = require('../helpers/env');
-const paths    = require('../helpers/paths');
-const toolbox  = require('../helpers/toolbox');
+const chalk     = require('chalk');
+const log       = require('fancy-log');
+const globAll   = require('glob-all');
+const gulp      = require('gulp');
+const emoji     = require('node-emoji');
+const ora       = require('ora');
+const pluralize = require('pluralize');
+const fss       = require('@absolunet/fss');
+const terminal  = require('@absolunet/terminal');
+const env       = require('../helpers/env');
+const paths     = require('../helpers/paths');
+const toolbox   = require('../helpers/toolbox');
 
 
 //-- Static properties
 const STATIC = global.___NwayoFlow___ ? global.___NwayoFlow___ : global.___NwayoFlow___ = {
 	standingSpinner: false,  // Recceing spinner
-	totalWatchers:   0,      // Total of called watchers
-	activeWatchers:  0,      // Number of currently running watchers
+	totalGuards:     0,      // Total of called guards
+	activeGuards:    {},     // Registry of guards that are currently running
+	ignoredChanges:  {},     // Registry of changes that were made during a watched task
 	cascadeSkip:     false,  // In watch mode, is currently skipping tasks because of one failed task ?
 	watchSkip:       {},     // In watch mode, skip these tasks
 	delayedLog:      false   // Patch for stylelint reporter
@@ -43,26 +45,28 @@ const DEPENDENCIES = 'dependencies';
 const logStep = (action, scope, name, start) => {
 	const logType       = action === HALT  ? log : log.warn;
 	const logAction     = action === HALT  ? chalk.yellow(action) : action;
-	const nameStyles    = scope === TASK ? chalk.cyan : chalk.cyan.underline;
+	const nameStyles    = scope  === TASK ? chalk.cyan : chalk.cyan.underline;
 	const logName       = action === START ? nameStyles(name) : nameStyles.dim(name);
-	const logScopedName = scope === DEPENDENCIES ? `${logName} ${scope}` : `${scope} ${logName}`;
+	const logScopedName = scope  === DEPENDENCIES ? `${logName} ${scope}` : `${scope} ${logName}`;
 	const logTime       = start ? `after ${chalk.magenta(`${(new Date() - start) / 1000}s`)}` : '';
 
 	logType(`${logAction} ${logScopedName} ${logTime}`);
 };
 
 
-const logGuard = (action, file, name) => {
+const logGuard = (action, name, file) => {
 	switch (action) {
 
 		case START:
-			return `${emoji.get('guardsman')}  Guard n°${STATIC.totalWatchers + 1} standing guard...`;
+			return `${emoji.get('guardsman')}  Guard n°${STATIC.totalGuards + 1} standing guard...`;
 
 		case ALERT:
-			return terminal.echo(`${emoji.get('mega')}  Guard n°${++STATIC.totalWatchers} alerted by ${chalk.magenta(file.split(`${paths.dir.root}/`)[1])} calling ${chalk.cyan(name)}`);
+			return terminal.echo(`${emoji.get('mega')}  Guard n°${STATIC.totalGuards} alerted by ${chalk.magenta(file.split(`${paths.dir.root}/`)[1])} calling ${chalk.cyan(name)}`);
 
 		case END:
-			return terminal.echo(`${emoji.get('zzz')}  Guard n°${STATIC.totalWatchers - STATIC.activeWatchers} duty is completed\n`);
+			return terminal.echo(`${emoji.get('zzz')}  Guard n°${STATIC.activeGuards[name]} duty is completed ${chalk.cyan.dim(`(${name})`)}${
+				STATIC.ignoredChanges[name] ? chalk.yellow(`    ⚠ ${pluralize('change', STATIC.ignoredChanges[name], true)} ${STATIC.ignoredChanges[name] === 1 ? 'was' : 'were'} ignored`) : ''
+			}\n`);
 
 		default: return undefined;
 
@@ -210,18 +214,28 @@ module.exports = class flow {
 
 	//-- Create watch tasks sequence
 	static watchSequence(name, patterns, sequence) {
+		STATIC.activeGuards[name] = 0;
+		STATIC.ignoredChanges[name] = 0;
 
 		// Can't trust chokidar to do globbing
 		const files = globAll.sync(patterns);
 
-		return gulp.watch(files, gulp.series(sequence, (cb) => {
+		return gulp.watch(files, { queue:false }, gulp.series(sequence, (cb) => {
 
 			// Log watcher as completed
-			--STATIC.activeWatchers;
-			logGuard(END);
+			logGuard(END, name);
+			STATIC.activeGuards[name] = 0;
+			STATIC.ignoredChanges[name] = 0;
 
 			// When there is no more running watchers
-			if (STATIC.activeWatchers === 0) {
+			let anyGuardLeft = false;
+			Object.keys(STATIC.activeGuards).forEach((key) => {
+				if (STATIC.activeGuards[key]) {
+					anyGuardLeft = true;
+				}
+			});
+
+			if (!anyGuardLeft) {
 				this.startWatchSpinner();
 			}
 
@@ -230,9 +244,13 @@ module.exports = class flow {
 
 			// When watcher triggered
 			.on('all', (action, triggeredPath) => {
-				++STATIC.activeWatchers;
-				STATIC.standingSpinner.stop();
-				logGuard(ALERT, triggeredPath, name);
+				if (STATIC.activeGuards[name]) {
+					++STATIC.ignoredChanges[name];
+				} else {
+					STATIC.activeGuards[name] = ++STATIC.totalGuards;
+					STATIC.standingSpinner.stop();
+					logGuard(ALERT, name, triggeredPath);
+				}
 			})
 		;
 	}
