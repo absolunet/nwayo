@@ -23,6 +23,7 @@ const util     = require('../helpers/util');
 flow.createTask('assets-fonts', () => {
 	return util.assetsProcess(paths.files.fonts, (stream) => {
 		return stream
+			.pipe(toolbox.plumber())
 			.pipe(rename(util.assetsRename()))
 		;
 	});
@@ -33,6 +34,7 @@ flow.createTask('assets-fonts', () => {
 flow.createTask('assets-images-optimization', () => {
 	return util.assetsProcess(paths.files.images, (stream) => {
 		return stream
+			.pipe(toolbox.plumber())
 			.pipe(imagemin())
 			.pipe(rename(util.assetsRename()))
 		;
@@ -44,6 +46,7 @@ flow.createTask('assets-images-optimization', () => {
 flow.createTask('assets-images-highdensity', () => {
 	return util.assetsProcess(paths.files.images2x, (stream) => {
 		return stream
+			.pipe(toolbox.plumber())
 			.pipe(gm((gmfile, done) => {
 				gmfile.identify((err, info) => {
 					if (err) {
@@ -66,6 +69,7 @@ flow.createTask('assets-images-highdensity', () => {
 flow.createTask('assets-raw', () => {
 	return util.assetsProcess(paths.files.raw, (stream) => {
 		return stream
+			.pipe(toolbox.plumber())
 			.pipe(rename(util.assetsRename()))
 		;
 	});

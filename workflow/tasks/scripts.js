@@ -33,6 +33,8 @@ const util      = require('../helpers/util');
 //-- Lint JS
 flow.createTask('scripts-lint', ({ taskName }) => {
 	return gulp.src(paths.files.scriptsLint)
+		// .pipe(toolbox.plumber())   // skip cuz of watch
+
 		.pipe(cache('scripts', { optimizeMemory:true }))
 
 		.pipe(gulpif(env.isWindows, lec()))
@@ -76,6 +78,7 @@ flow.createTask('scripts-constants', ({ taskName }) => {
 		/* eslint-disable function-paren-newline */
 		streams.push(
 			toolbox.vinylStream(paths.filename.konstanScripts, `var konstan = ${JSON.stringify(data, null, '\t')};`)
+				.pipe(toolbox.plumber())
 				.pipe(gulp.dest(`${paths.dir.cacheScripts}/${name}`))
 		);
 		/* eslint-enable function-paren-newline */
@@ -176,6 +179,8 @@ flow.createTask('scripts-compile', ({ taskName }) => {
 			/* eslint-disable function-paren-newline */
 			streams.push(
 				toolbox.vinylStream(filename, source)
+					.pipe(toolbox.plumber())
+
 					.pipe(include({
 						basePath:      paths.dir.root,
 						autoExtension: true,
@@ -184,8 +189,11 @@ flow.createTask('scripts-compile', ({ taskName }) => {
 							return util.babelProcess(options, bundle.scripts.options.babel, babelExtraAllowed);
 						}
 					}))
+
 					.pipe(gulpif(toMinify, uglify({ output:{ comments:'some' } })))
+
 					.pipe(gulp.dest(`${paths.dir.root}/${dest}`))
+
 					.on('finish', () => {
 						toolbox.log(taskName, `'${dest}/${filename}' written`, toolbox.filesize(`${paths.dir.root}/${dest}/${filename}`));
 					})

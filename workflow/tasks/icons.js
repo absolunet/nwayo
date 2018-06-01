@@ -38,6 +38,8 @@ flow.createTask('icons-favicon', () => {
 	return util.assetsProcess(paths.files.iconsFavicon, (stream) => {
 
 		return stream
+			.pipe(toolbox.plumber())
+
 			.pipe(gm((gmfile) => {
 				return gmfile
 					.define(`icon:auto-resize=${sizes.join(',')}`)
@@ -82,6 +84,8 @@ flow.createTask('icons-touch', () => {
 			util.assetsProcess(paths.files.iconsTouch, (stream) => {
 
 				return stream
+					.pipe(toolbox.plumber())
+
 					.pipe(gulpif(size !== 512, gm((gmfile, done) => {
 						gmfile.identify((err, info) => {
 							if (err) {
@@ -125,6 +129,8 @@ flow.createTask('icons-icon', () => {
 			util.assetsProcess(paths.files.iconsIcon, (stream) => {
 
 				return stream
+					.pipe(toolbox.plumber())
+
 					.pipe(gulpif(size !== 256, gm((gmfile, done) => {
 						gmfile.identify((err, info) => {
 							if (err) {
@@ -151,6 +157,7 @@ flow.createTask('icons-icon', () => {
 flow.createTask('icons-large', () => {
 	return util.assetsProcess(paths.files.iconsLarge, (stream) => {
 		return stream
+			.pipe(toolbox.plumber())
 			.pipe(rename(util.assetsRename('large')))
 			.pipe(imagemin())
 		;
@@ -180,6 +187,8 @@ flow.createTask('icons-tile', () => {
 			util.assetsProcess(paths.files.iconsTile, (stream) => {
 
 				return stream
+					.pipe(toolbox.plumber())
+
 					.pipe(gm((gmfile, done) => {
 						gmfile.identify((err, info) => {
 							if (err) {
