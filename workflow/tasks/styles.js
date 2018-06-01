@@ -32,6 +32,7 @@ const util         = require('../helpers/util');
 //-- Inline images optimization
 flow.createTask('styles-images', () => {
 	return gulp.src(paths.files.inline, { base:paths.dir.root })
+		.pipe(toolbox.plumber())
 		.pipe(imagemin())
 		.pipe(rename(util.assetsRename()))
 		.pipe(gulp.dest(paths.dir.cache))
@@ -45,6 +46,8 @@ flow.createTask('styles-lint', ({ taskName }) => {
 	let hasErrors = false;
 
 	return gulp.src(paths.files.stylesLint)
+		// .pipe(toolbox.plumber())   // skip cuz of watch
+
 		.pipe(cache('styles', { optimizeMemory:true }))
 
 		.pipe(stylelint({
@@ -101,6 +104,7 @@ flow.createTask('styles-constants', ({ taskName }) => {
 		/* eslint-disable function-paren-newline */
 		streams.push(
 			toolbox.vinylStream(paths.filename.konstanStyles, JSON.stringify({ konstan:data }))
+				.pipe(toolbox.plumber())
 				.pipe(jsonsass())
 				.pipe(gulp.dest(`${paths.dir.cacheStyles}/${name}`))
 		);
@@ -149,6 +153,8 @@ flow.createTask('styles-compile', () => {
 				trace:         true,
 				sourcemap:     bundle.styles.options.sourcemaps
 			})
+
+				.pipe(toolbox.plumber())
 
 				.pipe(autoprefixer({ browsers:bundle.styles.options.autoprefixer }))
 

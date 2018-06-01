@@ -60,6 +60,7 @@
     "gulp-imagemin": "4.1.0",
     "gulp-json-sass": "0.0.2",
     "gulp-line-ending-corrector": "1.0.2",
+    "gulp-plumber": "1.2.0",
     "gulp-rename": "1.2.3",
     "gulp-ruby-sass": "3.0.0",
     "gulp-sourcemaps": "2.6.4",

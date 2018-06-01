@@ -5,12 +5,15 @@
 
 const chalk       = require('chalk');
 const log         = require('fancy-log');
+const plumber     = require('gulp-plumber');
 const yaml        = require('js-yaml');
 const merge       = require('merge-stream');
+const emoji       = require('node-emoji');
 const prettyBytes = require('pretty-bytes');
 const stream      = require('stream');
 const Vinyl       = require('vinyl');
 const fss         = require('@absolunet/fss');
+const terminal    = require('@absolunet/terminal');
 
 
 
@@ -91,6 +94,16 @@ module.exports = class toolbox {
 	//-- Task logging
 	static log(task, msg, extra) {
 		log(`${task}: ${msg} ${extra ? chalk.dim(`(${extra})`) : ''}`);
+	}
+
+
+	//-- Plumber
+	static plumber() {
+		return plumber((e) => {
+			terminal.spacer(2);
+			terminal.echo(`${emoji.get('monkey')}  ${e.toString()}`);
+			terminal.exit();
+		});
 	}
 
 };
