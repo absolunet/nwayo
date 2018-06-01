@@ -29,10 +29,7 @@ const bowerInstall = () => {
 
 	fss.del(paths.dir.bower);
 
-	terminal.run(`
-		cd ${paths.dir.root}
-		node ${paths.config.bowerBin} install
-	`);
+	terminal.run(`cd ${paths.dir.root} && node ${paths.config.bowerBin} install`);
 };
 
 
