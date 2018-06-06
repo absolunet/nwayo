@@ -60,16 +60,6 @@ const cache = (key, value, process) => {
 
 module.exports = class util {
 
-	//-- Get / Set workflow installer from CLI
-	static set workflowInstaller(func) {
-		STATIC.workflowInstaller = func;
-	}
-
-	static get workflowInstaller() {
-		return STATIC.workflowInstaller;
-	}
-
-
 	//-- Constants
 	static parseKonstan(type, bundle, rootUrl) {
 		const parseItem = (item) => { return `data['${item.split('.').join(`']['`)}']`; };
