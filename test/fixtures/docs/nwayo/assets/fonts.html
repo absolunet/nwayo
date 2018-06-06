@@ -2,13 +2,13 @@
 <html lang="en-CA" class="no-js">
 <head>
 	<meta charset="utf-8">
-	<title>Styles - nwayo</title>
+	<title>Fonts - nwayo</title>
 
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta http-equiv="cleartype" content="on">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="canonical" href="https://absolunet.github.io/nwayo/styles" />
+	<link rel="canonical" href="https://absolunet.github.io/nwayo/assets/fonts" />
 
 	<link rel="shortcut icon"    href="/nwayo/static/icons/favicon.ico">
 	<link rel="apple-touch-icon" href="/nwayo/static/icons/touch-57.png">
@@ -67,7 +67,7 @@
 	
 		<li>
 			
-				<a href="/nwayo/assets" >Assets</a>
+				<a href="/nwayo/assets" class="active">Assets</a>
 			
 
 			
@@ -75,7 +75,7 @@
 	
 		<li>
 			
-				<a href="/nwayo/assets/fonts" >Fonts</a>
+				<span>Fonts</span>
 			
 
 			
@@ -157,7 +157,7 @@
 	
 		<li>
 			
-				<span>Styles</span>
+				<a href="/nwayo/styles" >Styles</a>
 			
 
 			
@@ -197,14 +197,37 @@
 		</nav>
 
 		<main>
-			<h1>Styles</h1>
+			<h1>Fonts</h1>
+<blockquote>
+<p>Fonts assets are font files (WOFF, WOFF2) that will be directly referenced by a page via its URL.</p>
+</blockquote>
+<h2 id="paths"><a class="anchor" href="#paths" aria-hidden="true">⚭</a> Paths</h2>
 <ul>
-<li><a href="fonts">Fonts</a></li>
-<li><a href="images">Images</a></li>
-<li><a href="inline-images">Inline images</a></li>
+<li>The source files are located under <code>[NWAYO_ROOT]/components/[NAME]/assets/fonts/</code>.</li>
+<li>The built files are located under <code>[BUILD_ROOT]/fonts/[NAME]/</code>.</li>
+</ul>
+<h2 id="processing"><a class="anchor" href="#processing" aria-hidden="true">⚭</a> Processing</h2>
+<p>Files are only copied since optimization has to be done manually.</p>
+<h2 id="best-practices"><a class="anchor" href="#best-practices" aria-hidden="true">⚭</a> Best practices</h2>
+<ul>
+<li>Do not use CDN if possible (paid services only).</li>
+<li>Never convert fonts files, ask clients for WOFF/WOFF2.</li>
+<li>For Google Fonts use <a href="https://google-webfonts-helper.herokuapp.com/fonts" class="external" rel="external">this helper</a> to download fonts.</li>
+</ul>
+<h2 id="usage"><a class="anchor" href="#usage" aria-hidden="true">⚭</a> Usage</h2>
+<p>In scripts, the path to these files can be access via <code>app.path.fonts</code>.</p>
+<p>In styles, these fonts can be accessed via the <a href="../styles/fonts">fonts mixin</a>.</p>
+<h2 id="bundles"><a class="anchor" href="#bundles" aria-hidden="true">⚭</a> Bundles</h2>
+<p>Fonts are selected for build via the <code>assets</code> property of the bundle file.</p>
+<h2 id="tasks"><a class="anchor" href="#tasks" aria-hidden="true">⚭</a> Tasks</h2>
+<p>These tasks interact with the fonts:</p>
+<ul>
+<li>assets</li>
+<li>assets-fonts</li>
+<li>rebuild</li>
 </ul>
 
-			<p class="edit-page"><a href="https://github.com/absolunet/nwayo/blob/master/docs/styles/readme.md" rel="external">Edit this page</a></p>
+			<p class="edit-page"><a href="https://github.com/absolunet/nwayo/blob/master/docs/assets/fonts.md" rel="external">Edit this page</a></p>
 		</main>
 	</div>
 
