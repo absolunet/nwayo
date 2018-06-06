@@ -143,6 +143,45 @@ main {
 	padding: 3em 1em 1em;
 	margin: 0 auto;
 
+	h1, h2, h3, h4, h5, h6 {
+		position: relative;
+
+		/* stylelint-disable unit-whitelist */
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: -2rem;
+			display: block;
+			width: 2rem;
+			height: 2rem;
+		}
+
+		&:hover .anchor {
+			display: block;
+		}
+
+		.anchor {
+			position: absolute;
+			top: 5%;
+			left: -1.5rem;
+			display: none;
+			color: $docs-main-anchor-color;
+			font-size: $docs-main-anchor-size;
+		}
+
+		/* stylelint-enable unit-whitelist */
+	}
+
+	.external::after {
+		content: '⇗';
+		position: relative;
+		top: .1em;
+		vertical-align: top;
+		margin: 0 .2em;
+		font-size: $docs-main-external-size;
+	}
+
 	.edit-page {
 		float: right;
 		margin: 3em 0 0;

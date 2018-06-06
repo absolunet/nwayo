@@ -44,7 +44,7 @@
 
 	<header>
 		<p class="nwayo"><a href="{{:path.root}}"><img src="{{:path.static}}/images/nwayo.svg" class="logo"> nwayo</a> <span class="version">{{:version}}</span></p>
-		<a href="{{:path.github}}" class="github">{{:images.github}} View on GitHub</a>
+		<a href="{{:path.github}}" class="github" rel="external">{{:images.github}} View on GitHub</a>
 	</header>
 
 	<div class="container">
@@ -54,15 +54,15 @@
 
 		<main>
 			{{:content}}
-			<p class="edit-page"><a href="{{:path.source}}">Edit this page</a></p>
+			<p class="edit-page"><a href="{{:path.source}}" rel="external">Edit this page</a></p>
 		</main>
 	</div>
 
 	<footer>
-			<a href="{{:path.github}}/blob/master/license">MIT</a> &copy; 2011-{{:year}}
+			<a href="{{:path.github}}/blob/master/license" rel="external">MIT</a> &copy; 2011-{{:year}}
 			<span class="made">
 				Made with <span class="adjective" data-component="adjective">&#x2764;</span> by
-				<a href="https://absolunet.com">{{:images.absolunet}} Absolunet</a>
+				<a href="https://absolunet.com" rel="external">{{:images.absolunet}} Absolunet</a>
 			</span>
 	</footer>
 

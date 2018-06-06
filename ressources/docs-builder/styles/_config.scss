@@ -71,7 +71,10 @@ $docs-nav-current-color: $palette-nwayo-fruit;
 $docs-nav-active-weight: $nwayo-black-weight;
 
 //-- Main
-$docs-main-bg-color: $palette-white-rabbit-in-the-snow;
+$docs-main-bg-color:      $palette-white-rabbit-in-the-snow;
+$docs-main-anchor-color:  $palette-myst;
+$docs-main-anchor-size:   1.2rem;  // stylelint-disable-line unit-whitelist
+$docs-main-external-size: .8rem;   // stylelint-disable-line unit-whitelist
 
 //-- Footer
 $docs-footer-bg-color:   $palette-brand-victoria;

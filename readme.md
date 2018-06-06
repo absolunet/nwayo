@@ -23,7 +23,7 @@
 
 
 ## Requirements (All latest) - [Installation guide](docs/requirements)
-- [Node.js](https://nodejs.org) ([Bower](https://bower.io), [nwayo](https://www.npmjs.com/package/@absolunet/nwayo-cli))
+- [Node.js](https://nodejs.org) ([nwayo](https://www.npmjs.com/package/@absolunet/nwayo-cli))
 - [Ruby](https://www.ruby-lang.org) ([Sass](http://sass-lang.com))
 - [GraphicsMagick](http://www.graphicsmagick.org) / [ImageMagick](https://www.imagemagick.org)
 
@@ -35,8 +35,8 @@
 
 Run in nwayo root folder
 ```shell
-nwayo install vendors
 nwayo install workflow
+nwayo install vendors
 nwayo rebuild
 ```
 
@@ -55,7 +55,7 @@ nwayo rebuild
 
 #### Scripting
 - ES2018-ready via [Babel](https://babeljs.io) and linted via [ESLint](http://eslint.org)
-- Comes with [jQuery](https://jquery.com), [Modernizr](https://modernizr.com), [lodash](https://lodash.com), [pinki](https://github.com/absolunet/pinki), [JsRender](https://www.jsviews.com), [kafe](http://absolunet.github.io/kafe)
+- Comes with [jQuery](https://jquery.com), [Modernizr](https://modernizr.com), [Lodash](https://lodash.com), [pinki](https://github.com/absolunet/pinki), [JsRender](https://www.jsviews.com), [kafe](http://absolunet.github.io/kafe)
 - Builds with [gulp-include](https://www.npmjs.com/package/@absolunet/gulp-include) and is minified with [UglifyJS](http://lisperator.net/uglifyjs)
 
 #### Other

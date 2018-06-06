@@ -42,7 +42,7 @@ gem install sass
 ```
 
 #### [SCSS-Lint](https://github.com/causes/scss-lint) _[deprecated]_
-SCSS-Lint was the SCSS linter used by nwayo prior to 3.5.0
+SCSS-Lint was the SCSS linter used by nwayo prior to 3.4.0
 
 ```shell
 gem install scss_lint
@@ -57,30 +57,23 @@ Node.js is the backbone of the workflow
 brew install node
 ```
 
-#### [Bower](http://bower.io)
-Bower is used for front end plugins dependencies
-
-```shell
-npm install bower -g
-```
-
 #### [nwayo CLI](http://absolunet.github.io/nwayo)
 Well duh...
 
 ```shell
-npm install @absolunet/nwayo-cli -g
+npm install -g @absolunet/nwayo-cli
 ```
 
 #### [JSHint](http://jshint.com/) _[deprecated]_
 JSHint was a JS linter used by nwayo prior to 3.0.0
 
 ```shell
-npm install jshint -g
+npm install -g jshint
 ```
 
 #### [JSCS](http://jscs.info/) _[deprecated]_
 JSCS was a JS linter used by nwayo prior to 3.0.0
 
 ```shell
-npm install jscs -g
+npm install -g jscs
 ```
