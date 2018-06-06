@@ -17,7 +17,7 @@ const util     = require('./helpers/util');
 
 
 
-module.exports = ({ cliPkg, cliPath, workflowInstaller }) => {
+module.exports = ({ cliPkg, cliPath }) => {
 
 	//-- Initialize
 	util.initCli();
@@ -28,8 +28,6 @@ module.exports = ({ cliPkg, cliPath, workflowInstaller }) => {
 
 	//-- Initialize CLI
 	} else {
-
-		util.workflowInstaller = workflowInstaller;
 
 		const cliBin      = `     cli${chalk.yellow('@')}${cliPkg.version} ${cliPath}`;
 		const workflowBin = `workflow${chalk.yellow('@')}${env.workflowPkg.version} ${paths.workflow.root}`;
