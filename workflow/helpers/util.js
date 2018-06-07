@@ -4,20 +4,21 @@
 'use strict';
 
 // const debug = require('gulp-debug');
-const boxen    = require('boxen');
-const chalk    = require('chalk');
-const crypto   = require('crypto');
-const events   = require('events');
-const glob     = require('glob');
-const _        = require('lodash');
-const path     = require('path');
-const semver   = require('semver');
-const cli      = require('@absolunet/cli');
-const fss      = require('@absolunet/fss');
-const terminal = require('@absolunet/terminal');
-const env      = require('./env');
-const paths    = require('./paths');
-const toolbox  = require('./toolbox');
+const boxen     = require('boxen');
+const chalk     = require('chalk');
+const crypto    = require('crypto');
+const events    = require('events');
+const glob      = require('glob');
+const multiDest = require('gulp-multi-dest');
+const _         = require('lodash');
+const path      = require('path');
+const semver    = require('semver');
+const cli       = require('@absolunet/cli');
+const fss       = require('@absolunet/fss');
+const terminal  = require('@absolunet/terminal');
+const env       = require('./env');
+const paths     = require('./paths');
+const toolbox   = require('./toolbox');
 
 
 
@@ -205,13 +206,15 @@ module.exports = class util {
 				componentStream = customPiping(componentStream);
 
 				// Output to each bundle
+				const outputs = [];
 				for (const name of Object.keys(env.bundles)) {
 					const bundle = env.bundles[name];
 
 					if (_.includes(bundle.assets.components, component)) {
-						componentStream.pipe(gulp.dest(`${paths.dir.root}/${bundle.output.build}`));
+						outputs.push(`${paths.dir.root}/${bundle.output.build}`);
 					}
 				}
+				componentStream.pipe(multiDest(outputs));
 
 				streams.push(componentStream);
 			}
