@@ -68,14 +68,14 @@
 	local.subscribe();
 
 	// DOM Ready
-	pinki.vow.then(DOM_PARSED).done(() => {
+	pinki.vow.when(DOM_PARSED).then(() => {
 		local.cacheDOM();
 		local.bind();
 		local.start();
 	});
 
 	// Document loaded
-	pinki.vow.then(DOCUMENT_LOADED).done(() => {
+	pinki.vow.when(DOCUMENT_LOADED).then(() => {
 		local.delayedStart();
 	});
 
