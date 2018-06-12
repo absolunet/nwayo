@@ -335,8 +335,8 @@ Run ${chalk.cyan('nwayo install workflow')} to update`,
 			'run':     [`run ${cli.placeholder('<task>')} ${cli.optionalPlaceholder('<bundle>')}`, `Run a task ex:[${tasks.join('|')}]`, [tasks]],
 			'rebuild': [`rebuild ${cli.optionalPlaceholder('<bundle>')} ${cli.optional('--prod')}`, `Rebuild the entire project from scratch`],
 			'watch':   [`watch ${cli.optionalPlaceholder('<bundle>')}`, `Listens for changes on files and run appropriate tasks`],
-			'install': [`install ${cli.optionalPlaceholder('<scope>')}`, `Install dependencies ex:[${installScopes.join('|')}]`, [installScopes]],
-			'doctor':  [`doctor`, `Checks Node.js / Bower packages for updates`],
+			'install': [`install ${cli.optionalPlaceholder('<scope>')} ${cli.optional('--force')}`, `Install dependencies ex:[${installScopes.join('|')}]`, [installScopes]],
+			'doctor':  [`doctor`, `Checks npm / Bower packages for updates`],
 
 			// Options
 			'--help':      [`-h, --help`, `Show help`],
