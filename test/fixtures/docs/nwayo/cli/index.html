@@ -201,7 +201,7 @@
 <p><a href="https://www.npmjs.com/package/@absolunet/nwayo-cli" class="external" rel="external">View on npm</a></p>
 <p>The nwayo CLI is essentially a <a href="https://www.npmjs.com/package/gulp-cli" class="external" rel="external">gulp CLI</a> wrapper with additional commands.</p>
 <h2 id="installation"><a class="anchor" href="#installation" aria-hidden="true">⚭</a> Installation</h2>
-<pre><code class="language-shell">$ npm install @absolunet/nwayo-cli -g
+<pre><code class="language-shell">$ npm i -g @absolunet/nwayo-cli
 </code></pre>
 <h2 id="usage"><a class="anchor" href="#usage" aria-hidden="true">⚭</a> Usage</h2>
 <p>In any subfolder of the project's root folder, where the <code>nwayo.yaml</code> is located</p>
@@ -296,9 +296,13 @@ $ nwayo rebuild --prod
 $ nwayo watch site
 </code></pre>
 <h3 id="install"><a class="anchor" href="#install" aria-hidden="true">⚭</a> install</h3>
-<p><code>nwayo install [&lt;scope&gt;]</code></p>
+<p><code>nwayo install [&lt;scope&gt;] [--force]</code></p>
 <p>Install project dependencies.</p>
 <p>The <code>workflow</code> scope installs the workflow via <code>npm</code></p>
+<ul>
+<li>By default it uses <code>npm ci</code> which is faster but requires a valid <code>package-lock.json</code> in sync with the <code>package.json</code></li>
+<li>If the <code>--force</code> flag is used, it will use <code>npm install</code> and regenerate the <code>package-lock.json</code></li>
+</ul>
 <p>The <code>vendors</code> scope installs the vendor dependencies via <code>bower</code></p>
 <p><strong>Examples:</strong></p>
 <pre><code class="language-shell">$ nwayo install workflow
@@ -307,7 +311,7 @@ $ nwayo install vendors
 </code></pre>
 <h3 id="doctor"><a class="anchor" href="#doctor" aria-hidden="true">⚭</a> doctor</h3>
 <p><code>nwayo doctor</code></p>
-<p>Checks Node.js / Bower packages for updates and lists what is outdated.</p>
+<p>Checks npm / Bower packages for updates and lists what is outdated.</p>
 <p>Checks if the toolbox version in bower is the same as the workflow version.</p>
 <p><strong>Examples:</strong></p>
 <pre><code class="language-shell">$ nwayo doctor
@@ -361,8 +365,8 @@ $ nwayo watch site:editor
   run &lt;task&gt; [&lt;bundle&gt;] [--prod]     Run a task ex:[assets|icons|local|scripts|styles]
   rebuild [&lt;bundle&gt;]                 Rebuild the entire project from scratch
   watch [&lt;bundle&gt;]                   Listens for changes on files and run appropriate tasks
-  install [&lt;scope&gt;]                  Install dependencies ex:[workflow|vendors]
-  doctor                             Checks Node.js / Bower packages for updates
+  install [&lt;scope&gt;] [--force]        Install dependencies ex:[workflow|vendors]
+  doctor                             Checks npm / Bower packages for updates
 
   Options
   -h, --help                         Show help

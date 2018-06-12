@@ -32,9 +32,7 @@
 
 - Supprimer `package-lock.json` et `node_modules`
 
-- Faire un `npm install --production`
-
-- Le fichier `package-lock.json` ne devrait pas contenir des références à `@absolunet/tester`
+- Faire un `npm install`
 
 - Copier les fichiers `./readme.md` et `./license` sous `workflow`
 
