@@ -6,7 +6,7 @@ The nwayo CLI is essentially a [gulp CLI](https://www.npmjs.com/package/gulp-cli
 
 ## Installation
 ```shell
-$ npm install @absolunet/nwayo-cli -g
+$ npm i -g @absolunet/nwayo-cli
 ```
 
 
@@ -107,11 +107,13 @@ $ nwayo watch site
 ```
 
 ### install
-`nwayo install [<scope>]`
+`nwayo install [<scope>] [--force]`
 
 Install project dependencies.
 
 The `workflow` scope installs the workflow via `npm`
+- By default it uses `npm ci` which is faster but requires a valid `package-lock.json` in sync with the `package.json`
+- If the `--force` flag is used, it will use `npm install` and regenerate the `package-lock.json`
 
 The `vendors` scope installs the vendor dependencies via `bower`
 
@@ -125,7 +127,7 @@ $ nwayo install vendors
 ### doctor
 `nwayo doctor`
 
-Checks Node.js / Bower packages for updates and lists what is outdated.
+Checks npm / Bower packages for updates and lists what is outdated.
 
 Checks if the toolbox version in bower is the same as the workflow version.
 
@@ -197,8 +199,8 @@ $ nwayo --help
   run <task> [<bundle>] [--prod]     Run a task ex:[assets|icons|local|scripts|styles]
   rebuild [<bundle>]                 Rebuild the entire project from scratch
   watch [<bundle>]                   Listens for changes on files and run appropriate tasks
-  install [<scope>]                  Install dependencies ex:[workflow|vendors]
-  doctor                             Checks Node.js / Bower packages for updates
+  install [<scope>] [--force]        Install dependencies ex:[workflow|vendors]
+  doctor                             Checks npm / Bower packages for updates
 
   Options
   -h, --help                         Show help
