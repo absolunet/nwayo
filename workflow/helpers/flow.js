@@ -146,19 +146,18 @@ module.exports = class flow {
 							logStep(START, TASK, name);
 
 							// Then run task
-							runTask({ name, task, start }).on('finish', () => {
+							return runTask({ name, task, start }).on('finish', () => {
 
 								// Close stream
 								return cb ? cb() : undefined;
 							});
-
-						} else {
-							logStep(HALT, DEPENDENCIES, name);
-
-							// Close stream
-							return cb ? cb() : undefined;
 						}
 
+						// Halted
+						logStep(HALT, DEPENDENCIES, name);
+
+						// Close stream
+						return cb ? cb() : undefined;
 					})();
 				}
 
