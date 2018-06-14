@@ -1,4 +1,4 @@
-# lodash (https://lodash.com/docs)
+# Lodash (https://lodash.com/docs)
 
 #category:
 #  - array
@@ -33,6 +33,7 @@ include:
   - merge
 
   # String
+  - camelCase
   - template
 
   # Util
