@@ -82,7 +82,7 @@
 		/**/
 
 
-		/** lodash: camelCase
+		/**
 		// tmpl
 		$('script[type="text/x-jsrender"][id^="jshtml-"]').each(function() {
 			const id = $(this).attr('id');
@@ -118,7 +118,7 @@
 			// Anchors
 			.on('click', 'a[data-anchor="true"]', function(e) {
 				e.preventDefault();
-				$.scrollTo($(this).attr('href'), app.scrollTransition, {offset:{top:-15}});
+				$.scrollTo($(this).attr('href'), app.scrollTransition, { offset:{ top:-15 } });
 			})
 			/**/
 

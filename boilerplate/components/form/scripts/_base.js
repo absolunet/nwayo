@@ -2,12 +2,12 @@
 //-- Form - Base
 //-------------------------------------
 
-//= **require bower_components/jquery.inputmask/dist/inputmask/inputmask
-//= **require bower_components/jquery.inputmask/dist/inputmask/inputmask.extensions
-//= **require bower_components/jquery.inputmask/dist/inputmask/inputmask.date.extensions
-//= **require bower_components/jquery.inputmask/dist/inputmask/inputmask.extensions
-//= **require bower_components/jquery.inputmask/dist/inputmask/inputmask.numeric.extensions
-//= **require bower_components/jquery.inputmask/dist/inputmask/jquery.inputmask
+//= **require bower_components/inputmask/dist/inputmask/inputmask
+//= **require bower_components/inputmask/dist/inputmask/inputmask.extensions
+//= **require bower_components/inputmask/dist/inputmask/inputmask.date.extensions
+//= **require bower_components/inputmask/dist/inputmask/inputmask.numeric.extensions
+//= **require bower_components/inputmask/dist/inputmask/inputmask.phone.extensions
+//= **require bower_components/inputmask/dist/inputmask/jquery.inputmask
 
 (() => {
 	'use strict';
@@ -73,7 +73,8 @@
 			input[data-mask="credit-card"],
 			input[data-mask="credit-card-cvv"]
 		`)
-		.attr('pattern', '\\d*');
+			.attr('pattern', '\\d*')
+		;
 		/**/
 	};
 
@@ -121,9 +122,11 @@
 	//-- Subscribe to topics
 	local.subscribe = () => {
 
+		/**
 		pinki.message.subscribe('SAMPLE', (msg, data) => {
 			rebindFormEvent(data.$context);
 		});
+		/**/
 
 	};
 
