@@ -13,7 +13,8 @@ const DOM_PARSED           = global.nwayo.vows.DOMParsed;
 const DOCUMENT_LOADED      = global.nwayo.vows.documentLoaded;
 const GLOBAL_JQUERY_LOADED = global.nwayo.vows.globaljqueryLoaded;
 
-const __ = global.nwayo.shortcuts;
+const __      = global.nwayo.shortcuts;
+const toolbox = global.nwayo.helpers;
 
 const jQuery    = global.nwayo.vendor.jQuery;
 const $         = global.nwayo.vendor.jQuery;

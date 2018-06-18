@@ -1,6 +1,121 @@
 //-------------------------------------
-//-- nwayo - Mixins - Extra
+//-- nwayo - Mixins - Helpers
 //-------------------------------------
+
+//-- Images in ::before/::after pseudo-elements
+@mixin nwayo-pseudo-image-styles($width, $height:$width) {
+	content: '';
+	width: $width;
+	height: $height;
+}
+
+
+//-- Images which replaces text
+@mixin nwayo-textreplace-image-styles($width, $height:$width) {
+	overflow: hidden;
+	width: 0;
+	height: 0;
+	padding: $height 0 0 $width;
+}
+
+
+
+
+
+
+//-- Clearfix
+@mixin nwayo-clearfix-styles {
+	&::before, &::after {
+		content: '';
+		display: table;
+	}
+
+	&::after {
+		clear: both;
+	}
+}
+
+
+//-- Visually hidden
+@mixin nwayo-visually-hidden-styles {
+	position: absolute;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	width: rem-calc(1);   // stylelint-disable-line declaration-property-value-blacklist
+	height: rem-calc(1);  // stylelint-disable-line declaration-property-value-blacklist
+	padding: 0;
+	border: 0;
+	margin: rem-calc(-1);  // stylelint-disable-line declaration-property-value-blacklist
+}
+
+
+
+
+
+
+//-- Create a block that scale within a ratio
+@mixin nwayo-scaling-block-styles($w: 2, $h:1) {
+	position: relative;
+	display: block;
+	height: 0;
+	padding-top: percentage($h / $w);
+
+	.scaling-block-content {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+}
+
+
+//-- Vertical center the child within the parent
+@mixin nwayo-valign-parent-styles {
+	font-size: 0;  // stylelint-disable-line scale-unlimited/declaration-strict-value
+
+	&::before {
+		content: '';
+		display: inline-block;
+		vertical-align: middle;
+		height: 100%;
+	}
+
+	.valign-child {
+		display: inline-block;
+		vertical-align: middle;
+	}
+}
+
+
+
+
+
+
+//-- List
+@mixin nwayo-list-reset-styles {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+
+	> li {
+		margin: 0;
+	}
+}
+
+@mixin nwayo-list-inline-styles {
+	@include nwayo-list-reset-styles();
+
+	> li {
+		display: inline-block;
+		vertical-align: top;
+	}
+}
+
+
+
+
+
 
 //-- Placeholder
 @mixin nwayo-placeholder-styles() {
@@ -17,6 +132,7 @@
 	}
 }
 
+
 //-- Select reset
 @mixin nwayo-select-reset-styles() {
 	@-moz-document url-prefix() {
@@ -29,6 +145,7 @@
 		@content;
 	}
 }
+
 
 //-- Input type file button
 @mixin nwayo-input-file-button-styles() {
@@ -72,27 +189,6 @@
 		} @else {
 			border-left: $size solid $color;
 		}
-	}
-}
-
-
-
-
-
-
-//-- Create a block that scale within a ratio
-@mixin nwayo-scaling-block-styles($w: 2, $h:1) {
-	position: relative;
-	display: block;
-	height: 0;
-	padding-top: percentage($h / $w);
-
-	.scaling-block-content {
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
 	}
 }
 

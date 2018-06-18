@@ -53,7 +53,7 @@
 			})
 		;
 
-		pinki.message.publish(`${PROJECT}.common.lazyload.preprocess-completed`);
+		pinki.message.publish(`nwayo.toolbox.lazyload.preprocess-completed`);
 	};
 
 
@@ -74,7 +74,7 @@
 
 		$(`[${STATUS}="${PROCESSING2}"]`).imagesLoaded({ background:true }).always(local.secondPass);
 
-		pinki.message.publish(`${PROJECT}.common.lazyload.firstPass-completed`);
+		pinki.message.publish(`nwayo.toolbox.lazyload.firstPass-completed`);
 	};
 
 
@@ -92,7 +92,7 @@
 			})
 		;
 
-		pinki.message.publish(`${PROJECT}.common.lazyload.secondPass-completed`);
+		pinki.message.publish(`nwayo.toolbox.lazyload.secondPass-completed`);
 	};
 
 
@@ -100,7 +100,7 @@
 
 
 	//-- Public class
-	app.lazyload = class {
+	global.nwayo.helpers.lazyload = class {
 
 		// Register new types
 		static register(types) {

@@ -8,7 +8,7 @@
 	const ORIGINAL_GLOBAL = global.jQuery;
 	this.jQuery = $;
 
-	//= require bower_components/isotope/dist/isotope.pkgd
+	//= require bower_components/isotope-layout/dist/isotope.pkgd
 
 	this.jQuery = ORIGINAL_GLOBAL;
 
