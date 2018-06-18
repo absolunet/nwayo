@@ -74,23 +74,6 @@
 }
 
 
-//-- Images in ::before/::after pseudo-elements
-@mixin nwayo-pseudo-image-styles($width, $height:$width) {
-	content: '';
-	width: $width;
-	height: $height;
-}
-
-
-//-- Images which replaces text
-@mixin nwayo-textreplace-image-styles($width, $height:$width) {
-	overflow: hidden;
-	width: 0;
-	height: 0;
-	padding: $height 0 0 $width;
-}
-
-
 
 
 

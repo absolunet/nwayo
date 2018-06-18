@@ -25,7 +25,7 @@
 
 		/**
 		// Lazyload
-		app.lazyload.register({
+		toolbox.lazyload.register({
 			'image': {
 				firstPass: ($this, options) => {
 					$this.attr('src', options.url);

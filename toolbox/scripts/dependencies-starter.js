@@ -100,6 +100,8 @@
 
 	addProp(nwayo, 'shortcuts', shortcuts);
 
+	addProp(nwayo, 'helpers', {});
+
 	addProp(global, 'nwayo', nwayo);
 
 
