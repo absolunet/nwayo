@@ -1,12 +1,12 @@
 {
   "name": "nwayo-toolbox",
-  "version": "3.5.0-rc.3",
+  "version": "3.5.0-rc.5",
   "description": "Toolbox for nwayo",
   "definition": "/nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.",
    "homepage": "http://absolunet.github.io/nwayo",
    "author": {
     "name": "Absolunet",
-    "url": "http://absolunet.com/"
+    "url": "https://absolunet.com"
   },
   "keywords": [
     "nwayo"
@@ -32,7 +32,6 @@
     ".editorconfig",
     ".eslintrc.yaml",
     ".gitignore",
-    ".stylelintrc.yaml",
     ".travis.yml"
   ]
 }
