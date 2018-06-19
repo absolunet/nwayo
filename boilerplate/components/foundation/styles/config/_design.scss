@@ -84,7 +84,7 @@ $global-padding:                       1em;
 $global-position:                      1em;
 $global-weight-normal:                 $common-text-base-weight;
 $global-weight-bold:                   $common-text-fat-weight;
-$global-radius:                        0;
+$global-radius:                        common-radius();
 $global-menu-padding:                  .7em 1em;
 $global-menu-nested-margin:            1em;
 $global-text-direction:                ltr;
