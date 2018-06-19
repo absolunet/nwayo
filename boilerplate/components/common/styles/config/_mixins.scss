@@ -37,6 +37,7 @@
 	box-sizing: border-box;
 	padding: $padding;
 	border: common-border($width:2, $color:$border-color);
+	border-radius: common-radius(button);
 	margin: 0;
 	background: $background-color;
 	color: $color;

@@ -8,7 +8,7 @@
 
 	const addProp = (obj, prop, value) => {
 		Object.defineProperty(obj, prop, {
-			enumerable:   false,
+			enumerable:   true,
 			writable:     false,
 			configurable: false,
 			value:        value
@@ -84,7 +84,7 @@
 		});
 
 		// Data - shortcuts
-		['action', 'component', 'placeholder', 'showfor'].forEach((key) => {
+		['action', 'component', 'placeholder'].forEach((key) => {
 			shortcut[key]       = (value) => { return selector(`data-${key}`, value); };
 			shortcut[`$${key}`] = (value) => { return $(shortcut[key](value)); };
 		});
