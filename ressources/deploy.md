@@ -30,6 +30,10 @@
 
 - Ajuster la version dans le `package.json`
 
+- Supprimer `package-lock.json` et `node_modules`
+
+- Faire un `npm install`
+
 - S'assurer qu'il n'y a pas un `npm-shrinkwrap.json`
 
 - Copier les fichiers `./readme.md` et `./license` sous `workflow`
