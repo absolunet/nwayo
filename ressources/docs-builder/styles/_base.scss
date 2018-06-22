@@ -15,7 +15,7 @@ path {
 }
 
 pre[class*='language-'] {
-	border-radius: .2em;
+	border-radius: $docs-code-radius;
 }
 
 code[class*='language-'] {
@@ -25,7 +25,7 @@ code[class*='language-'] {
 
 code:not([class]) {
 	padding: .2em .5em;
-	border-radius: .2em;
+	border-radius: $docs-code-radius;
 	margin: 0 .2em;
 	font-size: $docs-code-size;
 }
