@@ -15,16 +15,16 @@
     "inquirer": "6.0.0",
     "jsrender": "0.9.90",
     "markdown-it": "8.4.1",
-    "markdown-it-anchor": "4.0.0",
+    "markdown-it-anchor": "5.0.2",
     "markdown-it-external-links": "0.0.6",
     "minimist": "1.2.0",
     "scandirectory": "3.0.1",
-    "uglify-js": "3.4.0"
+    "uglify-js": "3.4.1"
   },
   "devDependencies": {
-    "@absolunet/eslint-config-nwayo": "0.3.1",
-    "@absolunet/stylelint-config-nwayo": "0.1.2",
-    "@absolunet/tester": "1.7.0"
+    "@absolunet/eslint-config-nwayo": "1.0.0",
+    "@absolunet/stylelint-config-nwayo": "1.0.3",
+    "@absolunet/tester": "1.7.1"
   },
   "scripts": {
     "start": "cd ../../test/fixtures/docs; docker run -t -d --rm -v \"$PWD\":/usr/src/app -p \"4000:4000\" --name ghpages-nwayo starefossen/github-pages; sleep 1; open http://localhost:4000/nwayo",

@@ -1,6 +1,6 @@
 {
   "name": "@absolunet/nwayo-workflow",
-  "version": "3.5.0-rc.5",
+  "version": "3.5.1",
   "description": "Workflow for nwayo",
   "definition": "/nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.",
   "homepage": "https://absolunet.github.io/nwayo/",
@@ -22,7 +22,7 @@
     "url": "https://github.com/absolunet/nwayo/issues"
   },
   "engines": {
-    "node": ">= 10.4.1"
+    "node": ">= 10.5.0"
   },
   "scripts": {
     "test": "ava index.js"
@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@absolunet/eslint-config-nwayo": "1.0.0",
-    "@absolunet/stylelint-config-nwayo": "1.0.2",
+    "@absolunet/stylelint-config-nwayo": "1.0.3",
     "@absolunet/cli": "0.5.1",
     "@absolunet/fsp": "0.1.1",
     "@absolunet/fss": "0.7.1",
@@ -81,7 +81,7 @@
     "require-dir": "1.0.0",
     "semver": "5.5.0",
     "slash": "2.0.0",
-    "uglify-js": "3.4.0",
+    "uglify-js": "3.4.1",
     "vinyl": "2.1.0"
   }
 }
