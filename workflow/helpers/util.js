@@ -339,6 +339,8 @@ Run ${chalk.cyan('nwayo install workflow')} to update`,
 			'doctor':  [`doctor`, `Checks npm / Bower packages for updates`],
 
 			// Options
+			'update':      [`update`, `Update the CLI`],
+			'outdated':    [`outdated`, `Check if CLI is outdated`],
 			'--help':      [`-h, --help`, `Show help`],
 			'--version':   [`-v, --version`, 'Show CLI version'],
 			'--pronounce': [`--pronounce`, `Listen to ${env.name} pronunciation`]
@@ -347,7 +349,7 @@ Run ${chalk.cyan('nwayo install workflow')} to update`,
 
 		cli.setFullUsage({
 			'Project': ['run', 'rebuild', 'watch', 'install', 'doctor'],
-			'Options': ['--help', '--version', '--pronounce']
+			'CLI': ['update', 'outdated', '--help', '--version', '--pronounce']
 		}, { showBin:false });
 		/* eslint-enable quote-props */
 	}
