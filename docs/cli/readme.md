@@ -168,9 +168,37 @@ $ nwayo watch site:editor
 ```
 
 
-## Flags
+## CLI
 
-### -v or --version
+### update
+`nwayo update`
+
+Updates nwayo CLI if needs updating or reinstalls it otherwise
+
+**Example:**
+```shell
+$ nwayo update
+```
+
+### outdated
+`nwayo outdated`
+
+Outputs if nwayo CLI needs an update
+
+**Example:**
+```shell
+$ nwayo outdated
+
+   ╭─────────────────────────────────────────────────╮
+   │                                                 │
+   │         Update available 1.3.0 → 1.4.0          │
+   │           Run nwayo update to update            │
+   │                                                 │
+   ╰─────────────────────────────────────────────────╯
+
+```
+
+## -v or --version
 `nwayo --version`
 
 Outputs nwayo CLI's version
