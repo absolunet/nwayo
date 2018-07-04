@@ -30,7 +30,8 @@ tester.lintScss([
 	`!boilerplate/bower_components/**/*`,
 	`!boilerplate/components/**/styles/vendor/**/*.scss`,
 	`!ressources/docs-builder/bower_components/**/*.scss`,
-	`!ressources/docs-builder/node_modules/**/*.scss`
+	`!ressources/docs-builder/node_modules/**/*.scss`,
+	`!ressources/docs-builder/styles/vendor/*.scss`
 ], {
 	cwd: rootPath
 });

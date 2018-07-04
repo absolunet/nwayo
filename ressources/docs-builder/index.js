@@ -7,7 +7,7 @@ const babel         = require('babel-core');
 const ghpages       = require('gh-pages');
 const gulp          = require('gulp');
 const cssnano       = require('gulp-cssnano');
-const sass          = require('gulp-ruby-sass');
+const gulpsass      = require('gulp-dart-sass');
 const uglify        = require('gulp-uglify');
 const inquirer      = require('inquirer');
 const jsrender      = require('jsrender');
@@ -214,11 +214,13 @@ switch (task) {
 		fss.copy(`${paths.root}/test/fixtures/build/icons/site`, `${paths.static}/icons`);
 
 		// SCSS
-		sass(`${paths.builder}/styles/main.scss`, {
-			loadPath:      paths.builder,
-			cacheLocation: '/tmp',
-			require:       `${paths.workflow}/ressources/sass.rb`
-		})
+		gulp.src(`${paths.builder}/styles/main.scss`)
+			.pipe(gulpsass.sync({
+				includePaths: [paths.builder],
+				functions:    require(`${paths.workflow}/ressources/dart-sass-functions.js`)  // eslint-disable-line global-require
+			})
+				.on('error', gulpsass.logError))
+
 			.pipe(cssnano({ reduceIdents:false, zindex:false }))
 			.pipe(gulp.dest(`${paths.static}/styles`))
 		;

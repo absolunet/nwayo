@@ -8,16 +8,15 @@ const gulp         = require('gulp');
 const autoprefixer = require('gulp-autoprefixer');
 const cache        = require('gulp-cached');
 const cssnano      = require('gulp-cssnano');
+const gulpsass     = require('gulp-dart-sass');
 const gulpif       = require('gulp-if');
 const imagemin     = require('gulp-imagemin');
 const jsonsass     = require('gulp-json-sass');
 const rename       = require('gulp-rename');
-const sass         = require('gulp-ruby-sass');
 const sourcemaps   = require('gulp-sourcemaps');
 const stylelint    = require('gulp-stylelint');
 const _            = require('lodash');
 const pluralize    = require('pluralize');
-const fss          = require('@absolunet/fss');
 const env          = require('../helpers/env');
 const flow         = require('../helpers/flow');
 const paths        = require('../helpers/paths');
@@ -119,7 +118,9 @@ flow.createTask('styles-constants', ({ taskName }) => {
 
 
 //-- Compile
-flow.createTask('styles-compile', () => {
+flow.createTask('styles-compile', ({ taskName }) => {
+	const sassFunctions = require(paths.config.sassFunctions);  // eslint-disable-line global-require
+
 	const streams = [];
 
 	for (const name of Object.keys(env.bundles)) {
@@ -137,37 +138,45 @@ flow.createTask('styles-compile', () => {
 				list[i] = `@import '${file}';`;
 			});
 
-			fss.outputFile(`${paths.dir.cacheStyles}/${name}/collections/${collection}.${paths.ext.styles}`, `${util.getGeneratedBanner(name)}${list.join('\n')}\n`);
+			const toMinify      = (bundle.styles.options.minify && !env.watching) || env.prod;
+			const toSourcemaps  = bundle.styles.options.sourcemaps && !env.prod;
+			const filename      = `${collection}.${paths.ext.build}`;
+			const filenameBuild = `${collection}.${paths.ext.stylesBuild}`;
+			const dest          = `${bundle.output.build}/${paths.build.styles}`;
+			const source        = `${util.getGeneratedBanner(name)}${list.join('\n')}\n`;
+
+			/* eslint-disable function-paren-newline */
+			streams.push(
+				toolbox.vinylStream(filename, source)
+					.pipe(toolbox.plumber())
+
+					// Note however that by default, renderSync() is more than twice as fast as render(), due to the overhead of asynchronous callbacks. (https://github.com/sass/dart-sass#javascript-api)
+					.pipe(
+						gulpsass.sync({
+							includePaths: [paths.dir.root],
+							functions:    sassFunctions       // *.css in a function ?
+							// sourcemaps  (bundle.styles.options.sourcemaps)
+						})
+							.on('error', gulpsass.logError)
+					)
+
+					.pipe(autoprefixer({ browsers:bundle.styles.options.autoprefixer }))
+
+					.pipe(gulpif(toMinify, cssnano({ reduceIdents:false, zindex:false })))
+
+					.pipe(gulpif(toSourcemaps, sourcemaps.write('maps', {
+						includeContent: false,
+						sourceRoot:     'source'
+					})))
+
+					.pipe(gulp.dest(`${paths.dir.root}/${dest}`))
+
+					.on('finish', () => {
+						toolbox.log(taskName, `'${dest}/${filenameBuild}' written`, toolbox.filesize(`${paths.dir.root}/${dest}/${filenameBuild}`));
+					})
+			);
+			/* eslint-enable function-paren-newline */
 		}
-
-		// Process all collections from this bundle
-		const toMinify     = (bundle.styles.options.minify && !env.watching) || env.prod;
-		const toSourcemaps = bundle.styles.options.sourcemaps && !env.prod;
-
-		/* eslint-disable function-paren-newline */
-		streams.push(
-			sass(`${paths.dir.cacheStyles}/${name}/collections/*.${paths.ext.styles}`, {
-				loadPath:      paths.dir.root,
-				cacheLocation: paths.dir.cacheSass,
-				require:       paths.config.sass,
-				trace:         true,
-				sourcemap:     bundle.styles.options.sourcemaps
-			})
-
-				.pipe(toolbox.plumber())
-
-				.pipe(autoprefixer({ browsers:bundle.styles.options.autoprefixer }))
-
-				.pipe(gulpif(toMinify, cssnano({ reduceIdents:false, zindex:false })))
-
-				.pipe(gulpif(toSourcemaps, sourcemaps.write('maps', {
-					includeContent: false,
-					sourceRoot:     'source'
-				})))
-
-				.pipe(gulp.dest(`${paths.dir.root}/${bundle.output.build}/${paths.build.styles}`))
-		);
-		/* eslint-enable function-paren-newline */
 	}
 
 	return toolbox.mergeStreams(streams);
