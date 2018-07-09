@@ -24,7 +24,11 @@ Ruby is used solely to build SCSS
 ```shell
 choco install ruby --confirm
 chcp 1252
-gem source -a http://rubygems.org/
+```
+
+#### Restart CMD before proceding to the next commands
+```shell
+gem source -a https://rubygems.org/
 ```
 
 #### [Sass](http://sass-lang.com)
@@ -49,6 +53,8 @@ Node.js is the backbone of the workflow
 ```shell
 choco install nodejs.install --confirm
 ```
+
+#### Restart CMD before proceding to the next commands
 
 #### [nwayo CLI](http://absolunet.github.io/nwayo)
 Well duh...
