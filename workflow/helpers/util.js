@@ -117,7 +117,7 @@ module.exports = class util {
 		let cliParams = '';
 
 		for (const option of Object.keys(config)) {
-			if (config[option].length) {
+			if (config[option].length !== 0) {
 				cliParams += ` ${option}=${config[option].join(',')}`;
 			}
 		}
@@ -129,7 +129,7 @@ module.exports = class util {
 	//-- Babel allowed rules
 	static getBabelAllowedRules(includedFiles) {
 		let includes = '';
-		if (Boolean(includedFiles) && includedFiles.length) {
+		if (Boolean(includedFiles) && includedFiles.length !== 0) {
 			const includesLength = includedFiles.length - 1;
 			includedFiles.forEach((file, i) => {
 				includes += (i === 0 ? '(?!' : '|') + escapeForRegex(file) + (i === includesLength ? ')' : '');
@@ -199,7 +199,7 @@ module.exports = class util {
 
 			// Check if component has assets
 			const componentFiles = files.replace(paths.pattern.anytree, component);
-			if (glob.sync(componentFiles).length) {
+			if (glob.sync(componentFiles).length !== 0) {
 
 				// Create stream for component
 				let componentStream = gulp.src(componentFiles, { base:paths.dir.root });

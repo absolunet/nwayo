@@ -9,28 +9,30 @@ const tester = require('@absolunet/tester');
 
 const rootPath = slash(path.normalize(`${__dirname}/..`));
 
-tester.lintJs([
+tester.lint.js([
 	`*.js`,
 	`*/*.js`,
 	`*/!(node_modules)/**/*.js`,
-	`!boilerplate/bower_components/**/*.js`,
-	`!boilerplate/components/**/scripts/vendor/**/*.js`,
-	`!ressources/docs-builder/bower_components/**/*.js`,
-	`!ressources/docs-builder/node_modules/**/*.js`,
-	`!test/fixtures/**/*.js`
+	`!boilerplate/bower_components/**`,
+	`!boilerplate/components/**/scripts/vendor/**`,
+	`!ressources/docs-builder/bower_components/**`,
+	`!ressources/docs-builder/node_modules/**`,
+	`!test/fixtures/**`,
+	`!workflow/tests-matrix/**`
 ], {
 	cwd: rootPath
 });
 
 
-tester.lintScss([
+tester.lint.scss([
 	`*.scss`,
 	`*/*.scss`,
 	`*/!(node_modules)/**/*.scss`,
-	`!boilerplate/bower_components/**/*`,
-	`!boilerplate/components/**/styles/vendor/**/*.scss`,
-	`!ressources/docs-builder/bower_components/**/*.scss`,
-	`!ressources/docs-builder/node_modules/**/*.scss`
+	`!boilerplate/bower_components/**`,
+	`!boilerplate/components/**/styles/vendor/**`,
+	`!ressources/docs-builder/bower_components/**`,
+	`!ressources/docs-builder/node_modules/**`,
+	`!workflow/tests-matrix/**`
 ], {
 	cwd: rootPath
 });

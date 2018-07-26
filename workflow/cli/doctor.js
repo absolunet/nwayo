@@ -3,172 +3,82 @@
 //--------------------------------------------------------
 'use strict';
 
-const async          = require('async');
-const bower          = require('bower');
-const chalk          = require('chalk');
-const lastestVersion = require('latest-version');
-const semver         = require('semver');
-const cli            = require('@absolunet/cli');
-const fss            = require('@absolunet/fss');
-const terminal       = require('@absolunet/terminal');
-const env            = require('../helpers/env');
-const paths          = require('../helpers/paths');
+const async     = require('async');
+const chalk     = require('chalk');
+const pluralize = require('pluralize');
+const cli       = require('@absolunet/cli');
+const fss       = require('@absolunet/fss');
+const terminal  = require('@absolunet/terminal');
+const env       = require('../helpers/env');
+const paths     = require('../helpers/paths');
+const tester    = require('../helpers/tester');
 
 
-const analyzeWorkflow = (cb) => {
-	const current = env.workflowPkg.version;
+const totals = {
+	success: 0,
+	failure:  0
+};
 
-	lastestVersion(env.pkgName).then((latest) => {
-		const outdated = [];
-
-		if (semver.gt(latest, current)) {
-			outdated.push({
-				current: current,
-				latest:  latest,
-				name:    env.pkgName
-			});
-		}
-
-		cb(null, { outdated });
-	});
+const reportTitle = (title, success) => {
+	terminal.echo(`${chalk.cyan(title)} diagnosis  ${success ? chalk.green('(^_^)') : chalk.red('ಠ_ಠ')}\n`);
 };
 
 
-const analyzeBower = (cb) => {
-	if (fss.exists(paths.config.bower)) {
+const reporter = (title, data) => {
+	let success;
 
-		const isPreVersion = (v1, v2) => {
-			return ['premajor', 'preminor', 'prepatch', 'prerelease'].includes(semver.diff(v1, v2));
-		};
-
-		const data = {
-			outdated: []
-		};
-
-		return bower.commands.list(null, { cwd:paths.dir.root }).on('end', (deps) => {
-
-			for (const name in deps.dependencies) {
-				if (Object.prototype.hasOwnProperty.call(deps.dependencies, name)) {
-
-					const info = deps.dependencies[name];
-
-					let stable = false;
-
-					if (info.pkgMeta) {
-
-						// If there is an update
-						if (info.update && info.pkgMeta.version !== info.update.latest) {
-
-							// If the update is pre-version
-							if (isPreVersion(info.update.latest, info.pkgMeta.version)) {
-
-								// Search all versions
-								for (const version of info.versions) {
-
-									// If not a pre-version
-									if (!isPreVersion(version, info.pkgMeta.version)) {
-
-										// If newer than current version
-										if (semver.gt(version, info.pkgMeta.version)) {
-											stable = version;
-
-										// Stop looping since in desc order
-										} else {
-											break;
-										}
-									}
-								}
-
-							// If update is a stable version
-							} else {
-								stable = info.update.latest;
-							}
-
-							// If a stable newer version was found
-							if (stable) {
-								data.outdated.push({
-									name: name,
-									current: info.pkgMeta.version,
-									latest: stable
-								});
-							}
-						}
-
-					} else {
-						data.outdated.push({
-							name: name,
-							message: 'Not installed'
-						});
-					}
-				}
-			}
-
-			return cb(null, data);
-		});
-
-	}
-
-	return cb(null, { error:'No bower.json file found' });
-};
-
-
-const compareWorflowToolbox = (cb) => {
-	if (fss.exists(paths.config.bower)) {
-		const bowerConfig     = require(paths.config.bower);  // eslint-disable-line global-require
-		const workflowVersion = env.workflowPkg.version;
-		const toolboxVersion  = bowerConfig.devDependencies['nwayo-toolbox'];
-
-		if (workflowVersion !== toolboxVersion) {
-			return cb(null, { error:`Workflow ${workflowVersion} / Toolbox ${toolboxVersion} not in sync` });
-		}
-
-		return cb(null, { outdated:[] });
-	}
-
-	return cb(null, { error:'No bower.json file found' });
-};
-
-
-const report = (title, data) => {
-	let reward = false;
-	terminal.echoIndent(`${chalk.cyan(title)} diagnosis`);
-
+	//-- Error
 	if (data.error) {
+		success = false;
+		reportTitle(title, success);
+		++totals.failure;
 		terminal.failure(data.error);
 
-	} else if (data.outdated.length) {
-		terminal.failure('You are a dull blade   ಠ_ಠ');
+
+	//-- Outdated stuff
+	} else if (data.outdated && data.outdated.length !== 0) {
+		success = false;
+		reportTitle(title, success);
 
 		data.outdated.forEach((item) => {
 			const msg = item.message ? `${chalk.red(item.message)}` : `${chalk.dim(item.current)} → ${chalk.green(item.latest)}`;
-			terminal.echo(`    [${item.name}] : ${msg}`);
+			terminal.echoIndent(`${chalk.red(`✘  ${item.name}:`)} ${msg}`);
+			++totals.failure;
 		});
 
 		terminal.spacer();
 
+
+	//-- Tests report
+	} else if (data.report) {
+		success = !data.report.find((test) => { return test.success === false; });
+		reportTitle(title, success);
+
+		data.report.forEach((test) => {
+			if (test.success) {
+				terminal.echoIndent(chalk.green(`✓  ${test.message}`));
+				++totals.success;
+			} else {
+				terminal.echoIndent(chalk.red(`✘  ${test.message}`));
+				++totals.failure;
+			}
+		});
+
+		terminal.spacer();
+
+
+	//-- Clear success
 	} else {
-		terminal.success('You are cutting edge   (^_^)');
-		reward = true;
+		success = true;
+		reportTitle(title, success);
+		++totals.success;
+
+		terminal.success(data.message);
 	}
 
 	terminal.spacer();
 
-	return reward;
-};
-
-
-const colorize = (reward) => {
-	const color = {
-		pink:  chalk.hex('#ff69b4'),
-		green: chalk.hex('#198c19')
-	};
-
-	return reward
-		.replace(/_.--._/g, `_${color.pink('.--.')}_`)
-		.replace(/`--'/g, color.pink('`--\''))
-		.replace(/\(\)/g, color.pink('()'))
-		.replace(/.==./g, color.green('.==.'))
-	;
+	return success;
 };
 
 
@@ -176,33 +86,61 @@ const colorize = (reward) => {
 
 
 
-module.exports = class {
+class Doctor {
 
-	static cli(meowCli) {
+	cli(meowCli) {
 		cli.refuseFlagsAndArguments(meowCli);
 
 		terminal.spacer();
 		const spinner = terminal.startSpinner(`Diagnosing ${chalk.cyan(env.pkg.name)}...`);
 
 		async.parallel({
-			workflow: analyzeWorkflow,
-			bower:    analyzeBower,
-			compare:  compareWorflowToolbox
+			config:   tester.config,
+			workflow: tester.workflowUpdates,
+			bower:    tester.bowerUpdates,
+			sync:     tester.syncWorkflowToolbox
 		}, (error, data) => {
 
 			spinner.stop();
 
-			const workflowReward = report('Workflow', data.workflow);
-			const bowerReward    = report('Bower', data.bower);
-			const compareReward  = report('Synchronization', data.compare);
+			//-- Reports
+			reporter('Config', data.config);
+			reporter('Workflow', data.workflow);
+			reporter('Vendors', data.bower);
+			reporter('Sync between workflow and toolbox', data.sync);
 
-			// Reward
-			if (workflowReward && bowerReward && compareReward) {
+
+			//-- Totals
+			if (totals.success) {
+				terminal.echo(chalk.green(`${pluralize('test', totals.success, true)} passed`));
+			}
+
+			if (totals.failure) {
+				terminal.echo(chalk.red(`${pluralize('test', totals.failure, true)} failed`));
+			}
+
+			terminal.spacer();
+
+
+			//-- Reward
+			if (totals.failure === 0) {
 				const reward = fss.readFile(`${paths.workflow.ressources}/doctor-reward`, 'utf8');
-				terminal.echo(colorize(reward));
+				const pink   = chalk.hex('#ff69b4');
+				const green  = chalk.hex('#198c19');
+
+				terminal.echo(reward
+					.replace(/_.--._/g, `_${pink('.--.')}_`)
+					.replace(/`--'/g, pink('`--\''))
+					.replace(/\(\)/g, pink('()'))
+					.replace(/.==./g, green('.==.')))
+				;
 				terminal.spacer();
 			}
+
 		});
 	}
 
-};
+}
+
+
+module.exports = new Doctor();

@@ -131,7 +131,7 @@ switch (task) {
 
 				const md = new MarkdownIt();
 				md.normalizeLink = (link) => {
-					if (/^(http|\/)/.test(link)) {
+					if ((/^(http|\/)/).test(link)) {
 						return link;
 					}
 
