@@ -6,6 +6,7 @@
 // We disable global require rule to optimize the speed of the CLI for unrelated workflow stuff
 /* eslint-disable global-require */
 
+/* eslint-disable array-element-newline */
 const TASKS = [
 	'assets', 'assets-fonts', 'assets-images-optimization', 'assets-images-highdensity', 'assets-raw', 'assets-images',
 	'icons', 'icons-favicon', 'icons-touch', 'icons-icon', 'icons-large', 'icons-tile',
@@ -19,6 +20,7 @@ const LEVEL1_FLAGS          = ['-h', '--help', '-v', '--version', '--pronounce']
 const REBUILD_FLAGS         = ['--prod'];
 const INSTALL_SCOPES        = ['workflow', 'vendors'];
 const INSTALL_WORKFLOW_FLAG = ['--force'];
+/* eslint-enable array-element-newline */
 
 
 const flag = (items, flags) => {

@@ -101,7 +101,7 @@ module.exports = class env {
 
 		// Process bundles
 		const data = {};
-		if (bundlesList.length) {
+		if (bundlesList.length !== 0) {
 
 			for (const folder of bundlesList) {
 				const [, name] = folder.match(/\/([0-9a-zA-Z-]+)\/$/);
@@ -124,7 +124,7 @@ module.exports = class env {
 				}
 
 				const subBundlesList = glob.sync(`${paths.dir.bundles}/${name}/_${requiredSubname}.${paths.ext.bundles}`);
-				if (subBundlesList.length) {
+				if (subBundlesList.length !== 0) {
 					for (const subBundleFile of subBundlesList) {
 
 						const subBundleData = toolbox.readYAML(subBundleFile);

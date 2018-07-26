@@ -60,7 +60,7 @@ flow.createTask('styles-lint', ({ taskName }) => {
 						hasErrors = false;
 
 						results.forEach((item) => {
-							if (item.warnings.length || item.deprecations.length || item.invalidOptionWarnings.length) {
+							if (item.warnings.length !== 0 || item.deprecations.length !== 0 || item.invalidOptionWarnings.length !== 0) {
 								delete cache.caches.styles[item.source];
 
 								if (!hasErrors) {
