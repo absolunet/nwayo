@@ -5,8 +5,10 @@
 
 const bower          = require('bower');
 const chalk          = require('chalk');
+const concordance    = require('concordance');
 const findUp         = require('find-up');
 const lastestVersion = require('latest-version');
+const _              = require('lodash');
 const semver         = require('semver');
 const fss            = require('@absolunet/fss');
 const terminal       = require('@absolunet/terminal');
@@ -130,25 +132,22 @@ class Reporter {
 
 lint files (json / yaml / editorconfig)
 
-Remove PROJECT_NAME and verify bower/package have same name
-
-Check bower.json
-
-Check package.json
-
 */
 
 class Tester {
 
-	// Check if config files exists and are valid
+	//-- Check if config files exists and are valid
 	config(cb) {
 		const reports = new Reporter();
 		let lastTest;
 
+		// .editorconfig
 		reports.add(test.isMatrix('.editorconfig'));
 
+		// .eslintignore
 		reports.add(test.isMatrix('.eslintignore'));
 
+		// .eslintrc.yaml
 		lastTest = reports.add(test.exists('.eslintrc.yaml'));
 		if (lastTest.exists) {
 			const config = toolbox.readYAML(`${paths.dir.root}/.eslintrc.yaml`);
@@ -158,12 +157,16 @@ class Tester {
 			});
 		}
 
+		// .gitattributes
 		reports.add(test.hasMatrix('.gitattributes'));
 
+		// .gitignore
 		reports.add(test.hasMatrix('.gitignore'));
 
+		// .stylelintignore
 		reports.add(test.isMatrix('.stylelintignore'));
 
+		// .stylelintrc.yaml
 		lastTest = reports.add(test.exists('.stylelintrc.yaml'));
 		if (lastTest.exists) {
 			const config = toolbox.readYAML(`${paths.dir.root}/.stylelintrc.yaml`);
@@ -173,25 +176,128 @@ class Tester {
 			});
 		}
 
-		reports.add(test.exists('bower.json'));
+		// bower.json
+		let bowerName;
+		lastTest = reports.add(test.exists('bower.json'));
+		if (lastTest.exists) {
+			const config = require(`${paths.dir.root}/bower.json`);  // eslint-disable-line global-require
+
+			const allowedKeys = ['name', 'private', 'devDependencies', '___nwayo-recommended___'];
+			const containKeys = concordance.compare(Object.keys(config).sort(), allowedKeys.sort()).pass;
+			reports.add({
+				success: containKeys,
+				message: `${chalk.underline('bower.json')}: Must only contain certain attributes${!containKeys ? ` (${allowedKeys.join(' | ')})` : ''}`
+			});
+
+			bowerName = config.name;
+			reports.add([
+				{
+					success: config.name,
+					message: `${chalk.underline('bower.json')}: Name must be defined`
+				},
+				{
+					success: config.name === _.kebabCase(config.name),
+					message: `${chalk.underline('bower.json')}: Name must be kebab-case`
+				},
+				{
+					success: config.name !== 'PROJECT_NAME',
+					message: `${chalk.underline('bower.json')}: Name must not stay 'PROJECT_NAME'`
+				}
+			]);
+
+			reports.add({
+				success: config.private === true,
+				message: `${chalk.underline('bower.json')}: Private must be set to true`
+			});
+
+			Object.keys(config.devDependencies).forEach((name) => {
+				reports.add({
+					success: semver.valid(config.devDependencies[name]) || config.devDependencies[name] === 'master',
+					message: `${chalk.underline('bower.json')}: devDependencies '${name}' must have a fixed SemVer`
+				});
+			});
+		}
+
+		// konstan.yaml
 		reports.add(test.exists('konstan.yaml'));
+
+		// lodash.yaml
 		reports.add(test.exists('lodash.yaml'));
 
+		// modernizr.yaml
+		reports.add(test.exists('modernizr.yaml'));
+
+		// nwayo.yaml
 		const nwayoConf = findUp.sync('nwayo.yaml', { cwd:paths.dir.root });
 		reports.add({
 			success: nwayoConf,
 			message: `${chalk.underline('nwayo.yaml')}: Must exist in parent directories${nwayoConf ? ` (Found: ${nwayoConf})` : ''}`
 		});
 
-		reports.add(test.exists('modernizr.yaml'));
-		reports.add(test.exists('package.json'));
+		// package.json
+		lastTest = reports.add(test.exists('package.json'));
+		if (lastTest.exists) {
+			const config = require(`${paths.dir.root}/package.json`);  // eslint-disable-line global-require
+
+			const allowedKeys = ['name', 'license', 'private', 'dependencies'];
+			const containKeys = concordance.compare(Object.keys(config).sort(), allowedKeys.sort()).pass;
+			reports.add({
+				success: containKeys,
+				message: `${chalk.underline('package.json')}: Must only contain certain attributes${!containKeys ? ` (${allowedKeys.join(' | ')})` : ''}`
+			});
+
+			reports.add([
+				{
+					success: config.name,
+					message: `${chalk.underline('package.json')}: Name must be defined`
+				},
+				{
+					success: config.name === _.kebabCase(config.name),
+					message: `${chalk.underline('package.json')}: Name must be kebab-case`
+				},
+				{
+					success: config.name !== 'PROJECT_NAME',
+					message: `${chalk.underline('package.json')}: Name must not stay 'PROJECT_NAME'`
+				},
+				{
+					success: config.name === bowerName,
+					message: `${chalk.underline('package.json')}: Name must be identical to 'bower.json' name`
+				}
+			]);
+
+			reports.add({
+				success: config.license === 'UNLICENSED',
+				message: `${chalk.underline('package.json')}: License must be 'UNLICENSED'`
+			});
+
+			reports.add({
+				success: config.private === true,
+				message: `${chalk.underline('package.json')}: Private must be set to true`
+			});
+
+			const allowedPackages = ['@absolunet/nwayo-workflow'];
+			const containPackages = concordance.compare(Object.keys(config.dependencies).sort(), allowedPackages.sort()).pass;
+			reports.add({
+				success: containPackages,
+				message: `${chalk.underline('package.json')}: Must only contain certain dependencies${!containPackages ? ` (${allowedPackages.join(' | ')})` : ''}`
+			});
+
+			Object.keys(config.dependencies).forEach((name) => {
+				reports.add({
+					success: semver.valid(config.dependencies[name]),
+					message: `${chalk.underline('package.json')}: Dependencies '${name}' must have a fixed SemVer`
+				});
+			});
+		}
+
+		// package-lock.json
 		reports.add(test.exists('package-lock.json'));
 
 		cb(null, { report:reports.list });
 	}
 
 
-	// Check if the workflow needs an update
+	//-- Check if the workflow needs an update
 	workflowUpdates(cb) {
 		const current = env.workflowPkg.version;
 
@@ -211,7 +317,7 @@ class Tester {
 	}
 
 
-	// Check if bower packages need an update
+	//-- Check if bower packages need an update
 	bowerUpdates(cb) {
 		if (fss.exists(paths.config.bower)) {
 
@@ -290,7 +396,7 @@ class Tester {
 	}
 
 
-	// Check if nwayo workflow and toolbox are at the same version
+	//-- Check if nwayo workflow and toolbox are at the same version
 	syncWorkflowToolbox(cb) {
 		if (fss.exists(paths.config.bower)) {
 			const bowerConfig     = require(paths.config.bower);  // eslint-disable-line global-require
