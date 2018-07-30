@@ -11,7 +11,7 @@ const fss       = require('@absolunet/fss');
 const terminal  = require('@absolunet/terminal');
 const env       = require('../helpers/env');
 const paths     = require('../helpers/paths');
-const tester    = require('../helpers/tester');
+const tester    = require('../helpers/doctor/tester');
 
 
 const totals = {
@@ -56,10 +56,17 @@ const reporter = (title, data) => {
 
 		data.report.forEach((test) => {
 			if (test.success) {
-				terminal.echoIndent(chalk.green(`✓  ${test.message}`));
+				terminal.echoIndent(`${chalk.green('✓')}  ${test.message}`);
 				++totals.success;
 			} else {
-				terminal.echoIndent(chalk.red(`✘  ${test.message}`));
+
+				let differences = '';
+				if (test.differences) {
+					differences += test.differences.superfluous.length !== 0 ? chalk.green(` (+ ${test.differences.superfluous.join(' | ')})`) : '';
+					differences += test.differences.missing.length !== 0     ? chalk.red(` (- ${test.differences.missing.join(' | ')})`)       : '';
+				}
+
+				terminal.echoIndent(`${chalk.red('✘')}  ${test.message}${differences}`);
 				++totals.failure;
 			}
 		});
@@ -95,19 +102,21 @@ class Doctor {
 		const spinner = terminal.startSpinner(`Diagnosing ${chalk.cyan(env.pkg.name)}...`);
 
 		async.parallel({
-			config:   tester.config,
-			workflow: tester.workflowUpdates,
-			bower:    tester.bowerUpdates,
-			sync:     tester.syncWorkflowToolbox
+//			baseStrucure:     tester.baseStrucure,
+			bundles:     tester.bundles
+//			workflow: tester.workflowUpdates,
+//			bower:    tester.bowerUpdates,
+//			sync:     tester.syncWorkflowToolbox
 		}, (error, data) => {
 
 			spinner.stop();
 
 			//-- Reports
-			reporter('Config', data.config);
-			reporter('Workflow', data.workflow);
-			reporter('Vendors', data.bower);
-			reporter('Sync between workflow and toolbox', data.sync);
+//			reporter('Base strucure', data.baseStrucure);
+			reporter('Bundles', data.bundles);
+//			reporter('Workflow', data.workflow);
+//			reporter('Vendors', data.bower);
+//			reporter('Sync between workflow and toolbox', data.sync);
 
 
 			//-- Totals
