@@ -5,128 +5,21 @@
 
 const bower          = require('bower');
 const chalk          = require('chalk');
-const concordance    = require('concordance');
 const findUp         = require('find-up');
 const lastestVersion = require('latest-version');
 const _              = require('lodash');
 const semver         = require('semver');
 const fss            = require('@absolunet/fss');
-const terminal       = require('@absolunet/terminal');
-const env            = require('./env');
-const paths          = require('./paths');
-const toolbox        = require('./toolbox');
-
-
-//-- Parse a linefeed-separated config
-const parseConf = (filename) => {
-	return fss.readFile(filename, 'utf8').split(`\n`).filter(Boolean);
-};
-
-
-
-//-- Tests
-class Test {
-
-	// Path exists and is git tracked
-	exists(pathname) {
-		const exists = [{
-			type:    'exists',
-			success: fss.exists(`${paths.dir.root}/${pathname}`),
-			message: `${chalk.underline(pathname)}: Must exist`
-		}];
-
-		return exists.concat([{
-			type:    'gitTracked',
-			success: exists[0].success && Boolean(terminal.runAndGet(`cd ${paths.dir.root}; git ls-files ${pathname}`)),
-			message: `${chalk.underline(pathname)}: Must be tracked by git`
-		}]);
-	}
-
-	// Does file exists and is identical to matrix
-	isMatrix(filename) {
-		const existsReport = this.exists(filename);
-
-		return existsReport.concat([{
-			type:    'isMatrix',
-			success: existsReport[0].success && fss.readFile(`${paths.dir.root}/${filename}`, 'utf8') === fss.readFile(`${paths.workflow.matrix}/${filename}`, 'utf8'),
-			message: `${chalk.underline(filename)}: Must be identical to matrix`
-		}]);
-	}
-
-	// Does file exists and contains matrix
-	hasMatrix(filename) {
-		let success = false;
-		const missing = [];
-		const existsReport = this.exists(filename);
-
-		if (existsReport[0].success) {
-			const entries = parseConf(`${paths.dir.root}/${filename}`);
-
-			parseConf(`${paths.workflow.matrix}/${filename}`).forEach((entry) => {
-				if (!entries.includes(entry)) {
-					missing.push(entry);
-				}
-			});
-
-			success = missing.length === 0;
-		}
-
-		return existsReport.concat([{
-			type:    'hasMatrix',
-			success: success,
-			message: `${chalk.underline(filename)}: Must contain matrix${missing.length !== 0 ? ` (Missing: ${missing.join(' | ')})` : ''}`
-		}]);
-	}
-
-}
-const test = new Test();
-
-
-
-//-- Reporter
-class Reporter {
-
-	constructor() {
-		this.reports = [];
-	}
-
-	add(data) {
-		if (Array.isArray(data)) {
-			const results = {};
-
-			data.forEach((item) => {
-				this.reports.push({
-					success: item.success,
-					message: item.message
-				});
-
-				results[item.type] = item.success;
-			});
-
-			return results;
-		}
-
-		this.reports.push(data);
-
-		return data.success;
-	}
-
-	get last() {
-		return this.reports[this.reports.length - 1];
-	}
-
-	get list() {
-		return this.reports;
-	}
-
-}
+const env            = require('../env');
+const paths          = require('../paths');
+const toolbox        = require('../toolbox');
+const test           = require('./tests');
+const Reporter       = require('./reporter');
 
 
 
 
 
-
-//-- Main
 
 /*
 
@@ -137,9 +30,22 @@ lint files (json / yaml / editorconfig)
 class Tester {
 
 	//-- Check if config files exists and are valid
-	config(cb) {
+	baseStrucure(cb) {
 		const reports = new Reporter();
 		let lastTest;
+
+		// Directories
+		reports.add(test.isTreeMatrix('/', 'dir',  { pattern:'!+(.git)' }));
+		reports.add(test.exists('.nwayo-cache', false));
+		reports.add(test.exists('bower_components'));
+		reports.add(test.exists('bundles'));
+		reports.add(test.exists('components'));
+		reports.add(test.exists('misc'));
+		reports.add(test.exists('node_modules', false));
+
+
+		// Files
+		reports.add(test.isTreeMatrix('/', 'file', { pattern:'!+(SAMPLE.*.html|nwayo.yaml)' }));
 
 		// .editorconfig
 		reports.add(test.isMatrix('.editorconfig'));
@@ -181,12 +87,11 @@ class Tester {
 		lastTest = reports.add(test.exists('bower.json'));
 		if (lastTest.exists) {
 			const config = require(`${paths.dir.root}/bower.json`);  // eslint-disable-line global-require
-
-			const allowedKeys = ['name', 'private', 'devDependencies', '___nwayo-recommended___'];
-			const containKeys = concordance.compare(Object.keys(config).sort(), allowedKeys.sort()).pass;
+			const differences = toolbox.compareLists(Object.keys(config), ['name', 'private', 'devDependencies', '___nwayo-recommended___']);
 			reports.add({
-				success: containKeys,
-				message: `${chalk.underline('bower.json')}: Must only contain certain attributes${!containKeys ? ` (${allowedKeys.join(' | ')})` : ''}`
+				success:     differences.pass,
+				message:     `${chalk.underline('bower.json')}: Must only contain certain attributes`,
+				differences: differences
 			});
 
 			bowerName = config.name;
@@ -239,11 +144,11 @@ class Tester {
 		if (lastTest.exists) {
 			const config = require(`${paths.dir.root}/package.json`);  // eslint-disable-line global-require
 
-			const allowedKeys = ['name', 'license', 'private', 'dependencies'];
-			const containKeys = concordance.compare(Object.keys(config).sort(), allowedKeys.sort()).pass;
+			const attributesDifferences = toolbox.compareLists(Object.keys(config), ['name', 'license', 'private', 'dependencies']);
 			reports.add({
-				success: containKeys,
-				message: `${chalk.underline('package.json')}: Must only contain certain attributes${!containKeys ? ` (${allowedKeys.join(' | ')})` : ''}`
+				success:     attributesDifferences.pass,
+				message:     `${chalk.underline('package.json')}: Must only contain certain attributes`,
+				differences: attributesDifferences
 			});
 
 			reports.add([
@@ -275,11 +180,11 @@ class Tester {
 				message: `${chalk.underline('package.json')}: Private must be set to true`
 			});
 
-			const allowedPackages = ['@absolunet/nwayo-workflow'];
-			const containPackages = concordance.compare(Object.keys(config.dependencies).sort(), allowedPackages.sort()).pass;
+			const packagesDifferences = toolbox.compareLists(Object.keys(config.dependencies), ['@absolunet/nwayo-workflow']);
 			reports.add({
-				success: containPackages,
-				message: `${chalk.underline('package.json')}: Must only contain certain dependencies${!containPackages ? ` (${allowedPackages.join(' | ')})` : ''}`
+				success:     packagesDifferences.pass,
+				message:     `${chalk.underline('package.json')}: Must only contain certain dependencies`,
+				differences: packagesDifferences
 			});
 
 			Object.keys(config.dependencies).forEach((name) => {
@@ -292,6 +197,68 @@ class Tester {
 
 		// package-lock.json
 		reports.add(test.exists('package-lock.json'));
+
+		cb(null, { report:reports.list });
+	}
+
+
+	//-- Check if bundles are valid
+	bundles(cb) {
+		const reports = new Reporter();
+
+		// No files on root
+		reports.add({
+			success: fss.scandir(`${paths.dir.bundles}`, 'file').length === 0,
+			message: `Root folder must not contain any file`
+		});
+
+		// Bundles
+		const bundles = fss.scandir(`${paths.dir.bundles}`, 'dir');
+		bundles.forEach((bundle) => {
+
+			// Name
+			reports.add({
+				success: bundle === _.kebabCase(bundle),
+				message: `${chalk.underline(bundle)}: Name must be kebab-case`
+			});
+
+			// No dir
+			reports.add({
+				success: fss.scandir(`${paths.dir.bundles}/${bundle}`, 'dir').length === 0,
+				message: `${chalk.underline(bundle)}: Folder must not contain any directories`
+			});
+
+			// Files
+			const files = fss.scandir(`${paths.dir.bundles}/${bundle}`, 'file', { pattern:`+(_*|${bundle}).yaml` });
+			const differences = toolbox.compareLists(fss.scandir(`${paths.dir.bundles}/${bundle}`, 'file'), files);
+
+			reports.add({
+				success:     differences.pass,
+				message:     `${chalk.underline(bundle)}: Folder must contain only valid filenames`,
+				differences: differences
+			});
+
+			files.forEach((file) => {
+
+				// Sub
+				if (file.startsWith('_')) {
+					const name = file.replace(/^_?(.*)\.yaml$/, '$1');
+
+					reports.add({
+						success: name === _.kebabCase(name),
+						message: `${chalk.underline(`${bundle}/${file}`)}: Name must be kebab-case`
+					});
+
+				// Main
+				} else {
+
+					//
+
+				}
+
+			});
+
+		});
 
 		cb(null, { report:reports.list });
 	}

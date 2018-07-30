@@ -7,6 +7,7 @@ const chalk       = require('chalk');
 const log         = require('fancy-log');
 const plumber     = require('gulp-plumber');
 const yaml        = require('js-yaml');
+const _           = require('lodash');
 const merge       = require('merge-stream');
 const emoji       = require('node-emoji');
 const prettyBytes = require('pretty-bytes');
@@ -104,6 +105,19 @@ module.exports = class toolbox {
 			terminal.echo(`${emoji.get('monkey')}  ${e.toString()}`);
 			terminal.exit();
 		});
+	}
+
+
+	//-- Compare lists
+	static compareLists(assertion, expectation) {
+		const superfluous = _.without(assertion, ...expectation);
+		const missing     = _.without(expectation, ...assertion);
+
+		return {
+			pass:        superfluous.length === 0 && missing.length === 0,
+			superfluous: superfluous,
+			missing:     missing
+		};
 	}
 
 };
