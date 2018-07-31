@@ -3,15 +3,11 @@
 //--------------------------------------------------------
 'use strict';
 
-const async     = require('async');
-const chalk     = require('chalk');
-const pluralize = require('pluralize');
-const cli       = require('@absolunet/cli');
-const fss       = require('@absolunet/fss');
-const terminal  = require('@absolunet/terminal');
-const env       = require('../helpers/env');
-const paths     = require('../helpers/paths');
-const tester    = require('../helpers/doctor/tester');
+const chalk    = require('chalk');
+const figures  = require('figures');
+const cli      = require('@absolunet/cli');
+const terminal = require('@absolunet/terminal');
+const env      = require('../helpers/env');
 
 
 const totals = {
@@ -32,7 +28,7 @@ const reporter = (title, data) => {
 		success = false;
 		reportTitle(title, success);
 		++totals.failure;
-		terminal.failure(data.error);
+		terminal.echoIndent(chalk.red(`${figures.cross} ${data.error}`));
 
 
 	//-- Outdated stuff
@@ -42,7 +38,7 @@ const reporter = (title, data) => {
 
 		data.outdated.forEach((item) => {
 			const msg = item.message ? `${chalk.red(item.message)}` : `${chalk.dim(item.current)} → ${chalk.green(item.latest)}`;
-			terminal.echoIndent(`${chalk.red(`✘  ${item.name}:`)} ${msg}`);
+			terminal.echo(`${chalk.red(`${figures.pointerSmall} ${figures.cross}  ${item.name}:`)} ${msg}`);
 			++totals.failure;
 		});
 
@@ -56,17 +52,17 @@ const reporter = (title, data) => {
 
 		data.report.forEach((test) => {
 			if (test.success) {
-				terminal.echoIndent(`${chalk.green('✓')}  ${test.message}`);
+				terminal.echoIndent(`${chalk.green(figures.tick)}  ${chalk.dim(test.message)}`);
 				++totals.success;
 			} else {
 
 				let differences = '';
 				if (test.differences) {
-					differences += test.differences.superfluous.length !== 0 ? chalk.green(` (+ ${test.differences.superfluous.join(' | ')})`) : '';
-					differences += test.differences.missing.length !== 0     ? chalk.red(` (- ${test.differences.missing.join(' | ')})`)       : '';
+					differences += test.differences.superfluous && test.differences.superfluous.length !== 0 ? chalk.green(` (+ ${test.differences.superfluous.join(' | ')})`) : '';
+					differences += test.differences.missing     && test.differences.missing.length !== 0     ? chalk.red(` (- ${test.differences.missing.join(' | ')})`)       : '';
 				}
 
-				terminal.echoIndent(`${chalk.red('✘')}  ${test.message}${differences}`);
+				terminal.echo(`${chalk.red(`${figures.pointerSmall} ${figures.cross}`)}  ${test.message}${differences}`);
 				++totals.failure;
 			}
 		});
@@ -80,7 +76,7 @@ const reporter = (title, data) => {
 		reportTitle(title, success);
 		++totals.success;
 
-		terminal.success(data.message);
+		terminal.echoIndent(chalk.green(`${figures.tick} ${chalk.dim(data.message)}`));
 	}
 
 	terminal.spacer();
@@ -101,25 +97,36 @@ class Doctor {
 		terminal.spacer();
 		const spinner = terminal.startSpinner(`Diagnosing ${chalk.cyan(env.pkg.name)}...`);
 
+		//-- Load here to speed up spinner first display
+		/* eslint-disable global-require */
+		const async     = require('async');
+		const pluralize = require('pluralize');
+		const fss       = require('@absolunet/fss');
+		const paths     = require('../helpers/paths');
+		const tester    = require('../helpers/doctor/tester');
+		/* eslint-enable global-require */
+
 		async.parallel({
-//			baseStrucure:     tester.baseStrucure,
-			bundles:     tester.bundles
-//			workflow: tester.workflowUpdates,
-//			bower:    tester.bowerUpdates,
-//			sync:     tester.syncWorkflowToolbox
+			baseStrucure: tester.baseStrucure,
+			bundles:      tester.bundles,
+			workflow:     tester.workflowUpdates,
+			bower:        tester.bowerUpdates,
+			sync:         tester.syncWorkflowToolbox
 		}, (error, data) => {
 
 			spinner.stop();
 
 			//-- Reports
-//			reporter('Base strucure', data.baseStrucure);
+			reporter('Base strucure', data.baseStrucure);
 			reporter('Bundles', data.bundles);
-//			reporter('Workflow', data.workflow);
-//			reporter('Vendors', data.bower);
-//			reporter('Sync between workflow and toolbox', data.sync);
+			reporter('Workflow', data.workflow);
+			reporter('Vendors', data.bower);
+			reporter('Sync between workflow and toolbox', data.sync);
 
 
 			//-- Totals
+			terminal.spacer(2);
+
 			if (totals.success) {
 				terminal.echo(chalk.green(`${pluralize('test', totals.success, true)} passed`));
 			}

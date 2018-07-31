@@ -4,7 +4,6 @@
 'use strict';
 
 const bower          = require('bower');
-const chalk          = require('chalk');
 const findUp         = require('find-up');
 const lastestVersion = require('latest-version');
 const _              = require('lodash');
@@ -36,12 +35,12 @@ class Tester {
 
 		// Directories
 		reports.add(test.isTreeMatrix('/', 'dir',  { pattern:'!+(.git)' }));
-		reports.add(test.exists('.nwayo-cache', false));
+		reports.add(test.exists('.nwayo-cache', { tracked:false }));
 		reports.add(test.exists('bower_components'));
 		reports.add(test.exists('bundles'));
 		reports.add(test.exists('components'));
 		reports.add(test.exists('misc'));
-		reports.add(test.exists('node_modules', false));
+		reports.add(test.exists('node_modules', { tracked:false }));
 
 
 		// Files
@@ -59,7 +58,7 @@ class Tester {
 			const config = toolbox.readYAML(`${paths.dir.root}/.eslintrc.yaml`);
 			reports.add({
 				success: config.extends && config.extends === '@absolunet/nwayo',
-				message: `${chalk.underline('.eslintrc.yaml')}: Must extend '@absolunet/nwayo'`
+				message: `${test.theme.title('.eslintrc.yaml')}: Must extend '@absolunet/nwayo'`
 			});
 		}
 
@@ -78,7 +77,7 @@ class Tester {
 			const config = toolbox.readYAML(`${paths.dir.root}/.stylelintrc.yaml`);
 			reports.add({
 				success: config.extends && config.extends === '@absolunet/stylelint-config-nwayo',
-				message: `${chalk.underline('.stylelintrc.yaml')}: Must extend '@absolunet/stylelint-config-nwayo'`
+				message: `${test.theme.title('.stylelintrc.yaml')}: Must extend '@absolunet/stylelint-config-nwayo'`
 			});
 		}
 
@@ -90,7 +89,7 @@ class Tester {
 			const differences = toolbox.compareLists(Object.keys(config), ['name', 'private', 'devDependencies', '___nwayo-recommended___']);
 			reports.add({
 				success:     differences.pass,
-				message:     `${chalk.underline('bower.json')}: Must only contain certain attributes`,
+				message:     `${test.theme.title('bower.json')}: Must only contain certain attributes`,
 				differences: differences
 			});
 
@@ -98,27 +97,27 @@ class Tester {
 			reports.add([
 				{
 					success: config.name,
-					message: `${chalk.underline('bower.json')}: Name must be defined`
+					message: `${test.theme.title('bower.json')}: Name must be defined`
 				},
 				{
 					success: config.name === _.kebabCase(config.name),
-					message: `${chalk.underline('bower.json')}: Name must be kebab-case`
+					message: `${test.theme.title('bower.json')}: Name must be kebab-case`
 				},
 				{
 					success: config.name !== 'PROJECT_NAME',
-					message: `${chalk.underline('bower.json')}: Name must not stay 'PROJECT_NAME'`
+					message: `${test.theme.title('bower.json')}: Name must not stay 'PROJECT_NAME'`
 				}
 			]);
 
 			reports.add({
 				success: config.private === true,
-				message: `${chalk.underline('bower.json')}: Private must be set to true`
+				message: `${test.theme.title('bower.json')}: Private must be set to true`
 			});
 
 			Object.keys(config.devDependencies).forEach((name) => {
 				reports.add({
 					success: semver.valid(config.devDependencies[name]) || config.devDependencies[name] === 'master',
-					message: `${chalk.underline('bower.json')}: devDependencies '${name}' must have a fixed SemVer`
+					message: `${test.theme.title('bower.json')}: devDependencies '${name}' must have a fixed SemVer`
 				});
 			});
 		}
@@ -136,7 +135,7 @@ class Tester {
 		const nwayoConf = findUp.sync('nwayo.yaml', { cwd:paths.dir.root });
 		reports.add({
 			success: nwayoConf,
-			message: `${chalk.underline('nwayo.yaml')}: Must exist in parent directories${nwayoConf ? ` (Found: ${nwayoConf})` : ''}`
+			message: `${test.theme.title('nwayo.yaml')}: Must exist in parent directories${nwayoConf ? test.theme.comment(` (Found: ${nwayoConf})`) : ''}`
 		});
 
 		// package.json
@@ -147,50 +146,50 @@ class Tester {
 			const attributesDifferences = toolbox.compareLists(Object.keys(config), ['name', 'license', 'private', 'dependencies']);
 			reports.add({
 				success:     attributesDifferences.pass,
-				message:     `${chalk.underline('package.json')}: Must only contain certain attributes`,
+				message:     `${test.theme.title('package.json')}: Must only contain certain attributes`,
 				differences: attributesDifferences
 			});
 
 			reports.add([
 				{
 					success: config.name,
-					message: `${chalk.underline('package.json')}: Name must be defined`
+					message: `${test.theme.title('package.json')}: Name must be defined`
 				},
 				{
 					success: config.name === _.kebabCase(config.name),
-					message: `${chalk.underline('package.json')}: Name must be kebab-case`
+					message: `${test.theme.title('package.json')}: Name must be kebab-case`
 				},
 				{
 					success: config.name !== 'PROJECT_NAME',
-					message: `${chalk.underline('package.json')}: Name must not stay 'PROJECT_NAME'`
+					message: `${test.theme.title('package.json')}: Name must not stay 'PROJECT_NAME'`
 				},
 				{
 					success: config.name === bowerName,
-					message: `${chalk.underline('package.json')}: Name must be identical to 'bower.json' name`
+					message: `${test.theme.title('package.json')}: Name must be identical to 'bower.json' name`
 				}
 			]);
 
 			reports.add({
 				success: config.license === 'UNLICENSED',
-				message: `${chalk.underline('package.json')}: License must be 'UNLICENSED'`
+				message: `${test.theme.title('package.json')}: License must be 'UNLICENSED'`
 			});
 
 			reports.add({
 				success: config.private === true,
-				message: `${chalk.underline('package.json')}: Private must be set to true`
+				message: `${test.theme.title('package.json')}: Private must be set to true`
 			});
 
 			const packagesDifferences = toolbox.compareLists(Object.keys(config.dependencies), ['@absolunet/nwayo-workflow']);
 			reports.add({
 				success:     packagesDifferences.pass,
-				message:     `${chalk.underline('package.json')}: Must only contain certain dependencies`,
+				message:     `${test.theme.title('package.json')}: Must only contain certain dependencies`,
 				differences: packagesDifferences
 			});
 
 			Object.keys(config.dependencies).forEach((name) => {
 				reports.add({
 					success: semver.valid(config.dependencies[name]),
-					message: `${chalk.underline('package.json')}: Dependencies '${name}' must have a fixed SemVer`
+					message: `${test.theme.title('package.json')}: Dependencies '${name}' must have a fixed SemVer`
 				});
 			});
 		}
@@ -206,58 +205,98 @@ class Tester {
 	bundles(cb) {
 		const reports = new Reporter();
 
+		const root = 'bundles';
+
 		// No files on root
 		reports.add({
 			success: fss.scandir(`${paths.dir.bundles}`, 'file').length === 0,
 			message: `Root folder must not contain any file`
 		});
 
-		// Bundles
+		//-- Bundles
 		const bundles = fss.scandir(`${paths.dir.bundles}`, 'dir');
 		bundles.forEach((bundle) => {
 
 			// Name
 			reports.add({
 				success: bundle === _.kebabCase(bundle),
-				message: `${chalk.underline(bundle)}: Name must be kebab-case`
+				message: `${test.theme.title(bundle)}: Name must be kebab-case`
 			});
 
 			// No dir
 			reports.add({
 				success: fss.scandir(`${paths.dir.bundles}/${bundle}`, 'dir').length === 0,
-				message: `${chalk.underline(bundle)}: Folder must not contain any directories`
+				message: `${test.theme.title(bundle)}: Folder must not contain any directories`
 			});
 
-			// Files
+			//-- Files
 			const files = fss.scandir(`${paths.dir.bundles}/${bundle}`, 'file', { pattern:`+(_*|${bundle}).yaml` });
 			const differences = toolbox.compareLists(fss.scandir(`${paths.dir.bundles}/${bundle}`, 'file'), files);
 
 			reports.add({
 				success:     differences.pass,
-				message:     `${chalk.underline(bundle)}: Folder must contain only valid filenames`,
+				message:     `${test.theme.title(bundle)}: Folder must contain only valid filenames`,
 				differences: differences
 			});
 
+			reports.add(test.exists(`${bundle}/${bundle}.yaml`, { root }));
+
+
 			files.forEach((file) => {
 
-				// Sub
+				reports.add(test.gitTracked(`${bundle}/${file}`, { root }));
+
+				const config = toolbox.readYAML(`${paths.dir.bundles}/${bundle}/${file}`);
+				reports.add({
+					success: config,
+					message: `${test.theme.title(`${bundle}/${file}`)}: Must not be empty`
+				});
+
+				//-- Sub
 				if (file.startsWith('_')) {
 					const name = file.replace(/^_?(.*)\.yaml$/, '$1');
 
 					reports.add({
 						success: name === _.kebabCase(name),
-						message: `${chalk.underline(`${bundle}/${file}`)}: Name must be kebab-case`
+						message: `${test.theme.title(`${bundle}/${file}`)}: Name must be kebab-case`
 					});
 
-				// Main
-				} else {
+					if (config) {
+						const keyDifferences = toolbox.compareLists(toolbox.flattenKeys(config, { depth:1 }), ['scripts', 'scripts.collections', 'styles', 'styles.collections']);
+						reports.add({
+							success:     keyDifferences.superfluous.length === 0,
+							message:     `${test.theme.title(`${bundle}/${file}`)}: Subbundle must only contain collections`,
+							differences: { superfluous:keyDifferences.superfluous }
+						});
 
-					//
+						['scripts', 'styles'].forEach((type) => {
+							if (config[type]) {
+								Object.keys(config[type].collections).forEach((key) => {
+									reports.add({
+										success: key === _.kebabCase(key),
+										message: `${test.theme.title(`${bundle}/${file} > ${type}:${key}`)}: Collection name must be kebab-case`
+									});
+								});
+							}
+						});
+					}
 
+				//-- Main
+				} else if (config) {
+					const mandatoryKeys = ['output', 'output.konstan', 'output.build', 'output.url', 'scripts', 'scripts.options', 'scripts.options.minify', 'scripts.options.babel', 'styles', 'styles.options', 'styles.options.minify', 'styles.options.sourcemaps', 'styles.options.autoprefixer'];
+					const allowedKeys   = mandatoryKeys.concat('assets', 'assets.components', 'scripts.allowBabel');
+					const configKeys    = toolbox.flattenKeys(config, { depth:3 });
+
+					const mandatoryDifferences = toolbox.compareLists(configKeys, mandatoryKeys);
+					const allowedDifferences   = toolbox.compareLists(configKeys, allowedKeys);
+
+					reports.add({
+						success:     mandatoryDifferences.missing.length === 0 && allowedDifferences.superfluous.length === 0,
+						message:     `${test.theme.title(`${bundle}/${file}`)}: Main bundle must contain only certain keys`,
+						differences: { missing:mandatoryDifferences.missing, superfluous:allowedDifferences.superfluous }
+					});
 				}
-
 			});
-
 		});
 
 		cb(null, { report:reports.list });

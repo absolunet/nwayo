@@ -4,6 +4,7 @@
 'use strict';
 
 const chalk       = require('chalk');
+const deepKeys    = require('deep-keys');
 const log         = require('fancy-log');
 const plumber     = require('gulp-plumber');
 const yaml        = require('js-yaml');
@@ -118,6 +119,14 @@ module.exports = class toolbox {
 			superfluous: superfluous,
 			missing:     missing
 		};
+	}
+
+
+	//-- Flatten keys
+	static flattenKeys(data, { depth = '' } = {}) {
+		return deepKeys(data, true).filter((key) => {
+			return new RegExp(`^[a-z0-9-]+(\\.[a-z0-9-]+){0,${depth}}$`, 'i').test(key);
+		});
 	}
 
 };

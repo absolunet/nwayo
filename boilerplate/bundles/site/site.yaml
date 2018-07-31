@@ -9,6 +9,14 @@ output:
   url:     /build
 
 
+#-- Assets
+assets:
+  components:
+    - common
+    - form
+    - site
+
+
 #-- Scripts
 scripts:
   options:
