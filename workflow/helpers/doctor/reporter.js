@@ -17,8 +17,9 @@ class Reporter {
 
 			data.forEach((item) => {
 				this.reports.push({
-					success: item.success,
-					message: item.message
+					success:     item.success,
+					message:     item.message,
+					differences: item.differences
 				});
 
 				results[item.type] = item.success;

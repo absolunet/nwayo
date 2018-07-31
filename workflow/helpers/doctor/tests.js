@@ -23,42 +23,67 @@ const parseConf = (filename) => {
 
 class Tests {
 
-	// Path exists and is git tracked
-	exists(pathname, tracked = true) {
+	// Theme
+	get theme() {
+		return {
+			title:   chalk.cyan,
+			comment: chalk.blue
+		};
+	}
+
+
+	// If tracked by git
+	gitTracked(pathname, { root = '', tracked = true } = {}) {
+		const isTracked = Boolean(terminal.runAndGet(`cd ${paths.dir.root}/${root}; git ls-files ${pathname}`));
+
+		return [{
+			type:    'gitTracked',
+			success: (tracked && isTracked) || (!tracked && !isTracked),
+			message: `${this.theme.title(pathname)}: Must${tracked ? '' : ' not'} be tracked by git`
+		}];
+	}
+
+
+	// Path exists and if tracked by git
+	exists(pathname, { root = '', tracked = true } = {}) {
 		const exists = [{
 			type:    'exists',
-			success: fss.exists(`${paths.dir.root}/${pathname}`),
-			message: `${chalk.underline(pathname)}: Must exist`
+			success: fss.exists(`${paths.dir.root}/${root}/${pathname}`),
+			message: `${this.theme.title(pathname)}: Must exist`
 		}];
 
-		const isTracked = Boolean(terminal.runAndGet(`cd ${paths.dir.root}; git ls-files ${pathname}`));
+		if (exists[0].success) {
+			return exists.concat(this.gitTracked(pathname, { root, tracked }));
+		}
 
-		return exists.concat([{
-			type:    'gitTracked',
-			success: exists[0].success && ((tracked && isTracked) || (!tracked && !isTracked)),
-			message: `${chalk.underline(pathname)}: Must${tracked ? '' : ' not'} be tracked by git`
-		}]);
+		return exists;
 	}
+
+
 
 	// Does file exists and is identical to matrix
 	isMatrix(filename) {
-		const existsReport = this.exists(filename);
+		const exists = this.exists(filename);
 
-		return existsReport.concat([{
-			type:    'isMatrix',
-			success: existsReport[0].success && fss.readFile(`${paths.dir.root}/${filename}`, 'utf8') === fss.readFile(`${paths.workflow.matrix}/${filename}`, 'utf8'),
-			message: `${chalk.underline(filename)}: Must be identical to matrix`
-		}]);
+		if (exists[0].success) {
+			return exists.concat([{
+				type:    'isMatrix',
+				success: fss.readFile(`${paths.dir.root}/${filename}`, 'utf8') === fss.readFile(`${paths.workflow.matrix}/${filename}`, 'utf8'),
+				message: `${this.theme.title(filename)}: Must be identical to matrix`
+			}]);
+		}
+
+		return exists;
 	}
+
 
 	// Does file exists and contains matrix
 	hasMatrix(filename) {
-		let success = false;
-		const missing = [];
-		const existsReport = this.exists(filename);
+		const exists = this.exists(filename);
 
-		if (existsReport[0].success) {
+		if (exists[0].success) {
 			const entries = parseConf(`${paths.dir.root}/${filename}`);
+			const missing = [];
 
 			parseConf(`${paths.workflow.matrix}/${filename}`).forEach((entry) => {
 				if (!entries.includes(entry)) {
@@ -66,15 +91,17 @@ class Tests {
 				}
 			});
 
-			success = missing.length === 0;
+			return exists.concat([{
+				type:        'hasMatrix',
+				success:     missing.length === 0,
+				message:     `${this.theme.title(filename)}: Must contain matrix`,
+				differences: { missing }
+			}]);
 		}
 
-		return existsReport.concat([{
-			type:    'hasMatrix',
-			success: success,
-			message: `${chalk.underline(filename)}: Must contain matrix${missing.length !== 0 ? ` (Missing: ${missing.join(' | ')})` : ''}`
-		}]);
+		return exists;
 	}
+
 
 	// Is the tree identical to matrix
 	isTreeMatrix(curr, type, options) {
@@ -82,7 +109,7 @@ class Tests {
 
 		return {
 			success:     differences.pass,
-			message:     `${chalk.underline(curr || '/')}: ${_.capitalize(type)}s list must be identical to matrix`,
+			message:     `${this.theme.title(curr)}: ${_.capitalize(type)}s list must be identical to matrix`,
 			differences: differences
 		};
 	}

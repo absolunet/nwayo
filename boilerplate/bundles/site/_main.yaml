@@ -2,14 +2,6 @@
 #-- Site - Main
 #-------------------------------------
 
-#-- Assets
-assets:
-  components:
-    - common
-    - form
-    - site
-
-
 #-- Scripts
 scripts:
   collections:
