@@ -60,6 +60,37 @@ class Tests {
 	}
 
 
+	// No dir on root
+	hasNoDirs(pathname, { root = '' } = {}) {
+		return {
+			success: fss.scandir(`${paths.dir.root}/${root}/${pathname}`, 'dir').length === 0,
+			message: `${this.theme.title(pathname)}: Root folder must not contain any directory`
+		};
+	}
+
+
+	// No files on root
+	hasNoFiles(pathname, { root = '' } = {}) {
+		return {
+			success: fss.scandir(`${paths.dir.root}/${root}/${pathname}`, 'file').length === 0,
+			message: `${this.theme.title(pathname)}: Root folder must not contain any file`
+		};
+	}
+
+
+	// Is the tree completely tracked
+	areFilesGitTracked(files, pathname, { root = '' }) {
+		const rawFiles     = files.map((file) => { return `${pathname}/${file}`; });
+		const trackedFiles = terminal.runAndRead(`cd ${paths.dir.root}/${root}; git ls-files ${pathname}`).split('\n');
+		const differences  = toolbox.compareLists(trackedFiles, rawFiles);
+
+		return {
+			success:     differences.missing.length === 0,
+			message:     `${this.theme.title(pathname)}: All files must be tracked by git`,
+			differences: { missing:differences.missing }
+		};
+	}
+
 
 	// Does file exists and is identical to matrix
 	isMatrix(filename) {

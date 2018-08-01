@@ -4,6 +4,19 @@
 'use strict';
 
 
+const clean = (data) => {
+	return {
+		success:     data.success,
+		message:     data.message,
+		differences: data.differences
+	};
+};
+
+
+
+
+
+
 class Reporter {
 
 	constructor() {
@@ -16,11 +29,7 @@ class Reporter {
 			const results = {};
 
 			data.forEach((item) => {
-				this.reports.push({
-					success:     item.success,
-					message:     item.message,
-					differences: item.differences
-				});
+				this.reports.push(clean(item));
 
 				results[item.type] = item.success;
 			});
@@ -28,7 +37,7 @@ class Reporter {
 			return results;
 		}
 
-		this.reports.push(data);
+		this.reports.push(clean(data));
 
 		return data.success;
 	}

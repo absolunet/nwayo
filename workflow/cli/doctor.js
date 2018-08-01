@@ -58,8 +58,8 @@ const reporter = (title, data) => {
 
 				let differences = '';
 				if (test.differences) {
-					differences += test.differences.superfluous && test.differences.superfluous.length !== 0 ? chalk.green(` (+ ${test.differences.superfluous.join(' | ')})`) : '';
-					differences += test.differences.missing     && test.differences.missing.length !== 0     ? chalk.red(` (- ${test.differences.missing.join(' | ')})`)       : '';
+					differences += test.differences.superfluous && test.differences.superfluous.length !== 0 ? chalk.green(` [+] ${test.differences.superfluous.join(' | ')}`) : '';
+					differences += test.differences.missing     && test.differences.missing.length !== 0     ? chalk.red(` [-] ${test.differences.missing.join(' | ')}`)       : '';
 				}
 
 				terminal.echo(`${chalk.red(`${figures.pointerSmall} ${figures.cross}`)}  ${test.message}${differences}`);
@@ -107,18 +107,20 @@ class Doctor {
 		/* eslint-enable global-require */
 
 		async.parallel({
-			baseStrucure: tester.baseStrucure,
-			bundles:      tester.bundles,
-			workflow:     tester.workflowUpdates,
-			bower:        tester.bowerUpdates,
-			sync:         tester.syncWorkflowToolbox
+			base:       tester.base,
+			bundles:    tester.bundles,
+			components: tester.components,
+			workflow:   tester.workflowUpdates,
+			bower:      tester.bowerUpdates,
+			sync:       tester.syncWorkflowToolbox
 		}, (error, data) => {
 
 			spinner.stop();
 
 			//-- Reports
-			reporter('Base strucure', data.baseStrucure);
+			reporter('Base strucure', data.base);
 			reporter('Bundles', data.bundles);
+			reporter('Components', data.components);
 			reporter('Workflow', data.workflow);
 			reporter('Vendors', data.bower);
 			reporter('Sync between workflow and toolbox', data.sync);
