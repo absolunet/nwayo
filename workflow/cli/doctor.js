@@ -5,6 +5,7 @@
 
 const chalk    = require('chalk');
 const figures  = require('figures');
+const ow       = require('ow');
 const cli      = require('@absolunet/cli');
 const terminal = require('@absolunet/terminal');
 const env      = require('../helpers/env');
@@ -14,6 +15,8 @@ const totals = {
 	success: 0,
 	failure:  0
 };
+
+let verbose = false;
 
 const reportTitle = (title, success) => {
 	terminal.echo(`${chalk.cyan(title)} diagnosis  ${success ? chalk.green('(^_^)') : chalk.red('ಠ_ಠ')}\n`);
@@ -52,8 +55,11 @@ const reporter = (title, data) => {
 
 		data.report.forEach((test) => {
 			if (test.success) {
-				terminal.echoIndent(`${chalk.green(figures.tick)}  ${chalk.dim(test.message)}`);
+				if (verbose) {
+					terminal.echoIndent(`${chalk.green(figures.tick)}  ${chalk.dim(test.message)}`);
+				}
 				++totals.success;
+
 			} else {
 
 				let differences = '';
@@ -92,7 +98,13 @@ const reporter = (title, data) => {
 class Doctor {
 
 	cli(meowCli) {
-		cli.refuseFlagsAndArguments(meowCli);
+		cli.refuseArguments(meowCli);
+
+		const { verbose:flagVerbose } = cli.validateFlags(meowCli, {
+			verbose: ow.boolean
+		});
+		verbose = flagVerbose;
+
 
 		terminal.spacer();
 		const spinner = terminal.startSpinner(`Diagnosing ${chalk.cyan(env.pkg.name)}...`);

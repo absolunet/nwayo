@@ -3,7 +3,9 @@
 //--------------------------------------------------------
 'use strict';
 
+const ow       = require('ow');
 const spawn    = require('cross-spawn');
+const cli      = require('@absolunet/cli');
 const terminal = require('@absolunet/terminal');
 
 
@@ -14,21 +16,22 @@ const terminal = require('@absolunet/terminal');
 module.exports = class {
 
 	static cli(meowCli) {
-		if (Object.keys(meowCli.flags).length === 1) {
 
-			//-- Pronounce
-			if (meowCli.flags.pronounce === true) {
-				terminal.echo('/nwajo/');
+		const { pronounce } = cli.validateFlags(meowCli, {
+			pronounce: ow.boolean
+		});
 
-				if (process.platform === 'darwin') {
-					spawn('say', ['nwaw', 'yo']);
-				}
 
-				terminal.exit();
+		//-- Pronounce
+		if (pronounce) {
+			terminal.echo('/nwajo/');
+
+			if (process.platform === 'darwin') {
+				spawn('say', ['nwaw', 'yo']);
 			}
 
+			terminal.exit();
 		}
-
 
 		meowCli.showHelp();
 	}

@@ -3,6 +3,8 @@
 //-------------------------------------
 'use strict';
 
+const chalk = require('chalk');
+
 
 const clean = (data) => {
 	return {
@@ -20,7 +22,7 @@ const clean = (data) => {
 class Reporter {
 
 	constructor() {
-		this.reports = [];
+		this._reports = [];
 	}
 
 
@@ -29,7 +31,7 @@ class Reporter {
 			const results = {};
 
 			data.forEach((item) => {
-				this.reports.push(clean(item));
+				this._reports.push(clean(item));
 
 				results[item.type] = item.success;
 			});
@@ -37,19 +39,26 @@ class Reporter {
 			return results;
 		}
 
-		this.reports.push(clean(data));
+		this._reports.push(clean(data));
 
 		return data.success;
 	}
 
 
 	get last() {
-		return this.reports[this.reports.length - 1];
+		return this._reports[this._reports.length - 1];
 	}
 
 
 	get list() {
-		return this.reports;
+		return this._reports;
+	}
+
+	static get theme() {
+		return {
+			title:   chalk.cyan,
+			comment: chalk.blue
+		};
 	}
 
 }

@@ -3,6 +3,7 @@
 //--------------------------------------------------------
 'use strict';
 
+const ow   = require('ow');
 const cli  = require('@absolunet/cli');
 const env  = require('../helpers/env');
 const util = require('../helpers/util');
@@ -17,8 +18,12 @@ module.exports = class {
 	static cli(meowCli) {
 		util.checkInstalledWorkflow();
 
+		const { prod } = cli.validateFlags(meowCli, {
+			prod: ow.boolean
+		});
+
 		// --prod
-		if (cli.acceptOnlyFlag(meowCli, 'prod') === true) {
+		if (prod) {
 			env.setToProd();
 		}
 
