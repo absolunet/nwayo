@@ -1,14 +1,14 @@
 //-------------------------------------
-//-- Tests
+//-- Assertions
 //-------------------------------------
 'use strict';
 
-const chalk    = require('chalk');
 const _        = require('lodash');
 const fss      = require('@absolunet/fss');
 const terminal = require('@absolunet/terminal');
 const paths    = require('../paths');
 const toolbox  = require('../toolbox');
+const Reporter = require('./reporter');
 
 
 //-- Parse a linefeed-separated config
@@ -21,16 +21,7 @@ const parseConf = (filename) => {
 
 
 
-class Tests {
-
-	// Theme
-	get theme() {
-		return {
-			title:   chalk.cyan,
-			comment: chalk.blue
-		};
-	}
-
+class Assertions {
 
 	// If tracked by git
 	gitTracked(pathname, { root = '', tracked = true } = {}) {
@@ -39,7 +30,7 @@ class Tests {
 		return [{
 			type:    'gitTracked',
 			success: (tracked && isTracked) || (!tracked && !isTracked),
-			message: `${this.theme.title(pathname)}: Must${tracked ? '' : ' not'} be tracked by git`
+			message: `${Reporter.theme.title(pathname)}: Must${tracked ? '' : ' not'} be tracked by git`
 		}];
 	}
 
@@ -49,7 +40,7 @@ class Tests {
 		const exists = [{
 			type:    'exists',
 			success: fss.exists(`${paths.dir.root}/${root}/${pathname}`),
-			message: `${this.theme.title(pathname)}: Must exist`
+			message: `${Reporter.theme.title(pathname)}: Must exist`
 		}];
 
 		if (exists[0].success) {
@@ -64,7 +55,7 @@ class Tests {
 	hasNoDirs(pathname, { root = '' } = {}) {
 		return {
 			success: fss.scandir(`${paths.dir.root}/${root}/${pathname}`, 'dir').length === 0,
-			message: `${this.theme.title(pathname)}: Root folder must not contain any directory`
+			message: `${Reporter.theme.title(pathname)}: Root folder must not contain any directory`
 		};
 	}
 
@@ -73,7 +64,7 @@ class Tests {
 	hasNoFiles(pathname, { root = '' } = {}) {
 		return {
 			success: fss.scandir(`${paths.dir.root}/${root}/${pathname}`, 'file').length === 0,
-			message: `${this.theme.title(pathname)}: Root folder must not contain any file`
+			message: `${Reporter.theme.title(pathname)}: Root folder must not contain any file`
 		};
 	}
 
@@ -86,7 +77,7 @@ class Tests {
 
 		return {
 			success:     differences.missing.length === 0,
-			message:     `${this.theme.title(pathname)}: All files must be tracked by git`,
+			message:     `${Reporter.theme.title(pathname)}: All files must be tracked by git`,
 			differences: { missing:differences.missing }
 		};
 	}
@@ -100,7 +91,7 @@ class Tests {
 			return exists.concat([{
 				type:    'isMatrix',
 				success: fss.readFile(`${paths.dir.root}/${filename}`, 'utf8') === fss.readFile(`${paths.workflow.matrix}/${filename}`, 'utf8'),
-				message: `${this.theme.title(filename)}: Must be identical to matrix`
+				message: `${Reporter.theme.title(filename)}: Must be identical to matrix`
 			}]);
 		}
 
@@ -125,7 +116,7 @@ class Tests {
 			return exists.concat([{
 				type:        'hasMatrix',
 				success:     missing.length === 0,
-				message:     `${this.theme.title(filename)}: Must contain matrix`,
+				message:     `${Reporter.theme.title(filename)}: Must contain matrix`,
 				differences: { missing }
 			}]);
 		}
@@ -140,11 +131,11 @@ class Tests {
 
 		return {
 			success:     differences.pass,
-			message:     `${this.theme.title(curr)}: ${_.capitalize(type)}s list must be identical to matrix`,
+			message:     `${Reporter.theme.title(curr)}: ${_.capitalize(type)}s list must be identical to matrix`,
 			differences: differences
 		};
 	}
 
 }
 
-module.exports = new Tests();
+module.exports = new Assertions();

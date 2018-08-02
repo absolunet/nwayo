@@ -336,7 +336,7 @@ Run ${chalk.cyan('nwayo install workflow')} to update`,
 			'rebuild': [`rebuild ${cli.optionalPlaceholder('<bundle>')} ${cli.optional('--prod')}`, `Rebuild the entire project from scratch`],
 			'watch':   [`watch ${cli.optionalPlaceholder('<bundle>')}`, `Listens for changes on files and run appropriate tasks`],
 			'install': [`install ${cli.optionalPlaceholder('<scope>')} ${cli.optional('--force')}`, `Install dependencies ex:[${installScopes.join('|')}]`, [installScopes]],
-			'doctor':  [`doctor`, `Checks npm / Bower packages for updates`],
+			'doctor':  [`doctor ${cli.optional('--verbose')}`, `Analyze project for conformity`, [tasks]],
 
 			// Options
 			'update':      [`update`, `Update the CLI`],
