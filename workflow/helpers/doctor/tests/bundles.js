@@ -3,7 +3,6 @@
 //-------------------------------------
 'use strict';
 
-const _        = require('lodash');
 const fss      = require('@absolunet/fss');
 const paths    = require('../../paths');
 const toolbox  = require('../../toolbox');
@@ -24,33 +23,24 @@ const bundleFile = (bundle, file) => {
 	});
 
 	//-- Sub
-	if (file.startsWith('_')) {
-		const name = file.replace(/^_?(.*)\.yaml$/, '$1');
-
+	if (file.startsWith('_') && config) {
+		const keyDifferences = toolbox.compareLists(toolbox.flattenKeys(config, { depth:1 }), ['scripts', 'scripts.collections', 'styles', 'styles.collections']);
 		reports.add({
-			success: name === _.kebabCase(name),
-			message: `${Reporter.theme.title(`${bundle}/${file}`)}: Name must be kebab-case`
+			success:     keyDifferences.superfluous.length === 0,
+			message:     `${Reporter.theme.title(`${bundle}/${file}`)}: Subbundle must only contain collections`,
+			differences: { superfluous:keyDifferences.superfluous }
 		});
 
-		if (config) {
-			const keyDifferences = toolbox.compareLists(toolbox.flattenKeys(config, { depth:1 }), ['scripts', 'scripts.collections', 'styles', 'styles.collections']);
-			reports.add({
-				success:     keyDifferences.superfluous.length === 0,
-				message:     `${Reporter.theme.title(`${bundle}/${file}`)}: Subbundle must only contain collections`,
-				differences: { superfluous:keyDifferences.superfluous }
-			});
-
-			['scripts', 'styles'].forEach((type) => {
-				if (config[type]) {
-					Object.keys(config[type].collections).forEach((key) => {
-						reports.add({
-							success: key === _.kebabCase(key),
-							message: `${Reporter.theme.title(`${bundle}/${file} > ${type}:${key}`)}: Collection name must be kebab-case`
-						});
+		['scripts', 'styles'].forEach((type) => {
+			if (config[type]) {
+				Object.keys(config[type].collections).forEach((key) => {
+					reports.add({
+						success: toolbox.isKebabCase(key),
+						message: `${Reporter.theme.title(`${bundle}/${file} > ${type}:${key}`)}: Collection name must be kebab-case`
 					});
-				}
-			});
-		}
+				});
+			}
+		});
 
 	//-- Main
 	} else if (config) {
@@ -71,12 +61,6 @@ const bundleFile = (bundle, file) => {
 
 
 const bundleDir = (bundle) => {
-
-	// Name
-	reports.add({
-		success: bundle === _.kebabCase(bundle),
-		message: `${Reporter.theme.title(bundle)}: Name must be kebab-case`
-	});
 
 	// No dir
 	reports.add(assert.hasNoDirs(bundle, { root }));

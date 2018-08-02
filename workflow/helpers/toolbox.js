@@ -129,4 +129,10 @@ module.exports = class toolbox {
 		});
 	}
 
+
+	//-- Is kebab-case
+	static isKebabCase(text) {
+		return (/^([a-z][a-z0-9]*)(-[a-z0-9]+)*$/).test(text);  // eslint-disable-line unicorn/no-unsafe-regex
+	}
+
 };

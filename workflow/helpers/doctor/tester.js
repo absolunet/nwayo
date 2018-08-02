@@ -3,9 +3,10 @@
 //-------------------------------------
 'use strict';
 
-const baseTests       = require('./tests/base');
 const bundlesTests    = require('./tests/bundles');
 const componentsTests = require('./tests/components');
+const generalTests    = require('./tests/general');
+const rootTests       = require('./tests/root');
 const syncTests       = require('./tests/sync');
 const vendorsTests    = require('./tests/vendors');
 const workflowTests   = require('./tests/workflow');
@@ -25,18 +26,23 @@ class Tester {
 
 
 	//-- Check if config files exists and are valid
-	base(cb) {
-		cb(null, { report:baseTests.run().list });
+	general(cb) {
+		cb(null, { report:generalTests.run() });
+	}
+
+	//-- Check if config files exists and are valid
+	root(cb) {
+		cb(null, { report:rootTests.run() });
 	}
 
 	//-- Check if bundles are valid
 	bundles(cb) {
-		cb(null, { report:bundlesTests.run().list });
+		cb(null, { report:bundlesTests.run() });
 	}
 
 	//-- Check if components are valid
 	components(cb) {
-		cb(null, { report:componentsTests.run().list });
+		cb(null, { report:componentsTests.run() });
 	}
 
 	//-- Check if the workflow needs an update

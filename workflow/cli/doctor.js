@@ -18,8 +18,9 @@ const totals = {
 
 let verbose = false;
 
-const reportTitle = (title, success) => {
-	terminal.echo(`${chalk.cyan(title)} diagnosis  ${success ? chalk.green('(^_^)') : chalk.red('ಠ_ಠ')}\n`);
+const reportTitle = (title, summary) => {
+	const color = summary.success ? chalk.green : chalk.red;
+	terminal.echo(`${chalk.cyan(title)} diagnosis  ${color(`${summary.success ? '(^_^)' : 'ಠ_ಠ'} ${summary.nb ? ` [${summary.nb.success}/${summary.nb.total}]` : ''}`)}\n`);
 };
 
 
@@ -29,7 +30,7 @@ const reporter = (title, data) => {
 	//-- Error
 	if (data.error) {
 		success = false;
-		reportTitle(title, success);
+		reportTitle(title, { success });
 		++totals.failure;
 		terminal.echoIndent(chalk.red(`${figures.cross} ${data.error}`));
 
@@ -37,7 +38,7 @@ const reporter = (title, data) => {
 	//-- Outdated stuff
 	} else if (data.outdated && data.outdated.length !== 0) {
 		success = false;
-		reportTitle(title, success);
+		reportTitle(title, { success });
 
 		data.outdated.forEach((item) => {
 			const msg = item.message ? `${chalk.red(item.message)}` : `${chalk.dim(item.current)} → ${chalk.green(item.latest)}`;
@@ -45,47 +46,51 @@ const reporter = (title, data) => {
 			++totals.failure;
 		});
 
-		terminal.spacer();
-
 
 	//-- Tests report
 	} else if (data.report) {
-		success = !data.report.find((test) => { return test.success === false; });
-		reportTitle(title, success);
+		reportTitle(`${title}`, data.report.summary);
 
-		data.report.forEach((test) => {
-			if (test.success) {
-				if (verbose) {
+		totals.success += data.report.summary.nb.success;
+		totals.failure += data.report.summary.nb.failure;
+
+		if (data.report.summary.success && !verbose) {
+			terminal.echoIndent(chalk.green(`${figures.tick}  ${data.report.summary.nb.total === 1 ? data.report.last.message : 'All tests passed'}`));
+		} else {
+
+			data.report.list.forEach((test) => {
+				if (test.success && verbose) {
 					terminal.echoIndent(`${chalk.green(figures.tick)}  ${chalk.dim(test.message)}`);
+
+				} else if (!test.success) {
+
+					let extra = '';
+					if (test.differences) {
+						extra += test.differences.superfluous && test.differences.superfluous.length !== 0 ? chalk.yellow(` [+] ${test.differences.superfluous.join(' | ')}`) : '';
+						extra += test.differences.missing     && test.differences.missing.length !== 0     ? chalk.red(` [-] ${test.differences.missing.join(' | ')}`) : '';
+						extra += test.differences.mismatched  && test.differences.mismatched.length !== 0  ? chalk.red(` [*] ${test.differences.mismatched.join(' | ')}`) : '';
+					}
+
+					if (test.outdated) {
+						extra += `  ${chalk.dim(test.outdated.current)} → ${chalk.yellow(test.outdated.latest)}`;
+					}
+
+					terminal.echo(`${chalk.red(`${figures.pointerSmall} ${figures.cross}`)}  ${test.message}${extra}`);
 				}
-				++totals.success;
-
-			} else {
-
-				let differences = '';
-				if (test.differences) {
-					differences += test.differences.superfluous && test.differences.superfluous.length !== 0 ? chalk.green(` [+] ${test.differences.superfluous.join(' | ')}`) : '';
-					differences += test.differences.missing     && test.differences.missing.length !== 0     ? chalk.red(` [-] ${test.differences.missing.join(' | ')}`)       : '';
-				}
-
-				terminal.echo(`${chalk.red(`${figures.pointerSmall} ${figures.cross}`)}  ${test.message}${differences}`);
-				++totals.failure;
-			}
-		});
-
-		terminal.spacer();
+			});
+		}
 
 
 	//-- Clear success
 	} else {
 		success = true;
-		reportTitle(title, success);
+		reportTitle(title, { success });
 		++totals.success;
 
-		terminal.echoIndent(chalk.green(`${figures.tick} ${chalk.dim(data.message)}`));
+		terminal.echoIndent(chalk.green(`${figures.tick} ${data.message}`));
 	}
 
-	terminal.spacer();
+	terminal.spacer(2);
 
 	return success;
 };
@@ -119,7 +124,8 @@ class Doctor {
 		/* eslint-enable global-require */
 
 		async.parallel({
-			base:       tester.base,
+			general:    tester.general,
+			root:       tester.root,
 			bundles:    tester.bundles,
 			components: tester.components,
 			workflow:   tester.workflowUpdates,
@@ -130,7 +136,8 @@ class Doctor {
 			spinner.stop();
 
 			//-- Reports
-			reporter('Base strucure', data.base);
+			reporter('General', data.general);
+			reporter('Root strucure', data.root);
 			reporter('Bundles', data.bundles);
 			reporter('Components', data.components);
 			reporter('Workflow', data.workflow);
