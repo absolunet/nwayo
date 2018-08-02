@@ -1,10 +1,9 @@
 //-------------------------------------
-//-- Base tests
+//-- Root tests
 //-------------------------------------
 'use strict';
 
 const findUp   = require('find-up');
-const _        = require('lodash');
 const semver   = require('semver');
 const paths    = require('../../paths');
 const toolbox  = require('../../toolbox');
@@ -35,7 +34,7 @@ const bowerJson = () => {
 				message: `${Reporter.theme.title('bower.json')}: Name must be defined`
 			},
 			{
-				success: config.name === _.kebabCase(config.name),
+				success: toolbox.isKebabCase(config.name),
 				message: `${Reporter.theme.title('bower.json')}: Name must be kebab-case`
 			},
 			{
@@ -80,7 +79,7 @@ const packageJson = (bowerName) => {
 				message: `${Reporter.theme.title('package.json')}: Name must be defined`
 			},
 			{
-				success: config.name === _.kebabCase(config.name),
+				success: toolbox.isKebabCase(config.name),
 				message: `${Reporter.theme.title('package.json')}: Name must be kebab-case`
 			},
 			{
@@ -160,7 +159,7 @@ const nwayoYaml = () => {
 
 
 
-class BaseTests {
+class RootTests {
 
 	run() {
 
@@ -225,4 +224,4 @@ class BaseTests {
 }
 
 
-module.exports = new BaseTests();
+module.exports = new RootTests();

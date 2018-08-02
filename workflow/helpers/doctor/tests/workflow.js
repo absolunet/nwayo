@@ -6,6 +6,10 @@
 const lastestVersion = require('latest-version');
 const semver         = require('semver');
 const env            = require('../../env');
+const Reporter            = require('../reporter');
+
+
+const reports = new Reporter();
 
 
 
@@ -21,16 +25,23 @@ class WorkflowTests {
 
 			lastestVersion(env.pkgName).then((latest) => {
 				if (semver.gt(latest, current)) {
-					resolve({
-						outdated: [{
+					reports.add({
+						success: false,
+						message: 'Workflow is outdated:',
+						outdated: {
 							current: current,
-							latest:  latest,
-							name:    env.pkgName
-						}]
+							latest:  latest
+						}
 					});
 				} else {
-					resolve({ message:`Latest version is ${latest}` });
+
+					reports.add({
+						success: true,
+						message: `Workflow is cutting edge (${latest})`
+					});
 				}
+
+				resolve({ report:reports });
 			});
 		});
 	}

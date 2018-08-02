@@ -3,7 +3,6 @@
 //-------------------------------------
 'use strict';
 
-const _        = require('lodash');
 const fss      = require('@absolunet/fss');
 const paths    = require('../../paths');
 const toolbox  = require('../../toolbox');
@@ -48,7 +47,7 @@ const assetsIcons = (component) => {
 
 
 const assetsImages = (component, type) => {
-	const files       = fss.scandir(`${paths.dir.components}/${component}/assets/${type}`, 'file', { recursive:true, pattern:'*.+(gif|jpg|png|svg)' });
+	const files       = fss.scandir(`${paths.dir.components}/${component}/assets/${type}`, 'file', { recursive:true, pattern:'**/*.+(gif|jpg|png|svg)' });
 	const differences = toolbox.compareLists(fss.scandir(`${paths.dir.components}/${component}/assets/${type}`, 'file', { recursive:true }), files);
 
 	reports.add({
@@ -97,7 +96,7 @@ const assets = (component) => {
 
 
 const scripts = (component) => {
-	const files       = fss.scandir(`${paths.dir.components}/${component}/scripts`, 'file', { recursive:true, pattern:'*.js' });
+	const files       = fss.scandir(`${paths.dir.components}/${component}/scripts`, 'file', { recursive:true, pattern:'**/*.js' });
 	const differences = toolbox.compareLists(fss.scandir(`${paths.dir.components}/${component}/scripts`, 'file', { recursive:true }), files);
 
 	reports.add({
@@ -113,7 +112,7 @@ const scripts = (component) => {
 
 
 const styles = (component) => {
-	const files       = fss.scandir(`${paths.dir.components}/${component}/styles`, 'file', { recursive:true, pattern:'*.scss' });
+	const files       = fss.scandir(`${paths.dir.components}/${component}/styles`, 'file', { recursive:true, pattern:'**/*.scss' });
 	const differences = toolbox.compareLists(fss.scandir(`${paths.dir.components}/${component}/styles`, 'file', { recursive:true }), files);
 
 	reports.add({
@@ -147,12 +146,6 @@ const templates = (component) => {
 
 
 const componentDir = (component) => {
-
-	// Name
-	reports.add({
-		success: component === _.kebabCase(component),
-		message: `${Reporter.theme.title(component)}: Name must be kebab-case`
-	});
 
 	// No files on root
 	reports.add(assert.hasNoFiles(component, { root }));
