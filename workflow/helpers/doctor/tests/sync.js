@@ -3,9 +3,13 @@
 //-------------------------------------
 'use strict';
 
-const fss   = require('@absolunet/fss');
-const paths = require('../../paths');
-const env   = require('../../env');
+const fss      = require('@absolunet/fss');
+const paths    = require('../../paths');
+const env      = require('../../env');
+const Reporter = require('../reporter');
+
+
+const reports = new Reporter();
 
 
 
@@ -21,13 +25,25 @@ class SyncTests {
 			const toolboxVersion  = bowerConfig.devDependencies['nwayo-toolbox'];
 
 			if (workflowVersion !== toolboxVersion) {
-				return { error:`Workflow ${workflowVersion} / Toolbox ${toolboxVersion} not in sync` };
+				reports.add({
+					success: false,
+					message: `Workflow / Toolbox are not in sync (${workflowVersion} vs ${toolboxVersion})`
+				});
+			} else {
+				reports.add({
+					success: true,
+					message: `Workflow / Toolbox are in sync (${workflowVersion})`
+				});
 			}
-
-			return { message:`Workflow / Toolbox are at ${workflowVersion}` };
+		} else {
+			reports.add({
+				success: false,
+				message: `No bower.json file found`
+			});
 		}
 
-		return { error:'No bower.json file found' };
+
+		return reports;
 	}
 
 }

@@ -25,24 +25,24 @@ class Tester {
 	*/
 
 
-	//-- Check if config files exists and are valid
+	//-- General checks (kebabCase, useless files)
 	general(cb) {
-		cb(null, { report:generalTests.run() });
+		cb(null, generalTests.run());
 	}
 
-	//-- Check if config files exists and are valid
+	//-- Check if root structure and config files exists and are valid
 	root(cb) {
-		cb(null, { report:rootTests.run() });
+		cb(null, rootTests.run());
 	}
 
 	//-- Check if bundles are valid
 	bundles(cb) {
-		cb(null, { report:bundlesTests.run() });
+		cb(null, bundlesTests.run());
 	}
 
 	//-- Check if components are valid
 	components(cb) {
-		cb(null, { report:componentsTests.run() });
+		cb(null, componentsTests.run());
 	}
 
 	//-- Check if the workflow needs an update
@@ -52,9 +52,11 @@ class Tester {
 		});
 	}
 
-	//-- Check if bower packages need an update
-	bowerUpdates(cb) {
-		cb(null, vendorsTests.run());
+	//-- Check if vendor packages need an update
+	vendorsUpdates(cb) {
+		vendorsTests.run().then((reports) => {
+			cb(null, reports);
+		});
 	}
 
 	//-- Check if nwayo workflow and toolbox are at the same version

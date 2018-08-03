@@ -11,7 +11,7 @@ const Reporter = require('../reporter');
 
 
 const reports = new Reporter();
-const root    = 'bundles';
+const root    = paths.folder.bundles;
 
 
 const bundleFile = (bundle, file) => {
@@ -66,7 +66,7 @@ const bundleDir = (bundle) => {
 	reports.add(assert.hasNoDirs(bundle, { root }));
 
 	// Files
-	const files = fss.scandir(`${paths.dir.bundles}/${bundle}`, 'file', { pattern:`+(_*|${bundle}).yaml` });
+	const files = fss.scandir(`${paths.dir.bundles}/${bundle}`, 'file', { pattern:`+(_*|${bundle}).${paths.ext.bundles}` });
 	const differences = toolbox.compareLists(fss.scandir(`${paths.dir.bundles}/${bundle}`, 'file'), files);
 
 	reports.add({
@@ -75,7 +75,7 @@ const bundleDir = (bundle) => {
 		differences: differences
 	});
 
-	reports.add(assert.exists(`${bundle}/${bundle}.yaml`, { root }));
+	reports.add(assert.exists(`${bundle}/${bundle}.${paths.ext.bundles}`, { root }));
 
 	reports.add(assert.areFilesGitTracked(files, bundle, { root }));
 
