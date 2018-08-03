@@ -35,7 +35,7 @@
     "@absolunet/cli": "0.7.1",
     "@absolunet/eslint-config-nwayo": "1.1.1",
     "@absolunet/fsp": "0.1.1",
-    "@absolunet/fss": "1.0.0",
+    "@absolunet/fss": "1.0.1",
     "@absolunet/gulp-include": "0.5.1",
     "@absolunet/stylelint-config-nwayo": "1.0.3",
     "@absolunet/terminal": "0.5.0",

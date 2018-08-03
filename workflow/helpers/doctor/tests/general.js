@@ -16,9 +16,9 @@ const kebabCase = (type) => {
 	const isFile = type === 'file';
 
 	const list = fss
-		.scandir(paths.dir.root, type, { recursive:true, pattern:'!+(.nwayo-cache|bower_components|node_modules)/**' })
+		.scandir(paths.dir.root, type, { recursive:true, pattern:`!+(${paths.folder.cache}|${paths.folder.vendors}|${paths.folder.workflowDependencies})/**` })
 		.filter((pathname) => {
-			return (/\//).test(pathname) && !(/components\/[a-z0-9-]+\/(scripts|styles)\/vendor/).test(pathname);
+			return (/\//).test(pathname) && !new RegExp(`${paths.folder.components}\\/[a-z0-9-]+\\/(${paths.folder.scripts}|${paths.folder.styles})\\/${paths.folder.nolint}`).test(pathname);
 		})
 	;
 

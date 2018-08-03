@@ -6,7 +6,7 @@
 const lastestVersion = require('latest-version');
 const semver         = require('semver');
 const env            = require('../../env');
-const Reporter            = require('../reporter');
+const Reporter       = require('../reporter');
 
 
 const reports = new Reporter();
@@ -41,7 +41,7 @@ class WorkflowTests {
 					});
 				}
 
-				resolve({ report:reports });
+				resolve(reports);
 			});
 		});
 	}

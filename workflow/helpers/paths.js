@@ -10,9 +10,10 @@ const toolbox = require('./toolbox');
 
 
 //-- Static properties
+const MAIN_CONFIG = 'nwayo.yaml';
 const STATIC = global.___NwayoPaths___ ? global.___NwayoPaths___ : global.___NwayoPaths___ = {
 	root: (() => {
-		const prjConfigFilepath = findUp.sync('nwayo.yaml', { cwd:process.cwd() });
+		const prjConfigFilepath = findUp.sync(MAIN_CONFIG, { cwd:process.cwd() });
 		const prjConfig         = toolbox.readYAML(prjConfigFilepath);
 
 		return path.normalize(`${path.dirname(prjConfigFilepath)}/${prjConfig.root}`);
@@ -34,7 +35,7 @@ pattern.babel   = `^/?##includes##(\\${CACHE}|${BOWER}|components/.*/scripts/${N
 
 const ext = {};
 ext.bundles   = 'yaml';
-ext.fonts     = '{eot,svg,ttf,woff,woff2}';
+ext.fonts     = '{woff,woff2}';
 ext.images    = '{gif,jpg,png,svg}';
 ext.scripts   = 'js';
 ext.styles    = 'scss';
@@ -49,11 +50,40 @@ build.scripts = 'scripts';
 build.styles  = 'styles';
 
 const folder = {};
-folder.cache        = CACHE;
-folder.cacheInline  = `${folder.cache}/inline-images`;
-folder.cacheSass    = `${folder.cache}/sass`;
-folder.cacheScripts = `${folder.cache}/${build.scripts}`;
-folder.cacheStyles  = `${folder.cache}/${build.styles}`;
+folder.cache                = CACHE;
+folder.cacheInline          = `${folder.cache}/inline-images`;
+folder.cacheSass            = `${folder.cache}/sass`;
+folder.cacheScripts         = `${folder.cache}/${build.scripts}`;
+folder.cacheStyles          = `${folder.cache}/${build.styles}`;
+folder.vendors              = BOWER;
+folder.bundles              = 'bundles';
+folder.components           = 'components';
+folder.assets               = 'assets';
+folder.fonts                = 'fonts';
+folder.icons                = 'icons';
+folder.images               = 'images';
+folder.inlineImages         = 'inline-images';
+folder.raw                  = 'raw';
+folder.scripts              = 'scripts';
+folder.styles               = 'styles';
+folder.templates            = 'templates';
+folder.misc                 = 'misc';
+folder.workflowDependencies = 'node_modules';
+folder.nolint               = NOLINT;
+
+const filename = {};
+filename.konstan        = 'konstan';
+filename.konstanLocal   = `${filename.konstan}.json`;
+filename.konstanScripts = `${filename.konstan}.${ext.scripts}`;
+filename.konstanStyles  = `${filename.konstan}.json`;
+filename.lodash         = `lodash`;
+filename.modernizr      = `modernizr`;
+filename.mainConfig     = MAIN_CONFIG;
+filename.iconsFavicon   = `favicon.png`;
+filename.iconsTouch     = `touch.png`;
+filename.iconsIcon      = `icon.png`;
+filename.iconsLarge     = `large.png`;
+filename.iconsTile      = `tile.png`;
 
 const dir = {};
 dir.root         = slash(STATIC.root).replace(/\/$/, '');
@@ -62,30 +92,30 @@ dir.cacheInline  = `${dir.root}/${folder.cacheInline}`;
 dir.cacheSass    = `${dir.root}/${folder.cacheSass}`;
 dir.cacheScripts = `${dir.root}/${folder.cacheScripts}`;
 dir.cacheStyles  = `${dir.root}/${folder.cacheStyles}`;
-dir.bundles      = `${dir.root}/bundles`;
-dir.components   = `${dir.root}/components`;
-dir.assets       = `${dir.components}/${pattern.anytree}/assets`;
-dir.fonts        = `${dir.assets}/fonts`;
-dir.icons        = `${dir.assets}/icons`;
-dir.images       = `${dir.assets}/images`;
-dir.inline       = `${dir.assets}/inline-images`;
-dir.raw          = `${dir.assets}/raw`;
-dir.scripts      = `${dir.components}/${pattern.anytree}/scripts`;
-dir.styles       = `${dir.components}/${pattern.anytree}/styles`;
-dir.templates    = `${dir.components}/${pattern.anytree}/templates`;
-dir.bower        = `${dir.root}/${BOWER}`;
-dir.misc         = `${dir.root}/misc`;
+dir.bundles      = `${dir.root}/${folder.bundles}`;
+dir.components   = `${dir.root}/${folder.components}`;
+dir.assets       = `${dir.components}/${pattern.anytree}/${folder.assets}`;
+dir.fonts        = `${dir.assets}/${folder.fonts}`;
+dir.icons        = `${dir.assets}/${folder.icons}`;
+dir.images       = `${dir.assets}/${folder.images}`;
+dir.inline       = `${dir.assets}/${folder.inlineImages}`;
+dir.raw          = `${dir.assets}/${folder.raw}`;
+dir.scripts      = `${dir.components}/${pattern.anytree}/${folder.scripts}`;
+dir.styles       = `${dir.components}/${pattern.anytree}/${folder.styles}`;
+dir.templates    = `${dir.components}/${pattern.anytree}/${folder.templates}`;
+dir.bower        = `${dir.root}/${folder.vendors}`;
+dir.misc         = `${dir.root}/${folder.misc}`;
 dir.resources    = `${dir.misc}/resources`;
 dir.stubs        = `${dir.misc}/stubs`;
 
 const files = {};
 files.bundles      = `${dir.bundles}/${pattern.anytree}/*.${ext.bundles}`;
 files.fonts        = `${dir.fonts}/${pattern.anytree}/*.${ext.fonts}`;
-files.iconsFavicon = `${dir.icons}/favicon.png`;
-files.iconsTouch   = `${dir.icons}/touch.png`;
-files.iconsIcon    = `${dir.icons}/icon.png`;
-files.iconsLarge   = `${dir.icons}/large.png`;
-files.iconsTile    = `${dir.icons}/tile.png`;
+files.iconsFavicon = `${dir.icons}/${filename.iconsFavicon}`;
+files.iconsTouch   = `${dir.icons}/${filename.iconsTouch}`;
+files.iconsIcon    = `${dir.icons}/${filename.iconsIcon}`;
+files.iconsLarge   = `${dir.icons}/${filename.iconsLarge}`;
+files.iconsTile    = `${dir.icons}/${filename.iconsTile}`;
 files.images       = `${dir.images}/${pattern.anytree}/*.${ext.images}`;
 files.images2x     = `${dir.images}/${pattern.anytree}/*@2x.${ext.images}`;
 files.inline       = `${dir.inline}/${pattern.anytree}/*.${ext.images}`;
@@ -96,14 +126,6 @@ files.styles       = `${dir.styles}/${pattern.anytree}/*.${ext.styles}`;
 files.stylesLint   = [files.styles, `!${dir.styles}/${NOLINT}/${pattern.anytree}/*`];
 files.templates    = `${dir.templates}/${pattern.anytree}/*.${ext.templates}`;
 files.bowerScripts = `${dir.bower}/${pattern.anytree}/*.${ext.scripts}`;
-
-const filename = {};
-filename.konstan        = 'konstan';
-filename.konstanLocal   = `${filename.konstan}.json`;
-filename.konstanScripts = `${filename.konstan}.${ext.scripts}`;
-filename.konstanStyles  = `${filename.konstan}.json`;
-filename.modernizr      = `modernizr`;
-filename.lodash         = `lodash`;
 
 const workflow = {};
 workflow.root       = slash(path.normalize(`${__dirname}/..`));

@@ -11,137 +11,147 @@ const Reporter = require('../reporter');
 
 
 const reports = new Reporter();
-const root    = 'components';
+const root    = paths.folder.components;
 
 
 const assetsFonts = (component) => {
-	reports.add(assert.hasNoDirs(`${component}/assets/fonts`, { root }));
+	const FOLDER = `${component}/${paths.folder.assets}/${paths.folder.fonts}`;
 
-	const files       = fss.scandir(`${paths.dir.components}/${component}/assets/fonts`, 'file', { recursive:true, pattern:'*.+(woff|woff2)' });
-	const differences = toolbox.compareLists(fss.scandir(`${paths.dir.components}/${component}/assets/fonts`, 'file', { recursive:true }), files);
+	reports.add(assert.hasNoDirs(FOLDER, { root }));
+
+	const files       = fss.scandir(`${paths.dir.components}/${FOLDER}`, 'file', { recursive:true, pattern:`*.${paths.ext.fonts}` });
+	const differences = toolbox.compareLists(fss.scandir(`${paths.dir.components}/${FOLDER}`, 'file', { recursive:true }), files);
 
 	reports.add({
 		success:     differences.superfluous.length === 0,
-		message:     `${Reporter.theme.title(`${component}/styles`)}: Must only contain *.woff or *.woff2 files`,
+		message:     `${Reporter.theme.title(FOLDER)}: Must only contain ${paths.ext.fonts} files`,
 		differences: { superfluous:differences.superfluous }
 	});
 
-	reports.add(assert.areFilesGitTracked(files, `${component}/assets/fonts`, { root }));
+	reports.add(assert.areFilesGitTracked(files, FOLDER, { root }));
 };
 
 
 const assetsIcons = (component) => {
-	reports.add(assert.hasNoDirs(`${component}/assets/icons`, { root }));
+	const FOLDER = `${component}/${paths.folder.assets}/${paths.folder.icons}`;
 
-	const files       = fss.scandir(`${paths.dir.components}/${component}/assets/icons`, 'file', { recursive:true });
-	const differences = toolbox.compareLists(fss.scandir(`${paths.dir.components}/${component}/assets/icons`, 'file', { recursive:true }), ['favicon.png', 'icon.png', 'large.png', 'tile.png', 'touch.png']);
+	reports.add(assert.hasNoDirs(FOLDER, { root }));
+
+	const files       = fss.scandir(`${paths.dir.components}/${FOLDER}`, 'file', { recursive:true });
+	const differences = toolbox.compareLists(fss.scandir(`${paths.dir.components}/${FOLDER}`, 'file', { recursive:true }), [paths.filename.iconsFavicon, paths.filename.iconsTouch, paths.filename.iconsIcon, paths.filename.iconsLarge, paths.filename.iconsTile]);
 
 	reports.add({
 		success:     differences.pass,
-		message:     `${Reporter.theme.title(`${component}/assets/icons`)}: Must only contain certain files`,
+		message:     `${Reporter.theme.title(FOLDER)}: Must only contain certain files`,
 		differences: differences
 	});
 
-	reports.add(assert.areFilesGitTracked(files, `${component}/assets/icons`, { root }));
+	reports.add(assert.areFilesGitTracked(files, FOLDER, { root }));
 };
 
 
 const assetsImages = (component, type) => {
-	const files       = fss.scandir(`${paths.dir.components}/${component}/assets/${type}`, 'file', { recursive:true, pattern:'**/*.+(gif|jpg|png|svg)' });
-	const differences = toolbox.compareLists(fss.scandir(`${paths.dir.components}/${component}/assets/${type}`, 'file', { recursive:true }), files);
+	const FOLDER = `${component}/${paths.folder.assets}/${type}`;
+
+	const files       = fss.scandir(`${paths.dir.components}/${FOLDER}`, 'file', { recursive:true, pattern:`**/*.${paths.ext.images}` });
+	const differences = toolbox.compareLists(fss.scandir(`${paths.dir.components}/${FOLDER}`, 'file', { recursive:true }), files);
 
 	reports.add({
 		success:     differences.superfluous.length === 0,
-		message:     `${Reporter.theme.title(`${component}/styles`)}: Must only contain *.gif, *.jpg, *.png, *.svg files`,
+		message:     `${Reporter.theme.title(FOLDER)}: Must only contain ${paths.ext.images} files`,
 		differences: { superfluous:differences.superfluous }
 	});
 
-	reports.add(assert.areFilesGitTracked(files, `${component}/assets/${type}`, { root }));
+	reports.add(assert.areFilesGitTracked(files, FOLDER, { root }));
 };
 
 
 const assets = (component) => {
+	const FOLDER = `${component}/${paths.folder.assets}`;
 
 	// No files on root
-	reports.add(assert.hasNoFiles(`${component}/assets`, { root }));
+	reports.add(assert.hasNoFiles(FOLDER, { root }));
 
-	const types            = fss.scandir(`${paths.dir.components}/${component}/assets`, 'dir');
-	const typesDifferences = toolbox.compareLists(types, ['fonts', 'icons', 'images', 'inline-images', 'raw']);
+	const types            = fss.scandir(`${paths.dir.components}/${FOLDER}`, 'dir');
+	const typesDifferences = toolbox.compareLists(types, [paths.folder.fonts, paths.folder.icons, paths.folder.images, paths.folder.inlineImages, paths.folder.raw]);
 	reports.add({
 		success:     typesDifferences.superfluous.length === 0,
-		message:     `${Reporter.theme.title(`${component}/assets`)}: Assets must only contain certains directories`,
+		message:     `${Reporter.theme.title(FOLDER)}: Assets must only contain certains directories`,
 		differences: { superfluous:typesDifferences.superfluous }
 	});
 
 	//-- Fonts
-	if (types.includes('fonts')) {
+	if (types.includes(paths.folder.fonts)) {
 		assetsFonts(component);
 	}
 
 	//-- Icons
-	if (types.includes('icons')) {
+	if (types.includes(paths.folder.icons)) {
 		assetsIcons(component);
 	}
 
 	//-- Images
-	if (types.includes('images')) {
-		assetsImages(component, 'images');
+	if (types.includes(paths.folder.images)) {
+		assetsImages(component, paths.folder.images);
 	}
 
 	//-- Inline images
-	if (types.includes('inline-images')) {
-		assetsImages(component, 'inline-images');
+	if (types.includes(paths.folder.inlineImages)) {
+		assetsImages(component, paths.folder.inlineImages);
 	}
 };
 
 
 const scripts = (component) => {
-	const files       = fss.scandir(`${paths.dir.components}/${component}/scripts`, 'file', { recursive:true, pattern:'**/*.js' });
-	const differences = toolbox.compareLists(fss.scandir(`${paths.dir.components}/${component}/scripts`, 'file', { recursive:true }), files);
+	const FOLDER      = `${component}/${paths.folder.scripts}`;
+	const files       = fss.scandir(`${paths.dir.components}/${FOLDER}`, 'file', { recursive:true, pattern:`**/*.${paths.ext.scripts}` });
+	const differences = toolbox.compareLists(fss.scandir(`${paths.dir.components}/${FOLDER}`, 'file', { recursive:true }), files);
 
 	reports.add({
 		success:     differences.superfluous.length === 0,
-		message:     `${Reporter.theme.title(`${component}/scripts`)}: Must only contain *.js files`,
+		message:     `${Reporter.theme.title(FOLDER)}: Must only contain *.${paths.ext.scripts} files`,
 		differences: { superfluous:differences.superfluous }
 	});
 
-	reports.add(assert.exists(`${component}/scripts/${component}.js`, { root }));
+	reports.add(assert.exists(`${FOLDER}/${component}.${paths.ext.scripts}`, { root }));
 
-	reports.add(assert.areFilesGitTracked(files, `${component}/scripts`, { root }));
+	reports.add(assert.areFilesGitTracked(files, FOLDER, { root }));
 };
 
 
 const styles = (component) => {
-	const files       = fss.scandir(`${paths.dir.components}/${component}/styles`, 'file', { recursive:true, pattern:'**/*.scss' });
-	const differences = toolbox.compareLists(fss.scandir(`${paths.dir.components}/${component}/styles`, 'file', { recursive:true }), files);
+	const FOLDER      = `${component}/${paths.folder.styles}`;
+	const files       = fss.scandir(`${paths.dir.components}/${FOLDER}`, 'file', { recursive:true, pattern:`**/*.${paths.ext.styles}` });
+	const differences = toolbox.compareLists(fss.scandir(`${paths.dir.components}/${FOLDER}`, 'file', { recursive:true }), files);
 
 	reports.add({
 		success:     differences.superfluous.length === 0,
-		message:     `${Reporter.theme.title(`${component}/styles`)}: Must only contain *.scss files`,
+		message:     `${Reporter.theme.title(FOLDER)}: Must only contain *.${paths.ext.styles} files`,
 		differences: { superfluous:differences.superfluous }
 	});
 
-	reports.add(assert.exists(`${component}/styles/${component}.scss`, { root }));
-	reports.add(assert.exists(`${component}/styles/config.scss`, { root }));
-	reports.add(assert.exists(`${component}/styles/config`, { root }));
+	reports.add(assert.exists(`${FOLDER}/${component}.${paths.ext.styles}`, { root }));
+	reports.add(assert.exists(`${FOLDER}/config.${paths.ext.styles}`, { root }));
+	reports.add(assert.exists(`${FOLDER}/config`, { root }));
 
-	reports.add(assert.areFilesGitTracked(files, `${component}/styles`, { root }));
+	reports.add(assert.areFilesGitTracked(files, FOLDER, { root }));
 };
 
 
 const templates = (component) => {
-	reports.add(assert.hasNoDirs(`${component}/templates`, { root }));
+	const FOLDER = `${component}/${paths.folder.templates}`;
+	reports.add(assert.hasNoDirs(FOLDER, { root }));
 
-	const files       = fss.scandir(`${paths.dir.components}/${component}/templates`, 'file', { recursive:true, pattern:'*.jshtml' });
-	const differences = toolbox.compareLists(fss.scandir(`${paths.dir.components}/${component}/templates`, 'file', { recursive:true }), files);
+	const files       = fss.scandir(`${paths.dir.components}/${FOLDER}`, 'file', { recursive:true, pattern:`*.${paths.ext.templates}` });
+	const differences = toolbox.compareLists(fss.scandir(`${paths.dir.components}/${FOLDER}`, 'file', { recursive:true }), files);
 
 	reports.add({
 		success:     differences.superfluous.length === 0,
-		message:     `${Reporter.theme.title(`${component}/templates`)}: Must only contain *.jshtml files`,
+		message:     `${Reporter.theme.title(FOLDER)}: Must only contain *.${paths.ext.templates} files`,
 		differences: { superfluous:differences.superfluous }
 	});
 
-	reports.add(assert.areFilesGitTracked(files, `${component}/templates`, { root }));
+	reports.add(assert.areFilesGitTracked(files, FOLDER, { root }));
 };
 
 
@@ -152,7 +162,7 @@ const componentDir = (component) => {
 
 	//-- Sources
 	const sources = fss.scandir(`${paths.dir.components}/${component}`, 'dir');
-	const sourcesDifferences = toolbox.compareLists(sources, ['assets', 'scripts', 'styles', 'templates']);
+	const sourcesDifferences = toolbox.compareLists(sources, [paths.folder.assets, paths.folder.scripts, paths.folder.styles, paths.folder.templates]);
 	reports.add({
 		success:     sourcesDifferences.superfluous.length === 0,
 		message:     `${Reporter.theme.title(component)}: Component must only contain certains directories`,
@@ -160,22 +170,22 @@ const componentDir = (component) => {
 	});
 
 	//-- Assets
-	if (sources.includes('assets')) {
+	if (sources.includes(paths.folder.assets)) {
 		assets(component);
 	}
 
 	//-- Scripts
-	if (sources.includes('scripts')) {
+	if (sources.includes(paths.folder.scripts)) {
 		scripts(component);
 	}
 
 	//-- Styles
-	if (sources.includes('styles')) {
+	if (sources.includes(paths.folder.styles)) {
 		styles(component);
 	}
 
 	//-- Templates
-	if (sources.includes('templates')) {
+	if (sources.includes(paths.folder.templates)) {
 		templates(component);
 	}
 };
