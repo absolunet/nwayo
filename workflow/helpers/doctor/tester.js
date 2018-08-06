@@ -18,16 +18,11 @@ const workflowTests   = require('./tests/workflow');
 
 class Tester {
 
-	/*
-
-	lint files (json / yaml / editorconfig)
-
-	*/
-
-
 	//-- General checks (kebabCase, useless files)
 	general(cb) {
-		cb(null, generalTests.run());
+		generalTests.run().then((reports) => {
+			cb(null, reports);
+		});
 	}
 
 	//-- Check if root structure and config files exists and are valid

@@ -49,6 +49,10 @@ const reporter = (title, reports) => {
 					extra += `  ${chalk.dim(test.outdated.current)} → ${chalk.yellow(test.outdated.latest)}`;
 				}
 
+				if (test.linterOutput) {
+					extra += `\n${test.linterOutput}`;
+				}
+
 				terminal.echo(`${chalk.red(`${figures.pointerSmall} ${figures.cross}`)}  ${test.message}${extra}`);
 			}
 		});

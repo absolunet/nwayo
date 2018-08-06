@@ -81,10 +81,12 @@
     "ora": "3.0.0",
     "pluralize": "7.0.0",
     "pretty-bytes": "5.1.0",
+    "replaceall": "0.1.6",
     "require-dir": "1.0.0",
     "semver": "5.5.0",
     "slash": "2.0.0",
     "uglify-js": "3.4.6",
-    "vinyl": "2.2.0"
+    "vinyl": "2.2.0",
+    "yaml-lint": "1.2.4"
   }
 }
