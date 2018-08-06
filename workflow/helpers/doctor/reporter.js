@@ -6,16 +6,6 @@
 const chalk = require('chalk');
 
 
-const clean = (data) => {
-	return {
-		success:     data.success,
-		message:     data.message,
-		differences: data.differences,
-		outdated:    data.outdated
-	};
-};
-
-
 // Pseudo private methods
 const __ = (self) => {
 	return {
@@ -50,7 +40,7 @@ class Reporter {
 			const results = {};
 
 			data.forEach((item) => {
-				this._reports.push(clean(item));
+				this._reports.push(item);
 				__(this).tickCounter(item.success);
 
 				results[item.type] = item.success;
@@ -59,7 +49,7 @@ class Reporter {
 			return results;
 		}
 
-		this._reports.push(clean(data));
+		this._reports.push(data);
 		__(this).tickCounter(data.success);
 
 		return data.success;
