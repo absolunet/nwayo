@@ -27,17 +27,23 @@ class Tester {
 
 	//-- Check if root structure and config files exists and are valid
 	root(cb) {
-		cb(null, rootTests.run());
+		rootTests.run().then((reports) => {
+			cb(null, reports);
+		});
 	}
 
 	//-- Check if bundles are valid
 	bundles(cb) {
-		cb(null, bundlesTests.run());
+		bundlesTests.run().then((reports) => {
+			cb(null, reports);
+		});
 	}
 
 	//-- Check if components are valid
 	components(cb) {
-		cb(null, componentsTests.run());
+		componentsTests.run().then((reports) => {
+			cb(null, reports);
+		});
 	}
 
 	//-- Check if the workflow needs an update
@@ -56,7 +62,9 @@ class Tester {
 
 	//-- Check if nwayo workflow and toolbox are at the same version
 	syncWorkflowToolbox(cb) {
-		cb(null, syncTests.run());
+		syncTests.run().then((reports) => {
+			cb(null, reports);
+		});
 	}
 
 }

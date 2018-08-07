@@ -20,7 +20,6 @@ const reports = new Reporter();
 class VendorsTests {
 
 	run() {
-
 		return new Promise((resolve) => {
 
 			if (fss.exists(paths.config.bower)) {
@@ -105,6 +104,7 @@ class VendorsTests {
 
 				resolve(reports);
 			}
+
 		});
 	}
 

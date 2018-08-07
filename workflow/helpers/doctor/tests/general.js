@@ -136,7 +136,6 @@ const lintYAML = () => {
 class GeneralTests {
 
 	run() {
-
 		return new Promise((resolve) => {
 
 			reports.add(kebabCase('dir'));
@@ -147,6 +146,7 @@ class GeneralTests {
 				reports.add(lints);
 				resolve(reports);
 			});
+
 		});
 	}
 
