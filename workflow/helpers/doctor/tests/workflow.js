@@ -19,10 +19,9 @@ const reports = new Reporter();
 class WorkflowTests {
 
 	run() {
-
 		return new Promise((resolve) => {
-			const current = env.workflowPkg.version;
 
+			const current = env.workflowPkg.version;
 			lastestVersion(env.pkgName).then((latest) => {
 				if (semver.gt(latest, current)) {
 					reports.add({
@@ -42,6 +41,7 @@ class WorkflowTests {
 				}
 
 				resolve(reports);
+
 			});
 		});
 	}

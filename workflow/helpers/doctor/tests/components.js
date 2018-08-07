@@ -198,17 +198,20 @@ const componentDir = (component) => {
 class ComponentsTests {
 
 	run() {
+		return new Promise((resolve) => {
 
-		// No files on root
-		reports.add(assert.hasNoFiles('/', { root }));
+			// No files on root
+			reports.add(assert.hasNoFiles('/', { root }));
 
-		//-- Components
-		const components = fss.scandir(`${paths.dir.components}`, 'dir');
-		components.forEach((component) => {
-			componentDir(component);
+			//-- Components
+			const components = fss.scandir(`${paths.dir.components}`, 'dir');
+			components.forEach((component) => {
+				componentDir(component);
+			});
+
+			resolve(reports);
+
 		});
-
-		return reports;
 	}
 
 }

@@ -92,17 +92,20 @@ const bundleDir = (bundle) => {
 class BundlesTests {
 
 	run() {
+		return new Promise((resolve) => {
 
-		// No files on root
-		reports.add(assert.hasNoFiles('/', { root }));
+			// No files on root
+			reports.add(assert.hasNoFiles('/', { root }));
 
-		// Bundles
-		const bundles = fss.scandir(`${paths.dir.bundles}`, 'dir');
-		bundles.forEach((bundle) => {
-			bundleDir(bundle);
+			// Bundles
+			const bundles = fss.scandir(`${paths.dir.bundles}`, 'dir');
+			bundles.forEach((bundle) => {
+				bundleDir(bundle);
+			});
+
+			resolve(reports);
+
 		});
-
-		return reports;
 	}
 
 }
