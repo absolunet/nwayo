@@ -18,7 +18,7 @@
 @include foundation-typography();
 
 //-- Prism
-@import 'bower_components/prism/themes/prism-tomorrow';
+@import 'styles/vendor/prism-tomorrow';
 
 //-- Go to town
 @import 'styles/base';

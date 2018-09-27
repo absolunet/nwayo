@@ -232,38 +232,38 @@
 <p>Chocolatey is the entry point to install many tools</p>
 <pre><code class="language-shell">@&quot;%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe&quot; -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command &quot;iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))&quot; &amp;&amp; SET &quot;PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin&quot;
 </code></pre>
-<h4 id="image-processors-(-graphicsmagick-%2F-imagemagick-)"><a class="anchor" href="#image-processors-(-graphicsmagick-%2F-imagemagick-)" aria-hidden="true">⚭</a> Image processors ( <a href="http://www.graphicsmagick.org" class="external" rel="external">GraphicsMagick</a> / <a href="http://www.imagemagick.org" class="external" rel="external">ImageMagick</a> )</h4>
+<h4 id="image-processors-(-graphicsmagick-%2F-imagemagick-)"><a class="anchor" href="#image-processors-(-graphicsmagick-%2F-imagemagick-)" aria-hidden="true">⚭</a> Image processors ( <a href="http://www.graphicsmagick.org" class="external" rel="external">GraphicsMagick</a> / <a href="https://www.imagemagick.org" class="external" rel="external">ImageMagick</a> )</h4>
 <p>These are used to manipulate images for the iconography</p>
 <pre><code class="language-shell">choco install graphicsmagick --confirm
 choco install imagemagick.app -packageparameters legacysupport=true --confirm
 </code></pre>
-<h2 id="ruby"><a class="anchor" href="#ruby" aria-hidden="true">⚭</a> <a href="https://www.ruby-lang.org" class="external" rel="external">Ruby</a></h2>
-<p>Ruby is used solely to build SCSS</p>
+<h2 id="ruby-%5Bdeprecated%5D"><a class="anchor" href="#ruby-%5Bdeprecated%5D" aria-hidden="true">⚭</a> <a href="https://www.ruby-lang.org" class="external" rel="external">Ruby</a> <em>[deprecated]</em></h2>
+<p>Ruby was used solely to build SCSS</p>
 <pre><code class="language-shell">choco install ruby --confirm
 chcp 1252
 gem source -a http://rubygems.org/
 </code></pre>
-<h4 id="sass"><a class="anchor" href="#sass" aria-hidden="true">⚭</a> <a href="http://sass-lang.com" class="external" rel="external">Sass</a></h4>
-<p>Sass is the original native compiler of SCSS</p>
+<h4 id="sass-%5Bdeprecated%5D"><a class="anchor" href="#sass-%5Bdeprecated%5D" aria-hidden="true">⚭</a> <a href="https://sass-lang.com" class="external" rel="external">Sass</a> <em>[deprecated]</em></h4>
+<p>Ruby Sass was originally the native compiler of SCSS and was used by nwayo prior to 3.6.0</p>
 <pre><code class="language-shell">gem install sass
 </code></pre>
 <h4 id="scss-lint-%5Bdeprecated%5D"><a class="anchor" href="#scss-lint-%5Bdeprecated%5D" aria-hidden="true">⚭</a> <a href="https://github.com/causes/scss-lint" class="external" rel="external">SCSS-Lint</a> <em>[deprecated]</em></h4>
 <p>SCSS-Lint was the SCSS linter used by nwayo prior to 3.4.0</p>
 <pre><code class="language-shell">gem install scss_lint
 </code></pre>
-<h2 id="node.js"><a class="anchor" href="#node.js" aria-hidden="true">⚭</a> <a href="http://nodejs.org" class="external" rel="external">Node.js</a></h2>
+<h2 id="node.js"><a class="anchor" href="#node.js" aria-hidden="true">⚭</a> <a href="https://nodejs.org" class="external" rel="external">Node.js</a></h2>
 <p>Node.js is the backbone of the workflow</p>
 <pre><code class="language-shell">choco install nodejs.install --confirm
 </code></pre>
-<h4 id="nwayo-cli"><a class="anchor" href="#nwayo-cli" aria-hidden="true">⚭</a> <a href="http://absolunet.github.io/nwayo" class="external" rel="external">nwayo CLI</a></h4>
+<h4 id="nwayo-cli"><a class="anchor" href="#nwayo-cli" aria-hidden="true">⚭</a> <a href="https://absolunet.github.io/nwayo" class="external" rel="external">nwayo CLI</a></h4>
 <p>Well duh...</p>
 <pre><code class="language-shell">npm install -g @absolunet/nwayo-cli
 </code></pre>
-<h4 id="jshint-%5Bdeprecated%5D"><a class="anchor" href="#jshint-%5Bdeprecated%5D" aria-hidden="true">⚭</a> <a href="http://jshint.com/" class="external" rel="external">JSHint</a> <em>[deprecated]</em></h4>
+<h4 id="jshint-%5Bdeprecated%5D"><a class="anchor" href="#jshint-%5Bdeprecated%5D" aria-hidden="true">⚭</a> <a href="http://jshint.com" class="external" rel="external">JSHint</a> <em>[deprecated]</em></h4>
 <p>JSHint was a JS linter used by nwayo prior to 3.0.0</p>
 <pre><code class="language-shell">npm install -g jshint
 </code></pre>
-<h4 id="jscs-%5Bdeprecated%5D"><a class="anchor" href="#jscs-%5Bdeprecated%5D" aria-hidden="true">⚭</a> <a href="http://jscs.info/" class="external" rel="external">JSCS</a> <em>[deprecated]</em></h4>
+<h4 id="jscs-%5Bdeprecated%5D"><a class="anchor" href="#jscs-%5Bdeprecated%5D" aria-hidden="true">⚭</a> <a href="https://www.npmjs.com/package/jscs" class="external" rel="external">JSCS</a> <em>[deprecated]</em></h4>
 <p>JSCS was a JS linter used by nwayo prior to 3.0.0</p>
 <pre><code class="language-shell">npm install -g jscs
 </code></pre>

@@ -11,7 +11,7 @@
 		$inline-image-path: nwayo-assets-path($file, $component, 'inline');
 
 		@if str-index($file, '.svg') {
-			$svg: nwayorb-read-file($inline-image-path);
+			$svg: nwayodart-read-file($inline-image-path);
 
 			@if $color {
 
@@ -36,7 +36,7 @@
 			$uri: nwayo-svg-data-uri($svg);
 
 		} @else {
-			$uri: nwayorb-inline-image($inline-image-path);
+			$uri: nwayodart-inline-file($inline-image-path);
 		}
 
 	} @else {
@@ -81,7 +81,7 @@
 //-- Font-face
 @mixin nwayo-load-font-styles($name, $filename, $component, $weight:normal, $style:normal) {
 	$url:   nwayo-assets-path($filename, $component, 'fonts');
-	$woff2: if(nwayorb-file-exists($konstan-path-nwayoroot + '/components/' + $component + '/assets/fonts/' + $filename + '.woff2'), url($url + '.woff2') format('woff2') + ',', '');
+	$woff2: if(nwayodart-file-exists($konstan-path-nwayoroot + '/components/' + $component + '/assets/fonts/' + $filename + '.woff2'), url($url + '.woff2') format('woff2') + ',', '');
 	@font-face {
 		font-family: $name;
 		font-weight: $weight;

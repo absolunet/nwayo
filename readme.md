@@ -23,8 +23,7 @@
 
 
 ## Requirements (All latest) - [Installation guide](docs/requirements)
-- [Node.js](https://nodejs.org) ([nwayo](https://www.npmjs.com/package/@absolunet/nwayo-cli))
-- [Ruby](https://www.ruby-lang.org) ([Sass](http://sass-lang.com))
+- [Node.js](https://nodejs.org) ([nwayo CLI](https://www.npmjs.com/package/@absolunet/nwayo-cli))
 - [GraphicsMagick](http://www.graphicsmagick.org) / [ImageMagick](https://www.imagemagick.org)
 
 
@@ -43,19 +42,19 @@ nwayo rebuild
 
 
 ## Tools &nbsp; <img src="https://github.com/absolunet/nwayo/raw/master/ressources/images/vendors.png" width="600" height="30" alt="nwayo vendors">
-`nwayo` is HTML5-ready and uses [gulp](http://gulpjs.com) as a build system
+`nwayo` is HTML5-ready and uses [gulp](https://gulpjs.com) as a build system
 
 - Based (but not mandatory) on [Zurb Foundation](https://foundation.zurb.com)
-- Uses [Bower](https://bower.io) as dependencies manager and [EditorConfig](http://editorconfig.org) for consistency
+- Uses [Bower](https://bower.io) as dependencies manager and [EditorConfig](https://editorconfig.org) for consistency
 
 #### Styling
-- CSS3-ready via [Autoprefixer](https://github.com/postcss/autoprefixer) and linted via [stylelint](https://stylelint.io/)
-- Comes with [Sass](http://sass-lang.com)
-- Minifies with [cssnano](http://cssnano.co)
+- CSS3-ready via [Autoprefixer](https://github.com/postcss/autoprefixer) and linted via [stylelint](https://stylelint.io)
+- Comes with [Sass](https://sass-lang.com)
+- Minifies with [cssnano](https://cssnano.co)
 
 #### Scripting
-- ES2018-ready via [Babel](https://babeljs.io) and linted via [ESLint](http://eslint.org)
-- Comes with [jQuery](https://jquery.com), [Modernizr](https://modernizr.com), [Lodash](https://lodash.com), [pinki](https://github.com/absolunet/pinki), [JsRender](https://www.jsviews.com), [kafe](http://absolunet.github.io/kafe)
+- ES2018-ready via [Babel](https://babeljs.io) and linted via [ESLint](https://eslint.org)
+- Comes with [jQuery](https://jquery.com), [Modernizr](https://modernizr.com), [Lodash](https://lodash.com), [pinki](https://github.com/absolunet/pinki), [JsRender](https://www.jsviews.com), [kafe](https://absolunet.github.io/kafe/)
 - Builds with [gulp-include](https://www.npmjs.com/package/@absolunet/gulp-include) and is minified with [UglifyJS](http://lisperator.net/uglifyjs)
 
 #### Other
@@ -72,7 +71,7 @@ Currently deployed on 200+ sites including:
 - [Symfony](https://symfony.com)
 - [Magento 1 & 2 (On Premise & Cloud)](https://magento.com)
 - [Sitecore](https://www.sitecore.net)
-- [Insite (On Premise & Cloud)](http://www.insitesoft.com)
+- [Insite (On Premise & Cloud)](https://www.insitesoft.com)
 - [Shopify](https://www.shopify.ca)
 
 ## Components
