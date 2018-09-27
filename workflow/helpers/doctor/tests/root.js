@@ -5,10 +5,12 @@
 
 const findUp   = require('find-up');
 const semver   = require('semver');
-const paths    = require('../../paths');
-const toolbox  = require('../../toolbox');
-const assert   = require('../assertions');
-const Reporter = require('../reporter');
+const fss      = require('@absolunet/fss');
+const Reporter = require('~/classes/reporter');
+const Tests    = require('~/classes/tests');
+const paths    = require('~/helpers/paths');
+const toolbox  = require('~/helpers/toolbox');
+const assert   = require('~/helpers/doctor/assertions');
 
 
 const reports = new Reporter();
@@ -20,7 +22,7 @@ const bowerJson = () => {
 	const tests = reports.add(assert.exists(FILE));
 
 	if (tests.exists) {
-		const config = require(`${paths.dir.root}/${FILE}`);  // eslint-disable-line global-require
+		const config = fss.readJson(`${paths.dir.root}/${FILE}`);
 		const differences = toolbox.compareLists(Object.keys(config), ['name', 'private', 'devDependencies', '___nwayo-recommended___']);
 		reports.add({
 			success:     differences.pass,
@@ -66,7 +68,7 @@ const packageJson = (bowerName) => {
 	const tests = reports.add(assert.exists(FILE));
 
 	if (tests.exists) {
-		const config = require(`${paths.dir.root}/${FILE}`);  // eslint-disable-line global-require
+		const config = fss.readJson(`${paths.dir.root}/${FILE}`);
 
 		const attributesDifferences = toolbox.compareLists(Object.keys(config), ['name', 'license', 'private', 'dependencies']);
 		reports.add({
@@ -126,7 +128,7 @@ const eslintrcYaml = () => {
 	const tests = reports.add(assert.exists(FILE));
 
 	if (tests.exists) {
-		const config = toolbox.readYAML(`${paths.dir.root}/${FILE}`);
+		const config = fss.readYaml(`${paths.dir.root}/${FILE}`);
 		reports.add({
 			success: config.extends && config.extends === '@absolunet/nwayo',
 			message: `${Reporter.theme.title(FILE)}: Must extend '@absolunet/nwayo'`
@@ -140,7 +142,7 @@ const stylelintrcYaml = () => {
 	const tests = reports.add(assert.exists(FILE));
 
 	if (tests.exists) {
-		const config = toolbox.readYAML(`${paths.dir.root}/${FILE}`);
+		const config = fss.readYaml(`${paths.dir.root}/${FILE}`);
 		reports.add({
 			success: config.extends && config.extends === '@absolunet/stylelint-config-nwayo',
 			message: `${Reporter.theme.title(FILE)}: Must extend '@absolunet/stylelint-config-nwayo'`
@@ -164,7 +166,7 @@ const nwayoYaml = () => {
 
 
 
-class RootTests {
+class RootTests extends Tests {
 
 	run() {
 		return new Promise((resolve) => {

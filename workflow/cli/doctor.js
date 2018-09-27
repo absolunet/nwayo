@@ -8,12 +8,13 @@ const figures  = require('figures');
 const ow       = require('ow');
 const cli      = require('@absolunet/cli');
 const terminal = require('@absolunet/terminal');
-const env      = require('../helpers/env');
+const Task     = require('~/classes/task');
+const env      = require('~/helpers/env');
 
 
 const totals = {
 	success: 0,
-	failure:  0
+	failure: 0
 };
 
 let verbose = false;
@@ -68,7 +69,12 @@ const reporter = (title, reports) => {
 
 
 
-class Doctor {
+class DoctorTask extends Task {
+
+	constructor() {
+		super();
+		this.filename = __filename;
+	}
 
 	cli(meowCli) {
 		cli.refuseArguments(meowCli);
@@ -87,8 +93,8 @@ class Doctor {
 		const async     = require('async');
 		const pluralize = require('pluralize');
 		const fss       = require('@absolunet/fss');
-		const paths     = require('../helpers/paths');
-		const tester    = require('../helpers/doctor/tester');
+		const paths     = require('~/helpers/paths');
+		const tester    = require('~/helpers/doctor/tester');
 		/* eslint-enable global-require */
 
 		async.parallel({
@@ -148,4 +154,4 @@ class Doctor {
 }
 
 
-module.exports = new Doctor();
+module.exports = new DoctorTask();

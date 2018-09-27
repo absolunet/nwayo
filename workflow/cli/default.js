@@ -3,19 +3,22 @@
 //--------------------------------------------------------
 'use strict';
 
-const ow       = require('ow');
 const spawn    = require('cross-spawn');
+const ow       = require('ow');
 const cli      = require('@absolunet/cli');
 const terminal = require('@absolunet/terminal');
+const Task     = require('~/classes/task');
 
 
+class DefaultTask extends Task {
+
+	constructor() {
+		super();
+		this.filename = __filename;
+	}
 
 
-
-
-module.exports = class {
-
-	static cli(meowCli) {
+	cli(meowCli) {
 
 		const { pronounce } = cli.validateFlags(meowCli, {
 			pronounce: ow.boolean
@@ -36,4 +39,7 @@ module.exports = class {
 		meowCli.showHelp();
 	}
 
-};
+}
+
+
+module.exports = new DefaultTask();

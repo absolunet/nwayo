@@ -4,10 +4,11 @@
 'use strict';
 
 const fss      = require('@absolunet/fss');
-const paths    = require('../../paths');
-const toolbox  = require('../../toolbox');
-const assert   = require('../assertions');
-const Reporter = require('../reporter');
+const Reporter = require('~/classes/reporter');
+const Tests    = require('~/classes/tests');
+const paths    = require('~/helpers/paths');
+const toolbox  = require('~/helpers/toolbox');
+const assert   = require('~/helpers/doctor/assertions');
 
 
 const reports = new Reporter();
@@ -16,7 +17,7 @@ const root    = paths.folder.bundles;
 
 const bundleFile = (bundle, file) => {
 
-	const config = toolbox.readYAML(`${paths.dir.bundles}/${bundle}/${file}`);
+	const config = fss.readYaml(`${paths.dir.bundles}/${bundle}/${file}`);
 	reports.add({
 		success: config,
 		message: `${Reporter.theme.title(`${bundle}/${file}`)}: Must not be empty`
@@ -89,7 +90,7 @@ const bundleDir = (bundle) => {
 
 
 
-class BundlesTests {
+class BundlesTests extends Tests {
 
 	run() {
 		return new Promise((resolve) => {

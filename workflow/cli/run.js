@@ -4,16 +4,18 @@
 'use strict';
 
 const cli  = require('@absolunet/cli');
-const util = require('../helpers/util');
+const Task = require('~/classes/task');
+const util = require('~/helpers/util');
 
 
+class RunTask extends Task {
 
+	constructor() {
+		super();
+		this.filename = __filename;
+	}
 
-
-
-module.exports = class {
-
-	static cli(meowCli) {
+	cli(meowCli) {
 		util.checkInstalledWorkflow();
 		cli.refuseFlags(meowCli);
 
@@ -32,4 +34,7 @@ module.exports = class {
 		}
 	}
 
-};
+}
+
+
+module.exports = new RunTask();

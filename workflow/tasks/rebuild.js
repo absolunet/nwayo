@@ -7,11 +7,11 @@
 const gulp       = require('gulp');
 const requireDir = require('require-dir');
 const fss        = require('@absolunet/fss');
-const env        = require('../helpers/env');
-const flow       = require('../helpers/flow');
-const paths      = require('../helpers/paths');
-const toolbox    = require('../helpers/toolbox');
-const util       = require('../helpers/util');
+const env        = require('~/helpers/env');
+const flow       = require('~/helpers/flow');
+const paths      = require('~/helpers/paths');
+const toolbox    = require('~/helpers/toolbox');
+const util       = require('~/helpers/util');
 
 requireDir(paths.workflow.tasks);
 

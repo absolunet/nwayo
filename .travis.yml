@@ -3,4 +3,3 @@ node_js:
   - node
 
 before_install: cd workflow
-before_script:  cd ../test

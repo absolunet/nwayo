@@ -4,9 +4,10 @@
 'use strict';
 
 const fss      = require('@absolunet/fss');
-const paths    = require('../../paths');
-const env      = require('../../env');
-const Reporter = require('../reporter');
+const Reporter = require('~/classes/reporter');
+const Tests    = require('~/classes/tests');
+const env      = require('~/helpers/env');
+const paths    = require('~/helpers/paths');
 
 
 const reports = new Reporter();
@@ -16,13 +17,13 @@ const reports = new Reporter();
 
 
 
-class SyncTests {
+class SyncTests extends Tests {
 
 	run() {
 		return new Promise((resolve) => {
 
 			if (fss.exists(paths.config.bower)) {
-				const bowerConfig     = require(paths.config.bower);  // eslint-disable-line global-require
+				const bowerConfig     = fss.readJson(paths.config.bower);
 				const workflowVersion = env.workflowPkg.version;
 				const toolboxVersion  = bowerConfig.devDependencies['nwayo-toolbox'];
 

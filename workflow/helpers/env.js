@@ -10,29 +10,23 @@ const emoji    = require('node-emoji');
 const os       = require('os');
 const fss      = require('@absolunet/fss');
 const terminal = require('@absolunet/terminal');
-const paths    = require('./paths');
-const toolbox  = require('./toolbox');
+const paths    = require('~/helpers/paths');
 
 
-//-- Static properties
-const STATIC = global.___NwayoEnv___ ? global.___NwayoEnv___ : global.___NwayoEnv___ = {
+const WORKFLOW_PACKAGE = fss.readJson(paths.config.workflowPackage);
 
-	workflowPkg: require(paths.config.workflowPackage),  // eslint-disable-line global-require
+const PACKAGE = (() => {
+	if (fss.exists(paths.config.projectPackage)) {
+		return fss.readJson(paths.config.projectPackage);
+	}
 
-	watching:    false,
+	return terminal.exit('No package.json file found');
+})();
 
-	deployTier:  'local',
 
-	isWindows:   os.platform() === 'win32',
-
-	pkg:         (() => {
-		if (fss.exists(paths.config.projectPackage)) {
-			return require(paths.config.projectPackage);  // eslint-disable-line global-require
-		}
-
-		return terminal.exit('No package.json file found');
-	})()
-
+const __ = {
+	watching:   false,
+	deployTier: 'local'
 };
 
 
@@ -40,59 +34,59 @@ const STATIC = global.___NwayoEnv___ ? global.___NwayoEnv___ : global.___NwayoEn
 
 
 
-module.exports = class env {
+class Env {
 
-	static get pkg()               { return STATIC.pkg; }
-	static get workflowPkg()       { return STATIC.workflowPkg; }
-	static get konstan()           { return STATIC.konstan; }
-	static get bundles()           { return STATIC.bundles; }
-	static get bundlesComponents() { return STATIC.bundlesComponents; }
-	static get watching()          { return STATIC.watching; }
-	static get deployTier()        { return STATIC.deployTier; }
-	static get isWindows()         { return STATIC.isWindows; }
+	get pkg()               { return PACKAGE; }
+	get workflowPkg()       { return WORKFLOW_PACKAGE; }
+	get konstan()           { return __.konstan; }
+	get bundles()           { return __.bundles; }
+	get bundlesComponents() { return __.bundlesComponents; }
+	get watching()          { return __.watching; }
+	get deployTier()        { return __.deployTier; }
+	get isWindows()         { return os.platform() === 'win32'; }
 
 
 	//-- Logo
-	static get logo() {
+	get logo() {
 		return emoji.get('chestnut');  // 🌰;
 	}
 
 
 	//-- Name
-	static get name() {
+	get name() {
 		return 'nwayo';
 	}
 
 
 	//-- Package name
-	static get pkgName() {
+	get pkgName() {
 		return '@absolunet/nwayo-workflow';
 	}
 
 
 	//-- Is deployment tier production
-	static get prod() {
-		return STATIC.deployTier === 'prod';
+	get prod() {
+		return __.deployTier === 'prod';
 	}
 
 
 	//-- Set deployment tier to production
-	static setToProd() {
-		STATIC.deployTier = 'prod';
+	setToProd() {
+		__.deployTier = 'prod';
 	}
 
 
 	//-- Set to 'watch' mode
-	static setToWatching() {
-		STATIC.watching = true;
+	setToWatching() {
+		__.watching = true;
 	}
 
 
 	//-- Init workflow env
-	static initWorkflow({ bundle = '*' }) {
+	initWorkflow({ bundle = '*' }) {
 
 		// Load konstan
-		STATIC.konstan = toolbox.readYAML(paths.config.konstan);
+		__.konstan = fss.readYaml(paths.config.konstan);
 
 
 		// Get bundle list
@@ -105,7 +99,7 @@ module.exports = class env {
 
 			for (const folder of bundlesList) {
 				const [, name] = folder.match(/\/([0-9a-zA-Z-]+)\/$/);
-				data[name] = toolbox.readYAML(`${folder}/${name}.${paths.ext.bundles}`);
+				data[name] = fss.readYaml(`${folder}/${name}.${paths.ext.bundles}`);
 
 				if (!data[name].assets) {
 					data[name].assets = {};
@@ -127,7 +121,7 @@ module.exports = class env {
 				if (subBundlesList.length !== 0) {
 					for (const subBundleFile of subBundlesList) {
 
-						const subBundleData = toolbox.readYAML(subBundleFile);
+						const subBundleData = fss.readYaml(subBundleFile);
 						if (subBundleData.assets && subBundleData.assets.components) {
 							data[name].assets.components = [...new Set([...data[name].assets.components, ...subBundleData.assets.components])];
 						}
@@ -149,8 +143,11 @@ module.exports = class env {
 			terminal.exit(`${requiredName !== '*' ? `Bundle ${chalk.underline(bundle)} does not exists` : `No bundle found`}`);
 		}
 
-		STATIC.bundles = data;
-		STATIC.bundlesComponents = _.uniq(_.flatten(_.map(STATIC.bundles, _.property('assets.components'))));
+		__.bundles = data;
+		__.bundlesComponents = _.uniq(_.flatten(_.map(__.bundles, _.property('assets.components'))));
 	}
 
-};
+}
+
+
+module.exports = new Env();

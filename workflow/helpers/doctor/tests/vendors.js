@@ -6,8 +6,9 @@
 const bower    = require('bower');
 const semver   = require('semver');
 const fss      = require('@absolunet/fss');
-const paths    = require('../../paths');
-const Reporter = require('../reporter');
+const Reporter = require('~/classes/reporter');
+const Tests    = require('~/classes/tests');
+const paths    = require('~/helpers/paths');
 
 
 const reports = new Reporter();
@@ -17,7 +18,7 @@ const reports = new Reporter();
 
 
 
-class VendorsTests {
+class VendorsTests extends Tests {
 
 	run() {
 		return new Promise((resolve) => {

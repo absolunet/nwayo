@@ -6,9 +6,9 @@
 // const debug    = require('gulp-debug');
 const gulp       = require('gulp');
 const requireDir = require('require-dir');
-const env        = require('../helpers/env');
-const flow       = require('../helpers/flow');
-const paths      = require('../helpers/paths');
+const env        = require('~/helpers/env');
+const flow       = require('~/helpers/flow');
+const paths      = require('~/helpers/paths');
 
 requireDir(paths.workflow.tasks);
 

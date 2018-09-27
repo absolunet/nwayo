@@ -5,11 +5,11 @@
 
 // const debug = require('gulp-debug');
 const gulp    = require('gulp');
-const env     = require('../helpers/env');
-const flow    = require('../helpers/flow');
-const paths   = require('../helpers/paths');
-const toolbox = require('../helpers/toolbox');
-const util    = require('../helpers/util');
+const env     = require('~/helpers/env');
+const flow    = require('~/helpers/flow');
+const paths   = require('~/helpers/paths');
+const toolbox = require('~/helpers/toolbox');
+const util    = require('~/helpers/util');
 
 
 
