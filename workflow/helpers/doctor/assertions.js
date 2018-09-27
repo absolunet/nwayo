@@ -6,9 +6,9 @@
 const _        = require('lodash');
 const fss      = require('@absolunet/fss');
 const terminal = require('@absolunet/terminal');
-const paths    = require('../paths');
-const toolbox  = require('../toolbox');
-const Reporter = require('./reporter');
+const Reporter = require('~/classes/reporter');
+const paths    = require('~/helpers/paths');
+const toolbox  = require('~/helpers/toolbox');
 
 
 //-- Parse a linefeed-separated config

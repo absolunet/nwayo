@@ -7,7 +7,6 @@ const chalk       = require('chalk');
 const deepKeys    = require('deep-keys');
 const log         = require('fancy-log');
 const plumber     = require('gulp-plumber');
-const yaml        = require('js-yaml');
 const _           = require('lodash');
 const merge       = require('merge-stream');
 const emoji       = require('node-emoji');
@@ -18,20 +17,10 @@ const fss         = require('@absolunet/fss');
 const terminal    = require('@absolunet/terminal');
 
 
-
-
-
-
-module.exports = class toolbox {
-
-	//-- Safely read and parse a YAML file
-	static readYAML(file) {
-		return yaml.safeLoad(fss.readFile(file, 'utf8'));
-	}
-
+class Toolbox {
 
 	//-- Create a vinyl stream from a text
-	static vinylStream(filename, string) {
+	vinylStream(filename, string) {
 		const src = stream.Readable({ objectMode:true });
 
 		src._read = function() {
@@ -47,13 +36,13 @@ module.exports = class toolbox {
 
 
 	//-- Return merged streams or self-closing stream
-	static mergeStreams(streams) {
-		return streams.length ? merge(...streams) : toolbox.selfClosingStream();
+	mergeStreams(streams) {
+		return streams.length ? merge(...streams) : this.selfClosingStream();
 	}
 
 
 	//-- Fakes a stream waiting for a callback
-	static fakeStream(cb) {
+	fakeStream(cb) {
 		const fake = stream.Writable({ write:(chunk, encoding, callback) => { callback(); } });
 
 		cb(() => {
@@ -65,7 +54,7 @@ module.exports = class toolbox {
 
 
 	//-- Get a self-closing stream
-	static selfClosingStream() {
+	selfClosingStream() {
 		const selfClosing = stream.Writable({ write:(chunk, encoding, callback) => { callback(); } });
 		selfClosing.end('End self-closing stream');
 
@@ -74,7 +63,7 @@ module.exports = class toolbox {
 
 
 	//-- GraphicsMagick optimization
-	static gmOptimization(gmfile, info) {
+	gmOptimization(gmfile, info) {
 		if (info.format === 'JPG') {
 			gmfile.noProfile().quality(95);
 		}
@@ -88,19 +77,19 @@ module.exports = class toolbox {
 
 
 	//-- Get human-readable filesize
-	static filesize(file) {
+	filesize(file) {
 		return prettyBytes(fss.stat(file).size);
 	}
 
 
 	//-- Task logging
-	static log(task, msg, extra) {
+	log(task, msg, extra) {
 		log(`${task}: ${msg} ${extra ? chalk.dim(`(${extra})`) : ''}`);
 	}
 
 
 	//-- Plumber
-	static plumber() {
+	plumber() {
 		return plumber((e) => {
 			terminal.spacer(2);
 			terminal.echo(`${emoji.get('monkey')}  ${e.toString()}`);
@@ -110,7 +99,7 @@ module.exports = class toolbox {
 
 
 	//-- Compare lists
-	static compareLists(assertion, expectation) {
+	compareLists(assertion, expectation) {
 		const superfluous = _.without(assertion, ...expectation);
 		const missing     = _.without(expectation, ...assertion);
 
@@ -123,7 +112,7 @@ module.exports = class toolbox {
 
 
 	//-- Flatten keys
-	static flattenKeys(data, { depth = '' } = {}) {
+	flattenKeys(data, { depth = '' } = {}) {
 		return deepKeys(data, true).filter((key) => {
 			return new RegExp(`^[a-z0-9-]+(\\.[a-z0-9-]+){0,${depth}}$`, 'i').test(key);
 		});
@@ -131,8 +120,11 @@ module.exports = class toolbox {
 
 
 	//-- Is kebab-case
-	static isKebabCase(text) {
+	isKebabCase(text) {
 		return (/^([a-z][a-z0-9]*)(-[a-z0-9]+)*$/).test(text);  // eslint-disable-line unicorn/no-unsafe-regex
 	}
 
-};
+}
+
+
+module.exports = new Toolbox();

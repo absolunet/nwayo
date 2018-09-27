@@ -3,31 +3,28 @@
 //-------------------------------------
 'use strict';
 
-const findUp  = require('find-up');
-const path    = require('path');
-const slash   = require('slash');
-const toolbox = require('./toolbox');
+const findUp = require('find-up');
+const path   = require('path');
+const slash  = require('slash');
+const fss    = require('@absolunet/fss');
 
 
-//-- Static properties
 const MAIN_CONFIG = 'nwayo.yaml';
-const STATIC = global.___NwayoPaths___ ? global.___NwayoPaths___ : global.___NwayoPaths___ = {
-	root: (() => {
-		const prjConfigFilepath = findUp.sync(MAIN_CONFIG, { cwd:process.cwd() });
-		const prjConfig         = toolbox.readYAML(prjConfigFilepath);
+const BOWER       = 'bower_components';
+const CACHE       = '.nwayo-cache';
+const NOLINT      = 'vendor';
 
-		return path.normalize(`${path.dirname(prjConfigFilepath)}/${prjConfig.root}`);
-	})()
-};
+const ROOT = (() => {
+	const prjConfigFilepath = findUp.sync(MAIN_CONFIG, { cwd:process.cwd() });
+	const prjConfig         = fss.readYaml(prjConfigFilepath);
 
-
-
-
+	return slash(path.normalize(`${path.dirname(prjConfigFilepath)}/${prjConfig.root}`)).replace(/\/$/, '');
+})();
 
 
-const BOWER  = 'bower_components';
-const CACHE  = '.nwayo-cache';
-const NOLINT = 'vendor';
+
+
+
 
 const pattern = {};
 pattern.anytree = '**';
@@ -86,7 +83,7 @@ filename.iconsLarge     = `large.png`;
 filename.iconsTile      = `tile.png`;
 
 const dir = {};
-dir.root         = slash(STATIC.root).replace(/\/$/, '');
+dir.root         = ROOT;
 dir.cache        = `${dir.root}/${folder.cache}`;
 dir.cacheInline  = `${dir.root}/${folder.cacheInline}`;
 dir.cacheSass    = `${dir.root}/${folder.cacheSass}`;
@@ -152,16 +149,19 @@ config.bowerBin        = slash(`${path.dirname(require.resolve('bower'))}/../bin
 
 
 
-module.exports = class paths {
+class Paths {
 
-	static get pattern()  { return pattern; }
-	static get ext()      { return ext; }
-	static get build()    { return build; }
-	static get folder()   { return folder; }
-	static get dir()      { return dir; }
-	static get files()    { return files; }
-	static get filename() { return filename; }
-	static get workflow() { return workflow; }
-	static get config()   { return config; }
+	get pattern()  { return pattern; }
+	get ext()      { return ext; }
+	get build()    { return build; }
+	get folder()   { return folder; }
+	get dir()      { return dir; }
+	get files()    { return files; }
+	get filename() { return filename; }
+	get workflow() { return workflow; }
+	get config()   { return config; }
 
-};
+}
+
+
+module.exports = new Paths();

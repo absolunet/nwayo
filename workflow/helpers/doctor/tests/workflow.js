@@ -5,8 +5,9 @@
 
 const lastestVersion = require('latest-version');
 const semver         = require('semver');
-const env            = require('../../env');
-const Reporter       = require('../reporter');
+const Reporter       = require('~/classes/reporter');
+const Tests          = require('~/classes/tests');
+const env            = require('~/helpers/env');
 
 
 const reports = new Reporter();
@@ -16,7 +17,7 @@ const reports = new Reporter();
 
 
 
-class WorkflowTests {
+class WorkflowTests extends Tests {
 
 	run() {
 		return new Promise((resolve) => {

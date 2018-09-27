@@ -12,13 +12,12 @@ const ora       = require('ora');
 const pluralize = require('pluralize');
 const fss       = require('@absolunet/fss');
 const terminal  = require('@absolunet/terminal');
-const env       = require('../helpers/env');
-const paths     = require('../helpers/paths');
-const toolbox   = require('../helpers/toolbox');
+const env       = require('~/helpers/env');
+const paths     = require('~/helpers/paths');
+const toolbox   = require('~/helpers/toolbox');
 
 
-//-- Static properties
-const STATIC = global.___NwayoFlow___ ? global.___NwayoFlow___ : global.___NwayoFlow___ = {
+const __ = {
 	standingSpinner: false,  // Recceing spinner
 	totalGuards:     0,      // Total of called guards
 	activeGuards:    {},     // Registry of guards that are currently running
@@ -58,14 +57,14 @@ const logGuard = (action, name, file) => {
 	switch (action) {
 
 		case START:
-			return `${emoji.get('guardsman')}  Guard n°${STATIC.totalGuards + 1} standing guard...`;
+			return `${emoji.get('guardsman')}  Guard n°${__.totalGuards + 1} standing guard...`;
 
 		case ALERT:
-			return terminal.echo(`${emoji.get('mega')}  Guard n°${STATIC.totalGuards} alerted by ${chalk.magenta(file.split(`${paths.dir.root}/`)[1])} calling ${chalk.cyan(name)}`);
+			return terminal.echo(`${emoji.get('mega')}  Guard n°${__.totalGuards} alerted by ${chalk.magenta(file.split(`${paths.dir.root}/`)[1])} calling ${chalk.cyan(name)}`);
 
 		case END:
-			return terminal.echo(`${emoji.get('zzz')}  Guard n°${STATIC.activeGuards[name]} duty is completed ${chalk.cyan.dim(`(${name})`)}${
-				STATIC.ignoredChanges[name] ? chalk.yellow(`    ⚠ ${pluralize('change', STATIC.ignoredChanges[name], true)} ${STATIC.ignoredChanges[name] === 1 ? 'was' : 'were'} ignored`) : ''
+			return terminal.echo(`${emoji.get('zzz')}  Guard n°${__.activeGuards[name]} duty is completed ${chalk.cyan.dim(`(${name})`)}${
+				__.ignoredChanges[name] ? chalk.yellow(`    ⚠ ${pluralize('change', __.ignoredChanges[name], true)} ${__.ignoredChanges[name] === 1 ? 'was' : 'were'} ignored`) : ''
 			}\n`);
 
 		default: return undefined;
@@ -79,7 +78,7 @@ const logGuard = (action, name, file) => {
 
 
 const isSkipping = (name) => {
-	return STATIC.cascadeSkip || STATIC.watchSkip[name];
+	return __.cascadeSkip || __.watchSkip[name];
 };
 
 
@@ -88,11 +87,11 @@ const runTask = ({ name, task, start }) => {
 
 		// Log task as completed
 		.on('finish', () => {
-			if (!STATIC.cascadeSkip) {
+			if (!__.cascadeSkip) {
 
 				// Patch for stylelint to make reporter show this
 				if (name === 'styles-lint') {
-					STATIC.delayedLog = { name, start };
+					__.delayedLog = { name, start };
 				} else {
 					logStep(END, TASK, name, start);
 				}
@@ -106,7 +105,7 @@ const runTask = ({ name, task, start }) => {
 
 			// In watch mode, cascade skip all pending tasks
 			if (env.watching) {
-				STATIC.cascadeSkip = true;
+				__.cascadeSkip = true;
 
 			// In run mode, rage quit  (╯°□°）╯︵ ┻━┻
 			} else {
@@ -124,10 +123,10 @@ const runTask = ({ name, task, start }) => {
 
 
 
-module.exports = class flow {
+class Flow {
 
 	//-- Create gulp task
-	static createTask(name, task, dependencies) {
+	createTask(name, task, dependencies) {
 		gulp.task(name, (cb) => {
 
 			// Run task if not skipping tasks
@@ -176,7 +175,7 @@ module.exports = class flow {
 
 
 	//-- Create tasks sequence
-	static createSequence(name, sequence, { cleanPaths = [], cleanBundle } = {}) {
+	createSequence(name, sequence, { cleanPaths = [], cleanBundle } = {}) {
 		gulp.task(name, (cb) => {
 			const start = new Date();
 			logStep(START, SEQUENCE, name);
@@ -192,13 +191,15 @@ module.exports = class flow {
 			}
 
 			// Delete
-			fss.del(list, { force:true });
+			list.forEach((path) => {
+				fss.remove(path);
+			});
 
 			// Run sequence
 			gulp.series(sequence, () => {
 
 				// Log sequence as completed
-				if (!STATIC.cascadeSkip) {
+				if (!__.cascadeSkip) {
 					logStep(END, SEQUENCE, name, start);
 				} else {
 					logStep(HALT, SEQUENCE, name);
@@ -212,9 +213,9 @@ module.exports = class flow {
 
 
 	//-- Create watch tasks sequence
-	static watchSequence(name, patterns, sequence) {
-		STATIC.activeGuards[name] = 0;
-		STATIC.ignoredChanges[name] = 0;
+	watchSequence(name, patterns, sequence) {
+		__.activeGuards[name] = 0;
+		__.ignoredChanges[name] = 0;
 
 		// Can't trust chokidar to do globbing
 		const files = globAll.sync(patterns);
@@ -223,13 +224,13 @@ module.exports = class flow {
 
 			// Log watcher as completed
 			logGuard(END, name);
-			STATIC.activeGuards[name] = 0;
-			STATIC.ignoredChanges[name] = 0;
+			__.activeGuards[name] = 0;
+			__.ignoredChanges[name] = 0;
 
 			// When there is no more running watchers
 			let anyGuardLeft = false;
-			Object.keys(STATIC.activeGuards).forEach((key) => {
-				if (STATIC.activeGuards[key]) {
+			Object.keys(__.activeGuards).forEach((key) => {
+				if (__.activeGuards[key]) {
 					anyGuardLeft = true;
 				}
 			});
@@ -243,11 +244,11 @@ module.exports = class flow {
 
 			// When watcher triggered
 			.on('all', (action, triggeredPath) => {
-				if (STATIC.activeGuards[name]) {
-					++STATIC.ignoredChanges[name];
+				if (__.activeGuards[name]) {
+					++__.ignoredChanges[name];
 				} else {
-					STATIC.activeGuards[name] = ++STATIC.totalGuards;
-					STATIC.standingSpinner.stop();
+					__.activeGuards[name] = ++__.totalGuards;
+					__.standingSpinner.stop();
 					logGuard(ALERT, name, triggeredPath);
 				}
 			})
@@ -256,18 +257,15 @@ module.exports = class flow {
 
 
 	//-- Start watch spinner
-	static startWatchSpinner() {
-		STATIC.cascadeSkip = false;
+	startWatchSpinner() {
+		__.cascadeSkip = false;
 
 		terminal.spacer();
-		STATIC.standingSpinner = ora({
+		__.standingSpinner = ora({
 			text:    logGuard(START),
 			spinner: {
 				interval: 250,
-				frames: [
-					'●',
-					'○'
-				]
+				frames: ['●', '○']
 			},
 			color:   'green'
 		}).start();
@@ -275,18 +273,21 @@ module.exports = class flow {
 
 
 	//-- Add a task to skip
-	static skipOnWatch(task) {
-		STATIC.watchSkip[task] = true;
+	skipOnWatch(task) {
+		__.watchSkip[task] = true;
 	}
 
 
 	//-- Show delayed log
-	static showDelayedLog(error) {
+	showDelayedLog(error) {
 		if (!(error && !env.watching)) {
-			const { name, start } = STATIC.delayedLog;
+			const { name, start } = __.delayedLog;
 			logStep(error ? HALT : END, TASK, name, start);
-			STATIC.delayedLog = undefined;
+			__.delayedLog = undefined;
 		}
 	}
 
-};
+}
+
+
+module.exports = new Flow();

@@ -19,11 +19,11 @@ const fsp       = require('@absolunet/fsp');
 const fss       = require('@absolunet/fss');
 const include   = require('@absolunet/gulp-include');
 const terminal  = require('@absolunet/terminal');
-const env       = require('../helpers/env');
-const flow      = require('../helpers/flow');
-const paths     = require('../helpers/paths');
-const toolbox   = require('../helpers/toolbox');
-const util      = require('../helpers/util');
+const env       = require('~/helpers/env');
+const flow      = require('~/helpers/flow');
+const paths     = require('~/helpers/paths');
+const toolbox   = require('~/helpers/toolbox');
+const util      = require('~/helpers/util');
 
 
 
@@ -105,7 +105,7 @@ flow.createTask('scripts-vendors', ({ taskName }) => {
 
 			// Modernizr
 			(callback) => {
-				modernizr.build(toolbox.readYAML(paths.config.modernizr), (result) => {
+				modernizr.build(fss.readYaml(paths.config.modernizr), (result) => {
 					const file = `${paths.dir.cacheScripts}/${paths.filename.modernizr}.${paths.ext.scripts}`;
 					fsp.ensureFile(file).then(() => {
 						fss.writeFile(file, result);

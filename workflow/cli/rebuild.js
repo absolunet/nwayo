@@ -5,17 +5,19 @@
 
 const ow   = require('ow');
 const cli  = require('@absolunet/cli');
-const env  = require('../helpers/env');
-const util = require('../helpers/util');
+const Task = require('~/classes/task');
+const env  = require('~/helpers/env');
+const util = require('~/helpers/util');
 
 
+class RebuildTask extends Task {
 
+	constructor() {
+		super();
+		this.filename = __filename;
+	}
 
-
-
-module.exports = class {
-
-	static cli(meowCli) {
+	cli(meowCli) {
 		util.checkInstalledWorkflow();
 
 		const { prod } = cli.validateFlags(meowCli, {
@@ -37,4 +39,7 @@ module.exports = class {
 		}
 	}
 
-};
+}
+
+
+module.exports = new RebuildTask();
