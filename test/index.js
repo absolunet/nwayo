@@ -32,6 +32,7 @@ tester.lint.scss([
 	`!boilerplate/components/**/styles/vendor/**`,
 	`!ressources/docs-builder/bower_components/**`,
 	`!ressources/docs-builder/node_modules/**`,
+	`!ressources/docs-builder/styles/vendor/**`,
 	`!workflow/tests-matrix/**`
 ], {
 	cwd: rootPath

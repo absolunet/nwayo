@@ -10,14 +10,14 @@ xcode-select --install
 
 
 
-## [Homebrew](http://brew.sh)
+## [Homebrew](https://brew.sh)
 Homebrew is the entry point to install many tools
 
 ```shell
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
-#### Image processors ( [GraphicsMagick](http://www.graphicsmagick.org) / [ImageMagick](http://www.imagemagick.org) )
+#### Image processors ( [GraphicsMagick](http://www.graphicsmagick.org) / [ImageMagick](https://www.imagemagick.org) )
 These are used to manipulate images for the iconography
 
 ```shell
@@ -27,15 +27,15 @@ brew install imagemagick --with-webp
 
 
 
-## [Ruby](https://www.ruby-lang.org)
-Ruby is used solely to build SCSS
+## [Ruby](https://www.ruby-lang.org) _[deprecated]_
+Ruby was used solely to build SCSS
 
 ```shell
 brew install ruby
 ```
 
-#### [Sass](http://sass-lang.com)
-Sass is the original native compiler of SCSS
+#### [Sass](https://sass-lang.com) _[deprecated]_
+Ruby Sass was originally the native compiler of SCSS and was used by nwayo prior to 3.6.0
 
 ```shell
 gem install sass
@@ -50,28 +50,28 @@ gem install scss_lint
 
 
 
-## [Node.js](http://nodejs.org)
+## [Node.js](https://nodejs.org)
 Node.js is the backbone of the workflow
 
 ```shell
 brew install node
 ```
 
-#### [nwayo CLI](http://absolunet.github.io/nwayo)
+#### [nwayo CLI](https://absolunet.github.io/nwayo)
 Well duh...
 
 ```shell
 npm install -g @absolunet/nwayo-cli
 ```
 
-#### [JSHint](http://jshint.com/) _[deprecated]_
+#### [JSHint](http://jshint.com) _[deprecated]_
 JSHint was a JS linter used by nwayo prior to 3.0.0
 
 ```shell
 npm install -g jshint
 ```
 
-#### [JSCS](http://jscs.info/) _[deprecated]_
+#### [JSCS](https://www.npmjs.com/package/jscs) _[deprecated]_
 JSCS was a JS linter used by nwayo prior to 3.0.0
 
 ```shell
