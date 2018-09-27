@@ -2,13 +2,13 @@
 <html lang="en-CA" class="no-js">
 <head>
 	<meta charset="utf-8">
-	<title>Polices - nwayo</title>
+	<title>Requirements - nwayo</title>
 
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta http-equiv="cleartype" content="on">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="canonical" href="https://absolunet.github.io/nwayo/styles/fonts" />
+	<link rel="canonical" href="https://absolunet.github.io/nwayo/requirements" />
 
 	<link rel="shortcut icon"    href="/nwayo/static/icons/favicon.ico">
 	<link rel="apple-touch-icon" href="/nwayo/static/icons/touch-57.png">
@@ -43,7 +43,7 @@
 <body>
 
 	<header>
-		<p class="nwayo"><a href="/nwayo"><img src="/nwayo/static/images/nwayo.svg" class="logo"> nwayo</a> <span class="version">3.5.2</span></p>
+		<p class="nwayo"><a href="/nwayo"><img src="/nwayo/static/images/nwayo.svg" class="logo"> nwayo</a> <span class="version">3.6.0-beta.2</span></p>
 		<a href="https://github.com/absolunet/nwayo" class="github" rel="external"><svg class="logo" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
  View on GitHub</a>
 	</header>
@@ -157,7 +157,7 @@
 	
 		<li>
 			
-				<a href="/nwayo/requirements" >Requirements</a>
+				<span>Requirements</span>
 			
 
 			
@@ -186,7 +186,7 @@
 	
 		<li>
 			
-				<a href="/nwayo/styles" class="active">Styles</a>
+				<a href="/nwayo/styles" >Styles</a>
 			
 
 			
@@ -194,7 +194,7 @@
 	
 		<li>
 			
-				<span>Polices</span>
+				<a href="/nwayo/styles/fonts" >Polices</a>
 			
 
 			
@@ -226,66 +226,18 @@
 		</nav>
 
 		<main>
-			<h1>Polices</h1>
-<p>Les polices sont situées sous le dossier <code>fonts</code>, sous la composante associée à la police en question.
-Il faut les 4 formats de police sous le dossier <code>fonts</code> avec le même nom de fichier:</p>
+			<h1>Requirements</h1>
 <ul>
-<li><code>eot</code></li>
-<li><code>ttf</code></li>
-<li><code>woff</code></li>
-<li><code>woff2</code></li>
+<li><a href="https://nodejs.org" class="external" rel="external">Node.js</a> (<a href="https://www.npmjs.com/package/@absolunet/nwayo-cli" class="external" rel="external">nwayo CLI</a>)</li>
+<li><a href="http://www.graphicsmagick.org" class="external" rel="external">GraphicsMagick</a> / <a href="https://www.imagemagick.org" class="external" rel="external">ImageMagick</a></li>
 </ul>
-<h2 id="mixin"><a class="anchor" href="#mixin" aria-hidden="true">⚭</a> Mixin</h2>
-<p>Le mixin utilisé pour générer le <code>@font-face</code>au niveau du css.</p>
-<pre><code class="language-scss">//-- Font-face
-@mixin load-font-mixin ($name, $filename, $context, $weight:normal, $style:normal) {
-	$url:   assets-path($filename, $context, 'fonts');
-	$woff2: if(fileexists('components/' + $context + '/assets/fonts/' + $filename + '.woff2'), url($url + '.woff2') format('woff2') + ',', '');
-	@font-face {
-		font-family: $name;
-		font-weight: $weight;
-		font-style: $style;
-		src: #{$woff2} url($url + '.woff');
-	}
-}
-</code></pre>
+<h2 id="installation-guides"><a class="anchor" href="#installation-guides" aria-hidden="true">⚭</a> Installation guides</h2>
 <ul>
-<li><code>$name</code> = Le nom de la police utilisé pour la <code>font-family</code> dans le css.</li>
-<li><code>$filename</code> = Le nom du fichier de la police.</li>
-<li><code>$context</code> = Le contexte dans lequel se situe la police.</li>
-<li><code>$weight</code> = Le poids de la police. <code>normal</code> est mis par défaut.</li>
-<li><code>$style</code> = Le style de la police. <code>normal</code> est mis par défaut.</li>
+<li><a href="macos">macOS</a></li>
+<li><a href="windows">Windows</a></li>
 </ul>
-<h2 id="comment-utiliser"><a class="anchor" href="#comment-utiliser" aria-hidden="true">⚭</a> Comment utiliser</h2>
-<p>Pour générer le bon code, vous devez au moins fournir <code>$name</code>, <code>$filename</code> et <code>$context</code>.</p>
-<pre><code class="language-scss">//-- Ligne de code appelé pour générer la font-family
-@include load-font-mixin('roboto', 'roboto-light-webfont', 'common', $weight:$light-weight);
 
-//-- Utilisation au niveau d'une variable
-$text-font: 'Open Sans', sans-serif;
-</code></pre>
-<h2 id="gestion-de-font-weight"><a class="anchor" href="#gestion-de-font-weight" aria-hidden="true">⚭</a> Gestion de font-weight</h2>
-<p>Il est préférable d'avoir une police pour chacune des graisses utilisées dans la composante et d'utiliser le même <code>$name</code>pour chacun d'eux. Il est ainsi plus facile de gérer la graisse de manière globale.</p>
-<pre><code class="language-scss">//-- Chargement des différentes graisses
-@include load-font-mixin('roboto', 'roboto-light-webfont', 'common', $light-weight);
-@include load-font-mixin('roboto', 'roboto-regular-webfont', 'common', $normal-weight);
-@include load-font-mixin('roboto', 'roboto-bold-webfont', 'common', $bold-weight);
-@include load-font-mixin('roboto', 'roboto-black-webfont', 'common', $black-weight);
-
-//-- Appel dans le css
-$text-font: 'roboto', sans-serif;
-
-body {
-	font-family: $text-font;
-	font-weight: $light-weight;
-}
-
-h1 {
-	font-weight: $black-weight;
-}
-</code></pre>
-
-			<p class="edit-page"><a href="https://github.com/absolunet/nwayo/blob/master/docs/styles/fonts.md" rel="external">Edit this page</a></p>
+			<p class="edit-page"><a href="https://github.com/absolunet/nwayo/blob/master/docs-sources/requirements/readme.md" rel="external">Edit this page</a></p>
 		</main>
 	</div>
 
