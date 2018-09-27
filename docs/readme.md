@@ -1,9 +1,3 @@
-# nwayo
+# nwayo's GitHub Pages repo
 
-- [Requirements](requirements)
-- [CLI](cli)
-- [Architecture](architecture)
-- [Assets](assets)
-- [Scripts](scripts)
-- [Styles](styles)
-- [Migration](migration)
+> View on [http://absolunet.github.io/nwayo](http://absolunet.github.io/nwayo)

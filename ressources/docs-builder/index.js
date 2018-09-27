@@ -4,12 +4,10 @@
 'use strict';
 
 const babel         = require('babel-core');
-const ghpages       = require('gh-pages');
 const gulp          = require('gulp');
 const cssnano       = require('gulp-cssnano');
 const gulpsass      = require('gulp-dart-sass');
 const uglify        = require('gulp-uglify');
-const inquirer      = require('inquirer');
 const jsrender      = require('jsrender');
 const MarkdownIt    = require('markdown-it');
 const anchor        = require('markdown-it-anchor');
@@ -19,16 +17,16 @@ const scandirectory = require('scandirectory');
 const fss           = require('@absolunet/fss');
 const include       = require('@absolunet/gulp-include');
 
-// Temp wrappers
-fss.ensureFile = require('fs-extra').ensureFileSync;
+
+const { task, local } = minimist(process.argv.slice(2));
 
 
 const paths      = {};
 paths.root       = fss.realpath(`${__dirname}/../..`);
-paths.docs       = `${paths.root}/docs`;
+paths.docs       = `${paths.root}/docs-sources`;
 paths.ressources = `${paths.root}/ressources`;
 paths.builder    = `${paths.ressources}/docs-builder`;
-paths.out        = `${paths.root}/test/fixtures/docs/nwayo`;
+paths.out        = local ? `/tmp/ghpages-nwayo/nwayo` : `${paths.root}/docs`;
 paths.static     = `${paths.out}/static`;
 paths.workflow   = `${paths.root}/workflow`;
 
@@ -87,14 +85,14 @@ const processNav = (tree, path = ROOT) => {
 
 
 //-- Tasks
-const { task } = minimist(process.argv.slice(2));
 switch (task) {
 
 	//-- Build
 	case 'build': {
 
 		//-- Cleanup
-		fss.del(paths.out, { force:true });
+		fss.remove(paths.out);
+		fss.ensureDir(paths.out);
 		fss.copy(`${paths.builder}/readme.md`, `${paths.out}/readme.md`);
 
 
@@ -162,7 +160,7 @@ switch (task) {
 					if (file === 'readme.md') {
 						md.set({ html:true });
 						content = content
-							.replace(/\]\(docs\//g, `](${ROOT}/`)
+							.replace(/\]\(docs-sources\//g, `](${ROOT}/`)
 							.replace(/\]\(boilerplate\)/g, `](${GITHUB}/tree/master/boilerplate)`)
 							.replace(/https:\/\/github.com\/absolunet\/nwayo\/raw\/master\/ressources\/images\//g, `${ROOT}/static/images/`)
 							.replace(/nwayo\.png/g, `nwayo.svg`)
@@ -190,7 +188,7 @@ switch (task) {
 								'static':    `${ROOT}/static`,
 								'canonical': canonical,
 								'github':    GITHUB,
-								'source':    `${GITHUB}/blob/master/docs/${file}`
+								'source':    `${GITHUB}/blob/master/docs-sources/${file}`
 							},
 							images:  images,
 							version: version,
@@ -240,9 +238,7 @@ switch (task) {
 									modules: false,
 									targets: {
 										browsers: [
-											'> 1%',
-											'last 2 versions',
-											'not ie < 11'
+											'> 0.25%'
 										]
 									}
 								}
@@ -258,28 +254,6 @@ switch (task) {
 			.pipe(uglify({ output:{ comments:'some' } }))
 			.pipe(gulp.dest(`${paths.static}/scripts`))
 		;
-
-		break;
-	}
-
-
-	//-- Publish
-	case 'publish': {
-
-		inquirer.prompt([
-			{
-				name:    'message',
-				message: 'Commit message:'
-			}
-		]).then(({ message }) => {
-
-			ghpages.publish(paths.out, {
-				branch: 'gh-pages',
-				repo:   'git@github.com:absolunet/nwayo.git',
-				message: message
-			});
-
-		});
 
 		break;
 	}

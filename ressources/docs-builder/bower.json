@@ -4,7 +4,7 @@
   "devDependencies": {
     "fastclick":        "1.0.6",
     "foundation-sites": "6.4.3",
-    "prism":            "1.13.0"
+    "prism":            "1.15.0"
   },
   "private": true
 }

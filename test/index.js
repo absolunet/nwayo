@@ -15,6 +15,7 @@ tester.lint.js([
 	`*/!(node_modules)/**/*.js`,
 	`!boilerplate/bower_components/**`,
 	`!boilerplate/components/**/scripts/vendor/**`,
+	`!docs/**`,
 	`!ressources/docs-builder/bower_components/**`,
 	`!ressources/docs-builder/node_modules/**`,
 	`!test/fixtures/**`,

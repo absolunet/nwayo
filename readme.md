@@ -22,7 +22,7 @@
 
 
 
-## Requirements (All latest) - [Installation guide](docs/requirements)
+## Requirements (All latest) - [Installation guide](docs-sources/requirements)
 - [Node.js](https://nodejs.org) ([nwayo CLI](https://www.npmjs.com/package/@absolunet/nwayo-cli))
 - [GraphicsMagick](http://www.graphicsmagick.org) / [ImageMagick](https://www.imagemagick.org)
 
@@ -80,7 +80,7 @@ Multiple component boilerplates [available](https://github.com/absolunet/nwayo-c
 [//]: # (Doc)
 
 ## Documentation
-- [Full documentation](https://absolunet.github.io/nwayo) ([source](docs))  &nbsp; &nbsp; _[in progress...]_
+- [Full documentation](https://absolunet.github.io/nwayo) ([source](docs-sources))  &nbsp; &nbsp; _[in progress...]_
 - [CodePen examples](https://codepen.io/collection/XJWozK/)
 
 [//]: # (/Doc)

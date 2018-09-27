@@ -2,13 +2,13 @@
 <html lang="en-CA" class="no-js">
 <head>
 	<meta charset="utf-8">
-	<title>Installation under Windows - nwayo</title>
+	<title>Assets - nwayo</title>
 
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta http-equiv="cleartype" content="on">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="canonical" href="https://absolunet.github.io/nwayo/requirements/windows" />
+	<link rel="canonical" href="https://absolunet.github.io/nwayo/assets" />
 
 	<link rel="shortcut icon"    href="/nwayo/static/icons/favicon.ico">
 	<link rel="apple-touch-icon" href="/nwayo/static/icons/touch-57.png">
@@ -43,7 +43,7 @@
 <body>
 
 	<header>
-		<p class="nwayo"><a href="/nwayo"><img src="/nwayo/static/images/nwayo.svg" class="logo"> nwayo</a> <span class="version">3.5.2</span></p>
+		<p class="nwayo"><a href="/nwayo"><img src="/nwayo/static/images/nwayo.svg" class="logo"> nwayo</a> <span class="version">3.6.0-beta.2</span></p>
 		<a href="https://github.com/absolunet/nwayo" class="github" rel="external"><svg class="logo" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
  View on GitHub</a>
 	</header>
@@ -67,7 +67,7 @@
 	
 		<li>
 			
-				<a href="/nwayo/assets" >Assets</a>
+				<span>Assets</span>
 			
 
 			
@@ -157,7 +157,7 @@
 	
 		<li>
 			
-				<a href="/nwayo/requirements" class="active">Requirements</a>
+				<a href="/nwayo/requirements" >Requirements</a>
 			
 
 			
@@ -173,7 +173,7 @@
 	
 		<li>
 			
-				<span>Installation under Windows</span>
+				<a href="/nwayo/requirements/windows" >Installation under Windows</a>
 			
 
 			
@@ -226,49 +226,46 @@
 		</nav>
 
 		<main>
-			<h1>Installation under Windows</h1>
-<p>In a command prompt <strong>AS AN ADMINISTRATOR</strong> run these</p>
-<h2 id="chocolatey"><a class="anchor" href="#chocolatey" aria-hidden="true">⚭</a> <a href="https://chocolatey.org/" class="external" rel="external">Chocolatey</a></h2>
-<p>Chocolatey is the entry point to install many tools</p>
-<pre><code class="language-shell">@&quot;%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe&quot; -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command &quot;iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))&quot; &amp;&amp; SET &quot;PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin&quot;
-</code></pre>
-<h4 id="image-processors-(-graphicsmagick-%2F-imagemagick-)"><a class="anchor" href="#image-processors-(-graphicsmagick-%2F-imagemagick-)" aria-hidden="true">⚭</a> Image processors ( <a href="http://www.graphicsmagick.org" class="external" rel="external">GraphicsMagick</a> / <a href="https://www.imagemagick.org" class="external" rel="external">ImageMagick</a> )</h4>
-<p>These are used to manipulate images for the iconography</p>
-<pre><code class="language-shell">choco install graphicsmagick --confirm
-choco install imagemagick.app -packageparameters legacysupport=true --confirm
-</code></pre>
-<h2 id="ruby-%5Bdeprecated%5D"><a class="anchor" href="#ruby-%5Bdeprecated%5D" aria-hidden="true">⚭</a> <a href="https://www.ruby-lang.org" class="external" rel="external">Ruby</a> <em>[deprecated]</em></h2>
-<p>Ruby was used solely to build SCSS</p>
-<pre><code class="language-shell">choco install ruby --confirm
-chcp 1252
-gem source -a http://rubygems.org/
-</code></pre>
-<h4 id="sass-%5Bdeprecated%5D"><a class="anchor" href="#sass-%5Bdeprecated%5D" aria-hidden="true">⚭</a> <a href="https://sass-lang.com" class="external" rel="external">Sass</a> <em>[deprecated]</em></h4>
-<p>Ruby Sass was originally the native compiler of SCSS and was used by nwayo prior to 3.6.0</p>
-<pre><code class="language-shell">gem install sass
-</code></pre>
-<h4 id="scss-lint-%5Bdeprecated%5D"><a class="anchor" href="#scss-lint-%5Bdeprecated%5D" aria-hidden="true">⚭</a> <a href="https://github.com/causes/scss-lint" class="external" rel="external">SCSS-Lint</a> <em>[deprecated]</em></h4>
-<p>SCSS-Lint was the SCSS linter used by nwayo prior to 3.4.0</p>
-<pre><code class="language-shell">gem install scss_lint
-</code></pre>
-<h2 id="node.js"><a class="anchor" href="#node.js" aria-hidden="true">⚭</a> <a href="https://nodejs.org" class="external" rel="external">Node.js</a></h2>
-<p>Node.js is the backbone of the workflow</p>
-<pre><code class="language-shell">choco install nodejs.install --confirm
-</code></pre>
-<h4 id="nwayo-cli"><a class="anchor" href="#nwayo-cli" aria-hidden="true">⚭</a> <a href="https://absolunet.github.io/nwayo" class="external" rel="external">nwayo CLI</a></h4>
-<p>Well duh...</p>
-<pre><code class="language-shell">npm install -g @absolunet/nwayo-cli
-</code></pre>
-<h4 id="jshint-%5Bdeprecated%5D"><a class="anchor" href="#jshint-%5Bdeprecated%5D" aria-hidden="true">⚭</a> <a href="http://jshint.com" class="external" rel="external">JSHint</a> <em>[deprecated]</em></h4>
-<p>JSHint was a JS linter used by nwayo prior to 3.0.0</p>
-<pre><code class="language-shell">npm install -g jshint
-</code></pre>
-<h4 id="jscs-%5Bdeprecated%5D"><a class="anchor" href="#jscs-%5Bdeprecated%5D" aria-hidden="true">⚭</a> <a href="https://www.npmjs.com/package/jscs" class="external" rel="external">JSCS</a> <em>[deprecated]</em></h4>
-<p>JSCS was a JS linter used by nwayo prior to 3.0.0</p>
-<pre><code class="language-shell">npm install -g jscs
-</code></pre>
+			<h1>Assets</h1>
+<blockquote>
+<p>Assets are resources files that can be accessed via an URL (images, icons, fonts, etc.)</p>
+</blockquote>
+<h2 id="path"><a class="anchor" href="#path" aria-hidden="true">⚭</a> Path</h2>
+<p>The source files are located under <code>[NWAYO_ROOT]/components/[NAME]/assets/</code></p>
+<h2 id="types"><a class="anchor" href="#types" aria-hidden="true">⚭</a> Types</h2>
+<p>They are 5 types of assets:</p>
+<ul>
+<li><a href="fonts">Fonts</a></li>
+<li><a href="icons">Icons</a></li>
+<li><a href="images">Images</a></li>
+<li><a href="inline-images">Inline images</a></li>
+<li><a href="raw">Raw</a></li>
+</ul>
+<h2 id="bundles"><a class="anchor" href="#bundles" aria-hidden="true">⚭</a> Bundles</h2>
+<p>In the <a href="../architecture/bundle">bundle</a> file, components listed under <code>assets</code> property will have all their assets built into the bundle's build directory.</p>
+<h2 id="tasks"><a class="anchor" href="#tasks" aria-hidden="true">⚭</a> Tasks</h2>
+<p>These tasks interact with the assets</p>
+<ul>
+<li>assets</li>
+<li>assets-fonts</li>
+<li>assets-images</li>
+<li>assets-images-highdensity</li>
+<li>assets-images-optimization</li>
+<li>assets-raw</li>
+<li>icons</li>
+<li>icons-favicon</li>
+<li>icons-icon</li>
+<li>icons-large</li>
+<li>icons-tile</li>
+<li>icons-touch</li>
+<li>styles</li>
+<li>styles-compile</li>
+<li>styles-images</li>
+<li>rebuild</li>
+<li>rebuild-ss</li>
+</ul>
 
-			<p class="edit-page"><a href="https://github.com/absolunet/nwayo/blob/master/docs/requirements/windows.md" rel="external">Edit this page</a></p>
+			<p class="edit-page"><a href="https://github.com/absolunet/nwayo/blob/master/docs-sources/assets/readme.md" rel="external">Edit this page</a></p>
 		</main>
 	</div>
 

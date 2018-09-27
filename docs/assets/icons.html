@@ -2,13 +2,13 @@
 <html lang="en-CA" class="no-js">
 <head>
 	<meta charset="utf-8">
-	<title>Inline images - nwayo</title>
+	<title>Icons - nwayo</title>
 
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta http-equiv="cleartype" content="on">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="canonical" href="https://absolunet.github.io/nwayo/assets/inline-images" />
+	<link rel="canonical" href="https://absolunet.github.io/nwayo/assets/icons" />
 
 	<link rel="shortcut icon"    href="/nwayo/static/icons/favicon.ico">
 	<link rel="apple-touch-icon" href="/nwayo/static/icons/touch-57.png">
@@ -43,7 +43,7 @@
 <body>
 
 	<header>
-		<p class="nwayo"><a href="/nwayo"><img src="/nwayo/static/images/nwayo.svg" class="logo"> nwayo</a> <span class="version">3.5.2</span></p>
+		<p class="nwayo"><a href="/nwayo"><img src="/nwayo/static/images/nwayo.svg" class="logo"> nwayo</a> <span class="version">3.6.0-beta.2</span></p>
 		<a href="https://github.com/absolunet/nwayo" class="github" rel="external"><svg class="logo" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
  View on GitHub</a>
 	</header>
@@ -83,7 +83,7 @@
 	
 		<li>
 			
-				<a href="/nwayo/assets/icons" >Icons</a>
+				<span>Icons</span>
 			
 
 			
@@ -99,7 +99,7 @@
 	
 		<li>
 			
-				<span>Inline images</span>
+				<a href="/nwayo/assets/inline-images" >Inline images</a>
 			
 
 			
@@ -226,57 +226,83 @@
 		</nav>
 
 		<main>
-			<h1>Inline images</h1>
+			<h1>Icons</h1>
 <blockquote>
-<p>Inline images assets are image files (.gif, .jpg, .png, .svg) that will be embedded in the built CSS files.</p>
+<p>Icons assets are image files that will be used to generated all imagery needed for favicon, touch icon, generic share images, etc.</p>
 </blockquote>
-<h2 id="goal-and-trade-off"><a class="anchor" href="#goal-and-trade-off" aria-hidden="true">⚭</a> Goal and trade-off</h2>
-<p>The goal of this practice is to reduce de number of requested files on a page load for small images file.</p>
-<p>Other solutions like the use of sprite images and icon font set are not encouraged for sake of maintainability, versatility and consistency.</p>
-<p>The weight of the built CSS file is evidently bigger, but with the help of gzip the combined final weight difference is completely acceptable versus the gains.</p>
-<p>These images aren't crawlable at all by search engines, so any image with a SEO value shouldn't use this (ex: a site's logo).</p>
 <h2 id="paths"><a class="anchor" href="#paths" aria-hidden="true">⚭</a> Paths</h2>
-<p>The source files are located under <code>[NWAYO_ROOT]/components/[NAME]/assets/inline-images/</code>.</p>
+<ul>
+<li>The source files are located under <code>[NWAYO_ROOT]/components/[NAME]/assets/icons/</code>.</li>
+<li>The built files are located under <code>[BUILD_ROOT]/icons/[NAME]/</code>.</li>
+</ul>
 <h2 id="processing"><a class="anchor" href="#processing" aria-hidden="true">⚭</a> Processing</h2>
-<p>Files are optimized losslessly via <a href="https://www.lcdf.org/gifsicle" class="external" rel="external">gifsicle</a>, <a href="http://libjpeg-turbo.virtualgl.org" class="external" rel="external">jpegtran</a>, <a href="http://optipng.sourceforge.net" class="external" rel="external">optipng</a>, <a href="https://github.com/svg/svgo" class="external" rel="external">svgo</a>, which means that they need to be quality-optimized beforehand because this process only shims the extra useless kB.</p>
-<h3 id="binary-formats-(gif%2C-jpg%2C-png)"><a class="anchor" href="#binary-formats-(gif%2C-jpg%2C-png)" aria-hidden="true">⚭</a> Binary formats (GIF, JPG, PNG)</h3>
-<p>These will be embedded in the <code>background-image:url()</code> via a Base64 encoding.</p>
-<p><strong>Example:</strong></p>
-<pre><code class="language-scss">background-image: url(&quot;data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7&quot;);
-</code></pre>
-<h3 id="svg"><a class="anchor" href="#svg" aria-hidden="true">⚭</a> SVG</h3>
-<p>The raw source of these will be embedded in the <code>background-image:url()</code> minus minor adjustments for compatibility.</p>
-<p>Also since the color codes are in plain text, there is an option in the mixin to change the different colors of the source file for other colors.</p>
-<p><strong>Example:</strong></p>
-<pre><code class="language-scss">background-image: url(&quot;data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 25 7'%3E%3Cpath fill='%23ff5252' d='M0 0h10L5 7z'/%3E%3C/svg%3E&quot;);
-</code></pre>
-<h2 id="best-practices"><a class="anchor" href="#best-practices" aria-hidden="true">⚭</a> Best practices</h2>
-<h3 id="binary-formats"><a class="anchor" href="#binary-formats" aria-hidden="true">⚭</a> Binary formats</h3>
+<p>Files are optimized losslessly via <a href="http://optipng.sourceforge.net" class="external" rel="external">optipng</a>.</p>
+<h3 id="favicon-(ie-%2F-windows-%2F-safari)"><a class="anchor" href="#favicon-(ie-%2F-windows-%2F-safari)" aria-hidden="true">⚭</a> Favicon (IE / Windows / Safari)</h3>
+<p>The source file must be a 64×64 PNG file named <code>favicon.png</code> with a transparent background.</p>
+<p>It will produce a file named <code>favicon.ico</code> containing a:</p>
 <ul>
-<li>Only PNG should be use since it is better than GIF and JPG isn't normally used for small iconography.</li>
-<li>Optimize via <a href="https://tinypng.com" class="external" rel="external">TinyPNG</a>.</li>
+<li><strong>16×16</strong> version for IE9 address bar, Pinned site Jump List/Toolbar/Overlay</li>
+<li><strong>24×24</strong> version for IE9 Pinned site browser UI</li>
+<li><strong>32×32</strong> version for New tab page in IE, taskbar button in Win 7+, Safari Read Later sidebar</li>
+<li><strong>48×48</strong> version for Windows site icons</li>
+<li><strong>64×64</strong> version for Windows site icons, Safari Reading List sidebar in HiDPI/Retina</li>
 </ul>
-<h3 id="svg-2"><a class="anchor" href="#svg-2" aria-hidden="true">⚭</a> SVG</h3>
+<h3 id="touch-(ios)"><a class="anchor" href="#touch-(ios)" aria-hidden="true">⚭</a> Touch (iOS)</h3>
+<p>The source file must be a 512×512 PNG file named <code>touch.png</code> with a full background.</p>
+<p>It will produce 10 files:</p>
 <ul>
-<li>SVG should always use the default replacement colors <code>#ba0bab</code> and <code>#c0ffee</code> and let the SCSS variables drive the final colors.</li>
-<li>Optimize Illustrator export with these settings:</li>
-<li><img src="/nwayo/static/images//svg-ai-settings.png" alt="SVG export settings"></li>
+<li><code>touch-57.png</code>  a   <strong>57×57</strong> version for non-Retina (@1× display) iPhone, iPod Touch, and Android 2.1+ devices</li>
+<li><code>touch-72.png</code>  a   <strong>72×72</strong> version for the iPad mini and the first- and second-generation iPad (@1× display) on iOS ≤ 6</li>
+<li><code>touch-76.png</code>  a   <strong>76×76</strong> version for the iPad mini and the first- and second-generation iPad (@1× display) on iOS ≥ 7</li>
+<li><code>touch-114.png</code> a <strong>114×114</strong> version for iPhone with @2× display running iOS ≤ 6:</li>
+<li><code>touch-120.png</code> a <strong>120×120</strong> version for iPhone with @2× display running iOS ≥ 7</li>
+<li><code>touch-144.png</code> a <strong>144×144</strong> version for iPad with @2× display running iOS ≤ 6</li>
+<li><code>touch-152.png</code> a <strong>152×152</strong> version for iPad with @2× display running iOS ≤ 7</li>
+<li><code>touch-167.png</code> a <strong>167×167</strong> version for iPad Pro with @2× display running iOS ≤ 9</li>
+<li><code>touch-180.png</code> a <strong>180×180</strong> version for iPhone 6 Plus with @3× display</li>
+<li><code>touch-512.png</code> a <strong>512×512</strong> version for a general share icon</li>
 </ul>
+<h3 id="icon-(windows%2C-google-tv%2C-android%2C-coast-and-all-modern-browsers)"><a class="anchor" href="#icon-(windows%2C-google-tv%2C-android%2C-coast-and-all-modern-browsers)" aria-hidden="true">⚭</a> Icon (Windows, Google TV, Android, Coast and all Modern browsers)</h3>
+<p>The source file must be a 256×256 PNG file named <code>icon.png</code> with a transparent background.</p>
+<p>It will produce 6 files:</p>
+<ul>
+<li><code>ìcon-64.png</code>  a   <strong>64×64</strong> version for Windows site icons, Safari Reading List, Modern browsers</li>
+<li><code>ìcon-96.png</code>  a   <strong>96×96</strong> version for Google TV Favicon</li>
+<li><code>ìcon-192.png</code> a <strong>192×192</strong> version for Chrome for Android</li>
+<li><code>ìcon-195.png</code> a <strong>195×195</strong> version for Opera Speed Dial icon</li>
+<li><code>ìcon-196.png</code> a <strong>196×196</strong> version for Chrome for Android home screen icon</li>
+<li><code>ìcon-228.png</code> a <strong>228×228</strong> version for Coast for iOS</li>
+</ul>
+<h3 id="tile-(windows-metro)"><a class="anchor" href="#tile-(windows-metro)" aria-hidden="true">⚭</a> Tile (Windows metro)</h3>
+<p>The source file must be a 558×558 PNG file named <code>tile.png</code> with a transparent background and a white image.</p>
+<p>It will produce 4 files:</p>
+<ul>
+<li><code>tile-small.png</code>  a <strong>128×128</strong> version (Officially:   70×70 but this is the recommended size)</li>
+<li><code>tile-medium.png</code> a <strong>270×270</strong> version (Officially: 150×150 but this is the recommended size)</li>
+<li><code>tile-large.png</code>  a <strong>558×558</strong> version (Officially: 310×310 but this is the recommended size)</li>
+<li><code>tile-wide.png</code>   a <strong>558×270</strong> version (Officially: 310×150 but this is the recommended size)</li>
+</ul>
+<h3 id="large-(default-generic-sharing)"><a class="anchor" href="#large-(default-generic-sharing)" aria-hidden="true">⚭</a> Large (Default generic sharing)</h3>
+<p>The source file must be a 1200×630 PNG file named <code>large.png</code> with a full background.</p>
+<p>It will produce a optimized file named <code>large.png</code>.</p>
 <h2 id="usage"><a class="anchor" href="#usage" aria-hidden="true">⚭</a> Usage</h2>
-<p>In styles, these inline images can be accessed via the <a href="../styles/images">images mixins</a>.</p>
+<p>In HTML, use the example in the <code>SAMPLE.index.html</code> to add these files.</p>
+<p>In scripts, the path to these files can be access via <code>app.path.icons</code>.</p>
 <h2 id="bundles"><a class="anchor" href="#bundles" aria-hidden="true">⚭</a> Bundles</h2>
-<p>Inline images are selected for build via the SCSS code included in the <code>styles.collections</code> property of the bundle file.</p>
+<p>Images are selected for build via the <code>assets</code> property of the bundle file.</p>
 <h2 id="tasks"><a class="anchor" href="#tasks" aria-hidden="true">⚭</a> Tasks</h2>
-<p>These tasks interact with the inline images:</p>
+<p>These tasks interact with the images:</p>
 <ul>
-<li>styles</li>
-<li>styles-compile</li>
-<li>styles-images</li>
+<li>icons</li>
+<li>icons-favicon</li>
+<li>icons-icon</li>
+<li>icons-large</li>
+<li>icons-tile</li>
+<li>icons-touch</li>
 <li>rebuild</li>
-<li>rebuild-ss</li>
 </ul>
 
-			<p class="edit-page"><a href="https://github.com/absolunet/nwayo/blob/master/docs/assets/inline-images.md" rel="external">Edit this page</a></p>
+			<p class="edit-page"><a href="https://github.com/absolunet/nwayo/blob/master/docs-sources/assets/icons.md" rel="external">Edit this page</a></p>
 		</main>
 	</div>
 
