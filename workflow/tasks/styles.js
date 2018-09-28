@@ -162,7 +162,7 @@ flow.createTask('styles-compile', ({ taskName }) => {
 
 					.pipe(autoprefixer({ browsers:bundle.styles.options.autoprefixer }))
 
-					.pipe(gulpif(toMinify, cssnano({ reduceIdents:false, zindex:false })))
+					.pipe(gulpif(toMinify, cssnano({ autoprefixer:false, discardUnused:false, mergeIdents:false, reduceIdents:false, zindex:false })))
 
 					.pipe(gulpif(toSourcemaps, sourcemaps.write('maps', {
 						includeContent: false,
