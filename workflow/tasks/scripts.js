@@ -72,7 +72,7 @@ flow.createTask('scripts-constants', ({ taskName }) => {
 			nwayo:   env.workflowPkg.version,
 			project: env.pkg.name,
 			bundle:  name,
-			konstan: util.parseKonstan('scripts', name, env.bundles[name].output.url)
+			konstan: util.parseKonstan('scripts', name, env.bundles[name].output)
 		};
 
 		/* eslint-disable function-paren-newline */

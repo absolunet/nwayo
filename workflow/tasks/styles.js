@@ -97,7 +97,7 @@ flow.createTask('styles-constants', ({ taskName }) => {
 	const streams = [];
 
 	for (const name of Object.keys(env.bundles)) {
-		const data = util.parseKonstan('styles', name, env.bundles[name].output.url);
+		const data = util.parseKonstan('styles', name, env.bundles[name].output);
 		data.bundle = `'${name}'`;
 
 		/* eslint-disable function-paren-newline */

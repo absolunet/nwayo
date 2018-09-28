@@ -40,18 +40,20 @@
 		}
 
 	} @else {
-		$uri: url(nwayo-assets-path($file, $component, images));  // stylelint-disable-line function-url-quotes
-	}
+		$path: nwayo-build-path($file, $component, images);
+		$url:  nwayo-assets-path($file, $component, images);
 
-	// High density
-	@if str-index($file, '@2x') {
-		$path: 'components/' + $component + '/assets/' + if($inline, 'inline-', '') + 'images/' + $file;
+		// High density
+		@if str-index($file, '@2x') {
+			@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {  // stylelint-disable-line
+				background-image: url($url + nwayo-cacheinvalidator-querystring($path));  // stylelint-disable-line function-url-quotes
+			}
 
-		@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {  // stylelint-disable-line
-			background-image: $uri;
+			$path: nwayo-str-replace($path, '@2x', '');
+			$url:  nwayo-str-replace($url, '@2x', '');
 		}
 
-		$uri: nwayo-str-replace($uri, '@2x', '');
+		$uri: url($url + nwayo-cacheinvalidator-querystring($path));  // stylelint-disable-line function-url-quotes
 	}
 
 	// Output
@@ -80,12 +82,14 @@
 
 //-- Font-face
 @mixin nwayo-load-font-styles($name, $filename, $component, $weight:normal, $style:normal) {
+	$path:  nwayo-build-path($filename, $component, 'fonts');
 	$url:   nwayo-assets-path($filename, $component, 'fonts');
-	$woff2: if(nwayodart-file-exists($konstan-path-nwayoroot + '/components/' + $component + '/assets/fonts/' + $filename + '.woff2'), url($url + '.woff2') format('woff2') + ',', '');
+	$woff2: if(nwayodart-file-exists($path + '.woff2'), url($url + '.woff2' + nwayo-cacheinvalidator-querystring($path + '.woff2')) format('woff2') + ',', '');  // stylelint-disable-line function-url-quotes
+
 	@font-face {
 		font-family: $name;
 		font-weight: $weight;
 		font-style: $style;
-		src: #{$woff2} url($url + '.woff');
+		src: #{$woff2} url($url + '.woff' + nwayo-cacheinvalidator-querystring($path + '.woff'));  // stylelint-disable-line function-url-quotes
 	}
 }
