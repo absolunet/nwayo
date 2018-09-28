@@ -19,7 +19,7 @@
 
 - Sous `workflow`, supprimer `package-lock.json` et `node_modules`
 - Faire un `npm install`
-- Sous `test` rouler un `npm test` pour le linter
+- Rouler un `npm test` pour le linter
 - **Commiter les changements de mises à jour + corrections de tests**
 
 
