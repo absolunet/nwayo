@@ -18,6 +18,15 @@
 	}
 }
 
+//-- Build path
+@function nwayo-build-path($file, $context, $type) {
+	@if $type == 'images' {
+		@return $konstan-path-buildroot + '/images/' + $context + '/' + $file;
+	} @else if $type == 'fonts' {
+		@return $konstan-path-buildroot + '/fonts/' + $context + '/' + $file;
+	}
+}
+
 
 
 
@@ -95,4 +104,10 @@
 	} @else if ($direction == down) {
 		@return 'screen and (max-width: #{$bp / $nwayo-basic-size * 1em})';
 	}
+}
+
+
+//-- Return cache invalidation query string
+@function nwayo-cacheinvalidator-querystring($file) {
+	@return '?v=' + nwayodart-checksum($file);
 }

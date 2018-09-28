@@ -58,7 +58,7 @@ const cache = (key, value, process) => {
 class Util {
 
 	//-- Constants
-	parseKonstan(type, bundle, rootUrl) {
+	parseKonstan(type, bundle, { url:rootUrl, build:buildRoot }) {
 		const parseItem = (item) => { return `data['${item.split('.').join(`']['`)}']`; };
 		const options   = _.cloneDeep(env.konstan.options[type]) || {};
 		const urls      = _.cloneDeep(paths.build);
@@ -74,11 +74,11 @@ class Util {
 			options.escape = options.escape || [];
 			options.escape.push('path.root');
 			urls.inline = paths.dir.cacheInline;
-			urls.nwayoroot = paths.dir.root;
+			urls.buildroot = fss.realpath(`${paths.dir.root}/${buildRoot}`);
 		}
 
 		for (const key of Object.keys(urls)) {
-			data.path[key] = (!['inline', 'nwayoroot'].includes(key) ? `${data.path.root}/` : '') + urls[key];
+			data.path[key] = (!['inline', 'buildroot'].includes(key) ? `${data.path.root}/` : '') + urls[key];
 
 			if (options.escape && options.escape.indexOf('path.root') !== -1) {
 				options.escape.push(`path.${key}`);

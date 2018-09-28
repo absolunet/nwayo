@@ -28,7 +28,7 @@ flow.createTask('local-constants', ({ taskName }) => {
 			nwayo:      env.workflowPkg.version,
 			project:    env.pkg.name,
 			bundle:     name,
-			konstan:    util.parseKonstan('local', name, bundle.output.url)
+			konstan:    util.parseKonstan('local', name, bundle.output)
 		};
 
 		/* eslint-disable function-paren-newline */

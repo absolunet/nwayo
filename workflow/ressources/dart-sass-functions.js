@@ -3,6 +3,7 @@
 //-------------------------------------
 'use strict';
 
+const crypto    = require('crypto');
 const mimeTypes = require('mime-types');
 const sass      = require('sass');
 const fss       = require('@absolunet/fss');
@@ -43,6 +44,18 @@ custom['nwayodart-inline-file($file)'] = (paramFile) => {
 		const mimeType = mimeTypes.lookup(file);
 
 		return new sass.types.String(`url('data:${mimeType};base64,${data}')`);
+	}
+
+	throw new Error(`File '${file}' not found`);
+};
+
+
+// Get file checksum
+custom['nwayodart-checksum($file)'] = (paramFile) => {
+	const file = paramFile.getValue();
+
+	if (fss.exists(file)) {
+		return new sass.types.String(crypto.createHash('sha512').update(fss.readFile(file)).digest('hex'));
 	}
 
 	throw new Error(`File '${file}' not found`);
