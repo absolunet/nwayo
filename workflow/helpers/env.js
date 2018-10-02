@@ -13,15 +13,49 @@ const terminal = require('@absolunet/terminal');
 const paths    = require('~/helpers/paths');
 
 
+const NAME = 'nwayo';
+
+//-- Existence validated by CLI
 const WORKFLOW_PACKAGE = fss.readJson(paths.config.workflowPackage);
+const PACKAGE          = fss.readJson(paths.config.projectPackage);
+const CONFIG           = fss.readYaml(paths.config.main);
 
-const PACKAGE = (() => {
-	if (fss.exists(paths.config.projectPackage)) {
-		return fss.readJson(paths.config.projectPackage);
-	}
+const EXTENSIONS = (() => {
+	const enabled = {};
+	const prefix = `${NAME}-extension-`;
 
-	return terminal.exit('No package.json file found');
+	Object.keys(CONFIG.extensions || {}).forEach((name) => {
+		if (CONFIG.extensions[name].enabled === true) {
+			let normalizedName = '';
+
+			const scopedMatch = (/^(@[a-z0-9\\-]+\/)([a-z0-9\\-]+)$/).exec(name);
+			if (scopedMatch !== null) {
+				normalizedName = `${scopedMatch[1]}${prefix}${scopedMatch[2]}`;
+			} else {
+				const namedMatch = (/^[a-z0-9\\-]+$/).exec(name);
+				if (namedMatch !== null) {
+					normalizedName = `${prefix}${name}`;
+				} else {
+					normalizedName = name;
+				}
+			}
+
+			let extension;
+			try {
+				extension = require(normalizedName);  // eslint-disable-line global-require
+			} catch (error) {
+				terminal.exit(`Extension '${name}' not found`);
+			}
+
+			extension.init({ options:CONFIG.extensions[name].options });
+
+			enabled[extension.id] = extension;
+		}
+	});
+
+	return enabled;
 })();
+
 
 
 const __ = {
@@ -52,15 +86,15 @@ class Env {
 	}
 
 
-	//-- Name
-	get name() {
-		return 'nwayo';
+	//-- Id
+	get id() {
+		return NAME;
 	}
 
 
 	//-- Package name
 	get pkgName() {
-		return '@absolunet/nwayo-workflow';
+		return WORKFLOW_PACKAGE.name;
 	}
 
 
@@ -69,6 +103,15 @@ class Env {
 		return __.deployTier === 'prod';
 	}
 
+	//-- Raw project config
+	get configRaw() {
+		return CONFIG;
+	}
+
+	//-- Project extensions config
+	get extensions() {
+		return EXTENSIONS;
+	}
 
 	//-- Set deployment tier to production
 	setToProd() {

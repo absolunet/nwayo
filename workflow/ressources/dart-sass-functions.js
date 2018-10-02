@@ -13,10 +13,11 @@ const fss       = require('@absolunet/fss');
 
 
 
+const PREFIX = 'nwayodart';
 const custom = {};
 
 // Check if file exists
-custom['nwayodart-file-exists($file)'] = (paramFile) => {
+custom[`${PREFIX}-file-exists($file)`] = (paramFile) => {
 	const file = paramFile.getValue();
 
 	return fss.exists(file) ? sass.types.Boolean.TRUE : sass.types.Boolean.FALSE;
@@ -24,7 +25,7 @@ custom['nwayodart-file-exists($file)'] = (paramFile) => {
 
 
 // Read file and return contents
-custom['nwayodart-read-file($file)'] = (paramFile) => {
+custom[`${PREFIX}-read-file($file)`] = (paramFile) => {
 	const file = paramFile.getValue();
 
 	if (fss.exists(file)) {
@@ -36,7 +37,7 @@ custom['nwayodart-read-file($file)'] = (paramFile) => {
 
 
 // Base64 inline an file
-custom['nwayodart-inline-file($file)'] = (paramFile) => {
+custom[`${PREFIX}-inline-file($file)`] = (paramFile) => {
 	const file = paramFile.getValue();
 
 	if (fss.exists(file)) {
@@ -51,7 +52,7 @@ custom['nwayodart-inline-file($file)'] = (paramFile) => {
 
 
 // Get file checksum
-custom['nwayodart-checksum($file)'] = (paramFile) => {
+custom[`${PREFIX}-checksum($file)`] = (paramFile) => {
 	const file = paramFile.getValue();
 
 	if (fss.exists(file)) {

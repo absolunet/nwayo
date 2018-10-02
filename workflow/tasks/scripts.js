@@ -69,10 +69,10 @@ flow.createTask('scripts-constants', ({ taskName }) => {
 
 	for (const name of Object.keys(env.bundles)) {
 		const data = {
-			nwayo:   env.workflowPkg.version,
-			project: env.pkg.name,
-			bundle:  name,
-			konstan: util.parseKonstan('scripts', name, env.bundles[name].output)
+			[env.id]: env.workflowPkg.version,
+			project:  env.pkg.name,
+			bundle:   name,
+			konstan:  util.parseKonstan('scripts', name, env.bundles[name].output)
 		};
 
 		/* eslint-disable function-paren-newline */

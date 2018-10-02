@@ -60,7 +60,7 @@ class Tester {
 		});
 	}
 
-	//-- Check if nwayo workflow and toolbox are at the same version
+	//-- Check if workflow and toolbox are at the same version
 	syncWorkflowToolbox(cb) {
 		syncTests.run().then((reports) => {
 			cb(null, reports);

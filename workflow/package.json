@@ -24,7 +24,7 @@
   "engines": {
     "node": ">= 10.11.0"
   },
-  "main": "cli.js",
+  "main": "index.js",
   "scripts": {
     "test": "ava ../test"
   },
