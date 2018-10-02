@@ -25,7 +25,7 @@ class SyncTests extends Tests {
 			if (fss.exists(paths.config.bower)) {
 				const bowerConfig     = fss.readJson(paths.config.bower);
 				const workflowVersion = env.workflowPkg.version;
-				const toolboxVersion  = bowerConfig.devDependencies['nwayo-toolbox'];
+				const toolboxVersion  = bowerConfig.devDependencies[`${env.id}-toolbox`];
 
 				if (workflowVersion !== toolboxVersion) {
 					reports.add({

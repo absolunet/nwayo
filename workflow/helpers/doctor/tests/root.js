@@ -8,6 +8,7 @@ const semver   = require('semver');
 const fss      = require('@absolunet/fss');
 const Reporter = require('~/classes/reporter');
 const Tests    = require('~/classes/tests');
+const env      = require('~/helpers/env');
 const paths    = require('~/helpers/paths');
 const toolbox  = require('~/helpers/toolbox');
 const assert   = require('~/helpers/doctor/assertions');
@@ -23,7 +24,7 @@ const bowerJson = () => {
 
 	if (tests.exists) {
 		const config = fss.readJson(`${paths.dir.root}/${FILE}`);
-		const differences = toolbox.compareLists(Object.keys(config), ['name', 'private', 'devDependencies', '___nwayo-recommended___']);
+		const differences = toolbox.compareLists(Object.keys(config), ['name', 'private', 'devDependencies', `___${env.id}-recommended___`]);
 		reports.add({
 			success:     differences.pass,
 			message:     `${Reporter.theme.title(FILE)}: Must only contain certain attributes`,
@@ -106,7 +107,7 @@ const packageJson = (bowerName) => {
 			message: `${Reporter.theme.title(FILE)}: Private must be set to true`
 		});
 
-		const packagesDifferences = toolbox.compareLists(Object.keys(config.dependencies), ['@absolunet/nwayo-workflow']);
+		const packagesDifferences = toolbox.compareLists(Object.keys(config.dependencies), [env.pkgName]);
 		reports.add({
 			success:     packagesDifferences.pass,
 			message:     `${Reporter.theme.title(FILE)}: Must only contain certain dependencies`,
@@ -130,8 +131,8 @@ const eslintrcYaml = () => {
 	if (tests.exists) {
 		const config = fss.readYaml(`${paths.dir.root}/${FILE}`);
 		reports.add({
-			success: config.extends && config.extends === '@absolunet/nwayo',
-			message: `${Reporter.theme.title(FILE)}: Must extend '@absolunet/nwayo'`
+			success: config.extends && config.extends === `@absolunet/${env.id}`,
+			message: `${Reporter.theme.title(FILE)}: Must extend '@absolunet/${env.id}'`
 		});
 	}
 };
@@ -144,8 +145,8 @@ const stylelintrcYaml = () => {
 	if (tests.exists) {
 		const config = fss.readYaml(`${paths.dir.root}/${FILE}`);
 		reports.add({
-			success: config.extends && config.extends === '@absolunet/stylelint-config-nwayo',
-			message: `${Reporter.theme.title(FILE)}: Must extend '@absolunet/stylelint-config-nwayo'`
+			success: config.extends && config.extends === `@absolunet/stylelint-config-${env.id}`,
+			message: `${Reporter.theme.title(FILE)}: Must extend '@absolunet/stylelint-config-${env.id}'`
 		});
 	}
 };

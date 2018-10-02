@@ -25,10 +25,10 @@ flow.createTask('local-constants', ({ taskName }) => {
 
 		const data = {
 			GENERATION: util.getGeneratedBanner(name, 'text'),
-			nwayo:      env.workflowPkg.version,
-			project:    env.pkg.name,
-			bundle:     name,
-			konstan:    util.parseKonstan('local', name, bundle.output)
+			[env.id]: env.workflowPkg.version,
+			project:  env.pkg.name,
+			bundle:   name,
+			konstan:  util.parseKonstan('local', name, bundle.output)
 		};
 
 		/* eslint-disable function-paren-newline */

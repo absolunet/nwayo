@@ -9,16 +9,16 @@ const slash  = require('slash');
 const fss    = require('@absolunet/fss');
 
 
-const MAIN_CONFIG = 'nwayo.yaml';
-const BOWER       = 'bower_components';
-const CACHE       = '.nwayo-cache';
-const NOLINT      = 'vendor';
+const BOWER            = 'bower_components';
+const CACHE            = '.nwayo-cache';
+const NOLINT           = 'vendor';
+const MAIN_CONFIG      = 'nwayo.yaml';
+const MAIN_CONFIG_PATH = findUp.sync(MAIN_CONFIG, { cwd:process.cwd() });
 
 const ROOT = (() => {
-	const prjConfigFilepath = findUp.sync(MAIN_CONFIG, { cwd:process.cwd() });
-	const prjConfig         = fss.readYaml(prjConfigFilepath);
+	const prjConfig = fss.readYaml(MAIN_CONFIG_PATH);
 
-	return slash(path.normalize(`${path.dirname(prjConfigFilepath)}/${prjConfig.root}`)).replace(/\/$/, '');
+	return slash(path.normalize(`${path.dirname(MAIN_CONFIG_PATH)}/${prjConfig.root}`)).replace(/\/$/, '');
 })();
 
 
@@ -132,6 +132,7 @@ workflow.matrix     = `${workflow.root}/tests-matrix`;
 workflow.ressources = `${workflow.root}/ressources`;
 
 const config = {};
+config.main            = MAIN_CONFIG_PATH;
 config.bower           = `${dir.root}/bower.json`;
 config.konstan         = `${dir.root}/konstan.yaml`;
 config.projectPackage  = `${dir.root}/package.json`;
