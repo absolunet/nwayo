@@ -232,6 +232,30 @@ class Util {
 		}
 	}
 
+	getFontsUrl(bundle, component) {
+		return `${env.bundles[bundle].output.url}/${paths.build.fonts}${component ? `/${component}` : ''}`;
+	}
+
+	getIconsUrl(bundle, component) {
+		return `${env.bundles[bundle].output.url}/${paths.build.icons}${component ? `/${component}` : ''}`;
+	}
+
+	getImagesUrl(bundle, component) {
+		return `${env.bundles[bundle].output.url}/${paths.build.images}${component ? `/${component}` : ''}`;
+	}
+
+	getRawUrl(bundle, component) {
+		return `${env.bundles[bundle].output.url}/${paths.build.raw}${component ? `/${component}` : ''}`;
+	}
+
+	getScriptsUrl(bundle, collection) {
+		return `${env.bundles[bundle].output.url}/${paths.build.scripts}${collection ? `/${collection}.${paths.ext.scripts}` : ''}`;
+	}
+
+	getStylesUrl(bundle, collection) {
+		return `${env.bundles[bundle].output.url}/${paths.build.styles}${collection ? `/${collection}.${paths.ext.stylesBuild}` : ''}`;
+	}
+
 
 
 
