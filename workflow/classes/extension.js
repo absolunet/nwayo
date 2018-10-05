@@ -3,16 +3,13 @@
 //--------------------------------------------------------
 'use strict';
 
-const flow = require('~/helpers/flow');
+const terminal = require('@absolunet/terminal');
+const flow     = require('~/helpers/flow');
+const paths    = require('~/helpers/paths');
+const toolbox  = require('~/helpers/toolbox');
 
 
 class NwayoExtension {
-
-	static createTask(id, name, action) {
-		flow.createTask(`${id}:${name}`, action);
-	}
-
-
 
 	get id() {
 		throw new Error('Id must be defined by extension');
@@ -39,6 +36,30 @@ class NwayoExtension {
 
 	requireTask(name) {
 		//
+	}
+
+	createTask(name, task) {
+		flow.createTask(`${this.id}:${name}`, () => {
+			try {
+				return task();
+			} catch (error) {
+				return this.error(error);
+			}
+		});
+	}
+
+	log(taskName, msg, extra) {
+		toolbox.log(`${this.id}:${taskName}`, msg, extra);
+	}
+
+	error(error) {
+		terminal.error(`[nwayo-extension:${this.id} error]`);
+		terminal.echo(error);
+		terminal.exit();
+	}
+
+	getComponentDir(component) {
+		return `${paths.dir.extensions.replace(paths.pattern.anytree, component)}/${this.id}`;
 	}
 	/* eslint-enable no-unused-vars */
 
