@@ -16,7 +16,7 @@
 <br>
 
 ## What is nwayo ?
-- A completely hackable front end boilerplate
+- A completely hackable and extendable front end boilerplate
 - A multi-theme, multi-site, multi-CMS front end framework
 - A back end agnostic environment
 
@@ -74,8 +74,8 @@ Currently deployed on 200+ sites including:
 - [Insite (On Premise & Cloud)](https://www.insitesoft.com)
 - [Shopify](https://www.shopify.ca)
 
-## Components
-Multiple component boilerplates [available](https://github.com/absolunet/nwayo-components)
+## Extensions
+Multiple extensions [available](https://www.npmjs.com/search?q=keywords:nwayo-extension)
 
 [//]: # (Doc)
 

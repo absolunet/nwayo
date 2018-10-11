@@ -15,6 +15,10 @@ class NwayoExtension {
 		throw new Error('Id must be defined by extension');
 	}
 
+	get version() {
+		throw new Error('Version must be defined by extension');
+	}
+
 	set options(options) {
 		this._options = options;
 	}
