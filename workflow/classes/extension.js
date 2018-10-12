@@ -4,7 +4,6 @@
 'use strict';
 
 const terminal = require('@absolunet/terminal');
-const flow     = require('~/helpers/flow');
 const paths    = require('~/helpers/paths');
 const toolbox  = require('~/helpers/toolbox');
 
@@ -29,7 +28,8 @@ class NwayoExtension {
 
 
 
-	/* eslint-disable no-unused-vars */
+	// Params kept to show methods signature, on-the-spot require to avoid inclusion loop
+	/* eslint-disable no-unused-vars, global-require */
 	init({ options }) {
 		this.options = options;
 	}
@@ -43,6 +43,8 @@ class NwayoExtension {
 	}
 
 	createTask(name, task) {
+		const flow = require('~/helpers/flow');
+
 		flow.createTask(`${this.id}:${name}`, () => {
 			try {
 				return task();
@@ -65,7 +67,13 @@ class NwayoExtension {
 	getComponentDir(component) {
 		return `${paths.dir.extensions.replace(paths.pattern.anytree, component)}/${this.id}`;
 	}
-	/* eslint-enable no-unused-vars */
+
+	getGeneratedBanner(name, type) {
+		const util = require('~/helpers/util');
+
+		return util.getGeneratedBanner(name, type, this);
+	}
+	/* eslint-enable no-unused-vars, global-require */
 
 }
 
