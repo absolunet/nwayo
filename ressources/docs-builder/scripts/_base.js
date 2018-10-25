@@ -5,8 +5,6 @@
 (() => {
 	'use strict';
 
-	FastClick.attach(document.body);
-
 	const adjectives = [
 		'❤︎',
 		'hard work',

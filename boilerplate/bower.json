@@ -3,7 +3,6 @@
   "private": true,
 
   "devDependencies": {
-    "fastclick":        "1.0.6",
     "foundation-sites": "6.4.3",
     "imagesloaded":     "4.1.4",
     "jquery":           "3.3.1",

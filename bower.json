@@ -26,6 +26,7 @@
   "ignore": [
     "boilerplate",
     "docs",
+    "docs-sources",
     "ressources",
     "test",
     "workflow",

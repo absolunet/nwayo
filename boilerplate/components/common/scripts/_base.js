@@ -96,8 +96,6 @@
 	//-- Bind events once DOM is loaded
 	local.bind = () => {
 
-		FastClick.attach(document.body);
-
 		__.$body
 
 			// External links
