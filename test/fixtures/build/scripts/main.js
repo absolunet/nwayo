@@ -220,8 +220,6 @@ function _classCallCheck(instance, Constructor) {if (!(instance instanceof Const
 	//-- Bind events once DOM is loaded
 	local.bind = function () {
 
-		FastClick.attach(document.body);
-
 		__.$body
 
 		// External links

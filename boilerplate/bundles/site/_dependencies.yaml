@@ -11,7 +11,6 @@ scripts:
       - bower_components/nwayo-toolbox/toolbox/scripts/wrapper/jquery
       - ~lodash
       - ~modernizr
-      - bower_components/nwayo-toolbox/toolbox/scripts/wrapper/fastclick
       - bower_components/nwayo-toolbox/toolbox/scripts/wrapper/what-input
       - components/foundation/scripts/foundation
       - components/common/scripts/nwayo-config
