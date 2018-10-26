@@ -28,11 +28,11 @@ const EXTENSIONS = (() => {
 		if (CONFIG.extensions[name].enabled === true) {
 			let normalizedName = '';
 
-			const scopedMatch = (/^(@[a-z0-9\\-]+\/)([a-z0-9\\-]+)$/).exec(name);
+			const scopedMatch = (/^(@[a-z0-9-]+\/)([a-z0-9-]+)$/u).exec(name);
 			if (scopedMatch !== null) {
 				normalizedName = `${scopedMatch[1]}${prefix}${scopedMatch[2]}`;
 			} else {
-				const namedMatch = (/^[a-z0-9\\-]+$/).exec(name);
+				const namedMatch = (/^[a-z0-9-]+$/u).exec(name);
 				if (namedMatch !== null) {
 					normalizedName = `${prefix}${name}`;
 				} else {
@@ -141,7 +141,7 @@ class Env {
 		if (bundlesList.length !== 0) {
 
 			for (const folder of bundlesList) {
-				const [, name] = folder.match(/\/([0-9a-zA-Z-]+)\/$/);
+				const [, name] = folder.match(/\/([0-9a-zA-Z-]+)\/$/u);
 				data[name] = fss.readYaml(`${folder}/${name}.${paths.ext.bundles}`);
 
 				if (!data[name].assets) {

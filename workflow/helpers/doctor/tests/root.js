@@ -169,67 +169,66 @@ const nwayoYaml = () => {
 
 class RootTests extends Tests {
 
-	run() {
-		return new Promise((resolve) => {
+	// eslint-disable-next-line require-await
+	async run() {
 
-			//-- Directories
-			reports.add(assert.isTreeMatrix('/', 'dir',  { pattern:'!+(.git)' }));
-			reports.add(assert.exists(paths.folder.cache, { tracked:false }));
-			reports.add(assert.exists(paths.folder.vendors));
-			reports.add(assert.exists(paths.folder.bundles));
-			reports.add(assert.exists(paths.folder.components));
-			reports.add(assert.exists(paths.folder.misc));
-			reports.add(assert.exists(paths.folder.workflowDependencies, { tracked:false }));
+		//-- Directories
+		reports.add(assert.isTreeMatrix('/', 'dir',  { pattern:'!+(.git)' }));
+		reports.add(assert.exists(paths.folder.cache, { tracked:false }));
+		reports.add(assert.exists(paths.folder.vendors));
+		reports.add(assert.exists(paths.folder.bundles));
+		reports.add(assert.exists(paths.folder.components));
+		reports.add(assert.exists(paths.folder.misc));
+		reports.add(assert.exists(paths.folder.workflowDependencies, { tracked:false }));
 
 
-			//-- Files
-			reports.add(assert.isTreeMatrix('/', 'file', { pattern:`!+(SAMPLE.*.html|${paths.filename.mainConfig})` }));
+		//-- Files
+		reports.add(assert.isTreeMatrix('/', 'file', { pattern:`!+(SAMPLE.*.html|${paths.filename.mainConfig})` }));
 
-			// .editorconfig
-			reports.add(assert.isMatrix('.editorconfig'));
+		// .editorconfig
+		reports.add(assert.isMatrix('.editorconfig'));
 
-			// .eslintignore
-			reports.add(assert.isMatrix('.eslintignore'));
+		// .eslintignore
+		reports.add(assert.isMatrix('.eslintignore'));
 
-			// .eslintrc.yaml
-			eslintrcYaml();
+		// .eslintrc.yaml
+		eslintrcYaml();
 
-			// .gitattributes
-			reports.add(assert.hasMatrix('.gitattributes'));
+		// .gitattributes
+		reports.add(assert.hasMatrix('.gitattributes'));
 
-			// .gitignore
-			reports.add(assert.hasMatrix('.gitignore'));
+		// .gitignore
+		reports.add(assert.hasMatrix('.gitignore'));
 
-			// .stylelintignore
-			reports.add(assert.isMatrix('.stylelintignore'));
+		// .stylelintignore
+		reports.add(assert.isMatrix('.stylelintignore'));
 
-			// .stylelintrc.yaml
-			stylelintrcYaml();
+		// .stylelintrc.yaml
+		stylelintrcYaml();
 
-			// bower.json
-			const bowerName = bowerJson();
+		// bower.json
+		const bowerName = bowerJson();
 
-			// konstan.yaml
-			reports.add(assert.exists(`${paths.filename.konstan}.yaml`));
+		// konstan.yaml
+		reports.add(assert.exists(`${paths.filename.konstan}.yaml`));
 
-			// lodash.yaml
-			reports.add(assert.exists(`${paths.filename.lodash}.yaml`));
+		// lodash.yaml
+		reports.add(assert.exists(`${paths.filename.lodash}.yaml`));
 
-			// modernizr.yaml
-			reports.add(assert.exists(`${paths.filename.modernizr}.yaml`));
+		// modernizr.yaml
+		reports.add(assert.exists(`${paths.filename.modernizr}.yaml`));
 
-			// nwayo.yaml
-			nwayoYaml();
+		// nwayo.yaml
+		nwayoYaml();
 
-			// package.json
-			packageJson(bowerName);
+		// package.json
+		packageJson(bowerName);
 
-			// package-lock.json
-			reports.add(assert.exists('package-lock.json'));
+		// package-lock.json
+		reports.add(assert.exists('package-lock.json'));
 
-			resolve(reports);
 
-		});
+		return reports;
 	}
 
 }

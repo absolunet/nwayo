@@ -92,21 +92,19 @@ const bundleDir = (bundle) => {
 
 class BundlesTests extends Tests {
 
-	run() {
-		return new Promise((resolve) => {
+	// eslint-disable-next-line require-await
+	async run() {
 
-			// No files on root
-			reports.add(assert.hasNoFiles('/', { root }));
+		// No files on root
+		reports.add(assert.hasNoFiles('/', { root }));
 
-			// Bundles
-			const bundles = fss.scandir(`${paths.dir.bundles}`, 'dir');
-			bundles.forEach((bundle) => {
-				bundleDir(bundle);
-			});
-
-			resolve(reports);
-
+		// Bundles
+		const bundles = fss.scandir(`${paths.dir.bundles}`, 'dir');
+		bundles.forEach((bundle) => {
+			bundleDir(bundle);
 		});
+
+		return reports;
 	}
 
 }

@@ -4,7 +4,7 @@
 'use strict';
 
 //-- Start
-require('./helpers/alias');
+require('./helpers/alias')();
 const chalk    = require('chalk');
 const meow     = require('meow');
 const cli      = require('@absolunet/cli');

@@ -18,7 +18,7 @@ const MAIN_CONFIG_PATH = findUp.sync(MAIN_CONFIG, { cwd:process.cwd() });
 const ROOT = (() => {
 	const prjConfig = fss.readYaml(MAIN_CONFIG_PATH);
 
-	return slash(path.normalize(`${path.dirname(MAIN_CONFIG_PATH)}/${prjConfig.root}`)).replace(/\/$/, '');
+	return slash(path.normalize(`${path.dirname(MAIN_CONFIG_PATH)}/${prjConfig.root}`)).replace(/\/$/u, '');
 })();
 
 

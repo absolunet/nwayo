@@ -37,7 +37,7 @@ class Toolbox {
 
 	//-- Return merged streams or self-closing stream
 	mergeStreams(streams) {
-		return streams.length ? merge(...streams) : this.selfClosingStream();
+		return streams.length !== 0 ? merge(...streams) : this.selfClosingStream();
 	}
 
 
@@ -114,14 +114,14 @@ class Toolbox {
 	//-- Flatten keys
 	flattenKeys(data, { depth = '' } = {}) {
 		return deepKeys(data, true).filter((key) => {
-			return new RegExp(`^[a-z0-9-]+(\\.[a-z0-9-]+){0,${depth}}$`, 'i').test(key);
+			return new RegExp(`^[a-z0-9-]+(\\.[a-z0-9-]+){0,${depth}}$`, 'ui').test(key);
 		});
 	}
 
 
 	//-- Is kebab-case
 	isKebabCase(text) {
-		return (/^([a-z][a-z0-9]*)(-[a-z0-9]+)*$/).test(text);  // eslint-disable-line unicorn/no-unsafe-regex
+		return (/^([a-z][a-z0-9]*)(-[a-z0-9]+)*$/u).test(text);  // eslint-disable-line unicorn/no-unsafe-regex
 	}
 
 }

@@ -7,4 +7,6 @@ const fs          = require('fs');
 const moduleAlias = require('module-alias');
 
 
-moduleAlias.addAlias('~', fs.realpathSync(`${__dirname}/..`));
+module.exports = () => {
+	moduleAlias.addAlias('~', fs.realpathSync(`${__dirname}/..`));
+};

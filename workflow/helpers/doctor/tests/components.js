@@ -198,21 +198,19 @@ const componentDir = (component) => {
 
 class ComponentsTests extends Tests {
 
-	run() {
-		return new Promise((resolve) => {
+	// eslint-disable-next-line require-await
+	async run() {
 
-			// No files on root
-			reports.add(assert.hasNoFiles('/', { root }));
+		// No files on root
+		reports.add(assert.hasNoFiles('/', { root }));
 
-			//-- Components
-			const components = fss.scandir(`${paths.dir.components}`, 'dir');
-			components.forEach((component) => {
-				componentDir(component);
-			});
-
-			resolve(reports);
-
+		//-- Components
+		const components = fss.scandir(`${paths.dir.components}`, 'dir');
+		components.forEach((component) => {
+			componentDir(component);
 		});
+
+		return reports;
 	}
 
 }

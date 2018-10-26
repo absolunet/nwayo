@@ -39,11 +39,11 @@ const rename = (file) => {
 };
 
 const parseTitle = (str) => {
-	return (str.split('\n').shift().match(/^# ([^[]+)/) || ['', 'Untitled'])[1];
+	return (str.split('\n').shift().match(/^# ([^[]+)/u) || ['', 'Untitled'])[1];
 };
 
 const isBeingWritten = (str) => {
-	return (/> Being written/).test(str);
+	return (/> Being written/u).test(str);
 };
 
 const processNav = (tree, path = ROOT) => {
@@ -129,13 +129,13 @@ switch (task) {
 
 				const md = new MarkdownIt();
 				md.normalizeLink = (link) => {
-					if ((/^(http|\/)/).test(link)) {
+					if ((/^(http|\/)/u).test(link)) {
 						return link;
 					}
 
 					return link
-						.replace(/(.md)$/, '')
-						.replace(/^(\.\.\/\.\.\/ressources\/images)/, `${ROOT}/static/images/`)
+						.replace(/(.md)$/u, '')
+						.replace(/^(\.\.\/\.\.\/ressources\/images)/u, `${ROOT}/static/images/`)
 					;
 				};
 
@@ -160,11 +160,11 @@ switch (task) {
 					if (file === 'readme.md') {
 						md.set({ html:true });
 						content = content
-							.replace(/\]\(docs-sources\//g, `](${ROOT}/`)
-							.replace(/\]\(boilerplate\)/g, `](${GITHUB}/tree/master/boilerplate)`)
-							.replace(/https:\/\/github.com\/absolunet\/nwayo\/raw\/master\/ressources\/images\//g, `${ROOT}/static/images/`)
-							.replace(/nwayo\.png/g, `nwayo.svg`)
-							.replace(/\[\/\/\]: # \(Doc\)([\s\S]*?)\[\/\/\]: # \(\/Doc\)/g, '')
+							.replace(/\]\(docs-sources\//ug, `](${ROOT}/`)
+							.replace(/\]\(boilerplate\)/ug, `](${GITHUB}/tree/master/boilerplate)`)
+							.replace(/https:\/\/github.com\/absolunet\/nwayo\/raw\/master\/ressources\/images\//ug, `${ROOT}/static/images/`)
+							.replace(/nwayo\.png/ug, `nwayo.svg`)
+							.replace(/\[\/\/\]: # \(Doc\)([\s\S]*?)\[\/\/\]: # \(\/Doc\)/ug, '')
 						;
 
 						title = `nwayo ${version} - Documentation`;
