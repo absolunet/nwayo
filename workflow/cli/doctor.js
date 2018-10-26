@@ -5,11 +5,11 @@
 
 const chalk    = require('chalk');
 const figures  = require('figures');
-const ow       = require('ow');
 const cli      = require('@absolunet/cli');
 const terminal = require('@absolunet/terminal');
 const Task     = require('~/classes/task');
 const env      = require('~/helpers/env');
+const { ow }   = cli;
 
 
 const totals = {
@@ -76,7 +76,7 @@ class DoctorTask extends Task {
 		this.filename = __filename;
 	}
 
-	cli(meowCli) {
+	async cli(meowCli) {
 		cli.refuseArguments(meowCli);
 
 		const { verbose:flagVerbose } = cli.validateFlags(meowCli, {
@@ -90,65 +90,63 @@ class DoctorTask extends Task {
 
 		//-- Load here to speed up spinner first display
 		/* eslint-disable global-require */
-		const async     = require('async');
 		const pluralize = require('pluralize');
 		const fss       = require('@absolunet/fss');
 		const paths     = require('~/helpers/paths');
 		const tester    = require('~/helpers/doctor/tester');
 		/* eslint-enable global-require */
 
-		async.parallel({
-			general:    tester.general,
-			root:       tester.root,
-			bundles:    tester.bundles,
-			components: tester.components,
-			workflow:   tester.workflowUpdates,
-			vendors:    tester.vendorsUpdates,
-			sync:       tester.syncWorkflowToolbox
-		}, (error, data) => {
 
-			spinner.stop();
+		const [general, root, bundles, components, workflow, vendors, sync] = await Promise.all([
+			tester.general(),
+			tester.root(),
+			tester.bundles(),
+			tester.components(),
+			tester.workflowUpdates(),
+			tester.vendorsUpdates(),
+			tester.syncWorkflowToolbox()
+		]);
 
-			//-- Reports
-			reporter('General', data.general);
-			reporter('Root strucure', data.root);
-			reporter('Bundles', data.bundles);
-			reporter('Components', data.components);
-			reporter('Workflow', data.workflow);
-			reporter('Vendors', data.vendors);
-			reporter('Sync between workflow and toolbox', data.sync);
+		spinner.stop();
+
+		//-- Reports
+		reporter('General', general);
+		reporter('Root strucure', root);
+		reporter('Bundles', bundles);
+		reporter('Components', components);
+		reporter('Workflow', workflow);
+		reporter('Vendors', vendors);
+		reporter('Sync between workflow and toolbox', sync);
 
 
-			//-- Totals
-			terminal.spacer(2);
+		//-- Totals
+		terminal.spacer(2);
 
-			if (totals.success) {
-				terminal.echo(chalk.green(`${pluralize('test', totals.success, true)} passed`));
-			}
+		if (totals.success) {
+			terminal.echo(chalk.green(`${pluralize('test', totals.success, true)} passed`));
+		}
 
-			if (totals.failure) {
-				terminal.echo(chalk.red(`${pluralize('test', totals.failure, true)} failed`));
-			}
+		if (totals.failure) {
+			terminal.echo(chalk.red(`${pluralize('test', totals.failure, true)} failed`));
+		}
 
+		terminal.spacer();
+
+
+		//-- Reward
+		if (totals.failure === 0) {
+			const reward = fss.readFile(`${paths.workflow.ressources}/doctor-reward`, 'utf8');
+			const pink   = chalk.hex('#ff69b4');
+			const green  = chalk.hex('#198c19');
+
+			terminal.echo(reward
+				.replace(/_.--._/ug, `_${pink('.--.')}_`)
+				.replace(/`--'/ug, pink('`--\''))
+				.replace(/\(\)/ug, pink('()'))
+				.replace(/.==./ug, green('.==.')))
+			;
 			terminal.spacer();
-
-
-			//-- Reward
-			if (totals.failure === 0) {
-				const reward = fss.readFile(`${paths.workflow.ressources}/doctor-reward`, 'utf8');
-				const pink   = chalk.hex('#ff69b4');
-				const green  = chalk.hex('#198c19');
-
-				terminal.echo(reward
-					.replace(/_.--._/g, `_${pink('.--.')}_`)
-					.replace(/`--'/g, pink('`--\''))
-					.replace(/\(\)/g, pink('()'))
-					.replace(/.==./g, green('.==.')))
-				;
-				terminal.spacer();
-			}
-
-		});
+		}
 	}
 
 }

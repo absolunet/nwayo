@@ -8,8 +8,9 @@ const Reporter = require('~/classes/reporter');
 
 class Tests {
 
-	run() {
-		return Promise.resolve(new Reporter());
+	// eslint-disable-next-line require-await
+	async run() {
+		return new Reporter();
 	}
 
 }

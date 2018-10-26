@@ -55,42 +55,42 @@
 	cursor: pointer;
 
 	&:hover, &:focus, &:active {
-		$border-color:     $common-button-border-hover-color;
-		$background-color: $common-button-bg-hover-color;
-		$color:            $common-button-text-hover-color;
+		$hover-border-color:     $common-button-border-hover-color;
+		$hover-background-color: $common-button-bg-hover-color;
+		$hover-color:            $common-button-text-hover-color;
 
 		@if $type == secondary {
-			$border-color:     $common-button-secondary-border-hover-color;
-			$background-color: $common-button-secondary-bg-hover-color;
-			$color:            $common-button-secondary-text-hover-color;
+			$hover-border-color:     $common-button-secondary-border-hover-color;
+			$hover-background-color: $common-button-secondary-bg-hover-color;
+			$hover-color:            $common-button-secondary-text-hover-color;
 		} @else if $type == cta {
-			$border-color:     $common-button-cta-border-hover-color;
-			$background-color: $common-button-cta-bg-hover-color;
-			$color:            $common-button-cta-text-hover-color;
+			$hover-border-color:     $common-button-cta-border-hover-color;
+			$hover-background-color: $common-button-cta-bg-hover-color;
+			$hover-color:            $common-button-cta-text-hover-color;
 		}
-		border-color: $border-color;
-		background-color: $background-color;
-		color: $color;
+		border-color: $hover-border-color;
+		background-color: $hover-background-color;
+		color: $hover-color;
 		text-decoration: none;
 	}
 
 	&.disabled, &[disabled], fieldset[disabled] & {
-		$border-color:     $common-button-border-disabled-color;
-		$background-color: $common-button-bg-disabled-color;
-		$color:            $common-button-text-disabled-color;
+		$disabled-border-color:     $common-button-border-disabled-color;
+		$disabled-background-color: $common-button-bg-disabled-color;
+		$disabled-color:            $common-button-text-disabled-color;
 
 		@if $type == secondary {
-			$border-color:     $common-button-secondary-border-disabled-color;
-			$background-color: $common-button-secondary-bg-disabled-color;
-			$color:            $common-button-secondary-text-disabled-color;
+			$disabled-border-color:     $common-button-secondary-border-disabled-color;
+			$disabled-background-color: $common-button-secondary-bg-disabled-color;
+			$disabled-color:            $common-button-secondary-text-disabled-color;
 		} @else if $type == cta {
-			$border-color:     $common-button-cta-border-disabled-color;
-			$background-color: $common-button-cta-bg-disabled-color;
-			$color:            $common-button-cta-text-disabled-color;
+			$disabled-border-color:     $common-button-cta-border-disabled-color;
+			$disabled-background-color: $common-button-cta-bg-disabled-color;
+			$disabled-color:            $common-button-cta-text-disabled-color;
 		}
-		border-color: $border-color;
-		background-color: $background-color;
-		color: $color;
+		border-color: $disabled-border-color;
+		background-color: $disabled-background-color;
+		color: $disabled-color;
 		text-decoration: none;
 		cursor: not-allowed;
 		pointer-events: none;

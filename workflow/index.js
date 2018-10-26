@@ -3,7 +3,7 @@
 //--------------------------------------------------------
 'use strict';
 
-require('./helpers/alias');
+require('./helpers/alias')();
 
 
 /* eslint-disable global-require */

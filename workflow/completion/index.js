@@ -34,7 +34,7 @@ const level1Cmds = () => {
 
 	const list = [];
 	fs.readdirSync(`${__dirname}/../cli`).forEach((cmdName) => {
-		const [, cmd] = cmdName.match(/^([a-zA-Z0-9-]+).js$/) || [];
+		const [, cmd] = cmdName.match(/^([a-zA-Z0-9-]+).js$/u) || [];
 
 		if (cmd && cmd !== 'default') {
 			list.push(cmd);
@@ -53,13 +53,13 @@ const bundles = (root) => {
 
 	const list = [];
 	fs.readdirSync(dir).forEach((bundleName) => {
-		const [, bundle] = bundleName.match(/^([a-zA-Z0-9-]+)$/) || [];
+		const [, bundle] = bundleName.match(/^([a-zA-Z0-9-]+)$/u) || [];
 
 		if (bundle) {
 			list.push(bundle);
 
 			fs.readdirSync(`${dir}/${bundle}`).forEach((subbundleName) => {
-				const [, subbundle] = subbundleName.match(/^_([a-zA-Z0-9-]+)\.yaml$/) || [];
+				const [, subbundle] = subbundleName.match(/^_([a-zA-Z0-9-]+)\.yaml$/u) || [];
 
 				if (subbundle) {
 					list.push(`${bundle}:${subbundle}`);

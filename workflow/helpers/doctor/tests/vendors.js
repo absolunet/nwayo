@@ -20,10 +20,12 @@ const reports = new Reporter();
 
 class VendorsTests extends Tests {
 
-	run() {
-		return new Promise((resolve) => {
+	async run() {
 
-			if (fss.exists(paths.config.bower)) {
+		if (fss.exists(paths.config.bower)) {
+
+			// eslint-disable-next-line no-return-await
+			return await new Promise((resolve) => {
 
 				const isPreVersion = (v1, v2) => {
 					return ['premajor', 'preminor', 'prepatch', 'prerelease'].includes(semver.diff(v1, v2));
@@ -96,17 +98,16 @@ class VendorsTests extends Tests {
 
 					resolve(reports);
 				});
+			});
+		}
 
-			} else {
-				reports.add({
-					success: false,
-					message: `No bower.json file found`
-				});
 
-				resolve(reports);
-			}
-
+		reports.add({
+			success: false,
+			message: `No bower.json file found`
 		});
+
+		return reports;
 	}
 
 }

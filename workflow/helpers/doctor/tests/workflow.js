@@ -19,32 +19,29 @@ const reports = new Reporter();
 
 class WorkflowTests extends Tests {
 
-	run() {
-		return new Promise((resolve) => {
+	async run() {
 
-			const current = env.workflowPkg.version;
-			lastestVersion(env.pkgName).then((latest) => {
-				if (semver.gt(latest, current)) {
-					reports.add({
-						success: false,
-						message: 'Workflow is outdated:',
-						outdated: {
-							current: current,
-							latest:  latest
-						}
-					});
-				} else {
+		const current = env.workflowPkg.version;
+		const latest  = await lastestVersion(env.pkgName);
 
-					reports.add({
-						success: true,
-						message: `Workflow is cutting edge (${latest})`
-					});
+		if (semver.gt(latest, current)) {
+			reports.add({
+				success: false,
+				message: 'Workflow is outdated:',
+				outdated: {
+					current: current,
+					latest:  latest
 				}
-
-				resolve(reports);
-
 			});
-		});
+
+		} else {
+			reports.add({
+				success: true,
+				message: `Workflow is cutting edge (${latest})`
+			});
+		}
+
+		return reports;
 	}
 
 }

@@ -3,11 +3,11 @@
 //--------------------------------------------------------
 'use strict';
 
-const ow   = require('ow');
-const cli  = require('@absolunet/cli');
-const Task = require('~/classes/task');
-const env  = require('~/helpers/env');
-const util = require('~/helpers/util');
+const cli    = require('@absolunet/cli');
+const Task   = require('~/classes/task');
+const env    = require('~/helpers/env');
+const util   = require('~/helpers/util');
+const { ow } = cli;
 
 
 class RebuildTask extends Task {

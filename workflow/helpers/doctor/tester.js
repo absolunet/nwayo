@@ -19,52 +19,38 @@ const workflowTests   = require('./tests/workflow');
 class Tester {
 
 	//-- General checks (kebabCase, useless files)
-	general(cb) {
-		generalTests.run().then((reports) => {
-			cb(null, reports);
-		});
+	get general() {
+		return generalTests.run;
 	}
 
 	//-- Check if root structure and config files exists and are valid
-	root(cb) {
-		rootTests.run().then((reports) => {
-			cb(null, reports);
-		});
+	get root() {
+		return rootTests.run;
 	}
 
 	//-- Check if bundles are valid
-	bundles(cb) {
-		bundlesTests.run().then((reports) => {
-			cb(null, reports);
-		});
+	get bundles() {
+		return bundlesTests.run;
 	}
 
 	//-- Check if components are valid
-	components(cb) {
-		componentsTests.run().then((reports) => {
-			cb(null, reports);
-		});
+	get components() {
+		return componentsTests.run;
 	}
 
 	//-- Check if the workflow needs an update
-	workflowUpdates(cb) {
-		workflowTests.run().then((reports) => {
-			cb(null, reports);
-		});
+	get workflowUpdates() {
+		return workflowTests.run;
 	}
 
 	//-- Check if vendor packages need an update
-	vendorsUpdates(cb) {
-		vendorsTests.run().then((reports) => {
-			cb(null, reports);
-		});
+	get vendorsUpdates() {
+		return vendorsTests.run;
 	}
 
 	//-- Check if workflow and toolbox are at the same version
-	syncWorkflowToolbox(cb) {
-		syncTests.run().then((reports) => {
-			cb(null, reports);
-		});
+	get syncWorkflowToolbox() {
+		return syncTests.run;
 	}
 
 }

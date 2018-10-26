@@ -4,10 +4,10 @@
 'use strict';
 
 const spawn    = require('cross-spawn');
-const ow       = require('ow');
 const cli      = require('@absolunet/cli');
 const terminal = require('@absolunet/terminal');
 const Task     = require('~/classes/task');
+const { ow }   = cli;
 
 
 class DefaultTask extends Task {
