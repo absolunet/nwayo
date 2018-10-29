@@ -4,26 +4,26 @@
 
 /* -- Quick reference --
 
-	$konstan-color-black               #000000
-	$konstan-color-white               #ffffff
+	konstan-get('color.black')               #000000
+	konstan-get('color.white')               #ffffff
 
-	$konstan-color-logo-shell          #659d32
-	$konstan-color-logo-shell-shade    #618931
-	$konstan-color-logo-fruit          #423228
-	$konstan-color-logo-fruit-shade    #5e483c
+	konstan-get('color.logo-shell')          #659d32
+	konstan-get('color.logo-shell-shade')    #618931
+	konstan-get('color.logo-fruit')          #423228
+	konstan-get('color.logo-fruit-shade')    #5e483c
 
-	$konstan-color-charcoal            #36454f
-	$konstan-color-nickel              #727472
-	$konstan-color-battleship          #848482
-	$konstan-color-ash                 #b2beb5
-	$konstan-color-platinum            #e5e4e2
+	konstan-get('color.charcoal')            #36454f
+	konstan-get('color.nickel')              #727472
+	konstan-get('color.battleship')          #848482
+	konstan-get('color.ash')                 #b2beb5
+	konstan-get('color.platinum')            #e5e4e2
 
-	$konstan-color-success             #4fb980
-	$konstan-color-warning             #ffd061
-	$konstan-color-error               #d66161
+	konstan-get('color.success')             #4fb980
+	konstan-get('color.warning')             #ffd061
+	konstan-get('color.error')               #d66161
 
-	$konstan-font-base                 Open Sans
-	$konstan-font-alt                  Merriweather
+	konstan-get('font.base')                 Open Sans
+	konstan-get('font.alt')                  Merriweather
 
 */
 
@@ -32,42 +32,42 @@
 // stylelint-disable declaration-property-value-blacklist
 $common-column-gutter-size: rem-calc(15);
 $common-column-small-size:  rem-calc(290);
-$common-max-width-size:     rem-calc($konstan-dimension-max);
+$common-max-width-size:     rem-calc(konstan-get('dimension.max'));
 // stylelint-enable declaration-property-value-blacklist
 
 
 
 //-- Colors
-$common-base-color:            $konstan-color-charcoal;
-$common-primary-color:         $konstan-color-logo-shell;
-$common-alt-color:             $konstan-color-nickel;
-$common-bg-color:              $konstan-color-white;
-$common-bg-site-color:         $konstan-color-platinum;
-$common-bg-var1-color:         $konstan-color-ash;
-$common-bg-var2-color:         $konstan-color-ash;
+$common-base-color:            konstan-get('color.charcoal');
+$common-primary-color:         konstan-get('color.logo-shell');
+$common-alt-color:             konstan-get('color.nickel');
+$common-bg-color:              konstan-get('color.white');
+$common-bg-site-color:         konstan-get('color.platinum');
+$common-bg-var1-color:         konstan-get('color.ash');
+$common-bg-var2-color:         konstan-get('color.ash');
 
 $common-text-color:            $common-base-color;
-$common-text-var1-color:       $konstan-color-battleship;
-$common-text-var2-color:       $konstan-color-black;
+$common-text-var1-color:       konstan-get('color.battleship');
+$common-text-var2-color:       konstan-get('color.black');
 
-$common-border-color:          $konstan-color-nickel;
-$common-border-alt-color:      $konstan-color-ash;
+$common-border-color:          konstan-get('color.nickel');
+$common-border-alt-color:      konstan-get('color.ash');
 
 $common-link-color:            $common-primary-color;
-$common-link-hover-color:      $konstan-color-logo-shell-shade;
+$common-link-hover-color:      konstan-get('color.logo-shell-shade');
 
-$common-shadow-color:          $konstan-color-charcoal;
-$common-overlay-color:         rgba($konstan-color-charcoal, .7);
+$common-shadow-color:          konstan-get('color.charcoal');
+$common-overlay-color:         rgba(konstan-get('color.charcoal'), .7);
 
-$common-success-text-color:    $konstan-color-success;
-$common-warning-text-color:    $konstan-color-warning;
-$common-error-text-color:      $konstan-color-error;
+$common-success-text-color:    konstan-get('color.success');
+$common-warning-text-color:    konstan-get('color.warning');
+$common-error-text-color:      konstan-get('color.error');
 
 
 
 //-- Fonts
-$common-text-font:            $konstan-font-base, $nwayo-sansserif-font;
-$common-title-font:           $konstan-font-alt, $nwayo-sansserif-font;
+$common-text-font:            konstan-get('font.base'), $nwayo-sansserif-font;
+$common-title-font:           konstan-get('font.alt'), $nwayo-sansserif-font;
 $common-monospace-font:       Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', Courier, monospace;  // stylelint-disable-line value-keyword-case
 
 $common-text-slimmest-weight: $nwayo-thin-weight;
@@ -100,35 +100,35 @@ $common-content-lineheight:   1.5;
 
 
 //-- Buttons
-$common-button-bg-color:                        $konstan-color-logo-fruit;
-$common-button-bg-hover-color:                  $konstan-color-logo-fruit-shade;
-$common-button-bg-disabled-color:               $konstan-color-platinum;
-$common-button-text-color:                      $konstan-color-white;
-$common-button-text-hover-color:                $konstan-color-white;
-$common-button-text-disabled-color:             $konstan-color-ash;
-$common-button-border-color:                    $konstan-color-logo-fruit;
-$common-button-border-hover-color:              $konstan-color-logo-fruit-shade;
-$common-button-border-disabled-color:           $konstan-color-platinum;
+$common-button-bg-color:                        konstan-get('color.logo-fruit');
+$common-button-bg-hover-color:                  konstan-get('color.logo-fruit-shade');
+$common-button-bg-disabled-color:               konstan-get('color.platinum');
+$common-button-text-color:                      konstan-get('color.white');
+$common-button-text-hover-color:                konstan-get('color.white');
+$common-button-text-disabled-color:             konstan-get('color.ash');
+$common-button-border-color:                    konstan-get('color.logo-fruit');
+$common-button-border-hover-color:              konstan-get('color.logo-fruit-shade');
+$common-button-border-disabled-color:           konstan-get('color.platinum');
 
-$common-button-secondary-bg-color:              $konstan-color-white;
-$common-button-secondary-bg-hover-color:        $konstan-color-white;
-$common-button-secondary-bg-disabled-color:     $konstan-color-white;
-$common-button-secondary-text-color:            $konstan-color-logo-fruit;
-$common-button-secondary-text-hover-color:      $konstan-color-logo-fruit-shade;
-$common-button-secondary-text-disabled-color:   $konstan-color-ash;
-$common-button-secondary-border-color:          $konstan-color-logo-fruit;
-$common-button-secondary-border-hover-color:    $konstan-color-logo-fruit-shade;
-$common-button-secondary-border-disabled-color: $konstan-color-platinum;
+$common-button-secondary-bg-color:              konstan-get('color.white');
+$common-button-secondary-bg-hover-color:        konstan-get('color.white');
+$common-button-secondary-bg-disabled-color:     konstan-get('color.white');
+$common-button-secondary-text-color:            konstan-get('color.logo-fruit');
+$common-button-secondary-text-hover-color:      konstan-get('color.logo-fruit-shade');
+$common-button-secondary-text-disabled-color:   konstan-get('color.ash');
+$common-button-secondary-border-color:          konstan-get('color.logo-fruit');
+$common-button-secondary-border-hover-color:    konstan-get('color.logo-fruit-shade');
+$common-button-secondary-border-disabled-color: konstan-get('color.platinum');
 
-$common-button-cta-bg-color:                    $konstan-color-logo-shell;
-$common-button-cta-bg-hover-color:              $konstan-color-logo-shell-shade;
-$common-button-cta-bg-disabled-color:           lighten(desaturate($konstan-color-logo-shell-shade, 30%), 30%);
-$common-button-cta-text-color:                  $konstan-color-white;
-$common-button-cta-text-hover-color:            $konstan-color-white;
-$common-button-cta-text-disabled-color:         $konstan-color-platinum;
-$common-button-cta-border-color:                $konstan-color-logo-shell;
-$common-button-cta-border-hover-color:          $konstan-color-logo-shell-shade;
-$common-button-cta-border-disabled-color:       lighten(desaturate($konstan-color-logo-shell-shade, 30%), 30%);
+$common-button-cta-bg-color:                    konstan-get('color.logo-shell');
+$common-button-cta-bg-hover-color:              konstan-get('color.logo-shell-shade');
+$common-button-cta-bg-disabled-color:           lighten(desaturate(konstan-get('color.logo-shell-shade'), 30%), 30%);
+$common-button-cta-text-color:                  konstan-get('color.white');
+$common-button-cta-text-hover-color:            konstan-get('color.white');
+$common-button-cta-text-disabled-color:         konstan-get('color.platinum');
+$common-button-cta-border-color:                konstan-get('color.logo-shell');
+$common-button-cta-border-hover-color:          konstan-get('color.logo-shell-shade');
+$common-button-cta-border-disabled-color:       lighten(desaturate(konstan-get('color.logo-shell-shade'), 30%), 30%);
 
 
 
@@ -149,8 +149,8 @@ $common-button-cta-border-disabled-color:       lighten(desaturate($konstan-colo
 
 
 //-- Transitions
-$common-hover-transition:     $konstan-transition-hover * 1ms;
-$common-animation-transition: $konstan-transition-animation * 1ms;
+$common-hover-transition:     konstan-get('transition.hover') * 1ms;
+$common-animation-transition: konstan-get('transition.animation') * 1ms;
 
 
 
@@ -159,5 +159,5 @@ $common-animation-transition: $konstan-transition-animation * 1ms;
 
 //-- Special bp
 // stylelint-disable declaration-property-value-blacklist
-$common-xsmall-down-media: 'only screen and (max-width: #{rem-calc($konstan-dimension-xsmall)})';
+$common-xsmall-down-media: 'only screen and (max-width: #{rem-calc(konstan-get('dimension.xsmall'))})';
 // stylelint-enable declaration-property-value-blacklist

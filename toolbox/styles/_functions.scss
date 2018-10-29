@@ -7,23 +7,83 @@
 
 
 
+//-- Deep map: Path splitter
+@function nwayo-map-deep-split-path($path) {
+	$keys:      ();
+	$separator: '.';
+	$index:     str-index($path, $separator);
+
+	@while $index != null {
+		$item:  str-slice($path, 1, $index - 1);
+		$keys:  append($keys, $item);
+		$path:  str-slice($path, $index + 1);
+		$index: str-index($path, $separator);
+	}
+
+	@return append($keys, $path);
+}
+
+//-- Deep map: Has key
+@function nwayo-map-deep-has-key($map, $path) {
+	@each $key in nwayo-map-deep-split-path($path) {
+		@if map-has-key($map, $key) {
+			$map: map-get($map, $key);
+		} @else {
+			@return false;
+		}
+	}
+
+	@return true;
+}
+
+//-- Deep map: Get value
+@function nwayo-map-deep-get($map, $path) {
+	@each $key in nwayo-map-deep-split-path($path) {
+		@if $map != null {
+			@if map-has-key($map, $key) {
+				$map: map-get($map, $key);
+			} @else {
+				$map: null;
+			}
+		}
+	}
+
+	@return $map;
+}
+
+
+// Konstan shortcut: Get value
+@function konstan-get($path) {
+	@return nwayo-map-deep-get($konstan, $path);
+}
+
+// Konstan shortcut: Has key
+@function konstan-has-key($path) {
+	@return nwayo-map-deep-has-key($konstan, $path);
+}
+
+
+
+
+
+
 //-- Assets path
 @function nwayo-assets-path($file, $context, $type) {
 	@if $type == 'images' {
-		@return $konstan-path-images + '/' + $context + '/' + $file;
+		@return konstan-get('path.images') + '/' + $context + '/' + $file;
 	} @else if $type == 'inline' {
-		@return $konstan-path-inline + '/' + $context + '/' + $file;
+		@return konstan-get('path.inline') + '/' + $context + '/' + $file;
 	} @else if $type == 'fonts' {
-		@return $konstan-path-fonts + '/' + $context + '/' + $file;
+		@return konstan-get('path.fonts') + '/' + $context + '/' + $file;
 	}
 }
 
 //-- Build path
 @function nwayo-build-path($file, $context, $type) {
 	@if $type == 'images' {
-		@return $konstan-path-buildroot + '/images/' + $context + '/' + $file;
+		@return konstan-get('path.buildroot') + '/images/' + $context + '/' + $file;
 	} @else if $type == 'fonts' {
-		@return $konstan-path-buildroot + '/fonts/' + $context + '/' + $file;
+		@return konstan-get('path.buildroot') + '/fonts/' + $context + '/' + $file;
 	}
 }
 

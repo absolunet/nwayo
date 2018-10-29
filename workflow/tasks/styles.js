@@ -11,10 +11,12 @@ const cssnano      = require('gulp-cssnano');
 const gulpsass     = require('gulp-dart-sass');
 const gulpif       = require('gulp-if');
 const imagemin     = require('gulp-imagemin');
+const insert       = require('gulp-insert');
 const jsonsass     = require('gulp-json-sass');
 const rename       = require('gulp-rename');
 const sourcemaps   = require('gulp-sourcemaps');
 const stylelint    = require('gulp-stylelint');
+const jsonsassmap  = require('json-to-sass-map');
 const _            = require('lodash');
 const pluralize    = require('pluralize');
 const env          = require('~/helpers/env');
@@ -98,11 +100,14 @@ module.exports = () => {
 			const data = util.parseKonstan('styles', name, env.bundles[name].output);
 			data.bundle = `'${name}'`;
 
+			const konstanJson = JSON.stringify({ konstan:data });
+
 			/* eslint-disable function-paren-newline */
 			streams.push(
-				toolbox.vinylStream(paths.filename.konstanStyles, JSON.stringify({ konstan:data }))
+				toolbox.vinylStream(paths.filename.konstanStyles, konstanJson)
 					.pipe(toolbox.plumber())
 					.pipe(jsonsass())
+					.pipe(insert.prepend(`${jsonsassmap(konstanJson)}\n`))
 					.pipe(gulp.dest(`${paths.dir.cacheStyles}/${name}`))
 			);
 			/* eslint-enable function-paren-newline */
