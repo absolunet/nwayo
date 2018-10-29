@@ -65,7 +65,7 @@
 // ---------
 
 $global-font-size:                     100%;
-$global-width:                         rem-calc($konstan-dimension-max);  // stylelint-disable-line declaration-property-value-blacklist
+$global-width:                         rem-calc(konstan-get('dimension.max'));  // stylelint-disable-line declaration-property-value-blacklist
 $global-lineheight:                    $common-text-lineheight;
 $foundation-palette:                   (
 	primary:   $common-primary-color,
@@ -101,10 +101,10 @@ $print-transparent-backgrounds:        true;
 
 $breakpoints:        (
 	small:   0,
-	medium:  $konstan-dimension-small + 1,
-	large:   $konstan-dimension-medium + 1,
-	xlarge:  $konstan-dimension-large + 1,
-	xxlarge: $konstan-dimension-xlarge + 1,
+	medium:  konstan-get('dimension.small') + 1,
+	large:   konstan-get('dimension.medium') + 1,
+	xlarge:  konstan-get('dimension.large') + 1,
+	xxlarge: konstan-get('dimension.xlarge') + 1,
 );
 $print-breakpoint:   large;
 $breakpoint-classes: (small medium large);

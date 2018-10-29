@@ -29,7 +29,7 @@ const __ = {
 
 //-- Escape for regex usage
 const escapeForRegex = (string) => {
-	return string.replace(/[-/\\^$*+?.()|[\]{}]/ug, '\\$&');
+	return string.replace(/[/\\^$*+?.()|[\]{}]/ug, '\\$&');
 };
 
 
@@ -353,7 +353,13 @@ Run ${chalk.cyan('nwayo install workflow')} to update`,
 
 	//-- Load all tasks
 	loadAllTasks() {
-		Object.values(requireDir(paths.workflow.tasks)).forEach((task) => {
+		const tasks = requireDir(paths.workflow.tasks, {
+			filter: (taskPath) => {
+				return !['rebuild', 'watch'].includes(path.basename(taskPath, '.js'));
+			}
+		});
+
+		Object.values(tasks).forEach((task) => {
 			task();
 		});
 	}

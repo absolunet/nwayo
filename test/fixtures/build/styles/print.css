@@ -3,26 +3,26 @@
  */
 /* -- Quick reference --
 
-	$konstan-color-black               #000000
-	$konstan-color-white               #ffffff
+	konstan-get('color.black')               #000000
+	konstan-get('color.white')               #ffffff
 
-	$konstan-color-logo-shell          #659d32
-	$konstan-color-logo-shell-shade    #618931
-	$konstan-color-logo-fruit          #423228
-	$konstan-color-logo-fruit-shade    #5e483c
+	konstan-get('color.logo-shell')          #659d32
+	konstan-get('color.logo-shell-shade')    #618931
+	konstan-get('color.logo-fruit')          #423228
+	konstan-get('color.logo-fruit-shade')    #5e483c
 
-	$konstan-color-charcoal            #36454f
-	$konstan-color-nickel              #727472
-	$konstan-color-battleship          #848482
-	$konstan-color-ash                 #b2beb5
-	$konstan-color-platinum            #e5e4e2
+	konstan-get('color.charcoal')            #36454f
+	konstan-get('color.nickel')              #727472
+	konstan-get('color.battleship')          #848482
+	konstan-get('color.ash')                 #b2beb5
+	konstan-get('color.platinum')            #e5e4e2
 
-	$konstan-color-success             #4fb980
-	$konstan-color-warning             #ffd061
-	$konstan-color-error               #d66161
+	konstan-get('color.success')             #4fb980
+	konstan-get('color.warning')             #ffd061
+	konstan-get('color.error')               #d66161
 
-	$konstan-font-base                 Open Sans
-	$konstan-font-alt                  Merriweather
+	konstan-get('font.base')                 Open Sans
+	konstan-get('font.alt')                  Merriweather
 
 */
 /* ... */

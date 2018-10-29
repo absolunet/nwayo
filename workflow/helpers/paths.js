@@ -28,7 +28,7 @@ const ROOT = (() => {
 
 const pattern = {};
 pattern.anytree = '**';
-pattern.babel   = `^/?##includes##(\\${CACHE}|${BOWER}|components/.*/scripts/${NOLINT}/)`;  // https://regex101.com/r/kIKuJW/1
+pattern.babel   = `^\\/?##includes##(\\${CACHE}|${BOWER}|components\\/.*\\/scripts\\/${NOLINT}\\/)`;  // https://regex101.com/r/kIKuJW/1
 
 const ext = {};
 ext.bundles     = 'yaml';

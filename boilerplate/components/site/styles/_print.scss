@@ -2,7 +2,7 @@
 //-- Site - Print
 //-------------------------------------
 
-$site-print-color: $konstan-color-black;
+$site-print-color: konstan-get('color.black');
 
 @media print {
 	@page {
