@@ -6,4 +6,5 @@
 - [Assets](assets)
 - [Scripts](scripts)
 - [Styles](styles)
+- [Extensions](extensions)
 - [Migration](migration)
