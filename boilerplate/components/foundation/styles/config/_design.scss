@@ -294,6 +294,7 @@ $button-opacity-disabled:           .25;
 $button-background-hover-lightness: -20%;
 $button-hollow-hover-lightness:     -50%;
 $button-transition:                 background-color $common-hover-transition ease-out, color $common-hover-transition ease-out;
+$button-responsive-expanded:        false;
 
 // 12. Button Group
 // ----------------
@@ -470,7 +471,6 @@ $menu-simple-margin:          1em;
 $menu-item-color-active:      $common-bg-color;
 $menu-item-background-active: $common-primary-color;
 $menu-icon-spacing:           .25em;
-$menu-item-background-hover:  $common-bg-var1-color;
 $menu-state-back-compat:      true;
 $menu-centered-back-compat:   true;
 $menu-icons-back-compat:      true;
@@ -794,7 +794,6 @@ $tab-active-color:          $common-primary-color;
 $tab-item-font-size:        $common-text-tiny-size;
 $tab-item-background-hover: $common-bg-color;
 $tab-item-padding:          1.65em 2em;
-$tab-expand-max:            6;
 $tab-content-background:    $common-bg-color;
 $tab-content-border:        $common-bg-var1-color;
 $tab-content-color:         $body-font-color;

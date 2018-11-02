@@ -14,34 +14,34 @@
 ///
 /// @returns {List} A list of converted values.
 @function rem-calc($values, $base: null) {
-  $rem-values: ();
-  $count: length($values);
+	$rem-values: ();
+	$count: length($values);
 
-  // If no base is defined, defer to the global font size
-  @if $base == null {
-    $base: $nwayo-basic-size * 1px;
-  }
+	// If no base is defined, defer to the global font size
+	@if $base == null {
+		$base: $nwayo-basic-size * 1px;  // stylelint-disable-line unit-whitelist
+	}
 
-  // If the base font size is a %, then multiply it by 16px
-  // This is because 100% font size = 16px in most all browsers
-  @if unit($base) == '%' {
-    $base: ($base / 100%) * 16px;
-  }
+	// If the base font size is a %, then multiply it by 16px
+	// This is because 100% font size = 16px in most all browsers
+	@if unit($base) == '%' {
+		$base: ($base / 100%) * 16px;  // stylelint-disable-line unit-whitelist
+	}
 
-  // Using rem as base allows correct scaling
-  @if unit($base) == 'rem' {
-    $base: strip-unit($base) * 16px;
-  }
+	// Using rem as base allows correct scaling
+	@if unit($base) == 'rem' {
+		$base: strip-unit($base) * 16px;  // stylelint-disable-line unit-whitelist
+	}
 
-  @if $count == 1 {
-    @return ___-zf-to-rem___($values, $base);
-  }
+	@if $count == 1 {
+		@return ___-zf-to-rem___($values, $base);
+	}
 
-  @for $i from 1 through $count {
-    $rem-values: append($rem-values, ___-zf-to-rem___(nth($values, $i), $base));
-  }
+	@for $i from 1 through $count {
+		$rem-values: append($rem-values, ___-zf-to-rem___(nth($values, $i), $base));
+	}
 
-  @return $rem-values;
+	@return $rem-values;
 }
 
 
@@ -53,29 +53,29 @@
 /// @param {Number} $base [null] - Base for pixel conversion.
 ///
 /// @returns {Number} A number in rems, calculated based on the given value and the base pixel value. rem values are passed through as is.
-@function ___-zf-to-rem___($value, $base: null) {
-  // Check if the value is a number
-  @if type-of($value) != 'number' {
-    @warn inspect($value) + ' was passed to rem-calc(), which is not a number.';
-    @return $value;
-  }
+@function ___-zf-to-rem___($value, $base: null) {  // stylelint-disable-line scss/at-function-pattern
+	// Check if the value is a number
+	@if type-of($value) != 'number' {
+		@warn inspect($value) + ' was passed to rem-calc(), which is not a number.';
+		@return $value;
+	}
 
-  // Transform em into rem if someone hands over 'em's
-  @if unit($value) == 'em' {
-    $value: ___strip-unit___($value) * 1rem;
-  }
+	// Transform em into rem if someone hands over 'em's
+	@if unit($value) == 'em' {
+		$value: ___strip-unit___($value) * 1rem;  // stylelint-disable-line unit-whitelist
+	}
 
-  // Calculate rem if units for $value is not rem or em
-  @if unit($value) != 'rem' {
-    $value: ___strip-unit___($value) / ___strip-unit___($base) * 1rem;
-  }
+	// Calculate rem if units for $value is not rem or em
+	@if unit($value) != 'rem' {
+		$value: ___strip-unit___($value) / ___strip-unit___($base) * 1rem;  // stylelint-disable-line unit-whitelist
+	}
 
-  // Turn 0rem into 0
-  @if $value == 0rem {
-    $value: 0;
-  }
+	// Turn 0rem into 0
+	@if $value == 0rem {  // stylelint-disable-line length-zero-no-unit
+		$value: 0;
+	}
 
-  @return $value;
+	@return $value;
 }
 
 
@@ -85,6 +85,6 @@
 /// @param {Number} $num - Number to strip unit from.
 ///
 /// @returns {Number} The same number, sans unit.
-@function ___strip-unit___($num) {
-  @return $num / ($num * 0 + 1);
+@function ___strip-unit___($num) {  // stylelint-disable-line scss/at-function-pattern
+	@return $num / ($num * 0 + 1);
 }
