@@ -16,9 +16,9 @@ const jsonsass     = require('gulp-json-sass');
 const rename       = require('gulp-rename');
 const sourcemaps   = require('gulp-sourcemaps');
 const stylelint    = require('gulp-stylelint');
-const jsonsassmap  = require('json-to-sass-map');
 const _            = require('lodash');
 const pluralize    = require('pluralize');
+const jsonToScss   = require('@absolunet/json-to-scss');
 const env          = require('~/helpers/env');
 const flow         = require('~/helpers/flow');
 const paths        = require('~/helpers/paths');
@@ -107,7 +107,7 @@ module.exports = () => {
 				toolbox.vinylStream(paths.filename.konstanStyles, konstanJson)
 					.pipe(toolbox.plumber())
 					.pipe(jsonsass())
-					.pipe(insert.prepend(`${jsonsassmap(konstanJson)}\n`))
+					.pipe(insert.prepend(`${jsonToScss.convert(konstanJson)}\n\n`))
 					.pipe(gulp.dest(`${paths.dir.cacheStyles}/${name}`))
 			);
 			/* eslint-enable function-paren-newline */

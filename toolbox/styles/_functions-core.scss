@@ -1,0 +1,60 @@
+//-------------------------------------
+//-- nwayo - Functions - Core
+//-------------------------------------
+
+// Konstan shortcut: Get value
+@function konstan-get($path) {
+	@return nwayo-map-deep-get($konstan, $path);
+}
+
+// Konstan shortcut: Has key
+@function konstan-has-key($path) {
+	@return nwayo-map-deep-has-key($konstan, $path);
+}
+
+
+
+//-- Assets path
+@function nwayo-assets-path($file, $context, $type) {
+	@if $type == 'images' {
+		@return konstan-get('path.images') + '/' + $context + '/' + $file;
+	} @else if $type == 'inline' {
+		@return konstan-get('path.inline') + '/' + $context + '/' + $file;
+	} @else if $type == 'fonts' {
+		@return konstan-get('path.fonts') + '/' + $context + '/' + $file;
+	}
+}
+
+//-- Build path
+@function nwayo-build-path($file, $context, $type) {
+	@if $type == 'images' {
+		@return konstan-get('path.buildroot') + '/images/' + $context + '/' + $file;
+	} @else if $type == 'fonts' {
+		@return konstan-get('path.buildroot') + '/fonts/' + $context + '/' + $file;
+	}
+}
+
+
+
+//-- Get a relative z-index for the scope
+@function nwayo-zindex($scopes, $scope, $delta:0) {
+	@return map-get($scopes, $scope) + $delta;
+}
+
+
+
+//-- Simulate a breakpoint
+@function nwayo-breakpoint-media($bp, $direction) {
+	@if ($direction == up) {
+		@return 'screen and (min-width: #{($bp + 1) / $nwayo-basic-size * 1em})';
+	} @else if ($direction == down) {
+		@return 'screen and (max-width: #{$bp / $nwayo-basic-size * 1em})';
+	}
+}
+
+
+
+//-- Return cache invalidation query string
+@function nwayo-cacheinvalidator-querystring($file) {
+	@return '?v=' + nwayodart-checksum($file);
+}

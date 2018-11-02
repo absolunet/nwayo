@@ -3,6 +3,8 @@
 //-------------------------------------
 
 @import 'variables';
-@import 'functions';
+@import 'functions-core';
+@import 'functions-helpers';
+@import 'functions-remcalc';
 @import 'mixins-core';
 @import 'mixins-helpers';
