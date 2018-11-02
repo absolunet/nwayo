@@ -2,13 +2,13 @@
 <html lang="en-CA" class="no-js">
 <head>
 	<meta charset="utf-8">
-	<title>Styles - nwayo</title>
+	<title>3.4.x → 3.5.x - nwayo</title>
 
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta http-equiv="cleartype" content="on">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="canonical" href="https://absolunet.github.io/nwayo/styles" />
+	<link rel="canonical" href="https://absolunet.github.io/nwayo/migration/3.4.x-3.5.x" />
 
 	<link rel="shortcut icon"    href="/nwayo/static/icons/favicon.ico">
 	<link rel="apple-touch-icon" href="/nwayo/static/icons/touch-57.png">
@@ -136,7 +136,7 @@
 	
 		<li>
 			
-				<a href="/nwayo/migration" >Migration</a>
+				<a href="/nwayo/migration" class="active">Migration</a>
 			
 
 			
@@ -152,7 +152,7 @@
 	
 		<li>
 			
-				<a href="/nwayo/migration/3.4.x-3.5.x" >3.4.x → 3.5.x</a>
+				<span>3.4.x → 3.5.x</span>
 			
 
 			
@@ -202,7 +202,7 @@
 	
 		<li>
 			
-				<span>Styles</span>
+				<a href="/nwayo/styles" >Styles</a>
 			
 
 			
@@ -242,14 +242,78 @@
 		</nav>
 
 		<main>
-			<h1>Styles</h1>
+			<h1>3.4.x → 3.5.x</h1>
+<p><a href="https://github.com/absolunet/nwayo/compare/3.4.0...3.5.0" class="external" rel="external">View the source differences on GitHub</a></p>
+<h2 id="key-changes"><a class="anchor" href="#key-changes" aria-hidden="true">⚭</a> Key changes</h2>
 <ul>
-<li><a href="fonts">Fonts</a></li>
-<li><a href="images">Images</a></li>
-<li><a href="inline-images">Inline images</a></li>
+<li>Workflow rewritten from Gulp 3 to Gulp 4</li>
+<li>PubSub and <code>$.when()</code> replaced by <a href="https://github.com/absolunet/pinki" class="external" rel="external">pinki</a></li>
+<li>Moved <code>app.lazyload</code> to newly created scope <code>toolbox</code></li>
+<li>Docs structure added</li>
+<li>SublimeText removed as default editor</li>
+<li>Cleanup of Bower dependencies names</li>
+<li>Maintenance updates to dependencies and linters</li>
+</ul>
+<h2 id="what-to-do"><a class="anchor" href="#what-to-do" aria-hidden="true">⚭</a> What to do</h2>
+<p>Update version in <code>bower.json</code> and <code>package.json</code> (duh...)</p>
+<h3 id="base-config-files"><a class="anchor" href="#base-config-files" aria-hidden="true">⚭</a> Base config files</h3>
+<p>Copy these files from <a href="https://github.com/absolunet/nwayo/tree/3.5.0/boilerplate" class="external" rel="external"><code>boilerplate</code></a></p>
+<ul>
+<li><a href="https://github.com/absolunet/nwayo/tree/3.5.0/boilerplate/.editorconfig" class="external" rel="external"><code>.editorconfig</code></a></li>
+<li><a href="https://github.com/absolunet/nwayo/tree/3.5.0/boilerplate/.eslintignore" class="external" rel="external"><code>.eslintignore</code></a></li>
+<li><a href="https://github.com/absolunet/nwayo/tree/3.5.0/boilerplate/.gitignore" class="external" rel="external"><code>.gitignore</code></a></li>
+<li><a href="https://github.com/absolunet/nwayo/tree/3.5.0/boilerplate/.stylelintignore" class="external" rel="external"><code>.stylelintignore</code></a></li>
+</ul>
+<p>Remove these files</p>
+<ul>
+<li><code>.sublimelinterrc</code></li>
+<li><code>*.sublime-project</code></li>
+</ul>
+<h3 id="bower"><a class="anchor" href="#bower" aria-hidden="true">⚭</a> Bower</h3>
+<p>Replace <code>pubsub-js</code> with <code>pinki</code></p>
+<p>Verify renames of these packages</p>
+<ul>
+<li><code>colorbox</code> → <code>jquery-colorbox</code></li>
+<li><code>elevatezoom-plus</code> → <code>ez-plus</code></li>
+<li><code>gmaps-markerclusterer-plus</code> → <code>markerclustererplus</code></li>
+<li><code>isotope</code> → <code>isotope-layout</code></li>
+<li><code>jquery.cookie</code> → <code>js-cookie</code></li>
+<li><code>jquery.inputmask</code> → <code>inputmask</code></li>
+<li><code>jquery-json</code> → <code>json2</code></li>
+<li><code>jscrollpane</code> → <code>jScrollPane</code></li>
+<li><code>masonry</code> → <code>masonry-layout</code></li>
+<li><code>select2-dist</code> → <code>select2</code></li>
+<li><code>slick.js</code> → <code>slick-carousel</code></li>
+<li><code>SVGInjector</code> → <code>svg-injector</code></li>
+</ul>
+<h3 id="bundles"><a class="anchor" href="#bundles" aria-hidden="true">⚭</a> Bundles</h3>
+<ul>
+<li>Replace <a href="https://github.com/absolunet/nwayo/blob/3.5.0/boilerplate/bundles/site/_dependencies.yaml" class="external" rel="external"><code>_dependencies.yaml</code></a></li>
+<li>Add newly created collection (<code>dependencies-head-sync.js</code>) to <code>&lt;head&gt;</code> to be loaded synchronously</li>
+<li>Change <code>babel</code> and <code>autoprefixer</code> rules to <code>&gt; .25%</code> (<a href="https://jamie.build/last-2-versions" class="external" rel="external">inspiration</a>)</li>
+<li>Add <code>bower_components/pinki/index.js</code> to <code>allowBabel</code></li>
+</ul>
+<h3 id="js"><a class="anchor" href="#js" aria-hidden="true">⚭</a> JS</h3>
+<p>Replace the queuing</p>
+<ul>
+<li><code>$.when(DOM_PARSE).done()</code> → <code>pinki.vow.when(DOM_PARSED).then()</code></li>
+<li><code>$.when(DOCUMENT_LOAD).done()</code> → <code>pinki.vow.when(DOCUMENT_LOADED).then()</code></li>
+<li><code>$.when(GLOBAL_JQUERY_LOAD).then(($Global) =&gt; {})</code> → <code>pinki.vow.when(GLOBAL_JQUERY_LOADED).then(([$Global]) =&gt; {})</code></li>
+</ul>
+<p>Replace PubSub</p>
+<ul>
+<li><code>PubSub.subscribe()</code> → <code>pinki.message.subscribe()</code></li>
+<li><code>PubSub.publish()</code> → <code>pinki.message.publish()</code>  <strong>IMPORTANT! Also check outside nwayo for these calls</strong></li>
+</ul>
+<p>Replace lazyload</p>
+<ul>
+<li><code>app.lazyload</code> → <code>toolbox.lazyload</code></li>
+<li><code>PubSub.subscribe(`${PROJECT}.common.lazyload.preprocess-completed`)</code> → <code>pinki.message.subscribe('nwayo.toolbox.lazyload.preprocess-completed')</code></li>
+<li><code>PubSub.subscribe(`${PROJECT}.common.lazyload.firstPass-completed`)</code> → <code>pinki.message.subscribe('nwayo.toolbox.lazyload.firstPass-completed')</code></li>
+<li><code>PubSub.subscribe(`${PROJECT}.common.lazyload.secondPass-completed`)</code> → <code>pinki.message.subscribe('nwayo.toolbox.lazyload.secondPass-completed')</code></li>
 </ul>
 
-			<p class="edit-page"><a href="https://github.com/absolunet/nwayo/blob/master/docs-sources/styles/readme.md" rel="external">Edit this page</a></p>
+			<p class="edit-page"><a href="https://github.com/absolunet/nwayo/blob/master/docs-sources/migration/3.4.x-3.5.x.md" rel="external">Edit this page</a></p>
 		</main>
 	</div>
 

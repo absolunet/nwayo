@@ -23,7 +23,7 @@ Files are only copied.
 ## Usage
 In scripts, the path to these files can be access via `app.path.raw`.
 
-In styles, the path to these files can be access via `$konstan-path-raw`.
+In styles, the path to these files can be access via `konstan-get('path-raw')`.
 
 
 ## Bundles
