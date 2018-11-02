@@ -3,6 +3,6 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "@absolunet/nwayo-workflow": "3.6.0-beta.6"
+    "@absolunet/nwayo-workflow": "3.6.0-rc.1"
   }
 }
