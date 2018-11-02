@@ -1,5 +1,5 @@
 //-------------------------------------
-//-- Foundation - 6.4.3
+//-- Foundation - 6.5.0
 //-------------------------------------
 
 //= require bower_components/foundation-sites/dist/js/plugins/foundation.core
@@ -11,7 +11,6 @@
 //= **require bower_components/foundation-sites/dist/js/plugins/foundation.util.motion
 //= **require bower_components/foundation-sites/dist/js/plugins/foundation.util.nest
 //= **require bower_components/foundation-sites/dist/js/plugins/foundation.util.timer
-//= **require bower_components/foundation-sites/dist/js/plugins/foundation.util.timerAndImageLoader
 //= **require bower_components/foundation-sites/dist/js/plugins/foundation.util.touch
 //= **require bower_components/foundation-sites/dist/js/plugins/foundation.util.triggers
 
@@ -36,4 +35,3 @@
 //= **require bower_components/foundation-sites/dist/js/plugins/foundation.tabs
 //= **require bower_components/foundation-sites/dist/js/plugins/foundation.toggler
 //= **require bower_components/foundation-sites/dist/js/plugins/foundation.tooltip
-//= **require bower_components/foundation-sites/dist/js/plugins/foundation.zf.responsiveAccordionTabs

@@ -3,7 +3,7 @@
   "private": true,
 
   "devDependencies": {
-    "foundation-sites": "6.4.3",
+    "foundation-sites": "6.5.0",
     "imagesloaded":     "4.1.4",
     "jquery":           "3.3.1",
     "jsrender":         "0.9.91",
@@ -24,14 +24,14 @@
     "inputmask":                     "4.0.2",
     "isotope-layout":                "3.0.6",
     "jcarousellite":                 "master",
-    "jquery-ajax-unobtrusive":       "3.2.5",
+    "jquery-ajax-unobtrusive":       "3.2.6",
     "jquery-colorbox":               "1.6.4",
     "jquery-deparam":                "0.5.1",
     "jquery-hashchange":             "master",
     "jquery-powertip":               "1.3.1",
     "jquery-ui":                     "1.12.1",
     "jquery-validation":             "1.18.0",
-    "jquery-validation-unobtrusive": "3.2.10",
+    "jquery-validation-unobtrusive": "3.2.11",
     "jquery.bbq":                    "1.2.1",
     "jquery.scrollTo":               "2.1.2",
     "js-cookie":                     "2.2.0",
@@ -43,7 +43,7 @@
     "select2":                       "4.0.5",
     "slick-carousel":                "1.8.1",
     "svg-injector":                  "1.1.3",
-    "video.js":                      "7.2.4",
+    "video.js":                      "7.3.0",
     "webfontloader":                 "1.6.28"
   }
 }
