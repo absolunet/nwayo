@@ -139,7 +139,7 @@ class Util {
 
 	//-- Babel processing
 	babelProcess(options, targets, allowed) {
-		const babel = require('babel-core');  // eslint-disable-line global-require, Babel is really heavy on load
+		const babel = require('@babel/core');  // eslint-disable-line global-require, Babel is really heavy on load
 
 		const { fullPath, rawPath } = options;
 		let { content } = options;

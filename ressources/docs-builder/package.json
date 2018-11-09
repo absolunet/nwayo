@@ -1,37 +1,45 @@
 {
-  "name": "doc-builder",
+  "name": "nwayo-docs",
   "license": "UNLICENSED",
   "private": true,
+  "homepage": "https://absolunet.github.io/nwayo",
   "dependencies": {
+    "axios": "0.18.0",
+    "react": "16.6.1",
+    "react-dom": "16.6.1",
+    "react-hot-loader": "4.3.12",
+    "react-router-dom": "4.3.1"
+  },
+  "devDependencies": {
+    "@absolunet/eslint-config-nwayo": "1.2.0",
+    "@absolunet/eslint-config-react": "0.2.0",
     "@absolunet/fss": "1.3.2",
     "@absolunet/gulp-include": "0.5.1",
-    "babel-core": "6.26.3",
-    "babel-preset-env": "1.7.0",
-    "gh-pages": "2.0.0",
+    "@absolunet/stylelint-config-nwayo": "1.1.0",
+    "@absolunet/tester": "2.3.1",
+    "@babel/cli": "7.1.5",
+    "@babel/core": "7.1.5",
+    "@babel/preset-env": "7.1.5",
+    "@babel/preset-react": "7.0.0",
+    "babel-loader": "8.0.4",
+    "gh-pages": "2.0.1",
     "gulp": "4.0.0",
     "gulp-cssnano": "2.1.3",
     "gulp-dart-sass": "0.9.1",
     "gulp-uglify": "3.0.1",
-    "inquirer": "6.2.0",
-    "jsrender": "0.9.91",
+    "html-to-react": "1.3.3",
     "markdown-it": "8.4.2",
     "markdown-it-anchor": "5.0.2",
     "markdown-it-external-links": "0.0.6",
-    "mime-types": "2.1.20",
-    "minimist": "1.2.0",
-    "sass": "1.14.1",
+    "sass": "1.14.3",
     "scandirectory": "3.0.1",
-    "uglify-js": "3.4.9"
-  },
-  "devDependencies": {
-    "@absolunet/eslint-config-nwayo": "1.1.1",
-    "@absolunet/stylelint-config-nwayo": "1.0.3",
-    "@absolunet/tester": "2.1.1"
+    "uglify-js": "3.4.9",
+    "webpack": "4.25.1",
+    "webpack-cli": "3.1.2",
+    "webpack-dev-server": "3.1.10"
   },
   "scripts": {
-    "start": "docker run -t -d --rm -v \"/tmp/ghpages-nwayo\":/usr/src/app -p \"4000:4000\" --name ghpages-nwayo starefossen/github-pages; sleep 1; open http://localhost:4000/nwayo",
-    "stop": "docker stop ghpages-nwayo",
-    "build": "node index.js --task=build",
-    "build-local": "node index.js --task=build --local"
+    "start": "webpack-dev-server --mode development",
+    "build": "node build.js; webpack --mode production"
   }
 }

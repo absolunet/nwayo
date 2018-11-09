@@ -1,0 +1,240 @@
+//-------------------------------------
+//-- Docs - Base
+//-------------------------------------
+
+html, body {
+	background-color: $docs-footer-bg-color;
+}
+
+a {
+	transition: color, $docs-transition;
+}
+
+pre[class*='language-'] {
+	border-radius: $docs-code-radius;
+}
+
+code[class*='language-'] {
+	font-family: $docs-monospace-font !important;
+	font-size: $docs-code-size;
+}
+
+code:not([class]) {
+	padding: .2em .5em;
+	border-radius: $docs-code-radius;
+	margin: 0 .2em;
+	font-size: $docs-code-size;
+}
+
+h2, h3, h4, h5, h6 {
+	margin-top: 1.5em;
+}
+
+
+
+
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: $docs-header-zindex;
+	width: 100%;
+	padding: 1em 1em 1em 5em;
+	background-color: $docs-header-bg-color;
+
+	.nwayo {
+		display: inline;
+		margin: 0;
+		line-height: 1.3;
+
+		a {
+			color: $docs-header-name-color;
+			font-family: $docs-title-font;
+			font-size: $docs-header-name-size;
+			font-weight: $docs-title-weight;
+		}
+
+		.logo {
+			position: absolute;
+			top: .5em;
+			left: 1em;
+			width: 2.7em;
+			height: 2.1em;
+		}
+
+		.version {
+			position: relative;
+			top: -.1em;
+			padding: 0 0 0 .5em;
+			color: $docs-header-version-color;
+			font-family: $docs-monospace-font;
+			font-size: $docs-header-version-size;
+		}
+	}
+
+	.github {
+		position: relative;
+		float: right;
+		color: $vendor-github-color;
+
+		&::before {
+			@include docs-image-styles(github, $vendor-github-color);
+			content: '';
+			position: absolute;
+			top: 0;
+			left: -2em;
+			width: 1.5em;
+			height: 1.5em;
+			transition: background-image, $docs-transition;
+		}
+
+		&:hover {
+			color: $vendor-github-alt-color;
+
+			&::before {
+				@include docs-image-styles(github, $vendor-github-alt-color);
+			}
+		}
+	}
+}
+
+
+.container {
+	@include xy-grid();
+	margin: 3.5em 0 0;
+	background-color: $docs-main-bg-color;
+}
+
+nav {
+	@include xy-cell(1 of 4);
+	padding: 1em;
+	margin-left: 0;
+	background-color: $docs-nav-bg-color;
+
+	ul {
+		list-style: none;
+	}
+
+	a {
+		color: $docs-nav-link-color;
+
+		&.active {
+			font-weight: $docs-nav-active-weight;
+		}
+	}
+
+	span {
+		color: $docs-nav-current-color;
+		font-weight: $docs-nav-active-weight;
+	}
+
+	> ul {
+		margin: 0;
+	}
+}
+
+main {
+	@include xy-cell(3 of 4);
+	max-width: 60em;
+	min-height: calc(100vh - 7em);
+	padding: 3em 1em 1em;
+	margin: 0 auto;
+
+	h1, h2, h3, h4, h5, h6 {
+		position: relative;
+
+		/* stylelint-disable unit-whitelist */
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: -2rem;
+			display: block;
+			width: 2rem;
+			height: 2rem;
+		}
+
+		&:hover .anchor {
+			display: block;
+		}
+
+		.anchor {
+			position: absolute;
+			top: 5%;
+			left: -1.5rem;
+			display: none;
+			color: $docs-main-anchor-color;
+			font-size: $docs-main-anchor-size;
+		}
+
+		/* stylelint-enable unit-whitelist */
+	}
+
+	.external::after {
+		content: '⇗';
+		position: relative;
+		top: .1em;
+		vertical-align: top;
+		margin: 0 .2em;
+		font-size: $docs-main-external-size;
+	}
+
+	.edit-page {
+		float: right;
+		margin: 3em 0 0;
+
+		&::before {
+			content: '[ ';
+		}
+
+		&::after {
+			content: ' ]';
+		}
+	}
+
+	.loading {
+		vertical-align: middle;
+		width: 100%;
+		height: 100%;
+		padding-top: 50%;
+		text-align: center;
+	}
+}
+
+footer {
+	padding: .5em 1em 1em;
+	color: $docs-footer-text-color;
+	text-align: center;
+
+	a {
+		color: $docs-footer-text-color;
+
+		&:hover {
+			color: $docs-footer-link-color;
+		}
+	}
+
+	.made {
+		&::before {
+			content: $nwayo-bull-char;
+			margin: 0 1em;
+		}
+
+		.adjective {
+			margin: 0 .2em;
+			color: $docs-footer-link-color;
+		}
+
+		a::before {
+			@include docs-image-styles(absolunet, $docs-footer-link-color);
+			content: '';
+			position: relative;
+			top: .4em;
+			display: inline-block;
+			width: 1.5em;
+			height: 1.5em;
+			margin: 0 .4em 0 .6em;
+			background-color: $docs-footer-text-color;
+		}
+	}
+}

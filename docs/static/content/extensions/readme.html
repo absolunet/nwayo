@@ -1,0 +1,50 @@
+<h1>Extensions</h1>
+<blockquote>
+<p>Extensions are new tasks that you can add to your nwayo workflow</p>
+</blockquote>
+<h2 id="how-to-install"><a class="anchor" href="#how-to-install" aria-hidden="true">⚭</a> How to install</h2>
+<p>Add the extension to your <code>package.json</code></p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;my-beautiful-project&quot;,
+  &quot;license&quot;: &quot;UNLICENSED&quot;,
+  &quot;private&quot;: true,
+  &quot;dependencies&quot;: {
+    &quot;@absolunet/nwayo-workflow&quot;: &quot;3.6.0&quot;,
+    &quot;@absolunet/nwayo-extension-officially-perfect&quot;: &quot;1.0.0&quot;,
+    &quot;nwayo-extension-customy-correct&quot;: &quot;1.0.0&quot;
+  }
+}
+</code></pre>
+<h2 id="how-to-enable-and-configure"><a class="anchor" href="#how-to-enable-and-configure" aria-hidden="true">⚭</a> How to enable and configure</h2>
+<p>Add the extension to your  <code>nwayo.yaml</code></p>
+<pre><code class="language-yaml">root: nwayo
+
+extensions:
+  '@absolunet/officially-perfect':
+    enabled: true
+    options:
+      param1: foo
+      param2: bar
+
+  'customy-correct':
+    enabled: true
+    options:
+      foo: param1
+      bar: param2
+</code></pre>
+<p>For the detailled options and other configurations check the extension's documentation.</p>
+<h2 id="how-to-run-tasks"><a class="anchor" href="#how-to-run-tasks" aria-hidden="true">⚭</a> How to run tasks</h2>
+<p>Each extension should give you the list of tasks you can run but they should follow this format</p>
+<pre><code class="language-bash">nwayo run officiallyperfect:task1
+nwayo run officiallyperfect:task2
+
+nwayo run customycorrect:build-this
+nwayo run customycorrect:build-that
+</code></pre>
+<h2 id="official-extensions"><a class="anchor" href="#official-extensions" aria-hidden="true">⚭</a> Official extensions</h2>
+<p>These are the official extensions</p>
+<ul>
+<li><a href="https://github.com/absolunet/nwayo-extension-styleguide" class="external" rel="external">Styleguide</a> - Generate a styleguide from templates in your different components</li>
+</ul>
+<h2 id="find-extensions"><a class="anchor" href="#find-extensions" aria-hidden="true">⚭</a> Find extensions</h2>
+<p>These are the extensions <a href="https://www.npmjs.com/search?q=keywords:nwayo-extension" class="external" rel="external">tagged on npm</a></p>

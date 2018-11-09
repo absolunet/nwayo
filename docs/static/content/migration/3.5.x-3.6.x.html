@@ -1,0 +1,59 @@
+<h1>3.5.x → 3.6.x</h1>
+<p><a href="https://github.com/absolunet/nwayo/compare/3.5.0...3.6.0" class="external" rel="external">View the source differences on GitHub</a></p>
+<h2 id="key-changes"><a class="anchor" href="#key-changes" aria-hidden="true">⚭</a> Key changes</h2>
+<ul>
+<li>Switch from RubySass to DartSass (Node.js flavor)</li>
+<li>Added <a href="../extensions">extensions</a> connector</li>
+<li>konstan SCSS map (<a href="https://github.com/absolunet/nwayo/issues/45" class="external" rel="external">#45</a>)</li>
+<li><code>nwayo doctor</code> now checks if your project follows conventions</li>
+<li>Added a checksum cache buster for images/fonts referenced in CSS (<a href="https://github.com/absolunet/nwayo/issues/44" class="external" rel="external">#44</a>)</li>
+<li>Update to Foundation 6.5.0</li>
+<li>Removed FastClick</li>
+<li>Workflow rewritten in OOP structure</li>
+<li>Maintenance updates to dependencies and linters</li>
+</ul>
+<h2 id="what-to-do"><a class="anchor" href="#what-to-do" aria-hidden="true">⚭</a> What to do</h2>
+<p>Update version in <code>bower.json</code> and <code>package.json</code> (duh...)</p>
+<h3 id="fastclick-removal"><a class="anchor" href="#fastclick-removal" aria-hidden="true">⚭</a> FastClick removal</h3>
+<ul>
+<li>In the bundle <code>_dependencies.yaml</code> remove <code>bower_components/nwayo-toolbox/toolbox/scripts/wrapper/fastclick</code></li>
+<li>Remove <code>FastClick.attach(document.body);</code> in your javascript files containing it</li>
+</ul>
+<h3 id="konstan-scss-map"><a class="anchor" href="#konstan-scss-map" aria-hidden="true">⚭</a> konstan SCSS map</h3>
+<p>Change <code>$konstan-*</code> variable for the function <code>konstan-get('*')</code></p>
+<p>Examples for a <code>konstan.yaml</code> containing</p>
+<pre><code class="language-yaml">data:
+
+  dimension:
+    small:    600
+    medium:   900
+
+  color:
+    shell:       '#659d32'
+    shell-shade: '#618931'
+
+    messages:
+      success: '#4fb980'
+      warning: '#ffd061'
+      error:   '#d66161'
+</code></pre>
+<ul>
+<li><code>$konstan-dimension-small</code> → <code>konstan-get('dimension.small')</code></li>
+<li><code>$konstan-color-shell-shade</code> → <code>konstan-get('color.shell-shade')</code></li>
+<li><code>$konstan-color-message-success</code> → <code>konstan-get('color.message.success')</code></li>
+</ul>
+<h3 id="eslint-require-unicode-regexp"><a class="anchor" href="#eslint-require-unicode-regexp" aria-hidden="true">⚭</a> ESLint <a href="https://eslint.org/docs/rules/require-unicode-regexp" class="external" rel="external">require-unicode-regexp</a></h3>
+<p>This new rule requires to add the <code>u</code> unicode flag which will trigger a strict validation mode for the RegExp.</p>
+<p>So adding the flag is easy:</p>
+<ul>
+<li><code>(/foo/).test(bar)</code> → <code>(/foo/u).test(bar)</code></li>
+<li><code>(/foo/i).test(bar)</code> → <code>(/foo/ui).test(bar)</code></li>
+<li><code>new RegExp('foo')</code> → <code>new RegExp('foo', 'u')</code></li>
+<li><code>new RegExp('foo', 'i')</code> → <code>new RegExp('foo', 'ui')</code></li>
+</ul>
+<p>But you may now need to correct your RegExp, common changes are:</p>
+<ul>
+<li>Add escaping char <code>\+</code> → <code>+</code></li>
+<li>Remove escaping char <code>+</code> → <code>\+</code></li>
+<li>Push unescaped <code>-</code> at the end of a char list <code>[a-z\-0-9]</code> → <code>[a-z0-9-]</code></li>
+</ul>

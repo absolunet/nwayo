@@ -1,0 +1,42 @@
+<h1>Images</h1>
+<blockquote>
+<p>Images assets are image files (GIF, JPG, PNG, SVG) that will be directly referenced by a page via its URL.</p>
+</blockquote>
+<h2 id="paths"><a class="anchor" href="#paths" aria-hidden="true">⚭</a> Paths</h2>
+<ul>
+<li>The source files are located under <code>[NWAYO_ROOT]/components/[NAME]/assets/images/</code>.</li>
+<li>The built files are located under <code>[BUILD_ROOT]/images/[NAME]/</code>.</li>
+</ul>
+<h2 id="processing"><a class="anchor" href="#processing" aria-hidden="true">⚭</a> Processing</h2>
+<p>Files are optimized losslessly via <a href="https://www.lcdf.org/gifsicle" class="external" rel="external">gifsicle</a>, <a href="http://libjpeg-turbo.virtualgl.org" class="external" rel="external">jpegtran</a>, <a href="http://optipng.sourceforge.net" class="external" rel="external">optipng</a>, <a href="https://github.com/svg/svgo" class="external" rel="external">svgo</a>, which means that they need to be quality-optimized beforehand because this process only shims the extra useless kB.</p>
+<h3 id="high-density-images"><a class="anchor" href="#high-density-images" aria-hidden="true">⚭</a> High-density images</h3>
+<p>In addition to the optimization, filenames which ends by <code>@2x</code> will have a second file generated without the <code>@2x</code> and which will be half the dimension of the original file. This second file will also be losslessly optimized.</p>
+<p>For example, a <code>foo@2x.png (300×300)</code> file will produce a optimized <code>foo@2x.png (300×300)</code> file and a optimized <code>foo.png (150×150)</code> file.</p>
+<h2 id="best-practices"><a class="anchor" href="#best-practices" aria-hidden="true">⚭</a> Best practices</h2>
+<h3 id="format-selection"><a class="anchor" href="#format-selection" aria-hidden="true">⚭</a> Format selection</h3>
+<ul>
+<li>Use PNG for transparent or low color-range images. (GIF shouldn't be use since PNG does it better)</li>
+<li>Use JPG for high color-range images.</li>
+<li>Use SVG for all icons and logo images.</li>
+</ul>
+<h3 id="manual-optimization"><a class="anchor" href="#manual-optimization" aria-hidden="true">⚭</a> Manual optimization</h3>
+<ul>
+<li>For JPG aim for 60%-80% and use <a href="https://tinyjpg.com" class="external" rel="external">TinyJPG</a>.</li>
+<li>For PNG use <a href="https://tinypng.com" class="external" rel="external">TinyPNG</a>.</li>
+<li>For SVG use these Illustrator settings.</li>
+<li><img src="/nwayo/static/images/svg-ai-settings.png" alt="SVG export settings"></li>
+</ul>
+<h2 id="usage"><a class="anchor" href="#usage" aria-hidden="true">⚭</a> Usage</h2>
+<p>In scripts, the path to these files can be access via <code>app.path.images</code>.</p>
+<p>In styles, these images can be accessed via the <a href="../styles/images">images mixins</a>.</p>
+<h2 id="bundles"><a class="anchor" href="#bundles" aria-hidden="true">⚭</a> Bundles</h2>
+<p>Images are selected for build via the <code>assets</code> property of the bundle file.</p>
+<h2 id="tasks"><a class="anchor" href="#tasks" aria-hidden="true">⚭</a> Tasks</h2>
+<p>These tasks interact with the images:</p>
+<ul>
+<li>assets</li>
+<li>assets-images</li>
+<li>assets-images-highdensity</li>
+<li>assets-images-optimization</li>
+<li>rebuild</li>
+</ul>
