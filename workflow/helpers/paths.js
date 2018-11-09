@@ -144,7 +144,7 @@ config.stylelint       = `${dir.root}/.stylelintrc.yaml`;
 config.modernizr       = `${dir.root}/modernizr.yaml`;
 config.lodash          = `${dir.root}/lodash.yaml`;
 config.lodashBin       = slash(require.resolve('lodash-cli'));
-config.babelPresetEnv  = slash(require.resolve('babel-preset-env'));
+config.babelPresetEnv  = slash(require.resolve('@babel/preset-env'));
 config.bowerBin        = slash(`${path.dirname(require.resolve('bower'))}/../bin/bower`);
 
 

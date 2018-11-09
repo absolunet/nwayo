@@ -1,0 +1,97 @@
+//-------------------------------------
+//-- Docs - Configuration
+//-------------------------------------
+
+// Brand
+$palette-brand-sockeye:  #ff5252;
+$palette-brand-victoria: #2b2d3c;
+
+// nwayo
+$palette-nwayo-shell:       #659d32;
+$palette-nwayo-shell-shade: #618931;
+$palette-nwayo-fruit:       #423228;
+$palette-nwayo-fruit-shade: #5e483c;
+
+// Main
+$palette-main-cold-water:     #3c475d;
+$palette-main-cold-water-alt: #808a9f;
+
+// Grey
+$palette-myst:                     #b1c0c7;
+$palette-greyhound:                #68738b;
+$palette-toundra:                  #e2e9ed;
+$palette-white-rabbit-in-the-snow: #f2f6f7;
+$palette-mysty-toundra:            mix($palette-myst, $palette-toundra, 25%);
+
+// Vendor
+$vendor-github-color:     #0366d6;
+$vendor-github-alt-color: #24292e;
+
+// Breakpoints
+$docs-bp-small:   600;
+$docs-bp-medium:  900;
+$docs-bp-large:  1200;
+$docs-bp-xlarge: 1500;
+
+// Transition
+$docs-transition: 100ms;
+
+// stylelint-disable value-keyword-case
+$docs-text-font:      Lato, $nwayo-sansserif-font;
+$docs-title-font:     Poppins, $nwayo-sansserif-font;
+$docs-monospace-font: 'Fira Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', Courier, monospace;
+// stylelint-enable value-keyword-case
+
+
+
+
+
+
+$docs-text-color:       $palette-brand-victoria;
+$docs-link-color:       $palette-nwayo-shell;
+$docs-link-hover-color: $palette-nwayo-shell-shade;
+$docs-title-weight:     $nwayo-bold-weight;
+
+//-- Code
+$docs-code-bg-color: $palette-mysty-toundra;
+$docs-code-size:     .9em;
+$docs-code-radius:   .2em;
+
+
+//-- Header
+$docs-header-bg-color:      $palette-toundra;
+$docs-header-name-color:    $palette-nwayo-shell;
+$docs-header-version-color: $palette-nwayo-fruit;
+$docs-header-name-size:     1.25em;
+$docs-header-version-size:  .9em;
+
+//-- Nav
+$docs-nav-bg-color:      $palette-mysty-toundra;
+$docs-nav-link-color:    $palette-nwayo-fruit-shade;
+$docs-nav-current-color: $palette-nwayo-fruit;
+$docs-nav-active-weight: $nwayo-black-weight;
+
+//-- Main
+$docs-main-bg-color:      $palette-white-rabbit-in-the-snow;
+$docs-main-anchor-color:  $palette-myst;
+$docs-main-anchor-size:   1.2rem;  // stylelint-disable-line unit-whitelist
+$docs-main-external-size: .8rem;   // stylelint-disable-line unit-whitelist
+
+//-- Footer
+$docs-footer-bg-color:   $palette-brand-victoria;
+$docs-footer-text-color: $palette-white-rabbit-in-the-snow;
+$docs-footer-link-color: $palette-brand-sockeye;
+
+
+
+
+
+
+//-- Footer
+$docs-header-zindex: 1;
+
+
+//-- Image
+@mixin docs-image-styles($file, $color) {
+	background-image: #{nwayo-svg-data-uri(nwayo-color-replace(docsdart-read-file('./assets/images/' + $file + '.svg'), $nwayo-svg-replacement-1-color, $color))};
+}

@@ -1,0 +1,8 @@
+{
+  "name": "nwayo-docs",
+  "private": true,
+  "devDependencies": {
+    "foundation-sites": "6.5.0",
+    "prism":            "1.15.0"
+  }
+}

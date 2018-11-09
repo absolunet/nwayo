@@ -1,0 +1,63 @@
+<h1>Images</h1>
+<p>Les images sont situées sous le dossier <code>images</code>, sous la composante associée à l'image en question.</p>
+<h2 id="mixin"><a class="anchor" href="#mixin" aria-hidden="true">⚭</a> Mixin</h2>
+<p>Le mixin utilisé pour générer les images au niveau du css. Il sera ensuite possible de les inclure par <code>@include</code> sous le sélecteur voulu.
+<strong>Note:</strong> Le fonctionnement des images <code>inline</code> et <code>Scalable</code> seront traitées dans la section <a href="inline-image">inline-image</a></p>
+<h2 id="fonctionnement"><a class="anchor" href="#fonctionnement" aria-hidden="true">⚭</a> Fonctionnement</h2>
+<pre><code class="language-scss">//-- Background image
+@mixin bg-image-mixin ($file, $context, $inline:false, $width:false, $height:false, $color:false) {
+	
+	// uri
+	$uri: '';
+	@if $inline {
+		// Portion détaillé dans la section inline-image
+	} @else {
+		$uri: url(assets-path($file, $context, 'images'));
+	}
+	
+	// high density
+	@if str-index($file, '@2x') {
+		$path: 'components/' + $context + '/assets/' + if($inline, 'inline-', '') + 'images/' + $file;
+		$width:  if($width, $width, image-width($path));
+		$height: if($height, $height, image-height($path));
+
+		@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
+			background-image: $uri;
+			background-size: $width / 2 $height / 2;
+		}
+
+		$uri: str-replace($uri, '@2x', '');
+	}
+
+	background-image: #{$uri};
+}
+</code></pre>
+<ul>
+<li><code>$file</code> = Le nom du fichier image.</li>
+<li><code>$context</code> = Le contexte dans lequel se situe l'image.</li>
+<li><code>$inline</code> = Si l'image est inline ou non.</li>
+<li><code>$width</code> = Assigner la largeur d'une image @2x.</li>
+<li><code>$height</code> = Assigner la hauteur d'une image @2x.</li>
+<li><code>$color</code> = La couleur utilisée pour les svg. Voir la section <a href="inline-image">inline-image</a> pour plus de détails.</li>
+</ul>
+<h2 id="comment-utiliser"><a class="anchor" href="#comment-utiliser" aria-hidden="true">⚭</a> Comment utiliser</h2>
+<p>Pour générer le bon code, vous devez au moins fournir <code>$file</code> et <code>$context</code>.</p>
+<pre><code class="language-scss">// Normal
+@mixin misc1-image { @include bg-image-mixin('misc1.png', 'common'); }
+@mixin logo1-image { @include bg-image-mixin('logo1.png', 'foobar'); }
+
+// High-density
+@mixin misc2-image { @include bg-image-mixin('misc@2x.png', 'common'); }
+
+// Inline
+@mixin misc3-image { @include bg-image-mixin('misc3.png', 'common', $inline:true); }
+@mixin icon3-image { @include bg-image-mixin('icon3.png', 'foobar', $inline:true); }
+
+// Scalable
+@mixin icon4-image { @include scalable-icon-mixin('icon4.svg', 'foobar'); }
+
+//-- Appel dans le css
+.logo {
+	@include logo1-image;
+}
+</code></pre>
