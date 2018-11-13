@@ -41,10 +41,10 @@ function _classCallCheck(instance, Constructor) {if (!(instance instanceof Const
 //-------------------------------------
 
 (function () {
-	'use strict';
+  'use strict';
 
-	//-- Public class
-	app.util = function () {function _class() {_classCallCheck(this, _class);}return _class;}();
+  //-- Public class
+  app.util = /*#__PURE__*/function () {function _class() {_classCallCheck(this, _class);}return _class;}();
 
 
 
@@ -131,201 +131,201 @@ function _classCallCheck(instance, Constructor) {if (!(instance instanceof Const
 //= **require bower_components/nwayo-toolbox/toolbox/scripts/helpers/lazyload
 
 (function () {
-	'use strict';
+  'use strict';
 
-	var local = {};
-
-
-	//-- Cache data instantly
-	local.cache = function () {
-
-		/**
-                            // JSRender
-                            $.views.helpers({
-                            	konstan:   (key) => { return _.get(konstan, key); },
-                            	translate: (key) => { return app.translation[key]; }
-                            });
-                            /**/
-
-		/**
-                                 // Lazyload
-                                 toolbox.lazyload.register({
-                                 	'image': {
-                                 		firstPass: ($this, options) => {
-                                 			$this.attr('src', options.url);
-                                 		}
-                                 	},
-                                 		'bg-image': {
-                                 		firstPass: ($this, options) => {
-                                 			$this.css('background-image', `url('${options.url}')`);
-                                 		}
-                                 	},
-                                 		'SAMPLE': {
-                                 		preprocess: ($this) => {
-                                 			setTimeout(() => { $this.addClass('placeholder'); }, 1000);
-                                 		},
-                                 		firstPass: ($this, options) => {
-                                 			if (options.url) {
-                                 				$this.find(`${__.component('main-image')} > img`).attr('src', options.url);
-                                 			}
-                                 		},
-                                 		secondPass: ($this, options) => {
-                                 			if (options.hoverUrl && !Modernizr.touchevents) {
-                                 				const $hover = $this.find(__.component('main-image'));
-                                 				$hover.css('background-image', `url('${options.hoverUrl}')`);
-                                 					$hover.imagesLoaded({ background:true })
-                                 					.then(() => {
-                                 						$hover.addClass('hover');
-                                 					})
-                                 				;
-                                 			}
-                                 		}
-                                 	}
-                                 });
-                                 /**/
+  var local = {};
 
 
+  //-- Cache data instantly
+  local.cache = function () {
 
-
-
-		// Optional scroll
-		app.scrollTransition = Modernizr.touchevents ? 0 : konstan.transition.animation;
-
-	};
-
-
-	//-- Cache data once DOM is loaded
-	local.cacheDOM = function () {
-
-		/**
-                               // Translation
-                               app.translation = {};
-                               $('[data-translation]').each(function() {
-                               	$.extend(app.translation, $(this).data('translation'));
-                               });
-                               /**/
-
-
-		/**
-                                    // tmpl
-                                    $('script[type="text/x-jsrender"][id^="jshtml-"]').each(function() {
-                                    	const id = $(this).attr('id');
-                                    	app.tmpl[`html${_.upperFirst(_.camelCase(id.substring(7)))}`] = $.templates(`#${id}`);
-                                    });
-                                    /**/
-
-	};
-
-
-	//-- Bind events once DOM is loaded
-	local.bind = function () {
-
-		__.$body
-
-		// External links
-		.on('click', 'a[data-external]', function () {
-			$(this).attr('target', '_blank');
-		})
-
-
-		/**
-     // Open links in top window
-     .on('click', __.action('open-top'), function() {
-     	$(this).attr('target', '_top');
-     })
-     /**/
-
-
-		/**
-          // Anchors
-          .on('click', 'a[data-anchor="true"]', function(e) {
-          	e.preventDefault();
-          	$.scrollTo($(this).attr('href'), app.scrollTransition, { offset:{ top:-15 } });
-          })
-          /**/
-
-
-		/**
-               // Simple toggler
-               .on('click', `${__.component('toggle-wrapper')} ${__.action('toggle-content')}`, function() {
-               	$(this).closest(__.component('toggle-wrapper')).toggleClass('opened');
-               })
-               /**/;
-
-
-	};
-
-
-	//-- Subscribe to topics
-	local.subscribe = function () {
-
-		// pinki.message.subscribe('foo.bar', () => {});
-
-	};
-
-
-	//-- Execute once DOM is loaded
-	local.start = function () {
-
-		__.$document.foundation();
-
-		/**
-                             // When global jQuery is ready
-                             pinki.vow.when(GLOBAL_JQUERY_LOADED).then(([$Global]) => {
-                             	$Global().on('click');
+    /**
+                             // JSRender
+                             $.views.helpers({
+                             	konstan:   (key) => { return _.get(konstan, key); },
+                             	translate: (key) => { return app.translation[key]; }
                              });
                              /**/
 
-		/**
-                                  // Webfont loader
-                                  WebFont.load({
-                                  	custom:       { families: ['FontName1','FontName2','FontName3'] },
-                                  	loading:      () => { __.$body.trigger('WebFont:loading'); },
-                                  	active:       () => { __.$body.trigger('WebFont:active'); },
-                                  	inactive:     () => { __.$body.trigger('WebFont:inactive'); },
-                                  	fontloading:  (familyName, fvd) => { __.$body.trigger('WebFont:loading_font'); },
-                                  	fontactive:   (familyName, fvd) => { __.$body.trigger('WebFont:active_font'); },
-                                  	fontinactive: (familyName, fvd) => { __.$body.trigger('WebFont:inactive_font'); }
+    /**
+                                  // Lazyload
+                                  toolbox.lazyload.register({
+                                  	'image': {
+                                  		firstPass: ($this, options) => {
+                                  			$this.attr('src', options.url);
+                                  		}
+                                  	},
+                                  		'bg-image': {
+                                  		firstPass: ($this, options) => {
+                                  			$this.css('background-image', `url('${options.url}')`);
+                                  		}
+                                  	},
+                                  		'SAMPLE': {
+                                  		preprocess: ($this) => {
+                                  			setTimeout(() => { $this.addClass('placeholder'); }, 1000);
+                                  		},
+                                  		firstPass: ($this, options) => {
+                                  			if (options.url) {
+                                  				$this.find(`${__.component('main-image')} > img`).attr('src', options.url);
+                                  			}
+                                  		},
+                                  		secondPass: ($this, options) => {
+                                  			if (options.hoverUrl && !Modernizr.touchevents) {
+                                  				const $hover = $this.find(__.component('main-image'));
+                                  				$hover.css('background-image', `url('${options.hoverUrl}')`);
+                                  					$hover.imagesLoaded({ background:true })
+                                  					.then(() => {
+                                  						$hover.addClass('hover');
+                                  					})
+                                  				;
+                                  			}
+                                  		}
+                                  	}
                                   });
-                                  		// Fonts loaded
-                                  __.$body.on('WebFont:active', () => {
-                                  	});
                                   /**/
 
 
 
 
 
-	};
+    // Optional scroll
+    app.scrollTransition = Modernizr.touchevents ? 0 : konstan.transition.animation;
+
+  };
 
 
-	//-- Execute once page is loaded
-	local.delayedStart = function () {
+  //-- Cache data once DOM is loaded
+  local.cacheDOM = function () {
 
-		__.$body.addClass('document-loaded');
+    /**
+                                // Translation
+                                app.translation = {};
+                                $('[data-translation]').each(function() {
+                                	$.extend(app.translation, $(this).data('translation'));
+                                });
+                                /**/
 
-	};
+
+    /**
+                                     // tmpl
+                                     $('script[type="text/x-jsrender"][id^="jshtml-"]').each(function() {
+                                     	const id = $(this).attr('id');
+                                     	app.tmpl[`html${_.upperFirst(_.camelCase(id.substring(7)))}`] = $.templates(`#${id}`);
+                                     });
+                                     /**/
+
+  };
+
+
+  //-- Bind events once DOM is loaded
+  local.bind = function () {
+
+    __.$body
+
+    // External links
+    .on('click', 'a[data-external]', function () {
+      $(this).attr('target', '_blank');
+    })
+
+
+    /**
+       // Open links in top window
+       .on('click', __.action('open-top'), function() {
+       	$(this).attr('target', '_top');
+       })
+       /**/
+
+
+    /**
+            // Anchors
+            .on('click', 'a[data-anchor="true"]', function(e) {
+            	e.preventDefault();
+            	$.scrollTo($(this).attr('href'), app.scrollTransition, { offset:{ top:-15 } });
+            })
+            /**/
+
+
+    /**
+                 // Simple toggler
+                 .on('click', `${__.component('toggle-wrapper')} ${__.action('toggle-content')}`, function() {
+                 	$(this).closest(__.component('toggle-wrapper')).toggleClass('opened');
+                 })
+                 /**/;
+
+
+  };
+
+
+  //-- Subscribe to topics
+  local.subscribe = function () {
+
+    // pinki.message.subscribe('foo.bar', () => {});
+
+  };
+
+
+  //-- Execute once DOM is loaded
+  local.start = function () {
+
+    __.$document.foundation();
+
+    /**
+                               // When global jQuery is ready
+                               pinki.vow.when(GLOBAL_JQUERY_LOADED).then(([$Global]) => {
+                               	$Global().on('click');
+                               });
+                               /**/
+
+    /**
+                                    // Webfont loader
+                                    WebFont.load({
+                                    	custom:       { families: ['FontName1','FontName2','FontName3'] },
+                                    	loading:      () => { __.$body.trigger('WebFont:loading'); },
+                                    	active:       () => { __.$body.trigger('WebFont:active'); },
+                                    	inactive:     () => { __.$body.trigger('WebFont:inactive'); },
+                                    	fontloading:  (familyName, fvd) => { __.$body.trigger('WebFont:loading_font'); },
+                                    	fontactive:   (familyName, fvd) => { __.$body.trigger('WebFont:active_font'); },
+                                    	fontinactive: (familyName, fvd) => { __.$body.trigger('WebFont:inactive_font'); }
+                                    });
+                                    		// Fonts loaded
+                                    __.$body.on('WebFont:active', () => {
+                                    	});
+                                    /**/
+
+
+
+
+
+  };
+
+
+  //-- Execute once page is loaded
+  local.delayedStart = function () {
+
+    __.$body.addClass('document-loaded');
+
+  };
 
 
 
 
 
 
-	// Outline
-	local.cache();
-	local.subscribe();
+  // Outline
+  local.cache();
+  local.subscribe();
 
-	// DOM Ready
-	pinki.vow.when(DOM_PARSED).then(function () {
-		local.cacheDOM();
-		local.bind();
-		local.start();
-	});
+  // DOM Ready
+  pinki.vow.when(DOM_PARSED).then(function () {
+    local.cacheDOM();
+    local.bind();
+    local.start();
+  });
 
-	// Document loaded
-	pinki.vow.when(DOCUMENT_LOADED).then(function () {
-		local.delayedStart();
-	});
+  // Document loaded
+  pinki.vow.when(DOCUMENT_LOADED).then(function () {
+    local.delayedStart();
+  });
 
 })();
 
@@ -345,162 +345,162 @@ function _classCallCheck(instance, Constructor) {if (!(instance instanceof Const
 //= **require bower_components/inputmask/dist/inputmask/jquery.inputmask
 
 (function () {
-	'use strict';
+  'use strict';
 
-	var local = {};
+  var local = {};
 
-	//-- Input mask
-	var bindInputMask = function bindInputMask() /* $context = __.$body */{
+  //-- Input mask
+  var bindInputMask = function bindInputMask() /* $context = __.$body */{
 
-		/**
-                                                                        // Numeric
-                                                                        $context.find('input[data-mask="numeric-integer"]').inputmask('integer', {
-                                                                        	allowPlus:     false,
-                                                                        	allowMinus:    false,
-                                                                        	min:           1,
-                                                                        	integerDigits: 3
-                                                                        });
-                                                                        	$context.find('input[data-mask="numeric-integer-nomin"]').inputmask('integer', {
-                                                                        	allowPlus:     false,
-                                                                        	allowMinus:    false,
-                                                                        	integerDigits: 3
-                                                                        });
-                                                                        	$context.find('input[data-mask="numeric-decimal"]').inputmask('decimal', {
-                                                                        	allowPlus:     false,
-                                                                        	allowMinus:    false,
-                                                                        	min:           1,
-                                                                        	integerDigits: 5,
-                                                                        	digits:        2
-                                                                        });
-                                                                        	// Phone
-                                                                        $context.find('input[type="tel"]').inputmask('(999) 999-9999');
-                                                                        $context.find('input[type="tel"][data-mask="ext"]').inputmask('(999) 999-9999 [ext: 99999]');
-                                                                        	// Postal code
-                                                                        $context.find('input[data-mask="postalcode"]').inputmask('A9A 9A9');
-                                                                        	// Date
-                                                                        if (!Modernizr.inputtypes.date) {
-                                                                        	$context.find('input[type="date"]').inputmask('yyyy-mm-dd', { placeholder:app.env.lang === 'fr' ? 'aaaa-mm-jj' : 'yyyy-mm-dd' });
-                                                                        }
-                                                                        	// Time
-                                                                        $('input[data-mask="time"]').inputmask('hh:mm:ss');
-                                                                        	// Credit card
-                                                                        $('input[data-mask="credit-card"]').inputmask('9{10}');
-                                                                        $('input[data-mask="credit-card-cvv"]').inputmask('9{4}');
-                                                                        	/**/
-
-
+    /**
+                                                                         // Numeric
+                                                                         $context.find('input[data-mask="numeric-integer"]').inputmask('integer', {
+                                                                         	allowPlus:     false,
+                                                                         	allowMinus:    false,
+                                                                         	min:           1,
+                                                                         	integerDigits: 3
+                                                                         });
+                                                                         	$context.find('input[data-mask="numeric-integer-nomin"]').inputmask('integer', {
+                                                                         	allowPlus:     false,
+                                                                         	allowMinus:    false,
+                                                                         	integerDigits: 3
+                                                                         });
+                                                                         	$context.find('input[data-mask="numeric-decimal"]').inputmask('decimal', {
+                                                                         	allowPlus:     false,
+                                                                         	allowMinus:    false,
+                                                                         	min:           1,
+                                                                         	integerDigits: 5,
+                                                                         	digits:        2
+                                                                         });
+                                                                         	// Phone
+                                                                         $context.find('input[type="tel"]').inputmask('(999) 999-9999');
+                                                                         $context.find('input[type="tel"][data-mask="ext"]').inputmask('(999) 999-9999 [ext: 99999]');
+                                                                         	// Postal code
+                                                                         $context.find('input[data-mask="postalcode"]').inputmask('A9A 9A9');
+                                                                         	// Date
+                                                                         if (!Modernizr.inputtypes.date) {
+                                                                         	$context.find('input[type="date"]').inputmask('yyyy-mm-dd', { placeholder:app.env.lang === 'fr' ? 'aaaa-mm-jj' : 'yyyy-mm-dd' });
+                                                                         }
+                                                                         	// Time
+                                                                         $('input[data-mask="time"]').inputmask('hh:mm:ss');
+                                                                         	// Credit card
+                                                                         $('input[data-mask="credit-card"]').inputmask('9{10}');
+                                                                         $('input[data-mask="credit-card-cvv"]').inputmask('9{4}');
+                                                                         	/**/
 
 
 
 
 
 
-	};
 
 
-	//-- Numeric keyboard
-	var bindNumericKeyboard = function bindNumericKeyboard() /* $context = __.$body */{
-
-		/**
-                                                                                    $context.find(`
-                                                                                    	input[data-mask="numeric-integer"],
-                                                                                    	input[data-mask="numeric-integer-nomin"],
-                                                                                    	input[data-mask="credit-card"],
-                                                                                    	input[data-mask="credit-card-cvv"]
-                                                                                    `)
-                                                                                    	.attr('pattern', '\\d*')
-                                                                                    ;
-                                                                                    /**/
-	};
+  };
 
 
-	//-- Form events
-	var rebindFormEvent = function rebindFormEvent($context) {
-		bindInputMask($context);
-		bindNumericKeyboard($context);
+  //-- Numeric keyboard
+  var bindNumericKeyboard = function bindNumericKeyboard() /* $context = __.$body */{
 
-		pinki.message.publish(PROJECT + '.form.rebindFormEvent');
-	};
-
-
-
-
-	//-- Cache data instantly
-	local.cache = function () {
-
-		//
-
-	};
+    /**
+                                                                                     $context.find(`
+                                                                                     	input[data-mask="numeric-integer"],
+                                                                                     	input[data-mask="numeric-integer-nomin"],
+                                                                                     	input[data-mask="credit-card"],
+                                                                                     	input[data-mask="credit-card-cvv"]
+                                                                                     `)
+                                                                                     	.attr('pattern', '\\d*')
+                                                                                     ;
+                                                                                     /**/
+  };
 
 
-	//-- Cache data once DOM is loaded
-	local.cacheDOM = function () {
+  //-- Form events
+  var rebindFormEvent = function rebindFormEvent($context) {
+    bindInputMask($context);
+    bindNumericKeyboard($context);
 
-		//
-
-	};
-
-
-	//-- Bind events once DOM is loaded
-	local.bind = function () {
-
-		rebindFormEvent();
-
-		/*
-                     // Bind on text field change
-                     $('input:text').on('input paste cut keyup', () => {});
-                     /**/
-
-	};
-
-
-	//-- Subscribe to topics
-	local.subscribe = function () {
-
-		/**
-                                pinki.message.subscribe('SAMPLE', (msg, data) => {
-                                	rebindFormEvent(data.$context);
-                                });
-                                /**/
-
-	};
-
-
-	//-- Execute once DOM is loaded
-	local.start = function () {
-
-		//
-
-	};
-
-
-	//-- Execute once page is loaded
-	local.delayedStart = function () {
-
-		//
-
-	};
+    pinki.message.publish("".concat(PROJECT, ".form.rebindFormEvent"));
+  };
 
 
 
 
+  //-- Cache data instantly
+  local.cache = function () {
+
+    //
+
+  };
 
 
-	// Outline
-	local.cache();
-	local.subscribe();
+  //-- Cache data once DOM is loaded
+  local.cacheDOM = function () {
 
-	// DOM Ready
-	pinki.vow.when(DOM_PARSED).then(function () {
-		local.cacheDOM();
-		local.bind();
-		local.start();
-	});
+    //
 
-	// Document loaded
-	pinki.vow.when(DOCUMENT_LOADED).then(function () {
-		local.delayedStart();
-	});
+  };
+
+
+  //-- Bind events once DOM is loaded
+  local.bind = function () {
+
+    rebindFormEvent();
+
+    /*
+                       // Bind on text field change
+                       $('input:text').on('input paste cut keyup', () => {});
+                       /**/
+
+  };
+
+
+  //-- Subscribe to topics
+  local.subscribe = function () {
+
+    /**
+                                 pinki.message.subscribe('SAMPLE', (msg, data) => {
+                                 	rebindFormEvent(data.$context);
+                                 });
+                                 /**/
+
+  };
+
+
+  //-- Execute once DOM is loaded
+  local.start = function () {
+
+    //
+
+  };
+
+
+  //-- Execute once page is loaded
+  local.delayedStart = function () {
+
+    //
+
+  };
+
+
+
+
+
+
+  // Outline
+  local.cache();
+  local.subscribe();
+
+  // DOM Ready
+  pinki.vow.when(DOM_PARSED).then(function () {
+    local.cacheDOM();
+    local.bind();
+    local.start();
+  });
+
+  // Document loaded
+  pinki.vow.when(DOCUMENT_LOADED).then(function () {
+    local.delayedStart();
+  });
 
 })();
 
@@ -513,81 +513,81 @@ function _classCallCheck(instance, Constructor) {if (!(instance instanceof Const
 //-------------------------------------
 
 (function () {
-	'use strict';
+  'use strict';
 
-	var local = {};
-
-
-	//-- Cache data instantly
-	local.cache = function () {
-
-		// Env
-		// app.env.isUniquePage = app.env.pageId === 'UID';
-		// app.env.isTypePage   = _.includes(app.env.pageTags, 'TYPE-ID');
-		// app.env.isOneOfThese = !!_.intersection(app.env.pageTags, ['ID1', 'ID2']).length;
-
-	};
+  var local = {};
 
 
-	//-- Cache data once DOM is loaded
-	local.cacheDOM = function () {
+  //-- Cache data instantly
+  local.cache = function () {
 
-		//
+    // Env
+    // app.env.isUniquePage = app.env.pageId === 'UID';
+    // app.env.isTypePage   = _.includes(app.env.pageTags, 'TYPE-ID');
+    // app.env.isOneOfThese = !!_.intersection(app.env.pageTags, ['ID1', 'ID2']).length;
 
-	};
-
-
-	//-- Bind events once DOM is loaded
-	local.bind = function () {
-
-		//
-
-	};
+  };
 
 
-	//-- Subscribe to topics
-	local.subscribe = function () {
+  //-- Cache data once DOM is loaded
+  local.cacheDOM = function () {
 
-		// pinki.message.subscribe('foo.bar',  () => {});
+    //
 
-	};
-
-
-	//-- Execute once DOM is loaded
-	local.start = function () {
-
-		//
-
-	};
+  };
 
 
-	//-- Execute once page is loaded
-	local.delayedStart = function () {
+  //-- Bind events once DOM is loaded
+  local.bind = function () {
 
-		//
+    //
 
-	};
+  };
 
 
+  //-- Subscribe to topics
+  local.subscribe = function () {
+
+    // pinki.message.subscribe('foo.bar',  () => {});
+
+  };
+
+
+  //-- Execute once DOM is loaded
+  local.start = function () {
+
+    //
+
+  };
+
+
+  //-- Execute once page is loaded
+  local.delayedStart = function () {
+
+    //
+
+  };
 
 
 
 
-	// Outline
-	local.cache();
-	local.subscribe();
 
-	// DOM Ready
-	pinki.vow.when(DOM_PARSED).then(function () {
-		local.cacheDOM();
-		local.bind();
-		local.start();
-	});
 
-	// Document loaded
-	pinki.vow.when(DOCUMENT_LOADED).then(function () {
-		local.delayedStart();
-	});
+  // Outline
+  local.cache();
+  local.subscribe();
+
+  // DOM Ready
+  pinki.vow.when(DOM_PARSED).then(function () {
+    local.cacheDOM();
+    local.bind();
+    local.start();
+  });
+
+  // Document loaded
+  pinki.vow.when(DOCUMENT_LOADED).then(function () {
+    local.delayedStart();
+  });
 
 })();
 
