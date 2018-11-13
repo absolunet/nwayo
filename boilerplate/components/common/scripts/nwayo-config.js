@@ -11,5 +11,12 @@ const nwayoStarterConfig = {
 	//   'public':  [does nothing]
 	jQuery: {
 		scope: 'private'
+	},
+
+	// Lodash scope
+	//   'private': .noConflict()
+	//   'public':  [does nothing]
+	lodash: {
+		scope: 'private'
 	}
 };
