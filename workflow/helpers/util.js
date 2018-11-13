@@ -74,6 +74,7 @@ class Util {
 		if (type === 'styles') {
 			options.escape = options.escape || [];
 			options.escape.push('path.root');
+			options.escape.push('util.emptyimage');
 			urls.inline = paths.dir.cacheInline;
 			urls.buildroot = fss.realpath(`${paths.dir.root}/${buildRoot}`);
 		}

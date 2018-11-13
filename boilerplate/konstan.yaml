@@ -66,15 +66,10 @@ data:
 
 
 
-#-- konstan output options
 options:
 
   scripts:
-    exclude:
-      - font.base
-      - font.alt
-
+    exclude: []
 
   styles:
-    exclude:
-      - util.emptyimage
+    exclude: []

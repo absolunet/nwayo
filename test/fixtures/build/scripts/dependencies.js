@@ -44,7 +44,10 @@ var konstan = {
 			"warning": "#ffd061",
 			"error": "#d66161"
 		},
-		"font": {},
+		"font": {
+			"base": "Open Sans",
+			"alt": "Merriweather"
+		},
 		"util": {
 			"emptyimage": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
 		},
@@ -17980,12 +17983,12 @@ return /******/ (function(modules) { // webpackBootstrap
 //-------------------------------------
 //-- Foundation - 6.5.0
 //-------------------------------------
-var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {return typeof obj;} : function (obj) {return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;};(function webpackUniversalModuleDefinition(root, factory) {
-  if ((typeof exports === 'undefined' ? 'undefined' : _typeof2(exports)) === 'object' && (typeof module === 'undefined' ? 'undefined' : _typeof2(module)) === 'object')
+function _typeof2(obj) {if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {_typeof2 = function _typeof2(obj) {return typeof obj;};} else {_typeof2 = function _typeof2(obj) {return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;};}return _typeof2(obj);}(function webpackUniversalModuleDefinition(root, factory) {
+  if ((typeof exports === "undefined" ? "undefined" : _typeof2(exports)) === 'object' && (typeof module === "undefined" ? "undefined" : _typeof2(module)) === 'object')
   module.exports = factory(require("jquery"));else
   if (typeof define === 'function' && define.amd)
   define(["jquery"], factory);else
-  if ((typeof exports === 'undefined' ? 'undefined' : _typeof2(exports)) === 'object')
+  if ((typeof exports === "undefined" ? "undefined" : _typeof2(exports)) === 'object')
   exports["foundation.core"] = factory(require("jquery"));else
 
   root["__FOUNDATION_EXTERNAL__"] = root["__FOUNDATION_EXTERNAL__"] || {}, root["__FOUNDATION_EXTERNAL__"]["foundation.core"] = factory(root["jQuery"]);
@@ -18048,7 +18051,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
       /******/__webpack_require__.t = function (value, mode) {
         /******/if (mode & 1) value = __webpack_require__(value);
         /******/if (mode & 8) return value;
-        /******/if (mode & 4 && (typeof value === 'undefined' ? 'undefined' : _typeof2(value)) === 'object' && value && value.__esModule) return value;
+        /******/if (mode & 4 && _typeof2(value) === 'object' && value && value.__esModule) return value;
         /******/var ns = Object.create(null);
         /******/__webpack_require__.r(ns);
         /******/Object.defineProperty(ns, 'default', { enumerable: true, value: value });
@@ -18153,7 +18156,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
         /* harmony import */var _foundation_util_mediaQuery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__( /*! ./foundation.util.mediaQuery */"./js/foundation.util.mediaQuery.js");
 
 
-        function _typeof(obj) {if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {_typeof = function _typeof(obj) {return typeof obj === 'undefined' ? 'undefined' : _typeof2(obj);};} else {_typeof = function _typeof(obj) {return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj === 'undefined' ? 'undefined' : _typeof2(obj);};}return _typeof(obj);}
+        function _typeof(obj) {if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {_typeof = function _typeof(obj) {return _typeof2(obj);};} else {_typeof = function _typeof(obj) {return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);};}return _typeof(obj);}
 
 
 
@@ -18793,7 +18796,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
         /* harmony import */var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 
 
-        function _typeof(obj) {if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {_typeof = function _typeof(obj) {return typeof obj === 'undefined' ? 'undefined' : _typeof2(obj);};} else {_typeof = function _typeof(obj) {return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj === 'undefined' ? 'undefined' : _typeof2(obj);};}return _typeof(obj);}
+        function _typeof(obj) {if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {_typeof = function _typeof(obj) {return _typeof2(obj);};} else {_typeof = function _typeof(obj) {return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);};}return _typeof(obj);}
 
         // Default set of media queries
 
@@ -19068,7 +19071,6 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       /******/ }));
 });
-//# sourceMappingURL=foundation.core.js.map
 
 
 //= **require bower_components/foundation-sites/dist/js/plugins/foundation.util.box
@@ -19110,170 +19112,186 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 /* eslint-disable no-unused-vars */
 var nwayoStarterConfig = {
 
-	// jQuery scope
-	//   'private': .noConflit(true)
-	//   'semi':    .noConflit()
-	//   'public':  [does nothing]
-	jQuery: {
-		scope: 'private' } };
+  // jQuery scope
+  //   'private': .noConflit(true)
+  //   'semi':    .noConflit()
+  //   'public':  [does nothing]
+  jQuery: {
+    scope: 'private' },
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {return typeof obj;} : function (obj) {return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;}; //-------------------------------------
+
+  // Lodash scope
+  //   'private': .noConflict()
+  //   'public':  [does nothing]
+  lodash: {
+    scope: 'private' } };
+
+function _typeof(obj) {if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {_typeof = function _typeof(obj) {return typeof obj;};} else {_typeof = function _typeof(obj) {return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;};}return _typeof(obj);} //-------------------------------------
 //-- Dependencies starter kit
 //-------------------------------------
 /* global nwayoStarterConfig */
 
 (function () {
-	'use strict';
+  'use strict';
 
-	var addProp = function addProp(obj, prop, value) {
-		Object.defineProperty(obj, prop, {
-			enumerable: true,
-			writable: false,
-			configurable: false,
-			value: value });
+  var addProp = function addProp(obj, prop, value) {
+    Object.defineProperty(obj, prop, {
+      enumerable: true,
+      writable: false,
+      configurable: false,
+      value: value });
 
-	};
+  };
 
-	var readonlyObj = function readonlyObj(data) {
-		var obj = {};
+  var readonlyObj = function readonlyObj(data) {
+    var obj = {};
 
-		Object.keys(data).forEach(function (prop) {
-			if (_typeof(data[prop]) === 'object' && !Array.isArray(data[prop])) {
-				data[prop] = readonlyObj(data[prop]);
-			}
-			addProp(obj, prop, data[prop]);
-		});
+    Object.keys(data).forEach(function (prop) {
+      if (_typeof(data[prop]) === 'object' && !Array.isArray(data[prop])) {
+        data[prop] = readonlyObj(data[prop]);
+      }
+      addProp(obj, prop, data[prop]);
+    });
 
-		return obj;
-	};
-
-
-
-	//-- Initialize nwayo
-	var nwayo = readonlyObj({
-		project: konstan.project,
-		version: konstan.nwayo });
-
-
-	// Vendors
-	var jQueryScoped = void 0;
-	switch (nwayoStarterConfig.jQuery.scope) {
-
-		case 'private':jQueryScoped = global.jQuery.noConflict(true);break;
-		case 'semi':jQueryScoped = global.jQuery.noConflict();break;
-		case 'public':jQueryScoped = global.jQuery;break;
-		default:break;}
+    return obj;
+  };
 
 
 
-	var vendor = {};
-	addProp(vendor, 'jQuery', jQueryScoped);
-	addProp(vendor, 'lodash', global._.noConflict());
-	addProp(vendor, 'Modernizr', global.Modernizr);
-	addProp(vendor, 'pinki', global.pinki);
-
-	addProp(nwayo, 'vendor', vendor);
-
-	// Redefine
-	var $ = vendor.jQuery;
-	var _ = vendor.lodash;
+  //-- Initialize nwayo
+  var nwayo = readonlyObj({
+    project: konstan.project,
+    version: konstan.nwayo });
 
 
+  // Vendors
+  var jQueryScoped;
+  switch (nwayoStarterConfig.jQuery.scope) {
 
-	// Vows
-	var vows = readonlyObj({
-		DOMParsed: 'nwayo-core.dom-parsed',
-		documentLoaded: 'nwayo-core.document-loaded',
-		globaljqueryLoaded: 'nwayo-core.globaljquery-loaded' });
-
-
-	addProp(nwayo, 'vows', vows);
-
-	// Shortcuts
-	var shortcuts = function () {
-		var shortcut = {};
-		var selector = function selector(key, value) {
-			return '[' + key + (value ? '~="' + value + '"' : '') + ']';
-		};
-
-		// Shortcuts
-		['name'].forEach(function (key) {
-			shortcut[key] = function (value) {return selector(key, value);};
-			shortcut['$' + key] = function (value) {return $(shortcut[key](value));};
-		});
-
-		// Data - shortcuts
-		['action', 'component', 'placeholder'].forEach(function (key) {
-			shortcut[key] = function (value) {return selector('data-' + key, value);};
-			shortcut['$' + key] = function (value) {return $(shortcut[key](value));};
-		});
-
-		// DOM shortcuts
-		shortcut.$window = $(global);
-		shortcut.$document = $(document);
-		shortcut.$html = $('html');
-		shortcut.$body = $('body');
-
-		return shortcut;
-	}();
-
-	addProp(nwayo, 'shortcuts', shortcuts);
-
-	addProp(nwayo, 'helpers', {});
-
-	addProp(global, 'nwayo', nwayo);
+    case 'private':jQueryScoped = global.jQuery.noConflict(true);break;
+    case 'semi':jQueryScoped = global.jQuery.noConflict();break;
+    case 'public':jQueryScoped = global.jQuery;break;
+    default:break;}
 
 
 
-	//-- Initialize application
-	var path = konstan.konstan.path;
-	delete konstan.konstan.path;
+  var lodashScoped;
+  switch (nwayoStarterConfig.lodash.scope) {
 
-	var culture = $('html').attr('lang') || '';
-	var $body = $('body');
-	var bodyClass = $body.attr('class');
-
-	addProp(global, konstan.project, readonlyObj({
-		bundle: konstan.bundle,
-		konstan: konstan.konstan,
-		path: path,
-		tmpl: {},
-		env: {
-			culture: culture,
-			lang: culture.substr(0, 2),
-			country: culture.substr(3, 2).toLowerCase(),
-			pageId: $body.attr('id'),
-			pageTags: bodyClass ? _.compact(bodyClass.split(' ')) : [] } }));
+    case 'private':lodashScoped = global._.noConflict();break;
+    case 'public':lodashScoped = global._;break;
+    default:break;}
 
 
 
+  var vendor = {};
+  addProp(vendor, 'jQuery', jQueryScoped);
+  addProp(vendor, 'lodash', lodashScoped);
+  addProp(vendor, 'Modernizr', global.Modernizr);
+  addProp(vendor, 'pinki', global.pinki);
 
-	var DOMParsed = false;
-	var waitingOnDOM = false;
+  addProp(nwayo, 'vendor', vendor);
 
-	// When DOM ready
-	$(function () {
-		pinki.vow.fulfill(vows.DOMParsed);
-		DOMParsed = true;
+  // Redefine
+  var $ = vendor.jQuery;
+  var _ = vendor.lodash;
 
-		if (waitingOnDOM) {
-			pinki.vow.fulfill(vows.documentLoaded);
-		}
-	});
 
-	// When document loaded
-	$(window).on('load', function () {// eslint-disable-line no-restricted-globals
-		if (!DOMParsed) {
-			waitingOnDOM = true;
-		} else {
-			pinki.vow.fulfill(vows.documentLoaded);
-		}
-	});
 
-	// If global jQuery is already loaded
-	if (global.jQuery) {
-		pinki.vow.fulfill(vows.globaljqueryLoaded, global.jQuery);
-	}
+  // Vows
+  var vows = readonlyObj({
+    DOMParsed: 'nwayo-core.dom-parsed',
+    documentLoaded: 'nwayo-core.document-loaded',
+    globaljqueryLoaded: 'nwayo-core.globaljquery-loaded' });
+
+
+  addProp(nwayo, 'vows', vows);
+
+  // Shortcuts
+  var shortcuts = function () {
+    var shortcut = {};
+    var selector = function selector(key, value) {
+      return "[".concat(key).concat(value ? "~=\"".concat(value, "\"") : '', "]");
+    };
+
+    // Shortcuts
+    ['name'].forEach(function (key) {
+      shortcut[key] = function (value) {return selector(key, value);};
+      shortcut["$".concat(key)] = function (value) {return $(shortcut[key](value));};
+    });
+
+    // Data - shortcuts
+    ['action', 'component', 'placeholder'].forEach(function (key) {
+      shortcut[key] = function (value) {return selector("data-".concat(key), value);};
+      shortcut["$".concat(key)] = function (value) {return $(shortcut[key](value));};
+    });
+
+    // DOM shortcuts
+    shortcut.$window = $(global);
+    shortcut.$document = $(document);
+    shortcut.$html = $('html');
+    shortcut.$body = $('body');
+
+    return shortcut;
+  }();
+
+  addProp(nwayo, 'shortcuts', shortcuts);
+
+  addProp(nwayo, 'helpers', {});
+
+  addProp(global, 'nwayo', nwayo);
+
+
+
+  //-- Initialize application
+  var path = konstan.konstan.path;
+  delete konstan.konstan.path;
+
+  var culture = $('html').attr('lang') || '';
+  var $body = $('body');
+  var bodyClass = $body.attr('class');
+
+  addProp(global, konstan.project, readonlyObj({
+    bundle: konstan.bundle,
+    konstan: konstan.konstan,
+    path: path,
+    tmpl: {},
+    env: {
+      culture: culture,
+      lang: culture.substr(0, 2),
+      country: culture.substr(3, 2).toLowerCase(),
+      pageId: $body.attr('id'),
+      pageTags: bodyClass ? _.compact(bodyClass.split(' ')) : [] } }));
+
+
+
+
+  var DOMParsed = false;
+  var waitingOnDOM = false;
+
+  // When DOM ready
+  $(function () {
+    pinki.vow.fulfill(vows.DOMParsed);
+    DOMParsed = true;
+
+    if (waitingOnDOM) {
+      pinki.vow.fulfill(vows.documentLoaded);
+    }
+  });
+
+  // When document loaded
+  $(window).on('load', function () {// eslint-disable-line no-restricted-globals
+    if (!DOMParsed) {
+      waitingOnDOM = true;
+    } else {
+      pinki.vow.fulfill(vows.documentLoaded);
+    }
+  });
+
+  // If global jQuery is already loaded
+  if (global.jQuery) {
+    pinki.vow.fulfill(vows.globaljqueryLoaded, global.jQuery);
+  }
 
 })();
 
