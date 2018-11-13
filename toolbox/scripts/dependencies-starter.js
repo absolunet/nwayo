@@ -47,9 +47,18 @@
 
 	}
 
+	let lodashScoped;
+	switch (nwayoStarterConfig.lodash.scope) {
+
+		case 'private': lodashScoped = global._.noConflict(); break;
+		case 'public':  lodashScoped = global._; break;
+		default: break;
+
+	}
+
 	const vendor = {};
 	addProp(vendor, 'jQuery',    jQueryScoped);
-	addProp(vendor, 'lodash',    global._.noConflict());
+	addProp(vendor, 'lodash',    lodashScoped);
 	addProp(vendor, 'Modernizr', global.Modernizr);
 	addProp(vendor, 'pinki',     global.pinki);
 
