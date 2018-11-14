@@ -109,6 +109,12 @@ class Util {
 	}
 
 
+	//-- Constants
+	getKonstan(bundle) {
+		return this.parseKonstan('scripts', bundle, env.bundles[bundle].output);
+	}
+
+
 	//-- Parse Lodash config
 	parseLodash() {
 		const config = fss.readYaml(paths.config.lodash);
