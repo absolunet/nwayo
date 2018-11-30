@@ -1,8 +1,0 @@
-{
-  "name": "PROJECT_NAME",
-  "license": "UNLICENSED",
-  "private": true,
-  "dependencies": {
-    "@absolunet/nwayo-workflow": "3.6.0-rc.1"
-  }
-}

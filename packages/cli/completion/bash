@@ -1,0 +1,12 @@
+#!/bin/bash
+
+function _nwayo_completions() {
+
+  local cur="${COMP_WORDS[COMP_CWORD]}"
+  local vals=`nwayo --completion-logic="${COMP_WORDS[*]}"`
+
+  # Tell complete what stuff to show.
+  COMPREPLY=($(compgen -W "$vals" -- "$cur"))
+}
+
+complete -o default -F _nwayo_completions nwayo

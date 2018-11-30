@@ -1,0 +1,37 @@
+{
+  "name": "@absolunet/nwayo-extension-MYEXTENSION",
+  "version": "0.1.0",
+  "description": "What does it do?",
+  "definition": "",
+  "homepage": "https://github.com/absolunet/nwayo-extension-MYEXTENSION",
+  "author": {
+    "name": "Absolunet",
+    "url": "https://absolunet.com"
+  },
+  "keywords": [
+    "MY-KEYWORDS",
+    "nwayo",
+    "nwayo-extension"
+  ],
+  "license": "MIT",
+  "repository": {
+    "url": "git://github.com/absolunet/nwayo-extension-MYEXTENSION.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/absolunet/nwayo-extension-MYEXTENSION/issues"
+  },
+  "engines": {
+    "node": ">= 11.2.0"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "devDependencies": {
+    "@absolunet/tester": "2.4.2"
+  },
+  "dependencies": {
+    "@absolunet/fss": "^1.3.3"
+  }
+}

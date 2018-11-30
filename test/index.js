@@ -1,43 +1,45 @@
 //--------------------------------------------------------
-//-- Tests
+//-- Tester
 //--------------------------------------------------------
 'use strict';
 
-const path   = require('path');
-const slash  = require('slash');
 const tester = require('@absolunet/tester');
 
-const rootPath = slash(path.normalize(`${__dirname}/..`));
 
-tester.lint.js([
-	`*.js`,
-	`*/*.js`,
-	`*/!(node_modules)/**/*.js`,
-	`!boilerplate/bower_components/**`,
-	`!boilerplate/components/**/scripts/vendor/**`,
+const EXCLUDE_MULTI = [
 	`!docs/static/**`,
 	`!ressources/docs-builder/app/helpers/generated/**`,
 	`!ressources/docs-builder/assets/bower_components/**`,
+	`!ressources/docs-builder/assets/*/vendor/*`,
 	`!ressources/docs-builder/local-server/**`,
 	`!ressources/docs-builder/node_modules/**`,
-	`!test/fixtures/**`,
-	`!workflow/tests-matrix/**`
-], {
-	cwd: rootPath
+	`!test/fixtures/**`
+];
+
+const EXCLUDE_SUB = [
+	`!boilerplate/bower_components/**`,
+	`!boilerplate/components/**/scripts/vendor/**`,
+	`!boilerplate/components/**/styles/vendor/**`
+];
+
+
+tester.npmPackage.validateMulti({
+	js:           tester.all.js.concat(EXCLUDE_MULTI),
+	json:         tester.all.json.concat(EXCLUDE_MULTI),
+	yaml:         tester.all.yaml.concat(EXCLUDE_MULTI),
+	bash:         tester.all.bash.concat(EXCLUDE_MULTI),
+	editorconfig: tester.all.editorconfig.concat(EXCLUDE_MULTI),
+	scss:         tester.all.scss.concat(EXCLUDE_MULTI)
 });
 
-
-tester.lint.scss([
-	`*.scss`,
-	`*/*.scss`,
-	`*/!(node_modules)/**/*.scss`,
-	`!boilerplate/bower_components/**`,
-	`!boilerplate/components/**/styles/vendor/**`,
-	`!ressources/docs-builder/assets/bower_components/**`,
-	`!ressources/docs-builder/assets/styles/vendor/**`,
-	`!ressources/docs-builder/local-server/**`,
-	`!ressources/docs-builder/node_modules/**`,
-	`!workflow/tests-matrix/**`
-], {
-	cwd: rootPath
+tester.npmPackage.multiPackagesPaths.forEach((path) => {
+	tester.npmPackage.validateSub({
+		cwd:          path,
+		js:           tester.all.js.concat([`bin/**`], EXCLUDE_SUB),
+		json:         tester.all.json.concat(EXCLUDE_SUB),
+		yaml:         tester.all.yaml.concat(EXCLUDE_SUB),
+		bash:         tester.all.bash.concat(EXCLUDE_SUB),
+		editorconfig: tester.all.editorconfig.concat(EXCLUDE_SUB),
+		scss:         tester.all.scss.concat(EXCLUDE_SUB)
+	});
 });
