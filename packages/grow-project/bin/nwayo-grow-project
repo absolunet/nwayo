@@ -1,0 +1,6 @@
+#!/usr/bin/env node
+'use strict';
+
+(async () => {
+	await require('..').cli();  // eslint-disable-line global-require
+})();

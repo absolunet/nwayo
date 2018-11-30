@@ -53,8 +53,8 @@ https://packagecontrol.io/packages/SublimeLinter-contrib-stylelint
 > Languages & Frameworks > Javascript > Code Quality Tools > JSHint
 	- [x] Enable
 	- [x] Use config files
-  - Version (latest)
-  - Location: [x] Default
+	- Version (latest)
+	- Location: [x] Default
 ```
 
 

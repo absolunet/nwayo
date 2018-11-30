@@ -1,0 +1,19 @@
+{
+  "name": "nwayo",
+  "private": true,
+  "scripts": {
+    "test": "ava test",
+    "postinstall": "rm -rf packages/*/package-lock.json; lerna clean --yes; lerna bootstrap --no-ci",
+    "outdated": "node manager.js --task=outdated",
+    "build": "node manager.js --task=build",
+    "deploy": "node manager.js --task=deploy"
+  },
+  "devDependencies": {
+    "@absolunet/eslint-config-react": "1.2.2",
+    "@absolunet/fsp": "1.3.3",
+    "@absolunet/manager": "0.3.0",
+    "@absolunet/stylelint-config-nwayo": "1.1.1",
+    "@absolunet/tester": "2.4.3",
+    "lerna": "3.5.1"
+  }
+}

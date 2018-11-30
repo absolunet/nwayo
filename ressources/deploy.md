@@ -1,61 +1,36 @@
 # Procédure de déploiement
 
-## Vérifier pour des mises à jour npm / node
+## Vérifier pour des mises à jour npm
 
-- `npm outdated`
-- `node --version`
+- `npm run outdated`
 - Faire les ajustements dans le fichier `package.json`
 
 
 
-## Vérifier pour des mises à jour bower (sous `boilerplate`)
+## Vérifier pour des mises à jour bower (sous `packages/grow-project/boilerplate`)
 
 - `nwayo doctor`
-- Faire les ajustements dans les fichiers `bower.json`
+- Faire les ajustements dans le fichier `bower.json`
 
 
 
 ## Faire les tests
 
-- Sous `workflow`, supprimer `package-lock.json` et `node_modules`
-- Faire un `npm install`
-- Rouler un `npm test` pour le linter
+- `npm test`
 - **Commiter les changements de mises à jour + corrections de tests**
 
 
 
 ## Version bump
 
-### Sous `workflow`
+- Changer la version dans le fichier `lerna.json`
+- `npm run build`
 
-- Ajuster la version dans le `package.json`
+### Sous `packages/grow-project/boilerplate`)
 
-- Supprimer `package-lock.json` et `node_modules`
+- `nwayo rebuild`
 
-- Faire un `npm install`
-
-- S'assurer qu'il n'y a pas un `npm-shrinkwrap.json`
-
-- Copier les fichiers `./readme.md` et `./license` sous `workflow`
-
-- Faire un `npm publish` (`--tag next` pour les pre-releases) ⚠️ **ATTENTION C'EST UNE COMMANDE SANS LENDEMAIN**
-
-- Supprimer les fichiers `./readme.md` et `./license` sous `workflow`
-​
-
-### Sous `boilerplate`
-
-- Ajuster la version dans le `bower.json`, `package.json`, `SAMPLE.index.html` et `./bower.json`
-
-- Supprimer `package-lock.json` et `node_modules`
-
-- Faire un `npm install`
-
-- Copier `./toolbox` sous `bower_components/nwayo-toolbox/toolbox`
-
-- Rouler un `nwayo rebuild`
-
-- **Commiter tous les changements avec le message `Version bump`**
+**Commiter tous les changements avec le message `Version bump`**
 
 
 

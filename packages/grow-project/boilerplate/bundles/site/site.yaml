@@ -1,0 +1,40 @@
+#-------------------------------------
+#-- Site
+#-------------------------------------
+
+#-- Output paths (relative to nwayo folder) and output url
+output:
+  konstan: ../../../test/fixtures/build
+  build:   ../../../test/fixtures/build
+  url:     /build
+
+
+#-- Assets
+assets:
+  components:
+    - common
+    - form
+    - site
+
+
+#-- Scripts
+scripts:
+  options:
+    minify: false
+    babel:              #  http://browserl.ist/?q=%3E+.25%25
+      - '> .25%'
+
+  allowBabel:
+    - bower_components/foundation-sites
+    - bower_components/nwayo-toolbox
+    - bower_components/pinki
+
+
+
+#-- Styles
+styles:
+  options:
+    minify: false
+    sourcemaps: false
+    autoprefixer:       #  http://browserl.ist/?q=%3E+.25%25
+      - '> .25%'

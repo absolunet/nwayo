@@ -1,0 +1,38 @@
+{
+  "name": "@absolunet/nwayo-grow-project",
+  "version": "3.6.0-rc.1",
+  "description": "Boilerplate generator for nwayo project",
+  "definition": "",
+  "homepage": "https://absolunet.github.io/nwayo",
+  "author": {
+    "name": "Absolunet",
+    "url": "https://absolunet.com"
+  },
+  "keywords": [
+    "boilerplate",
+    "npx",
+    "nwayo"
+  ],
+  "license": "MIT",
+  "repository": {
+    "url": "git://github.com/absolunet/nwayo.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/absolunet/nwayo/issues"
+  },
+  "bin": {
+    "nwayo-grow-project": "bin/nwayo-grow-project"
+  },
+  "engines": {
+    "node": ">= 11.3.0"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "@absolunet/fss": "1.3.3",
+    "chalk": "2.4.1",
+    "figures": "2.0.0",
+    "inquirer": "6.2.1",
+    "replace-in-file": "3.4.2"
+  }
+}
