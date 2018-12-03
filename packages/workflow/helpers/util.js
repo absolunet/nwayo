@@ -224,7 +224,7 @@ class Util {
 			}
 		}
 
-		return toolbox.mergeStreams(streams);
+		return streams.length !== 0 ? toolbox.mergeStreams(streams) : toolbox.vinylStream('empty-stream', '');
 	}
 
 
