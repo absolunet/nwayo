@@ -1,0 +1,3 @@
+bower_components
+components/*/styles/vendor
+node_modules

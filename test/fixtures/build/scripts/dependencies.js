@@ -10436,7 +10436,7 @@ return jQuery;
 /**
  * @license
  * Lodash (Custom Build) <https://lodash.com/>
- * Build: `lodash include="compact,intersection,forEach,includes,clone,isDate,isString,get,merge,camelCase,template,noConflict" --development --output /Users/jblandry/www/nwayo/nwayo-core/boilerplate/.nwayo-cache/scripts/lodash.js`
+ * Build: `lodash include="compact,intersection,forEach,includes,clone,isDate,isString,get,merge,camelCase,template,noConflict" --development --output /Users/jblandry/www/nwayo/nwayo-core/packages/grow-project/boilerplate/.nwayo-cache/scripts/lodash.js`
  * Copyright JS Foundation and other contributors <https://js.foundation/>
  * Released under MIT license <https://lodash.com/license>
  * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
@@ -17514,7 +17514,7 @@ This test will also return `true` for Firefox 4 Multitouch support.
 //-------------------------------------
 /**
  * what-input - A global utility for tracking the current input method (mouse, keyboard or touch).
- * @version v5.1.1
+ * @version v5.1.3
  * @link https://github.com/ten1seven/what-input
  * @license MIT
  */
@@ -17599,6 +17599,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      ignoreKeys: function ignoreKeys() {},
 
 	      // no-op
+	      specificKeys: function specificKeys() {},
+
+	      // no-op
 	      registerOnChange: function registerOnChange() {},
 
 	      // no-op
@@ -17651,6 +17654,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  91, // Windows key / left Apple cmd
 	  93 // Windows menu / right Apple cmd
 	  ];
+
+	  var specificMap = [];
 
 	  // mapping of events to input types
 	  var inputMap = {
@@ -17759,7 +17764,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        value = pointerType(event);
 	      }
 
-	      var shouldUpdate = value === 'keyboard' && eventKey && ignoreMap.indexOf(eventKey) === -1 || value === 'mouse' || value === 'touch';
+	      var ignoreMatch = !specificMap.length && ignoreMap.indexOf(eventKey) === -1;
+
+	      var specificMatch = specificMap.length && specificMap.indexOf(eventKey) !== -1;
+
+	      var shouldUpdate = value === 'keyboard' && eventKey && (ignoreMatch || specificMatch) || value === 'mouse' || value === 'touch';
 
 	      if (currentInput !== value && shouldUpdate) {
 	        currentInput = value;
@@ -17952,6 +17961,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // overwrites ignored keys with provided array
 	    ignoreKeys: function ignoreKeys(arr) {
 	      ignoreMap = arr;
+	    },
+
+	    // overwrites specific char keys to update on
+	    specificKeys: function specificKeys(arr) {
+	      specificMap = arr;
 	    },
 
 	    // attach functions to input and intent "events"
@@ -18161,7 +18175,7 @@ function _typeof2(obj) {if (typeof Symbol === "function" && typeof Symbol.iterat
 
 
 
-        var FOUNDATION_VERSION = '6.4.3'; // Global Foundation object
+        var FOUNDATION_VERSION = '6.5.1'; // Global Foundation object
         // This is attached to the window, or used as a module for AMD/Browserify
 
         var Foundation = {
@@ -18315,13 +18329,16 @@ function _typeof2(obj) {if (typeof Symbol === "function" && typeof Symbol.iterat
               // Get the current plugin
               var plugin = _this._plugins[name]; // Localize the search to all elements inside elem, as well as elem itself, unless elem === document
 
-              var $elem = jquery__WEBPACK_IMPORTED_MODULE_0___default()(elem).find('[data-' + name + ']').addBack('[data-' + name + ']').filter(function () {
-                return typeof jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data("zfPlugin") === 'undefined';
-              }); // For each plugin found, initialize it
+              var $elem = jquery__WEBPACK_IMPORTED_MODULE_0___default()(elem).find('[data-' + name + ']').addBack('[data-' + name + ']'); // For each plugin found, initialize it
 
               $elem.each(function () {
                 var $el = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this),
-                opts = {};
+                opts = {}; // Don't double-dip on plugins
+
+                if ($el.data('zfPlugin')) {
+                  console.warn("Tried to initialize " + name + " on an element that already has a Foundation plugin.");
+                  return;
+                }
 
                 if ($el.attr('data-options')) {
                   var thing = $el.attr('data-options').split(';').forEach(function (e, i) {
@@ -18865,13 +18882,6 @@ function _typeof2(obj) {if (typeof Symbol === "function" && typeof Symbol.iterat
                         * @private
                         */
           _init: function _init() {
-            // make sure the initialization is only done once when calling _init() several times
-            if (this.isInitialized === true) {
-              return;
-            } else {
-              this.isInitialized = true;
-            }
-
             var self = this;
             var $meta = jquery__WEBPACK_IMPORTED_MODULE_0___default()('meta.foundation-mq');
 
@@ -18882,7 +18892,6 @@ function _typeof2(obj) {if (typeof Symbol === "function" && typeof Symbol.iterat
             var extractedStyles = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.foundation-mq').css('font-family');
             var namedQueries;
             namedQueries = parseStyleToObject(extractedStyles);
-            self.queries = []; // reset
 
             for (var key in namedQueries) {
               if (namedQueries.hasOwnProperty(key)) {
@@ -18896,18 +18905,6 @@ function _typeof2(obj) {if (typeof Symbol === "function" && typeof Symbol.iterat
             this.current = this._getCurrentSize();
 
             this._watcher();
-          },
-
-          /**
-              * Reinitializes the media query helper.
-              * Useful if your CSS breakpoint configuration has just been loaded or has changed since the initialization.
-              * @function
-              * @private
-              */
-          _reInit: function _reInit() {
-            this.isInitialized = false;
-
-            this._init();
           },
 
           /**

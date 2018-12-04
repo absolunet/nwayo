@@ -16,7 +16,7 @@ $ npx @absolunet/nwayo-grow-extension
 
 ## Documentation
 
-[https://absolunet.github.io/nwayo/cli/](https://absolunet.github.io/nwayo/cli/)
+[https://absolunet.github.io/nwayo/](https://absolunet.github.io/nwayo/)
 
 
 ## License
