@@ -30,9 +30,14 @@
 
 - `nwayo rebuild`
 
+### Sous `ressources/docs-builder`
+
+- `npm run build`
+
 ### Sous `root`
 
 - Refaire un `npm test`
+- `npm run deploy`
 
 **Commiter tous les changements avec le message `Version bump`**
 

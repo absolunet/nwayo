@@ -1,4 +1,5 @@
 packages/grow-project/boilerplate/bower_components
 node_modules
+.publish-tarballs
 npm-debug.log
 package-lock.json
