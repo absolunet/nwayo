@@ -130,8 +130,8 @@ const workflow = {};
 workflow.root       = slash(path.normalize(`${__dirname}/..`));
 workflow.cliTasks   = `${workflow.root}/cli`;
 workflow.tasks      = `${workflow.root}/tasks`;
-workflow.matrix     = `${workflow.root}/tests-matrix`;
 workflow.ressources = `${workflow.root}/ressources`;
+workflow.matrix     = `${workflow.ressources}/doctor-matrix`;
 
 const config = {};
 config.main            = MAIN_CONFIG_PATH;

@@ -1,0 +1,46 @@
+# Lodash (https://lodash.com/docs)
+
+#category:
+#  - array
+#  - chain
+#  - collection
+#  - date
+#  - function
+#  - lang
+#  - object
+#  - number
+#  - string
+#  - utility
+
+
+include:
+
+  # Array
+  - compact
+  - intersection
+
+  # Collection
+  - forEach
+  - includes
+
+  # Lang
+  - clone
+  - isDate
+  - isString
+
+  # Object
+  - get
+  - merge
+
+  # String
+  - camelCase
+  - template
+
+  # Util
+  - noConflict
+
+
+
+#minus:
+#  - method1
+#  - method2

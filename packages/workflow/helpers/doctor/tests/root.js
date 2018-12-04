@@ -173,8 +173,7 @@ class RootTests extends Tests {
 	async run() {
 
 		//-- Directories
-		reports.add(assert.isTreeMatrix('/', 'dir',  { pattern:'!+(.git)' }));
-		reports.add(assert.exists(paths.folder.cache, { tracked:false }));
+		reports.add(assert.isTreeMatrix('/', 'dir',  { pattern:'!+(.git|node_modules)' }));
 		reports.add(assert.exists(paths.folder.vendors));
 		reports.add(assert.exists(paths.folder.bundles));
 		reports.add(assert.exists(paths.folder.components));
