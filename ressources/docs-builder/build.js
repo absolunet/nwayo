@@ -88,7 +88,7 @@ scandirectory(`${paths.root}/documentation`, { readFiles:true }, (err, list, tre
 		tree['readme.md'] = mainReadme;
 
 		//-- Build nav
-		const { version } = require(`${paths.root}/workflow/package`);  // eslint-disable-line global-require
+		const { version } = fss.readJson(`${paths.root}/lerna.json`);
 		const navTree = processNav(tree);
 		navTree.__root__ = { source:'readme', title:`nwayo ${version} - Documentation` };
 		navTree.__404__  = navTree['404'];

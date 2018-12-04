@@ -127,9 +127,13 @@ $ nwayo install vendors
 ### doctor
 `nwayo doctor`
 
+Analyze project for conformity
+
 Checks npm / Bower packages for updates and lists what is outdated.
 
 Checks if the toolbox version in bower is the same as the workflow version.
+
+Check if project follows conventions
 
 **Examples:**
 ```shell
@@ -142,10 +146,10 @@ $ nwayo doctor
   Bower diagnosis
     ✘  You are a dull blade   ಠ_ಠ
 
-    [foundation-sites] : 6.3.1 → 6.4.0
+    [foundation-sites] : 6.4.0 → 6.5.1
     [imagesloaded] : 4.1.3 → 4.1.4
     [jquery] : 3.2.1 → 3.3.1
-    [jsrender] : 0.9.86 → 0.9.87
+    [jsrender] : 0.9.86 → 1.0.0
     [kafe] : 3.2.1 → 3.2.4
     [slick.js] : 1.6.0 → 1.8.1
 
@@ -191,12 +195,29 @@ $ nwayo outdated
 
    ╭─────────────────────────────────────────────────╮
    │                                                 │
-   │         Update available 1.3.0 → 1.4.0          │
+   │         Update available 3.5.2 → 3.6.0          │
    │           Run nwayo update to update            │
    │                                                 │
    ╰─────────────────────────────────────────────────╯
 
 ```
+
+### grow
+`nwayo grow`
+
+Generate new project or extension
+
+**Example:**
+```shell
+$ nwayo grow
+```
+
+or
+
+```shell
+$ nwayo grow extension
+```
+
 
 ## -v or --version
 `nwayo --version`
@@ -223,19 +244,22 @@ $ nwayo --help
   Usage: nwayo <command>
 
   Project
-  run <task> [<bundle>] [--prod]     Run a task ex:[assets|icons|local|scripts|styles]
-  rebuild [<bundle>]                 Rebuild the entire project from scratch
-  watch [<bundle>]                   Listens for changes on files and run appropriate tasks
-  install [<scope>] [--force]        Install dependencies ex:[workflow|vendors]
-  doctor                             Checks npm / Bower packages for updates
+  run <task> [<bundle>]           Run a task ex:[assets|icons|local|scripts|styles]
+  rebuild [<bundle>] [--prod]     Rebuild the entire project from scratch
+  watch [<bundle>]                Listens for changes on files and run appropriate tasks
+  install [<scope>] [--force]     Install dependencies ex:[workflow|vendors]
+  doctor                          Analyze project for conformity
 
-  Options
-  -h, --help                         Show help
-  -v, --version                      Show CLI version
-  --pronounce                        Listen to nwayo pronunciation
+  Global
+  update                          Update the CLI
+  outdated                        Check if CLI is outdated
+  grow [extension]                Generate new project or extension
+  -h, --help                      Show help
+  -v, --version                   Show CLI version
+  --pronounce                     Listen to nwayo pronunciation
 
-       cli@1.1.1 /usr/local/bin/nwayo
-  workflow@3.3.3 /Users/absolunet/www/project-name/nwayo/node_modules/@absolunet/nwayo-workflow
+       cli@3.6.0 /usr/local/bin/nwayo
+  workflow@3.6.0 /Users/absolunet/www/project-name/nwayo/node_modules/@absolunet/nwayo-workflow
 ```
 
 ### --pronounce

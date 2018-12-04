@@ -4,12 +4,8 @@
 <h1 align="center"><strong>nwayo</strong></h1>
 <p align="center">/nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.</p>
 <p><a href="https://www.npmjs.com/package/@absolunet/nwayo-workflow" class="external" rel="external"><img src="https://img.shields.io/npm/v/@absolunet/nwayo-workflow.svg" alt="npm"></a>
-<a href="https://david-dm.org/absolunet/nwayo?path=workflow" class="external" rel="external"><img src="https://david-dm.org/absolunet/nwayo/status.svg?path=workflow" alt="npm dependencies"></a>
-<a href="https://npms.io/search?q=%40absolunet%2Fnwayo-workflow" class="external" rel="external"><img src="https://badges.npms.io/%40absolunet%2Fnwayo-workflow.svg" alt="npms"></a>
-<a href="https://travis-ci.org/absolunet/nwayo/builds" class="external" rel="external"><img src="https://api.travis-ci.org/absolunet/nwayo.svg?branch=master" alt="Travis CI"></a></p>
-<p><a href="https://github.com/absolunet/eslint-config-node" class="external" rel="external"><img src="https://img.shields.io/badge/code_style-ESLint_@absolunet/node-659d32.svg" alt="Code style ESLint"></a>
-<a href="https://github.com/absolunet/eslint-config-nwayo" class="external" rel="external"><img src="https://img.shields.io/badge/code_style-ESLint_@absolunet/nwayo-659d32.svg" alt="Code style ESLint"></a>
-<a href="https://github.com/absolunet/stylelint-config-nwayo" class="external" rel="external"><img src="https://img.shields.io/badge/code_style-stylelint_@absolunet/nwayo-659d32.svg" alt="Code style stylelint"></a></p>
+<a href="https://travis-ci.org/absolunet/nwayo/builds" class="external" rel="external"><img src="https://api.travis-ci.org/absolunet/nwayo.svg?branch=master" alt="Travis CI"></a>
+<a href="https://lernajs.io/" class="external" rel="external"><img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg" alt="lerna"></a></p>
 <br>
 <h2 id="what-is-nwayo-%3F"><a class="anchor" href="#what-is-nwayo-%3F" aria-hidden="true">⚭</a> What is nwayo ?</h2>
 <ul>
@@ -23,17 +19,22 @@
 <li><a href="http://www.graphicsmagick.org" class="external" rel="external">GraphicsMagick</a> / <a href="https://www.imagemagick.org" class="external" rel="external">ImageMagick</a></li>
 </ul>
 <h2 id="get-started"><a class="anchor" href="#get-started" aria-hidden="true">⚭</a> Get started</h2>
-<ul>
-<li>Get the files under <a href="https://github.com/absolunet/nwayo/tree/master/boilerplate" class="external" rel="external">boilerplate</a></li>
-<li>Replace <code>PROJECT_NAME</code> in <code>bower.json</code> and <code>package.json</code> with your project's name</li>
-</ul>
-<p>Run in nwayo root folder</p>
-<pre><code class="language-shell">nwayo install workflow
+<p>Run in your project root folder</p>
+<pre><code class="language-shell"># Get boilerplate
+npx @absolunet/nwayo-grow-project
+
+# Install CLI
+npm install -g @absolunet/nwayo-cli
+
+# Install dependencies
+nwayo install workflow
 nwayo install vendors
+
+# Build
 nwayo rebuild
 </code></pre>
-<h2 id="tools"><a class="anchor" href="#tools" aria-hidden="true">⚭</a> Tools   <img src="/nwayo/static/images/vendors.png" width="600" height="30" alt="nwayo vendors"></h2>
-<p><code>nwayo</code> is HTML5-ready and uses <a href="https://gulpjs.com" class="external" rel="external">gulp</a> as a build system</p>
+<h2 id="tools"><a class="anchor" href="#tools" aria-hidden="true">⚭</a> Tools   <img src="/nwayo/static/images/vendors.png" width="525" height="30" alt="nwayo vendors"></h2>
+<p>nwayo is HTML5-ready and uses <a href="https://gulpjs.com" class="external" rel="external">gulp</a> as a build system</p>
 <ul>
 <li>Based (but not mandatory) on <a href="https://foundation.zurb.com" class="external" rel="external">Zurb Foundation</a></li>
 <li>Uses <a href="https://bower.io" class="external" rel="external">Bower</a> as dependencies manager and <a href="https://editorconfig.org" class="external" rel="external">EditorConfig</a> for consistency</li>
@@ -41,7 +42,7 @@ nwayo rebuild
 <h4 id="styling"><a class="anchor" href="#styling" aria-hidden="true">⚭</a> Styling</h4>
 <ul>
 <li>CSS3-ready via <a href="https://github.com/postcss/autoprefixer" class="external" rel="external">Autoprefixer</a> and linted via <a href="https://stylelint.io" class="external" rel="external">stylelint</a></li>
-<li>Comes with <a href="https://sass-lang.com" class="external" rel="external">Sass</a></li>
+<li>Comes with <a href="https://sass-lang.com" class="external" rel="external">Sass</a>, built via <a href="https://www.npmjs.com/package/dart-sass" class="external" rel="external">Dart Sass</a></li>
 <li>Minifies with <a href="https://cssnano.co" class="external" rel="external">cssnano</a></li>
 </ul>
 <h4 id="scripting"><a class="anchor" href="#scripting" aria-hidden="true">⚭</a> Scripting</h4>
@@ -54,7 +55,6 @@ nwayo rebuild
 <ul>
 <li>Optimizes images via <a href="https://www.lcdf.org/gifsicle" class="external" rel="external">gifsicle</a>, <a href="http://libjpeg-turbo.virtualgl.org" class="external" rel="external">jpegtran</a>, <a href="http://optipng.sourceforge.net" class="external" rel="external">optipng</a>, <a href="https://github.com/svg/svgo" class="external" rel="external">svgo</a></li>
 <li>Generates iconography via <a href="http://www.graphicsmagick.org" class="external" rel="external">GraphicsMagick</a>, <a href="https://www.imagemagick.org" class="external" rel="external">ImageMagick</a></li>
-<li>Optimized for <a href="https://atom.io" class="external" rel="external">Atom</a> with <a href="https://atomlinter.github.io" class="external" rel="external">AtomLinter</a></li>
 </ul>
 <h2 id="tried-and-tested"><a class="anchor" href="#tried-and-tested" aria-hidden="true">⚭</a> Tried and tested</h2>
 <p>Currently deployed on 200+ sites including:</p>
