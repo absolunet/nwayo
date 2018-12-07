@@ -78,6 +78,15 @@ module.exports = () => {
 		spawn('npx @absolunet/nwayo-grow-extension');
 		util.exit();
 
+	//-- Trap `docs`
+	} else if (util.cmd('docs')) {
+		const opn = require('opn');
+		const URL = 'https://absolunet.github.io/nwayo/';
+
+		util.echo(`\n${chalk.underline(URL)}`);
+		opn(URL);
+		util.exit();
+
 	} else {
 
 		const findUp = require('find-up');
