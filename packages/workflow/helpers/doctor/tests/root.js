@@ -173,7 +173,7 @@ class RootTests extends Tests {
 	async run() {
 
 		//-- Directories
-		reports.add(assert.isTreeMatrix('/', 'dir',  { pattern:'!+(.git|node_modules)' }));
+		reports.add(assert.isTreeMatrix('/', 'dir',  { pattern:'!+(.git|.nwayo-cache|node_modules)' }));
 		reports.add(assert.exists(paths.folder.vendors));
 		reports.add(assert.exists(paths.folder.bundles));
 		reports.add(assert.exists(paths.folder.components));
@@ -182,7 +182,7 @@ class RootTests extends Tests {
 
 
 		//-- Files
-		reports.add(assert.isTreeMatrix('/', 'file', { pattern:`!+(SAMPLE.*.html|${paths.filename.mainConfig})` }));
+		reports.add(assert.isTreeMatrix('/', 'file', { pattern:`!+(SAMPLE.*.html|${paths.filename.mainConfig}|.gitignore)` }));
 
 		// .editorconfig
 		reports.add(assert.isMatrix('.editorconfig'));
@@ -197,7 +197,7 @@ class RootTests extends Tests {
 		reports.add(assert.hasMatrix('.gitattributes'));
 
 		// .gitignore
-		reports.add(assert.hasMatrix('.gitignore'));
+		reports.add(assert.exists('.gitignore'));
 
 		// .stylelintignore
 		reports.add(assert.isMatrix('.stylelintignore'));

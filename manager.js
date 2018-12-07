@@ -53,11 +53,11 @@ manager.multiScriptsRunner({
 				await fsp.remove(WORKFLOW_MATRIX);
 				await fsp.ensureDir(WORKFLOW_MATRIX);
 
-				fss.scandir(BOILER, 'file', { pattern:'!+(SAMPLE.*|nwayo.yaml)' }).forEach((file) => {
+				fss.scandir(BOILER, 'file', { pattern:'!+(-gitignore|nwayo.yaml|SAMPLE.*)' }).forEach((file) => {
 					fss.copy(`${BOILER}/${file}`, `${WORKFLOW_MATRIX}/${file}`);
 				});
 
-				fss.scandir(BOILER, 'dir', { pattern:'!node_modules' }).forEach((dir) => {
+				fss.scandir(BOILER, 'dir', { pattern:'!+(.nwayo-cache|node_modules)' }).forEach((dir) => {
 					fss.ensureFile(`${WORKFLOW_MATRIX}/${dir}/.gitkeep`);
 				});
 

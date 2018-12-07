@@ -39,6 +39,8 @@ class GrowExtension {
 
 		// Duplicate boilerplate
 		fss.copy(BOILERPLATE, EXTENSION);
+		fss.rename(`${EXTENSION}/-gitignore`, `${EXTENSION}/.gitignore`);
+		fss.rename(`${EXTENSION}/-npmignore`, `${EXTENSION}/.npmignore`);
 
 
 		// Confirmation
