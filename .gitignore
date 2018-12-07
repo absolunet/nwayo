@@ -1,5 +1,6 @@
-packages/grow-project/boilerplate/bower_components
-node_modules
+.nwayo-cache
 .publish-tarballs
+node_modules
 npm-debug.log
 package-lock.json
+packages/grow-project/boilerplate/bower_components

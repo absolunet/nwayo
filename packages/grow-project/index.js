@@ -66,6 +66,7 @@ class GrowProject {
 
 		// Duplicate boilerplate
 		fss.copy(BOILERPLATE, NWAYO);
+		fss.rename(`${NWAYO}/-gitignore`, `${NWAYO}/.gitignore`);
 
 		// Configuration
 		const config = fss.readYaml(CONFIG_ORIGINAL);
