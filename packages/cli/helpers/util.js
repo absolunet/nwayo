@@ -28,12 +28,13 @@ class Util {
 				'update':      [`update`, `Update the CLI`],
 				'outdated':    [`outdated`, `Check if CLI is outdated`],
 				'grow':        [`grow ${chalk.reset('[')}${chalk.yellow('extension')}${chalk.reset(']')}`, `Generate new project or extension`],
+				'docs':        [`docs`, `Open documentation`],
 				'--help':      [`-h, --help`, `Show help`],
 				'--version':   [`-v, --version`, 'Show CLI version'],
 				'--pronounce': [`--pronounce`, `Listen to nwayo pronunciation`]
 			},
 			full: {
-				Global: ['update', 'outdated', 'grow', '--help', '--version', '--pronounce']
+				Global: ['update', 'outdated', 'grow', 'docs', '--help', '--version', '--pronounce']
 			}
 		};
 	}
