@@ -14,7 +14,7 @@ const WORKFLOW_MATRIX = `${ROOT}/packages/workflow/ressources/doctor-matrix`;
 const GLOBAL_BOWER    = `${ROOT}/bower.json`;
 const BOILER_BOWER    = `${BOILER}/bower.json`;
 const BOILER_PACKAGE  = `${BOILER}/package.json`;
-const BOILER_INDEX    = `${BOILER}/SAMPLE.index.html`;
+const BOILER_INDEX    = `${BOILER}/SAMPLE-HTML/index.html`;
 const BOILER_TOOLBOX  = `${BOILER}/bower_components/nwayo-toolbox`;
 const BOILER_WORKFLOW = `${BOILER}/node_modules/@absolunet/nwayo-workflow`;
 
