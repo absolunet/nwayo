@@ -317,11 +317,6 @@ a:not(.button):hover, a:not(.button):active, a:not(.button):focus {
   text-decoration: underline;
 }
 
-::-moz-selection {
-  background-color: #36454f;
-  color: #ffffff;
-}
-
 ::selection {
   background-color: #36454f;
   color: #ffffff;
