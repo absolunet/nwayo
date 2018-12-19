@@ -1,6 +1,6 @@
 {
   "name": "@absolunet/nwayo-grow-project",
-  "version": "3.6.0-rc.4",
+  "version": "3.6.0",
   "description": "Boilerplate generator for nwayo project",
   "definition": "",
   "homepage": "https://absolunet.github.io/nwayo",
