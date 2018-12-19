@@ -1,5 +1,5 @@
 #-------------------------------------
-#-- Site - Editor
+#-- Site - CMS
 #-------------------------------------
 
 #-- Styles
@@ -10,4 +10,4 @@ styles:
       - components/foundation/styles/foundation
       - components/site/styles/fonts
       - components/site/styles/base
-      - components/cms/styles/editor
+      - components/cms/styles/cms

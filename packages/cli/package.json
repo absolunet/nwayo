@@ -24,7 +24,7 @@
     "nwayo": "bin/nwayo"
   },
   "engines": {
-    "node": ">= 11.3.0"
+    "node": ">= 11.5.0"
   },
   "main": "index.js",
   "dependencies": {
@@ -32,7 +32,7 @@
     "@absolunet/terminal": "0.5.0",
     "async": "2.6.1",
     "bower": "1.8.4",
-    "boxen": "2.0.0",
+    "boxen": "2.1.0",
     "chalk": "2.4.1",
     "cli-spinner": "0.2.8",
     "cross-spawn": "6.0.5",
@@ -43,7 +43,7 @@
     "minimist": "1.2.0",
     "opn": "5.4.0",
     "semver": "5.6.0",
-    "string-width": "2.1.1",
+    "string-width": "3.0.0",
     "update-notifier": "2.5.0"
   }
 }

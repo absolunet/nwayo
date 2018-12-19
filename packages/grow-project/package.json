@@ -25,7 +25,7 @@
     "nwayo-grow-project": "bin/nwayo-grow-project"
   },
   "engines": {
-    "node": ">= 11.3.0"
+    "node": ">= 11.5.0"
   },
   "main": "index.js",
   "dependencies": {
