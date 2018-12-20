@@ -12,8 +12,6 @@
 (() => {
 	'use strict';
 
-	const local = {};
-
 	//-- Input mask
 	const bindInputMask = (/* $context = __.$body */) => {
 
@@ -89,82 +87,66 @@
 
 
 
+	class FormBaseRegistrable extends app.js.Registrable {
 
-	//-- Cache data instantly
-	local.cache = () => {
+		//-- Cache data instantly
+		cache() {
 
-		//
+			//
 
-	};
-
-
-	//-- Cache data once DOM is loaded
-	local.cacheDOM = () => {
-
-		//
-
-	};
+		}
 
 
-	//-- Bind events once DOM is loaded
-	local.bind = () => {
+		//-- Cache data once DOM is loaded
+		cacheDOM() {
 
-		rebindFormEvent();
+			//
 
-		/*
-		// Bind on text field change
-		$('input:text').on('input paste cut keyup', () => {});
-		/**/
-
-	};
+		}
 
 
-	//-- Subscribe to topics
-	local.subscribe = () => {
+		//-- Bind events once DOM is loaded
+		bind() {
 
-		/**
-		pinki.message.subscribe('SAMPLE', (msg, data) => {
-			rebindFormEvent(data.$context);
-		});
-		/**/
+			rebindFormEvent();
 
-	};
+			/*
+			// Bind on text field change
+			$('input:text').on('input paste cut keyup', () => {});
+			/**/
 
-
-	//-- Execute once DOM is loaded
-	local.start = () => {
-
-		//
-
-	};
+		}
 
 
-	//-- Execute once page is loaded
-	local.delayedStart = () => {
+		//-- Subscribe to topics
+		subscribe() {
 
-		//
+			/**
+			pinki.message.subscribe('SAMPLE', (msg, data) => {
+				rebindFormEvent(data.$context);
+			});
+			/**/
 
-	};
+		}
 
 
+		//-- Execute once DOM is loaded
+		start() {
+
+			//
+
+		}
 
 
+		//-- Execute once page is loaded
+		delayedStart() {
 
+			//
 
-	// Outline
-	local.cache();
-	local.subscribe();
+		}
 
-	// DOM Ready
-	pinki.vow.when(DOM_PARSED).then(() => {
-		local.cacheDOM();
-		local.bind();
-		local.start();
-	});
+	}
 
-	// Document loaded
-	pinki.vow.when(DOCUMENT_LOADED).then(() => {
-		local.delayedStart();
-	});
+	app.js.registrar.register(FormBaseRegistrable);
 
 })();

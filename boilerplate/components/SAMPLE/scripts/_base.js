@@ -10,73 +10,57 @@
 (() => {
 	'use strict';
 
-	const local = {};
+	class SAMPLEBaseRegistrable extends app.js.Registrable {
+
+		//-- Cache data instantly
+		cache() {
+
+			//
+
+		}
 
 
-	//-- Cache data instantly
-	local.cache = () => {
+		//-- Cache data once DOM is loaded
+		cacheDOM() {
 
-		/* ... */
+			//
 
-	};
-
-
-	//-- Cache data once DOM is loaded
-	local.cacheDOM = () => {
-
-		/* ... */
-
-	};
+		}
 
 
-	//-- Bind events once DOM is loaded
-	local.bind = () => {
+		//-- Bind events once DOM is loaded
+		bind() {
 
-		/* ... */
+			//
 
-	};
-
-
-	//-- Subscribe to topics
-	local.subscribe = () => {
-
-		/* ... */
-
-	};
+		}
 
 
-	//-- Execute once DOM is loaded
-	local.start = () => {
+		//-- Subscribe to topics
+		subscribe() {
 
-		/* ... */
+			//
 
-	};
-
-
-	//-- Execute once page is loaded
-	local.delayedStart = () => {
-
-		/* ... */
-
-	};
+		}
 
 
+		//-- Execute once DOM is loaded
+		start() {
+
+			//
+
+		}
 
 
-	// Outline
-	local.cache();
-	local.subscribe();
+		//-- Execute once page is loaded
+		delayedStart() {
 
-	// DOM Ready
-	pinki.vow.when(DOM_PARSED).then(() => {
-		local.cacheDOM();
-		local.bind();
-		local.start();
-	});
+			//
 
-	// Document loaded
-	pinki.vow.when(DOCUMENT_LOADED).then(() => {
-		local.delayedStart();
-	});
+		}
+
+	}
+
+	app.js.registrar.register(SAMPLEBaseRegistrable);
 
 })();

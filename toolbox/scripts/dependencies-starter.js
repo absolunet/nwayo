@@ -156,4 +156,6 @@
 		pinki.vow.fulfill(vows.globaljqueryLoaded, global.jQuery);
 	}
 
+	//= require bower_components/nwayo-toolbox/toolbox/scripts/helpers/js-registrar
+
 })();

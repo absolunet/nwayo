@@ -5,78 +5,60 @@
 (() => {
 	'use strict';
 
-	const local = {};
+	class SiteBaseRegistrable extends app.js.Registrable {
+
+		//-- Cache data instantly
+		cache() {
+
+			// Env
+			// app.env.isUniquePage = app.env.pageId === 'UID';
+			// app.env.isTypePage   = _.includes(app.env.pageTags, 'TYPE-ID');
+			// app.env.isOneOfThese = !!_.intersection(app.env.pageTags, ['ID1', 'ID2']).length;
+
+		}
 
 
-	//-- Cache data instantly
-	local.cache = () => {
+		//-- Cache data once DOM is loaded
+		cacheDOM() {
 
-		// Env
-		// app.env.isUniquePage = app.env.pageId === 'UID';
-		// app.env.isTypePage   = _.includes(app.env.pageTags, 'TYPE-ID');
-		// app.env.isOneOfThese = !!_.intersection(app.env.pageTags, ['ID1', 'ID2']).length;
+			//
 
-	};
+		}
 
 
-	//-- Cache data once DOM is loaded
-	local.cacheDOM = () => {
+		//-- Bind events once DOM is loaded
+		bind() {
 
-		//
+			//
 
-	};
-
-
-	//-- Bind events once DOM is loaded
-	local.bind = () => {
-
-		//
-
-	};
+		}
 
 
-	//-- Subscribe to topics
-	local.subscribe = () => {
+		//-- Subscribe to topics
+		subscribe() {
 
-		// pinki.message.subscribe('foo.bar',  () => {});
+			// pinki.message.subscribe('foo.bar',  () => {});
 
-	};
-
-
-	//-- Execute once DOM is loaded
-	local.start = () => {
-
-		//
-
-	};
+		}
 
 
-	//-- Execute once page is loaded
-	local.delayedStart = () => {
+		//-- Execute once DOM is loaded
+		start() {
 
-		//
+			//
 
-	};
-
-
+		}
 
 
+		//-- Execute once page is loaded
+		delayedStart() {
 
+			//
 
-	// Outline
-	local.cache();
-	local.subscribe();
+		}
 
-	// DOM Ready
-	pinki.vow.when(DOM_PARSED).then(() => {
-		local.cacheDOM();
-		local.bind();
-		local.start();
-	});
+	}
 
-	// Document loaded
-	pinki.vow.when(DOCUMENT_LOADED).then(() => {
-		local.delayedStart();
-	});
+	app.js.registrar.register(SiteBaseRegistrable);
 
 })();
