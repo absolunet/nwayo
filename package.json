@@ -15,6 +15,6 @@
     "@absolunet/manager": "0.4.0",
     "@absolunet/stylelint-config-nwayo": "1.1.1",
     "@absolunet/tester": "2.4.3",
-    "lerna": "3.6.0"
+    "lerna": "3.9.1"
   }
 }

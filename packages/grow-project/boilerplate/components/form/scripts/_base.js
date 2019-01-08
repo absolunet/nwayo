@@ -123,7 +123,7 @@
 	local.subscribe = () => {
 
 		/**
-		pinki.message.subscribe('SAMPLE', (msg, data) => {
+		pinki.message.subscribe('sample', (msg, data) => {
 			rebindFormEvent(data.$context);
 		});
 		/**/

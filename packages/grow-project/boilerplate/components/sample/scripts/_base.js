@@ -1,11 +1,11 @@
 //-------------------------------------
-//-- SAMPLE - Base
+//-- Sample - Base
 //-------------------------------------
 
 //= **require     bower_components/foobar
 //= **require     components/nwayo/scripts/wrapper-foobar
-//= **jshtml      components/SAMPLE/templates/foobar
-//= **jshtml_tree components/SAMPLE/templates
+//= **jshtml      components/sample/templates/foobar
+//= **jshtml_tree components/sample/templates
 
 (() => {
 	'use strict';

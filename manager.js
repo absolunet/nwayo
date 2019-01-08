@@ -43,7 +43,7 @@ manager.multiScriptsRunner({
 				boilerPackage.dependencies['@absolunet/nwayo-workflow'] = manager.version;
 				await fsp.writeJson(BOILER_PACKAGE, boilerPackage, { space:2 });
 
-				// Boilerplate 'SAMPLE.index.html'
+				// Boilerplate 'SAMPLE-HTML/index.html'
 				const boilerIndex = await fsp.readFile(BOILER_INDEX, 'utf-8');
 				await fsp.writeFile(BOILER_INDEX, boilerIndex.replace(/nwayo (v?(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-[\da-z-]+(?:\.[\da-z-]+)*)?(?:\+[\da-z-]+(?:\.[\da-z-]+)*)?)/ug, `nwayo ${manager.version}`));  // eslint-disable-line unicorn/no-unsafe-regex
 
@@ -53,7 +53,7 @@ manager.multiScriptsRunner({
 				await fsp.remove(WORKFLOW_MATRIX);
 				await fsp.ensureDir(WORKFLOW_MATRIX);
 
-				fss.scandir(BOILER, 'file', { pattern:'!+(-gitignore|nwayo.yaml|SAMPLE.*)' }).forEach((file) => {
+				fss.scandir(BOILER, 'file', { pattern:'!+(-gitignore|nwayo.yaml)' }).forEach((file) => {
 					fss.copy(`${BOILER}/${file}`, `${WORKFLOW_MATRIX}/${file}`);
 				});
 

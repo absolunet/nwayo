@@ -182,7 +182,7 @@ class RootTests extends Tests {
 
 
 		//-- Files
-		reports.add(assert.isTreeMatrix('/', 'file', { pattern:`!+(SAMPLE.*.html|${paths.filename.mainConfig}|.gitignore)` }));
+		reports.add(assert.isTreeMatrix('/', 'file', { pattern:`!+(${paths.filename.mainConfig}|.gitignore)` }));
 
 		// .editorconfig
 		reports.add(assert.isMatrix('.editorconfig'));
