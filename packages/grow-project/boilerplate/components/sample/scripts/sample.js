@@ -1,7 +1,7 @@
 //-------------------------------------
-//-- SAMPLE
+//-- Sample
 //-------------------------------------
 
-//= require components/SAMPLE/scripts/vendor/lib
-//= require components/SAMPLE/scripts/class
-//= require components/SAMPLE/scripts/base
+//= require components/sample/scripts/vendor/lib
+//= require components/sample/scripts/class
+//= require components/sample/scripts/base

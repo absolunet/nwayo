@@ -38,7 +38,7 @@
 				}
 			},
 
-			'SAMPLE': {
+			'sample': {
 				preprocess: ($this) => {
 					setTimeout(() => { $this.addClass('placeholder'); }, 1000);
 				},

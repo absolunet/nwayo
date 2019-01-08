@@ -1,5 +1,5 @@
 //-------------------------------------
-//-- SAMPLE - Config - Design
+//-- Sample - Config - Design
 //-------------------------------------
 
 //-- Colors
@@ -17,25 +17,25 @@ $sample-text-color: $common-text-var1-color;
 
 // Classic url
 @mixin sample-foo1-image {
-	@include nwayo-bg-image-styles('foo.jpg', 'SAMPLE');
+	@include nwayo-bg-image-styles('foo.jpg', 'sample');
 }
 
 @mixin sample-foo2-image {
-	@include nwayo-bg-image-styles('foo.png', 'SAMPLE');
+	@include nwayo-bg-image-styles('foo.png', 'sample');
 }
 
 @mixin sample-foo3-image {
-	@include nwayo-bg-image-styles('foo.gif', 'SAMPLE');
+	@include nwayo-bg-image-styles('foo.gif', 'sample');
 }
 
 @mixin sample-foo4-image {
-	@include nwayo-bg-image-styles('foo.svg', 'SAMPLE');
+	@include nwayo-bg-image-styles('foo.svg', 'sample');
 }
 
 
 // High-density url
 @mixin sample-foo5-image {
-	@include nwayo-bg-image-styles('foohd@2x.png', 'SAMPLE');
+	@include nwayo-bg-image-styles('foohd@2x.png', 'sample');
 }
 
 
@@ -44,19 +44,19 @@ $sample-text-color: $common-text-var1-color;
 
 // Inline (Base64)
 @mixin sample-bar1-image {
-	@include nwayo-bg-image-styles('bar.jpg', 'SAMPLE', $inline:true);
+	@include nwayo-bg-image-styles('bar.jpg', 'sample', $inline:true);
 }
 
 @mixin sample-bar2-image {
-	@include nwayo-bg-image-styles('bar.png', 'SAMPLE', $inline:true);
+	@include nwayo-bg-image-styles('bar.png', 'sample', $inline:true);
 }
 
 @mixin sample-bar3-image {
-	@include nwayo-bg-image-styles('bar.gif', 'SAMPLE', $inline:true);
+	@include nwayo-bg-image-styles('bar.gif', 'sample', $inline:true);
 }
 
 @mixin sample-bar4-image {
-	@include nwayo-bg-image-styles('bar.svg', 'SAMPLE', $inline:true);
+	@include nwayo-bg-image-styles('bar.svg', 'sample', $inline:true);
 }
 
 
@@ -65,15 +65,15 @@ $sample-text-color: $common-text-var1-color;
 
 // Inline icon svg with color swap
 @mixin sample-ico1-image {
-	@include nwayo-scalable-icon-styles('icon-a.svg', 'SAMPLE', $color:$sample-text-color);
+	@include nwayo-scalable-icon-styles('icon-a.svg', 'sample', $color:$sample-text-color);
 }
 
 @mixin sample-ico2-image {
-	@include nwayo-scalable-icon-styles('icon-b.svg', 'SAMPLE', $color:($common-text-var1-color, $common-text-var2-color));
+	@include nwayo-scalable-icon-styles('icon-b.svg', 'sample', $color:($common-text-var1-color, $common-text-var2-color));
 }
 
 @mixin sample-ico3-image {
-	@include nwayo-scalable-icon-styles('icon-c.svg', 'SAMPLE', $color:(
+	@include nwayo-scalable-icon-styles('icon-c.svg', 'sample', $color:(
 		#ff0000: $common-bg-color,
 		#00ff00: $common-bg-var1-color,
 		#0000ff: $common-bg-var2-color
@@ -89,7 +89,7 @@ $sample-text-color: $common-text-var1-color;
 	hover:   $common-link-color,
 	active:  $common-alt-color
 )) {
-	@include nwayo-scalable-icon-colored-states-styles('icon-multi-a.svg', 'SAMPLE', $state, $states);
+	@include nwayo-scalable-icon-colored-states-styles('icon-multi-a.svg', 'sample', $state, $states);
 }
 
 
@@ -102,10 +102,10 @@ $sample-text-color: $common-text-var1-color;
 )) {
 
 	@if $state == default or $state == hover {
-		@include nwayo-scalable-icon-colored-states-styles('icon-multi-b.svg', 'SAMPLE', $state, $states);
+		@include nwayo-scalable-icon-colored-states-styles('icon-multi-b.svg', 'sample', $state, $states);
 
 	} @else if $state == active or $state == active-flip {
-		@include nwayo-scalable-icon-colored-states-styles('icon-multi-b-active.svg', 'SAMPLE', $state, $states);
+		@include nwayo-scalable-icon-colored-states-styles('icon-multi-b-active.svg', 'sample', $state, $states);
 	}
 
 	@if $state == active-flip {

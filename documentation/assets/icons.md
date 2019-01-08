@@ -67,7 +67,7 @@ It will produce a optimized file named `large.png`.
 
 
 ## Usage
-In HTML, use the example in the `SAMPLE.index.html` to add these files.
+In HTML, use the example in the `SAMPLE-HTML/index.html` to add these files.
 
 In scripts, the path to these files can be access via `app.path.icons`.
 
