@@ -14,6 +14,7 @@ const cloneDeep  = require('lodash.clonedeep');
 const path       = require('path');
 const requireDir = require('require-dir');
 const semver     = require('semver');
+const slash      = require('slash');
 const cli        = require('@absolunet/cli');
 const fss        = require('@absolunet/fss');
 const terminal   = require('@absolunet/terminal');
@@ -76,7 +77,7 @@ class Util {
 			options.escape.push('path.root');
 			options.escape.push('util.emptyimage');
 			urls.inline = paths.dir.cacheInline;
-			urls.buildroot = fss.realpath(`${paths.dir.root}/${buildRoot}`);
+			urls.buildroot = slash(fss.realpath(`${paths.dir.root}/${buildRoot}`));
 		}
 
 		for (const key of Object.keys(urls)) {
