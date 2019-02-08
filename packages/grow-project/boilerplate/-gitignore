@@ -1,3 +1,22 @@
+# Force structure by default
+!bower_components/**
+!bundles/**
+!components/**
+!misc/**
+!SAMPLE-HTML/**
+!.editorconfig
+!.eslintignore
+!.eslintrc.yaml
+!.stylelintignore
+!.stylelintrc.yaml
+!bower.json
+!konstan.yaml
+!lodash.yaml
+!modernizr.yaml
+!nwayo.yaml
+!package.json
+
+# Exclude temporary
 .nwayo-cache
 node_modules
 npm-debug.log
