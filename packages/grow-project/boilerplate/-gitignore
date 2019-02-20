@@ -1,9 +1,4 @@
-# Force structure by default
-!bower_components/**
-!bundles/**
-!components/**
-!misc/**
-!SAMPLE-HTML/**
+# Force files by default
 !.editorconfig
 !.eslintignore
 !.eslintrc.yaml
