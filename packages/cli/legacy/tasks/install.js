@@ -16,7 +16,7 @@ module.exports = {
 	run: (context) => {
 
 		if (context.target === 'vendors') {
-			fss.del(`${context.cwd}/bower_components`);
+			fss.remove(`${context.cwd}/bower_components`);
 			terminal.run(`cd ${context.cwd} && node ${path.dirname(require.resolve('bower'))}/../bin/bower install`);
 
 		} else {
