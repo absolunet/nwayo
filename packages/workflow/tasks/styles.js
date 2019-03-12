@@ -153,6 +153,8 @@ module.exports = () => {
 					toolbox.vinylStream(filename, source)
 						.pipe(toolbox.plumber())
 
+						.pipe(gulpif(toSourcemaps, sourcemaps.init()))
+
 						// Note however that by default, renderSync() is more than twice as fast as render(), due to the overhead of asynchronous callbacks. (https://github.com/sass/dart-sass#javascript-api)
 						.pipe(
 							gulpsass.sync({
