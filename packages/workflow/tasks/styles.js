@@ -4,20 +4,22 @@
 'use strict';
 
 // const debug = require('gulp-debug');
+const Fiber        = require('fibers');
 const gulp         = require('gulp');
 const autoprefixer = require('gulp-autoprefixer');
 const cache        = require('gulp-cached');
 const cssnano      = require('gulp-cssnano');
-const gulpsass     = require('gulp-dart-sass');
 const gulpif       = require('gulp-if');
 const imagemin     = require('gulp-imagemin');
 const insert       = require('gulp-insert');
 const jsonsass     = require('gulp-json-sass');
 const rename       = require('gulp-rename');
+const gulpsass     = require('gulp-sass');
 const sourcemaps   = require('gulp-sourcemaps');
 const stylelint    = require('gulp-stylelint');
 const cloneDeep    = require('lodash.clonedeep');
 const pluralize    = require('pluralize');
+const sass         = require('sass');
 const jsonToScss   = require('@absolunet/json-to-scss');
 const env          = require('~/helpers/env');
 const flow         = require('~/helpers/flow');
@@ -121,6 +123,8 @@ module.exports = () => {
 
 
 	//-- Compile
+	gulpsass.compiler = sass;
+
 	flow.createTask('styles-compile', ({ taskName }) => {
 		const sassFunctions = require(paths.config.sassFunctions);  // eslint-disable-line global-require
 
@@ -155,11 +159,11 @@ module.exports = () => {
 
 						.pipe(gulpif(toSourcemaps, sourcemaps.init()))
 
-						// Note however that by default, renderSync() is more than twice as fast as render(), due to the overhead of asynchronous callbacks. (https://github.com/sass/dart-sass#javascript-api)
 						.pipe(
-							gulpsass.sync({
+							gulpsass({
+								fiber:        Fiber,
 								includePaths: [paths.dir.root],
-								functions:    sassFunctions       // *.css in a function ?
+								functions:    sassFunctions
 								// sourcemaps  (bundle.styles.options.sourcemaps)
 							})
 								.on('error', gulpsass.logError)
