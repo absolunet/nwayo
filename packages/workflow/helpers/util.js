@@ -4,23 +4,23 @@
 'use strict';
 
 // const debug   = require('gulp-debug');
-const boxen      = require('boxen');
-const chalk      = require('chalk');
-const crypto     = require('crypto');
-const events     = require('events');
-const glob       = require('glob');
-const multiDest  = require('gulp-multi-dest');
-const cloneDeep  = require('lodash.clonedeep');
-const path       = require('path');
-const requireDir = require('require-dir');
-const semver     = require('semver');
-const slash      = require('slash');
-const cli        = require('@absolunet/cli');
-const fss        = require('@absolunet/fss');
-const terminal   = require('@absolunet/terminal');
-const env        = require('~/helpers/env');
-const paths      = require('~/helpers/paths');
-const toolbox    = require('~/helpers/toolbox');
+const boxen        = require('boxen');
+const chalk        = require('chalk');
+const crypto       = require('crypto');
+const events       = require('events');
+const glob         = require('glob');
+const multiDest    = require('gulp-multi-dest');
+const cloneDeep    = require('lodash.clonedeep');
+const path         = require('path');
+const requireDir   = require('require-dir');
+const semver       = require('semver');
+const slash        = require('slash');
+const cli          = require('@absolunet/cli');
+const fss          = require('@absolunet/fss');
+const { terminal } = require('@absolunet/terminal');
+const env          = require('~/helpers/env');
+const paths        = require('~/helpers/paths');
+const toolbox      = require('~/helpers/toolbox');
 
 
 const __ = {

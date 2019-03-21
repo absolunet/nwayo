@@ -4,25 +4,25 @@
 'use strict';
 
 // const debug = require('gulp-debug');
-const { exec }  = require('child_process');
-const gulp      = require('gulp');
-const cache     = require('gulp-cached');
-const eslint    = require('gulp-eslint');
-const gulpif    = require('gulp-if');
-const lec       = require('gulp-line-ending-corrector');
-const uglify    = require('gulp-uglify');
-const cloneDeep = require('lodash.clonedeep');
-const modernizr = require('modernizr');
-const pluralize = require('pluralize');
-const fsp       = require('@absolunet/fsp');
-const fss       = require('@absolunet/fss');
-const include   = require('@absolunet/gulp-include');
-const terminal  = require('@absolunet/terminal');
-const env       = require('~/helpers/env');
-const flow      = require('~/helpers/flow');
-const paths     = require('~/helpers/paths');
-const toolbox   = require('~/helpers/toolbox');
-const util      = require('~/helpers/util');
+const { exec }     = require('child_process');
+const gulp         = require('gulp');
+const cache        = require('gulp-cached');
+const eslint       = require('gulp-eslint');
+const gulpif       = require('gulp-if');
+const lec          = require('gulp-line-ending-corrector');
+const uglify       = require('gulp-uglify');
+const cloneDeep    = require('lodash.clonedeep');
+const modernizr    = require('modernizr');
+const pluralize    = require('pluralize');
+const fsp          = require('@absolunet/fsp');
+const fss          = require('@absolunet/fss');
+const include      = require('@absolunet/gulp-include');
+const { terminal } = require('@absolunet/terminal');
+const env          = require('~/helpers/env');
+const flow         = require('~/helpers/flow');
+const paths        = require('~/helpers/paths');
+const toolbox      = require('~/helpers/toolbox');
+const util         = require('~/helpers/util');
 
 
 module.exports = () => {

@@ -3,9 +3,9 @@
 //--------------------------------------------------------
 'use strict';
 
-const terminal = require('@absolunet/terminal');
-const paths    = require('~/helpers/paths');
-const toolbox  = require('~/helpers/toolbox');
+const { terminal } = require('@absolunet/terminal');
+const paths        = require('~/helpers/paths');
+const toolbox      = require('~/helpers/toolbox');
 
 
 class NwayoExtension {

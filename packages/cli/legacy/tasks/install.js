@@ -3,10 +3,10 @@
 //-------------------------------------
 'use strict';
 
-const path     = require('path');
-const fss      = require('@absolunet/fss');
-const terminal = require('@absolunet/terminal');
-const helper   = require('../helpers/cli');
+const path         = require('path');
+const fss          = require('@absolunet/fss');
+const { terminal } = require('@absolunet/terminal');
+const helper       = require('../helpers/cli');
 
 
 //-- PUBLIC
