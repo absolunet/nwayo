@@ -3,17 +3,17 @@
 //-------------------------------------
 'use strict';
 
-const chalk    = require('chalk');
-const glob     = require('glob');
-const flatten  = require('lodash.flatten');
-const map      = require('lodash.map');
-const property = require('lodash.property');
-const uniq     = require('lodash.uniq');
-const emoji    = require('node-emoji');
-const os       = require('os');
-const fss      = require('@absolunet/fss');
-const terminal = require('@absolunet/terminal');
-const paths    = require('~/helpers/paths');
+const chalk        = require('chalk');
+const glob         = require('glob');
+const flatten      = require('lodash.flatten');
+const map          = require('lodash.map');
+const property     = require('lodash.property');
+const uniq         = require('lodash.uniq');
+const emoji        = require('node-emoji');
+const os           = require('os');
+const fss          = require('@absolunet/fss');
+const { terminal } = require('@absolunet/terminal');
+const paths        = require('~/helpers/paths');
 
 
 const NAME = 'nwayo';

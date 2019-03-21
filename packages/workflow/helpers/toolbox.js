@@ -3,18 +3,18 @@
 //-------------------------------------
 'use strict';
 
-const chalk       = require('chalk');
-const deepKeys    = require('deep-keys');
-const log         = require('fancy-log');
-const plumber     = require('gulp-plumber');
-const without     = require('lodash.without');
-const merge       = require('merge-stream');
-const emoji       = require('node-emoji');
-const prettyBytes = require('pretty-bytes');
-const stream      = require('stream');
-const Vinyl       = require('vinyl');
-const fss         = require('@absolunet/fss');
-const terminal    = require('@absolunet/terminal');
+const chalk        = require('chalk');
+const deepKeys     = require('deep-keys');
+const log          = require('fancy-log');
+const plumber      = require('gulp-plumber');
+const without      = require('lodash.without');
+const merge        = require('merge-stream');
+const emoji        = require('node-emoji');
+const prettyBytes  = require('pretty-bytes');
+const stream       = require('stream');
+const Vinyl        = require('vinyl');
+const fss          = require('@absolunet/fss');
+const { terminal } = require('@absolunet/terminal');
 
 
 class Toolbox {

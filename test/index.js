@@ -35,6 +35,7 @@ tester.npmPackage.validateMulti({
 tester.npmPackage.multiPackagesPaths.forEach((path) => {
 	tester.npmPackage.validateSub({
 		cwd:          path,
+		group:        path.split('/').pop(),
 		js:           tester.all.js.concat([`bin/**`], EXCLUDE_SUB),
 		json:         tester.all.json.concat(EXCLUDE_SUB),
 		yaml:         tester.all.yaml.concat(EXCLUDE_SUB),

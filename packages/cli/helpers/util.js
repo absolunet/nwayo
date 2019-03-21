@@ -100,7 +100,7 @@ class Util {
 
 	exit(msg) {
 		if (msg && !argv['completion-logic']) {
-			const terminal = require('@absolunet/terminal');
+			const { terminal } = require('@absolunet/terminal');
 			terminal.exit(msg);
 		} else {
 			process.exit();  // eslint-disable-line no-process-exit, unicorn/no-process-exit

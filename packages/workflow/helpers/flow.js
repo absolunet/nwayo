@@ -3,18 +3,18 @@
 //-------------------------------------
 'use strict';
 
-const chalk     = require('chalk');
-const log       = require('fancy-log');
-const globAll   = require('glob-all');
-const gulp      = require('gulp');
-const emoji     = require('node-emoji');
-const ora       = require('ora');
-const pluralize = require('pluralize');
-const fss       = require('@absolunet/fss');
-const terminal  = require('@absolunet/terminal');
-const env       = require('~/helpers/env');
-const paths     = require('~/helpers/paths');
-const toolbox   = require('~/helpers/toolbox');
+const chalk        = require('chalk');
+const log          = require('fancy-log');
+const globAll      = require('glob-all');
+const gulp         = require('gulp');
+const emoji        = require('node-emoji');
+const ora          = require('ora');
+const pluralize    = require('pluralize');
+const fss          = require('@absolunet/fss');
+const { terminal } = require('@absolunet/terminal');
+const env          = require('~/helpers/env');
+const paths        = require('~/helpers/paths');
+const toolbox      = require('~/helpers/toolbox');
 
 
 const __ = {

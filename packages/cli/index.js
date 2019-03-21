@@ -50,7 +50,7 @@ module.exports = () => {
 	} else if (util.cmd('update')) {
 		util.checkUpdate(cliPkg, (error, update) => {
 			if (!error) {
-				const terminal = require('@absolunet/terminal');
+				const { terminal } = require('@absolunet/terminal');
 
 				terminal.spacer();
 
@@ -128,8 +128,8 @@ module.exports = () => {
 		//-- Trap `nwayo install workflow`
 		const nodeModules = `${root}/node_modules`;
 		const npmInstall = () => {
-			const fss      = require('@absolunet/fss');
-			const terminal = require('@absolunet/terminal');
+			const fss          = require('@absolunet/fss');
+			const { terminal } = require('@absolunet/terminal');
 
 			fss.remove(nodeModules);
 			fss.remove(`${root}/package-lock.json`);
@@ -139,7 +139,7 @@ module.exports = () => {
 		};
 
 		const npmCI = () => {
-			const terminal = require('@absolunet/terminal');
+			const { terminal } = require('@absolunet/terminal');
 			try {
 				terminal.run(`cd ${root} && npm ci`);
 				util.exit();

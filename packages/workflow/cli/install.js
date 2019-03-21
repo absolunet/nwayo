@@ -3,11 +3,11 @@
 //--------------------------------------------------------
 'use strict';
 
-const cli      = require('@absolunet/cli');
-const fss      = require('@absolunet/fss');
-const terminal = require('@absolunet/terminal');
-const Task     = require('~/classes/task');
-const paths    = require('~/helpers/paths');
+const cli          = require('@absolunet/cli');
+const fss          = require('@absolunet/fss');
+const { terminal } = require('@absolunet/terminal');
+const Task         = require('~/classes/task');
+const paths        = require('~/helpers/paths');
 
 
 const availableScopes = ['vendors'];
