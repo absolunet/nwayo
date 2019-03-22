@@ -2,4 +2,4 @@
 //-- Wrapper for jQuery
 //-------------------------------------
 
-//= require bower_components/jquery/dist/jquery
+//= require vendor/node_modules/jquery/dist/jquery

@@ -8,7 +8,7 @@
 	const ORIGINAL_GLOBAL = global.jQuery;
 	this.jQuery = $;
 
-	//= require bower_components/imagesloaded/imagesloaded.pkgd
+	//= require vendor/node_modules/imagesloaded/imagesloaded.pkgd
 
 	this.jQuery = ORIGINAL_GLOBAL;
 

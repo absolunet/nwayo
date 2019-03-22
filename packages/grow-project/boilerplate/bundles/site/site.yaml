@@ -25,9 +25,9 @@ scripts:
       - '> .25%'
 
   allowBabel:
-    - bower_components/foundation-sites
-    - bower_components/nwayo-toolbox
-    - bower_components/pinki
+    - vendor/node_modules/foundation-sites
+    - vendor/node_modules/nwayo-toolbox
+    - vendor/node_modules/pinki
 
 
 
