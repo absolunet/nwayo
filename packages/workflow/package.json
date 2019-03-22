@@ -1,6 +1,6 @@
 {
   "name": "@absolunet/nwayo-workflow",
-  "version": "3.6.1",
+  "version": "3.6.2",
   "description": "Workflow for nwayo",
   "definition": "/nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.",
   "homepage": "https://absolunet.github.io/nwayo/",
@@ -22,7 +22,7 @@
     "url": "https://github.com/absolunet/nwayo/issues"
   },
   "engines": {
-    "node": ">= 11.5.0"
+    "node": ">= 11.12.0"
   },
   "main": "index.js",
   "dependencies": {
