@@ -1,0 +1,49 @@
+{
+  "name": "PROJECT_NAME",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@absolunet/pinki": "1.0.2",
+    "foundation-sites": "6.5.3",
+    "imagesloaded": "4.1.4",
+    "jquery": "3.3.1",
+    "jsrender": "1.0.2",
+    "motion-ui": "2.0.3",
+    "what-input": "5.1.4"
+  },
+  "-------TODO--------": {
+    "kafe": "3.2.5",
+    "nwayo-toolbox": "3.6.2"
+  },
+  "___nwayo-recommended___": {
+    "@google/markerwithlabel": "1.2.3",
+    "@google/markerclustererplus": "2.1.11",
+    "accounting": "0.4.1",
+    "bahashchange": "1.3.1",
+    "cssuseragent": "2.1.31",
+    "ez-plus": "1.2.1",
+    "gsap": "2.1.2",
+    "hellojs": "1.18.1",
+    "inputmask": "4.0.6",
+    "isotope-layout": "3.0.6",
+    "jcarousellite": "1.9.2",
+    "jquery-ajax-unobtrusive": "3.2.6",
+    "jquery-bbq": "1.0.0",
+    "jquery-colorbox": "1.6.4",
+    "jquery-deparam": "0.5.3",
+    "jquery-powertip": "1.3.1",
+    "jquery-ui": "1.12.1",
+    "jquery-validation": "1.19.0",
+    "jquery-validation-unobtrusive": "3.2.11",
+    "jquery.scrollto": "2.1.2",
+    "js-cookie": "2.2.0",
+    "jscrollpane": "2.2.1",
+    "masonry-layout": "4.2.2",
+    "moment": "2.24.0",
+    "select2": "4.0.5",
+    "slick-carousel": "1.8.1",
+    "svg-injector": "1.1.3",
+    "video.js": "7.5.1",
+    "webfontloader": "1.6.28"
+  }
+}
