@@ -1,0 +1,31 @@
+{
+  "name": "@absolunet/nwayo-toolbox",
+  "version": "3.6.2",
+  "description": "Toolbox for nwayo",
+  "definition": "",
+  "homepage": "https://absolunet.github.io/nwayo/",
+  "author": {
+    "name": "Absolunet",
+    "url": "https://absolunet.com"
+  },
+  "keywords": [
+    "nwayo",
+    "toolbox"
+  ],
+  "license": "MIT",
+  "repository": {
+    "url": "git://github.com/absolunet/nwayo.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/absolunet/nwayo/issues"
+  },
+  "browser": "scripts/dependencies-starter.js",
+  "peerDependencies": {
+    "@absolunet/pinki": "^1.0.2",
+    "imagesloaded": "^4.1.4",
+    "jquery": "^3.3.1",
+    "lodash": "^4.7.11",
+    "modernizr": "^3.7.1"
+  }
+}

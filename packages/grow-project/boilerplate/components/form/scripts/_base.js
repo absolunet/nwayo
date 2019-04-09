@@ -2,12 +2,12 @@
 //-- Form - Base
 //-------------------------------------
 
-//= **require bower_components/inputmask/dist/inputmask/inputmask
-//= **require bower_components/inputmask/dist/inputmask/inputmask.extensions
-//= **require bower_components/inputmask/dist/inputmask/inputmask.date.extensions
-//= **require bower_components/inputmask/dist/inputmask/inputmask.numeric.extensions
-//= **require bower_components/inputmask/dist/inputmask/inputmask.phone.extensions
-//= **require bower_components/inputmask/dist/inputmask/jquery.inputmask
+//= **require vendor/node_modules/inputmask/dist/inputmask/inputmask
+//= **require vendor/node_modules/inputmask/dist/inputmask/inputmask.extensions
+//= **require vendor/node_modules/inputmask/dist/inputmask/inputmask.date.extensions
+//= **require vendor/node_modules/inputmask/dist/inputmask/inputmask.numeric.extensions
+//= **require vendor/node_modules/inputmask.phone/dist/inputmask.phone/inputmask.phone.extensions
+//= **require vendor/node_modules/inputmask/dist/inputmask/jquery.inputmask
 
 (() => {
 	'use strict';

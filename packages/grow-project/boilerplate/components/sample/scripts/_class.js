@@ -2,7 +2,7 @@
 //-- Sample - Class
 //-------------------------------------
 
-//= **require     bower_components/foobar
+//= **require     vendor/node_modules/foobar
 //= **require     components/nwayo/scripts/wrapper-foobar
 //= **jshtml      components/sample/templates/foobar
 //= **jshtml_tree components/sample/templates

@@ -2,9 +2,9 @@
 //-- Common - Base
 //-------------------------------------
 
-//= **require bower_components/kafe/dist/kafe
-//= **require bower_components/nwayo-toolbox/toolbox/scripts/wrapper/jsrender
-//= **require bower_components/nwayo-toolbox/toolbox/scripts/helpers/lazyload
+//= **require vendor/node_modules/@absolunet/kafe/dist/kafe
+//= **require vendor/node_modules/@absolunet/nwayo-toolbox/scripts/wrapper/jsrender
+//= **require vendor/node_modules/@absolunet/nwayo-toolbox/scripts/helpers/lazyload
 
 (() => {
 	'use strict';

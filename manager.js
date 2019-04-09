@@ -11,11 +11,10 @@ const ROOT            = __dirname;
 const BOILER          = `${ROOT}/packages/grow-project/boilerplate`;
 const WORKFLOW_MATRIX = `${ROOT}/packages/workflow/ressources/doctor-matrix`;
 
-const GLOBAL_BOWER    = `${ROOT}/bower.json`;
-const BOILER_BOWER    = `${BOILER}/bower.json`;
 const BOILER_PACKAGE  = `${BOILER}/package.json`;
+const BOILER_VENDOR   = `${BOILER}/vendor/package.json`;
 const BOILER_INDEX    = `${BOILER}/SAMPLE-HTML/index.html`;
-const BOILER_TOOLBOX  = `${BOILER}/bower_components/nwayo-toolbox`;
+const BOILER_TOOLBOX  = `${BOILER}/vendor/node_modules/@absolunet/nwayo-toolbox`;
 const BOILER_WORKFLOW = `${BOILER}/node_modules/@absolunet/nwayo-workflow`;
 
 
@@ -29,14 +28,10 @@ manager.multiScriptsRunner({
 			postRun: async () => {
 
 				//-- Version bump
-				// Global 'bower.json'
-				const globalBower = await fsp.readJson(GLOBAL_BOWER);
-				globalBower.version = manager.version;
-				await fsp.writeJson(GLOBAL_BOWER, globalBower, { space:2 });
-
-				// Boilerplate 'bower.json'
-				const boilerBower = await fsp.readFile(BOILER_BOWER, 'utf-8');
-				await fsp.writeFile(BOILER_BOWER, boilerBower.replace(/("nwayo-toolbox":\s+").+(")/u, `$1${manager.version}$2`));
+				// Boilerplate vendor 'package.json'
+				const boilerVendor = await fsp.readJson(BOILER_VENDOR);
+				boilerVendor.dependencies['@absolunet/nwayo-toolbox'] = manager.version;
+				await fsp.writeJson(BOILER_VENDOR, boilerVendor, { space:2 });
 
 				// Boilerplate 'package.json'
 				const boilerPackage = await fsp.readJson(BOILER_PACKAGE);
@@ -66,8 +61,8 @@ manager.multiScriptsRunner({
 				//-- Symlinks for dev
 				// Toolbox in boilerplate
 				await fsp.remove(BOILER_TOOLBOX);
-				await fsp.ensureDir(BOILER_TOOLBOX);
-				await fsp.symlink('../../../../../toolbox', `${BOILER_TOOLBOX}/toolbox`);
+				await fsp.ensureDir(`${BOILER_TOOLBOX}/..`);
+				await fsp.symlink('../../../../../toolbox', BOILER_TOOLBOX);
 
 				// Workflow in boilerplate
 				await fsp.remove(BOILER_WORKFLOW);
