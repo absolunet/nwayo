@@ -115,7 +115,7 @@ The `workflow` scope installs the workflow via `npm`
 - By default it uses `npm ci` which is faster but requires a valid `package-lock.json` in sync with the `package.json`
 - If the `--force` flag is used, it will use `npm install` and regenerate the `package-lock.json`
 
-The `vendors` scope installs the vendor dependencies via `bower`
+The `vendors` scope installs the vendor dependencies via `npm`
 
 **Examples:**
 ```shell
@@ -129,9 +129,9 @@ $ nwayo install vendors
 
 Analyze project for conformity
 
-Checks npm / Bower packages for updates and lists what is outdated.
+Checks npm packages for updates and lists what is outdated.
 
-Checks if the toolbox version in bower is the same as the workflow version.
+Checks if the toolbox version is the same as the workflow version.
 
 Check if project follows conventions
 
@@ -143,14 +143,14 @@ $ nwayo doctor
     ✓  You are cutting edge   (^_^)
 
 
-  Bower diagnosis
+  Vendor diagnosis
     ✘  You are a dull blade   ಠ_ಠ
 
+    [@absolunet/kafe] : 3.2.1 → 3.2.4
     [foundation-sites] : 6.4.0 → 6.5.1
     [imagesloaded] : 4.1.3 → 4.1.4
     [jquery] : 3.2.1 → 3.3.1
     [jsrender] : 0.9.86 → 1.0.0
-    [kafe] : 3.2.1 → 3.2.4
     [slick.js] : 1.6.0 → 1.8.1
 
 

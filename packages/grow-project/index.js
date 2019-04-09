@@ -83,8 +83,8 @@ class GrowProject {
 		// Change project name
 		await replaceInFile({
 			files: [
-				`${NWAYO}/bower.json`,
-				`${NWAYO}/package.json`
+				`${NWAYO}/package.json`,
+				`${NWAYO}/vendor/package.json`
 			],
 			from: 'PROJECT_NAME',
 			to:   projectId

@@ -3,6 +3,8 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@absolunet/kafe": "3.2.5",
+    "@absolunet/nwayo-toolbox": "3.6.2",
     "@absolunet/pinki": "1.0.2",
     "foundation-sites": "6.5.3",
     "imagesloaded": "4.1.4",
@@ -10,10 +12,6 @@
     "jsrender": "1.0.2",
     "motion-ui": "2.0.3",
     "what-input": "5.1.4"
-  },
-  "-------TODO--------": {
-    "kafe": "3.2.5",
-    "nwayo-toolbox": "3.6.2"
   },
   "___nwayo-recommended___": {
     "@google/markerwithlabel": "1.2.3",
@@ -25,6 +23,7 @@
     "gsap": "2.1.2",
     "hellojs": "1.18.1",
     "inputmask": "4.0.6",
+    "inputmask.phone": "1.0.4",
     "isotope-layout": "3.0.6",
     "jcarousellite": "1.9.2",
     "jquery-ajax-unobtrusive": "3.2.6",

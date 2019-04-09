@@ -6,15 +6,15 @@
 scripts:
   collections:
     dependencies:
-      - bower_components/nwayo-toolbox/toolbox/scripts/exclusion-starter
+      - vendor/node_modules/@absolunet/nwayo-toolbox/scripts/exclusion-starter
       - ~konstan
-      - bower_components/nwayo-toolbox/toolbox/scripts/wrapper/jquery
+      - vendor/node_modules/@absolunet/nwayo-toolbox/scripts/wrapper/jquery
       - ~lodash
       - ~modernizr
-      - bower_components/nwayo-toolbox/toolbox/scripts/wrapper/what-input
+      - vendor/node_modules/@absolunet/nwayo-toolbox/scripts/wrapper/what-input
       - components/foundation/scripts/foundation
       - components/common/scripts/nwayo-config
-      - bower_components/nwayo-toolbox/toolbox/scripts/dependencies-starter
+      - vendor/node_modules/@absolunet/nwayo-toolbox/scripts/dependencies-starter
 
     dependencies-head-sync:
-      - bower_components/nwayo-toolbox/toolbox/scripts/wrapper/pinki
+      - vendor/node_modules/@absolunet/nwayo-toolbox/scripts/wrapper/pinki

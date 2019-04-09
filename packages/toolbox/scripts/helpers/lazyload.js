@@ -2,7 +2,7 @@
 //-- Lazyload
 //-------------------------------------
 
-//= require bower_components/nwayo-toolbox/toolbox/scripts/wrapper/imagesloaded
+//= require vendor/node_modules/@absolunet/nwayo-toolbox/scripts/wrapper/imagesloaded
 
 (() => {
 	'use strict';

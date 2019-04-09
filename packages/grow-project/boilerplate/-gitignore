@@ -4,7 +4,6 @@
 !.eslintrc.yaml
 !.stylelintignore
 !.stylelintrc.yaml
-!bower.json
 !konstan.yaml
 !lodash.yaml
 !modernizr.yaml

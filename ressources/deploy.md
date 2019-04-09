@@ -7,10 +7,10 @@
 
 
 
-## Vérifier pour des mises à jour bower (sous `packages/grow-project/boilerplate`)
+## Vérifier pour des mises à jour vendor (sous `packages/grow-project/boilerplate/vendor`)
 
 - `nwayo doctor`
-- Faire les ajustements dans le fichier `bower.json`
+- Faire les ajustements dans le fichier `package.json`
 
 
 

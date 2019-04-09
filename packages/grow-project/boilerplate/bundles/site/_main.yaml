@@ -6,7 +6,7 @@
 scripts:
   collections:
     main:
-      - bower_components/nwayo-toolbox/toolbox/scripts/collection-starter
+      - vendor/node_modules/@absolunet/nwayo-toolbox/scripts/collection-starter
       - components/common/scripts/common
       - components/form/scripts/form
       - components/site/scripts/site
