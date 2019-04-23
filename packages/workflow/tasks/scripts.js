@@ -5,6 +5,7 @@
 
 // const debug = require('gulp-debug');
 const { exec }     = require('child_process');
+const corejs       = require('core-js-builder');
 const gulp         = require('gulp');
 const cache        = require('gulp-cached');
 const eslint       = require('gulp-eslint');
@@ -122,7 +123,21 @@ module.exports = () => {
 				});
 			});
 
-			Promise.all([modernizrBuild, lodashBuild]).then(() => {
+			const polyfillBuild = new Promise((resolve) => {
+				const file = `${paths.dir.cacheScripts}/${paths.filename.polyfill}.${paths.ext.scripts}`;
+
+				corejs({
+					modules:  ['web', 'es'],
+					targets:  '> .25%',
+					filename: file
+				}).then(() => {
+					log('core-js polyfill', file);
+					resolve();
+				});
+			});
+
+
+			Promise.all([modernizrBuild, lodashBuild, polyfillBuild]).then(() => {
 				flow.skipOnWatch(taskName);
 				cb();
 			});
@@ -150,7 +165,8 @@ module.exports = () => {
 				const replacements = {
 					konstan:   `${paths.folder.cacheScripts}/${name}/${paths.filename.konstan}`,
 					lodash:    `${paths.folder.cacheScripts}/${paths.filename.lodash}`,
-					modernizr: `${paths.folder.cacheScripts}/${paths.filename.modernizr}`
+					modernizr: `${paths.folder.cacheScripts}/${paths.filename.modernizr}`,
+					polyfill:  `${paths.folder.cacheScripts}/${paths.filename.polyfill}`
 				};
 				for (const title of Object.keys(replacements)) {
 					const pos = list.indexOf(`~${title}`);
