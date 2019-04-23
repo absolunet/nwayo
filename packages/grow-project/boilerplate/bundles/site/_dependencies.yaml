@@ -17,4 +17,5 @@ scripts:
       - bower_components/nwayo-toolbox/toolbox/scripts/dependencies-starter
 
     dependencies-head-sync:
+      - ~polyfill
       - bower_components/nwayo-toolbox/toolbox/scripts/wrapper/pinki

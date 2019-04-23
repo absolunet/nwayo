@@ -76,6 +76,7 @@ filename.konstanScripts = `${filename.konstan}.${ext.scripts}`;
 filename.konstanStyles  = `${filename.konstan}.json`;
 filename.lodash         = `lodash`;
 filename.modernizr      = `modernizr`;
+filename.polyfill       = `polyfill`;
 filename.mainConfig     = MAIN_CONFIG;
 filename.iconsFavicon   = `favicon.png`;
 filename.iconsTouch     = `touch.png`;
