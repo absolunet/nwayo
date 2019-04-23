@@ -12,7 +12,7 @@ const util   = require('../../helpers/util');
 
 //-- PUBLIC
 module.exports = {
-	pkg: require(`${__dirname}/../../package`),  // eslint-disable-line global-require
+	packageConfig: require(`${__dirname}/../../package`),  // eslint-disable-line global-require
 
 
 	//-- Echo
@@ -20,9 +20,9 @@ module.exports = {
 
 
 	//-- Error
-	error: function(msg) {
-		if (msg) {
-			this.echo(chalk.red(`\n ${msg}`));
+	error: function(message) {
+		if (message) {
+			this.echo(chalk.red(`\n ${message}`));
 		}
 
 		return process ? process.exit(1) : undefined;  // eslint-disable-line no-process-exit, unicorn/no-process-exit
@@ -44,7 +44,7 @@ module.exports = {
   ${chalk.underline('Global commands')}
 ${util.usageTasks}
   Legacy mode
-  nwayo@${this.pkg.version} ${path.normalize(`${__dirname}/../`)}
+  nwayo@${this.packageConfig.version} ${path.normalize(`${__dirname}/../`)}
 		`);
 	},
 
@@ -52,29 +52,29 @@ ${util.usageTasks}
 
 	//-- Run
 	run: function(task, context) {
-		const tool = semver.lt(context.pkg.nwayo.version, '2.2.0') ? 'grunt' : 'gulp';
+		const tool = semver.lt(context.packageConfig.nwayo.version, '2.2.0') ? 'grunt' : 'gulp';
 		const base = `${context.cwd}/node_modules/${tool}`;
 
 		if (fs.existsSync(`${base}/package.json`)) {
-			const arg = [task];
+			const params = [task];
 
 			const gruntCli = `${__dirname}/../../node_modules/grunt-cli`;
-			let pkg;
+			let packageConfig;
 			let bin = '';
 
 			switch (tool) {
 
 				case 'gulp':
-					pkg = require(`${base}/package`);  // eslint-disable-line global-require
-					bin = `${base}/${pkg.bin.gulp}`;
-					arg.push('--cwd', context.cwd);
+					packageConfig = require(`${base}/package`);  // eslint-disable-line global-require
+					bin = `${base}/${packageConfig.bin.gulp}`;
+					params.push('--cwd', context.cwd);
 					break;
 
 				case 'grunt':
-					pkg = require(`${gruntCli}/package`);  // eslint-disable-line global-require
+					packageConfig = require(`${gruntCli}/package`);  // eslint-disable-line global-require
 
-					bin = `${gruntCli}/${pkg.bin.grunt}`;
-					arg.push('--gruntfile', `${context.cwd}/gruntfile.js`);
+					bin = `${gruntCli}/${packageConfig.bin.grunt}`;
+					params.push('--gruntfile', `${context.cwd}/gruntfile.js`);
 					break;
 
 				default: break;
@@ -83,12 +83,12 @@ ${util.usageTasks}
 
 			if (context.flags) {
 				context.flags.forEach((value, flag) => {
-					arg.push(`--${flag}`, value);
+					params.push(`--${flag}`, value);
 				});
 			}
 
-			const cmd = spawn(`${bin}`, arg, {
-				env:   process.env, // eslint-disable-line no-process-env
+			const cmd = spawn(`${bin}`, params, {
+				env:   process.env,  // eslint-disable-line no-process-env, unicorn/prevent-abbreviations
 				stdio: 'inherit'
 			});
 

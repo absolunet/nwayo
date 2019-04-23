@@ -25,14 +25,14 @@ const contentData = (data, fullTitle) => {
 
 class Content extends React.Component {
 
-	constructor(props) {
-		super(props);
+	constructor(properties) {
+		super(properties);
 		this.state = {};
 	}
 
 
-	static getDerivedStateFromProps(props) {
-		return { url:props.path };
+	static getDerivedStateFromProps(properties) {
+		return { url: properties.path };
 	}
 
 

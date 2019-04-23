@@ -34,7 +34,7 @@ const level1Cmds = () => {
 
 	const list = [];
 	fs.readdirSync(`${__dirname}/../cli`).forEach((cmdName) => {
-		const [, cmd] = cmdName.match(/^([a-zA-Z0-9-]+).js$/u) || [];
+		const [, cmd] = cmdName.match(/^(?<alphanum>[a-zA-Z0-9-]+).js$/u) || [];
 
 		if (cmd && cmd !== 'default') {
 			list.push(cmd);
@@ -48,18 +48,18 @@ const level1Cmds = () => {
 
 
 const bundles = (root) => {
-	const fs  = require('fs');
-	const dir = `${root}/bundles`;
+	const fs        = require('fs');
+	const directory = `${root}/bundles`;
 
 	const list = [];
-	fs.readdirSync(dir).forEach((bundleName) => {
-		const [, bundle] = bundleName.match(/^([a-zA-Z0-9-]+)$/u) || [];
+	fs.readdirSync(directory).forEach((bundleName) => {
+		const [, bundle] = bundleName.match(/^(?<alphanum>[a-zA-Z0-9-]+)$/u) || [];
 
 		if (bundle) {
 			list.push(bundle);
 
-			fs.readdirSync(`${dir}/${bundle}`).forEach((subbundleName) => {
-				const [, subbundle] = subbundleName.match(/^_([a-zA-Z0-9-]+)\.yaml$/u) || [];
+			fs.readdirSync(`${directory}/${bundle}`).forEach((subbundleName) => {
+				const [, subbundle] = subbundleName.match(/^_(?<alphanum>[a-zA-Z0-9-]+)\.yaml$/u) || [];
 
 				if (subbundle) {
 					list.push(`${bundle}:${subbundle}`);

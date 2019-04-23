@@ -33,7 +33,7 @@ module.exports = () => {
 		return gulp.src(paths.files.scriptsLint)
 			// .pipe(toolbox.plumber())   // skip cuz of watch
 
-			.pipe(cache('scripts', { optimizeMemory:true }))
+			.pipe(cache('scripts', { optimizeMemory: true }))
 
 			.pipe(gulpif(env.isWindows, lec()))
 
@@ -67,8 +67,8 @@ module.exports = () => {
 
 		for (const name of Object.keys(env.bundles)) {
 			const data = {
-				[env.id]: env.workflowPkg.version,
-				project:  env.pkg.name,
+				[env.id]: env.workflowConfig.version,
+				project:  env.packageConfig.name,
 				bundle:   name,
 				konstan:  util.parseKonstan('scripts', name, env.bundles[name].output)
 			};
@@ -77,7 +77,7 @@ module.exports = () => {
 			streams.push(
 				toolbox.vinylStream(paths.filename.konstanScripts, `var konstan = ${JSON.stringify(data, null, '\t')};`)
 					.pipe(toolbox.plumber())
-					.pipe(gulp.dest(`${paths.dir.cacheScripts}/${name}`))
+					.pipe(gulp.dest(`${paths.directory.cacheScripts}/${name}`))
 			);
 			/* eslint-enable function-paren-newline */
 		}
@@ -97,11 +97,11 @@ module.exports = () => {
 			toolbox.log(taskName, `${name} built`, toolbox.filesize(file));
 		};
 
-		return toolbox.fakeStream((cb) => {
+		return toolbox.fakeStream((callback) => {
 
 			const modernizrBuild = new Promise((resolve) => {
 				modernizr.build(fss.readYaml(paths.config.modernizr), (result) => {
-					const file = `${paths.dir.cacheScripts}/${paths.filename.modernizr}.${paths.ext.scripts}`;
+					const file = `${paths.directory.cacheScripts}/${paths.filename.modernizr}.${paths.extension.scripts}`;
 					fsp.ensureFile(file).then(() => {
 						fss.writeFile(file, result);
 						log('Modernizr', file);
@@ -112,7 +112,7 @@ module.exports = () => {
 
 			const lodashBuild = new Promise((resolve) => {
 				const options = util.parseLodash();
-				const file    = `${paths.dir.cacheScripts}/${paths.filename.lodash}.${paths.ext.scripts}`;
+				const file    = `${paths.directory.cacheScripts}/${paths.filename.lodash}.${paths.extension.scripts}`;
 
 				exec(`node ${paths.config.lodashBin} ${options} --development --output ${file}`, (error, stdout, stderr) => {
 					if (error !== null) {
@@ -124,7 +124,7 @@ module.exports = () => {
 			});
 
 			const polyfillBuild = new Promise((resolve) => {
-				const file = `${paths.dir.cacheScripts}/${paths.filename.polyfill}.${paths.ext.scripts}`;
+				const file = `${paths.directory.cacheScripts}/${paths.filename.polyfill}.${paths.extension.scripts}`;
 
 				corejs({
 					modules:  ['web', 'es'],
@@ -139,7 +139,7 @@ module.exports = () => {
 
 			Promise.all([modernizrBuild, lodashBuild, polyfillBuild]).then(() => {
 				flow.skipOnWatch(taskName);
-				cb();
+				callback();
 			});
 
 		});
@@ -180,10 +180,10 @@ module.exports = () => {
 					list[i] = `//= require ${file}`;
 				});
 
-				const toMinify = (bundle.scripts.options.minify && !env.watching) || env.prod;
-				const filename = `${collection}.${paths.ext.scripts}`;
-				const dest     = `${bundle.output.build}/${paths.build.scripts}`;
-				const source   = `${util.getGeneratedBanner(name)} (function(global, undefined) { \n\t${list.join('\n')}\n })(typeof window !== 'undefined' ? window : this);\n`;
+				const toMinify    = (bundle.scripts.options.minify && !env.watching) || env.production;
+				const filename    = `${collection}.${paths.extension.scripts}`;
+				const destination = `${bundle.output.build}/${paths.build.scripts}`;
+				const source      = `${util.getGeneratedBanner(name)} (function(global, undefined) { \n\t${list.join('\n')}\n })(typeof window !== 'undefined' ? window : this);\n`;
 
 				/* eslint-disable function-paren-newline */
 				streams.push(
@@ -191,7 +191,7 @@ module.exports = () => {
 						.pipe(toolbox.plumber())
 
 						.pipe(include({
-							basePath:      paths.dir.root,
+							basePath:      paths.directory.root,
 							autoExtension: true,
 							partialPrefix: true,
 							fileProcess:   (options) => {
@@ -199,12 +199,12 @@ module.exports = () => {
 							}
 						}))
 
-						.pipe(gulpif(toMinify, uglify({ output:{ comments:'some' } })))
+						.pipe(gulpif(toMinify, uglify({ output: { comments: 'some' } })))
 
-						.pipe(gulp.dest(`${paths.dir.root}/${dest}`))
+						.pipe(gulp.dest(`${paths.directory.root}/${destination}`))
 
 						.on('finish', () => {
-							toolbox.log(taskName, `'${dest}/${filename}' written`, toolbox.filesize(`${paths.dir.root}/${dest}/${filename}`));
+							toolbox.log(taskName, `'${destination}/${filename}' written`, toolbox.filesize(`${paths.directory.root}/${destination}/${filename}`));
 						})
 				);
 				/* eslint-enable function-paren-newline */
@@ -224,8 +224,8 @@ module.exports = () => {
 	flow.createSequence('scripts', gulp.series('scripts-compile'), {
 		cleanBundle: ({ name, bundle }) => {
 			return [
-				`${paths.dir.root}/${bundle.output.build}/${paths.build.scripts}`,
-				`${paths.dir.cacheScripts}/${name}`
+				`${paths.directory.root}/${bundle.output.build}/${paths.build.scripts}`,
+				`${paths.directory.cacheScripts}/${name}`
 			];
 		}
 	});

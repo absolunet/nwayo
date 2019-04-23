@@ -23,14 +23,14 @@ const analyzeNode = (callback) => {
 	};
 
 	return async.parallel({
-		dev: (cb) => {
-			david.getUpdatedDependencies(context.pkg, { dev:true }, (er, deps) => {
-				cb(null, deps);
+		development: (callback2) => {
+			david.getUpdatedDependencies(context.packageConfig, { dev: true }, (er, deps) => {  // eslint-disable-line unicorn/prevent-abbreviations
+				callback2(null, deps);
 			});
 		},
-		prod: (cb) => {
-			david.getUpdatedDependencies(context.pkg, { dev:false }, (er, deps) => {
-				cb(null, deps);
+		production: (callback2) => {
+			david.getUpdatedDependencies(context.packageConfig, { dev: false }, (er, deps) => {  // eslint-disable-line unicorn/prevent-abbreviations
+				callback2(null, deps);
 			});
 		}
 	}, (error, results) => {
@@ -66,7 +66,7 @@ const analyzeBower = (callback) => {
 			outdated: []
 		};
 
-		return bower.commands.list(null, { cwd:context.cwd }).on('end', (deps) => {
+		return bower.commands.list(null, { cwd: context.cwd }).on('end', (deps) => {
 
 			for (const name in deps.dependencies) {
 				if (Object.prototype.hasOwnProperty.call(deps.dependencies, name)) {
@@ -129,7 +129,7 @@ const analyzeBower = (callback) => {
 
 	}
 
-	return callback(null, { error:'No bower.json file found' });
+	return callback(null, { error: 'No bower.json file found' });
 };
 
 
@@ -146,8 +146,8 @@ const report = (title, data) => {
 		helper.echo(chalk.red('    You are a dull blade   ಠ_ಠ\n'));
 
 		data.outdated.forEach((item) => {
-			const msg = item.message ? `${chalk.red(item.message)}` : `${chalk.red(item.current)} ➝  ${chalk.green(item.latest)}`;
-			helper.echo(`    [${item.name}] : ${msg}`);
+			const message = item.message ? `${chalk.red(item.message)}` : `${chalk.red(item.current)} ➝  ${chalk.green(item.latest)}`;
+			helper.echo(`    [${item.name}] : ${message}`);
 		});
 
 	} else {
@@ -170,7 +170,7 @@ module.exports = {
 		context = contextParam;
 
 		helper.echo('');
-		const spin = new Spinner(`Diagnosing ${chalk.cyan(context.pkg.name)}... %s`);
+		const spin = new Spinner(`Diagnosing ${chalk.cyan(context.packageConfig.name)}... %s`);
 		spin.start();
 
 		return async.parallel({

@@ -12,7 +12,7 @@ const toolbox      = require('~/helpers/toolbox');
 
 
 //-- Parse a linefeed-separated config
-const parseConf = (filename) => {
+const parseConfig = (filename) => {
 	return fss.readFile(filename, 'utf8').split(`\n`).filter(Boolean);
 };
 
@@ -25,7 +25,7 @@ class Assertions {
 
 	// If tracked by git
 	gitTracked(pathname, { root = '', tracked = true } = {}) {
-		const isTracked = Boolean(terminal.runAndGet(`cd ${paths.dir.root}/${root}; git ls-files ${pathname}`));
+		const isTracked = Boolean(terminal.runAndGet(`cd ${paths.directory.root}/${root}; git ls-files ${pathname}`));
 
 		return [{
 			type:    'gitTracked',
@@ -39,7 +39,7 @@ class Assertions {
 	exists(pathname, { root = '', tracked = true } = {}) {
 		const exists = [{
 			type:    'exists',
-			success: fss.exists(`${paths.dir.root}/${root}/${pathname}`),
+			success: fss.exists(`${paths.directory.root}/${root}/${pathname}`),
 			message: `${Reporter.theme.title(pathname)}: Must exist`
 		}];
 
@@ -51,10 +51,10 @@ class Assertions {
 	}
 
 
-	// No dir on root
-	hasNoDirs(pathname, { root = '' } = {}) {
+	// No directories on root
+	hasNoDirectories(pathname, { root = '' } = {}) {
 		return {
-			success: fss.scandir(`${paths.dir.root}/${root}/${pathname}`, 'dir').length === 0,
+			success: fss.scandir(`${paths.directory.root}/${root}/${pathname}`, 'dir').length === 0,
 			message: `${Reporter.theme.title(pathname)}: Root folder must not contain any directory`
 		};
 	}
@@ -63,7 +63,7 @@ class Assertions {
 	// No files on root
 	hasNoFiles(pathname, { root = '' } = {}) {
 		return {
-			success: fss.scandir(`${paths.dir.root}/${root}/${pathname}`, 'file').length === 0,
+			success: fss.scandir(`${paths.directory.root}/${root}/${pathname}`, 'file').length === 0,
 			message: `${Reporter.theme.title(pathname)}: Root folder must not contain any file`
 		};
 	}
@@ -72,13 +72,13 @@ class Assertions {
 	// Is the tree completely tracked
 	areFilesGitTracked(files, pathname, { root = '' }) {
 		const rawFiles     = files.map((file) => { return `${pathname}/${file}`; });
-		const trackedFiles = terminal.runAndRead(`cd ${paths.dir.root}/${root}; git ls-files ${pathname}`).split('\n');
+		const trackedFiles = terminal.runAndRead(`cd ${paths.directory.root}/${root}; git ls-files ${pathname}`).split('\n');
 		const differences  = toolbox.compareLists(trackedFiles, rawFiles);
 
 		return {
 			success:     differences.missing.length === 0,
 			message:     `${Reporter.theme.title(pathname)}: All files must be tracked by git`,
-			differences: { missing:differences.missing }
+			differences: { missing: differences.missing }
 		};
 	}
 
@@ -90,7 +90,7 @@ class Assertions {
 		if (exists[0].success) {
 			return exists.concat([{
 				type:    'isMatrix',
-				success: fss.readFile(`${paths.dir.root}/${filename}`, 'utf8') === fss.readFile(`${paths.workflow.matrix}/${filename}`, 'utf8'),
+				success: fss.readFile(`${paths.directory.root}/${filename}`, 'utf8') === fss.readFile(`${paths.workflow.matrix}/${filename}`, 'utf8'),
 				message: `${Reporter.theme.title(filename)}: Must be identical to matrix`
 			}]);
 		}
@@ -104,10 +104,10 @@ class Assertions {
 		const exists = this.exists(filename);
 
 		if (exists[0].success) {
-			const entries = parseConf(`${paths.dir.root}/${filename}`);
+			const entries = parseConfig(`${paths.directory.root}/${filename}`);
 			const missing = [];
 
-			parseConf(`${paths.workflow.matrix}/${filename}`).forEach((entry) => {
+			parseConfig(`${paths.workflow.matrix}/${filename}`).forEach((entry) => {
 				if (!entries.includes(entry)) {
 					missing.push(entry);
 				}
@@ -127,7 +127,7 @@ class Assertions {
 
 	// Is the tree identical to matrix
 	isTreeMatrix(curr, type, options) {
-		const differences = toolbox.compareLists(fss.scandir(`${paths.dir.root}${curr}`, type, options), fss.scandir(`${paths.workflow.matrix}${curr}`, type, options));
+		const differences = toolbox.compareLists(fss.scandir(`${paths.directory.root}${curr}`, type, options), fss.scandir(`${paths.workflow.matrix}${curr}`, type, options));
 
 		return {
 			success:     differences.pass,

@@ -27,11 +27,11 @@ module.exports = ({ cliPkg, cliPath, cliUsage }) => {
 	} else {
 
 		const cliBin      = `     cli${chalk.yellow('@')}${cliPkg.version} ${cliPath}`;
-		const workflowBin = `workflow${chalk.yellow('@')}${env.workflowPkg.version} ${paths.workflow.root}`;
+		const workflowBin = `workflow${chalk.yellow('@')}${env.workflowConfig.version} ${paths.workflow.root}`;
 
 		cli.tasksRouter(meow({
-			pkg:         cliPkg,
-			description: `${env.logo}  ${env.workflowPkg.definition}`,
+			pkg:         cliPkg,  // eslint-disable-line unicorn/prevent-abbreviations
+			description: `${env.logo}  ${env.workflowConfig.definition}`,
 			help:        `${cli.fullUsage}\n${cliBin}\n${workflowBin}`
 		}));
 	}

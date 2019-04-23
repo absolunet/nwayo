@@ -18,9 +18,9 @@ const bowerInstall = () => {
 		Installing vendors via Bower
 	`);
 
-	fss.remove(paths.dir.bower);
+	fss.remove(paths.directory.bower);
 
-	terminal.run(`cd ${paths.dir.root} && node ${paths.config.bowerBin} install`);
+	terminal.run(`cd ${paths.directory.root} && node ${paths.config.bowerBin} install`);
 };
 
 

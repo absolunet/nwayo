@@ -46,9 +46,9 @@ module.exports = () => {
 			return stream
 				.pipe(toolbox.plumber())
 				.pipe(gm((gmfile, done) => {
-					gmfile.identify((err, info) => {
-						if (err) {
-							terminal.error(err);
+					gmfile.identify((error, info) => {
+						if (error) {
+							terminal.error(error);
 						}
 						toolbox.gmOptimization(gmfile.resize('50%', '50%'), info);
 						done(null, gmfile);
@@ -81,7 +81,7 @@ module.exports = () => {
 	//-- Rebuild images
 	flow.createSequence('assets-images', gulp.parallel('assets-images-optimization', 'assets-images-highdensity'), {
 		cleanBundle: ({ bundle }) => {
-			return [`${paths.dir.root}/${bundle.output.build}/${paths.build.images}`];
+			return [`${paths.directory.root}/${bundle.output.build}/${paths.build.images}`];
 		}
 	});
 
@@ -90,9 +90,9 @@ module.exports = () => {
 	flow.createSequence('assets', gulp.parallel('assets-fonts', 'assets-images', 'assets-raw'), {
 		cleanBundle: ({ bundle }) => {
 			return [
-				`${paths.dir.root}/${bundle.output.build}/${paths.build.fonts}`,
-				`${paths.dir.root}/${bundle.output.build}/${paths.build.images}`,
-				`${paths.dir.root}/${bundle.output.build}/${paths.build.raw}`
+				`${paths.directory.root}/${bundle.output.build}/${paths.build.fonts}`,
+				`${paths.directory.root}/${bundle.output.build}/${paths.build.images}`,
+				`${paths.directory.root}/${bundle.output.build}/${paths.build.raw}`
 			];
 		}
 	});

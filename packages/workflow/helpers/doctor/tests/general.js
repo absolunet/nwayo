@@ -18,7 +18,7 @@ const reports = new Reporter();
 
 const getPathsToCheck = (type, { extension, keepRoot = true }) => {
 	let list = fss
-		.scandir(paths.dir.root, type, { recursive:true, pattern:`!+(${paths.folder.cache}|${paths.folder.vendors}|${paths.folder.workflowDependencies})/**` })
+		.scandir(paths.directory.root, type, { recursive: true, pattern: `!+(${paths.folder.cache}|${paths.folder.vendors}|${paths.folder.workflowDependencies})/**` })
 		.filter((pathname) => {
 			return !new RegExp(`${paths.folder.components}\\/[a-z0-9-]+\\/(${paths.folder.scripts}|${paths.folder.styles})\\/${paths.folder.nolint}`, 'u').test(pathname);
 		})
@@ -45,13 +45,13 @@ const kebabCase = (type) => {
 
 	const mismatched = [];
 
-	getPathsToCheck(type, { keepRoot:false }).forEach((item) => {
+	getPathsToCheck(type, { keepRoot: false }).forEach((item) => {
 		let name = item.split('/').pop();
 
 		if (isFile) {
 			name = name
-				.replace(/^[_.]?(.+)$/u,   '$1')
-				.replace(/^(.+)?(\..+)$/u, '$1')  // eslint-disable-line unicorn/no-unsafe-regex
+				.replace(/^[_.]?(?<rest>.+)$/u,   '$<rest>')
+				.replace(/^(?<name>.+)?(?<ext>\..+)$/u, '$<name>')
 			;
 		}
 
@@ -71,14 +71,14 @@ const kebabCase = (type) => {
 const lintJSON = () => {
 	const lints = [];
 
-	const cli = new CLIEngine({ plugins:['json'], extensions:['.json'], useEslintrc:false });
+	const cli = new CLIEngine({ plugins: ['json'], extensions: ['.json'], useEslintrc: false });
 
-	getPathsToCheck('file', { extension:'json' }).forEach((file) => {
-		const report = cli.executeOnFiles([`${paths.dir.root}/${file}`]);
+	getPathsToCheck('file', { extension: 'json' }).forEach((file) => {
+		const report = cli.executeOnFiles([`${paths.directory.root}/${file}`]);
 
 		let error = false;
 		if (report.errorCount > 0 || report.warningCount > 0) {
-			error = replaceAll(`${paths.dir.root}/`, '', cli.getFormatter()(report.results));
+			error = replaceAll(`${paths.directory.root}/`, '', cli.getFormatter()(report.results));
 		}
 
 		lints.push({
@@ -99,11 +99,11 @@ const lintYAML = async () => {
 	const lints = [];
 
 	const calls = [];
-	getPathsToCheck('file', { extension:'yaml' }).forEach((file) => {
+	getPathsToCheck('file', { extension: 'yaml' }).forEach((file) => {
 		calls.push(new Promise((resolve) => {
 			let error = false;
 
-			yamlLint.lintFile(`${paths.dir.root}/${file}`)
+			yamlLint.lintFile(`${paths.directory.root}/${file}`)
 				.catch((error2) => {
 					error = error2;
 				})

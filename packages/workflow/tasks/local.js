@@ -23,8 +23,8 @@ module.exports = () => {
 
 			const data = {
 				GENERATION: util.getGeneratedBanner(name, 'text'),
-				[env.id]: env.workflowPkg.version,
-				project:  env.pkg.name,
+				[env.id]: env.workflowConfig.version,
+				project:  env.packageConfig.name,
 				bundle:   name,
 				konstan:  util.parseKonstan('local', name, bundle.output)
 			};
@@ -33,9 +33,9 @@ module.exports = () => {
 			streams.push(
 				toolbox.vinylStream(paths.filename.konstanLocal, JSON.stringify(data, null, 2))
 					.pipe(toolbox.plumber())
-					.pipe(gulp.dest(`${paths.dir.root}/${bundle.output.konstan}`))
+					.pipe(gulp.dest(`${paths.directory.root}/${bundle.output.konstan}`))
 					.on('finish', () => {
-						toolbox.log(taskName, `'${bundle.output.konstan}/${paths.filename.konstanLocal}' written`, toolbox.filesize(`${paths.dir.root}/${bundle.output.konstan}/${paths.filename.konstanLocal}`));
+						toolbox.log(taskName, `'${bundle.output.konstan}/${paths.filename.konstanLocal}' written`, toolbox.filesize(`${paths.directory.root}/${bundle.output.konstan}/${paths.filename.konstanLocal}`));
 					})
 			);
 			/* eslint-enable function-paren-newline */
@@ -52,7 +52,7 @@ module.exports = () => {
 	//-- Rebuild
 	flow.createSequence('local', gulp.series('local-constants'), {
 		cleanBundle: ({ bundle }) => {
-			return [`${paths.dir.root}/${bundle.output.konstan}/${paths.filename.konstanLocal}`];
+			return [`${paths.directory.root}/${bundle.output.konstan}/${paths.filename.konstanLocal}`];
 		}
 	});
 

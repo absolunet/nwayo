@@ -18,7 +18,7 @@ class NwayoClasses {
 
 class NwayoHelpers {
 
-	get env()     { return require('~/helpers/env'); }
+	get env()     { return require('~/helpers/env'); }  // eslint-disable-line unicorn/prevent-abbreviations
 	get paths()   { return require('~/helpers/paths'); }
 	get toolbox() { return require('~/helpers/toolbox'); }
 	get util()    { return require('~/helpers/util'); }

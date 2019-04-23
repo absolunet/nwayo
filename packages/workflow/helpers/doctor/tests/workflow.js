@@ -21,8 +21,8 @@ class WorkflowTests extends Tests {
 
 	async run() {
 
-		const current = env.workflowPkg.version;
-		const latest  = await lastestVersion(env.pkgName);
+		const current = env.workflowConfig.version;
+		const latest  = await lastestVersion(env.packageName);
 
 		if (semver.gt(latest, current)) {
 			reports.add({

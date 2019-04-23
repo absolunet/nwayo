@@ -17,7 +17,7 @@ const argv = require('minimist')(process.argv.slice(2));
 
 class Util {
 
-	get pkg() {
+	get packageConfig() {
 		return require(`../package.json`);
 	}
 
@@ -81,7 +81,7 @@ class Util {
 			if (Object.keys(argv).length === 1) {
 				return true;
 			} else if (optionalFlag && Object.keys(argv).length === 2 && argv[optionalFlag] === true) {
-				return { flag:true };
+				return { flag: true };
 			}
 		}
 
@@ -94,14 +94,14 @@ class Util {
 
 
 	//-- Nano wrappers to refrain the use of packages
-	echo(msg) {
-		console.log(msg);  // eslint-disable-line no-console
+	echo(message) {
+		console.log(message);  // eslint-disable-line no-console
 	}
 
-	exit(msg) {
-		if (msg && !argv['completion-logic']) {
+	exit(message) {
+		if (message && !argv['completion-logic']) {
 			const { terminal } = require('@absolunet/terminal');
-			terminal.exit(msg);
+			terminal.exit(message);
 		} else {
 			process.exit();  // eslint-disable-line no-process-exit, unicorn/no-process-exit
 		}
@@ -120,7 +120,7 @@ class Util {
 
 
 	//-- Check for updates and be obnoxious about it
-	obnoxiousNotificator(pkg, sync = false) {
+	obnoxiousNotificator(packageConfig, sync = false) {
 		const boxen          = require('boxen');
 		const updateNotifier = require('update-notifier');
 
@@ -128,8 +128,9 @@ class Util {
 			return `Update available ${chalk.dim(update.current)} ${chalk.reset('→')} ${chalk.green(update.latest)}\nRun ${chalk.cyan('nwayo update')} to update`;
 		};
 
+
 		const options = {
-			pkg: pkg,
+			pkg:                 packageConfig,  // eslint-disable-line unicorn/prevent-abbreviations
 			updateCheckInterval: 1
 		};
 
@@ -154,15 +155,15 @@ class Util {
 		const notifier = updateNotifier(options);
 
 		if (!sync) {
-			notifier.notify({ message:message(notifier.update) });
+			notifier.notify({ message: message(notifier.update) });
 		}
 	}
 
 
 	//-- Check for updates
-	checkUpdate(pkg, callback) {
+	checkUpdate(packageConfig, callback) {
 		const updateNotifier = require('update-notifier');
-		updateNotifier({ pkg:pkg, updateCheckInterval:1, callback:callback });
+		updateNotifier({ pkg: packageConfig, updateCheckInterval: 1, callback: callback });  // eslint-disable-line unicorn/prevent-abbreviations
 	}
 
 
@@ -178,7 +179,7 @@ class Util {
 
 
 	//-- Show usage
-	showUsageIfNotArgs() {
+	showUsageIfNotArguments() {
 		if (Object.keys(argv).length === 1 && argv._.length === 0) {
 			const fs = require('fs');
 
@@ -187,7 +188,7 @@ class Util {
 
   ${chalk.underline('Global')}
 ${this.usageTasks}
-  cli${chalk.yellow('@')}${this.pkg.version} ${fs.realpathSync(`${__dirname}/..`)}
+  cli${chalk.yellow('@')}${this.packageConfig.version} ${fs.realpathSync(`${__dirname}/..`)}
 			`);
 
 			this.exit();
