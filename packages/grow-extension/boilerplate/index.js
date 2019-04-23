@@ -18,15 +18,15 @@ class NwayoMyExtensionExtension extends NwayoExtension {
 
 
 	get version() {
-		const pkg = fss.readJson(`${__dirname}/package.json`);
+		const packageConfig = fss.readJson(`${__dirname}/package.json`);
 
-		return pkg.version;
+		return packageConfig.version;
 	}
 
 
 	init({ options }) {
 		Object.keys(options).forEach((name) => {
-			options[name].output = `${paths.dir.root}/${options[name].output}`;
+			options[name].output = `${paths.directory.root}/${options[name].output}`;
 		});
 
 		this.options = options;

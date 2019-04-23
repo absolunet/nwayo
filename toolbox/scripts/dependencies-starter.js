@@ -6,8 +6,8 @@
 (() => {
 	'use strict';
 
-	const addProp = (obj, prop, value) => {
-		Object.defineProperty(obj, prop, {
+	const addProperty = (object, property, value) => {
+		Object.defineProperty(object, property, {
 			enumerable:   true,
 			writable:     false,
 			configurable: false,
@@ -15,23 +15,23 @@
 		});
 	};
 
-	const readonlyObj = (data) => {
-		const obj = {};
+	const readonlyObject = (data) => {
+		const object = {};
 
-		Object.keys(data).forEach((prop) => {
-			if (typeof data[prop] === 'object' && !Array.isArray(data[prop])) {
-				data[prop] = readonlyObj(data[prop]);
+		Object.keys(data).forEach((property) => {
+			if (typeof data[property] === 'object' && !Array.isArray(data[property])) {
+				data[property] = readonlyObject(data[property]);
 			}
-			addProp(obj, prop, data[prop]);
+			addProperty(object, property, data[property]);
 		});
 
-		return obj;
+		return object;
 	};
 
 
 
 	//-- Initialize nwayo
-	const nwayo = readonlyObj({
+	const nwayo = readonlyObject({
 		project: konstan.project,
 		version: konstan.nwayo
 	});
@@ -57,12 +57,12 @@
 	}
 
 	const vendor = {};
-	addProp(vendor, 'jQuery',    jQueryScoped);
-	addProp(vendor, 'lodash',    lodashScoped);
-	addProp(vendor, 'Modernizr', global.Modernizr);
-	addProp(vendor, 'pinki',     global.pinki);
+	addProperty(vendor, 'jQuery',    jQueryScoped);
+	addProperty(vendor, 'lodash',    lodashScoped);
+	addProperty(vendor, 'Modernizr', global.Modernizr);
+	addProperty(vendor, 'pinki',     global.pinki);
 
-	addProp(nwayo, 'vendor', vendor);
+	addProperty(nwayo, 'vendor', vendor);
 
 	// Redefine
 	const $ = vendor.jQuery;
@@ -71,13 +71,13 @@
 
 
 	// Vows
-	const vows = readonlyObj({
+	const vows = readonlyObject({
 		DOMParsed:          'nwayo-core.dom-parsed',
 		documentLoaded:     'nwayo-core.document-loaded',
 		globaljqueryLoaded: 'nwayo-core.globaljquery-loaded'
 	});
 
-	addProp(nwayo, 'vows', vows);
+	addProperty(nwayo, 'vows', vows);
 
 	// Shortcuts
 	const shortcuts = (() => {
@@ -107,11 +107,11 @@
 		return shortcut;
 	})();
 
-	addProp(nwayo, 'shortcuts', shortcuts);
+	addProperty(nwayo, 'shortcuts', shortcuts);
 
-	addProp(nwayo, 'helpers', {});
+	addProperty(nwayo, 'helpers', {});
 
-	addProp(global, 'nwayo', nwayo);
+	addProperty(global, 'nwayo', nwayo);
 
 
 
@@ -123,12 +123,12 @@
 	const $body     = $('body');
 	const bodyClass = $body.attr('class');
 
-	addProp(global, konstan.project, readonlyObj({
+	addProperty(global, konstan.project, readonlyObject({
 		bundle:  konstan.bundle,
 		konstan: konstan.konstan,
 		path:    path,
 		tmpl:    {},
-		env:     {
+		env:     {  // eslint-disable-line unicorn/prevent-abbreviations
 			culture:  culture,
 			lang:     culture.substr(0, 2),
 			country:  culture.substr(3, 2).toLowerCase(),

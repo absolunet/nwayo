@@ -23,20 +23,22 @@
 
 
 	//-- Public class
-	app.myclass = class {
+	class MyClass {
 
 		// Property foo
-		static get foo() {
+		get foo() {
 			return foo;
 		}
 
 		// Method bar()
-		static bar(options = {}) {
+		bar(options = {}) {
 			if (options.bar) {
 				local.bar();
 			}
 		}
 
-	};
+	}
+
+	app.myclass = new MyClass();
 
 })();

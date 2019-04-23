@@ -23,7 +23,7 @@ const bowerJson = () => {
 	const tests = reports.add(assert.exists(FILE));
 
 	if (tests.exists) {
-		const config = fss.readJson(`${paths.dir.root}/${FILE}`);
+		const config = fss.readJson(`${paths.directory.root}/${FILE}`);
 		const differences = toolbox.compareLists(Object.keys(config), ['name', 'private', 'devDependencies', `___${env.id}-recommended___`]);
 		reports.add({
 			success:     differences.pass,
@@ -69,7 +69,7 @@ const packageJson = (bowerName) => {
 	const tests = reports.add(assert.exists(FILE));
 
 	if (tests.exists) {
-		const config = fss.readJson(`${paths.dir.root}/${FILE}`);
+		const config = fss.readJson(`${paths.directory.root}/${FILE}`);
 
 		const attributesDifferences = toolbox.compareLists(Object.keys(config), ['name', 'license', 'private', 'dependencies']);
 		reports.add({
@@ -107,7 +107,7 @@ const packageJson = (bowerName) => {
 			message: `${Reporter.theme.title(FILE)}: Private must be set to true`
 		});
 
-		const packagesDifferences = toolbox.compareLists(Object.keys(config.dependencies), [env.pkgName]);
+		const packagesDifferences = toolbox.compareLists(Object.keys(config.dependencies), [env.packageName]);
 		reports.add({
 			success:     packagesDifferences.pass,
 			message:     `${Reporter.theme.title(FILE)}: Must only contain certain dependencies`,
@@ -129,7 +129,7 @@ const eslintrcYaml = () => {
 	const tests = reports.add(assert.exists(FILE));
 
 	if (tests.exists) {
-		const config = fss.readYaml(`${paths.dir.root}/${FILE}`);
+		const config = fss.readYaml(`${paths.directory.root}/${FILE}`);
 		reports.add({
 			success: config.extends && config.extends === `@absolunet/${env.id}`,
 			message: `${Reporter.theme.title(FILE)}: Must extend '@absolunet/${env.id}'`
@@ -143,7 +143,7 @@ const stylelintrcYaml = () => {
 	const tests = reports.add(assert.exists(FILE));
 
 	if (tests.exists) {
-		const config = fss.readYaml(`${paths.dir.root}/${FILE}`);
+		const config = fss.readYaml(`${paths.directory.root}/${FILE}`);
 		reports.add({
 			success: config.extends && config.extends === `@absolunet/stylelint-config-${env.id}`,
 			message: `${Reporter.theme.title(FILE)}: Must extend '@absolunet/stylelint-config-${env.id}'`
@@ -153,12 +153,12 @@ const stylelintrcYaml = () => {
 
 
 const nwayoYaml = () => {
-	const FILE = paths.filename.mainConfig;
-	const nwayoConf = findUp.sync(FILE, { cwd:paths.dir.root });
+	const FILE        = paths.filename.mainConfig;
+	const nwayoConfig = findUp.sync(FILE, { cwd: paths.directory.root });
 
 	reports.add({
-		success: nwayoConf,
-		message: `${Reporter.theme.title(FILE)}: Must exist in parent directories${nwayoConf ? Reporter.theme.comment(` (Found: ${nwayoConf})`) : ''}`
+		success: nwayoConfig,
+		message: `${Reporter.theme.title(FILE)}: Must exist in parent directories${nwayoConfig ? Reporter.theme.comment(` (Found: ${nwayoConfig})`) : ''}`
 	});
 };
 
@@ -173,16 +173,16 @@ class RootTests extends Tests {
 	async run() {
 
 		//-- Directories
-		reports.add(assert.isTreeMatrix('/', 'dir',  { pattern:'!+(.git|.nwayo-cache|node_modules)' }));
+		reports.add(assert.isTreeMatrix('/', 'dir',  { pattern: '!+(.git|.nwayo-cache|node_modules)' }));
 		reports.add(assert.exists(paths.folder.vendors));
 		reports.add(assert.exists(paths.folder.bundles));
 		reports.add(assert.exists(paths.folder.components));
 		reports.add(assert.exists(paths.folder.misc));
-		reports.add(assert.exists(paths.folder.workflowDependencies, { tracked:false }));
+		reports.add(assert.exists(paths.folder.workflowDependencies, { tracked: false }));
 
 
 		//-- Files
-		reports.add(assert.isTreeMatrix('/', 'file', { pattern:`!+(${paths.filename.mainConfig}|.gitignore)` }));
+		reports.add(assert.isTreeMatrix('/', 'file', { pattern: `!+(${paths.filename.mainConfig}|.gitignore)` }));
 
 		// .editorconfig
 		reports.add(assert.isMatrix('.editorconfig'));

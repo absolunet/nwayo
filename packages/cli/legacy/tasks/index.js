@@ -30,14 +30,14 @@ module.exports = {
 		if (context.command !== 'index' && (isFlag || fs.existsSync(`${__dirname}/${context.command}.js`))) {
 
 			// if project command
-			if (['doctor', 'get', 'rebuild', 'run', 'watch', '--projecttasks'].indexOf(context.command) !== -1) {
+			if (['doctor', 'get', 'rebuild', 'run', 'watch', '--projecttasks'].includes(context.command)) {
 
 				// get project package.json file
 				if (fs.existsSync(`${context.cwd}/package.json`)) {
-					context.pkg = require(`${context.cwd}/package`);  // eslint-disable-line global-require
+					context.packageConfig = require(`${context.cwd}/package`);  // eslint-disable-line global-require
 
 					// check for nwayo config info
-					if (!context.pkg.nwayo) {
+					if (!context.packageConfig.nwayo) {
 						helper.error('No nwayo config found');
 					}
 

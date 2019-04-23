@@ -17,7 +17,7 @@ const root    = paths.folder.bundles;
 
 const bundleFile = (bundle, file) => {
 
-	const config = fss.readYaml(`${paths.dir.bundles}/${bundle}/${file}`);
+	const config = fss.readYaml(`${paths.directory.bundles}/${bundle}/${file}`);
 	reports.add({
 		success: config,
 		message: `${Reporter.theme.title(`${bundle}/${file}`)}: Must not be empty`
@@ -25,11 +25,11 @@ const bundleFile = (bundle, file) => {
 
 	//-- Sub
 	if (file.startsWith('_') && config) {
-		const keyDifferences = toolbox.compareLists(toolbox.flattenKeys(config, { depth:1 }), ['scripts', 'scripts.collections', 'styles', 'styles.collections']);
+		const keyDifferences = toolbox.compareLists(toolbox.flattenKeys(config, { depth: 1 }), ['scripts', 'scripts.collections', 'styles', 'styles.collections']);
 		reports.add({
 			success:     keyDifferences.superfluous.length === 0,
 			message:     `${Reporter.theme.title(`${bundle}/${file}`)}: Subbundle must only contain collections`,
-			differences: { superfluous:keyDifferences.superfluous }
+			differences: { superfluous: keyDifferences.superfluous }
 		});
 
 		['scripts', 'styles'].forEach((type) => {
@@ -47,7 +47,7 @@ const bundleFile = (bundle, file) => {
 	} else if (config) {
 		const mandatoryKeys = ['output', 'output.konstan', 'output.build', 'output.url', 'scripts', 'scripts.options', 'scripts.options.minify', 'scripts.options.babel', 'styles', 'styles.options', 'styles.options.minify', 'styles.options.sourcemaps', 'styles.options.autoprefixer'];
 		const allowedKeys   = mandatoryKeys.concat('assets', 'assets.components', 'scripts.allowBabel');
-		const configKeys    = toolbox.flattenKeys(config, { depth:3 });
+		const configKeys    = toolbox.flattenKeys(config, { depth: 3 });
 
 		const mandatoryDifferences = toolbox.compareLists(configKeys, mandatoryKeys);
 		const allowedDifferences   = toolbox.compareLists(configKeys, allowedKeys);
@@ -55,20 +55,20 @@ const bundleFile = (bundle, file) => {
 		reports.add({
 			success:     mandatoryDifferences.missing.length === 0 && allowedDifferences.superfluous.length === 0,
 			message:     `${Reporter.theme.title(`${bundle}/${file}`)}: Main bundle must contain only certain keys`,
-			differences: { missing:mandatoryDifferences.missing, superfluous:allowedDifferences.superfluous }
+			differences: { missing: mandatoryDifferences.missing, superfluous: allowedDifferences.superfluous }
 		});
 	}
 };
 
 
-const bundleDir = (bundle) => {
+const bundleDirectory = (bundle) => {
 
 	// No dir
-	reports.add(assert.hasNoDirs(bundle, { root }));
+	reports.add(assert.hasNoDirectories(bundle, { root }));
 
 	// Files
-	const files = fss.scandir(`${paths.dir.bundles}/${bundle}`, 'file', { pattern:`+(_*|${bundle}).${paths.ext.bundles}` });
-	const differences = toolbox.compareLists(fss.scandir(`${paths.dir.bundles}/${bundle}`, 'file'), files);
+	const files = fss.scandir(`${paths.directory.bundles}/${bundle}`, 'file', { pattern: `+(_*|${bundle}).${paths.extension.bundles}` });
+	const differences = toolbox.compareLists(fss.scandir(`${paths.directory.bundles}/${bundle}`, 'file'), files);
 
 	reports.add({
 		success:     differences.pass,
@@ -76,7 +76,7 @@ const bundleDir = (bundle) => {
 		differences: differences
 	});
 
-	reports.add(assert.exists(`${bundle}/${bundle}.${paths.ext.bundles}`, { root }));
+	reports.add(assert.exists(`${bundle}/${bundle}.${paths.extension.bundles}`, { root }));
 
 	reports.add(assert.areFilesGitTracked(files, bundle, { root }));
 
@@ -99,9 +99,9 @@ class BundlesTests extends Tests {
 		reports.add(assert.hasNoFiles('/', { root }));
 
 		// Bundles
-		const bundles = fss.scandir(`${paths.dir.bundles}`, 'dir');
+		const bundles = fss.scandir(`${paths.directory.bundles}`, 'dir');
 		bundles.forEach((bundle) => {
-			bundleDir(bundle);
+			bundleDirectory(bundle);
 		});
 
 		return reports;

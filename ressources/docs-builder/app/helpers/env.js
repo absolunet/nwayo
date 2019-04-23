@@ -15,7 +15,7 @@ const ADJECTIVES = [
 
 
 
-
+// eslint-disable-next-line unicorn/prevent-abbreviations
 class Env {
 
 	//-- Year

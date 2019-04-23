@@ -21,12 +21,12 @@ const RESOURCES = `${ROOT}/resources`;
 
 module.exports = (extension) => {
 
-	const log = (id, msg) => {
-		extension.log(TASK, `${id} - ${msg}`);
+	const log = (id, message) => {
+		extension.log(TASK, `${id} - ${message}`);
 	};
 
 	extension.createTask(TASK, () => {
-		return toolbox.fakeStream((cb) => {
+		return toolbox.fakeStream((callback) => {
 
 			/* eslint-disable no-console */
 			console.log(extension.options);
@@ -38,7 +38,7 @@ module.exports = (extension) => {
 
 			log(extension.options.id, `${myHelper.doIt(1, 2, 3)} built`);
 
-			cb();
+			callback();
 		});
 	});
 

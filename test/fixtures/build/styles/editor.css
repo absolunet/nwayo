@@ -29,7 +29,7 @@
 /* ... */
 /**
  * Foundation for Sites by ZURB
- * Version 6.5.1
+ * Version 6.5.3
  * foundation.zurb.com
  * Licensed under MIT Open Source
  */
@@ -310,11 +310,17 @@ html {
 a:not(.button) {
   color: #659d32;
   text-decoration: none;
+  -webkit-transition: color 100ms ease-out;
   transition: color 100ms ease-out;
 }
 a:not(.button):hover, a:not(.button):active, a:not(.button):focus {
   color: #618931;
   text-decoration: underline;
+}
+
+::-moz-selection {
+  background-color: #36454f;
+  color: #ffffff;
 }
 
 ::selection {
@@ -526,9 +532,12 @@ html.no-touchevents .body a:hover {
   text-decoration: none;
   line-height: 1.2;
   letter-spacing: 0.02em;
+  -webkit-transition-property: background-color, border-color, color;
   transition-property: background-color, border-color, color;
-  transition-duration: 100ms;
-  transition-timing-function: ease-out;
+  -webkit-transition-duration: 100ms;
+          transition-duration: 100ms;
+  -webkit-transition-timing-function: ease-out;
+          transition-timing-function: ease-out;
   cursor: pointer;
 }
 .styleguide-sample .button.primary:hover, .styleguide-sample .button.primary:focus, .styleguide-sample .button.primary:active {
@@ -563,9 +572,12 @@ html.no-touchevents .body a:hover {
   text-decoration: none;
   line-height: 1.2;
   letter-spacing: 0.02em;
+  -webkit-transition-property: background-color, border-color, color;
   transition-property: background-color, border-color, color;
-  transition-duration: 100ms;
-  transition-timing-function: ease-out;
+  -webkit-transition-duration: 100ms;
+          transition-duration: 100ms;
+  -webkit-transition-timing-function: ease-out;
+          transition-timing-function: ease-out;
   cursor: pointer;
 }
 .styleguide-sample .button.secondary:hover, .styleguide-sample .button.secondary:focus, .styleguide-sample .button.secondary:active {
@@ -600,9 +612,12 @@ html.no-touchevents .body a:hover {
   text-decoration: none;
   line-height: 1.2;
   letter-spacing: 0.02em;
+  -webkit-transition-property: background-color, border-color, color;
   transition-property: background-color, border-color, color;
-  transition-duration: 100ms;
-  transition-timing-function: ease-out;
+  -webkit-transition-duration: 100ms;
+          transition-duration: 100ms;
+  -webkit-transition-timing-function: ease-out;
+          transition-timing-function: ease-out;
   cursor: pointer;
 }
 .styleguide-sample .button.cta:hover, .styleguide-sample .button.cta:focus, .styleguide-sample .button.cta:active {
