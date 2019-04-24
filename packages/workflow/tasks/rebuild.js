@@ -25,11 +25,11 @@ module.exports = () => {
 	//-- Rebuild
 	flow.createSequence('rebuild', gulp.series(() => {
 
-		return toolbox.fakeStream((cb) => {
+		return toolbox.fakeStream((callback) => {
 			for (const name of Object.keys(env.bundles)) {
-				fss.outputFile(`${paths.dir.root}/${env.bundles[name].output.build}/readme-${env.id}.md`, `# ${util.getGeneratedBanner(name, 'text')}\n`);
+				fss.outputFile(`${paths.directory.root}/${env.bundles[name].output.build}/readme-${env.id}.md`, `# ${util.getGeneratedBanner(name, 'text')}\n`);
 			}
-			cb();
+			callback();
 		});
 
 	}, 'assets', 'icons', 'local', 'scripts', 'styles'));

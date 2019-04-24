@@ -6,11 +6,11 @@
 	'use strict';
 
 	//-- Public class
-	app.util = class {
+	class Util {
 
 		/**
 		//-- Show html via reveal
-		static showViaReveal(id, content) {
+		showViaReveal(id, content) {
 			const $modal = $(app.tmpl.commonRevealHtml.render({ id, content }));
 			const modal = new Foundation.Reveal($modal);
 			__.$body.append($modal);
@@ -27,18 +27,18 @@
 
 		/**
 		//-- Cookie options
-		static cookieOptions(days) {
-			return { expires:days, path:'/', domain:`.${location.hostname}` };
+		cookieOptions(days) {
+			return { expires: days, path: '/', domain: `.${location.hostname}` };
 		}
 		/**/
 
 
 		/** lodash: chunk, flatten, maxBy
 		//-- Equalizer
-		static equalizer(options) {
+		equalizer(options) {
 			const $elementList = $(options.wrapper);
 
-			if ($elementList.length) {
+			if ($elementList.length !== 0) {
 				$elementList.each(function() {
 					const $this = $(this);
 					const $items = $this.find(options.item);
@@ -65,9 +65,9 @@
 
 								// Process custom rows
 								if (options.rows) {
-									data.forEach((arr) => { arr.pop(); });
+									data.forEach((list) => { list.pop(); });
 									data = _.chunk(_.flatten(data), options.rows[Foundation.MediaQuery.current]);
-									data.forEach((arr) => { arr.push(_.maxBy(arr, 1)[1]); });
+									data.forEach((list) => { list.push(_.maxBy(list, 1)[1]); });
 								}
 
 								$equalizer.applyHeightByRow(data);
@@ -77,9 +77,10 @@
 					}
 				});
 			}
-		}
-		/**/
 
-	};
+		/**/
+	}
+
+	app.util = new Util();
 
 })();

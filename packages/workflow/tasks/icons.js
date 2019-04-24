@@ -42,7 +42,7 @@ module.exports = () => {
 						.define(`icon:auto-resize=${sizes.join(',')}`)
 						.setFormat('ico')
 					;
-				}, { imageMagick:true }))
+				}, { imageMagick: true }))
 
 				.pipe(rename(util.assetsRename()))
 			;
@@ -84,9 +84,9 @@ module.exports = () => {
 						.pipe(toolbox.plumber())
 
 						.pipe(gulpif(size !== 512, gm((gmfile, done) => {
-							gmfile.identify((err, info) => {
-								if (err) {
-									terminal.error(err);
+							gmfile.identify((error, info) => {
+								if (error) {
+									terminal.error(error);
 								}
 								done(null, toolbox.gmOptimization(gmfile.resize(size, size), info));
 							});
@@ -129,9 +129,9 @@ module.exports = () => {
 						.pipe(toolbox.plumber())
 
 						.pipe(gulpif(size !== 256, gm((gmfile, done) => {
-							gmfile.identify((err, info) => {
-								if (err) {
-									terminal.error(err);
+							gmfile.identify((error, info) => {
+								if (error) {
+									terminal.error(error);
 								}
 								done(null, toolbox.gmOptimization(gmfile.resize(size, size), info));
 							});
@@ -187,9 +187,9 @@ module.exports = () => {
 						.pipe(toolbox.plumber())
 
 						.pipe(gm((gmfile, done) => {
-							gmfile.identify((err, info) => {
-								if (err) {
-									terminal.error(err);
+							gmfile.identify((error, info) => {
+								if (error) {
+									terminal.error(error);
 								}
 
 								const file = toolbox.gmOptimization(gmfile.resize(size[0], size[1]), info);
@@ -222,7 +222,7 @@ module.exports = () => {
 	//-- Rebuild
 	flow.createSequence('icons', gulp.parallel('icons-favicon', 'icons-touch', 'icons-icon', 'icons-large', 'icons-tile'), {
 		cleanBundle: ({ bundle }) => {
-			return [`${paths.dir.root}/${bundle.output.build}/${paths.build.icons}`];
+			return [`${paths.directory.root}/${bundle.output.build}/${paths.build.icons}`];
 		}
 	});
 

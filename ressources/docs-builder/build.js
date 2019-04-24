@@ -27,13 +27,13 @@ paths.static     = `${paths.root}/docs/static`;
 const ROOT = '/nwayo';
 
 
-const parseTitle = (str) => {
-	return (str.split('\n').shift().match(/^# ([^[]+)/u) || ['', 'Untitled'])[1];
+const parseTitle = (string) => {
+	return (string.split('\n').shift().match(/^# (?<title>[^[]+)/u) || ['', 'Untitled'])[1];
 };
 
 
-const isBeingWritten = (str) => {
-	return (/> Being written/u).test(str);
+const isBeingWritten = (string) => {
+	return (/> Being written/u).test(string);
 };
 
 const processNav = (tree, path = '') => {
@@ -80,8 +80,8 @@ fss.ensureDir(paths.static);
 
 
 //-- Pages
-scandirectory(`${paths.root}/documentation`, { readFiles:true }, (err, list, tree) => {
-	if (!err) {
+scandirectory(`${paths.root}/documentation`, { readFiles: true }, (error, list, tree) => {
+	if (!error) {
 
 		const mainReadme = fss.readFile(`${paths.root}/readme.md`, 'utf8');
 		list['readme.md'] = mainReadme;
@@ -90,7 +90,7 @@ scandirectory(`${paths.root}/documentation`, { readFiles:true }, (err, list, tre
 		//-- Build nav
 		const { version } = fss.readJson(`${paths.root}/lerna.json`);
 		const navTree = processNav(tree);
-		navTree.__root__ = { source:'readme', title:`nwayo ${version} - Documentation` };
+		navTree.__root__ = { source: 'readme', title: `nwayo ${version} - Documentation` };
 		navTree.__404__  = navTree['404'];
 		delete navTree['404'];
 
@@ -103,13 +103,13 @@ scandirectory(`${paths.root}/documentation`, { readFiles:true }, (err, list, tre
 		//-- Markdown conversion
 		const md = new MarkdownIt();
 		md.normalizeLink = (link) => {
-			if ((/^(http|\/)/u).test(link)) {
+			if ((/^(?<protocol>http|\/)/u).test(link)) {
 				return link;
 			}
 
 			return link
-				.replace(/(.md)$/u, '')
-				.replace(/^(\.\.\/\.\.\/ressources\/images\/)/u, `${ROOT}/static/images/`)
+				.replace(/(?<extension>.md)$/u, '')
+				.replace(/^(?<path>\.\.\/\.\.\/ressources\/images\/)/u, `${ROOT}/static/images/`)
 			;
 		};
 
@@ -123,7 +123,7 @@ scandirectory(`${paths.root}/documentation`, { readFiles:true }, (err, list, tre
 
 		md.use(externalLinks, {
 			externalClassName: 'external',
-			externalRel:       'external'
+			externalRel:       'external'  // eslint-disable-line unicorn/prevent-abbreviations
 		});
 
 		Object.keys(list).forEach((file) => {
@@ -131,15 +131,15 @@ scandirectory(`${paths.root}/documentation`, { readFiles:true }, (err, list, tre
 
 			// Exceptions for main readme
 			if (file === 'readme.md') {
-				md.set({ html:true });
+				md.set({ html: true });
 				content = content
 					.replace(/\]\(documentation\//ug, `](${ROOT}/`)
 					.replace(/https:\/\/github.com\/absolunet\/nwayo\/raw\/master\/ressources\/images\//ug, `${ROOT}/static/images/`)
 					.replace(/nwayo\.png/ug, `nwayo.svg`)
-					.replace(/\[\/\/\]: # \(Doc\)([\s\S]*?)\[\/\/\]: # \(\/Doc\)/ug, '')
+					.replace(/\[\/\/\]: # \(Doc\)(?<spaces>[\s\S]*?)\[\/\/\]: # \(\/Doc\)/ug, '')
 				;
 			} else {
-				md.set({ html:false });
+				md.set({ html: false });
 			}
 
 			if (content !== 'dir' && !isBeingWritten(content)) {
@@ -148,7 +148,7 @@ scandirectory(`${paths.root}/documentation`, { readFiles:true }, (err, list, tre
 			}
 		});
 	} else {
-		throw err;
+		throw error;
 	}
 });
 
@@ -175,7 +175,7 @@ gulp.src(`${paths.assets}/styles/main.scss`)
 	})
 		.on('error', gulpsass.logError))
 
-	.pipe(cssnano({ reduceIdents:false, zindex:false }))
+	.pipe(cssnano({ reduceIdents: false, zindex: false }))
 	.pipe(gulp.dest(`${paths.static}/styles`))
 ;
 
@@ -207,6 +207,6 @@ gulp.src(`${paths.assets}/scripts/main.js`)
 			}).code;
 		}
 	}))
-	.pipe(uglify({ output:{ comments:'some' } }))
+	.pipe(uglify({ output: { comments: 'some' } }))
 	.pipe(gulp.dest(`${paths.static}/scripts`))
 ;

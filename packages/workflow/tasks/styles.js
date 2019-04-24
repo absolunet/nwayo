@@ -32,11 +32,11 @@ module.exports = () => {
 
 	//-- Inline images optimization
 	flow.createTask('styles-images', () => {
-		return gulp.src(paths.files.inline, { base:paths.dir.root })
+		return gulp.src(paths.files.inline, { base: paths.directory.root })
 			.pipe(toolbox.plumber())
 			.pipe(imagemin())
 			.pipe(rename(util.assetsRename()))
-			.pipe(gulp.dest(paths.dir.cache))
+			.pipe(gulp.dest(paths.directory.cache))
 		;
 	});
 
@@ -49,7 +49,7 @@ module.exports = () => {
 		return gulp.src(paths.files.stylesLint)
 			// .pipe(toolbox.plumber())   // skip cuz of watch
 
-			.pipe(cache('styles', { optimizeMemory:true }))
+			.pipe(cache('styles', { optimizeMemory: true }))
 
 			.pipe(stylelint({
 				configFile:     paths.config.stylelint,
@@ -102,7 +102,7 @@ module.exports = () => {
 			const data = util.parseKonstan('styles', name, env.bundles[name].output);
 			data.bundle = `'${name}'`;
 
-			const konstanJson = JSON.stringify({ konstan:data });
+			const konstanJson = JSON.stringify({ konstan: data });
 
 			/* eslint-disable function-paren-newline */
 			streams.push(
@@ -110,7 +110,7 @@ module.exports = () => {
 					.pipe(toolbox.plumber())
 					.pipe(jsonsass())
 					.pipe(insert.prepend(`${jsonToScss.convert(konstanJson)}\n\n`))
-					.pipe(gulp.dest(`${paths.dir.cacheStyles}/${name}`))
+					.pipe(gulp.dest(`${paths.directory.cacheStyles}/${name}`))
 			);
 			/* eslint-enable function-paren-newline */
 		}
@@ -138,18 +138,18 @@ module.exports = () => {
 				const list = cloneDeep(bundle.styles.collections[collection]);
 
 				// Add konstan
-				list.unshift(`${paths.dir.cacheStyles}/${name}/${paths.filename.konstan}`);
+				list.unshift(`${paths.directory.cacheStyles}/${name}/${paths.filename.konstan}`);
 
 				// Require each file
 				list.forEach((file, i) => {
 					list[i] = `@import '${file}';`;
 				});
 
-				const toMinify      = (bundle.styles.options.minify && !env.watching) || env.prod;
-				const toSourcemaps  = bundle.styles.options.sourcemaps && !env.prod;
-				const filename      = `${collection}.${paths.ext.build}`;
-				const filenameBuild = `${collection}.${paths.ext.stylesBuild}`;
-				const dest          = `${bundle.output.build}/${paths.build.styles}`;
+				const toMinify      = (bundle.styles.options.minify && !env.watching) || env.production;
+				const toSourcemaps  = bundle.styles.options.sourcemaps && !env.production;
+				const filename      = `${collection}.${paths.extension.build}`;
+				const filenameBuild = `${collection}.${paths.extension.stylesBuild}`;
+				const destination   = `${bundle.output.build}/${paths.build.styles}`;
 				const source        = `${util.getGeneratedBanner(name)}${list.join('\n')}\n`;
 
 				/* eslint-disable function-paren-newline */
@@ -162,26 +162,26 @@ module.exports = () => {
 						.pipe(
 							gulpsass({
 								fiber:        Fiber,
-								includePaths: [paths.dir.root],
+								includePaths: [paths.directory.root],
 								functions:    sassFunctions
 								// sourcemaps  (bundle.styles.options.sourcemaps)
 							})
 								.on('error', gulpsass.logError)
 						)
 
-						.pipe(autoprefixer({ browsers:bundle.styles.options.autoprefixer }))
+						.pipe(autoprefixer({ browsers: bundle.styles.options.autoprefixer }))
 
-						.pipe(gulpif(toMinify, cssnano({ autoprefixer:false, discardUnused:false, mergeIdents:false, reduceIdents:false, zindex:false })))
+						.pipe(gulpif(toMinify, cssnano({ autoprefixer: false, discardUnused: false, mergeIdents: false, reduceIdents: false, zindex: false })))
 
 						.pipe(gulpif(toSourcemaps, sourcemaps.write('maps', {
 							includeContent: false,
 							sourceRoot:     'source'
 						})))
 
-						.pipe(gulp.dest(`${paths.dir.root}/${dest}`))
+						.pipe(gulp.dest(`${paths.directory.root}/${destination}`))
 
 						.on('finish', () => {
-							toolbox.log(taskName, `'${dest}/${filenameBuild}' written`, toolbox.filesize(`${paths.dir.root}/${dest}/${filenameBuild}`));
+							toolbox.log(taskName, `'${destination}/${filenameBuild}' written`, toolbox.filesize(`${paths.directory.root}/${destination}/${filenameBuild}`));
 						})
 				);
 				/* eslint-enable function-paren-newline */
@@ -199,11 +199,11 @@ module.exports = () => {
 
 	//-- Rebuild
 	flow.createSequence('styles', gulp.series('styles-images', 'styles-compile'), {
-		cleanPaths:  [paths.dir.cacheInline, paths.dir.cacheSass],
+		cleanPaths:  [paths.directory.cacheInline, paths.directory.cacheSass],
 		cleanBundle: ({ name, bundle }) => {
 			return [
-				`${paths.dir.root}/${bundle.output.build}/${paths.build.styles}`,
-				`${paths.dir.cacheStyles}/${name}`
+				`${paths.directory.root}/${bundle.output.build}/${paths.build.styles}`,
+				`${paths.directory.cacheStyles}/${name}`
 			];
 		}
 	});

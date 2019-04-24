@@ -52,7 +52,7 @@
 						const $hover = $this.find(__.component('main-image'));
 						$hover.css('background-image', `url('${options.hoverUrl}')`);
 
-						$hover.imagesLoaded({ background:true })
+						$hover.imagesLoaded({ background: true })
 							.then(() => {
 								$hover.addClass('hover');
 							})
@@ -114,9 +114,9 @@
 
 			/**
 			// Anchors
-			.on('click', 'a[data-anchor="true"]', function(e) {
-				e.preventDefault();
-				$.scrollTo($(this).attr('href'), app.scrollTransition, { offset:{ top:-15 } });
+			.on('click', 'a[data-anchor="true"]', function(event) {
+				event.preventDefault();
+				$.scrollTo($(this).attr('href'), app.scrollTransition, { offset: { top: -15 } });
 			})
 			/**/
 
@@ -155,7 +155,7 @@
 		/**
 		// Webfont loader
 		WebFont.load({
-			custom:       { families: ['FontName1','FontName2','FontName3'] },
+			custom:       { families: ['FontName1', 'FontName2', 'FontName3'] },
 			loading:      () => { __.$body.trigger('WebFont:loading'); },
 			active:       () => { __.$body.trigger('WebFont:active'); },
 			inactive:     () => { __.$body.trigger('WebFont:inactive'); },

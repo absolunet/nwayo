@@ -21,12 +21,12 @@ class RebuildTask extends Task {
 		util.checkInstalledWorkflow();
 
 		const { prod } = cli.validateFlags(meowCli, {
-			prod: ow.boolean
+			prod: ow.boolean  // eslint-disable-line unicorn/prevent-abbreviations
 		});
 
 		// --prod
 		if (prod) {
-			env.setToProd();
+			env.setToProduction();
 		}
 
 		if (meowCli.input.length <= 2) {
