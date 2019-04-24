@@ -13,7 +13,7 @@ const BOWER            = 'bower_components';
 const CACHE            = '.nwayo-cache';
 const NOLINT           = 'vendor';
 const MAIN_CONFIG      = 'nwayo.yaml';
-const MAIN_CONFIG_PATH = findUp.sync(MAIN_CONFIG, { cwd:process.cwd() });
+const MAIN_CONFIG_PATH = findUp.sync(MAIN_CONFIG, { cwd: process.cwd() });
 
 const ROOT = (() => {
 	const prjConfig = fss.readYaml(MAIN_CONFIG_PATH);
@@ -30,14 +30,14 @@ const pattern = {};
 pattern.anytree = '**';
 pattern.babel   = `^\\/?##includes##(\\${CACHE}|${BOWER}|components\\/.*\\/scripts\\/${NOLINT}\\/)`;  // https://regex101.com/r/kIKuJW/1
 
-const ext = {};
-ext.bundles     = 'yaml';
-ext.fonts       = '{woff,woff2}';
-ext.images      = '{gif,jpg,png,svg}';
-ext.scripts     = 'js';
-ext.styles      = 'scss';
-ext.stylesBuild = 'css';
-ext.templates   = 'jshtml';
+const extension = {};
+extension.bundles     = 'yaml';
+extension.fonts       = '{woff,woff2}';
+extension.images      = '{gif,jpg,png,svg}';
+extension.scripts     = 'js';
+extension.styles      = 'scss';
+extension.stylesBuild = 'css';
+extension.templates   = 'jshtml';
 
 const build = {};
 build.fonts   = 'fonts';
@@ -72,10 +72,11 @@ folder.nolint               = NOLINT;
 const filename = {};
 filename.konstan        = 'konstan';
 filename.konstanLocal   = `${filename.konstan}.json`;
-filename.konstanScripts = `${filename.konstan}.${ext.scripts}`;
+filename.konstanScripts = `${filename.konstan}.${extension.scripts}`;
 filename.konstanStyles  = `${filename.konstan}.json`;
 filename.lodash         = `lodash`;
 filename.modernizr      = `modernizr`;
+filename.polyfill       = `polyfill`;
 filename.mainConfig     = MAIN_CONFIG;
 filename.iconsFavicon   = `favicon.png`;
 filename.iconsTouch     = `touch.png`;
@@ -83,48 +84,48 @@ filename.iconsIcon      = `icon.png`;
 filename.iconsLarge     = `large.png`;
 filename.iconsTile      = `tile.png`;
 
-const dir = {};
-dir.root         = ROOT;
-dir.cache        = `${dir.root}/${folder.cache}`;
-dir.cacheInline  = `${dir.root}/${folder.cacheInline}`;
-dir.cacheSass    = `${dir.root}/${folder.cacheSass}`;
-dir.cacheScripts = `${dir.root}/${folder.cacheScripts}`;
-dir.cacheStyles  = `${dir.root}/${folder.cacheStyles}`;
-dir.bundles      = `${dir.root}/${folder.bundles}`;
-dir.components   = `${dir.root}/${folder.components}`;
-dir.assets       = `${dir.components}/${pattern.anytree}/${folder.assets}`;
-dir.fonts        = `${dir.assets}/${folder.fonts}`;
-dir.icons        = `${dir.assets}/${folder.icons}`;
-dir.images       = `${dir.assets}/${folder.images}`;
-dir.inline       = `${dir.assets}/${folder.inlineImages}`;
-dir.raw          = `${dir.assets}/${folder.raw}`;
-dir.extensions   = `${dir.components}/${pattern.anytree}/${folder.extensions}`;
-dir.scripts      = `${dir.components}/${pattern.anytree}/${folder.scripts}`;
-dir.styles       = `${dir.components}/${pattern.anytree}/${folder.styles}`;
-dir.templates    = `${dir.components}/${pattern.anytree}/${folder.templates}`;
-dir.bower        = `${dir.root}/${folder.vendors}`;
-dir.misc         = `${dir.root}/${folder.misc}`;
-dir.resources    = `${dir.misc}/resources`;
-dir.stubs        = `${dir.misc}/stubs`;
+const directory = {};
+directory.root         = ROOT;
+directory.cache        = `${directory.root}/${folder.cache}`;
+directory.cacheInline  = `${directory.root}/${folder.cacheInline}`;
+directory.cacheSass    = `${directory.root}/${folder.cacheSass}`;
+directory.cacheScripts = `${directory.root}/${folder.cacheScripts}`;
+directory.cacheStyles  = `${directory.root}/${folder.cacheStyles}`;
+directory.bundles      = `${directory.root}/${folder.bundles}`;
+directory.components   = `${directory.root}/${folder.components}`;
+directory.assets       = `${directory.components}/${pattern.anytree}/${folder.assets}`;
+directory.fonts        = `${directory.assets}/${folder.fonts}`;
+directory.icons        = `${directory.assets}/${folder.icons}`;
+directory.images       = `${directory.assets}/${folder.images}`;
+directory.inline       = `${directory.assets}/${folder.inlineImages}`;
+directory.raw          = `${directory.assets}/${folder.raw}`;
+directory.extensions   = `${directory.components}/${pattern.anytree}/${folder.extensions}`;
+directory.scripts      = `${directory.components}/${pattern.anytree}/${folder.scripts}`;
+directory.styles       = `${directory.components}/${pattern.anytree}/${folder.styles}`;
+directory.templates    = `${directory.components}/${pattern.anytree}/${folder.templates}`;
+directory.bower        = `${directory.root}/${folder.vendors}`;
+directory.misc         = `${directory.root}/${folder.misc}`;
+directory.resources    = `${directory.misc}/resources`;
+directory.stubs        = `${directory.misc}/stubs`;
 
 const files = {};
-files.bundles      = `${dir.bundles}/${pattern.anytree}/*.${ext.bundles}`;
-files.fonts        = `${dir.fonts}/${pattern.anytree}/*.${ext.fonts}`;
-files.iconsFavicon = `${dir.icons}/${filename.iconsFavicon}`;
-files.iconsTouch   = `${dir.icons}/${filename.iconsTouch}`;
-files.iconsIcon    = `${dir.icons}/${filename.iconsIcon}`;
-files.iconsLarge   = `${dir.icons}/${filename.iconsLarge}`;
-files.iconsTile    = `${dir.icons}/${filename.iconsTile}`;
-files.images       = `${dir.images}/${pattern.anytree}/*.${ext.images}`;
-files.images2x     = `${dir.images}/${pattern.anytree}/*@2x.${ext.images}`;
-files.inline       = `${dir.inline}/${pattern.anytree}/*.${ext.images}`;
-files.raw          = `${dir.raw}/${pattern.anytree}/*`;
-files.scripts      = `${dir.scripts}/${pattern.anytree}/*.${ext.scripts}`;
-files.scriptsLint  = [files.scripts, `!${dir.scripts}/${NOLINT}/${pattern.anytree}/*`];
-files.styles       = `${dir.styles}/${pattern.anytree}/*.${ext.styles}`;
-files.stylesLint   = [files.styles, `!${dir.styles}/${NOLINT}/${pattern.anytree}/*`];
-files.templates    = `${dir.templates}/${pattern.anytree}/*.${ext.templates}`;
-files.bowerScripts = `${dir.bower}/${pattern.anytree}/*.${ext.scripts}`;
+files.bundles      = `${directory.bundles}/${pattern.anytree}/*.${extension.bundles}`;
+files.fonts        = `${directory.fonts}/${pattern.anytree}/*.${extension.fonts}`;
+files.iconsFavicon = `${directory.icons}/${filename.iconsFavicon}`;
+files.iconsTouch   = `${directory.icons}/${filename.iconsTouch}`;
+files.iconsIcon    = `${directory.icons}/${filename.iconsIcon}`;
+files.iconsLarge   = `${directory.icons}/${filename.iconsLarge}`;
+files.iconsTile    = `${directory.icons}/${filename.iconsTile}`;
+files.images       = `${directory.images}/${pattern.anytree}/*.${extension.images}`;
+files.images2x     = `${directory.images}/${pattern.anytree}/*@2x.${extension.images}`;
+files.inline       = `${directory.inline}/${pattern.anytree}/*.${extension.images}`;
+files.raw          = `${directory.raw}/${pattern.anytree}/*`;
+files.scripts      = `${directory.scripts}/${pattern.anytree}/*.${extension.scripts}`;
+files.scriptsLint  = [files.scripts, `!${directory.scripts}/${NOLINT}/${pattern.anytree}/*`];
+files.styles       = `${directory.styles}/${pattern.anytree}/*.${extension.styles}`;
+files.stylesLint   = [files.styles, `!${directory.styles}/${NOLINT}/${pattern.anytree}/*`];
+files.templates    = `${directory.templates}/${pattern.anytree}/*.${extension.templates}`;
+files.bowerScripts = `${directory.bower}/${pattern.anytree}/*.${extension.scripts}`;
 
 const workflow = {};
 workflow.root       = slash(path.normalize(`${__dirname}/..`));
@@ -135,16 +136,16 @@ workflow.matrix     = `${workflow.ressources}/doctor-matrix`;
 
 const config = {};
 config.main            = MAIN_CONFIG_PATH;
-config.bower           = `${dir.root}/bower.json`;
-config.konstan         = `${dir.root}/konstan.yaml`;
-config.projectPackage  = `${dir.root}/package.json`;
+config.bower           = `${directory.root}/bower.json`;
+config.konstan         = `${directory.root}/konstan.yaml`;
+config.projectPackage  = `${directory.root}/package.json`;
 config.workflowPackage = `${workflow.root}/package.json`;
 config.sassFunctions   = `${workflow.ressources}/dart-sass-functions.js`;
-config.stylelint       = `${dir.root}/.stylelintrc.yaml`;
-config.modernizr       = `${dir.root}/modernizr.yaml`;
-config.lodash          = `${dir.root}/lodash.yaml`;
+config.stylelint       = `${directory.root}/.stylelintrc.yaml`;
+config.modernizr       = `${directory.root}/modernizr.yaml`;
+config.lodash          = `${directory.root}/lodash.yaml`;
 config.lodashBin       = slash(require.resolve('lodash-cli'));
-config.babelPresetEnv  = slash(require.resolve('@babel/preset-env'));
+config.babelPreset     = slash(require.resolve('@babel/preset-env'));
 config.bowerBin        = slash(`${path.dirname(require.resolve('bower'))}/../bin/bower`);
 
 
@@ -154,15 +155,15 @@ config.bowerBin        = slash(`${path.dirname(require.resolve('bower'))}/../bin
 
 class Paths {
 
-	get pattern()  { return pattern; }
-	get ext()      { return ext; }
-	get build()    { return build; }
-	get folder()   { return folder; }
-	get dir()      { return dir; }
-	get files()    { return files; }
-	get filename() { return filename; }
-	get workflow() { return workflow; }
-	get config()   { return config; }
+	get pattern()   { return pattern; }
+	get extension() { return extension; }
+	get build()     { return build; }
+	get folder()    { return folder; }
+	get directory() { return directory; }
+	get files()     { return files; }
+	get filename()  { return filename; }
+	get workflow()  { return workflow; }
+	get config()    { return config; }
 
 }
 

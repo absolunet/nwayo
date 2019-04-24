@@ -14,13 +14,13 @@
 	const PROCESSED    = 'processed';
 
 
-	const local = { types:{} };
+	const local = { types: {} };
 
-	const getOptions = (obj) => {
-		const $obj = $(obj);
-		const options = $obj.data('lazyload-options');
+	const getOptions = (object) => {
+		const $object = $(object);
+		const options = $object.data('lazyload-options');
 
-		return [$obj, $obj.data('lazyload-options'), $obj.data('lazyload-type') || options.type];
+		return [$object, $object.data('lazyload-options'), $object.data('lazyload-type') || options.type];
 	};
 
 
@@ -72,7 +72,7 @@
 			.attr(STATUS, PROCESSING2)
 		;
 
-		$(`[${STATUS}="${PROCESSING2}"]`).imagesLoaded({ background:true }).always(local.secondPass);
+		$(`[${STATUS}="${PROCESSING2}"]`).imagesLoaded({ background: true }).always(local.secondPass);
 
 		pinki.message.publish(`nwayo.toolbox.lazyload.firstPass-completed`);
 	};

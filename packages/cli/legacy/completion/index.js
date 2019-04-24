@@ -32,7 +32,7 @@ const level1Cmds = () => {
 
 	const list = [];
 	fs.readdirSync(`${__dirname}/../tasks`).forEach((cmdName) => {
-		const [, cmd] = cmdName.match(/^([a-zA-Z0-9-]+).js$/u) || [];
+		const [, cmd] = cmdName.match(/^(?<alphanum>[a-zA-Z0-9-]+).js$/u) || [];
 
 		if (cmd && cmd !== 'index' && cmd !== 'flag-pronounce') {
 			list.push(cmd);
@@ -46,26 +46,26 @@ const level1Cmds = () => {
 
 
 const bundles = (root) => {
-	const fs  = require('fs');
-	const dir = `${root}/bundles`;
+	const fs        = require('fs');
+	const directory = `${root}/bundles`;
 
 	const list = [];
-	if (fs.existsSync(dir)) {
-		fs.readdirSync(dir).forEach((bundleName) => {
-			const [, bundleDir]  = bundleName.match(/^([a-zA-Z0-9-]+)$/u) || [];
-			const [, bundleFile] = bundleName.match(/^([a-zA-Z0-9-]+).yaml$/u) || [];
+	if (fs.existsSync(directory)) {
+		fs.readdirSync(directory).forEach((bundleName) => {
+			const [, bundleDirectory]  = bundleName.match(/^(?<alphanum>[a-zA-Z0-9-]+)$/u) || [];
+			const [, bundleFile]       = bundleName.match(/^(?<alphanum>[a-zA-Z0-9-]+).yaml$/u) || [];
 
 			if (bundleFile) {
 				list.push(bundleFile);
 
-			} else if (bundleDir) {
-				list.push(bundleDir);
+			} else if (bundleDirectory) {
+				list.push(bundleDirectory);
 
-				fs.readdirSync(`${dir}/${bundleDir}`).forEach((subbundleName) => {
-					const [, subbundle] = subbundleName.match(/^_([a-zA-Z0-9-]+)\.yaml$/u) || [];
+				fs.readdirSync(`${directory}/${bundleDirectory}`).forEach((subbundleName) => {
+					const [, subbundle] = subbundleName.match(/^_(?<alphanum>[a-zA-Z0-9-]+)\.yaml$/u) || [];
 
 					if (subbundle) {
-						list.push(`${bundleDir}:${subbundle}`);
+						list.push(`${bundleDirectory}:${subbundle}`);
 					}
 				});
 			}

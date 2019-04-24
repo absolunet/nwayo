@@ -50,7 +50,7 @@ class GrowProject {
 			type:     'input',
 			validate: (id) => {
 				if (id.length >= 3) {
-					if ((/^([a-z][a-z0-9]*)(-[a-z0-9]+)*$/u).test(id)) {  // eslint-disable-line unicorn/no-unsafe-regex
+					if ((/^(?<kebab1>[a-z][a-z0-9]*)(?<kebab2>-[a-z0-9]+)*$/u).test(id)) {
 						return true;
 					}
 

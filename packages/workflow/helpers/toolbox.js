@@ -21,9 +21,9 @@ class Toolbox {
 
 	//-- Create a vinyl stream from a text
 	vinylStream(filename, string) {
-		const src = stream.Readable({ objectMode:true });
+		const source = stream.Readable({ objectMode: true });
 
-		src._read = function() {
+		source._read = function() {
 			this.push(new Vinyl({
 				path:     filename,
 				contents: Buffer.from(string)
@@ -31,7 +31,7 @@ class Toolbox {
 			this.push(null);
 		};
 
-		return src;
+		return source;
 	}
 
 
@@ -42,10 +42,10 @@ class Toolbox {
 
 
 	//-- Fakes a stream waiting for a callback
-	fakeStream(cb) {
-		const fake = stream.Writable({ write:(chunk, encoding, callback) => { callback(); } });
+	fakeStream(callback) {
+		const fake = stream.Writable({ write: (chunk, encoding, callback2) => { callback2(); } });
 
-		cb(() => {
+		callback(() => {
 			fake.end('End fake stream');
 		});
 
@@ -55,7 +55,7 @@ class Toolbox {
 
 	//-- Get a self-closing stream
 	selfClosingStream() {
-		const selfClosing = stream.Writable({ write:(chunk, encoding, callback) => { callback(); } });
+		const selfClosing = stream.Writable({ write: (chunk, encoding, callback) => { callback(); } });
 		selfClosing.end('End self-closing stream');
 
 		return selfClosing;
@@ -83,16 +83,16 @@ class Toolbox {
 
 
 	//-- Task logging
-	log(task, msg, extra) {
-		log(`${task}: ${msg} ${extra ? chalk.dim(`(${extra})`) : ''}`);
+	log(task, message, extra) {
+		log(`${task}: ${message} ${extra ? chalk.dim(`(${extra})`) : ''}`);
 	}
 
 
 	//-- Plumber
 	plumber() {
-		return plumber((e) => {
+		return plumber((error) => {
 			terminal.spacer(2);
-			terminal.echo(`${emoji.get('monkey')}  ${e.toString()}`);
+			terminal.echo(`${emoji.get('monkey')}  ${error.toString()}`);
 			terminal.exit();
 		});
 	}
@@ -121,7 +121,7 @@ class Toolbox {
 
 	//-- Is kebab-case
 	isKebabCase(text) {
-		return (/^([a-z][a-z0-9]*)(-[a-z0-9]+)*$/u).test(text);  // eslint-disable-line unicorn/no-unsafe-regex
+		return (/^(?<kebab1>[a-z][a-z0-9]*)(?<kebab2>-[a-z0-9]+)*$/u).test(text);
 	}
 
 }

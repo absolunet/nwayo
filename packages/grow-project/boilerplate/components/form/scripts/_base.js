@@ -49,7 +49,7 @@
 
 		// Date
 		if (!Modernizr.inputtypes.date) {
-			$context.find('input[type="date"]').inputmask('yyyy-mm-dd', { placeholder:app.env.lang === 'fr' ? 'aaaa-mm-jj' : 'yyyy-mm-dd' });
+			$context.find('input[type="date"]').inputmask('yyyy-mm-dd', { placeholder: app.env.lang === 'fr' ? 'aaaa-mm-jj' : 'yyyy-mm-dd' });
 		}
 
 		// Time
@@ -111,7 +111,7 @@
 
 		rebindFormEvent();
 
-		/*
+		/**
 		// Bind on text field change
 		$('input:text').on('input paste cut keyup', () => {});
 		/**/
@@ -123,7 +123,7 @@
 	local.subscribe = () => {
 
 		/**
-		pinki.message.subscribe('sample', (msg, data) => {
+		pinki.message.subscribe('sample', (message, data) => {
 			rebindFormEvent(data.$context);
 		});
 		/**/

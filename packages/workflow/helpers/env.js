@@ -31,7 +31,7 @@ const EXTENSIONS = (() => {
 		if (CONFIG.extensions[name].enabled === true) {
 			let normalizedName = '';
 
-			const scopedMatch = (/^(@[a-z0-9-]+\/)([a-z0-9-]+)$/u).exec(name);
+			const scopedMatch = (/^(?<kebab1>@[a-z0-9-]+\/)(?<kebab2>[a-z0-9-]+)$/u).exec(name);
 			if (scopedMatch !== null) {
 				normalizedName = `${scopedMatch[1]}${prefix}${scopedMatch[2]}`;
 			} else {
@@ -50,7 +50,7 @@ const EXTENSIONS = (() => {
 				terminal.exit(`Extension '${name}' not found`);
 			}
 
-			extension.init({ options:CONFIG.extensions[name].options });
+			extension.init({ options: CONFIG.extensions[name].options });
 
 			enabled[extension.id] = extension;
 		}
@@ -60,21 +60,25 @@ const EXTENSIONS = (() => {
 })();
 
 
+const deployTier = {
+	local:      Symbol('local'),
+	production: Symbol('production')
+};
 
 const __ = {
 	watching:   false,
-	deployTier: 'local'
+	deployTier: deployTier.local
 };
 
 
 
 
 
-
+// eslint-disable-next-line unicorn/prevent-abbreviations
 class Env {
 
-	get pkg()               { return PACKAGE; }
-	get workflowPkg()       { return WORKFLOW_PACKAGE; }
+	get packageConfig()     { return PACKAGE; }
+	get workflowConfig()    { return WORKFLOW_PACKAGE; }
 	get konstan()           { return __.konstan; }
 	get bundles()           { return __.bundles; }
 	get bundlesComponents() { return __.bundlesComponents; }
@@ -96,14 +100,14 @@ class Env {
 
 
 	//-- Package name
-	get pkgName() {
+	get packageName() {
 		return WORKFLOW_PACKAGE.name;
 	}
 
 
 	//-- Is deployment tier production
-	get prod() {
-		return __.deployTier === 'prod';
+	get production() {
+		return __.deployTier === deployTier.production;
 	}
 
 	//-- Raw project config
@@ -117,8 +121,8 @@ class Env {
 	}
 
 	//-- Set deployment tier to production
-	setToProd() {
-		__.deployTier = 'prod';
+	setToProduction() {
+		__.deployTier = deployTier.production;
 	}
 
 
@@ -137,15 +141,15 @@ class Env {
 
 		// Get bundle list
 		const [requiredName, requiredSubname = '*'] = bundle.split(':');
-		const bundlesList = glob.sync(`${paths.dir.bundles}/${requiredName}/`);
+		const bundlesList = glob.sync(`${paths.directory.bundles}/${requiredName}/`);
 
 		// Process bundles
 		const data = {};
 		if (bundlesList.length !== 0) {
 
 			for (const folder of bundlesList) {
-				const [, name] = folder.match(/\/([0-9a-zA-Z-]+)\/$/u);
-				data[name] = fss.readYaml(`${folder}/${name}.${paths.ext.bundles}`);
+				const [, name] = folder.match(/\/(?<alphanum>[0-9a-zA-Z-]+)\/$/u);
+				data[name] = fss.readYaml(`${folder}/${name}.${paths.extension.bundles}`);
 
 				if (!data[name].assets) {
 					data[name].assets = {};
@@ -163,7 +167,7 @@ class Env {
 					data[name].styles.collections = {};
 				}
 
-				const subBundlesList = glob.sync(`${paths.dir.bundles}/${name}/_${requiredSubname}.${paths.ext.bundles}`);
+				const subBundlesList = glob.sync(`${paths.directory.bundles}/${name}/_${requiredSubname}.${paths.extension.bundles}`);
 				if (subBundlesList.length !== 0) {
 					for (const subBundleFile of subBundlesList) {
 

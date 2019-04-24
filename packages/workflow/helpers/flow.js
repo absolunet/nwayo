@@ -60,7 +60,7 @@ const logGuard = (action, name, file) => {
 			return `${emoji.get('guardsman')}  Guard n°${__.totalGuards + 1} standing guard...`;
 
 		case ALERT:
-			return terminal.echo(`${emoji.get('mega')}  Guard n°${__.totalGuards} alerted by ${chalk.magenta(file.split(`${paths.dir.root}/`)[1])} calling ${chalk.cyan(name)}`);
+			return terminal.echo(`${emoji.get('mega')}  Guard n°${__.totalGuards} alerted by ${chalk.magenta(file.split(`${paths.directory.root}/`)[1])} calling ${chalk.cyan(name)}`);
 
 		case END:
 			return terminal.echo(`${emoji.get('zzz')}  Guard n°${__.activeGuards[name]} duty is completed ${chalk.cyan.dim(`(${name})`)}${
@@ -83,7 +83,7 @@ const isSkipping = (name) => {
 
 
 const runTask = ({ name, task, start }) => {
-	return task({ taskName:name })
+	return task({ taskName: name })
 
 		// Log task as completed
 		.on('finish', () => {
@@ -127,7 +127,7 @@ class Flow {
 
 	//-- Create gulp task
 	createTask(name, task, dependencies) {
-		gulp.task(name, (cb) => {
+		gulp.task(name, (callback) => {
 
 			// Run task if not skipping tasks
 			if (!isSkipping(name)) {
@@ -148,7 +148,7 @@ class Flow {
 							return runTask({ name, task, start }).on('finish', () => {
 
 								// Close stream
-								return cb ? cb() : undefined;
+								return callback ? callback() : undefined;
 							});
 						}
 
@@ -156,7 +156,7 @@ class Flow {
 						logStep(HALT, DEPENDENCIES, name);
 
 						// Close stream
-						return cb ? cb() : undefined;
+						return callback ? callback() : undefined;
 					})();
 				}
 
@@ -176,7 +176,7 @@ class Flow {
 
 	//-- Create tasks sequence
 	createSequence(name, sequence, { cleanPaths = [], cleanBundle } = {}) {
-		gulp.task(name, (cb) => {
+		gulp.task(name, (callback) => {
 			const start = new Date();
 			logStep(START, SEQUENCE, name);
 
@@ -186,7 +186,7 @@ class Flow {
 			// Bundles paths to delete
 			if (cleanBundle) {
 				for (const bundleName of Object.keys(env.bundles)) {
-					list.push(...cleanBundle({ name:bundleName, bundle:env.bundles[bundleName] }));
+					list.push(...cleanBundle({ name: bundleName, bundle: env.bundles[bundleName] }));
 				}
 			}
 
@@ -206,7 +206,7 @@ class Flow {
 				}
 
 				// Close stream
-				return cb ? cb() : undefined;
+				return callback ? callback() : undefined;
 			})();
 		});
 	}
@@ -220,7 +220,7 @@ class Flow {
 		// Can't trust chokidar to do globbing
 		const files = globAll.sync(patterns);
 
-		return gulp.watch(files, { queue:false }, gulp.series(sequence, (cb) => {
+		return gulp.watch(files, { queue: false }, gulp.series(sequence, (callback) => {
 
 			// Log watcher as completed
 			logGuard(END, name);
@@ -239,7 +239,7 @@ class Flow {
 				this.startWatchSpinner();
 			}
 
-			cb();
+			callback();
 		}))
 
 			// When watcher triggered

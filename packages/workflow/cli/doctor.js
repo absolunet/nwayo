@@ -79,14 +79,14 @@ class DoctorTask extends Task {
 	async cli(meowCli) {
 		cli.refuseArguments(meowCli);
 
-		const { verbose:flagVerbose } = cli.validateFlags(meowCli, {
+		const { verbose: flagVerbose } = cli.validateFlags(meowCli, {
 			verbose: ow.boolean
 		});
 		verbose = flagVerbose;
 
 
 		terminal.spacer();
-		const spinner = terminal.startSpinner(`Diagnosing ${chalk.cyan(env.pkg.name)}...`);
+		const spinner = terminal.startSpinner(`Diagnosing ${chalk.cyan(env.packageConfig.name)}...`);
 
 		//-- Load here to speed up spinner first display
 		/* eslint-disable global-require */

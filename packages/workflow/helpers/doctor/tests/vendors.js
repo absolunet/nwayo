@@ -31,7 +31,7 @@ class VendorsTests extends Tests {
 					return ['premajor', 'preminor', 'prepatch', 'prerelease'].includes(semver.diff(v1, v2));
 				};
 
-				bower.commands.list(null, { cwd:paths.dir.root }).on('end', (deps) => {
+				bower.commands.list(null, { cwd: paths.directory.root }).on('end', (deps) => {
 
 					Object.keys(deps.dependencies).forEach((name) => {
 						const info = deps.dependencies[name];

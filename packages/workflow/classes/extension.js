@@ -54,8 +54,8 @@ class NwayoExtension {
 		});
 	}
 
-	log(taskName, msg, extra) {
-		toolbox.log(`${this.id}:${taskName}`, msg, extra);
+	log(taskName, message, extra) {
+		toolbox.log(`${this.id}:${taskName}`, message, extra);
 	}
 
 	error(error) {
@@ -64,8 +64,8 @@ class NwayoExtension {
 		terminal.exit();
 	}
 
-	getComponentDir(component) {
-		return `${paths.dir.extensions.replace(paths.pattern.anytree, component)}/${this.id}`;
+	getComponentDirectory(component) {
+		return `${paths.directory.extensions.replace(paths.pattern.anytree, component)}/${this.id}`;
 	}
 
 	getGeneratedBanner(name, type) {

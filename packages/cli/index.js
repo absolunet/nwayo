@@ -12,7 +12,7 @@ const fs    = require('fs');
 const util  = require('./helpers/util');
 
 const CONFIG   = 'nwayo.yaml';
-const PKG      = 'package.json';
+const PACKAGE  = 'package.json';
 const WORKFLOW = '@absolunet/nwayo-workflow';
 
 
@@ -22,11 +22,11 @@ const WORKFLOW = '@absolunet/nwayo-workflow';
 
 module.exports = () => {
 
-	const cliPkg = util.pkg;
+	const cliPackageConfig = util.packageConfig;
 
 	//-- Trap `-v` or `--version`
 	if (util.flag('v') || util.flag('version')) {
-		util.echo(cliPkg.version);
+		util.echo(cliPackageConfig.version);
 		util.exit();
 
 	//-- Trap `--completion`
@@ -44,11 +44,11 @@ module.exports = () => {
 
 	//-- Trap `outdated`
 	} else if (util.cmd('outdated')) {
-		util.obnoxiousNotificator(cliPkg, true);
+		util.obnoxiousNotificator(cliPackageConfig, true);
 
 	//-- Trap `update`
 	} else if (util.cmd('update')) {
-		util.checkUpdate(cliPkg, (error, update) => {
+		util.checkUpdate(cliPackageConfig, (error, update) => {
 			if (!error) {
 				const { terminal } = require('@absolunet/terminal');
 
@@ -80,11 +80,11 @@ module.exports = () => {
 
 	//-- Trap `docs`
 	} else if (util.cmd('docs')) {
-		const opn = require('opn');
-		const URL = 'https://absolunet.github.io/nwayo/';
+		const open = require('open');
+		const URL  = 'https://absolunet.github.io/nwayo/';
 
 		util.echo(`\n${chalk.underline(URL)}`);
-		opn(URL);
+		open(URL);
 		util.exit();
 
 	} else {
@@ -94,7 +94,7 @@ module.exports = () => {
 		const path   = require('path');
 
 		//-- Set nwayo root
-		const configFilepath = findUp.sync(CONFIG, { cwd:process.cwd() });
+		const configFilepath = findUp.sync(CONFIG, { cwd: process.cwd() });
 		let config;
 		let root = process.cwd();
 
@@ -104,24 +104,24 @@ module.exports = () => {
 			if (config && config.root) {
 				root = path.normalize(`${path.dirname(configFilepath)}/${config.root}`);
 			} else {
-				util.showUsageIfNotArgs();
+				util.showUsageIfNotArguments();
 				util.exit(`No root defined in ${chalk.underline(CONFIG)}`);
 			}
 		}
 
 
 		//-- Search for 'package.json'
-		const projetPkgPath = `${root}/${PKG}`;
-		let projetPkg;
+		const projetPackagePath = `${root}/${PACKAGE}`;
+		let projetPackageConfig;
 
-		if (fs.existsSync(projetPkgPath)) {
-			projetPkg = require(projetPkgPath);
+		if (fs.existsSync(projetPackagePath)) {
+			projetPackageConfig = require(projetPackagePath);
 		} else if (config) {
-			util.showUsageIfNotArgs();
-			util.exit(`No ${chalk.underline(PKG)} found under root defined in ${chalk.underline(CONFIG)}`);
+			util.showUsageIfNotArguments();
+			util.exit(`No ${chalk.underline(PACKAGE)} found under root defined in ${chalk.underline(CONFIG)}`);
 		} else {
-			util.showUsageIfNotArgs();
-			util.exit(`No ${chalk.underline(CONFIG)} or ${chalk.underline(PKG)} found`);
+			util.showUsageIfNotArguments();
+			util.exit(`No ${chalk.underline(CONFIG)} or ${chalk.underline(PACKAGE)} found`);
 		}
 
 
@@ -171,7 +171,7 @@ module.exports = () => {
 		if (fs.existsSync(nodeModules)) {
 
 			//-- If uses workflow as a package
-			if (projetPkg.dependencies && projetPkg.dependencies[WORKFLOW]) {
+			if (projetPackageConfig.dependencies && projetPackageConfig.dependencies[WORKFLOW]) {
 
 				const workflow = `${nodeModules}/${WORKFLOW}`;
 
@@ -192,7 +192,7 @@ module.exports = () => {
 					}
 
 					//-- Let's do this
-					util.obnoxiousNotificator(cliPkg);
+					util.obnoxiousNotificator(cliPackageConfig);
 
 
 					//-- Trap `nwayo install vendors` (for nwayo-workflow < 3.5.0)
@@ -210,12 +210,12 @@ module.exports = () => {
 						// nwayo-workflow < 3.5.0
 						cwd:    root,
 						infos:  {
-							version: cliPkg.version,
+							version: cliPackageConfig.version,
 							path:    __dirname
 						},
 
 						// nwayo-workflow >= 3.5.0
-						cliPkg:   cliPkg,
+						cliPkg:   cliPackageConfig,  // eslint-disable-line unicorn/prevent-abbreviations
 						cliPath:  __dirname,
 						cliUsage: util.usageData
 
@@ -237,7 +237,7 @@ module.exports = () => {
 				}
 
 				//-- Let's do this
-				util.obnoxiousNotificator(cliPkg);
+				util.obnoxiousNotificator(cliPackageConfig);
 				util.bootLegacyMode({ root });
 			}
 

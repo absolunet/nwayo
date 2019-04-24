@@ -14,7 +14,7 @@
 		// Env
 		// app.env.isUniquePage = app.env.pageId === 'UID';
 		// app.env.isTypePage   = _.includes(app.env.pageTags, 'TYPE-ID');
-		// app.env.isOneOfThese = !!_.intersection(app.env.pageTags, ['ID1', 'ID2']).length;
+		// app.env.isOneOfThese = Boolean(_.intersection(app.env.pageTags, ['ID1', 'ID2']).length);
 
 	};
 
