@@ -1,2 +1,4 @@
+.DS_Store
+.nwayo-cache
 boilerplate/node_modules
 boilerplate/vendor/node_modules
