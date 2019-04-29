@@ -1,6 +1,6 @@
 {
   "name": "@absolunet/nwayo-cli",
-  "version": "3.6.3",
+  "version": "3.6.4",
   "description": "CLI for nwayo",
   "definition": "",
   "homepage": "https://absolunet.github.io/nwayo",
@@ -24,7 +24,7 @@
     "nwayo": "bin/nwayo"
   },
   "engines": {
-    "node": ">= 11.14.0"
+    "node": ">= 12.1.0"
   },
   "main": "index.js",
   "dependencies": {

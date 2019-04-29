@@ -14,8 +14,8 @@
     "@absolunet/fsp": "1.6.0",
     "@absolunet/fss": "1.6.0",
     "@absolunet/manager": "0.4.0",
-    "@absolunet/stylelint-config-nwayo": "1.1.1",
+    "@absolunet/stylelint-config-nwayo": "1.2.0",
     "@absolunet/tester": "2.6.4",
-    "lerna": "3.13.3"
+    "lerna": "3.13.4"
   }
 }

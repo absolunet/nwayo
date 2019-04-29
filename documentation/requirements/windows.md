@@ -63,6 +63,15 @@ Well duh...
 npm install -g @absolunet/nwayo-cli
 ```
 
+#### [Windows-Build-Tools](https://github.com/felixrieseberg/windows-build-tools)
+Used by Fibers among others to compile native Node modules
+
+```shell
+npm install -g windows-build-tools
+```
+
+**IMPORTANT:** You might need a couple of `Ctrl+C` after Python is installed to complete the installation
+
 #### [JSHint](http://jshint.com) _[deprecated]_
 JSHint was a JS linter used by nwayo prior to 3.0.0
 
