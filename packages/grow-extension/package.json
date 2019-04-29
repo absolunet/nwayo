@@ -1,6 +1,6 @@
 {
   "name": "@absolunet/nwayo-grow-extension",
-  "version": "3.6.3",
+  "version": "3.6.4",
   "description": "Boilerplate generator for nwayo extension",
   "definition": "",
   "homepage": "https://absolunet.github.io/nwayo",
@@ -26,7 +26,7 @@
     "nwayo-grow-extension": "bin/nwayo-grow-extension"
   },
   "engines": {
-    "node": ">= 11.14.0"
+    "node": ">= 12.1.0"
   },
   "main": "index.js",
   "dependencies": {
