@@ -104,7 +104,7 @@ $ nwayo watch site
 <li>By default it uses <code>npm ci</code> which is faster but requires a valid <code>package-lock.json</code> in sync with the <code>package.json</code></li>
 <li>If the <code>--force</code> flag is used, it will use <code>npm install</code> and regenerate the <code>package-lock.json</code></li>
 </ul>
-<p>The <code>vendors</code> scope installs the vendor dependencies via <code>bower</code></p>
+<p>The <code>vendors</code> scope installs the vendor dependencies via <code>npm</code></p>
 <p><strong>Examples:</strong></p>
 <pre><code class="language-shell">$ nwayo install workflow
 
@@ -113,8 +113,8 @@ $ nwayo install vendors
 <h3 id="doctor"><a class="anchor" href="#doctor" aria-hidden="true">⚭</a> doctor</h3>
 <p><code>nwayo doctor</code></p>
 <p>Analyze project for conformity</p>
-<p>Checks npm / Bower packages for updates and lists what is outdated.</p>
-<p>Checks if the toolbox version in bower is the same as the workflow version.</p>
+<p>Checks npm packages for updates and lists what is outdated.</p>
+<p>Checks if the toolbox version is the same as the workflow version.</p>
 <p>Check if project follows conventions</p>
 <p><strong>Examples:</strong></p>
 <pre><code class="language-shell">$ nwayo doctor
@@ -123,14 +123,14 @@ $ nwayo install vendors
     ✓  You are cutting edge   (^_^)
 
 
-  Bower diagnosis
+  Vendor diagnosis
     ✘  You are a dull blade   ಠ_ಠ
 
+    [@absolunet/kafe] : 3.2.1 → 3.2.4
     [foundation-sites] : 6.4.0 → 6.5.1
     [imagesloaded] : 4.1.3 → 4.1.4
     [jquery] : 3.2.1 → 3.3.1
     [jsrender] : 0.9.86 → 1.0.0
-    [kafe] : 3.2.1 → 3.2.4
     [slick.js] : 1.6.0 → 1.8.1
 
 

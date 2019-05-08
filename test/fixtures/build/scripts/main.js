@@ -127,9 +127,9 @@ function _classCallCheck(instance, Constructor) {if (!(instance instanceof Const
 //-- Common - Base
 //-------------------------------------
 
-//= **require bower_components/kafe/dist/kafe
-//= **require bower_components/nwayo-toolbox/toolbox/scripts/wrapper/jsrender
-//= **require bower_components/nwayo-toolbox/toolbox/scripts/helpers/lazyload
+//= **require vendor/node_modules/@absolunet/kafe/dist/kafe
+//= **require vendor/node_modules/@absolunet/nwayo-toolbox/scripts/wrapper/jsrender
+//= **require vendor/node_modules/@absolunet/nwayo-toolbox/scripts/helpers/lazyload
 
 (function () {
   'use strict';
@@ -338,12 +338,12 @@ function _classCallCheck(instance, Constructor) {if (!(instance instanceof Const
 //-- Form - Base
 //-------------------------------------
 
-//= **require bower_components/inputmask/dist/inputmask/inputmask
-//= **require bower_components/inputmask/dist/inputmask/inputmask.extensions
-//= **require bower_components/inputmask/dist/inputmask/inputmask.date.extensions
-//= **require bower_components/inputmask/dist/inputmask/inputmask.numeric.extensions
-//= **require bower_components/inputmask/dist/inputmask/inputmask.phone.extensions
-//= **require bower_components/inputmask/dist/inputmask/jquery.inputmask
+//= **require vendor/node_modules/inputmask/dist/inputmask/inputmask
+//= **require vendor/node_modules/inputmask/dist/inputmask/inputmask.extensions
+//= **require vendor/node_modules/inputmask/dist/inputmask/inputmask.date.extensions
+//= **require vendor/node_modules/inputmask/dist/inputmask/inputmask.numeric.extensions
+//= **require vendor/node_modules/inputmask.phone/dist/inputmask.phone/inputmask.phone.extensions
+//= **require vendor/node_modules/inputmask/dist/inputmask/jquery.inputmask
 
 (function () {
   'use strict';

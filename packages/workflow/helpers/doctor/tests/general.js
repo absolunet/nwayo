@@ -18,7 +18,7 @@ const reports = new Reporter();
 
 const getPathsToCheck = (type, { extension, keepRoot = true }) => {
 	let list = fss
-		.scandir(paths.directory.root, type, { recursive: true, pattern: `!+(${paths.folder.cache}|${paths.folder.vendors}|${paths.folder.workflowDependencies})/**` })
+		.scandir(paths.directory.root, type, { recursive: true, pattern: `!+(${paths.folder.cache}|${paths.folder.workflowDependencies}|${paths.folder.vendors})/**` })
 		.filter((pathname) => {
 			return !new RegExp(`${paths.folder.components}\\/[a-z0-9-]+\\/(${paths.folder.scripts}|${paths.folder.styles})\\/${paths.folder.nolint}`, 'u').test(pathname);
 		})

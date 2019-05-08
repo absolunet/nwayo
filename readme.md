@@ -46,7 +46,7 @@ nwayo rebuild
 nwayo is HTML5-ready and uses [gulp](https://gulpjs.com) as a build system
 
 - Based (but not mandatory) on [Zurb Foundation](https://foundation.zurb.com)
-- Uses [Bower](https://bower.io) as dependencies manager and [EditorConfig](https://editorconfig.org) for consistency
+- Uses [npm](https://www.npmjs.com) as dependencies manager and [EditorConfig](https://editorconfig.org) for consistency
 
 #### Styling
 - CSS3-ready via [Autoprefixer](https://github.com/postcss/autoprefixer) and linted via [stylelint](https://stylelint.io)
@@ -85,10 +85,10 @@ Multiple extensions [available](https://www.npmjs.com/search?q=keywords:nwayo-ex
 | Package | Version | Description |
 |---|---|---|
 | **[@absolunet/nwayo-workflow](packages/workflow)** | [![npm](https://img.shields.io/npm/v/@absolunet/nwayo-workflow.svg)](https://www.npmjs.com/package/@absolunet/nwayo-workflow) | Workflow where all the magic happens |
+| **[@absolunet/nwayo-toolbox](packages/toolbox)** | [![npm](https://img.shields.io/npm/v/@absolunet/nwayo-toolbox.svg)](https://www.npmjs.com/package/@absolunet/nwayo-toolbox) | Toolbox with SCSS/JS helpers |
 | **[@absolunet/nwayo-cli](packages/cli)** | [![npm](https://img.shields.io/npm/v/@absolunet/nwayo-cli.svg)](https://www.npmjs.com/package/@absolunet/nwayo-cli) | CLI |
 | [@absolunet/nwayo-grow-project](packages/grow-project) | [![npm](https://img.shields.io/npm/v/@absolunet/nwayo-grow-project.svg)](https://www.npmjs.com/package/@absolunet/nwayo-grow-project) | Boilerplate generator for nwayo project |
 | [@absolunet/nwayo-grow-extension](packages/grow-extension) | [![npm](https://img.shields.io/npm/v/@absolunet/nwayo-grow-extension.svg)](https://www.npmjs.com/package/@absolunet/nwayo-grow-extension) | Boilerplate generator for nwayo extension |
-| Bower: **[nwayo-toolbox](toolbox)** | ![bower](https://img.shields.io/bower/v/nwayo-toolbox.svg) | Toolbox with SCSS/JS helpers |
 
 ## Documentation
 - [Full documentation](https://absolunet.github.io/nwayo) ([source](documentation))  &nbsp; &nbsp; _[in progress...]_

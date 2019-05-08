@@ -9,7 +9,6 @@ const tester = require('@absolunet/tester');
 const EXCLUDE_MULTI = [
 	`!docs/static/**`,
 	`!ressources/docs-builder/app/helpers/generated/**`,
-	`!ressources/docs-builder/assets/bower_components/**`,
 	`!ressources/docs-builder/assets/*/vendor/*`,
 	`!ressources/docs-builder/local-server/**`,
 	`!ressources/docs-builder/node_modules/**`,
@@ -18,7 +17,8 @@ const EXCLUDE_MULTI = [
 
 const EXCLUDE_SUB = [
 	`!boilerplate/components/**/scripts/vendor/**`,
-	`!boilerplate/components/**/styles/vendor/**`
+	`!boilerplate/components/**/styles/vendor/**`,
+	`!boilerplate/vendor/node_modules/**`
 ];
 
 

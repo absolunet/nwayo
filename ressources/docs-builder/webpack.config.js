@@ -13,7 +13,7 @@ module.exports = {
 	module: {
 		rules: [{
 			test:    /\.(?<extension>js|jsx)$/u,
-			exclude: /(?<directory>node_modules|bower_components)/u,
+			exclude: /(?<directory>node_modules)/u,
 			loader:  'babel-loader',
 			options: { presets: ['@babel/env', '@babel/preset-react'] }
 		}]

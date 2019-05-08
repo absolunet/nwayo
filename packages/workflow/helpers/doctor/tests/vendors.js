@@ -3,12 +3,15 @@
 //-------------------------------------
 'use strict';
 
-const bower    = require('bower');
+const npmCheck = require('npm-check');
 const semver   = require('semver');
 const fss      = require('@absolunet/fss');
 const Reporter = require('~/classes/reporter');
 const Tests    = require('~/classes/tests');
+const env      = require('~/helpers/env');
 const paths    = require('~/helpers/paths');
+const toolbox  = require('~/helpers/toolbox');
+const assert   = require('~/helpers/doctor/assertions');
 
 
 const reports = new Reporter();
@@ -21,91 +24,93 @@ const reports = new Reporter();
 class VendorsTests extends Tests {
 
 	async run() {
+		const FILE  = `${paths.folder.vendors}/package.json`;
+		const tests = reports.add(assert.exists(FILE));
 
-		if (fss.exists(paths.config.bower)) {
+		if (tests.exists) {
 
-			// eslint-disable-next-line no-return-await
-			return await new Promise((resolve) => {
+			// Validate package.json
+			const config      = fss.readJson(paths.config.vendors);
+			const differences = toolbox.compareLists(Object.keys(config), ['name', 'license', 'private', 'dependencies', `___${env.id}-recommended___`]);
+			reports.add({
+				success:     differences.pass,
+				message:     `${Reporter.theme.title(FILE)}: Must only contain certain attributes`,
+				differences: differences
+			});
 
-				const isPreVersion = (v1, v2) => {
-					return ['premajor', 'preminor', 'prepatch', 'prerelease'].includes(semver.diff(v1, v2));
-				};
+			reports.add([
+				{
+					success: config.name,
+					message: `${Reporter.theme.title(FILE)}: Name must be defined`
+				},
+				{
+					success: toolbox.isKebabCase(config.name),
+					message: `${Reporter.theme.title(FILE)}: Name must be kebab-case`
+				},
+				{
+					success: config.name !== 'PROJECT_NAME',
+					message: `${Reporter.theme.title(FILE)}: Name must not stay 'PROJECT_NAME'`
+				}
+			]);
 
-				bower.commands.list(null, { cwd: paths.directory.root }).on('end', (deps) => {
+			reports.add({
+				success: config.license === 'UNLICENSED',
+				message: `${Reporter.theme.title(FILE)}: License must be 'UNLICENSED'`
+			});
 
-					Object.keys(deps.dependencies).forEach((name) => {
-						const info = deps.dependencies[name];
-
-						let stable = false;
-
-						if (info.pkgMeta) {
-
-							// If there is an update
-							if (info.update && info.pkgMeta.version !== info.update.latest) {
-
-								// If the update is pre-version
-								if (isPreVersion(info.update.latest, info.pkgMeta.version)) {
-
-									// Search all versions
-									for (const version of info.versions) {
-
-										// If not a pre-version
-										if (!isPreVersion(version, info.pkgMeta.version)) {
-
-											// If newer than current version
-											if (semver.gt(version, info.pkgMeta.version)) {
-												stable = version;
-
-											// Stop looping since in desc order
-											} else {
-												break;
-											}
-										}
-									}
-
-								// If update is a stable version
-								} else {
-									stable = info.update.latest;
-								}
-							}
-
-							// If a stable newer version was found
-							if (stable) {
-								reports.add({
-									message: `${Reporter.theme.title(name)}:`,
-									outdated: {
-										current: info.pkgMeta.version,
-										latest: stable
-									}
-								});
-
-							// Up to date
-							} else {
-								reports.add({
-									success: true,
-									message: `${Reporter.theme.title(name)}: Cutting edge (${info.pkgMeta.version})`
-								});
-							}
+			reports.add({
+				success: config.private === true,
+				message: `${Reporter.theme.title(FILE)}: Private must be set to true`
+			});
 
 
-						} else {
-							reports.add({
-								success: false,
-								message: `${Reporter.theme.title(name)}: Not installed`
-							});
-						}
+			// Dependencies
+			const currentState = await npmCheck({
+				cwd: paths.directory.vendors
+			});
+
+			for (const { moduleName: name, isInstalled, packageJson: wanted, installed, latest } of currentState.get('packages')) {
+
+				const isFixedVersion = semver.valid(wanted);
+				reports.add({
+					success: isFixedVersion,
+					message: `${Reporter.theme.title(name)}: Must have a fixed SemVer (${wanted})`
+				});
+
+				if (isFixedVersion) {
+					reports.add({
+						success: isInstalled,
+						message: `${Reporter.theme.title(name)}: Must be installed`
 					});
 
-					resolve(reports);
-				});
+					reports.add({
+						success: installed === wanted,
+						message: `${Reporter.theme.title(name)}: Installed version (${installed}) must be identical to wanted version (${wanted})`
+					});
+
+					if (wanted !== latest) {
+						reports.add({
+							message: `${Reporter.theme.title(name)}:`,
+							outdated: {
+								current: wanted,
+								latest:  latest
+							}
+						});
+					} else {
+						reports.add({
+							success: true,
+							message: `${Reporter.theme.title(name)}: Cutting edge (${wanted})`
+						});
+					}
+				}
+
+			}
+		} else {
+			reports.add({
+				success: false,
+				message: `No package.json file found`
 			});
 		}
-
-
-		reports.add({
-			success: false,
-			message: `No bower.json file found`
-		});
 
 		return reports;
 	}

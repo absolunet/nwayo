@@ -22,10 +22,10 @@ class SyncTests extends Tests {
 	// eslint-disable-next-line require-await
 	async run() {
 
-		if (fss.exists(paths.config.bower)) {
-			const bowerConfig     = fss.readJson(paths.config.bower);
+		if (fss.exists(paths.config.vendors)) {
+			const vendorsConfig   = fss.readJson(paths.config.vendors);
 			const workflowVersion = env.workflowConfig.version;
-			const toolboxVersion  = bowerConfig.devDependencies[`${env.id}-toolbox`];
+			const toolboxVersion  = vendorsConfig.dependencies[`@absolunet/${env.id}-toolbox`];
 
 			if (workflowVersion !== toolboxVersion) {
 				reports.add({
@@ -41,7 +41,7 @@ class SyncTests extends Tests {
 		} else {
 			reports.add({
 				success: false,
-				message: `No bower.json file found`
+				message: `No vendors/package.json file found`
 			});
 		}
 

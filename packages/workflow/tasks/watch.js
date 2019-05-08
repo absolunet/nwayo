@@ -34,7 +34,7 @@ module.exports = () => {
 		flow.watchSequence('Windows tiles generation',     [paths.files.iconsTile],    gulp.series('icons-tile'));
 
 		// Scripts
-		flow.watchSequence('Scripts generation', [paths.files.scripts, paths.files.templates, paths.files.bowerScripts], gulp.series('scripts-compile'));
+		flow.watchSequence('Scripts generation', [paths.files.scripts, paths.files.templates, paths.files.vendorsScripts], gulp.series('scripts-compile'));
 
 		// Styles
 		flow.watchSequence('Styles generation',                    [paths.files.styles], gulp.series('styles-compile'));

@@ -128,7 +128,7 @@ module.exports = () => {
 
 				corejs({
 					modules:  ['web', 'es'],
-					targets:  '> .25%',
+					targets:  '> .25%, not dead',
 					filename: file
 				}).then(() => {
 					log('core-js polyfill', file);

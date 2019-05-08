@@ -3,16 +3,16 @@
 //-------------------------------------
 
 //-- Get nwayo toolbox
-@import '../../toolbox/styles/config';
+@import '../../packages/toolbox/styles/config';
 
 //-- Get doc config
 @import 'styles/config';
 
 //-- Get Foundation
-@import 'bower_components/foundation-sites/scss/util/util';
+@import 'node_modules/foundation-sites/scss/util/util';
 @import '../../packages/grow-project/boilerplate/components/foundation/styles/config/functions';
 @import 'styles/foundation-settings';
-@import 'bower_components/foundation-sites/scss/foundation';
+@import 'node_modules/foundation-sites/scss/foundation';
 
 @include foundation-global-styles();
 @include foundation-typography();

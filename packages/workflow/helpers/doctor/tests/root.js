@@ -17,54 +17,7 @@ const assert   = require('~/helpers/doctor/assertions');
 const reports = new Reporter();
 
 
-const bowerJson = () => {
-	let bowerName;
-	const FILE = 'bower.json';
-	const tests = reports.add(assert.exists(FILE));
-
-	if (tests.exists) {
-		const config = fss.readJson(`${paths.directory.root}/${FILE}`);
-		const differences = toolbox.compareLists(Object.keys(config), ['name', 'private', 'devDependencies', `___${env.id}-recommended___`]);
-		reports.add({
-			success:     differences.pass,
-			message:     `${Reporter.theme.title(FILE)}: Must only contain certain attributes`,
-			differences: differences
-		});
-
-		bowerName = config.name;
-		reports.add([
-			{
-				success: config.name,
-				message: `${Reporter.theme.title(FILE)}: Name must be defined`
-			},
-			{
-				success: toolbox.isKebabCase(config.name),
-				message: `${Reporter.theme.title(FILE)}: Name must be kebab-case`
-			},
-			{
-				success: config.name !== 'PROJECT_NAME',
-				message: `${Reporter.theme.title(FILE)}: Name must not stay 'PROJECT_NAME'`
-			}
-		]);
-
-		reports.add({
-			success: config.private === true,
-			message: `${Reporter.theme.title(FILE)}: Private must be set to true`
-		});
-
-		Object.keys(config.devDependencies).forEach((name) => {
-			reports.add({
-				success: semver.valid(config.devDependencies[name]) || config.devDependencies[name] === 'master',
-				message: `${Reporter.theme.title(FILE)}: devDependencies '${name}' must have a fixed SemVer`
-			});
-		});
-	}
-
-	return bowerName;
-};
-
-
-const packageJson = (bowerName) => {
+const packageJson = () => {
 	const FILE = 'package.json';
 	const tests = reports.add(assert.exists(FILE));
 
@@ -90,10 +43,6 @@ const packageJson = (bowerName) => {
 			{
 				success: config.name !== 'PROJECT_NAME',
 				message: `${Reporter.theme.title(FILE)}: Name must not stay 'PROJECT_NAME'`
-			},
-			{
-				success: config.name === bowerName,
-				message: `${Reporter.theme.title(FILE)}: Name must be identical to 'bower.json' name`
 			}
 		]);
 
@@ -205,9 +154,6 @@ class RootTests extends Tests {
 		// .stylelintrc.yaml
 		stylelintrcYaml();
 
-		// bower.json
-		const bowerName = bowerJson();
-
 		// konstan.yaml
 		reports.add(assert.exists(`${paths.filename.konstan}.yaml`));
 
@@ -221,7 +167,7 @@ class RootTests extends Tests {
 		nwayoYaml();
 
 		// package.json
-		packageJson(bowerName);
+		packageJson();
 
 		// package-lock.json
 		reports.add(assert.exists('package-lock.json'));

@@ -2,9 +2,9 @@
 //-- Docs
 //-------------------------------------
 
-//= require bower_components/prism/prism
-//= require bower_components/prism/components/prism-bash
-//= require bower_components/prism/components/prism-javascript
-//= require bower_components/prism/components/prism-json
-//= require bower_components/prism/components/prism-scss
-//= require bower_components/prism/components/prism-yaml
+//= require ../node_modules/prismjs/prism
+//= require ../node_modules/prismjs/components/prism-bash
+//= require ../node_modules/prismjs/components/prism-javascript
+//= require ../node_modules/prismjs/components/prism-json
+//= require ../node_modules/prismjs/components/prism-scss
+//= require ../node_modules/prismjs/components/prism-yaml
