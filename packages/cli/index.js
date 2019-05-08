@@ -61,7 +61,7 @@ module.exports = () => {
 				}
 
 				terminal.spacer();
-				terminal.run('npm uninstall -g @absolunet/nwayo-cli && npm install -g @absolunet/nwayo-cli');
+				terminal.run('npm uninstall -g @absolunet/nwayo-cli && npm install -g --no-audit @absolunet/nwayo-cli');
 
 			} else {
 				util.exit(error);

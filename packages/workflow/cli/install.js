@@ -13,14 +13,15 @@ const paths        = require('~/helpers/paths');
 const availableScopes = ['vendors'];
 
 
-const bowerInstall = () => {
+const vendorInstall = () => {
 	terminal.print(`
-		Installing vendors via Bower
+		Installing vendors via npm
 	`);
 
-	fss.remove(paths.directory.bower);
+	fss.remove(paths.directory.vendorsDependencies);
+	fss.remove(`${paths.directory.vendors}/package-lock.json`);
 
-	terminal.run(`cd ${paths.directory.root} && node ${paths.config.bowerBin} install`);
+	terminal.run(`cd ${paths.directory.vendors} && npm install --no-audit`);
 };
 
 
@@ -59,7 +60,7 @@ class InstallTask extends Task {
 
 				switch (scope) {
 
-					case 'vendors': bowerInstall(); break;
+					case 'vendors': vendorInstall(); break;
 					default: break;
 
 				}
