@@ -59,7 +59,7 @@ $docs-code-radius:   .2em;
 
 
 //-- Table
-$docs-table-border:          1px $palette-myst solid;
+$docs-table-border:          1px $palette-myst solid;  // stylelint-disable-line unit-whitelist
 $docs-table-header-color:    $palette-myst;
 $docs-table-alternate-color: $palette-toundra;
 

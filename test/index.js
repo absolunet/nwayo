@@ -18,6 +18,7 @@ const EXCLUDE_MULTI = [
 const EXCLUDE_SUB = [
 	`!boilerplate/components/**/scripts/vendor/**`,
 	`!boilerplate/components/**/styles/vendor/**`,
+	`!boilerplate/node_modules/**`,
 	`!boilerplate/vendor/node_modules/**`
 ];
 

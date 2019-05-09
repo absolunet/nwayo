@@ -36,7 +36,6 @@ manager.multiScriptsRunner({
 				await fsp.ensureDir(`${BOILER_WORKFLOW}/..`);
 				await fsp.symlink('../../../../workflow', BOILER_WORKFLOW);
 
-
 				// Install grow-project boilerplate vendors
 				await manager.installPackage({ path: BOILER_VENDOR });
 
@@ -45,6 +44,8 @@ manager.multiScriptsRunner({
 				await fsp.ensureDir(`${BOILER_VENDOR_TOOLBOX}/..`);
 				await fsp.symlink('../../../../../toolbox', BOILER_VENDOR_TOOLBOX);
 
+				// Install grow-extension boilerplate
+				await manager.installPackage({ path: EXTENSION_BOILER });
 
 				// Install documentation builder
 				await manager.installPackage({ path: DOCUMENTATION_BUILDER });
