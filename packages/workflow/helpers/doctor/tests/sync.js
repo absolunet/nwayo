@@ -41,7 +41,7 @@ class SyncTests extends Tests {
 		} else {
 			reports.add({
 				success: false,
-				message: `No vendors/package.json file found`
+				message: `No vendor/package.json file found`
 			});
 		}
 

@@ -58,6 +58,12 @@ $docs-code-size:     .9em;
 $docs-code-radius:   .2em;
 
 
+//-- Table
+$docs-table-border:          1px $palette-myst solid;
+$docs-table-header-color:    $palette-myst;
+$docs-table-alternate-color: $palette-toundra;
+
+
 //-- Header
 $docs-header-bg-color:      $palette-toundra;
 $docs-header-name-color:    $palette-nwayo-shell;
