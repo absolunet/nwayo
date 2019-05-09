@@ -42,19 +42,19 @@ nwayo rebuild
 
 
 
-## Tools &nbsp; <img src="https://github.com/absolunet/nwayo/raw/master/ressources/images/vendors.png" width="525" height="30" alt="nwayo vendors">
-nwayo is HTML5-ready and uses [gulp](https://gulpjs.com) as a build system
+## Tools &nbsp; <img src="https://github.com/absolunet/nwayo/raw/master/ressources/images/vendors.png" width="375" alt="nwayo vendors">
+nwayo is HTML5 ready and uses [gulp](https://gulpjs.com) as a build system
 
 - Based (but not mandatory) on [Zurb Foundation](https://foundation.zurb.com)
 - Uses [npm](https://www.npmjs.com) as dependencies manager and [EditorConfig](https://editorconfig.org) for consistency
 
 #### Styling
-- CSS3-ready via [Autoprefixer](https://github.com/postcss/autoprefixer) and linted via [stylelint](https://stylelint.io)
+- CSS3 ready via [Autoprefixer](https://github.com/postcss/autoprefixer) and linted via [stylelint](https://stylelint.io)
 - Comes with [Sass](https://sass-lang.com), built via [Dart Sass](https://www.npmjs.com/package/dart-sass)
 - Minifies with [cssnano](https://cssnano.co)
 
 #### Scripting
-- ES2019-ready via [Babel](https://babeljs.io) and linted via [ESLint](https://eslint.org)
+- ES6+ ready via [Babel](https://babeljs.io) and linted via [ESLint](https://eslint.org)
 - Comes with [jQuery](https://jquery.com), [Modernizr](https://modernizr.com), [Lodash](https://lodash.com), [pinki](https://github.com/absolunet/pinki), [JsRender](https://www.jsviews.com), [kafe](https://absolunet.github.io/kafe/)
 - Builds with [gulp-include](https://www.npmjs.com/package/@absolunet/gulp-include) and is minified with [UglifyJS](http://lisperator.net/uglifyjs)
 

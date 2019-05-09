@@ -1,0 +1,283 @@
+<h1>3.6.x → 3.7.x</h1>
+<p><a href="https://github.com/absolunet/nwayo/compare/3.6.0...3.7.0" class="external" rel="external">View the source differences on GitHub</a></p>
+<h2 id="key-changes"><a class="anchor" href="#key-changes" aria-hidden="true">⚭</a> Key changes</h2>
+<ul>
+<li>Switch from Bower to npm</li>
+<li>Maintenance updates to dependencies and linters</li>
+</ul>
+<h2 id="what-to-do"><a class="anchor" href="#what-to-do" aria-hidden="true">⚭</a> What to do</h2>
+<ul>
+<li>Update version <code>package.json</code> (duh...)</li>
+<li>Update CLI via <code>nwayo update</code></li>
+</ul>
+<h2 id="small-adjustment"><a class="anchor" href="#small-adjustment" aria-hidden="true">⚭</a> Small adjustment</h2>
+<p>In bundle files add a <code>not dead</code> entry below the <code>&gt; .25%</code> for to <code>babel</code> and <code>autoprefixer</code> entries.</p>
+<p>Example:</p>
+<pre><code class="language-yaml">babel:              #  https://browserl.ist/?q=%3E+.25%25%2C+not+dead
+  - '&gt; .25%'
+  - 'not dead'
+</code></pre>
+<h2 id="bower-removal"><a class="anchor" href="#bower-removal" aria-hidden="true">⚭</a> Bower removal</h2>
+<ul>
+<li>Remove references to bower in theses files:
+<ul>
+<li><code>.gitignore</code></li>
+<li><code>.eslintignore</code></li>
+<li><code>.stylelintignore</code></li>
+</ul>
+</li>
+<li>Remove these files, <em>but keep a copy elsewhere temporarily for migration ease</em>
+<ul>
+<li><code>bower.json</code></li>
+<li><code>bower_components</code> <em>(whole directory)</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="npm-addition"><a class="anchor" href="#npm-addition" aria-hidden="true">⚭</a> npm addition</h2>
+<ul>
+<li>Create a <code>vendor</code> directory in your nwayo root folder</li>
+<li>Copy <a href="https://raw.githubusercontent.com/absolunet/nwayo/3.7.0/packages/grow-project/boilerplate/vendor/package.json" class="external" rel="external">this file</a> into it.</li>
+</ul>
+<h2 id="migrating-packages-from-bower-to-npm"><a class="anchor" href="#migrating-packages-from-bower-to-npm" aria-hidden="true">⚭</a> Migrating packages from bower to npm</h2>
+<h3 id="package.json"><a class="anchor" href="#package.json" aria-hidden="true">⚭</a> package.json</h3>
+<p>Open your old <code>bower.json</code> and change your new <code>vendor/package.json</code> to transfer all packages.</p>
+<p>Here's a conversion guide for packages that are used or recommended by nwayo.</p>
+<h4 id="core-dependencies"><a class="anchor" href="#core-dependencies" aria-hidden="true">⚭</a> core dependencies</h4>
+<table>
+<thead>
+<tr>
+<th>Bower</th>
+<th>npm</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>foundation-sites</td>
+<td><a href="https://www.npmjs.com/package/foundation-sites" class="external" rel="external">foundation-sites</a></td>
+<td><em>identical</em></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://www.npmjs.com/package/what-input" class="external" rel="external">what-input</a></td>
+<td><strong>has to be included explicitly now</strong></td>
+</tr>
+<tr>
+<td>imagesloaded</td>
+<td><a href="https://www.npmjs.com/package/imagesloaded" class="external" rel="external">imagesloaded</a></td>
+<td><em>identical</em></td>
+</tr>
+<tr>
+<td>jquery</td>
+<td><a href="https://www.npmjs.com/package/jquery" class="external" rel="external">jquery</a></td>
+<td><em>identical</em></td>
+</tr>
+<tr>
+<td>jsrender</td>
+<td><a href="https://www.npmjs.com/package/jsrender" class="external" rel="external">jsrender</a></td>
+<td><em>identical</em></td>
+</tr>
+<tr>
+<td>kafe</td>
+<td><a href="https://www.npmjs.com/package/@absolunet/kafe" class="external" rel="external">@absolunet/kafe</a></td>
+<td>only name change</td>
+</tr>
+<tr>
+<td>motion-ui</td>
+<td><a href="https://www.npmjs.com/package/motion-ui" class="external" rel="external">motion-ui</a></td>
+<td><em>identical</em></td>
+</tr>
+<tr>
+<td>nwayo-toolbox</td>
+<td><a href="https://www.npmjs.com/package/@absolunet/nwayo-toolbox" class="external" rel="external">@absolunet/nwayo-toolbox</a></td>
+<td>only name change</td>
+</tr>
+<tr>
+<td>pinki</td>
+<td><a href="https://www.npmjs.com/package/@absolunet/pinki" class="external" rel="external">@absolunet/pinki</a></td>
+<td>only name change</td>
+</tr>
+</tbody>
+</table>
+<h4 id="recommended-dependencies"><a class="anchor" href="#recommended-dependencies" aria-hidden="true">⚭</a> recommended dependencies</h4>
+<table>
+<thead>
+<tr>
+<th>Bower</th>
+<th>npm</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accounting.js</td>
+<td><a href="https://www.npmjs.com/package/accounting" class="external" rel="external">accounting</a></td>
+<td>only name change</td>
+</tr>
+<tr>
+<td>cssuseragent</td>
+<td><a href="https://www.npmjs.com/package/cssuseragent" class="external" rel="external">cssuseragent</a></td>
+<td><em>identical</em></td>
+</tr>
+<tr>
+<td>easy-markerwithlabel</td>
+<td><a href="https://www.npmjs.com/package/@google/markerwithlabel" class="external" rel="external">@google/markerwithlabel</a></td>
+<td><strong>minimum version at 1.2.1</strong></td>
+</tr>
+<tr>
+<td>ez-plus</td>
+<td><a href="https://www.npmjs.com/package/ez-plus" class="external" rel="external">ez-plus</a></td>
+<td><strong>maximum version at 1.2.1</strong></td>
+</tr>
+<tr>
+<td>fitvids</td>
+<td><em>none</em></td>
+<td><strong>no direct replacement</strong></td>
+</tr>
+<tr>
+<td>gsap</td>
+<td><a href="https://www.npmjs.com/package/gsap" class="external" rel="external">gsap</a></td>
+<td><em>identical</em></td>
+</tr>
+<tr>
+<td>hello</td>
+<td><a href="https://www.npmjs.com/package/hellojs" class="external" rel="external">hellojs</a></td>
+<td>only name change</td>
+</tr>
+<tr>
+<td>inputmask</td>
+<td><a href="https://www.npmjs.com/package/inputmask" class="external" rel="external">inputmask</a></td>
+<td><em>identical</em></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://www.npmjs.com/package/inputmask.phone" class="external" rel="external">inputmask.phone</a></td>
+<td><strong>has to be included explicitly now</strong></td>
+</tr>
+<tr>
+<td>isotope-layout</td>
+<td><a href="https://www.npmjs.com/package/isotope-layout" class="external" rel="external">isotope-layout</a></td>
+<td><em>identical</em></td>
+</tr>
+<tr>
+<td>jcarousellite</td>
+<td><a href="https://www.npmjs.com/package/jcarousellite" class="external" rel="external">jcarousellite</a></td>
+<td><strong>minimum version at 1.9.1</strong></td>
+</tr>
+<tr>
+<td>jquery-ajax-unobtrusive</td>
+<td><a href="https://www.npmjs.com/package/jquery-ajax-unobtrusive" class="external" rel="external">jquery-ajax-unobtrusive</a></td>
+<td><em>identical</em></td>
+</tr>
+<tr>
+<td>jquery-colorbox</td>
+<td><a href="https://www.npmjs.com/package/jquery-colorbox" class="external" rel="external">jquery-colorbox</a></td>
+<td><em>identical</em></td>
+</tr>
+<tr>
+<td>jquery-deparam</td>
+<td><a href="https://www.npmjs.com/package/jquery-deparam" class="external" rel="external">jquery-deparam</a></td>
+<td><em>identical</em></td>
+</tr>
+<tr>
+<td>jquery-hashchange</td>
+<td><a href="https://www.npmjs.com/package/bahashchange" class="external" rel="external">bahashchange</a></td>
+<td>only name change</td>
+</tr>
+<tr>
+<td>jquery-powertip</td>
+<td><a href="https://www.npmjs.com/package/jquery-powertip" class="external" rel="external">jquery-powertip</a></td>
+<td><em>identical</em></td>
+</tr>
+<tr>
+<td>jquery-ui</td>
+<td><a href="https://www.npmjs.com/package/jquery-ui" class="external" rel="external">jquery-ui</a></td>
+<td><em>identical</em></td>
+</tr>
+<tr>
+<td>jquery-validation</td>
+<td><a href="https://www.npmjs.com/package/jquery-validation" class="external" rel="external">jquery-validation</a></td>
+<td><em>identical</em></td>
+</tr>
+<tr>
+<td>jquery-validation-unobtrusive</td>
+<td><a href="https://www.npmjs.com/package/jquery-validation-unobtrusive" class="external" rel="external">jquery-validation-unobtrusive</a></td>
+<td><em>identical</em></td>
+</tr>
+<tr>
+<td>jquery.bbq</td>
+<td><a href="https://www.npmjs.com/package/jquery-bbq" class="external" rel="external">jquery-bbq</a></td>
+<td><strong>version fixed at 1.0.0</strong></td>
+</tr>
+<tr>
+<td>jquery.scrollTo</td>
+<td><a href="https://www.npmjs.com/package/jquery.scrollto" class="external" rel="external">jquery.scrollto</a></td>
+<td>only name change</td>
+</tr>
+<tr>
+<td>js-cookie</td>
+<td><a href="https://www.npmjs.com/package/js-cookie" class="external" rel="external">js-cookie</a></td>
+<td><em>identical</em></td>
+</tr>
+<tr>
+<td>jScrollPane</td>
+<td><a href="https://www.npmjs.com/package/jscrollpane" class="external" rel="external">jscrollpane</a></td>
+<td>only name change</td>
+</tr>
+<tr>
+<td>json2</td>
+<td><em>none</em></td>
+<td><strong><a href="https://caniuse.com/#feat=json" class="external" rel="external">useless now</a></strong></td>
+</tr>
+<tr>
+<td>markerclustererplus</td>
+<td><a href="https://www.npmjs.com/package/@google/markerclustererplus" class="external" rel="external">@google/markerclustererplus</a></td>
+<td><strong>minimum version at 2.1.9</strong></td>
+</tr>
+<tr>
+<td>masonry-layout</td>
+<td><a href="https://www.npmjs.com/package/masonry-layout" class="external" rel="external">masonry-layout</a></td>
+<td><em>identical</em></td>
+</tr>
+<tr>
+<td>moment</td>
+<td><a href="https://www.npmjs.com/package/moment" class="external" rel="external">moment</a></td>
+<td><em>identical</em></td>
+</tr>
+<tr>
+<td>select2</td>
+<td><a href="https://www.npmjs.com/package/select2" class="external" rel="external">select2</a></td>
+<td><em>identical</em></td>
+</tr>
+<tr>
+<td>slick-carousel</td>
+<td><a href="https://www.npmjs.com/package/slick-carousel" class="external" rel="external">slick-carousel</a></td>
+<td><em>identical</em></td>
+</tr>
+<tr>
+<td>svg-injector</td>
+<td><a href="https://www.npmjs.com/package/svg-injector" class="external" rel="external">svg-injector</a></td>
+<td><em>identical</em></td>
+</tr>
+<tr>
+<td>video.js</td>
+<td><a href="https://www.npmjs.com/package/video.js" class="external" rel="external">video.js</a></td>
+<td><em>identical</em></td>
+</tr>
+<tr>
+<td>webfontloader</td>
+<td><a href="https://www.npmjs.com/package/webfontloader" class="external" rel="external">webfontloader</a></td>
+<td><em>identical</em></td>
+</tr>
+</tbody>
+</table>
+<p>If your package isn't here try to find it on <a href="https://www.npmjs.com/" class="external" rel="external">npm</a>.</p>
+<p>If there's is a version problem that you can't fix or that your package isn't on npm, there's a last resort solution to copy the bower_components sources into a nwayo component and reference this code instead.</p>
+<h3 id="inclusion-replacements"><a class="anchor" href="#inclusion-replacements" aria-hidden="true">⚭</a> Inclusion replacements</h3>
+<ul>
+<li>First thing first, run a <code>nwayo install vendors</code> to fetch all packages</li>
+<li>In your bundles and js files replace all references to <code>bower_components</code> for <code>vendor/node_modules</code> (this should do the trick for the majority of the inclusions)</li>
+<li>Check the conversion guide above for specials cases (package renames, package changes) and apply modifications accordingly</li>
+<li>Run a <code>nwayo rebuild</code> to assure that everything works well</li>
+<li>You can run a <code>nwayo doctor</code> to assure that you have the latest versions of the packages</li>
+</ul>
