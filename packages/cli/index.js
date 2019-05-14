@@ -98,7 +98,7 @@ module.exports = () => {
 		let config;
 		let root = process.cwd();
 
-		if (configFilepath !== null) {
+		if (configFilepath) {
 			config = yaml.safeLoad(fs.readFileSync(configFilepath, 'utf8'));
 
 			if (config && config.root) {
