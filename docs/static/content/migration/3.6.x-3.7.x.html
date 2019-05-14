@@ -17,22 +17,6 @@
   - '&gt; .25%'
   - 'not dead'
 </code></pre>
-<h2 id="bower-removal"><a class="anchor" href="#bower-removal" aria-hidden="true">⚭</a> Bower removal</h2>
-<ul>
-<li>Remove references to bower in theses files:
-<ul>
-<li><code>.gitignore</code></li>
-<li><code>.eslintignore</code></li>
-<li><code>.stylelintignore</code></li>
-</ul>
-</li>
-<li>Remove these files, <em>but keep a copy elsewhere temporarily for migration ease</em>
-<ul>
-<li><code>bower.json</code></li>
-<li><code>bower_components</code> <em>(whole directory)</em></li>
-</ul>
-</li>
-</ul>
 <h2 id="npm-addition"><a class="anchor" href="#npm-addition" aria-hidden="true">⚭</a> npm addition</h2>
 <ul>
 <li>Create a <code>vendor</code> directory in your nwayo root folder</li>
@@ -280,4 +264,20 @@
 <li>Check the conversion guide above for specials cases (package renames, package changes) and apply modifications accordingly</li>
 <li>Run a <code>nwayo rebuild</code> to assure that everything works well</li>
 <li>You can run a <code>nwayo doctor</code> to assure that you have the latest versions of the packages</li>
+</ul>
+<h2 id="bower-removal"><a class="anchor" href="#bower-removal" aria-hidden="true">⚭</a> Bower removal</h2>
+<ul>
+<li>Remove references to bower in theses files:
+<ul>
+<li><code>.gitignore</code></li>
+<li><code>.eslintignore</code></li>
+<li><code>.stylelintignore</code></li>
+</ul>
+</li>
+<li>Remove these files
+<ul>
+<li><code>bower.json</code></li>
+<li><code>bower_components</code> <em>(whole directory)</em></li>
+</ul>
+</li>
 </ul>
