@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "gulp": {
+      "version": "3.9.1",
+      "dependencies": {
+        "vinyl-fs": {
+          "version": "0.3.14",
+          "dependencies": {
+            "graceful-fs": {
+              "version": "4.1.15"
+            }
+          }
+        }
+      }
+    }
+  }
+}

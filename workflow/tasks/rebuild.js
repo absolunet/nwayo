@@ -4,8 +4,8 @@
 'use strict';
 
 const fs          = require('fs-extra');
-const runsequence = require('run-sequence');
 const gulp        = require('gulp');
+const runsequence = require('run-sequence').use(gulp);
 // const debug = require('gulp-debug');
 
 const Util = global.nwayo.util;
