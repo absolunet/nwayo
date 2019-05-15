@@ -3,9 +3,9 @@
 //-------------------------------------
 'use strict';
 
-const runsequence = require('run-sequence');
 const inquirer    = require('inquirer');
 const gulp        = require('gulp');
+const runsequence = require('run-sequence').use(gulp);
 // const debug = require('gulp-debug');
 
 const echo = console.log; // eslint-disable-line no-console
