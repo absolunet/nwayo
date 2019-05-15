@@ -13,8 +13,8 @@ const yaml        = require('js-yaml');
 const crypto      = require('crypto');
 const Vinyl       = require('vinyl');
 const merge       = require('merge-stream');
-const runsequence = require('run-sequence');
 const gulp        = require('gulp');
+const runsequence = require('run-sequence').use(gulp);
 const babel       = require('babel-core');
 
 const echo = console.log; // eslint-disable-line no-console
