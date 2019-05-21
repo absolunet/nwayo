@@ -7,9 +7,11 @@ const fss     = require('@absolunet/fss');
 const fsp     = require('@absolunet/fsp');
 const manager = require('@absolunet/manager');
 
-const ROOT            = __dirname;
-const BOILER          = `${ROOT}/packages/grow-project/boilerplate`;
-const WORKFLOW_MATRIX = `${ROOT}/packages/workflow/ressources/doctor-matrix`;
+const ROOT                  = __dirname;
+const BOILER                = `${ROOT}/packages/grow-project/boilerplate`;
+const EXTENSION_BOILER      = `${ROOT}/packages/grow-extension/boilerplate`;
+const WORKFLOW_MATRIX       = `${ROOT}/packages/workflow/ressources/doctor-matrix`;
+const DOCUMENTATION_BUILDER = `${ROOT}/ressources/docs-builder`;
 
 const GLOBAL_BOWER    = `${ROOT}/bower.json`;
 const BOILER_BOWER    = `${BOILER}/bower.json`;
@@ -25,6 +27,17 @@ const BOILER_WORKFLOW = `${BOILER}/node_modules/@absolunet/nwayo-workflow`;
 
 manager.multiScriptsRunner({
 	tasks: {
+		outdated: {
+			postRun: async () => {
+
+				// Check grow-extension boilerplate / documentation
+				for (const path of [EXTENSION_BOILER, DOCUMENTATION_BUILDER]) {
+					await manager.testOutdated(path);  // eslint-disable-line no-await-in-loop
+				}
+			}
+		},
+
+
 		build: {
 			postRun: async () => {
 

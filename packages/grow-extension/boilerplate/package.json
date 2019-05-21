@@ -29,9 +29,9 @@
     "test": "ava"
   },
   "devDependencies": {
-    "@absolunet/tester": "2.4.2"
+    "@absolunet/tester": "2.6.7"
   },
   "dependencies": {
-    "@absolunet/fss": "^1.3.3"
+    "@absolunet/fss": "^1.6.1"
   }
 }
