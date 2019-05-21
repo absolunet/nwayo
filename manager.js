@@ -27,7 +27,7 @@ const BOILER_WORKFLOW       = `${BOILER}/node_modules/@absolunet/nwayo-workflow`
 
 manager.multiScriptsRunner({
 	tasks: {
-		install: {
+		postinstall: {
 			postRun: async ({ terminal }) => {
 
 				terminal.println('Symlink grow-project boilerplate workflow');

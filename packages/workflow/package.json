@@ -92,7 +92,7 @@
     "sass": "1.20.1",
     "semver": "6.0.0",
     "slash": "3.0.0",
-    "uglify-js": "3.5.14",
+    "uglify-js": "3.5.15",
     "vinyl": "2.2.0",
     "yaml-lint": "1.2.4"
   }

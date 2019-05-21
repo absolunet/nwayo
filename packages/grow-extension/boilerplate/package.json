@@ -26,9 +26,14 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "ava"
+    "test": "ava test",
+    "installer": "node manager.js --task=installer",
+    "outdated": "node manager.js --task=outdated",
+    "build": "node manager.js --task=build",
+    "deploy": "node manager.js --task=deploy"
   },
   "devDependencies": {
+    "@absolunet/manager": "1.1.0",
     "@absolunet/tester": "2.6.7"
   },
   "dependencies": {
