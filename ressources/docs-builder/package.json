@@ -37,7 +37,7 @@
     "markdown-it-external-links": "0.0.6",
     "sass": "1.20.1",
     "scandirectory": "3.0.1",
-    "uglify-js": "3.5.14",
+    "uglify-js": "3.5.15",
     "webpack": "4.32.0",
     "webpack-cli": "3.3.2",
     "webpack-dev-server": "3.4.1"
