@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "test": "ava test",
-    "postinstall": "rm -rf packages/*/package-lock.json; lerna clean --yes; lerna bootstrap --no-ci",
+    "postinstall": "node manager.js --task=postinstall",
     "outdated": "node manager.js --task=outdated",
     "build": "node manager.js --task=build",
     "deploy": "node manager.js --task=deploy"
@@ -11,11 +11,11 @@
   "devDependencies": {
     "@absolunet/eslint-config-nwayo": "1.3.0",
     "@absolunet/eslint-config-react": "1.3.0",
-    "@absolunet/fsp": "1.6.0",
-    "@absolunet/fss": "1.6.0",
-    "@absolunet/manager": "0.4.0",
-    "@absolunet/stylelint-config-nwayo": "1.2.0",
-    "@absolunet/tester": "2.6.3",
-    "lerna": "3.13.4"
+    "@absolunet/fsp": "1.6.1",
+    "@absolunet/fss": "1.6.1",
+    "@absolunet/manager": "1.1.0",
+    "@absolunet/stylelint-config-nwayo": "1.2.1",
+    "@absolunet/tester": "2.6.7",
+    "lerna": "3.14.1"
   }
 }

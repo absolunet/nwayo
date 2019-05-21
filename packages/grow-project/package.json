@@ -1,6 +1,6 @@
 {
   "name": "@absolunet/nwayo-grow-project",
-  "version": "3.6.4",
+  "version": "3.6.5",
   "description": "Boilerplate generator for nwayo project",
   "definition": "",
   "homepage": "https://absolunet.github.io/nwayo",
@@ -29,10 +29,10 @@
   },
   "main": "index.js",
   "dependencies": {
-    "@absolunet/fss": "1.6.0",
+    "@absolunet/fss": "1.6.1",
     "chalk": "2.4.2",
     "figures": "3.0.0",
     "inquirer": "6.3.1",
-    "replace-in-file": "4.0.0"
+    "replace-in-file": "4.1.0"
   }
 }
