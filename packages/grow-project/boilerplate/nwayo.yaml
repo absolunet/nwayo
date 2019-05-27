@@ -1,2 +1,6 @@
 # nwayo root relative to this file
 root: ./
+
+polyfill:      #  https://browserl.ist/?q=%3E+.25%25%2C+not+dead
+  - '> .25%'
+  - 'not dead'
