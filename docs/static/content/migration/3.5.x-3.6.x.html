@@ -1,9 +1,13 @@
 <h1>3.5.x → 3.6.x</h1>
 <p><a href="https://github.com/absolunet/nwayo/compare/3.5.0...3.6.0" class="external" rel="external">View the source differences on GitHub</a></p>
+<blockquote>
+<p>If you are migrating from 3.6.0-3.6.3 → the latest 3.6.x, please follow the <strong>Polyfill</strong> section at the end</p>
+</blockquote>
 <h2 id="key-changes"><a class="anchor" href="#key-changes" aria-hidden="true">⚭</a> Key changes</h2>
 <ul>
 <li>Switch from RubySass to DartSass (Node.js flavor)</li>
 <li>Added <a href="../extensions">extensions</a> connector</li>
+<li>Added polyfill to support a maximum of ES6+ features</li>
 <li>konstan SCSS map (<a href="https://github.com/absolunet/nwayo/issues/45" class="external" rel="external">#45</a>)</li>
 <li><code>nwayo doctor</code> now checks if your project follows conventions</li>
 <li>Added a checksum cache buster for images/fonts referenced in CSS (<a href="https://github.com/absolunet/nwayo/issues/44" class="external" rel="external">#44</a>)</li>
@@ -55,4 +59,11 @@
 lodash: {
 	scope: 'private'
 }
+</code></pre>
+<h3 id="polyfill"><a class="anchor" href="#polyfill" aria-hidden="true">⚭</a> Polyfill</h3>
+<p>In your <code>bundles/XYZ/_dependencies.yaml</code> files, add a <code>~polyfill</code> entry a the top of the <code>dependencies-head-sync</code> collection</p>
+<p>In your <code>nwayo.yaml</code> file add an entry to control the polyfill browser support</p>
+<pre><code class="language-yaml">polyfill:      #  https://browserl.ist/?q=%3E+.25%25%2C+not+dead
+  - '&gt; .25%'
+  - 'not dead'
 </code></pre>
