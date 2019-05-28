@@ -1,6 +1,6 @@
 {
   "name": "@absolunet/nwayo-toolbox",
-  "version": "3.7.0-beta.2",
+  "version": "3.7.0-rc.1",
   "description": "Toolbox for nwayo",
   "definition": "",
   "homepage": "https://absolunet.github.io/nwayo/",
@@ -21,7 +21,7 @@
     "url": "https://github.com/absolunet/nwayo/issues"
   },
   "engines": {
-    "node": ">= 12.1.0"
+    "node": ">= 12.3.1"
   },
   "browser": "scripts/dependencies-starter.js",
   "peerDependencies": {
