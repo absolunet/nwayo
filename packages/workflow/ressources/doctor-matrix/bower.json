@@ -5,9 +5,9 @@
   "devDependencies": {
     "foundation-sites": "6.5.3",
     "imagesloaded":     "4.1.4",
-    "jquery":           "3.4.0",
-    "jsrender":         "1.0.2",
-    "kafe":             "3.2.6",
+    "jquery":           "3.4.1",
+    "jsrender":         "1.0.3",
+    "kafe":             "3.2.8",
     "motion-ui":        "2.0.3",
     "nwayo-toolbox":    "3.6.5",
     "pinki":            "1.0.2"

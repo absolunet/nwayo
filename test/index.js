@@ -19,7 +19,8 @@ const EXCLUDE_MULTI = [
 const EXCLUDE_SUB = [
 	`!boilerplate/bower_components/**`,
 	`!boilerplate/components/**/scripts/vendor/**`,
-	`!boilerplate/components/**/styles/vendor/**`
+	`!boilerplate/components/**/styles/vendor/**`,
+	`!boilerplate/node_modules/**`
 ];
 
 
