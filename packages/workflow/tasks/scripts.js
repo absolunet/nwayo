@@ -128,11 +128,13 @@ module.exports = () => {
 
 				corejs({
 					modules:  ['web', 'es'],
-					targets:  '> .25%, not dead',
+					targets:  env.configRaw.polyfill,
 					filename: file
 				}).then(() => {
-					log('core-js polyfill', file);
-					resolve();
+					fsp.appendFile(file, fss.readFile(paths.config.regeneratorRuntime, 'utf8')).then(() => {
+						log('core-js polyfill', file);
+						resolve();
+					});
 				});
 			});
 

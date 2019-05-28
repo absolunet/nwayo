@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@absolunet/manager": "1.1.0",
-    "@absolunet/tester": "2.6.7"
+    "@absolunet/tester": "2.6.8"
   },
   "dependencies": {
     "@absolunet/fss": "^1.6.1"
