@@ -169,7 +169,7 @@ module.exports = () => {
 								.on('error', gulpsass.logError)
 						)
 
-						.pipe(autoprefixer({ browsers: bundle.styles.options.autoprefixer }))
+						.pipe(autoprefixer({ overrideBrowserslist: bundle.styles.options.autoprefixer }))
 
 						.pipe(gulpif(toMinify, cssnano({ autoprefixer: false, discardUnused: false, mergeIdents: false, reduceIdents: false, zindex: false })))
 
