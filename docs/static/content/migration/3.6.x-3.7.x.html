@@ -11,7 +11,7 @@
 <li>Update CLI via <code>nwayo update</code></li>
 </ul>
 <h2 id="small-adjustment"><a class="anchor" href="#small-adjustment" aria-hidden="true">⚭</a> Small adjustment</h2>
-<p>In bundle files add a <code>not dead</code> entry below the <code>&gt; .25%</code> for to <code>babel</code> and <code>autoprefixer</code> entries.</p>
+<p>In bundle files, add a <code>not dead</code> entry below the <code>&gt; .25%</code> for to <code>babel</code> and <code>autoprefixer</code> entries.</p>
 <p>Example:</p>
 <pre><code class="language-yaml">babel:              #  https://browserl.ist/?q=%3E+.25%25%2C+not+dead
   - '&gt; .25%'
@@ -261,6 +261,7 @@
 <ul>
 <li>First thing first, run a <code>nwayo install vendors</code> to fetch all packages</li>
 <li>In your bundles and js files replace all references to <code>bower_components</code> for <code>vendor/node_modules</code> (this should do the trick for the majority of the inclusions)</li>
+<li>In bundle files, replace entries under <code>allowBabel</code> for <code>kafe</code>, <code>nwayo-toolbox</code>, <code>pinki</code> with one catch-all <code>vendor/node_modules/@absolunet</code></li>
 <li>Check the conversion guide above for specials cases (package renames, package changes) and apply modifications accordingly</li>
 <li>Run a <code>nwayo rebuild</code> to assure that everything works well</li>
 <li>You can run a <code>nwayo doctor</code> to assure that you have the latest versions of the packages</li>
