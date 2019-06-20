@@ -201,10 +201,19 @@ module.exports = () => {
 	flow.createSequence('styles', gulp.series('styles-images', 'styles-compile'), {
 		cleanPaths:  [paths.directory.cacheInline, paths.directory.cacheSass],
 		cleanBundle: ({ name, bundle }) => {
-			return [
-				`${paths.directory.root}/${bundle.output.build}/${paths.build.styles}`,
-				`${paths.directory.cacheStyles}/${name}`
-			];
+			const buildPath = `${paths.directory.root}/${bundle.output.build}/${paths.build.styles}`;
+			const cachePath = `${paths.directory.cacheStyles}/${name}`;
+
+			if (env.isScopeSubbundle) {
+				return Object.keys(bundle.styles.collections).map((collection) => {
+					return [
+						`${buildPath}/${collection}.${paths.extension.stylesBuild}`,
+						`${cachePath}/${collection}.${paths.extension.stylesBuild}`
+					];
+				}).flat();
+			}
+
+			return [buildPath, cachePath];
 		}
 	});
 
