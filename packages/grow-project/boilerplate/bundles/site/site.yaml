@@ -27,8 +27,7 @@ scripts:
 
   allowBabel:
     - vendor/node_modules/foundation-sites
-    - vendor/node_modules/@absolunet/nwayo-toolbox
-    - vendor/node_modules/@absolunet/pinki
+    - vendor/node_modules/@absolunet
 
 
 
