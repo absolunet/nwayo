@@ -225,10 +225,19 @@ module.exports = () => {
 	//-- Rebuild
 	flow.createSequence('scripts', gulp.series('scripts-compile'), {
 		cleanBundle: ({ name, bundle }) => {
-			return [
-				`${paths.directory.root}/${bundle.output.build}/${paths.build.scripts}`,
-				`${paths.directory.cacheScripts}/${name}`
-			];
+			const buildPath = `${paths.directory.root}/${bundle.output.build}/${paths.build.scripts}`;
+			const cachePath = `${paths.directory.cacheScripts}/${name}`;
+
+			if (env.isScopeSubbundle) {
+				return Object.keys(bundle.scripts.collections).map((collection) => {
+					return [
+						`${buildPath}/${collection}.${paths.extension.scripts}`,
+						`${cachePath}/${collection}.${paths.extension.scripts}`
+					];
+				}).flat();
+			}
+
+			return [buildPath, cachePath];
 		}
 	});
 

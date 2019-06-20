@@ -82,6 +82,7 @@ class Env {
 	get konstan()           { return __.konstan; }
 	get bundles()           { return __.bundles; }
 	get bundlesComponents() { return __.bundlesComponents; }
+	get isScopeSubbundle()  { return __.scope === 'subbundle'; }
 	get watching()          { return __.watching; }
 	get deployTier()        { return __.deployTier; }
 	get isWindows()         { return os.platform() === 'win32'; }
@@ -141,6 +142,14 @@ class Env {
 
 		// Get bundle list
 		const [requiredName, requiredSubname = '*'] = bundle.split(':');
+		if (requiredName === '*') {
+			__.scope = 'all';
+		} else if (requiredSubname === '*') {
+			__.scope = 'bundle';
+		} else {
+			__.scope = 'subbundle';
+		}
+
 		const bundlesList = glob.sync(`${paths.directory.bundles}/${requiredName}/`);
 
 		// Process bundles

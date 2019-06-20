@@ -11,7 +11,7 @@
     "jquery": "3.4.1",
     "jsrender": "1.0.3",
     "motion-ui": "2.0.3",
-    "what-input": "5.2.1"
+    "what-input": "5.2.3"
   },
   "___nwayo-recommended___": {
     "@google/markerwithlabel": "1.2.3",
