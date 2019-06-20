@@ -88,7 +88,6 @@ const directory = {};
 directory.root         = ROOT;
 directory.cache        = `${directory.root}/${folder.cache}`;
 directory.cacheInline  = `${directory.root}/${folder.cacheInline}`;
-directory.cacheSass    = `${directory.root}/${folder.cacheSass}`;
 directory.cacheScripts = `${directory.root}/${folder.cacheScripts}`;
 directory.cacheStyles  = `${directory.root}/${folder.cacheStyles}`;
 directory.bundles      = `${directory.root}/${folder.bundles}`;
