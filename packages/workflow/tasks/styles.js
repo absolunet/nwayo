@@ -169,7 +169,7 @@ module.exports = () => {
 								.on('error', gulpsass.logError)
 						)
 
-						.pipe(autoprefixer({ browsers: bundle.styles.options.autoprefixer }))
+						.pipe(autoprefixer({ overrideBrowserslist: bundle.styles.options.autoprefixer }))
 
 						.pipe(gulpif(toMinify, cssnano({ autoprefixer: false, discardUnused: false, mergeIdents: false, reduceIdents: false, zindex: false })))
 
@@ -199,12 +199,21 @@ module.exports = () => {
 
 	//-- Rebuild
 	flow.createSequence('styles', gulp.series('styles-images', 'styles-compile'), {
-		cleanPaths:  [paths.directory.cacheInline, paths.directory.cacheSass],
+		cleanPaths:  [paths.directory.cacheInline],
 		cleanBundle: ({ name, bundle }) => {
-			return [
-				`${paths.directory.root}/${bundle.output.build}/${paths.build.styles}`,
-				`${paths.directory.cacheStyles}/${name}`
-			];
+			const buildPath = `${paths.directory.root}/${bundle.output.build}/${paths.build.styles}`;
+			const cachePath = `${paths.directory.cacheStyles}/${name}`;
+
+			if (env.isScopeSubbundle) {
+				return Object.keys(bundle.styles.collections).map((collection) => {
+					return [
+						`${buildPath}/${collection}.${paths.extension.stylesBuild}`,
+						`${cachePath}/${collection}.${paths.extension.stylesBuild}`
+					];
+				}).flat();
+			}
+
+			return [buildPath, cachePath];
 		}
 	});
 
