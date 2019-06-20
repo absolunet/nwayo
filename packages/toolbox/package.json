@@ -25,9 +25,9 @@
   },
   "browser": "scripts/dependencies-starter.js",
   "peerDependencies": {
-    "@absolunet/pinki": "^1.1.0",
+    "@absolunet/pinki": "^3.0.0",
     "imagesloaded": "^4.1.4",
-    "jquery": "^3.4.0"
+    "jquery": "^3.4.1"
   },
   "optionalDependencies": {
     "lodash": "^4.17.11",
