@@ -15614,20 +15614,32 @@
     __webpack_require__.r(__webpack_exports__);
     /* harmony import */var _lib_message__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
     /* harmony import */var _lib_vow__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4);
-    //--------------------------------------------------------
-    //-- pinki
-    //--------------------------------------------------------
-    var
+    /**
+                                                                                             * Asynchronous libraries wrapper
+                                                                                             * @module pinki
+                                                                                             */
   
   
   
   
-    Pinki = /*#__PURE__*/function () {function Pinki() {_classCallCheck(this, Pinki);}_createClass(Pinki, [{ key: "message", get: function get()
   
+    /** Main entry point */var
+    Pinki = /*#__PURE__*/function () {function Pinki() {_classCallCheck(this, Pinki);}_createClass(Pinki, [{ key: "message",
+  
+        /**
+                                                                                                                              * Message
+                                                                                                                              * @readonly
+                                                                                                                              * @property {object} message
+                                                                                                                              */get: function get()
         {
           return _lib_message__WEBPACK_IMPORTED_MODULE_0__["default"];
-        } }, { key: "vow", get: function get()
+        }
   
+        /**
+           * Vow
+           * @readonly
+           * @property {object} vow
+           */ }, { key: "vow", get: function get()
         {
           return _lib_vow__WEBPACK_IMPORTED_MODULE_1__["default"];
         } }]);return Pinki;}();
@@ -15644,9 +15656,10 @@
   
     "use strict";
     __webpack_require__.r(__webpack_exports__);
-    //--------------------------------------------------------
-    //-- Message
-    //--------------------------------------------------------
+    /**
+                                                 * PubSubJS wrapper with goodies
+                                                 * @module pinki/message
+                                                 */
   
     var PubSub = __webpack_require__(3);
   
@@ -15667,17 +15680,25 @@
       }
   
       return found;
-    };var
+    };
   
   
   
   
   
   
+    /** Message entry point */var
     Message = /*#__PURE__*/function () {function Message() {_classCallCheck(this, Message);}_createClass(Message, [{ key: "subscribe",
   
-        //-- Subscribe to a topic
-        value: function subscribe(topic, subscriber) {var _ref = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},_ref$executePrevious = _ref.executePrevious,executePrevious = _ref$executePrevious === void 0 ? true : _ref$executePrevious;
+        /**
+                                                                                                                                        * Subscribe to a topic
+                                                                                                                                        * @param {string} topic - Topic id.
+                                                                                                                                        * @param {function} subscriber - The callback to execute.
+                                                                                                                                        * @param {object} [options] - Options
+                                                                                                                                        * @param {boolean} [options.executePrevious=true] - Execute previously published messages.
+                                                                                                                                        * @return {string} Unique token
+                                                                                                                                        */value: function subscribe(
+        topic, subscriber) {var _ref = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},_ref$executePrevious = _ref.executePrevious,executePrevious = _ref$executePrevious === void 0 ? true : _ref$executePrevious;
           if (executePrevious) {
             messages.forEach(function (_ref2) {var messageTopic = _ref2.topic,messageData = _ref2.data;
               if (messageHasSubscribers(topic, messageTopic)) {
@@ -15690,22 +15711,37 @@
         }
   
   
-        //-- Publish a message
-      }, { key: "publish", value: function publish(topic, data) {
+        /**
+           * Publish a message
+           * @param {string} topic - Topic id.
+           * @param {*} [data] - The data.
+           * @return {boolean} Were they any subscribers already?
+           */ }, { key: "publish", value: function publish(
+        topic, data) {
           messages.push({ topic: topic, data: data });
   
           return PubSub.publish(topic, data);
         }
   
   
-        //-- Unsubscribe to all topic
-      }, { key: "unsubscribe", get: function get() {
-          return PubSub.unsubscribe;
+        /**
+           * Unsubscribe
+           * @param {string|function} value - A token, function or topic to unsubscribe from
+           * @return {boolean} Were they any subscribers?
+           */ }, { key: "unsubscribe", value: function unsubscribe(
+        value) {
+          return PubSub.unsubscribe(value);
         }
   
   
-        //-- Get all published messages
-      }, { key: "list", get: function get() {
+        /**
+           * Get all published messages
+           * @readonly
+           * @property {object[]} list
+           * @property {string} list[].topic - Topic id.
+           * @property {*} list[].data - Given data.
+          	 */ }, { key: "list", get: function get()
+        {
           return messages;
         } }]);return Message;}();
   
@@ -15727,9 +15763,10 @@
   
     "use strict";
     __webpack_require__.r(__webpack_exports__);
-    //--------------------------------------------------------
-    //-- Vow
-    //--------------------------------------------------------
+    /**
+                                                 * Name-based Promises that can be referenced anytime
+                                                 * @module pinki/message
+                                                 */
   
     var RSVP = __webpack_require__(5);
   
@@ -15747,13 +15784,14 @@
       }
   
       return vows[name];
-    };var
+    };
   
   
   
   
   
   
+    /** Vow entry point */var
     Vow = /*#__PURE__*/function () {function Vow() {_classCallCheck(this, Vow);}_createClass(Vow, [{ key: "when",
   
   
@@ -15762,32 +15800,55 @@
   
   
   
-        //-- When all vows are fulfilled or broke
-        value: function when() {
-          var promises = [];
   
-          // Group all vows Promises
-          for (var _len = arguments.length, names = new Array(_len), _key = 0; _key < _len; _key++) {names[_key] = arguments[_key];}names.forEach(function (vow) {
-            promises.push(getDeferredVow(vow).promise);
-          });
   
-          return RSVP.all(promises);
+  
+  
+        /**
+                                                                                                                   * When a or all vows are fulfilled or broke
+                                                                                                                   * @param {string|string[]} names - Vow name or array of vow names
+                                                                                                                   * @return {promise} Vow's promise or Promise.all() of all vow's promises
+                                                                                                                   */value: function when(
+        names) {
+          if (typeof names === 'string') {
+            return getDeferredVow(names).promise;
+  
+          } else if (Array.isArray(names)) {
+            var promises = [];
+  
+            // Group all vows Promises
+            names.forEach(function (vow) {
+              promises.push(getDeferredVow(vow).promise);
+            });
+  
+            return RSVP.all(promises);
+          }
+  
+          throw new TypeError('Argument must be a String or an Array');
         }
   
   
-        //-- Fulfill a vow
-      }, { key: "fulfill", value: function fulfill(name, data) {
+        /**
+           * Resolve the underlying Promise
+           * @param {string} name - Vow name
+           * @param {*} data - Data to resolve the underlying Promise with
+           */ }, { key: "fulfill", value: function fulfill(
+        name, data) {
           getDeferredVow(name).resolve(data);
         }
   
-        //-- Break a vow
-      }, { key: "break", value: function _break(name, error) {
+        /**
+           * Reject the underlying Promise
+           * @param {string} name - Vow name
+           * @param {string} error - Error message to reject the underlying Promise with
+           */ }, { key: "break", value: function _break(
+        name, error) {
           getDeferredVow(name).reject(error);
-        } }, { key: "list", //-- Get all registered vow names
-        get: function get() {return Object.keys(vows);} }]);return Vow;}();
-  
-  
-  
+        } }, { key: "list", /**
+                             * Vows than have been registered.
+                             * @readonly
+                             * @property {string[]} list - List of vows.
+                            	 */get: function get() {return Object.keys(vows);} }]);return Vow;}();
     /* harmony default export */__webpack_exports__["default"] = new Vow();
   
   

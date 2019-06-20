@@ -5,7 +5,7 @@
   "dependencies": {
     "@absolunet/kafe": "3.2.8",
     "@absolunet/nwayo-toolbox": "3.7.0-rc.1",
-    "@absolunet/pinki": "2.0.0",
+    "@absolunet/pinki": "3.0.0",
     "foundation-sites": "6.5.3",
     "imagesloaded": "4.1.4",
     "jquery": "3.4.1",

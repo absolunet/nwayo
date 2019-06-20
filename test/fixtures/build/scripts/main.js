@@ -272,7 +272,7 @@ function _classCallCheck(instance, Constructor) {if (!(instance instanceof Const
 
     /**
                                // When global jQuery is ready
-                               pinki.vow.when(GLOBAL_JQUERY_LOADED).then(([$Global]) => {
+                               pinki.vow.when(GLOBAL_JQUERY_LOADED).then(($Global) => {
                                	$Global().on('click');
                                });
                                /**/
