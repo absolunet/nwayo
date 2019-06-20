@@ -199,7 +199,7 @@ module.exports = () => {
 
 	//-- Rebuild
 	flow.createSequence('styles', gulp.series('styles-images', 'styles-compile'), {
-		cleanPaths:  [paths.directory.cacheInline, paths.directory.cacheSass],
+		cleanPaths:  [paths.directory.cacheInline],
 		cleanBundle: ({ name, bundle }) => {
 			const buildPath = `${paths.directory.root}/${bundle.output.build}/${paths.build.styles}`;
 			const cachePath = `${paths.directory.cacheStyles}/${name}`;
