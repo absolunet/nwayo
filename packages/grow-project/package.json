@@ -25,14 +25,14 @@
     "nwayo-grow-project": "bin/nwayo-grow-project"
   },
   "engines": {
-    "node": ">= 12.1.0"
+    "node": ">= 12.4.0"
   },
   "main": "index.js",
   "dependencies": {
     "@absolunet/fss": "1.6.1",
     "chalk": "2.4.2",
     "figures": "3.0.0",
-    "inquirer": "6.3.1",
+    "inquirer": "6.4.0",
     "replace-in-file": "4.1.0"
   }
 }

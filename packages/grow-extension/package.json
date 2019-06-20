@@ -26,7 +26,7 @@
     "nwayo-grow-extension": "bin/nwayo-grow-extension"
   },
   "engines": {
-    "node": ">= 12.1.0"
+    "node": ">= 12.4.0"
   },
   "main": "index.js",
   "dependencies": {

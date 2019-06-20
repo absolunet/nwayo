@@ -26,14 +26,6 @@
 - Changer la version dans le fichier `lerna.json`
 - `npm run build`
 
-### Sous `packages/grow-project/boilerplate`
-
-- `nwayo rebuild`
-
-### Sous `ressources/docs-builder`
-
-- `npm run build`
-
 ### Sous `root`
 
 - Refaire un `npm test`
