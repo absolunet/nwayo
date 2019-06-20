@@ -17748,7 +17748,7 @@ This test will also return `true` for Firefox 4 Multitouch support.
 //-------------------------------------
 /**
  * what-input - A global utility for tracking the current input method (mouse, keyboard or touch).
- * @version v5.2.1
+ * @version v5.2.3
  * @link https://github.com/ten1seven/what-input
  * @license MIT
  */
@@ -18018,7 +18018,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (shouldUpdate && currentIntent !== value) {
 	      // preserve intent for keyboard interaction with form fields
 	      var activeElem = document.activeElement;
-	      var notFormInput = activeElem && activeElem.nodeName && formInputs.indexOf(activeElem.nodeName.toLowerCase()) === -1 || activeElem.nodeName.toLowerCase() === 'button' && !checkClosest(activeElem, 'form');
+	      var notFormInput = activeElem && activeElem.nodeName && (formInputs.indexOf(activeElem.nodeName.toLowerCase()) === -1 || activeElem.nodeName.toLowerCase() === 'button' && !checkClosest(activeElem, 'form'));
 
 	      if (notFormInput) {
 	        currentIntent = value;
@@ -18051,7 +18051,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    detectScrolling(event);
 
 	    // only execute if scrolling isn't happening
-	    if (!isScrolling && !validateTouch(value) && currentIntent !== value) {
+	    if ((!isScrolling && !validateTouch(value) || isScrolling && event.type === 'wheel' || event.type === 'mousewheel' || event.type === 'DOMMouseScroll') && currentIntent !== value) {
 	      currentIntent = value;
 
 	      try {
@@ -18110,9 +18110,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  };
 
 	  // detect version of mouse wheel event to use
-	  // via https://developer.mozilla.org/en-US/docs/Web/Events/wheel
+	  // via https://developer.mozilla.org/en-US/docs/Web/API/Element/wheel_event
 	  var detectWheel = function detectWheel() {
-	    var wheelType = void 0;
+	    var wheelType = null;
 
 	    // Modern browsers support "wheel"
 	    if ('onwheel' in document.createElement('div')) {
