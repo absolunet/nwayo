@@ -36,6 +36,15 @@ class Content extends React.Component {
 	}
 
 
+	componentDidUpdate() {
+		window.Prism.highlightAll();  // eslint-disable-line no-restricted-globals
+
+		document.querySelectorAll('a[rel="external"]').forEach((link) => {
+			link.target = '_blank';  // eslint-disable-line no-param-reassign
+		});
+	}
+
+
 	render() {
 		const util    = new Util(this);
 		const { url } = this.state;
@@ -74,29 +83,16 @@ class Content extends React.Component {
 			document.title = title;
 
 			content = (
-				<React.Fragment>
-
+				<>
 					{util.getCache(source)}
-
-					{!isError &&
-						<p className="edit-page"><a href={`${paths.githubSource}/${sourceFile}.md`} rel="external">Edit this page</a></p>
-					}
-				</React.Fragment>
+					{!isError && <p className="edit-page"><a href={`${paths.githubSource}/${sourceFile}.md`} rel="external">Edit this page</a></p>}
+				</>
 			);
 		}
 
 		return (
 			<main>{content}</main>
 		);
-	}
-
-
-	componentDidUpdate() {
-		window.Prism.highlightAll();  // eslint-disable-line no-restricted-globals
-
-		document.querySelectorAll('a[rel="external"]').forEach((link) => {
-			link.target = '_blank';
-		});
 	}
 
 }

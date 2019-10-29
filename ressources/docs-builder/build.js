@@ -162,8 +162,8 @@ gulp.src(`${paths.assets}/styles/main.scss`)
 	.pipe(gulpsass.sync({
 		includePaths: [paths.assets],
 		functions:    {
-			'docsdart-read-file($file)': (paramFile) => {
-				const file = paramFile.getValue();
+			'docsdart-read-file($file)': (parametersFile) => {
+				const file = parametersFile.getValue();
 
 				if (fss.exists(file)) {
 					return new sass.types.String(fss.readFile(file, 'utf8'));

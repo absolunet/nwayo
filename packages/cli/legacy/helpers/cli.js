@@ -56,7 +56,7 @@ ${util.usageTasks}
 		const base = `${context.cwd}/node_modules/${tool}`;
 
 		if (fs.existsSync(`${base}/package.json`)) {
-			const params = [task];
+			const parameters = [task];
 
 			const gruntCli = `${__dirname}/../../node_modules/grunt-cli`;
 			let packageConfig;
@@ -67,14 +67,14 @@ ${util.usageTasks}
 				case 'gulp':
 					packageConfig = require(`${base}/package`);  // eslint-disable-line global-require
 					bin = `${base}/${packageConfig.bin.gulp}`;
-					params.push('--cwd', context.cwd);
+					parameters.push('--cwd', context.cwd);
 					break;
 
 				case 'grunt':
 					packageConfig = require(`${gruntCli}/package`);  // eslint-disable-line global-require
 
 					bin = `${gruntCli}/${packageConfig.bin.grunt}`;
-					params.push('--gruntfile', `${context.cwd}/gruntfile.js`);
+					parameters.push('--gruntfile', `${context.cwd}/gruntfile.js`);
 					break;
 
 				default: break;
@@ -83,11 +83,11 @@ ${util.usageTasks}
 
 			if (context.flags) {
 				context.flags.forEach((value, flag) => {
-					params.push(`--${flag}`, value);
+					parameters.push(`--${flag}`, value);
 				});
 			}
 
-			const cmd = spawn(`${bin}`, params, {
+			const cmd = spawn(`${bin}`, parameters, {
 				env:   process.env,  // eslint-disable-line no-process-env, unicorn/prevent-abbreviations
 				stdio: 'inherit'
 			});

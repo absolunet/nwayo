@@ -8,6 +8,7 @@ const tester = require('@absolunet/tester');
 
 const EXCLUDE_MULTI = [
 	`!docs/static/**`,
+	`!packages/**`,
 	`!ressources/docs-builder/app/helpers/generated/**`,
 	`!ressources/docs-builder/assets/*/vendor/*`,
 	`!ressources/docs-builder/local-server/**`,

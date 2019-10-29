@@ -166,8 +166,8 @@ const report = (title, data) => {
 module.exports = {
 
 	//-- Run
-	run: (contextParam) => {
-		context = contextParam;
+	run: (contextParameter) => {
+		context = contextParameter;
 
 		helper.echo('');
 		const spin = new Spinner(`Diagnosing ${chalk.cyan(context.packageConfig.name)}... %s`);

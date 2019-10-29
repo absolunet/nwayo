@@ -101,17 +101,17 @@ const lintYAML = async () => {
 	const calls = [];
 	getPathsToCheck('file', { extension: 'yaml' }).forEach((file) => {
 		calls.push(new Promise((resolve) => {
-			let error = false;
+			let finalError = false;
 
 			yamlLint.lintFile(`${paths.directory.root}/${file}`)
-				.catch((error2) => {
-					error = error2;
+				.catch((error) => {
+					finalError = error;
 				})
 				.finally(() => {
 					lints.push({
-						success:      error === false,
+						success:      finalError === false,
 						message:      `${Reporter.theme.title(file)}: YAML must be valid`,
-						linterOutput: error
+						linterOutput: finalError
 					});
 
 					resolve();

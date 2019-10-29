@@ -14,27 +14,28 @@ import Content from './components/Content';
 import Footer  from './components/Footer';
 
 /* global process, module */
-class App extends React.Component {
+class App extends React.PureComponent {
 
 	render() {
 		return (
 			<BrowserRouter basename={process.env.PUBLIC_URL || paths.root}>
-				<Route path=":path(.*)" render={({ match }) => {
-					return (
-						<React.Fragment>
+				<Route
+					path=":path(.*)"
+					render={({ match }) => {
+						return (
+							<>
+								<Header />
 
-							<Header></Header>
+								<div className="container">
+									<Nav />
+									<Content path={match.params.path} />
+								</div>
 
-							<div className="container">
-								<Nav></Nav>
-								<Content path={match.params.path}></Content>
-							</div>
-
-							<Footer></Footer>
-
-						</React.Fragment>
-					);
-				}} />
+								<Footer />
+							</>
+						);
+					}}
+				/>
 			</BrowserRouter>
 		);
 	}

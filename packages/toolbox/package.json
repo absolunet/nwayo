@@ -30,7 +30,7 @@
     "jquery": "^3.4.1"
   },
   "optionalDependencies": {
-    "lodash": "^4.17.11",
-    "modernizr": "^3.7.1"
+    "lodash": "^4.17.15",
+    "modernizr": "^3.8.0"
   }
 }
