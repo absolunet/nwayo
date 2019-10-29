@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom';
 import { tree } from '../helpers/generated';
 
 
-class Nav extends React.Component {
+class Nav extends React.PureComponent {
 
 	render() {
 

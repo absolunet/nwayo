@@ -130,8 +130,8 @@
 		tmpl:    {},
 		env:     {  // eslint-disable-line unicorn/prevent-abbreviations
 			culture:  culture,
-			lang:     culture.substr(0, 2),
-			country:  culture.substr(3, 2).toLowerCase(),
+			lang:     culture.slice(0, 2),
+			country:  culture.slice(3, 2).toLowerCase(),
 			pageId:   $body.attr('id'),
 			pageTags: bodyClass ? _.compact(bodyClass.split(' ')) : []
 		}

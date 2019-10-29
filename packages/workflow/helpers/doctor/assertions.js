@@ -126,12 +126,12 @@ class Assertions {
 
 
 	// Is the tree identical to matrix
-	isTreeMatrix(curr, type, options) {
-		const differences = toolbox.compareLists(fss.scandir(`${paths.directory.root}${curr}`, type, options), fss.scandir(`${paths.workflow.matrix}${curr}`, type, options));
+	isTreeMatrix(current, type, options) {
+		const differences = toolbox.compareLists(fss.scandir(`${paths.directory.root}${current}`, type, options), fss.scandir(`${paths.workflow.matrix}${current}`, type, options));
 
 		return {
 			success:     differences.pass,
-			message:     `${Reporter.theme.title(curr)}: ${capitalize(type)}s list must be identical to matrix`,
+			message:     `${Reporter.theme.title(current)}: ${capitalize(type)}s list must be identical to matrix`,
 			differences: differences
 		};
 	}

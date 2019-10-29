@@ -17,16 +17,16 @@ const PREFIX = 'nwayodart';
 const custom = {};
 
 // Check if file exists
-custom[`${PREFIX}-file-exists($file)`] = (paramFile) => {
-	const file = paramFile.getValue();
+custom[`${PREFIX}-file-exists($file)`] = (parameterFile) => {
+	const file = parameterFile.getValue();
 
 	return fss.exists(file) ? sass.types.Boolean.TRUE : sass.types.Boolean.FALSE;
 };
 
 
 // Read file and return contents
-custom[`${PREFIX}-read-file($file)`] = (paramFile) => {
-	const file = paramFile.getValue();
+custom[`${PREFIX}-read-file($file)`] = (parameterFile) => {
+	const file = parameterFile.getValue();
 
 	if (fss.exists(file)) {
 		return new sass.types.String(fss.readFile(file, 'utf8'));
@@ -37,8 +37,8 @@ custom[`${PREFIX}-read-file($file)`] = (paramFile) => {
 
 
 // Base64 inline an file
-custom[`${PREFIX}-inline-file($file)`] = (paramFile) => {
-	const file = paramFile.getValue();
+custom[`${PREFIX}-inline-file($file)`] = (parameterFile) => {
+	const file = parameterFile.getValue();
 
 	if (fss.exists(file)) {
 		const data     = fss.readFile(file).toString('base64');
@@ -52,8 +52,8 @@ custom[`${PREFIX}-inline-file($file)`] = (paramFile) => {
 
 
 // Get file checksum
-custom[`${PREFIX}-checksum($file)`] = (paramFile) => {
-	const file = paramFile.getValue();
+custom[`${PREFIX}-checksum($file)`] = (parameterFile) => {
+	const file = parameterFile.getValue();
 
 	if (fss.exists(file)) {
 		return new sass.types.String(crypto.createHash('sha512').update(fss.readFile(file)).digest('hex'));

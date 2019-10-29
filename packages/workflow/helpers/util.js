@@ -119,15 +119,15 @@ class Util {
 	//-- Parse Lodash config
 	parseLodash() {
 		const config = fss.readYaml(paths.config.lodash);
-		let cliParams = '';
+		let cliParameters = '';
 
 		for (const option of Object.keys(config)) {
 			if (config[option].length !== 0) {
-				cliParams += ` ${option}=${config[option].join(',')}`;
+				cliParameters += ` ${option}=${config[option].join(',')}`;
 			}
 		}
 
-		return cliParams;
+		return cliParameters;
 	}
 
 
@@ -147,7 +147,8 @@ class Util {
 
 	//-- Babel processing
 	babelProcess(options, targets, allowed) {
-		const babel = require('@babel/core');  // eslint-disable-line global-require, Babel is really heavy on load
+		// Babel is really heavy on load
+		const babel = require('@babel/core');  // eslint-disable-line global-require
 
 		const { fullPath, rawPath } = options;
 		let { content } = options;
@@ -197,7 +198,8 @@ class Util {
 
 	//-- Assets processing pattern
 	assetsProcess(files, customPiping) {
-		const gulp = require('gulp');   // eslint-disable-line global-require, gulp.js is really heavy on load
+		// gulp.js is really heavy on load
+		const gulp = require('gulp');   // eslint-disable-line global-require
 
 		const streams = [];
 		for (const component of env.bundlesComponents) {

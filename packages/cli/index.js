@@ -84,7 +84,7 @@ module.exports = () => {
 		const URL  = 'https://absolunet.github.io/nwayo/';
 
 		util.echo(`\n${chalk.underline(URL)}`);
-		open(URL);
+		open(URL, { url: true });
 		util.exit();
 
 	} else {
