@@ -16205,8 +16205,8 @@ return jQuery;
 
 
 /*!
- * modernizr v3.7.1
- * Build https://modernizr.com/download?-geolocation-inputtypes-localstorage-sessionstorage-touchevents-addtest-printshiv-setclasses-dontmin
+ * modernizr v3.8.0
+ * Build https://modernizr.com/download?-geolocation-inputtypes-localstorage-sessionstorage-addtest-printshiv-setclasses-dontmin
  *
  * Copyright (c)
  *  Faruk Ates
@@ -16242,7 +16242,7 @@ return jQuery;
    */
   var ModernizrProto = {
     // The current version, dummy
-    _version: '3.7.1',
+    _version: '3.8.0',
 
     // Any settings that don't work as separate modules
     // can go in here as configuration.
@@ -16363,8 +16363,8 @@ return jQuery;
           if (featureNameSplit.length === 1) {
             Modernizr[featureNameSplit[0]] = result;
           } else {
-            // cast to a Boolean, if not one already
-            if (Modernizr[featureNameSplit[0]] && !(Modernizr[featureNameSplit[0]] instanceof Boolean)) {
+            // cast to a Boolean, if not one already or if it doesnt exist yet (like inputtypes)
+            if (!Modernizr[featureNameSplit[0]] || Modernizr[featureNameSplit[0]] && !(Modernizr[featureNameSplit[0]] instanceof Boolean)) {
               Modernizr[featureNameSplit[0]] = new Boolean(Modernizr[featureNameSplit[0]]);
             }
 
@@ -17331,18 +17331,14 @@ Modernizr.inputtypes.week
   //   containing each input type with its corresponding true/false value
 
   // Big thanks to @miketaylr for the html5 forms expertise. miketaylr.com/
-  var inputtypes = 'search tel url email datetime date month week time datetime-local number range color'.split(' ');
-  var inputs = {};
-
-  Modernizr.inputtypes = (function(props) {
-    var len = props.length;
+  (function() {
+    var props = ['search', 'tel', 'url', 'email', 'datetime', 'date', 'month', 'week','time', 'datetime-local', 'number', 'range', 'color'];
     var smile = '1)';
     var inputElemType;
     var defaultView;
     var bool;
 
-    for (var i = 0; i < len; i++) {
-
+    for (var i = 0; i < props.length; i++) {
       inputElem.setAttribute('type', inputElemType = props[i]);
       bool = inputElem.type !== 'text' && 'style' in inputElem;
 
@@ -17351,7 +17347,7 @@ Modernizr.inputtypes.week
       // If the value doesn't stick, we know there's input sanitization which infers a custom UI
       if (bool) {
 
-        inputElem.value         = smile;
+        inputElem.value = smile;
         inputElem.style.cssText = 'position:absolute;visibility:hidden;';
 
         if (/^range$/.test(inputElemType) && inputElem.style.WebkitAppearance !== undefined) {
@@ -17360,7 +17356,7 @@ Modernizr.inputtypes.week
           defaultView = document.defaultView;
 
           // Safari 2-4 allows the smiley as a value, despite making a slider
-          bool =  defaultView.getComputedStyle &&
+          bool = defaultView.getComputedStyle &&
             defaultView.getComputedStyle(inputElem, null).WebkitAppearance !== 'textfield' &&
             // Mobile android web browser has false positive, so must
             // check the height to see if the widget is actually there.
@@ -17385,10 +17381,9 @@ Modernizr.inputtypes.week
         }
       }
 
-      inputs[ props[i] ] = !!bool;
+      Modernizr.addTest('inputtypes.' + inputElemType, !!bool);
     }
-    return inputs;
-  })(inputtypes);
+  })();
 
 /*!
 {
@@ -17463,263 +17458,6 @@ Modernizr.inputtypes.week
   });
 
 
-  /**
-   * List of property values to set for css tests. See ticket #21
-   * https://github.com/modernizr/modernizr/issues/21
-   *
-   * @memberOf Modernizr
-   * @name Modernizr._prefixes
-   * @optionName Modernizr._prefixes
-   * @optionProp prefixes
-   * @access public
-   * @example
-   *
-   * Modernizr._prefixes is the internal list of prefixes that we test against
-   * inside of things like [prefixed](#modernizr-prefixed) and [prefixedCSS](#-code-modernizr-prefixedcss). It is simply
-   * an array of kebab-case vendor prefixes you can use within your code.
-   *
-   * Some common use cases include
-   *
-   * Generating all possible prefixed version of a CSS property
-   * ```js
-   * var rule = Modernizr._prefixes.join('transform: rotate(20deg); ');
-   *
-   * rule === 'transform: rotate(20deg); webkit-transform: rotate(20deg); moz-transform: rotate(20deg); o-transform: rotate(20deg); ms-transform: rotate(20deg);'
-   * ```
-   *
-   * Generating all possible prefixed version of a CSS value
-   * ```js
-   * rule = 'display:' +  Modernizr._prefixes.join('flex; display:') + 'flex';
-   *
-   * rule === 'display:flex; display:-webkit-flex; display:-moz-flex; display:-o-flex; display:-ms-flex; display:flex'
-   * ```
-   */
-  // we use ['',''] rather than an empty array in order to allow a pattern of .`join()`ing prefixes to test
-  // values in feature detects to continue to work
-  var prefixes = (ModernizrProto._config.usePrefixes ? ' -webkit- -moz- -o- -ms- '.split(' ') : ['','']);
-
-  // expose these for the plugin API. Look in the source for how to join() them against your input
-  ModernizrProto._prefixes = prefixes;
-
-  
-
-  /**
-   * getBody returns the body of a document, or an element that can stand in for
-   * the body if a real body does not exist
-   *
-   * @access private
-   * @function getBody
-   * @returns {HTMLElement|SVGElement} Returns the real body of a document, or an
-   * artificially created element that stands in for the body
-   */
-  function getBody() {
-    // After page load injecting a fake body doesn't work so check if body exists
-    var body = document.body;
-
-    if (!body) {
-      // Can't use the real body create a fake one.
-      body = createElement(isSVG ? 'svg' : 'body');
-      body.fake = true;
-    }
-
-    return body;
-  }
-
-  ;
-
-  /**
-   * injectElementWithStyles injects an element with style element and some CSS rules
-   *
-   * @access private
-   * @function injectElementWithStyles
-   * @param {string} rule - String representing a css rule
-   * @param {Function} callback - A function that is used to test the injected element
-   * @param {number} [nodes] - An integer representing the number of additional nodes you want injected
-   * @param {string[]} [testnames] - An array of strings that are used as ids for the additional nodes
-   * @returns {boolean} the result of the specified callback test
-   */
-  function injectElementWithStyles(rule, callback, nodes, testnames) {
-    var mod = 'modernizr';
-    var style;
-    var ret;
-    var node;
-    var docOverflow;
-    var div = createElement('div');
-    var body = getBody();
-
-    if (parseInt(nodes, 10)) {
-      // In order not to give false positives we create a node for each test
-      // This also allows the method to scale for unspecified uses
-      while (nodes--) {
-        node = createElement('div');
-        node.id = testnames ? testnames[nodes] : mod + (nodes + 1);
-        div.appendChild(node);
-      }
-    }
-
-    style = createElement('style');
-    style.type = 'text/css';
-    style.id = 's' + mod;
-
-    // IE6 will false positive on some tests due to the style element inside the test div somehow interfering offsetHeight, so insert it into body or fakebody.
-    // Opera will act all quirky when injecting elements in documentElement when page is served as xml, needs fakebody too. #270
-    (!body.fake ? div : body).appendChild(style);
-    body.appendChild(div);
-
-    if (style.styleSheet) {
-      style.styleSheet.cssText = rule;
-    } else {
-      style.appendChild(document.createTextNode(rule));
-    }
-    div.id = mod;
-
-    if (body.fake) {
-      //avoid crashing IE8, if background image is used
-      body.style.background = '';
-      //Safari 5.13/5.1.4 OSX stops loading if ::-webkit-scrollbar is used and scrollbars are visible
-      body.style.overflow = 'hidden';
-      docOverflow = docElement.style.overflow;
-      docElement.style.overflow = 'hidden';
-      docElement.appendChild(body);
-    }
-
-    ret = callback(div, rule);
-    // If this is done after page load we don't want to remove the body so check if body exists
-    if (body.fake) {
-      body.parentNode.removeChild(body);
-      docElement.style.overflow = docOverflow;
-      // Trigger layout so kinetic scrolling isn't disabled in iOS6+
-      // eslint-disable-next-line
-      docElement.offsetHeight;
-    } else {
-      div.parentNode.removeChild(div);
-    }
-
-    return !!ret;
-  }
-
-  ;
-
-  /**
-   * Modernizr.mq tests a given media query, live against the current state of the window
-   * adapted from matchMedia polyfill by Scott Jehl and Paul Irish
-   * gist.github.com/786768
-   *
-   * @memberOf Modernizr
-   * @name Modernizr.mq
-   * @optionName Modernizr.mq()
-   * @optionProp mq
-   * @access public
-   * @function mq
-   * @param {string} mq - String of the media query we want to test
-   * @returns {boolean}
-   * @example
-   * Modernizr.mq allows for you to programmatically check if the current browser
-   * window state matches a media query.
-   *
-   * ```js
-   *  var query = Modernizr.mq('(min-width: 900px)');
-   *
-   *  if (query) {
-   *    // the browser window is larger than 900px
-   *  }
-   * ```
-   *
-   * Only valid media queries are supported, therefore you must always include values
-   * with your media query
-   *
-   * ```js
-   * // good
-   *  Modernizr.mq('(min-width: 900px)');
-   *
-   * // bad
-   *  Modernizr.mq('min-width');
-   * ```
-   *
-   * If you would just like to test that media queries are supported in general, use
-   *
-   * ```js
-   *  Modernizr.mq('only all'); // true if MQ are supported, false if not
-   * ```
-   *
-   * Note that if the browser does not support media queries (e.g. old IE) mq will
-   * always return false.
-   */
-  var mq = (function() {
-    var matchMedia = window.matchMedia || window.msMatchMedia;
-    if (matchMedia) {
-      return function(mq) {
-        var mql = matchMedia(mq);
-        return mql && mql.matches || false;
-      };
-    }
-
-    return function(mq) {
-      var bool = false;
-
-      injectElementWithStyles('@media ' + mq + ' { #modernizr { position: absolute; } }', function(node) {
-        bool = (window.getComputedStyle ?
-          window.getComputedStyle(node, null) :
-          node.currentStyle).position === 'absolute';
-      });
-
-      return bool;
-    };
-  })();
-
-  ModernizrProto.mq = mq;
-
-  
-/*!
-{
-  "name": "Touch Events",
-  "property": "touchevents",
-  "caniuse": "touch",
-  "tags": ["media", "attribute"],
-  "notes": [{
-    "name": "Touch Events spec",
-    "href": "https://www.w3.org/TR/2013/WD-touch-events-20130124/"
-  }],
-  "warnings": [
-    "Indicates if the browser supports the Touch Events spec, and does not necessarily reflect a touchscreen device"
-  ],
-  "knownBugs": [
-    "False-positive on some configurations of Nokia N900",
-    "False-positive on some BlackBerry 6.0 builds – https://github.com/Modernizr/Modernizr/issues/372#issuecomment-3112695"
-  ]
-}
-!*/
-/* DOC
-Indicates if the browser supports the W3C Touch Events API.
-
-This *does not* necessarily reflect a touchscreen device:
-
-* Older touchscreen devices only emulate mouse events
-* Modern IE touch devices implement the Pointer Events API instead: use `Modernizr.pointerevents` to detect support for that
-* Some browsers & OS setups may enable touch APIs when no touchscreen is connected
-* Future browsers may implement other event models for touch interactions
-
-See this article: [You Can't Detect A Touchscreen](http://www.stucox.com/blog/you-cant-detect-a-touchscreen/).
-
-It's recommended to bind both mouse and touch/pointer events simultaneously – see [this HTML5 Rocks tutorial](https://www.html5rocks.com/en/mobile/touchandmouse/).
-
-This test will also return `true` for Firefox 4 Multitouch support.
-*/
-
-  // Chrome (desktop) used to lie about its support on this, but that has since been rectified: https://bugs.chromium.org/p/chromium/issues/detail?id=36415
-  // Chrome also changed its behaviour since v70 and recommends the TouchEvent object for detection: https://www.chromestatus.com/feature/4764225348042752
-  Modernizr.addTest('touchevents', function() {
-    if (('ontouchstart' in window) || window.TouchEvent || window.DocumentTouch && document instanceof DocumentTouch) {
-      return true;
-    }
-
-    // include the 'heartz' as a way to have a non matching MQ to help terminate the join
-    // https://github.com/Modernizr/Modernizr/issues/1814
-    var query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
-    return mq(query);
-  });
-
-
   // Run each test
   testRunner();
 
@@ -17748,7 +17486,7 @@ This test will also return `true` for Firefox 4 Multitouch support.
 //-------------------------------------
 /**
  * what-input - A global utility for tracking the current input method (mouse, keyboard or touch).
- * @version v5.2.3
+ * @version v5.2.6
  * @link https://github.com/ten1seven/what-input
  * @license MIT
  */
@@ -17862,17 +17600,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  // UNIX timestamp of current event
 	  var currentTimestamp = Date.now();
 
-	  // check for sessionStorage support
-	  // then check for session variables and use if available
-	  try {
-	    if (window.sessionStorage.getItem('what-input')) {
-	      currentInput = window.sessionStorage.getItem('what-input');
-	    }
-
-	    if (window.sessionStorage.getItem('what-intent')) {
-	      currentIntent = window.sessionStorage.getItem('what-intent');
-	    }
-	  } catch (e) {}
+	  // check for a `data-whatpersist` attribute on either the `html` or `body` elements, defaults to `true`
+	  var shouldPersist = 'false';
 
 	  // form input types
 	  var formInputs = ['button', 'input', 'select', 'textarea'];
@@ -17930,6 +17659,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    window.addEventListener('test', null, opts);
 	  } catch (e) {}
+	  // fail silently
+
 
 	  /*
 	   * set up
@@ -17940,8 +17671,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    inputMap[detectWheel()] = 'mouse';
 
 	    addListeners();
-	    doUpdate('input');
-	    doUpdate('intent');
 	  };
 
 	  /*
@@ -17953,6 +17682,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // can only demonstrate potential, but not actual, interaction
 	    // and are treated separately
 	    var options = supportsPassive ? { passive: true } : false;
+
+	    document.addEventListener('DOMContentLoaded', setPersist);
 
 	    // pointer events (mouse, pen, touch)
 	    if (window.PointerEvent) {
@@ -17985,6 +17716,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	    window.addEventListener('focusout', clearElement);
 	  };
 
+	  // checks if input persistence should happen and
+	  // get saved state from session storage if true (defaults to `false`)
+	  var setPersist = function setPersist() {
+	    shouldPersist = !(docElem.getAttribute('data-whatpersist') || document.body.getAttribute('data-whatpersist') === 'false');
+
+	    if (shouldPersist) {
+	      // check for session variables and use if available
+	      try {
+	        if (window.sessionStorage.getItem('what-input')) {
+	          currentInput = window.sessionStorage.getItem('what-input');
+	        }
+
+	        if (window.sessionStorage.getItem('what-intent')) {
+	          currentIntent = window.sessionStorage.getItem('what-intent');
+	        }
+	      } catch (e) {
+	        // fail silently
+	      }
+	    }
+
+	    // always run these so at least `initial` state is set
+	    doUpdate('input');
+	    doUpdate('intent');
+	  };
+
 	  // checks conditions before updating new input
 	  var setInput = function setInput(event) {
 	    var eventKey = event.which;
@@ -18008,10 +17764,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (shouldUpdate && currentInput !== value) {
 	      currentInput = value;
 
-	      try {
-	        window.sessionStorage.setItem('what-input', currentInput);
-	      } catch (e) {}
-
+	      persistInput('input', currentInput);
 	      doUpdate('input');
 	    }
 
@@ -18023,10 +17776,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (notFormInput) {
 	        currentIntent = value;
 
-	        try {
-	          window.sessionStorage.setItem('what-intent', currentIntent);
-	        } catch (e) {}
-
+	        persistInput('intent', currentIntent);
 	        doUpdate('intent');
 	      }
 	    }
@@ -18054,10 +17804,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if ((!isScrolling && !validateTouch(value) || isScrolling && event.type === 'wheel' || event.type === 'mousewheel' || event.type === 'DOMMouseScroll') && currentIntent !== value) {
 	      currentIntent = value;
 
-	      try {
-	        window.sessionStorage.setItem('what-intent', currentIntent);
-	      } catch (e) {}
-
+	      persistInput('intent', currentIntent);
 	      doUpdate('intent');
 	    }
 	  };
@@ -18083,6 +17830,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    docElem.removeAttribute('data-whatelement');
 	    docElem.removeAttribute('data-whatclasses');
+	  };
+
+	  var persistInput = function persistInput(which, value) {
+	    if (shouldPersist) {
+	      try {
+	        window.sessionStorage.setItem('what-' + which, value);
+	      } catch (e) {
+	        // fail silently
+	      }
+	    }
 	  };
 
 	  /*
@@ -18145,11 +17902,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  };
 
 	  var detectScrolling = function detectScrolling(event) {
-	    if (mousePos['x'] !== event.screenX || mousePos['y'] !== event.screenY) {
+	    if (mousePos.x !== event.screenX || mousePos.y !== event.screenY) {
 	      isScrolling = false;
 
-	      mousePos['x'] = event.screenX;
-	      mousePos['y'] = event.screenY;
+	      mousePos.x = event.screenX;
+	      mousePos.y = event.screenY;
 	    } else {
 	      isScrolling = true;
 	    }
@@ -18232,6 +17989,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (position || position === 0) {
 	        functionList.splice(position, 1);
 	      }
+	    },
+
+	    clearStorage: function clearStorage() {
+	      window.sessionStorage.clear();
 	    }
 	  };
 	}();
@@ -19503,8 +19264,8 @@ function _typeof(obj) {if (typeof Symbol === "function" && typeof Symbol.iterato
     tmpl: {},
     env: { // eslint-disable-line unicorn/prevent-abbreviations
       culture: culture,
-      lang: culture.substr(0, 2),
-      country: culture.substr(3, 2).toLowerCase(),
+      lang: culture.slice(0, 2),
+      country: culture.slice(3, 2).toLowerCase(),
       pageId: $body.attr('id'),
       pageTags: bodyClass ? _.compact(bodyClass.split(' ')) : [] } }));
 
