@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Switch gulp-cssnano (DEPRECATED) to gulp-postcss
+- Switch from Modernizr.touchevents to What Input since it is more accurate
 - Maintenance updates
 
 

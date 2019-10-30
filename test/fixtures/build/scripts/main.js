@@ -171,7 +171,7 @@ function _classCallCheck(instance, Constructor) {if (!(instance instanceof Const
                                   			}
                                   		},
                                   		secondPass: ($this, options) => {
-                                  			if (options.hoverUrl && !Modernizr.touchevents) {
+                                  			if (options.hoverUrl && whatInput.ask('intent') === 'mouse') {
                                   				const $hover = $this.find(__.component('main-image'));
                                   				$hover.css('background-image', `url('${options.hoverUrl}')`);
                                   					$hover.imagesLoaded({ background: true })
@@ -190,7 +190,7 @@ function _classCallCheck(instance, Constructor) {if (!(instance instanceof Const
 
 
     // Optional scroll
-    app.scrollTransition = Modernizr.touchevents ? 0 : konstan.transition.animation;
+    app.scrollTransition = whatInput.ask('intent') === 'touch' ? 0 : konstan.transition.animation;
 
   };
 

@@ -490,13 +490,13 @@ a:not(.button):hover, a:not(.button):active, a:not(.button):focus {
 body.document-loaded .body {
   /* ... */
 }
-html.touchevents .body {
+html[data-whatintent=touch] .body {
   /* ... */
 }
-html.no-touchevents .body {
+html[data-whatintent=mouse] .body {
   /* ... */
 }
-html.no-touchevents .body a:hover {
+html[data-whatintent=mouse] .body a:hover {
   /* ... */
 }
 

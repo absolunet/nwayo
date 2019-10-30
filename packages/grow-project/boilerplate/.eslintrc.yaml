@@ -7,9 +7,9 @@ extends: '@absolunet/nwayo'
 
 # Globals
 #globals:
-  #spConfig: false
-  #Translator: false
-  #Validation: false
+  #spConfig: readonly
+  #Translator: readonly
+  #Validation: readonly
 
 
 # Rules

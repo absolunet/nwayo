@@ -245,7 +245,7 @@ feature-detects:
 ##  - test/img/crossorigin  (makes builder fail)
 ##  - test/ligatures  (makes builder fail)
 #  - textarea/maxlength
-  - touchevents
+#  - touchevents
 #  - typed-arrays
 #  - unicode
 #  - unicode-range
