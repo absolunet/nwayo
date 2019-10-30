@@ -18,12 +18,12 @@
 	konstan-get('color.ash')                 #b2beb5
 	konstan-get('color.platinum')            #e5e4e2
 
-	konstan-get('color.success')             #4fb980
-	konstan-get('color.warning')             #ffd061
-	konstan-get('color.error')               #d66161
+	konstan-get('color.ocean-green')         #4fb980
+	konstan-get('color.golden-tainoi')       #ffd061
+	konstan-get('color.chestnut-rose')       #d66161
 
-	konstan-get('font.base')                 Open Sans
-	konstan-get('font.alt')                  Merriweather
+	konstan-get('font.open-sans')            Open Sans
+	konstan-get('font.merriweather')         Merriweather
 
 */
 
@@ -38,37 +38,37 @@ $common-max-width-size:     rem-calc(konstan-get('dimension.max'));
 
 
 //-- Colors
-$common-base-color:            konstan-get('color.charcoal');
-$common-primary-color:         konstan-get('color.logo-shell');
-$common-alt-color:             konstan-get('color.nickel');
-$common-bg-color:              konstan-get('color.white');
-$common-bg-site-color:         konstan-get('color.platinum');
-$common-bg-var1-color:         konstan-get('color.ash');
-$common-bg-var2-color:         konstan-get('color.ash');
+$common-base-color:    konstan-get('color.charcoal');
+$common-primary-color: konstan-get('color.logo-shell');
+$common-alt-color:     konstan-get('color.nickel');
+$common-bg-color:      konstan-get('color.white');
+$common-bg-site-color: konstan-get('color.platinum');
+$common-bg-var1-color: konstan-get('color.ash');
+$common-bg-var2-color: konstan-get('color.ash');
 
-$common-text-color:            $common-base-color;
-$common-text-var1-color:       konstan-get('color.battleship');
-$common-text-var2-color:       konstan-get('color.black');
+$common-text-color:      $common-base-color;
+$common-text-var1-color: konstan-get('color.battleship');
+$common-text-var2-color: konstan-get('color.black');
 
-$common-border-color:          konstan-get('color.nickel');
-$common-border-alt-color:      konstan-get('color.ash');
+$common-border-color:     konstan-get('color.nickel');
+$common-border-alt-color: konstan-get('color.ash');
 
-$common-link-color:            $common-primary-color;
-$common-link-hover-color:      konstan-get('color.logo-shell-shade');
+$common-link-color:       $common-primary-color;
+$common-link-hover-color: konstan-get('color.logo-shell-shade');
 
-$common-shadow-color:          konstan-get('color.charcoal');
-$common-overlay-color:         rgba(konstan-get('color.charcoal'), .7);
+$common-shadow-color:  konstan-get('color.charcoal');
+$common-overlay-color: rgba(konstan-get('color.charcoal'), .7);
 
-$common-success-text-color:    konstan-get('color.success');
-$common-warning-text-color:    konstan-get('color.warning');
-$common-error-text-color:      konstan-get('color.error');
+$common-success-text-color: konstan-get('color.ocean-green');
+$common-warning-text-color: konstan-get('color.golden-tainoi');
+$common-error-text-color:   konstan-get('color.chestnut-rose');
 
 
 
 //-- Fonts
-$common-text-font:            konstan-get('font.base'), $nwayo-sansserif-font;
-$common-title-font:           konstan-get('font.alt'), $nwayo-sansserif-font;
-$common-monospace-font:       Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', Courier, monospace;  // stylelint-disable-line value-keyword-case
+$common-text-font:  konstan-get('font.open-sans'), $nwayo-sansserif-font;
+$common-title-font: konstan-get('font.merriweather'), $nwayo-sansserif-font;
+$common-code-font:  $nwayo-monospace-font;
 
 $common-text-slimmest-weight: $nwayo-thin-weight;
 $common-text-slimmer-weight:  $nwayo-extralight-weight;
@@ -79,36 +79,36 @@ $common-text-fatter-weight:   $nwayo-extrabold-weight;
 $common-text-fattest-weight:  $nwayo-black-weight;
 
 // stylelint-disable declaration-property-value-blacklist
-$common-text-nano-size:       rem-calc(10);
-$common-text-micro-size:      rem-calc(11);
-$common-text-tiny-size:       rem-calc(12);
-$common-text-small-size:      rem-calc(14);
-$common-text-base-size:       rem-calc($nwayo-basic-size);
-$common-text-medium-size:     rem-calc(18);
-$common-title-size:           rem-calc(24);
-$common-title-big-size:       rem-calc(30);
-$common-title-bigger-size:    rem-calc(36);
-$common-title-biggest-size:   rem-calc(42);
-$common-title-mega-size:      rem-calc(50);
-$common-title-ultra-size:     rem-calc(60);
+$common-text-nano-size:     rem-calc(10);
+$common-text-micro-size:    rem-calc(11);
+$common-text-tiny-size:     rem-calc(12);
+$common-text-small-size:    rem-calc(14);
+$common-text-base-size:     rem-calc(16);
+$common-text-medium-size:   rem-calc(18);
+$common-title-size:         rem-calc(24);
+$common-title-big-size:     rem-calc(30);
+$common-title-bigger-size:  rem-calc(36);
+$common-title-biggest-size: rem-calc(42);
+$common-title-mega-size:    rem-calc(50);
+$common-title-ultra-size:   rem-calc(60);
 // stylelint-enable declaration-property-value-blacklist
 
-$common-text-lineheight:      1.3;
-$common-title-lineheight:     1.15;
-$common-content-lineheight:   1.5;
+$common-text-lineheight:    1.3;
+$common-title-lineheight:   1.15;
+$common-content-lineheight: 1.5;
 
 
 
 //-- Buttons
-$common-button-bg-color:                        konstan-get('color.logo-fruit');
-$common-button-bg-hover-color:                  konstan-get('color.logo-fruit-shade');
-$common-button-bg-disabled-color:               konstan-get('color.platinum');
-$common-button-text-color:                      konstan-get('color.white');
-$common-button-text-hover-color:                konstan-get('color.white');
-$common-button-text-disabled-color:             konstan-get('color.ash');
-$common-button-border-color:                    konstan-get('color.logo-fruit');
-$common-button-border-hover-color:              konstan-get('color.logo-fruit-shade');
-$common-button-border-disabled-color:           konstan-get('color.platinum');
+$common-button-bg-color:              konstan-get('color.logo-fruit');
+$common-button-bg-hover-color:        konstan-get('color.logo-fruit-shade');
+$common-button-bg-disabled-color:     konstan-get('color.platinum');
+$common-button-text-color:            konstan-get('color.white');
+$common-button-text-hover-color:      konstan-get('color.white');
+$common-button-text-disabled-color:   konstan-get('color.ash');
+$common-button-border-color:          konstan-get('color.logo-fruit');
+$common-button-border-hover-color:    konstan-get('color.logo-fruit-shade');
+$common-button-border-disabled-color: konstan-get('color.platinum');
 
 $common-button-secondary-bg-color:              konstan-get('color.white');
 $common-button-secondary-bg-hover-color:        konstan-get('color.white');
@@ -120,15 +120,15 @@ $common-button-secondary-border-color:          konstan-get('color.logo-fruit');
 $common-button-secondary-border-hover-color:    konstan-get('color.logo-fruit-shade');
 $common-button-secondary-border-disabled-color: konstan-get('color.platinum');
 
-$common-button-cta-bg-color:                    konstan-get('color.logo-shell');
-$common-button-cta-bg-hover-color:              konstan-get('color.logo-shell-shade');
-$common-button-cta-bg-disabled-color:           lighten(desaturate(konstan-get('color.logo-shell-shade'), 30%), 30%);
-$common-button-cta-text-color:                  konstan-get('color.white');
-$common-button-cta-text-hover-color:            konstan-get('color.white');
-$common-button-cta-text-disabled-color:         konstan-get('color.platinum');
-$common-button-cta-border-color:                konstan-get('color.logo-shell');
-$common-button-cta-border-hover-color:          konstan-get('color.logo-shell-shade');
-$common-button-cta-border-disabled-color:       lighten(desaturate(konstan-get('color.logo-shell-shade'), 30%), 30%);
+$common-button-cta-bg-color:              konstan-get('color.logo-shell');
+$common-button-cta-bg-hover-color:        konstan-get('color.logo-shell-shade');
+$common-button-cta-bg-disabled-color:     lighten(desaturate(konstan-get('color.logo-shell-shade'), 30%), 30%);
+$common-button-cta-text-color:            konstan-get('color.white');
+$common-button-cta-text-hover-color:      konstan-get('color.white');
+$common-button-cta-text-disabled-color:   konstan-get('color.platinum');
+$common-button-cta-border-color:          konstan-get('color.logo-shell');
+$common-button-cta-border-hover-color:    konstan-get('color.logo-shell-shade');
+$common-button-cta-border-disabled-color: lighten(desaturate(konstan-get('color.logo-shell-shade'), 30%), 30%);
 
 
 
@@ -142,7 +142,7 @@ $common-button-cta-border-disabled-color:       lighten(desaturate(konstan-get('
 }
 
 @mixin common-error-image {
-	@include nwayo-scalable-icon-styles('error.svg',   'common', $color:$common-text-var2-color);
+	@include nwayo-scalable-icon-styles('error.svg', 'common', $color:$common-text-var2-color);
 }
 
 

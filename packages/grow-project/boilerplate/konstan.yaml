@@ -41,9 +41,9 @@ data:
     platinum:   '#e5e4e2'
 
     # Messages
-    success: '#4fb980'
-    warning: '#ffd061'
-    error:   '#d66161'
+    ocean-green:   '#4fb980'
+    golden-tainoi: '#ffd061'
+    chestnut-rose: '#d66161'
 
 
 
@@ -53,8 +53,8 @@ data:
 
   #-- Fonts
   font:
-    base: 'Open Sans'
-    alt:  'Merriweather'
+    open-sans:    'Open Sans'
+    merriweather: 'Merriweather'
 
 
   #-- Misc utils

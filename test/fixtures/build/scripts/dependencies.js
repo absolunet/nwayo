@@ -40,13 +40,13 @@ var konstan = {
 			"battleship": "#848482",
 			"ash": "#b2beb5",
 			"platinum": "#e5e4e2",
-			"success": "#4fb980",
-			"warning": "#ffd061",
-			"error": "#d66161"
+			"ocean-green": "#4fb980",
+			"golden-tainoi": "#ffd061",
+			"chestnut-rose": "#d66161"
 		},
 		"font": {
-			"base": "Open Sans",
-			"alt": "Merriweather"
+			"open-sans": "Open Sans",
+			"merriweather": "Merriweather"
 		},
 		"util": {
 			"emptyimage": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
