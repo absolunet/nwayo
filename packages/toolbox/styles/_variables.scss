@@ -26,8 +26,9 @@ $nwayo-social-colors: (
 
 
 // Font family
-$nwayo-sansserif-font: Helvetica, Arial, Verdana, sans-serif;  // stylelint-disable-line value-keyword-case
-$nwayo-serif-font:     'Times New Roman', Times, serif;        // stylelint-disable-line value-keyword-case
+$nwayo-sansserif-font: Helvetica, Arial, Verdana, sans-serif;                                         // stylelint-disable-line value-keyword-case
+$nwayo-serif-font:     'Times New Roman', Times, serif;                                               // stylelint-disable-line value-keyword-case
+$nwayo-monospace-font: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', Courier, monospace; // stylelint-disable-line value-keyword-case
 
 // Font weights
 $nwayo-thin-weight:       100;
