@@ -4,15 +4,16 @@
 'use strict';
 
 // const debug = require('gulp-debug');
+const autoprefixer = require('autoprefixer');
+const cssnano      = require('cssnano');
 const Fiber        = require('fibers');
 const gulp         = require('gulp');
-const autoprefixer = require('gulp-autoprefixer');
 const cache        = require('gulp-cached');
-const cssnano      = require('gulp-cssnano');
 const gulpif       = require('gulp-if');
 const imagemin     = require('gulp-imagemin');
 const insert       = require('gulp-insert');
 const jsonsass     = require('gulp-json-sass');
+const postcss      = require('gulp-postcss');
 const rename       = require('gulp-rename');
 const gulpsass     = require('gulp-sass');
 const sourcemaps   = require('gulp-sourcemaps');
@@ -152,6 +153,11 @@ module.exports = () => {
 				const destination   = `${bundle.output.build}/${paths.build.styles}`;
 				const source        = `${util.getGeneratedBanner(name)}${list.join('\n')}\n`;
 
+				const postCssPlugins = [autoprefixer({ overrideBrowserslist: bundle.styles.options.autoprefixer })];
+				if (toMinify) {
+					postCssPlugins.push(cssnano({ autoprefixer: false, discardUnused: false, mergeIdents: false, reduceIdents: false, zindex: false }));
+				}
+
 				/* eslint-disable function-paren-newline */
 				streams.push(
 					toolbox.vinylStream(filename, source)
@@ -169,9 +175,7 @@ module.exports = () => {
 								.on('error', gulpsass.logError)
 						)
 
-						.pipe(autoprefixer({ overrideBrowserslist: bundle.styles.options.autoprefixer }))
-
-						.pipe(gulpif(toMinify, cssnano({ autoprefixer: false, discardUnused: false, mergeIdents: false, reduceIdents: false, zindex: false })))
+						.pipe(postcss(postCssPlugins))
 
 						.pipe(gulpif(toSourcemaps, sourcemaps.write('maps', {
 							includeContent: false,

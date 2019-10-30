@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Community resources files
 
 ### Changed
+- Switch gulp-cssnano (DEPRECATED) to gulp-postcss
 - Maintenance updates
 
 
