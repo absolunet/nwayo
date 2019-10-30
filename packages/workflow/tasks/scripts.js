@@ -37,7 +37,9 @@ module.exports = () => {
 
 			.pipe(gulpif(env.isWindows, lec()))
 
-			.pipe(eslint())
+			.pipe(eslint({
+				reportUnusedDisableDirectives: true
+			}))
 
 			.pipe(eslint.results((files) => {
 				let hasErrors = false;
