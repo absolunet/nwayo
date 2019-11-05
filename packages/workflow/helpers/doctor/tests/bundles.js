@@ -73,7 +73,7 @@ const bundleDirectory = (bundle) => {
 	reports.add({
 		success:     differences.pass,
 		message:     `${Reporter.theme.title(bundle)}: Folder must contain only valid filenames`,
-		differences: differences
+		differences
 	});
 
 	reports.add(assert.exists(`${bundle}/${bundle}.${paths.extension.bundles}`, { root }));

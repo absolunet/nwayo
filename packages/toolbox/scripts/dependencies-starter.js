@@ -11,7 +11,7 @@
 			enumerable:   true,
 			writable:     false,
 			configurable: false,
-			value:        value
+			value
 		});
 	};
 
@@ -126,10 +126,10 @@
 	addProperty(global, konstan.project, readonlyObject({
 		bundle:  konstan.bundle,
 		konstan: konstan.konstan,
-		path:    path,
+		path,
 		tmpl:    {},
 		env:     {  // eslint-disable-line unicorn/prevent-abbreviations
-			culture:  culture,
+			culture,
 			lang:     culture.slice(0, 2),
 			country:  culture.slice(3, 2).toLowerCase(),
 			pageId:   $body.attr('id'),

@@ -35,7 +35,7 @@ class VendorsTests extends Tests {
 			reports.add({
 				success:     differences.pass,
 				message:     `${Reporter.theme.title(FILE)}: Must only contain certain attributes`,
-				differences: differences
+				differences
 			});
 
 			reports.add([
@@ -93,7 +93,7 @@ class VendorsTests extends Tests {
 							message: `${Reporter.theme.title(name)}:`,
 							outdated: {
 								current: wanted,
-								latest:  latest
+								latest
 							}
 						});
 					} else {

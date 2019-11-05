@@ -37,7 +37,7 @@ class Content extends React.Component {
 
 
 	componentDidUpdate() {
-		window.Prism.highlightAll();  // eslint-disable-line no-restricted-globals
+		window.Prism.highlightAll();
 
 		document.querySelectorAll('a[rel="external"]').forEach((link) => {
 			link.target = '_blank';  // eslint-disable-line no-param-reassign

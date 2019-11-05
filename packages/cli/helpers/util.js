@@ -10,6 +10,9 @@ const chalk = require('chalk');
 
 const argv = require('minimist')(process.argv.slice(2));
 
+const obnoxiousMessage = (update = {}) => {
+	return `Update available ${chalk.dim(update.current)} ${chalk.reset('→')} ${chalk.green(update.latest)}\nRun ${chalk.cyan('nwayo update')} to update`;
+};
 
 
 
@@ -124,11 +127,6 @@ class Util {
 		const boxen          = require('boxen');
 		const updateNotifier = require('update-notifier');
 
-		const message = (update = {}) => {
-			return `Update available ${chalk.dim(update.current)} ${chalk.reset('→')} ${chalk.green(update.latest)}\nRun ${chalk.cyan('nwayo update')} to update`;
-		};
-
-
 		const options = {
 			pkg:                 packageConfig,  // eslint-disable-line unicorn/prevent-abbreviations
 			updateCheckInterval: 1
@@ -138,7 +136,7 @@ class Util {
 			options.callback = (error, update) => {
 				if (!error) {
 					if (update.current !== update.latest) {
-						this.echo(boxen(message(update), {
+						this.echo(boxen(obnoxiousMessage(update), {
 							padding:     1,
 							margin:      1,
 							align:       'center',
@@ -155,7 +153,7 @@ class Util {
 		const notifier = updateNotifier(options);
 
 		if (!sync) {
-			notifier.notify({ message: message(notifier.update) });
+			notifier.notify({ message: obnoxiousMessage(notifier.update) });
 		}
 	}
 
@@ -163,7 +161,7 @@ class Util {
 	//-- Check for updates
 	checkUpdate(packageConfig, callback) {
 		const updateNotifier = require('update-notifier');
-		updateNotifier({ pkg: packageConfig, updateCheckInterval: 1, callback: callback });  // eslint-disable-line unicorn/prevent-abbreviations
+		updateNotifier({ pkg: packageConfig, updateCheckInterval: 1, callback });  // eslint-disable-line unicorn/prevent-abbreviations
 	}
 
 
