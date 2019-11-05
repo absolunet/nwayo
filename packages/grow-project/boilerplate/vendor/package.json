@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@absolunet/kafe": "3.2.8",
-    "@absolunet/nwayo-toolbox": "3.7.0",
+    "@absolunet/nwayo-toolbox": "3.7.1",
     "@absolunet/pinki": "3.0.0",
     "foundation-sites": "6.5.3",
     "imagesloaded": "4.1.4",
