@@ -1,6 +1,6 @@
 <h1>3.3.x → 3.4.x</h1>
 <p><a href="https://github.com/absolunet/nwayo/compare/3.3.0...3.4.0" class="external" rel="external">View the source differences on GitHub</a></p>
-<h2 id="key-changes"><a class="anchor" href="#key-changes" aria-hidden="true">⚭</a> Key changes</h2>
+<h2 id="key-changes"><a class="anchor" href="#key-changes">⚭</a> Key changes</h2>
 <ul>
 <li>Replaced SCSS-Lint with <a href="https://stylelint.io/" class="external" rel="external">stylelint</a></li>
 <li>Removed <code>nwayo</code> component in favor of <code>nwayo-toolbox</code> Bower package</li>
@@ -9,7 +9,7 @@
 <li>Changed default breakpoints from <code>640, 1024, 1440, 1920</code> to <code>600, 900, 1200, 1500</code> (<a href="https://medium.freecodecamp.org/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862" class="external" rel="external">inspiration</a>)</li>
 <li>Maintenance updates to dependencies and linters</li>
 </ul>
-<h3 id="new-base-convention-for-files-under-a-component"><a class="anchor" href="#new-base-convention-for-files-under-a-component" aria-hidden="true">⚭</a> New base convention for files under a component</h3>
+<h3 id="new-base-convention-for-files-under-a-component"><a class="anchor" href="#new-base-convention-for-files-under-a-component">⚭</a> New base convention for files under a component</h3>
 <p>Under <code>scripts</code></p>
 <pre><code class="language-sh">components/foo/scripts/
   ↳ vendor/              # Files not to be linted
@@ -37,9 +37,9 @@
   ↳ config.scss          # Config file containing only @import to config/ subfiles
   ↳ foo.scss             # Main file containing only @import to subfiles (even if for one line of code)
 </code></pre>
-<h2 id="what-to-do"><a class="anchor" href="#what-to-do" aria-hidden="true">⚭</a> What to do</h2>
+<h2 id="what-to-do"><a class="anchor" href="#what-to-do">⚭</a> What to do</h2>
 <p>Update version in <code>bower.json</code> and <code>package.json</code> (duh...)</p>
-<h3 id="base-config-files"><a class="anchor" href="#base-config-files" aria-hidden="true">⚭</a> Base config files</h3>
+<h3 id="base-config-files"><a class="anchor" href="#base-config-files">⚭</a> Base config files</h3>
 <p>Copy these files from <a href="https://github.com/absolunet/nwayo/tree/3.4.0/boilerplate" class="external" rel="external"><code>boilerplate</code></a></p>
 <ul>
 <li><a href="https://github.com/absolunet/nwayo/tree/3.4.0/boilerplate/.editorconfig" class="external" rel="external"><code>.editorconfig</code></a></li>
@@ -51,7 +51,7 @@
 <ul>
 <li><code>.scss-lint.yml</code></li>
 </ul>
-<h3 id="konstan.yaml"><a class="anchor" href="#konstan.yaml" aria-hidden="true">⚭</a> <code>konstan.yaml</code></h3>
+<h3 id="konstan.yaml"><a class="anchor" href="#konstan.yaml">⚭</a> <code>konstan.yaml</code></h3>
 <ul>
 <li>Move variables under <code>bundle</code> to under <code>color</code></li>
 <li>Rename and rematch generated <code>$konstan-current-</code> to <code>$bundle-</code> in <code>components/.../styles/config/_design.scss</code></li>
@@ -61,7 +61,7 @@
 <li><code>components/nwayo/scripts/collection-starter</code> → <code>bower_components/nwayo-toolbox/toolbox/scripts/collection-starter</code></li>
 <li>Paths you changed to follow the new convention</li>
 </ul>
-<h3 id="bundles"><a class="anchor" href="#bundles" aria-hidden="true">⚭</a> Bundles</h3>
+<h3 id="bundles"><a class="anchor" href="#bundles">⚭</a> Bundles</h3>
 <ul>
 <li>Add <a href="https://github.com/absolunet/nwayo/tree/3.4.0/boilerplate/bundles/site/_print.yaml" class="external" rel="external"><code>site/_print.yaml</code></a></li>
 <li>Replace <a href="https://github.com/absolunet/nwayo/blob/3.4.0/boilerplate/bundles/site/_dependencies.yaml" class="external" rel="external"><code>_dependencies.yaml</code></a></li>
@@ -73,19 +73,19 @@
 <li><code>components/nwayo/scripts/collection-starter</code> → <code>bower_components/nwayo-toolbox/toolbox/scripts/collection-starter</code></li>
 <li>Paths you changed to follow the new convention</li>
 </ul>
-<h3 id="components"><a class="anchor" href="#components" aria-hidden="true">⚭</a> Components</h3>
+<h3 id="components"><a class="anchor" href="#components">⚭</a> Components</h3>
 <ul>
 <li>Remove <code>nwayo</code> component</li>
 <li>Add <a href="https://github.com/absolunet/nwayo/tree/3.4.0/boilerplate/components/common/scripts/nwayo-config.js" class="external" rel="external"><code>components/common/scripts/nwayo-config.js</code></a> and change scope to match your old <code>/components/nwayo/scripts/dependencies-starter.js</code></li>
 <li>Rename <code>vendor-foundation</code> → <code>foundation</code> and replicate the structure of the new <a href="https://github.com/absolunet/nwayo/tree/3.4.0/boilerplate/components/foundation" class="external" rel="external"><code>components/foundation</code></a></li>
 </ul>
-<h3 id="scripts"><a class="anchor" href="#scripts" aria-hidden="true">⚭</a> Scripts</h3>
+<h3 id="scripts"><a class="anchor" href="#scripts">⚭</a> Scripts</h3>
 <ul>
 <li>Replace <code>.done()</code> → <code>.then()</code></li>
 <li>Replace <code>components/common/scripts/lazyload</code> → <code>bower_components/nwayo-toolbox/toolbox/scripts/helpers/lazyload</code></li>
 <li>Replace <code>components/nwayo/scripts/wrapper-[...]</code> → <code>bower_components/nwayo-toolbox/toolbox/scripts/wrapper/[...]</code></li>
 </ul>
-<h3 id="styles"><a class="anchor" href="#styles" aria-hidden="true">⚭</a> Styles</h3>
+<h3 id="styles"><a class="anchor" href="#styles">⚭</a> Styles</h3>
 <p>Correct as many new <code>stylelint</code> errors as possible and ignore the ones that are too complex of time-consuming</p>
 <ul>
 <li>In <code>.stylelintrc.yaml</code> under <code>rules:</code> add rule with <code>null</code> value to deactivate</li>

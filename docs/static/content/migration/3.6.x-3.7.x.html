@@ -1,32 +1,32 @@
 <h1>3.6.x → 3.7.x</h1>
 <p><a href="https://github.com/absolunet/nwayo/compare/3.6.0...3.7.0" class="external" rel="external">View the source differences on GitHub</a></p>
-<h2 id="key-changes"><a class="anchor" href="#key-changes" aria-hidden="true">⚭</a> Key changes</h2>
+<h2 id="key-changes"><a class="anchor" href="#key-changes">⚭</a> Key changes</h2>
 <ul>
 <li>Switch from Bower to npm</li>
 <li>Maintenance updates to dependencies and linters</li>
 </ul>
-<h2 id="what-to-do"><a class="anchor" href="#what-to-do" aria-hidden="true">⚭</a> What to do</h2>
+<h2 id="what-to-do"><a class="anchor" href="#what-to-do">⚭</a> What to do</h2>
 <ul>
 <li>Update version <code>package.json</code> (duh...)</li>
 <li>Update CLI via <code>nwayo update</code></li>
 </ul>
-<h2 id="small-adjustment"><a class="anchor" href="#small-adjustment" aria-hidden="true">⚭</a> Small adjustment</h2>
+<h2 id="small-adjustment"><a class="anchor" href="#small-adjustment">⚭</a> Small adjustment</h2>
 <p>In bundle files, add a <code>not dead</code> entry below the <code>&gt; .25%</code> for to <code>babel</code> and <code>autoprefixer</code> entries.</p>
 <p>Example:</p>
 <pre><code class="language-yaml">babel:              #  https://browserl.ist/?q=%3E+.25%25%2C+not+dead
   - '&gt; .25%'
   - 'not dead'
 </code></pre>
-<h2 id="npm-addition"><a class="anchor" href="#npm-addition" aria-hidden="true">⚭</a> npm addition</h2>
+<h2 id="npm-addition"><a class="anchor" href="#npm-addition">⚭</a> npm addition</h2>
 <ul>
 <li>Create a <code>vendor</code> directory in your nwayo root folder</li>
 <li>Copy <a href="https://raw.githubusercontent.com/absolunet/nwayo/3.7.0/packages/grow-project/boilerplate/vendor/package.json" class="external" rel="external">this file</a> into it.</li>
 </ul>
-<h2 id="migrating-packages-from-bower-to-npm"><a class="anchor" href="#migrating-packages-from-bower-to-npm" aria-hidden="true">⚭</a> Migrating packages from bower to npm</h2>
-<h3 id="package.json"><a class="anchor" href="#package.json" aria-hidden="true">⚭</a> package.json</h3>
+<h2 id="migrating-packages-from-bower-to-npm"><a class="anchor" href="#migrating-packages-from-bower-to-npm">⚭</a> Migrating packages from bower to npm</h2>
+<h3 id="package.json"><a class="anchor" href="#package.json">⚭</a> package.json</h3>
 <p>Open your old <code>bower.json</code> and change your new <code>vendor/package.json</code> to transfer all packages.</p>
 <p>Here's a conversion guide for packages that are used or recommended by nwayo.</p>
-<h4 id="core-dependencies"><a class="anchor" href="#core-dependencies" aria-hidden="true">⚭</a> core dependencies</h4>
+<h4 id="core-dependencies"><a class="anchor" href="#core-dependencies">⚭</a> core dependencies</h4>
 <table>
 <thead>
 <tr>
@@ -83,7 +83,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="recommended-dependencies"><a class="anchor" href="#recommended-dependencies" aria-hidden="true">⚭</a> recommended dependencies</h4>
+<h4 id="recommended-dependencies"><a class="anchor" href="#recommended-dependencies">⚭</a> recommended dependencies</h4>
 <table>
 <thead>
 <tr>
@@ -257,7 +257,7 @@
 </table>
 <p>If your package isn't here try to find it on <a href="https://www.npmjs.com/" class="external" rel="external">npm</a>.</p>
 <p>If there's is a version problem that you can't fix or that your package isn't on npm, there's a last resort solution to copy the bower_components sources into a nwayo component and reference this code instead.</p>
-<h3 id="inclusion-replacements"><a class="anchor" href="#inclusion-replacements" aria-hidden="true">⚭</a> Inclusion replacements</h3>
+<h3 id="inclusion-replacements"><a class="anchor" href="#inclusion-replacements">⚭</a> Inclusion replacements</h3>
 <ul>
 <li>First thing first, run a <code>nwayo install vendors</code> to fetch all packages</li>
 <li>In your bundles and js files replace all references to <code>bower_components</code> for <code>vendor/node_modules</code> (this should do the trick for the majority of the inclusions)</li>
@@ -266,7 +266,7 @@
 <li>Run a <code>nwayo rebuild</code> to assure that everything works well</li>
 <li>You can run a <code>nwayo doctor</code> to assure that you have the latest versions of the packages</li>
 </ul>
-<h2 id="bower-removal"><a class="anchor" href="#bower-removal" aria-hidden="true">⚭</a> Bower removal</h2>
+<h2 id="bower-removal"><a class="anchor" href="#bower-removal">⚭</a> Bower removal</h2>
 <ul>
 <li>Remove references to bower in theses files:
 <ul>

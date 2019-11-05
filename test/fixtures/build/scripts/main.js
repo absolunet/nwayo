@@ -15,7 +15,7 @@
 	var require = undefined;
 	
 	
-	/* eslint-disable strict, no-unused-vars, no-redeclare, prefer-destructuring */
+	/* eslint-disable no-unused-vars, no-redeclare, prefer-destructuring */
 	var PROJECT = global.nwayo.project;
 	var app = global[PROJECT];
 	var konstan = app.konstan;

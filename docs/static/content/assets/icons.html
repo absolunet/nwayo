@@ -2,14 +2,14 @@
 <blockquote>
 <p>Icons assets are image files that will be used to generated all imagery needed for favicon, touch icon, generic share images, etc.</p>
 </blockquote>
-<h2 id="paths"><a class="anchor" href="#paths" aria-hidden="true">⚭</a> Paths</h2>
+<h2 id="paths"><a class="anchor" href="#paths">⚭</a> Paths</h2>
 <ul>
 <li>The source files are located under <code>[NWAYO_ROOT]/components/[NAME]/assets/icons/</code>.</li>
 <li>The built files are located under <code>[BUILD_ROOT]/icons/[NAME]/</code>.</li>
 </ul>
-<h2 id="processing"><a class="anchor" href="#processing" aria-hidden="true">⚭</a> Processing</h2>
+<h2 id="processing"><a class="anchor" href="#processing">⚭</a> Processing</h2>
 <p>Files are optimized losslessly via <a href="http://optipng.sourceforge.net" class="external" rel="external">optipng</a>.</p>
-<h3 id="favicon-(ie-%2F-windows-%2F-safari)"><a class="anchor" href="#favicon-(ie-%2F-windows-%2F-safari)" aria-hidden="true">⚭</a> Favicon (IE / Windows / Safari)</h3>
+<h3 id="favicon-(ie-%2F-windows-%2F-safari)"><a class="anchor" href="#favicon-(ie-%2F-windows-%2F-safari)">⚭</a> Favicon (IE / Windows / Safari)</h3>
 <p>The source file must be a 64×64 PNG file named <code>favicon.png</code> with a transparent background.</p>
 <p>It will produce a file named <code>favicon.ico</code> containing a:</p>
 <ul>
@@ -19,7 +19,7 @@
 <li><strong>48×48</strong> version for Windows site icons</li>
 <li><strong>64×64</strong> version for Windows site icons, Safari Reading List sidebar in HiDPI/Retina</li>
 </ul>
-<h3 id="touch-(ios)"><a class="anchor" href="#touch-(ios)" aria-hidden="true">⚭</a> Touch (iOS)</h3>
+<h3 id="touch-(ios)"><a class="anchor" href="#touch-(ios)">⚭</a> Touch (iOS)</h3>
 <p>The source file must be a 512×512 PNG file named <code>touch.png</code> with a full background.</p>
 <p>It will produce 10 files:</p>
 <ul>
@@ -34,7 +34,7 @@
 <li><code>touch-180.png</code> a <strong>180×180</strong> version for iPhone 6 Plus with @3× display</li>
 <li><code>touch-512.png</code> a <strong>512×512</strong> version for a general share icon</li>
 </ul>
-<h3 id="icon-(windows%2C-google-tv%2C-android%2C-coast-and-all-modern-browsers)"><a class="anchor" href="#icon-(windows%2C-google-tv%2C-android%2C-coast-and-all-modern-browsers)" aria-hidden="true">⚭</a> Icon (Windows, Google TV, Android, Coast and all Modern browsers)</h3>
+<h3 id="icon-(windows%2C-google-tv%2C-android%2C-coast-and-all-modern-browsers)"><a class="anchor" href="#icon-(windows%2C-google-tv%2C-android%2C-coast-and-all-modern-browsers)">⚭</a> Icon (Windows, Google TV, Android, Coast and all Modern browsers)</h3>
 <p>The source file must be a 256×256 PNG file named <code>icon.png</code> with a transparent background.</p>
 <p>It will produce 6 files:</p>
 <ul>
@@ -45,7 +45,7 @@
 <li><code>ìcon-196.png</code> a <strong>196×196</strong> version for Chrome for Android home screen icon</li>
 <li><code>ìcon-228.png</code> a <strong>228×228</strong> version for Coast for iOS</li>
 </ul>
-<h3 id="tile-(windows-metro)"><a class="anchor" href="#tile-(windows-metro)" aria-hidden="true">⚭</a> Tile (Windows metro)</h3>
+<h3 id="tile-(windows-metro)"><a class="anchor" href="#tile-(windows-metro)">⚭</a> Tile (Windows metro)</h3>
 <p>The source file must be a 558×558 PNG file named <code>tile.png</code> with a transparent background and a white image.</p>
 <p>It will produce 4 files:</p>
 <ul>
@@ -54,15 +54,15 @@
 <li><code>tile-large.png</code>  a <strong>558×558</strong> version (Officially: 310×310 but this is the recommended size)</li>
 <li><code>tile-wide.png</code>   a <strong>558×270</strong> version (Officially: 310×150 but this is the recommended size)</li>
 </ul>
-<h3 id="large-(default-generic-sharing)"><a class="anchor" href="#large-(default-generic-sharing)" aria-hidden="true">⚭</a> Large (Default generic sharing)</h3>
+<h3 id="large-(default-generic-sharing)"><a class="anchor" href="#large-(default-generic-sharing)">⚭</a> Large (Default generic sharing)</h3>
 <p>The source file must be a 1200×630 PNG file named <code>large.png</code> with a full background.</p>
 <p>It will produce a optimized file named <code>large.png</code>.</p>
-<h2 id="usage"><a class="anchor" href="#usage" aria-hidden="true">⚭</a> Usage</h2>
+<h2 id="usage"><a class="anchor" href="#usage">⚭</a> Usage</h2>
 <p>In HTML, use the example in the <code>SAMPLE-HTML/index.html</code> to add these files.</p>
 <p>In scripts, the path to these files can be access via <code>app.path.icons</code>.</p>
-<h2 id="bundles"><a class="anchor" href="#bundles" aria-hidden="true">⚭</a> Bundles</h2>
+<h2 id="bundles"><a class="anchor" href="#bundles">⚭</a> Bundles</h2>
 <p>Images are selected for build via the <code>assets</code> property of the bundle file.</p>
-<h2 id="tasks"><a class="anchor" href="#tasks" aria-hidden="true">⚭</a> Tasks</h2>
+<h2 id="tasks"><a class="anchor" href="#tasks">⚭</a> Tasks</h2>
 <p>These tasks interact with the images:</p>
 <ul>
 <li>icons</li>
