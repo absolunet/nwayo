@@ -98,7 +98,7 @@ module.exports = () => {
 					;
 				})
 			);
-			/* eslint-disable function-paren-newline */
+			/* eslint-enable function-paren-newline */
 		}
 
 		return toolbox.mergeStreams(streams);
@@ -143,7 +143,7 @@ module.exports = () => {
 					;
 				})
 			);
-			/* eslint-disable function-paren-newline */
+			/* eslint-enable function-paren-newline */
 		}
 
 		return toolbox.mergeStreams(streams);

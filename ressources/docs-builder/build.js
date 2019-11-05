@@ -48,13 +48,13 @@ const processNav = (tree, path = '') => {
 			if (typeof content === 'string') {
 				if (page !== 'readme.md') {
 					data[name] = {
-						source: url.substring(1),
+						source: url.slice(1),
 						title:  parseTitle(content)
 					};
 				}
 			} else {
 				data[name] = {
-					source: `${url.substring(1)}/readme`,
+					source: `${url.slice(1)}/readme`,
 					title: parseTitle(content['readme.md'])
 				};
 

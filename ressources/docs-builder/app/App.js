@@ -13,7 +13,7 @@ import Nav     from './components/Nav';
 import Content from './components/Content';
 import Footer  from './components/Footer';
 
-/* global process, module */
+
 class App extends React.PureComponent {
 
 	render() {

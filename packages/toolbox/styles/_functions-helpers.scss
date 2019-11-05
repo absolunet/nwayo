@@ -8,7 +8,7 @@
 	$separator: '.';
 	$index:     str-index($path, $separator);
 
-	@while $index != null {
+	@while $index {
 		$item:  str-slice($path, 1, $index - 1);
 		$keys:  append($keys, $item);
 		$path:  str-slice($path, $index + 1);
@@ -34,7 +34,7 @@
 //-- Deep map: Get value
 @function nwayo-map-deep-get($map, $path) {
 	@each $key in nwayo-map-deep-split-path($path) {
-		@if $map != null {
+		@if $map {
 			@if map-has-key($map, $key) {
 				$map: map-get($map, $key);
 			} @else {
@@ -81,7 +81,7 @@
 //       $b: nwayo-list-contains($options, b);
 //     }
 @function nwayo-list-contains($list, $var) {
-	@if (index($list, $var)) {
+	@if index($list, $var) {
 		@return true;
 	}
 	@return false;

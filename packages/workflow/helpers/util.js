@@ -37,19 +37,16 @@ const escapeForRegex = (string) => {
 //-- Compare value with current cache if different
 const cache = (key, value, process) => {
 	const digest = crypto.createHash('sha1').update(value).digest('hex');
-	let newValue;
+	let finalValue;
 
 	if (!__.cache[key] || (__.cache[key] && __.cache[key].digest !== digest)) {
-		newValue = process(value);
-		__.cache[key] = {
-			digest:  digest,
-			content: newValue
-		};
+		finalValue = process(value);
+		__.cache[key] = { digest, content: finalValue };
 	} else {
-		newValue = __.cache[key].content;
+		finalValue = __.cache[key].content;
 	}
 
-	return newValue;
+	return finalValue;
 };
 
 
@@ -61,7 +58,7 @@ class Util {
 
 	//-- Constants
 	parseKonstan(type, bundle, { url: rootUrl, build: buildRoot }) {
-		const parseItem = (item) => { return `data['${item.split('.').join(`']['`)}']`; };
+		const parseItem = (item) => { return `data['${item.split('.').join(`']['`)}']`; }; // eslint-disable-line unicorn/consistent-function-scoping
 		const options = cloneDeep(env.konstan.options[type]) || {};
 		const urls    = cloneDeep(paths.build);
 		const data    = cloneDeep(env.konstan.data);
@@ -152,7 +149,7 @@ class Util {
 
 		const { fullPath, rawPath } = options;
 		let { content } = options;
-		if (fullPath.substr(-3) === '.js') {
+		if (fullPath.slice(-3) === '.js') {
 			if (!allowed.test(rawPath)) {
 				const targetsDigest = crypto.createHash('sha1').update(JSON.stringify(targets)).digest('hex');
 				content = cache(`babel:${fullPath}:${targetsDigest}`, content, (data) => {
@@ -281,7 +278,6 @@ class Util {
 
 		if (semver.gt(requiredVersion, installedVersion)) {
 
-			/* eslint-disable function-paren-newline */
 			terminal.echo(boxen(
 				`Workflow update available ${chalk.dim(installedVersion)} ${chalk.reset('→')} ${chalk.green(requiredVersion)}
 
@@ -296,7 +292,6 @@ Run ${chalk.cyan('nwayo install workflow')} to update`,
 					borderColor: 'yellow'
 				}
 			));
-			/* eslint-enable function-paren-newline */
 
 			terminal.exit();
 		}
@@ -395,20 +390,24 @@ Run ${chalk.cyan('nwayo install workflow')} to update`,
 		const installScopes = ['workflow', 'vendors'];
 
 		/* eslint-disable quote-props */
-		cli.setUsageTasks(Object.assign({}, {
+		cli.setUsageTasks(Object.assign(
+			{},
+			{
+				'run':     [`run ${cli.placeholder('<task>')} ${cli.optionalPlaceholder('<bundle>')}`, `Run a task ex:[${tasks.join('|')}]`, [tasks]],
+				'rebuild': [`rebuild ${cli.optionalPlaceholder('<bundle>')} ${cli.optional('--prod')}`, `Rebuild the entire project from scratch`],
+				'watch':   [`watch ${cli.optionalPlaceholder('<bundle>')}`, `Listens for changes on files and run appropriate tasks`],
+				'install': [`install ${cli.optionalPlaceholder('<scope>')} ${cli.optional('--force')}`, `Install dependencies ex:[${installScopes.join('|')}]`, [installScopes]],
+				'doctor':  [`doctor ${cli.optional('--verbose')}`, `Analyze project for conformity`, [tasks]]
 
-			// Project
-			'run':     [`run ${cli.placeholder('<task>')} ${cli.optionalPlaceholder('<bundle>')}`, `Run a task ex:[${tasks.join('|')}]`, [tasks]],
-			'rebuild': [`rebuild ${cli.optionalPlaceholder('<bundle>')} ${cli.optional('--prod')}`, `Rebuild the entire project from scratch`],
-			'watch':   [`watch ${cli.optionalPlaceholder('<bundle>')}`, `Listens for changes on files and run appropriate tasks`],
-			'install': [`install ${cli.optionalPlaceholder('<scope>')} ${cli.optional('--force')}`, `Install dependencies ex:[${installScopes.join('|')}]`, [installScopes]],
-			'doctor':  [`doctor ${cli.optional('--verbose')}`, `Analyze project for conformity`, [tasks]]
+			},
+			globalUsage.tasks
+		));
 
-		}, globalUsage.tasks));
-
-		cli.setFullUsage(Object.assign({}, {
-			'Project': ['run', 'rebuild', 'watch', 'install', 'doctor']
-		}, globalUsage.full), { showBin: false });
+		cli.setFullUsage(Object.assign(
+			{},
+			{ 'Project': ['run', 'rebuild', 'watch', 'install', 'doctor'] },
+			globalUsage.full
+		), { showBin: false });
 		/* eslint-enable quote-props */
 	}
 

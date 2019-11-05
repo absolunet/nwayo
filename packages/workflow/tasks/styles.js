@@ -126,75 +126,81 @@ module.exports = () => {
 	//-- Compile
 	gulpsass.compiler = sass;
 
-	flow.createTask('styles-compile', ({ taskName }) => {
-		const sassFunctions = require(paths.config.sassFunctions);  // eslint-disable-line global-require
+	flow.createTask(
+		'styles-compile',
 
-		const streams = [];
+		({ taskName }) => {
+			const sassFunctions = require(paths.config.sassFunctions);  // eslint-disable-line global-require
 
-		for (const name of Object.keys(env.bundles)) {
-			const bundle = env.bundles[name];
+			const streams = [];
 
-			// For each collection
-			for (const collection of Object.keys(bundle.styles.collections)) {
-				const list = cloneDeep(bundle.styles.collections[collection]);
+			for (const name of Object.keys(env.bundles)) {
+				const bundle = env.bundles[name];
 
-				// Add konstan
-				list.unshift(`${paths.directory.cacheStyles}/${name}/${paths.filename.konstan}`);
+				// For each collection
+				for (const collection of Object.keys(bundle.styles.collections)) {
+					const list = cloneDeep(bundle.styles.collections[collection]);
 
-				// Require each file
-				list.forEach((file, i) => {
-					list[i] = `@import '${file}';`;
-				});
+					// Add konstan
+					list.unshift(`${paths.directory.cacheStyles}/${name}/${paths.filename.konstan}`);
 
-				const toMinify      = (bundle.styles.options.minify && !env.watching) || env.production;
-				const toSourcemaps  = bundle.styles.options.sourcemaps && !env.production;
-				const filename      = `${collection}.${paths.extension.build}`;
-				const filenameBuild = `${collection}.${paths.extension.stylesBuild}`;
-				const destination   = `${bundle.output.build}/${paths.build.styles}`;
-				const source        = `${util.getGeneratedBanner(name)}${list.join('\n')}\n`;
+					// Require each file
+					list.forEach((file, i) => {
+						list[i] = `@import '${file}';`;
+					});
 
-				const postCssPlugins = [autoprefixer({ overrideBrowserslist: bundle.styles.options.autoprefixer })];
-				if (toMinify) {
-					postCssPlugins.push(cssnano({ autoprefixer: false, discardUnused: false, mergeIdents: false, reduceIdents: false, zindex: false }));
-				}
+					const toMinify      = (bundle.styles.options.minify && !env.watching) || env.production;
+					const toSourcemaps  = bundle.styles.options.sourcemaps && !env.production;
+					const filename      = `${collection}.${paths.extension.build}`;
+					const filenameBuild = `${collection}.${paths.extension.stylesBuild}`;
+					const destination   = `${bundle.output.build}/${paths.build.styles}`;
+					const source        = `${util.getGeneratedBanner(name)}${list.join('\n')}\n`;
 
-				/* eslint-disable function-paren-newline */
-				streams.push(
-					toolbox.vinylStream(filename, source)
-						.pipe(toolbox.plumber())
+					const postCssPlugins = [autoprefixer({ overrideBrowserslist: bundle.styles.options.autoprefixer })];
+					if (toMinify) {
+						postCssPlugins.push(cssnano({ autoprefixer: false, discardUnused: false, mergeIdents: false, reduceIdents: false, zindex: false }));
+					}
 
-						.pipe(gulpif(toSourcemaps, sourcemaps.init()))
+					/* eslint-disable function-paren-newline */
+					streams.push(
+						toolbox.vinylStream(filename, source)
+							.pipe(toolbox.plumber())
 
-						.pipe(
-							gulpsass({
-								fiber:        Fiber,
-								includePaths: [paths.directory.root],
-								functions:    sassFunctions
-								// sourcemaps  (bundle.styles.options.sourcemaps)
+							.pipe(gulpif(toSourcemaps, sourcemaps.init()))
+
+							.pipe(
+								gulpsass({
+									fiber:        Fiber,
+									includePaths: [paths.directory.root],
+									functions:    sassFunctions
+									// sourcemaps  (bundle.styles.options.sourcemaps)
+								})
+									.on('error', gulpsass.logError)
+							)
+
+							.pipe(postcss(postCssPlugins))
+
+							.pipe(gulpif(toSourcemaps, sourcemaps.write('maps', {
+								includeContent: false,
+								sourceRoot:     'source'
+							})))
+
+							.pipe(gulp.dest(`${paths.directory.root}/${destination}`))
+
+							.on('finish', () => {
+								toolbox.log(taskName, `'${destination}/${filenameBuild}' written`, toolbox.filesize(`${paths.directory.root}/${destination}/${filenameBuild}`));
 							})
-								.on('error', gulpsass.logError)
-						)
-
-						.pipe(postcss(postCssPlugins))
-
-						.pipe(gulpif(toSourcemaps, sourcemaps.write('maps', {
-							includeContent: false,
-							sourceRoot:     'source'
-						})))
-
-						.pipe(gulp.dest(`${paths.directory.root}/${destination}`))
-
-						.on('finish', () => {
-							toolbox.log(taskName, `'${destination}/${filenameBuild}' written`, toolbox.filesize(`${paths.directory.root}/${destination}/${filenameBuild}`));
-						})
-				);
-				/* eslint-enable function-paren-newline */
+					);
+					/* eslint-enable function-paren-newline */
+				}
 			}
-		}
 
-		return toolbox.mergeStreams(streams);
+			return toolbox.mergeStreams(streams);
 
-	}, gulp.parallel('styles-lint', 'styles-constants'));
+		},
+
+		gulp.parallel('styles-lint', 'styles-constants')
+	);
 
 
 
@@ -209,12 +215,12 @@ module.exports = () => {
 			const cachePath = `${paths.directory.cacheStyles}/${name}`;
 
 			if (env.isScopeSubbundle) {
-				return Object.keys(bundle.styles.collections).map((collection) => {
+				return Object.keys(bundle.styles.collections).flatMap((collection) => {
 					return [
 						`${buildPath}/${collection}.${paths.extension.stylesBuild}`,
 						`${cachePath}/${collection}.${paths.extension.stylesBuild}`
 					];
-				}).flat();
+				});
 			}
 
 			return [buildPath, cachePath];

@@ -18,7 +18,7 @@
 	$count: length($values);
 
 	// If no base is defined, defer to the global font size
-	@if $base == null {
+	@if not $base {
 		$base: $nwayo-basic-size * 1px;  // stylelint-disable-line unit-whitelist
 	}
 
