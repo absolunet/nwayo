@@ -4,7 +4,7 @@
 
  (function(global, undefined) { 
 	/**
-	 * core-js 3.3.5
+	 * core-js 3.3.6
 	 * https://github.com/zloirock/core-js
 	 * License: http://rock.mit-license.org
 	 * © 2019 Denis Pushkarev (zloirock.ru)
@@ -1017,7 +1017,7 @@
 	(module.exports = function (key, value) {
 	  return store[key] || (store[key] = value !== undefined ? value : {});
 	})('versions', []).push({
-	  version: '3.3.5',
+	  version: '3.3.6',
 	  mode: IS_PURE ? 'pure' : 'global',
 	  copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 	});
@@ -2103,8 +2103,11 @@
 	  match = v8.split('.');
 	  version = match[0] + match[1];
 	} else if (userAgent) {
-	  match = userAgent.match(/Chrome\/(\d+)/);
-	  if (match) version = match[1];
+	  match = userAgent.match(/Edge\/(\d+)/);
+	  if (!match || match[1] >= 74) {
+	    match = userAgent.match(/Chrome\/(\d+)/);
+	    if (match) version = match[1];
+	  }
 	}
 	
 	module.exports = version && +version;
@@ -9202,6 +9205,7 @@
 	var definePropertyModule = __webpack_require__(19);
 	var getOwnPropertyDescriptorModule = __webpack_require__(4);
 	var InternalStateModule = __webpack_require__(27);
+	var inheritIfRequired = __webpack_require__(157);
 	
 	var getInternalState = InternalStateModule.get;
 	var setInternalState = InternalStateModule.set;
@@ -9358,14 +9362,16 @@
 	    } else if (TYPED_ARRAYS_CONSTRUCTORS_REQUIRES_WRAPPERS) {
 	      TypedArrayConstructor = wrapper(function (dummy, data, typedArrayOffset, $length) {
 	        anInstance(dummy, TypedArrayConstructor, CONSTRUCTOR_NAME);
-	        if (!isObject(data)) return new NativeTypedArrayConstructor(toIndex(data));
-	        if (isArrayBuffer(data)) return $length !== undefined
-	          ? new NativeTypedArrayConstructor(data, toOffset(typedArrayOffset, BYTES), $length)
-	          : typedArrayOffset !== undefined
-	            ? new NativeTypedArrayConstructor(data, toOffset(typedArrayOffset, BYTES))
-	            : new NativeTypedArrayConstructor(data);
-	        if (isTypedArray(data)) return fromList(TypedArrayConstructor, data);
-	        return typedArrayFrom.call(TypedArrayConstructor, data);
+	        return inheritIfRequired(function () {
+	          if (!isObject(data)) return new NativeTypedArrayConstructor(toIndex(data));
+	          if (isArrayBuffer(data)) return $length !== undefined
+	            ? new NativeTypedArrayConstructor(data, toOffset(typedArrayOffset, BYTES), $length)
+	            : typedArrayOffset !== undefined
+	              ? new NativeTypedArrayConstructor(data, toOffset(typedArrayOffset, BYTES))
+	              : new NativeTypedArrayConstructor(data);
+	          if (isTypedArray(data)) return fromList(TypedArrayConstructor, data);
+	          return typedArrayFrom.call(TypedArrayConstructor, data);
+	        }(), dummy, TypedArrayConstructor);
 	      });
 	
 	      if (setPrototypeOf) setPrototypeOf(TypedArrayConstructor, TypedArray);
@@ -12100,7 +12106,7 @@
 	        if (isObject(init)) {
 	          body = init.body;
 	          if (classof(body) === URL_SEARCH_PARAMS) {
-	            headers = new Headers(init.headers);
+	            headers = init.headers ? new Headers(init.headers) : new Headers();
 	            if (!headers.has('content-type')) {
 	              headers.set('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
 	            }
