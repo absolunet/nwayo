@@ -3,7 +3,7 @@
 <blockquote>
 <p>If you are migrating from 3.6.0-3.6.3 → the latest 3.6.x, please follow the <strong>Polyfill</strong> section at the end</p>
 </blockquote>
-<h2 id="key-changes"><a class="anchor" href="#key-changes" aria-hidden="true">⚭</a> Key changes</h2>
+<h2 id="key-changes"><a class="anchor" href="#key-changes">⚭</a> Key changes</h2>
 <ul>
 <li>Switch from RubySass to DartSass (Node.js flavor)</li>
 <li>Added <a href="../extensions">extensions</a> connector</li>
@@ -18,17 +18,17 @@
 <li>Workflow rewritten in OOP structure</li>
 <li>Maintenance updates to dependencies and linters</li>
 </ul>
-<h2 id="what-to-do"><a class="anchor" href="#what-to-do" aria-hidden="true">⚭</a> What to do</h2>
+<h2 id="what-to-do"><a class="anchor" href="#what-to-do">⚭</a> What to do</h2>
 <ul>
 <li>Update version in <code>bower.json</code> and <code>package.json</code> (duh...)</li>
 <li>Update CLI via <code>nwayo update</code></li>
 </ul>
-<h3 id="fastclick-removal"><a class="anchor" href="#fastclick-removal" aria-hidden="true">⚭</a> FastClick removal</h3>
+<h3 id="fastclick-removal"><a class="anchor" href="#fastclick-removal">⚭</a> FastClick removal</h3>
 <ul>
 <li>In the bundle <code>_dependencies.yaml</code> remove <code>bower_components/nwayo-toolbox/toolbox/scripts/wrapper/fastclick</code></li>
 <li>Remove <code>FastClick.attach(document.body);</code> in your javascript files containing it</li>
 </ul>
-<h3 id="konstan-scss-map-(not-mandatory-but-will-eventually-be-removed)"><a class="anchor" href="#konstan-scss-map-(not-mandatory-but-will-eventually-be-removed)" aria-hidden="true">⚭</a> konstan SCSS map <em>(not mandatory but will eventually be removed)</em></h3>
+<h3 id="konstan-scss-map-(not-mandatory-but-will-eventually-be-removed)"><a class="anchor" href="#konstan-scss-map-(not-mandatory-but-will-eventually-be-removed)">⚭</a> konstan SCSS map <em>(not mandatory but will eventually be removed)</em></h3>
 <p>Change <code>$konstan-*</code> variable for the function <code>konstan-get('*')</code></p>
 <p>Examples for a <code>konstan.yaml</code> containing</p>
 <pre><code class="language-yaml">data:
@@ -51,7 +51,7 @@
 <li><code>$konstan-color-shell-shade</code> → <code>konstan-get('color.shell-shade')</code></li>
 <li><code>$konstan-color-message-success</code> → <code>konstan-get('color.message.success')</code></li>
 </ul>
-<h3 id="lodash-scope"><a class="anchor" href="#lodash-scope" aria-hidden="true">⚭</a> Lodash scope</h3>
+<h3 id="lodash-scope"><a class="anchor" href="#lodash-scope">⚭</a> Lodash scope</h3>
 <p>In <code>components/common/scripts/nwayo-config.js</code> add Lodash scope config</p>
 <pre><code class="language-js">// Lodash scope
 //   'private': .noConflict()
@@ -60,7 +60,7 @@ lodash: {
 	scope: 'private'
 }
 </code></pre>
-<h3 id="polyfill"><a class="anchor" href="#polyfill" aria-hidden="true">⚭</a> Polyfill</h3>
+<h3 id="polyfill"><a class="anchor" href="#polyfill">⚭</a> Polyfill</h3>
 <p>In your <code>bundles/XYZ/_dependencies.yaml</code> files, add a <code>~polyfill</code> entry a the top of the <code>dependencies-head-sync</code> collection</p>
 <p>In your <code>nwayo.yaml</code> file add an entry to control the polyfill browser support</p>
 <pre><code class="language-yaml">polyfill:      #  https://browserl.ist/?q=%3E+.25%25%2C+not+dead

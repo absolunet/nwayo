@@ -15,22 +15,22 @@
 
 
 //-- Assets path
-@function nwayo-assets-path($file, $context, $type) {
+@function nwayo-assets-path($file, $component, $type) {
 	@if $type == 'images' {
-		@return konstan-get('path.images') + '/' + $context + '/' + $file;
+		@return konstan-get('path.images') + '/' + $component + '/' + $file;
 	} @else if $type == 'inline' {
-		@return konstan-get('path.inline') + '/' + $context + '/' + $file;
+		@return konstan-get('path.inline') + '/' + $component + '/' + $file;
 	} @else if $type == 'fonts' {
-		@return konstan-get('path.fonts') + '/' + $context + '/' + $file;
+		@return konstan-get('path.fonts') + '/' + $component + '/' + $file;
 	}
 }
 
 //-- Build path
-@function nwayo-build-path($file, $context, $type) {
+@function nwayo-build-path($file, $component, $type) {
 	@if $type == 'images' {
-		@return konstan-get('path.buildroot') + '/images/' + $context + '/' + $file;
+		@return konstan-get('path.buildroot') + '/images/' + $component + '/' + $file;
 	} @else if $type == 'fonts' {
-		@return konstan-get('path.buildroot') + '/fonts/' + $context + '/' + $file;
+		@return konstan-get('path.buildroot') + '/fonts/' + $component + '/' + $file;
 	}
 }
 
@@ -45,9 +45,9 @@
 
 //-- Simulate a breakpoint
 @function nwayo-breakpoint-media($bp, $direction) {
-	@if ($direction == up) {
+	@if $direction == up {
 		@return 'screen and (min-width: #{($bp + 1) / $nwayo-basic-size * 1em})';
-	} @else if ($direction == down) {
+	} @else if $direction == down {
 		@return 'screen and (max-width: #{$bp / $nwayo-basic-size * 1em})';
 	}
 }

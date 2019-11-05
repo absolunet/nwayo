@@ -15,9 +15,17 @@ class Task {
 		__(this).set('filename', filename);
 	}
 
+	get filename() {
+		return __(this).get('filename');
+	}
+
 
 	set deprecate(message) {
 		__(this).set('deprecated', message);
+	}
+
+	get deprecate() {
+		return __(this).get('deprecated');
 	}
 
 

@@ -37,7 +37,9 @@ module.exports = () => {
 
 			.pipe(gulpif(env.isWindows, lec()))
 
-			.pipe(eslint())
+			.pipe(eslint({
+				reportUnusedDisableDirectives: true
+			}))
 
 			.pipe(eslint.results((files) => {
 				let hasErrors = false;
@@ -150,72 +152,78 @@ module.exports = () => {
 
 
 	//-- Compile
-	flow.createTask('scripts-compile', ({ taskName }) => {
-		const streams = [];
+	flow.createTask(
+		'scripts-compile',
 
-		for (const name of Object.keys(env.bundles)) {
-			const bundle = env.bundles[name];
+		({ taskName }) => {
+			const streams = [];
 
-			// Babel extra allowed
-			const babelExtraAllowed = util.getBabelAllowedRules(bundle.scripts.allowBabel);
+			for (const name of Object.keys(env.bundles)) {
+				const bundle = env.bundles[name];
 
-			// For each collection
-			for (const collection of Object.keys(bundle.scripts.collections)) {
-				const list = cloneDeep(bundle.scripts.collections[collection]);
+				// Babel extra allowed
+				const babelExtraAllowed = util.getBabelAllowedRules(bundle.scripts.allowBabel);
 
-				// Resolve real filepaths
-				const replacements = {
-					konstan:   `${paths.folder.cacheScripts}/${name}/${paths.filename.konstan}`,
-					lodash:    `${paths.folder.cacheScripts}/${paths.filename.lodash}`,
-					modernizr: `${paths.folder.cacheScripts}/${paths.filename.modernizr}`,
-					polyfill:  `${paths.folder.cacheScripts}/${paths.filename.polyfill}`
-				};
-				for (const title of Object.keys(replacements)) {
-					const pos = list.indexOf(`~${title}`);
-					if (pos !== -1) {
-						list[pos] = replacements[title];
+				// For each collection
+				for (const collection of Object.keys(bundle.scripts.collections)) {
+					const list = cloneDeep(bundle.scripts.collections[collection]);
+
+					// Resolve real filepaths
+					const replacements = {
+						konstan:   `${paths.folder.cacheScripts}/${name}/${paths.filename.konstan}`,
+						lodash:    `${paths.folder.cacheScripts}/${paths.filename.lodash}`,
+						modernizr: `${paths.folder.cacheScripts}/${paths.filename.modernizr}`,
+						polyfill:  `${paths.folder.cacheScripts}/${paths.filename.polyfill}`
+					};
+					for (const title of Object.keys(replacements)) {
+						const pos = list.indexOf(`~${title}`);
+						if (pos !== -1) {
+							list[pos] = replacements[title];
+						}
 					}
+
+					// Require each file
+					list.forEach((file, i) => {
+						list[i] = `//= require ${file}`;
+					});
+
+					const toMinify    = (bundle.scripts.options.minify && !env.watching) || env.production;
+					const filename    = `${collection}.${paths.extension.scripts}`;
+					const destination = `${bundle.output.build}/${paths.build.scripts}`;
+					const source      = `${util.getGeneratedBanner(name)} (function(global, undefined) { \n\t${list.join('\n')}\n })(typeof window !== 'undefined' ? window : this);\n`;
+
+					/* eslint-disable function-paren-newline */
+					streams.push(
+						toolbox.vinylStream(filename, source)
+							.pipe(toolbox.plumber())
+
+							.pipe(include({
+								basePath:      paths.directory.root,
+								autoExtension: true,
+								partialPrefix: true,
+								fileProcess:   (options) => {
+									return util.babelProcess(options, bundle.scripts.options.babel, babelExtraAllowed);
+								}
+							}))
+
+							.pipe(gulpif(toMinify, uglify({ output: { comments: 'some' } })))
+
+							.pipe(gulp.dest(`${paths.directory.root}/${destination}`))
+
+							.on('finish', () => {
+								toolbox.log(taskName, `'${destination}/${filename}' written`, toolbox.filesize(`${paths.directory.root}/${destination}/${filename}`));
+							})
+					);
+					/* eslint-enable function-paren-newline */
 				}
-
-				// Require each file
-				list.forEach((file, i) => {
-					list[i] = `//= require ${file}`;
-				});
-
-				const toMinify    = (bundle.scripts.options.minify && !env.watching) || env.production;
-				const filename    = `${collection}.${paths.extension.scripts}`;
-				const destination = `${bundle.output.build}/${paths.build.scripts}`;
-				const source      = `${util.getGeneratedBanner(name)} (function(global, undefined) { \n\t${list.join('\n')}\n })(typeof window !== 'undefined' ? window : this);\n`;
-
-				/* eslint-disable function-paren-newline */
-				streams.push(
-					toolbox.vinylStream(filename, source)
-						.pipe(toolbox.plumber())
-
-						.pipe(include({
-							basePath:      paths.directory.root,
-							autoExtension: true,
-							partialPrefix: true,
-							fileProcess:   (options) => {
-								return util.babelProcess(options, bundle.scripts.options.babel, babelExtraAllowed);
-							}
-						}))
-
-						.pipe(gulpif(toMinify, uglify({ output: { comments: 'some' } })))
-
-						.pipe(gulp.dest(`${paths.directory.root}/${destination}`))
-
-						.on('finish', () => {
-							toolbox.log(taskName, `'${destination}/${filename}' written`, toolbox.filesize(`${paths.directory.root}/${destination}/${filename}`));
-						})
-				);
-				/* eslint-enable function-paren-newline */
 			}
-		}
 
-		return toolbox.mergeStreams(streams);
+			return toolbox.mergeStreams(streams);
 
-	}, gulp.parallel('scripts-lint', 'scripts-constants', 'scripts-vendors'));
+		},
+
+		gulp.parallel('scripts-lint', 'scripts-constants', 'scripts-vendors')
+	);
 
 
 
@@ -229,12 +237,12 @@ module.exports = () => {
 			const cachePath = `${paths.directory.cacheScripts}/${name}`;
 
 			if (env.isScopeSubbundle) {
-				return Object.keys(bundle.scripts.collections).map((collection) => {
+				return Object.keys(bundle.scripts.collections).flatMap((collection) => {
 					return [
 						`${buildPath}/${collection}.${paths.extension.scripts}`,
 						`${cachePath}/${collection}.${paths.extension.scripts}`
 					];
-				}).flat();
+				});
 			}
 
 			return [buildPath, cachePath];

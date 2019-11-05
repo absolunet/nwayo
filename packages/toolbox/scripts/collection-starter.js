@@ -4,7 +4,7 @@
 
 //= require vendor/node_modules/@absolunet/nwayo-toolbox/scripts/exclusion-starter
 
-/* eslint-disable strict, no-unused-vars, no-redeclare, prefer-destructuring */
+/* eslint-disable no-unused-vars, no-redeclare, prefer-destructuring */
 const PROJECT = global.nwayo.project;
 const app     = global[PROJECT];
 const konstan = app.konstan;

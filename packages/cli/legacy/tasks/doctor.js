@@ -39,7 +39,7 @@ const analyzeNode = (callback) => {
 			Object.entries(deps).forEach(([name, version]) => {
 				if (version.required !== version.stable) {
 					data.outdated.push({
-						name: name,
+						name,
 						current: version.required,
 						latest: version.stable
 					});
@@ -108,7 +108,7 @@ const analyzeBower = (callback) => {
 							// if a stable newer version was found
 							if (stable) {
 								data.outdated.push({
-									name: name,
+									name,
 									current: info.pkgMeta.version,
 									latest: stable
 								});
@@ -117,7 +117,7 @@ const analyzeBower = (callback) => {
 
 					} else {
 						data.outdated.push({
-							name: name,
+							name,
 							message: 'Not installed'
 						});
 					}

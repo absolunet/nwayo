@@ -86,12 +86,12 @@ a:not(.button) {
 	}
 
 	//-- Only on touch devices
-	html.touchevents & {
+	html[data-whatintent='touch'] & {
 		/* ... */
 	}
 
 	//-- Only on mouse devices
-	html.no-touchevents & {
+	html[data-whatintent='mouse'] & {
 		/* ... */
 	}
 

@@ -44,7 +44,7 @@ const assetsIcons = (component) => {
 	reports.add({
 		success:     differences.pass,
 		message:     `${Reporter.theme.title(FOLDER)}: Must only contain certain files`,
-		differences: differences
+		differences
 	});
 
 	reports.add(assert.areFilesGitTracked(files, FOLDER, { root }));

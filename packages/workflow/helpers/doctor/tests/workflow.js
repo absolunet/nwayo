@@ -28,10 +28,7 @@ class WorkflowTests extends Tests {
 			reports.add({
 				success: false,
 				message: 'Workflow is outdated:',
-				outdated: {
-					current: current,
-					latest:  latest
-				}
+				outdated: { current, latest }
 			});
 
 		} else {

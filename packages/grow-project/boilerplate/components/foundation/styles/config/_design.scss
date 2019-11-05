@@ -68,11 +68,11 @@ $global-font-size:                     100%;
 $global-width:                         rem-calc(konstan-get('dimension.max'));  // stylelint-disable-line declaration-property-value-blacklist
 $global-lineheight:                    $common-text-lineheight;
 $foundation-palette:                   (
-	primary:   $common-primary-color,
-	secondary: $common-alt-color,
-	success:   $common-success-text-color,
-	warning:   $common-warning-text-color,
-	alert:     $common-error-text-color,
+	'primary':   $common-primary-color,
+	'secondary': $common-alt-color,
+	'success':   $common-success-text-color,
+	'warning':   $common-warning-text-color,
+	'alert':     $common-error-text-color,
 );
 
 $body-background:                      $common-bg-color;
@@ -100,11 +100,11 @@ $print-transparent-backgrounds:        true;
 // --------------
 
 $breakpoints:        (
-	small:   0,
-	medium:  konstan-get('dimension.small') + 1,
-	large:   konstan-get('dimension.medium') + 1,
-	xlarge:  konstan-get('dimension.large') + 1,
-	xxlarge: konstan-get('dimension.xlarge') + 1,
+	'small':   0,
+	'medium':  konstan-get('dimension.small') + 1,
+	'large':   konstan-get('dimension.medium') + 1,
+	'xlarge':  konstan-get('dimension.large') + 1,
+	'xxlarge': konstan-get('dimension.xlarge') + 1,
 );
 $print-breakpoint:   large;
 $breakpoint-classes: (small medium large);
@@ -115,8 +115,8 @@ $breakpoint-classes: (small medium large);
 $grid-row-width:         $global-width;
 $grid-column-count:      12;
 $grid-column-gutter:     (
-	small:  $common-column-gutter-size * 2,
-	medium: $common-column-gutter-size * 2,
+	'small':  $common-column-gutter-size * 2,
+	'medium': $common-column-gutter-size * 2,
 );
 $grid-column-align-edge: true;
 $grid-column-alias:      'columns';
@@ -128,12 +128,12 @@ $block-grid-max:         8;
 $header-font-family:           $body-font-family;
 $header-font-weight:           $global-weight-normal;
 $header-font-style:            normal;
-$font-family-monospace:        $common-monospace-font;
+$font-family-monospace:        $common-code-font;
 $header-color:                 inherit;
 $header-lineheight:            $common-title-lineheight;
 $header-margin-bottom:         .5em;
 $header-styles: (
-	small: (
+	'small': (
 		'h1': ('font-size': 24),
 		'h2': ('font-size': 20),
 		'h3': ('font-size': 19),
@@ -141,7 +141,7 @@ $header-styles: (
 		'h5': ('font-size': 17),
 		'h6': ('font-size': 16),
 	),
-	medium: (
+	'medium': (
 		'h1': ('font-size': 48),
 		'h2': ('font-size': 40),
 		'h3': ('font-size': 31),
@@ -284,10 +284,10 @@ $button-color-alt:                  $common-text-color;
 $button-radius:                     $global-radius;
 $button-hollow-border-width:        0;
 $button-sizes: (
-	tiny:    $common-text-nano-size,
-	small:   $common-text-tiny-size,
-	default: $common-text-small-size,
-	large:   $common-text-medium-size,
+	'tiny':    $common-text-nano-size,
+	'small':   $common-text-tiny-size,
+	'default': $common-text-small-size,
+	'large':   $common-text-medium-size,
 );
 $button-palette:                    $foundation-palette;
 $button-opacity-disabled:           .25;
@@ -335,16 +335,16 @@ $card-margin-bottom:      $global-margin;
 
 $closebutton-position:    right top;
 $closebutton-offset-horizontal: (
-	small:  .66em,
-	medium: 1em,
+	'small':  .66em,
+	'medium': 1em,
 );
 $closebutton-offset-vertical: (
-	small:  .33em,
-	medium: .5em,
+	'small':  .33em,
+	'medium': .5em,
 );
 $closebutton-size: (
-	small:  1.5em,
-	medium: 2em,
+	'small':  1.5em,
+	'medium': 2em,
 );
 $closebutton-lineheight:  1;
 $closebutton-color:       $common-alt-color;
@@ -373,9 +373,9 @@ $dropdown-font-size:  $common-text-base-size;
 $dropdown-width:      18.75em;
 $dropdown-radius:     $global-radius;
 $dropdown-sizes: (
-	tiny:  6.25em,
-	small: 12.5em,
-	large: 25em,
+	'tiny':  6.25em,
+	'small': 12.5em,
+	'large': 25em,
 );
 
 // 18. Dropdown Menu
@@ -489,10 +489,10 @@ $meter-fill-bad:    $alert-color;
 // --------------
 
 $offcanvas-sizes: (
-	small: 15.625em,
+	'small': 15.625em,
 );
 $offcanvas-vertical-sizes: (
-	small: 15.625em,
+	'small': 15.625em,
 );
 $offcanvas-background:         $common-bg-var1-color;
 $offcanvas-shadow:             0 0 .625em rgba($common-shadow-color, .7);
@@ -672,10 +672,10 @@ $prototype-sizing: (
 	height
 );
 $prototype-sizes: (
-	25:   25%,
-	50:   50%,
-	75:   75%,
-	100: 100%
+	'25':   25%,
+	'50':   50%,
+	'75':   75%,
+	'100': 100%
 );
 
 // 42. Prototype Spacing
@@ -715,8 +715,8 @@ $prototype-text-overflow:         ellipsis;
 
 $responsive-embed-margin-bottom: 1em;
 $responsive-embed-ratios: (
-	default:     4 by 3,
-	widescreen: 16 by 9,
+	'default':     4 by 3,
+	'widescreen': 16 by 9,
 );
 
 // 47. Reveal
@@ -852,8 +852,8 @@ $xy-grid:                true;
 $grid-container:         $global-width;
 $grid-columns:           12;
 $grid-margin-gutters:    (
-	small:  $common-column-gutter-size * 2,
-	medium: $common-column-gutter-size * 2,
+	'small':  $common-column-gutter-size * 2,
+	'medium': $common-column-gutter-size * 2,
 );
 $grid-padding-gutters:   $grid-margin-gutters;
 $grid-container-padding: $grid-padding-gutters;

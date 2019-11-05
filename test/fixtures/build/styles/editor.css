@@ -17,12 +17,12 @@
 	konstan-get('color.ash')                 #b2beb5
 	konstan-get('color.platinum')            #e5e4e2
 
-	konstan-get('color.success')             #4fb980
-	konstan-get('color.warning')             #ffd061
-	konstan-get('color.error')               #d66161
+	konstan-get('color.ocean-green')         #4fb980
+	konstan-get('color.golden-tainoi')       #ffd061
+	konstan-get('color.chestnut-rose')       #d66161
 
-	konstan-get('font.base')                 Open Sans
-	konstan-get('font.alt')                  Merriweather
+	konstan-get('font.open-sans')            Open Sans
+	konstan-get('font.merriweather')         Merriweather
 
 */
 /* ... */
@@ -310,6 +310,7 @@ html {
 a:not(.button) {
   color: #659d32;
   text-decoration: none;
+  -webkit-transition: color 100ms ease-out;
   transition: color 100ms ease-out;
 }
 a:not(.button):hover, a:not(.button):active, a:not(.button):focus {
@@ -375,13 +376,13 @@ a:not(.button):hover, a:not(.button):active, a:not(.button):focus {
 body.document-loaded .body {
   /* ... */
 }
-html.touchevents .body {
+html[data-whatintent=touch] .body {
   /* ... */
 }
-html.no-touchevents .body {
+html[data-whatintent=mouse] .body {
   /* ... */
 }
-html.no-touchevents .body a:hover {
+html[data-whatintent=mouse] .body a:hover {
   /* ... */
 }
 
@@ -526,9 +527,12 @@ html.no-touchevents .body a:hover {
   text-decoration: none;
   line-height: 1.2;
   letter-spacing: 0.02em;
+  -webkit-transition-property: background-color, border-color, color;
   transition-property: background-color, border-color, color;
-  transition-duration: 100ms;
-  transition-timing-function: ease-out;
+  -webkit-transition-duration: 100ms;
+          transition-duration: 100ms;
+  -webkit-transition-timing-function: ease-out;
+          transition-timing-function: ease-out;
   cursor: pointer;
 }
 .styleguide-sample .button.primary:hover, .styleguide-sample .button.primary:focus, .styleguide-sample .button.primary:active {
@@ -563,9 +567,12 @@ html.no-touchevents .body a:hover {
   text-decoration: none;
   line-height: 1.2;
   letter-spacing: 0.02em;
+  -webkit-transition-property: background-color, border-color, color;
   transition-property: background-color, border-color, color;
-  transition-duration: 100ms;
-  transition-timing-function: ease-out;
+  -webkit-transition-duration: 100ms;
+          transition-duration: 100ms;
+  -webkit-transition-timing-function: ease-out;
+          transition-timing-function: ease-out;
   cursor: pointer;
 }
 .styleguide-sample .button.secondary:hover, .styleguide-sample .button.secondary:focus, .styleguide-sample .button.secondary:active {
@@ -600,9 +607,12 @@ html.no-touchevents .body a:hover {
   text-decoration: none;
   line-height: 1.2;
   letter-spacing: 0.02em;
+  -webkit-transition-property: background-color, border-color, color;
   transition-property: background-color, border-color, color;
-  transition-duration: 100ms;
-  transition-timing-function: ease-out;
+  -webkit-transition-duration: 100ms;
+          transition-duration: 100ms;
+  -webkit-transition-timing-function: ease-out;
+          transition-timing-function: ease-out;
   cursor: pointer;
 }
 .styleguide-sample .button.cta:hover, .styleguide-sample .button.cta:focus, .styleguide-sample .button.cta:active {
@@ -637,7 +647,7 @@ html.no-touchevents .body a:hover {
   background-color: #4fb980;
 }
 .styleguide-sample .message.success::before {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath fill='%23000000' d='M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zM6.76 11.691L3.079 8.01l1.414-1.414L6.76 8.864l4.808-4.808 1.414 1.414-6.222 6.221z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath fill='%23000000' d='M8 0a8 8 0 100 16A8 8 0 008 0zM6.76 11.691L3.079 8.01l1.414-1.414L6.76 8.864l4.808-4.808 1.414 1.414-6.222 6.221z'/%3E%3C/svg%3E");
   background-position: center center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -646,7 +656,7 @@ html.no-touchevents .body a:hover {
   background-color: #ffd061;
 }
 .styleguide-sample .message.warning::before {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath fill='%23000000' d='M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm.016 9.967a1.983 1.983 0 1 1 0-3.966 1.983 1.983 0 0 1 0 3.966z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath fill='%23000000' d='M8 0a8 8 0 100 16A8 8 0 008 0zm.016 9.967a1.983 1.983 0 110-3.966 1.983 1.983 0 010 3.966z'/%3E%3C/svg%3E");
   background-position: center center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -655,7 +665,7 @@ html.no-touchevents .body a:hover {
   background-color: #d66161;
 }
 .styleguide-sample .message.error::before {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath fill='%23000000' d='M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.957 10.543l-1.414 1.414L8 9.414l-2.543 2.543-1.414-1.414L6.586 8 4.043 5.457l1.414-1.414L8 6.586l2.543-2.543 1.414 1.414L9.414 8l2.543 2.543z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath fill='%23000000' d='M8 0a8 8 0 100 16A8 8 0 008 0zm3.957 10.543l-1.414 1.414L8 9.414l-2.543 2.543-1.414-1.414L6.586 8 4.043 5.457l1.414-1.414L8 6.586l2.543-2.543 1.414 1.414L9.414 8l2.543 2.543z'/%3E%3C/svg%3E");
   background-position: center center;
   background-size: contain;
   background-repeat: no-repeat;

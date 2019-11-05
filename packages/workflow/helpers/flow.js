@@ -137,7 +137,7 @@ class Flow {
 				if (dependencies) {
 					logStep(START, DEPENDENCIES, name);
 
-					return gulp.series(dependencies, () => {  // eslint-disable-line consistent-return
+					return gulp.series(dependencies, () => {
 
 						// Run task if not skipping
 						if (!isSkipping()) {

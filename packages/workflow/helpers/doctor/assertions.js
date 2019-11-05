@@ -132,7 +132,7 @@ class Assertions {
 		return {
 			success:     differences.pass,
 			message:     `${Reporter.theme.title(current)}: ${capitalize(type)}s list must be identical to matrix`,
-			differences: differences
+			differences
 		};
 	}
 

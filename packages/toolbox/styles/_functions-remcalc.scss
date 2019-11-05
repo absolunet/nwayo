@@ -3,7 +3,7 @@
 //-------------------------------------
 
 //-- Shameless copy of Foundation's rem-calc()
-//-- https://github.com/zurb/foundation-sites/blob/v6.5.0/scss/util/_unit.scss
+//-- https://github.com/zurb/foundation-sites/blob/v6.5.3/scss/util/_unit.scss
 
 
 
@@ -18,7 +18,7 @@
 	$count: length($values);
 
 	// If no base is defined, defer to the global font size
-	@if $base == null {
+	@if not $base {
 		$base: $nwayo-basic-size * 1px;  // stylelint-disable-line unit-whitelist
 	}
 
