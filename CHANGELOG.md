@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+
+
+
+## [3.7.1] - 2019-11-05
 ### Added
 - Community resources files
 - ESLint now reports useless disables
@@ -17,6 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Switch gulp-cssnano (DEPRECATED) to gulp-postcss
 - Switch from Modernizr.touchevents to What Input since it is more accurate
+- Update ESLint rules to 1.4.4
+- Update stylelint rules to 1.3.0
 - Changes in project boilerplate for consistency and clarity
 - Maintenance updates
 
@@ -542,7 +548,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-[Unreleased]:    https://github.com/absolunet/nwayo/compare/3.7.0...HEAD
+[Unreleased]:    https://github.com/absolunet/nwayo/compare/3.7.1...HEAD
+[3.7.1]:         https://github.com/absolunet/nwayo/compare/3.7.0...3.7.1
 [3.7.0]:         https://github.com/absolunet/nwayo/compare/3.7.0-rc.1...3.7.0
 [3.7.0-rc.1]:    https://github.com/absolunet/nwayo/compare/3.7.0-beta.2...3.7.0-rc.1
 [3.7.0-beta.2]:  https://github.com/absolunet/nwayo/compare/3.7.0-beta.1...3.7.0-beta.2
