@@ -71,8 +71,7 @@ const kebabCase = (type) => {
 const lintJSON = () => {
 	const lints = [];
 
-	const cli = new CLIEngine({ plugins: ['json'], extensions: ['.json'], useEslintrc: false });
-
+	const cli = new CLIEngine({ baseConfig: { 'extends': '@absolunet/json' }, extensions: ['.json'], useEslintrc: false, reportUnusedDisableDirectives: true });
 	getPathsToCheck('file', { extension: 'json' }).forEach((file) => {
 		const report = cli.executeOnFiles([`${paths.directory.root}/${file}`]);
 

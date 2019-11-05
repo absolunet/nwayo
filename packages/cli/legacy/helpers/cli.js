@@ -20,6 +20,7 @@ module.exports = {
 
 
 	//-- Error
+	// eslint-disable-next-line object-shorthand
 	error: function(message) {
 		if (message) {
 			this.echo(chalk.red(`\n ${message}`));
@@ -30,6 +31,7 @@ module.exports = {
 
 
 	//-- Usage
+	// eslint-disable-next-line object-shorthand
 	usage: function() {
 		return this.echo(`
  Usage: ${chalk.yellow('nwayo')} ${chalk.cyan('<command>')}
@@ -51,6 +53,7 @@ ${util.usageTasks}
 
 
 	//-- Run
+	// eslint-disable-next-line object-shorthand
 	run: function(task, context) {
 		const tool = semver.lt(context.packageConfig.nwayo.version, '2.2.0') ? 'grunt' : 'gulp';
 		const base = `${context.cwd}/node_modules/${tool}`;

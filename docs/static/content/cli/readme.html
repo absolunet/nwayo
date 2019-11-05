@@ -1,19 +1,19 @@
 <h1>CLI</h1>
 <p><a href="https://www.npmjs.com/package/@absolunet/nwayo-cli" class="external" rel="external">View on npm</a></p>
 <p>The nwayo CLI is essentially a <a href="https://www.npmjs.com/package/gulp-cli" class="external" rel="external">gulp CLI</a> wrapper with additional commands.</p>
-<h2 id="installation"><a class="anchor" href="#installation" aria-hidden="true">⚭</a> Installation</h2>
+<h2 id="installation"><a class="anchor" href="#installation">⚭</a> Installation</h2>
 <pre><code class="language-shell">$ npm i -g @absolunet/nwayo-cli
 </code></pre>
-<h2 id="usage"><a class="anchor" href="#usage" aria-hidden="true">⚭</a> Usage</h2>
+<h2 id="usage"><a class="anchor" href="#usage">⚭</a> Usage</h2>
 <p>In any subfolder of the project's root folder, where the <code>nwayo.yaml</code> is located</p>
-<h3 id="in-each-project%2C-install-the-project's-workflow"><a class="anchor" href="#in-each-project%2C-install-the-project's-workflow" aria-hidden="true">⚭</a> In each project, install the project's workflow</h3>
+<h3 id="in-each-project%2C-install-the-project's-workflow"><a class="anchor" href="#in-each-project%2C-install-the-project's-workflow">⚭</a> In each project, install the project's workflow</h3>
 <pre><code class="language-shell">$ nwayo install workflow
 </code></pre>
-<h3 id="then-you-can-run-any-nwayo-command"><a class="anchor" href="#then-you-can-run-any-nwayo-command" aria-hidden="true">⚭</a> Then you can run any <code>nwayo</code> command</h3>
+<h3 id="then-you-can-run-any-nwayo-command"><a class="anchor" href="#then-you-can-run-any-nwayo-command">⚭</a> Then you can run any <code>nwayo</code> command</h3>
 <pre><code class="language-shell">$ nwayo [...]
 </code></pre>
-<h2 id="commands"><a class="anchor" href="#commands" aria-hidden="true">⚭</a> Commands</h2>
-<h3 id="run"><a class="anchor" href="#run" aria-hidden="true">⚭</a> run</h3>
+<h2 id="commands"><a class="anchor" href="#commands">⚭</a> Commands</h2>
+<h3 id="run"><a class="anchor" href="#run">⚭</a> run</h3>
 <p><code>nwayo run &lt;task&gt; [&lt;bundle&gt;]</code></p>
 <p>Runs a specific task and its dependencies.</p>
 <p><strong>Available tasks:</strong></p>
@@ -64,7 +64,7 @@
 
 $ nwayo run scripts-lint site
 </code></pre>
-<h3 id="rebuild"><a class="anchor" href="#rebuild" aria-hidden="true">⚭</a> rebuild</h3>
+<h3 id="rebuild"><a class="anchor" href="#rebuild">⚭</a> rebuild</h3>
 <p><code>nwayo rebuild [&lt;bundle&gt;] [--prod]</code></p>
 <p>Rebuilds the entire project from scratch, removing all cache, running all tasks.</p>
 <p>Should be run:</p>
@@ -81,7 +81,7 @@ $ nwayo rebuild site
 
 $ nwayo rebuild --prod
 </code></pre>
-<h3 id="watch"><a class="anchor" href="#watch" aria-hidden="true">⚭</a> watch</h3>
+<h3 id="watch"><a class="anchor" href="#watch">⚭</a> watch</h3>
 <p><code>nwayo watch [&lt;bundle&gt;]</code></p>
 <p>Listens for changes on files under <code>components</code> and runs the appropriate tasks.</p>
 <p>The <code>watch</code> command is build with rapidity in mind so here's what it <strong>DOESN'T</strong> do:</p>
@@ -96,7 +96,7 @@ $ nwayo rebuild --prod
 
 $ nwayo watch site
 </code></pre>
-<h3 id="install"><a class="anchor" href="#install" aria-hidden="true">⚭</a> install</h3>
+<h3 id="install"><a class="anchor" href="#install">⚭</a> install</h3>
 <p><code>nwayo install [&lt;scope&gt;] [--force]</code></p>
 <p>Install project dependencies.</p>
 <p>The <code>workflow</code> scope installs the workflow via <code>npm</code></p>
@@ -110,7 +110,7 @@ $ nwayo watch site
 
 $ nwayo install vendors
 </code></pre>
-<h3 id="doctor"><a class="anchor" href="#doctor" aria-hidden="true">⚭</a> doctor</h3>
+<h3 id="doctor"><a class="anchor" href="#doctor">⚭</a> doctor</h3>
 <p><code>nwayo doctor</code></p>
 <p>Analyze project for conformity</p>
 <p>Checks npm packages for updates and lists what is outdated.</p>
@@ -137,7 +137,7 @@ $ nwayo install vendors
   Synchronization diagnosis
     ✓  You are cutting edge   (^_^)
 </code></pre>
-<h2 id="%3Cbundle%3E-param"><a class="anchor" href="#%3Cbundle%3E-param" aria-hidden="true">⚭</a> &lt;bundle&gt; param</h2>
+<h2 id="%3Cbundle%3E-param"><a class="anchor" href="#%3Cbundle%3E-param">⚭</a> &lt;bundle&gt; param</h2>
 <p>If a bundle is specified, the command will be run against this bundle only.</p>
 <p>If a sub-bundle is specified, the command will be run against this sub-bundle only.</p>
 <p><strong>Examples:</strong></p>
@@ -145,14 +145,14 @@ $ nwayo install vendors
 
 $ nwayo watch site:editor
 </code></pre>
-<h2 id="cli"><a class="anchor" href="#cli" aria-hidden="true">⚭</a> CLI</h2>
-<h3 id="update"><a class="anchor" href="#update" aria-hidden="true">⚭</a> update</h3>
+<h2 id="cli"><a class="anchor" href="#cli">⚭</a> CLI</h2>
+<h3 id="update"><a class="anchor" href="#update">⚭</a> update</h3>
 <p><code>nwayo update</code></p>
 <p>Updates nwayo CLI if needs updating or reinstalls it otherwise</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-shell">$ nwayo update
 </code></pre>
-<h3 id="outdated"><a class="anchor" href="#outdated" aria-hidden="true">⚭</a> outdated</h3>
+<h3 id="outdated"><a class="anchor" href="#outdated">⚭</a> outdated</h3>
 <p><code>nwayo outdated</code></p>
 <p>Outputs if nwayo CLI needs an update</p>
 <p><strong>Example:</strong></p>
@@ -166,7 +166,7 @@ $ nwayo watch site:editor
    ╰─────────────────────────────────────────────────╯
 
 </code></pre>
-<h3 id="grow"><a class="anchor" href="#grow" aria-hidden="true">⚭</a> grow</h3>
+<h3 id="grow"><a class="anchor" href="#grow">⚭</a> grow</h3>
 <p><code>nwayo grow</code></p>
 <p>Generate new project or extension</p>
 <p><strong>Example:</strong></p>
@@ -175,14 +175,14 @@ $ nwayo watch site:editor
 <p>or</p>
 <pre><code class="language-shell">$ nwayo grow extension
 </code></pre>
-<h2 id="-v-or---version"><a class="anchor" href="#-v-or---version" aria-hidden="true">⚭</a> -v or --version</h2>
+<h2 id="-v-or---version"><a class="anchor" href="#-v-or---version">⚭</a> -v or --version</h2>
 <p><code>nwayo --version</code></p>
 <p>Outputs nwayo CLI's version</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-shell">$ nwayo --version
 1.1.1
 </code></pre>
-<h3 id="-h-or---help"><a class="anchor" href="#-h-or---help" aria-hidden="true">⚭</a> -h or --help</h3>
+<h3 id="-h-or---help"><a class="anchor" href="#-h-or---help">⚭</a> -h or --help</h3>
 <p><code>nwayo --help</code></p>
 <p>Outputs nwayo CLI's manual</p>
 <p><strong>Example:</strong></p>
@@ -210,6 +210,6 @@ $ nwayo watch site:editor
        cli@3.6.0 /usr/local/bin/nwayo
   workflow@3.6.0 /Users/absolunet/www/project-name/nwayo/node_modules/@absolunet/nwayo-workflow
 </code></pre>
-<h3 id="--pronounce"><a class="anchor" href="#--pronounce" aria-hidden="true">⚭</a> --pronounce</h3>
+<h3 id="--pronounce"><a class="anchor" href="#--pronounce">⚭</a> --pronounce</h3>
 <p><code>nwayo --pronounce</code></p>
 <p>Uses macOS <code>say</code> to show how nwayo sounds</p>

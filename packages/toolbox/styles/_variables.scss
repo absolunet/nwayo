@@ -13,21 +13,22 @@ $nwayo-svg-replacement-colors:  ($nwayo-svg-replacement-1-color, $nwayo-svg-repl
 
 // Social network colors
 $nwayo-social-colors: (
-	facebook:   #3b5998,
-	pinterest:  #bd081c,
-	twitter:    #55acee,
-	instagram:  #bc2a8d,
-	youtube:    #cd201f,
-	vimeo:      #1ab7ea,
-	linkedin:   #0a77b6,
-	googleplus: #dc4a38
+	'facebook':   #3b5998,
+	'pinterest':  #bd081c,
+	'twitter':    #55acee,
+	'instagram':  #bc2a8d,
+	'youtube':    #cd201f,
+	'vimeo':      #1ab7ea,
+	'linkedin':   #0a77b6,
+	'googleplus': #dc4a38
 );
 
 
 
 // Font family
-$nwayo-sansserif-font: Helvetica, Arial, Verdana, sans-serif;  // stylelint-disable-line value-keyword-case
-$nwayo-serif-font:     'Times New Roman', Times, serif;        // stylelint-disable-line value-keyword-case
+$nwayo-sansserif-font: Helvetica, Arial, Verdana, sans-serif;                                         // stylelint-disable-line value-keyword-case
+$nwayo-serif-font:     'Times New Roman', Times, serif;                                               // stylelint-disable-line value-keyword-case
+$nwayo-monospace-font: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', Courier, monospace; // stylelint-disable-line value-keyword-case
 
 // Font weights
 $nwayo-thin-weight:       100;
@@ -53,7 +54,7 @@ $nwayo-endash-char: '\2013';
 $nwayo-textfields-selector: 'input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], input[type="date"], input[type="number"]';
 
 // Selectors
-$nwayo-hover-selector:     'html.no-touchevents &:hover';
+$nwayo-hover-selector:     'html[data-whatintent="mouse"] &:hover';
 $nwayo-docloaded-selector: 'body.document-loaded';
 
 

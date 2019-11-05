@@ -105,8 +105,8 @@ class Toolbox {
 
 		return {
 			pass:        superfluous.length === 0 && missing.length === 0,
-			superfluous: superfluous,
-			missing:     missing
+			superfluous,
+			missing
 		};
 	}
 

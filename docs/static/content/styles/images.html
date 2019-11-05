@@ -1,9 +1,9 @@
 <h1>Images</h1>
 <p>Les images sont situées sous le dossier <code>images</code>, sous la composante associée à l'image en question.</p>
-<h2 id="mixin"><a class="anchor" href="#mixin" aria-hidden="true">⚭</a> Mixin</h2>
+<h2 id="mixin"><a class="anchor" href="#mixin">⚭</a> Mixin</h2>
 <p>Le mixin utilisé pour générer les images au niveau du css. Il sera ensuite possible de les inclure par <code>@include</code> sous le sélecteur voulu.
 <strong>Note:</strong> Le fonctionnement des images <code>inline</code> et <code>Scalable</code> seront traitées dans la section <a href="inline-image">inline-image</a></p>
-<h2 id="fonctionnement"><a class="anchor" href="#fonctionnement" aria-hidden="true">⚭</a> Fonctionnement</h2>
+<h2 id="fonctionnement"><a class="anchor" href="#fonctionnement">⚭</a> Fonctionnement</h2>
 <pre><code class="language-scss">//-- Background image
 @mixin bg-image-mixin ($file, $context, $inline:false, $width:false, $height:false, $color:false) {
 	
@@ -40,7 +40,7 @@
 <li><code>$height</code> = Assigner la hauteur d'une image @2x.</li>
 <li><code>$color</code> = La couleur utilisée pour les svg. Voir la section <a href="inline-image">inline-image</a> pour plus de détails.</li>
 </ul>
-<h2 id="comment-utiliser"><a class="anchor" href="#comment-utiliser" aria-hidden="true">⚭</a> Comment utiliser</h2>
+<h2 id="comment-utiliser"><a class="anchor" href="#comment-utiliser">⚭</a> Comment utiliser</h2>
 <p>Pour générer le bon code, vous devez au moins fournir <code>$file</code> et <code>$context</code>.</p>
 <pre><code class="language-scss">// Normal
 @mixin misc1-image { @include bg-image-mixin('misc1.png', 'common'); }
