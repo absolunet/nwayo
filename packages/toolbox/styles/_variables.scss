@@ -54,7 +54,7 @@ $nwayo-endash-char: '\2013';
 $nwayo-textfields-selector: 'input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], input[type="date"], input[type="number"]';
 
 // Selectors
-$nwayo-hover-selector:     'html[data-whatintent="mouse"] &:hover';
+$nwayo-hover-selector:     'html:not([data-whatintent="touch"]) &:hover';
 $nwayo-docloaded-selector: 'body.document-loaded';
 
 
