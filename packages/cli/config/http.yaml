@@ -1,0 +1,6 @@
+# Indicates if HTTP features are enabled.
+enabled: false
+
+
+# Base HTTP timeout, in second, used by the internal router. Default to 30.
+timeout: 30

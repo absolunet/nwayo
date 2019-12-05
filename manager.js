@@ -3,50 +3,46 @@
 //--------------------------------------------------------
 'use strict';
 
-const fss     = require('@absolunet/fss');
-const fsp     = require('@absolunet/fsp');
-const manager = require('@absolunet/manager');
+const path        = require('path');
+const fss         = require('@absolunet/fss');
+const fsp         = require('@absolunet/fsp');
+const { manager } = require('@absolunet/manager');
 
-const ROOT                  = '.';
-const BOILER                = `${ROOT}/packages/grow-project/boilerplate`;
-const EXTENSION_BOILER      = `${ROOT}/packages/grow-extension/boilerplate`;
-const WORKFLOW_MATRIX       = `${ROOT}/packages/workflow/ressources/doctor-matrix`;
-const DOCUMENTATION_BUILDER = `${ROOT}/ressources/docs-builder`;
+const ROOT                            = __dirname;
+const CORE_ROOT                       = `${ROOT}/packages/core`;
+const GROW_PROJECT_ROOT               = `${ROOT}/packages/grow-project/boilerplate`;
+const PROJECT_BOILERPLATE_ROOT        = `${ROOT}/packages/grow-project/boilerplate`;
+const PROJECT_BOILERPLATE_SOURCE_ROOT = `${GROW_PROJECT_ROOT}/src`;
+const DOCUMENTATION_BUILDER           = `${ROOT}/ressources/docs-builder`;
 
-const BOILER_PACKAGE        = `${BOILER}/package.json`;
-const BOILER_VENDOR         = `${BOILER}/vendor`;
-const BOILER_VENDOR_PACKAGE = `${BOILER_VENDOR}/package.json`;
-const BOILER_VENDOR_TOOLBOX = `${BOILER_VENDOR}/node_modules/@absolunet/nwayo-toolbox`;
-const BOILER_INDEX          = `${BOILER}/SAMPLE-HTML/index.html`;
-const BOILER_WORKFLOW       = `${BOILER}/node_modules/@absolunet/nwayo-workflow`;
-
-
+const GROW_PROJECT_PACKAGE               = `${GROW_PROJECT_ROOT}/package.json`;
+const PROJECT_BOILERPLATE_SOURCE_PACKAGE = `${PROJECT_BOILERPLATE_SOURCE_ROOT}/package.json`;
+const PROJECT_SAMPLE_INDEX               = `${PROJECT_BOILERPLATE_ROOT}/SAMPLE-HTML/index.html`;
+const PROJECT_CORE_EXTENSION             = `${PROJECT_BOILERPLATE_ROOT}/node_modules/@nwayo/core`;
 
 
 
 
-manager.multiScriptsRunner({
+
+manager.init({
+	repositoryType: 'multi-package',
+
+	dist: {
+		node: true
+	},
+
 	tasks: {
-		postinstall: {
+		install: {
 			postRun: async ({ terminal }) => {
+				terminal.println('Symlink @nwayo/core extension to grow-project boilerplate');
+				await fsp.remove(PROJECT_CORE_EXTENSION);
+				await fsp.ensureDir(path.dirname(PROJECT_CORE_EXTENSION));
+				await fsp.symlink(CORE_ROOT, PROJECT_CORE_EXTENSION);
 
-				terminal.println('Symlink grow-project boilerplate workflow');
-				await fsp.remove(BOILER_WORKFLOW);
-				await fsp.ensureDir(`${BOILER_WORKFLOW}/..`);
-				await fsp.symlink('../../../../workflow', BOILER_WORKFLOW);
+				terminal.println('Install grow-project boilerplate vendors');
+				await manager.installPackage(PROJECT_BOILERPLATE_SOURCE_ROOT);
 
-				// Install grow-project boilerplate vendors
-				await manager.installPackage(BOILER_VENDOR);
-
-				terminal.println('Symlink grow-project boilerplate vendors toolbox');
-				await fsp.remove(BOILER_VENDOR_TOOLBOX);
-				await fsp.ensureDir(`${BOILER_VENDOR_TOOLBOX}/..`);
-				await fsp.symlink('../../../../../toolbox', BOILER_VENDOR_TOOLBOX);
-
-				// Install grow-extension boilerplate
-				await manager.installPackage(EXTENSION_BOILER);
-
-				// Install documentation builder
+				terminal.println('Install documentation builder');
 				await manager.installPackage(DOCUMENTATION_BUILDER);
 			}
 		},
@@ -54,10 +50,9 @@ manager.multiScriptsRunner({
 
 		outdated: {
 			postRun: async () => {
-
 				// Check grow-project boilerplate vendors / grow-extension boilerplate / documentation
-				for (const path of [BOILER_VENDOR, EXTENSION_BOILER, DOCUMENTATION_BUILDER]) {
-					await manager.testOutdated(path);  // eslint-disable-line no-await-in-loop
+				for (const packagePath of [PROJECT_BOILERPLATE_ROOT, PROJECT_BOILERPLATE_SOURCE_ROOT, DOCUMENTATION_BUILDER]) {
+					await manager.testOutdated(packagePath); // eslint-disable-line no-await-in-loop
 				}
 			}
 		},
@@ -68,43 +63,19 @@ manager.multiScriptsRunner({
 
 				//-- Version bump
 				terminal.println(`Version bump: grow-project boilerplate 'package.json'`);
-				const boilerPackage = await fsp.readJson(BOILER_PACKAGE);
+				const boilerPackage = await fsp.readJson(GROW_PROJECT_PACKAGE);
 				boilerPackage.dependencies['@absolunet/nwayo-workflow'] = manager.version;
-				await fsp.writeJson(BOILER_PACKAGE, boilerPackage, { space: 2 });
+				await fsp.writeJson(GROW_PROJECT_PACKAGE, boilerPackage, { space: 2 });
 
 				terminal.println(`Version bump: grow-project boilerplate vendor 'package.json'`);
-				const boilerVendor = await fsp.readJson(BOILER_VENDOR_PACKAGE);
+				const boilerVendor = await fsp.readJson(PROJECT_BOILERPLATE_SOURCE_PACKAGE);
 				boilerVendor.dependencies['@absolunet/nwayo-toolbox'] = manager.version;
-				await fsp.writeJson(BOILER_VENDOR_PACKAGE, boilerVendor, { space: 2 });
+				await fsp.writeJson(PROJECT_BOILERPLATE_SOURCE_PACKAGE, boilerVendor, { space: 2 });
 
 				terminal.println(`Version bump: grow-project boilerplate 'SAMPLE-HTML/index.html'`);
-				const boilerIndex = await fsp.readFile(BOILER_INDEX, 'utf-8');
-				await fsp.writeFile(BOILER_INDEX, boilerIndex.replace(/nwayo (v?(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-[\da-z-]+(?:\.[\da-z-]+)*)?(?:\+[\da-z-]+(?:\.[\da-z-]+)*)?)/ug, `nwayo ${manager.version}`));  // eslint-disable-line prefer-named-capture-group
+				const boilerIndex = await fsp.readFile(PROJECT_SAMPLE_INDEX, 'utf-8');
+				await fsp.writeFile(PROJECT_SAMPLE_INDEX, boilerIndex.replace(/nwayo (v?(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-[\da-z-]+(?:\.[\da-z-]+)*)?(?:\+[\da-z-]+(?:\.[\da-z-]+)*)?)/ug, `nwayo ${manager.version}`));  // eslint-disable-line prefer-named-capture-group
 
-
-				//-- Update grow-extension
-				await manager.updatePackageMeta(EXTENSION_BOILER);
-
-
-				//-- Workflow matrix
-				terminal.println(`Update workflow matrix`);
-				await fsp.remove(WORKFLOW_MATRIX);
-				await fsp.ensureDir(WORKFLOW_MATRIX);
-
-				const BOILER_FULL = fss.realpath(BOILER);
-				fss.scandir(BOILER_FULL, 'file', { pattern: '!+(-gitignore|nwayo.yaml)' }).forEach((file) => {
-					fss.copy(`${BOILER}/${file}`, `${WORKFLOW_MATRIX}/${file}`);
-				});
-
-				fss.scandir(BOILER_FULL, 'dir', { pattern: '!+(.nwayo-cache|node_modules)' }).forEach((directory) => {
-					fss.ensureFile(`${WORKFLOW_MATRIX}/${directory}/.gitkeep`);
-				});
-
-
-				//-- grow-project boilerplate 'nwayo rebuild'
-				terminal.println(`grow-project boilerplate 'nwayo rebuild'`);
-				terminal.run(`cd ${BOILER} && nwayo rebuild`);
-				terminal.spacer();
 
 
 				//-- Documentation rebuild

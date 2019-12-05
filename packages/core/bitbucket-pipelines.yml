@@ -1,0 +1,19 @@
+pipelines:
+  default:
+    - parallel:
+        - step:
+            name: Test latest Node.js version
+            image: 'node:latest'
+            caches:
+              - node
+            script:
+              - npm install
+              - npm test
+        - step:
+            name: Test original latest major Node.js version
+            image: 'node:12.0.0'
+            caches:
+              - node
+            script:
+              - npm install
+              - npm test

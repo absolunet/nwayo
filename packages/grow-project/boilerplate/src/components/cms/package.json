@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@nwayo-components/common": "file:../common"
+  }
+}

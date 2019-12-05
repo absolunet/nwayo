@@ -1,0 +1,25 @@
+# Default log channel.
+default: '{{LOG_CHANNEL|stack}}'
+
+
+# Available log channels.
+channels:
+
+  stack:
+    driver: stack
+    channels:
+      - single
+    ignore_exceptions: true
+
+  single:
+    driver: file
+    path: '{{LOG_FILE|@/storage/logs/ioc.log}}'
+    limit: '{{LOG_FILE_LIMIT|10mb}}'
+    level: debug
+
+  database:
+    driver: database
+    connection: default
+    table: logs
+    limit: '{{LOG_DATABASE_LIMIT|1000}}'
+    level: debug

@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="{{:~config('app.locale', 'en').replace('_', '-')}}">
+<head>
+	{{include name="layouts.partials.head" /}}
+</head>
+<body>
+	{{include name="layouts.partials.header" /}}
+	<main>
+		{{:slot}}
+	</main>
+</body>
+</html>

@@ -1,0 +1,992 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>NpmDriver - @nwayo/core API documentation</title>
+
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="shortcut icon"    href="../assets__/icons/favicon.ico">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-57.png">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-72.png"  sizes="72x72">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-76.png"  sizes="76x76">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-114.png" sizes="114x114">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-120.png" sizes="120x120">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-144.png" sizes="144x144">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-152.png" sizes="152x152">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-167.png" sizes="167x167">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-180.png" sizes="180x180">
+	<link rel="image_src"        href="../assets__/icons/touch-512.png">
+	<link rel="icon"             href="../assets__/icons/icon-64.png"  sizes="64x64">
+	<link rel="icon"             href="../assets__/icons/icon-96.png"  sizes="96x96">
+	<link rel="icon"             href="../assets__/icons/icon-192.png" sizes="192x192">
+	<link rel="icon"             href="../assets__/icons/icon-195.png" sizes="195x195">
+	<link rel="icon"             href="../assets__/icons/icon-196.png" sizes="196x196">
+	<link rel="icon"             href="../assets__/icons/icon-228.png" sizes="228x228">
+
+	<meta name="application-name"                content="@nwayo/core">
+	<meta name="msapplication-TileColor"         content="#2b2d3c">
+	<meta name="msapplication-square70x70logo"   content="../assets__/icons/tile-small.png">
+	<meta name="msapplication-square150x150logo" content="../assets__/icons/tile-medium.png">
+	<meta name="msapplication-wide310x150logo"   content="../assets__/icons/tile-wide.png">
+	<meta name="msapplication-square310x310logo" content="../assets__/icons/tile-large.png">
+
+	<link href="../assets__/main.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,500,700|Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+	
+	<!-- @absolunet/manager@2.0.0 (c) 2011-2019 Absolunet -->
+</head>
+<body>
+	
+
+	<header>
+		<p class="package"><a href="../">@nwayo/core</a><span class="version">4.0.0-dev.1.0</span></p>
+		<a href="https://github.com/absolunet/nwayo" class="github" data-external="external">View on GitHub</a>
+	</header>
+
+	<div class="container">
+		<nav><div>
+			<h2><a href="index.html">API Home</a></h2><h3>Classes</h3><ul><li><a href="nwayo.core.CoreServiceProvider.html">CoreServiceProvider</a><ul class='members'></ul><ul class='methods'><li data-type='method'><a href="nwayo.core.CoreServiceProvider.html#register">register</a></li><li data-type='method'><a href="nwayo.core.CoreServiceProvider.html#boot">boot</a></li><li data-type='method'><a href="nwayo.core.CoreServiceProvider.html#bindDependencyManager">bindDependencyManager</a></li><li data-type='method'><a href="nwayo.core.CoreServiceProvider.html#bindProjectService">bindProjectService</a></li></ul></li><li><a href="nwayo.core.console.commands.InstallComponentsCommand.html">InstallComponentsCommand</a><ul class='members'><li data-type='member'><a href="nwayo.core.console.commands.InstallComponentsCommand.html#.dependencies">dependencies</a></li><li data-type='member'><a href="nwayo.core.console.commands.InstallComponentsCommand.html#name">name</a></li><li data-type='member'><a href="nwayo.core.console.commands.InstallComponentsCommand.html#description">description</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.core.console.commands.InstallComponentsCommand.html#handle">handle</a></li><li data-type='method'><a href="nwayo.core.console.commands.InstallComponentsCommand.html#installComponents">installComponents</a></li><li data-type='method'><a href="nwayo.core.console.commands.InstallComponentsCommand.html#t">t</a></li></ul></li><li><a href="nwayo.core.services.DependencyManager.html">DependencyManager</a><ul class='members'><li data-type='member'><a href="nwayo.core.services.DependencyManager.html#.dependencies">dependencies</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.core.services.DependencyManager.html#inFolder">inFolder</a></li><li data-type='method'><a href="nwayo.core.services.DependencyManager.html#inFolderForDriver">inFolderForDriver</a></li><li data-type='method'><a href="nwayo.core.services.DependencyManager.html#getForward">getForward</a></li></ul></li><li><a href="nwayo.core.services.DependencyManagerProxy.html">DependencyManagerProxy</a><ul class='members'></ul></li><li><a href="nwayo.core.services.DependencyManager.drivers.Driver.html">Driver</a><ul class='members'><li data-type='member'><a href="nwayo.core.services.DependencyManager.drivers.Driver.html#.dependencies">dependencies</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.core.services.DependencyManager.drivers.Driver.html#install">install</a></li><li data-type='method'><a href="nwayo.core.services.DependencyManager.drivers.Driver.html#add">add</a></li><li data-type='method'><a href="nwayo.core.services.DependencyManager.drivers.Driver.html#remove">remove</a></li><li data-type='method'><a href="nwayo.core.services.DependencyManager.drivers.Driver.html#update">update</a></li><li data-type='method'><a href="nwayo.core.services.DependencyManager.drivers.Driver.html#run">run</a></li></ul></li><li><a href="nwayo.core.services.DependencyManager.drivers.NpmDriver.html">NpmDriver</a><ul class='members'></ul><ul class='methods'><li data-type='method'><a href="nwayo.core.services.DependencyManager.drivers.NpmDriver.html#install">install</a></li><li data-type='method'><a href="nwayo.core.services.DependencyManager.drivers.NpmDriver.html#add">add</a></li><li data-type='method'><a href="nwayo.core.services.DependencyManager.drivers.NpmDriver.html#remove">remove</a></li><li data-type='method'><a href="nwayo.core.services.DependencyManager.drivers.NpmDriver.html#update">update</a></li><li data-type='method'><a href="nwayo.core.services.DependencyManager.drivers.NpmDriver.html#run">run</a></li></ul></li><li><a href="nwayo.core.services.ProjectService.html">ProjectService</a><ul class='members'><li data-type='member'><a href="nwayo.core.services.ProjectService.html#.dependencies">dependencies</a></li><li data-type='member'><a href="nwayo.core.services.ProjectService.html#pathHelper">pathHelper</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.core.services.ProjectService.html#getRootPath">getRootPath</a></li><li data-type='method'><a href="nwayo.core.services.ProjectService.html#getSourcePath">getSourcePath</a></li><li data-type='method'><a href="nwayo.core.services.ProjectService.html#getComponentsPath">getComponentsPath</a></li><li data-type='method'><a href="nwayo.core.services.ProjectService.html#getComponentPath">getComponentPath</a></li><li data-type='method'><a href="nwayo.core.services.ProjectService.html#getBundlesPath">getBundlesPath</a></li><li data-type='method'><a href="nwayo.core.services.ProjectService.html#getBundlePath">getBundlePath</a></li></ul></li></ul>
+		</div></nav>
+
+		<div id="main">
+		
+			<h1 class="page-title">NpmDriver</h1>
+		
+
+			
+
+
+
+
+<section>
+
+<div>
+    
+        </h2>
+        
+            <div class="class-description">Driver that uses NPM as concrete dependency manager.</div>
+        
+    
+</div>
+
+<article>
+    
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="nwayo.core.services.DependencyManager.drivers.Driver.html">nwayo.core.services.DependencyManager.drivers.Driver</a></li>
+    </ul>
+
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+<div class="method">
+
+    
+
+    <h4 class="name" id="install"><span class="type-signature">(async) </span>install<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_DependencyManager_drivers_Driver.js.html#line-33">services/DependencyManager/drivers/Driver.js:33</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="nwayo.core.services.DependencyManager.drivers.Driver.html#install">nwayo.core.services.DependencyManager.drivers.Driver#install</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Install all packages.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The async process promise.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+</div>
+
+        
+            
+<div class="method">
+
+    
+
+    <h4 class="name" id="add"><span class="type-signature">(async) </span>add<span class="signature">(packageName, version<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_DependencyManager_drivers_Driver.js.html#line-46">services/DependencyManager/drivers/Driver.js:46</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="nwayo.core.services.DependencyManager.drivers.Driver.html#add">nwayo.core.services.DependencyManager.drivers.Driver#add</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Add a single package by name, with an optional version, and install it.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>packageName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The package name.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>version</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The package specific version.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The async process promise.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+</div>
+
+        
+            
+<div class="method">
+
+    
+
+    <h4 class="name" id="remove"><span class="type-signature">(async) </span>remove<span class="signature">(packageName)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_DependencyManager_drivers_Driver.js.html#line-58">services/DependencyManager/drivers/Driver.js:58</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="nwayo.core.services.DependencyManager.drivers.Driver.html#remove">nwayo.core.services.DependencyManager.drivers.Driver#remove</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    IRemove a single package.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>packageName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The package name.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The async process promise.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+</div>
+
+        
+            
+<div class="method">
+
+    
+
+    <h4 class="name" id="update"><span class="type-signature">(async) </span>update<span class="signature">(packageName, version<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_DependencyManager_drivers_Driver.js.html#line-71">services/DependencyManager/drivers/Driver.js:71</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="nwayo.core.services.DependencyManager.drivers.Driver.html#update">nwayo.core.services.DependencyManager.drivers.Driver#update</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Update a given package by name, with an optional version, and install it.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>packageName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The package name.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>version</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The package specific version.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The async process promise.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+</div>
+
+        
+            
+<div class="method">
+
+    
+
+    <h4 class="name" id="run"><span class="type-signature">(async, protected) </span>run<span class="signature">(command)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_DependencyManager_drivers_Driver.js.html#line-82">services/DependencyManager/drivers/Driver.js:82</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="nwayo.core.services.DependencyManager.drivers.Driver.html#run">nwayo.core.services.DependencyManager.drivers.Driver#run</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Run command through a spawn child process.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>command</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The command to run.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The async process promise.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+</div>
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+		</div>
+	</div>
+
+	<footer>
+		MIT © 2011-2019 <span class="made">Made with <span class="adjective" data-component="adjective">&#x2764;</span> by <a href="https://absolunet.com" data-external="external">Absolunet</a></span>
+	</footer>
+
+	<script src="../assets__/main.js"></script>
+
+</body>
+</html>

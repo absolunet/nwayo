@@ -1,0 +1,3 @@
+# Default event dispatcher driver.
+# By default, you can choose between "emitter" and "pubsubjs".
+default: pubsubjs

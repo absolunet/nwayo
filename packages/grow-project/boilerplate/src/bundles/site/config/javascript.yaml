@@ -1,0 +1,9 @@
+minify: false
+
+babel:
+  - '> .25%'
+  - 'not dead'
+
+allowBabel:
+  - foundation-sites
+  - @absolunet/*

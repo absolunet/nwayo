@@ -1,0 +1,39 @@
+# This file is intended to store configuration about development stack.
+# Free your development creativity!
+
+# Your preferred IDE. It will be used when rendering local error pages
+# You can choose between "atom", "emacs", "espresso", "idea", "macvim",
+# "phpstorm", "sublime", "textmate" and "vscode".
+ide: '{{DEV_IDE}}'
+
+
+# The dumper parameters to style your debugging world.
+dumper:
+
+  enabled: '{{APP_DEBUG|false}}'
+
+  # The default theme to use.
+  default: '{{DEV_DUMPER_THEME|absolunet}}'
+
+  # All the available themes.
+  themes:
+    absolunet:
+      indent: 4   # The indentation size.
+      open: false # If set to true, all the objects and arrays will be opened by default.
+
+      font:
+        name:   Fira mono # The font name.
+        weight: 400       # The font weight to use.
+        size:   1em       # The font size.
+        link:   https://fonts.googleapis.com/css?family=Fira+Mono:400 # The link to download the required font (optional)
+
+      colors:
+        background: '#2b2d3c' # The background color.
+        text:       '#4ea4e7' # The default text color.
+        key:        '#f2f2f2' # The object and array keys color.
+        type:       '#1aabb6' # The value type names color.
+        boolean:    '#ff5252' # The boolean values color.
+        function:   '#ff5252' # The function values color.
+        number:     '#ff5252' # The numeric value color.
+        string:     '#b6d8ee' # The string values color.
+        symbol:     '#b6d8ee' # The Symbol values color.

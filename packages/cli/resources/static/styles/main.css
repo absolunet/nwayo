@@ -1,0 +1,11 @@
+.menu .menu-text:first-child {
+	padding-left: 0;
+}
+
+.menu .menu-text a {
+	padding: 0;
+}
+
+.welcome-wrapper {
+	height: calc(100vh - 3.5rem);
+}

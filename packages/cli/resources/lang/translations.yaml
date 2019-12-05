@@ -1,0 +1,53 @@
+# This is the main translations file.
+# You can create any translations you want, and they can be nested at will.
+# Nwayo translator uses the { key: { locale: 'value' } } pattern.
+# If you need to namespace lots of translations, you can create another file,
+# which name will be used as namespace.
+#
+# Here are some translation examples:
+#
+# Some words:         # Will create the "Some words" translation key.
+#   en: Some words
+#   fr: Quelques mots
+#
+# foo
+#   bar:
+#     baz:            # Will create the "foo.bar.baz" translation key.
+#       en: qux
+
+Example page:
+  en: Example page
+  fr: Page d'exemple
+
+Hello world:
+  en: Hello world
+  fr: Bonjour le monde
+
+This is an example page:
+  en: This is an example page
+  fr: Ceci est une page d'exemple
+
+Welcome:
+  en: Welcome
+  fr: Bienvenue
+
+/create:
+  en: /create
+  fr: /creer
+
+/edit:
+  en: /edit
+  fr: /editer
+
+
+Installing {{type}}:
+  en: Installing {{type}}
+  fr: Installation des {{type}}
+
+components:
+  en: components
+  fr: composantes
+
+extensions:
+  en: extensions
+  fr: extensions

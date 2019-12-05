@@ -1,0 +1,7 @@
+minify: false
+
+sourcemaps: false
+
+autoprefixer:
+  - '> .25%'
+  - 'not dead'

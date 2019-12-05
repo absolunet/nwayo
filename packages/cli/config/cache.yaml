@@ -1,0 +1,29 @@
+# Indicates if the cache features are enabled.
+enabled: false
+
+
+# Default cache store.
+default: '{{CACHE_STORE|file}}'
+
+
+# Available cache stores.
+stores:
+
+  runtime:
+    driver: runtime
+
+  file:
+    driver: file
+    path: '@/storage/framework/cache/data'
+
+  database:
+    driver: database
+    connection: default
+    table: cache
+
+
+# Common store configuration
+common:
+
+  prefix: '{{CACHE_PREFIX|node_ioc_cache}}'
+  expiration: '{{CACHE_EXPIRATION|600}}'

@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@nwayo-components/cms": "file:components/cms",
+    "@nwayo-components/common": "file:components/common",
+    "@nwayo-components/form": "file:components/form",
+    "@nwayo-components/foundation": "file:components/foundation",
+    "@nwayo-components/site": "file:components/site"
+  }
+}

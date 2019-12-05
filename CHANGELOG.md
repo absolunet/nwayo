@@ -13,6 +13,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+## [4.0.0-dev.1.0] - 2019-11-05
+### Added
+- New core extension with Node IoC extension architecture
+- `install:extensions` commands in the CLI
+- `install:components` commands in the core extension
+- `nwayo.project` service in the core extension to interact with the project structure and meta-data
+- `dependency` manager in the core extension with NPM driver
+
+### Changed
+- Use `@nwayo` NPM organization
+- Use Node IoC for CLI architecture
+- Change the project boilerplate structure
+- Remove grow-extensions
+
+
+
 ## [3.7.1] - 2019-11-05
 ### Added
 - Community resources files
@@ -548,7 +564,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-[Unreleased]:    https://github.com/absolunet/nwayo/compare/3.7.1...HEAD
+[Unreleased]:    https://github.com/absolunet/nwayo/compare/4.0.0-dev.1.0...HEAD
+[4.0.0-dev.1.0]: https://github.com/absolunet/nwayo/compare/3.7.1...4.0.0-dev.1.0
 [3.7.1]:         https://github.com/absolunet/nwayo/compare/3.7.0...3.7.1
 [3.7.0]:         https://github.com/absolunet/nwayo/compare/3.7.0-rc.1...3.7.0
 [3.7.0-rc.1]:    https://github.com/absolunet/nwayo/compare/3.7.0-beta.2...3.7.0-rc.1

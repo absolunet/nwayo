@@ -17,7 +17,7 @@ $ npm install -g @absolunet/nwayo-cli
 
 ## Documentation
 
-[https://absolunet.github.io/nwayo/cli/](https://absolunet.github.io/nwayo/cli/)
+[https://documentation.absolunet.com/nwayo/cli/](https://documentation.absolunet.com/nwayo/cli/)
 
 ## License
 

@@ -1,0 +1,28 @@
+# Your application name.
+name: '{{APP_NAME|Nwayo}}'
+
+
+# The current environment the application is running on
+env: '{{APP_ENV|production}}'
+
+
+# Use debugging tools
+debug: '{{APP_DEBUG|false}}'
+
+
+# The application locale to be used
+locale: '{{APP_LOCALE|en}}'
+
+
+# The application fallback locale to be used
+# if the given locale is either invalid or not supported
+fallback_locale: 'en'
+
+
+# Application service providers
+providers:
+  # List the third party service providers here
+
+
+  # List your own service providers here
+  - '@/dist/node/app/providers/AppServiceProvider'
