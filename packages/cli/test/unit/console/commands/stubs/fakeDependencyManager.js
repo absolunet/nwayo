@@ -1,3 +1,6 @@
+//--------------------------------------------------------
+//-- nwayo - Test - Unit - Console - Commands - Stubs - Fake Dependency Manager
+//--------------------------------------------------------
 'use strict';
 
 const fakeDependencyManagerDriver = require('./fakeDependencyManagerDriver');

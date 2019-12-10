@@ -2,7 +2,6 @@
 //-- Nwayo core - Services - Dependency Manager - Drivers - Driver
 //--------------------------------------------------------
 
-import { spawn }               from 'child_process';
 import { NotImplementedError } from '@absolunet/ioc';
 
 
@@ -48,18 +47,6 @@ class Driver {
 	}
 
 	/**
-	 * IRemove a single package.
-	 *
-	 * @param {string} packageName - The package name.
-	 * @returns {Promise} The async process promise.
-	 * @abstract
-	 * @async
-	 */
-	remove(packageName) { // eslint-disable-line no-unused-vars
-		throw new NotImplementedError(this, 'remove', 'Promise');
-	}
-
-	/**
 	 * Update a given package by name, with an optional version, and install it.
 	 *
 	 * @param {string} packageName - The package name.
@@ -73,6 +60,18 @@ class Driver {
 	}
 
 	/**
+	 * IRemove a single package.
+	 *
+	 * @param {string} packageName - The package name.
+	 * @returns {Promise} The async process promise.
+	 * @abstract
+	 * @async
+	 */
+	remove(packageName) { // eslint-disable-line no-unused-vars
+		throw new NotImplementedError(this, 'remove', 'Promise');
+	}
+
+	/**
 	 * Run command through a spawn child process.
 	 *
 	 * @param {string} command - The command to run.
@@ -83,7 +82,8 @@ class Driver {
 		const [binary, ...parameters] = command.split(' ');
 
 		await new Promise((resolve, reject) => {
-			spawn(binary, parameters, { cwd: this.folder, stdio: 'inherit' })
+			require('child_process') // eslint-disable-line global-require
+				.spawn(binary, parameters, { cwd: this.folder, stdio: 'inherit' })
 				.on('close', (code) => {
 					if (code === 0) {
 						resolve();

@@ -1,3 +1,6 @@
+//--------------------------------------------------------
+//-- nwayo - Test - Unit - Console - Commands - Stubs - Fake Dependency Manager Driver
+//--------------------------------------------------------
 'use strict';
 
 

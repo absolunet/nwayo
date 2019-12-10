@@ -41,7 +41,7 @@ class NpmDriver extends Driver {
 	async update(packageName, version) {
 		if (version) {
 			await this.remove(packageName);
-			await this.install(packageName, version);
+			await this.add(packageName, version);
 		} else {
 			await this.run(`npm update ${packageName}`);
 		}

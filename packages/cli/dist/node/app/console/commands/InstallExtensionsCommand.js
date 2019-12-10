@@ -15,20 +15,10 @@ var _ioc = require("@absolunet/ioc");
  * @augments ioc.console.Command
  * @hideconstructor
  */
-class InstallExtensionsCommand extends _ioc.Command {
-  /**
-   * Class dependencies: <code>['dependency', 'nwayo.project', 'translator']</code>.
-   *
-   * @type {Array<string>}
-   */
-  static get dependencies() {
-    return ['translator'];
-  }
+class InstallExtensionsCommand extends _ioc.mixins.withTranslations(_ioc.Command) {
   /**
    * @inheritdoc
    */
-
-
   get name() {
     return 'install:extensions';
   }
@@ -59,18 +49,7 @@ class InstallExtensionsCommand extends _ioc.Command {
 
 
   async installExtensions() {
-    await this.app.make('dependency').inFolder(this.app.make('nwayo.project').getRootPath()).install();
-  }
-  /**
-   * Translate with the translator service.
-   *
-   * @param {...*} parameters - The translate parameters.
-   * @returns {string} The translated value.
-   */
-
-
-  t(...parameters) {
-    return this.translator.translate(...parameters);
+    await this.app.make('dependency').inFolder(process.cwd()).install();
   }
 
 }

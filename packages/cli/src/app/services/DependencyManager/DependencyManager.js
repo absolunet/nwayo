@@ -49,6 +49,15 @@ class DependencyManager extends mixins.hasDriver() {
 	}
 
 	/**
+	 * @inheritdoc
+	 */
+	driver(driver = 'default', parameters = {}) {
+		parameters.folder = parameters.folder || process.cwd();
+
+		return super.driver(driver, parameters);
+	}
+
+	/**
 	 * Use dependency manager driver in specified folder.
 	 *
 	 * @param {string} folder - Absolute path to the folder.
@@ -75,7 +84,7 @@ class DependencyManager extends mixins.hasDriver() {
 	 * @returns {nwayo.core.services.DependencyManager.drivers.Driver} The driver instance.
 	 */
 	getForward() {
-		return this.inFolder(process.cwd(), 'default');
+		return this.driver();
 	}
 
 }

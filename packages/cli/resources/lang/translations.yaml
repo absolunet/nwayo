@@ -15,31 +15,6 @@
 #     baz:            # Will create the "foo.bar.baz" translation key.
 #       en: qux
 
-Example page:
-  en: Example page
-  fr: Page d'exemple
-
-Hello world:
-  en: Hello world
-  fr: Bonjour le monde
-
-This is an example page:
-  en: This is an example page
-  fr: Ceci est une page d'exemple
-
-Welcome:
-  en: Welcome
-  fr: Bienvenue
-
-/create:
-  en: /create
-  fr: /creer
-
-/edit:
-  en: /edit
-  fr: /editer
-
-
 Installing {{type}}:
   en: Installing {{type}}
   fr: Installation des {{type}}

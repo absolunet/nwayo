@@ -2,7 +2,7 @@
 //-- Nwayo - Command - Install Extension Command
 //--------------------------------------------------------
 
-import { Command } from '@absolunet/ioc';
+import { Command, mixins } from '@absolunet/ioc';
 
 
 /**
@@ -12,16 +12,7 @@ import { Command } from '@absolunet/ioc';
  * @augments ioc.console.Command
  * @hideconstructor
  */
-class InstallExtensionsCommand extends Command {
-
-	/**
-	 * Class dependencies: <code>['dependency', 'nwayo.project', 'translator']</code>.
-	 *
-	 * @type {Array<string>}
-	 */
-	static get dependencies() {
-		return ['translator'];
-	}
+class InstallExtensionsCommand extends mixins.withTranslations(Command) {
 
 	/**
 	 * @inheritdoc
@@ -53,18 +44,8 @@ class InstallExtensionsCommand extends Command {
 	 */
 	async installExtensions() {
 		await this.app.make('dependency')
-			.inFolder(this.app.make('nwayo.project').getRootPath())
+			.inFolder(process.cwd())
 			.install();
-	}
-
-	/**
-	 * Translate with the translator service.
-	 *
-	 * @param {...*} parameters - The translate parameters.
-	 * @returns {string} The translated value.
-	 */
-	t(...parameters) {
-		return this.translator.translate(...parameters);
 	}
 
 }

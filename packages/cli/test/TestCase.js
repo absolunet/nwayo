@@ -10,7 +10,9 @@ class TestCase extends BaseTestCase {
 
 	beforeEach() {
 		super.beforeEach();
-		this.setException(null);
+		jest.clearAllMocks();
+		this.setException(undefined);
+		this.setResult(undefined);
 	}
 
 	attempt(closure) {
@@ -31,6 +33,30 @@ class TestCase extends BaseTestCase {
 
 	setException(exception) {
 		this.exception = exception;
+	}
+
+	setResult(result) {
+		this.result = result;
+	}
+
+	thenResultShouldBe(expected) {
+		this.thenShouldNotHaveThrown();
+		this.expect(this.result).toBe(expected);
+	}
+
+	thenResultShouldEqual(expected) {
+		this.thenShouldNotHaveThrown();
+		this.expect(this.result).toStrictEqual(expected);
+	}
+
+	thenResultShouldBeInstanceOf(expected) {
+		this.thenShouldNotHaveThrown();
+		this.expect(this.result).toBeInstanceOf(expected);
+	}
+
+	thenResultShouldHaveProperty(property, value) {
+		this.thenShouldNotHaveThrown();
+		this.expect(this.result).toHaveProperty(property, value);
 	}
 
 	thenShouldNotHaveThrown() {

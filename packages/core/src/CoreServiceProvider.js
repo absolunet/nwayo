@@ -4,7 +4,6 @@
 
 import { ServiceProvider } from '@absolunet/ioc';
 
-import DependencyManager   from './services/DependencyManager';
 import ProjectService      from './services/ProjectService';
 
 import InstallComponentsCommand from './console/commands/install/InstallComponentsCommand';
@@ -24,7 +23,6 @@ class CoreServiceProvider extends ServiceProvider {
 	 */
 	register() {
 		this.loadAndPublishConfig(this.app.formatPath(__dirname, 'config'));
-		this.bindDependencyManager();
 		this.bindProjectService();
 	}
 
@@ -35,13 +33,6 @@ class CoreServiceProvider extends ServiceProvider {
 		this.loadCommands([
 			InstallComponentsCommand
 		]);
-	}
-
-	/**
-	 * Bind dependency manager.
-	 */
-	bindDependencyManager() {
-		this.app.singleton('dependency', DependencyManager);
 	}
 
 	/**

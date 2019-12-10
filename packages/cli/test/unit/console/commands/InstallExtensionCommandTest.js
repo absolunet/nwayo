@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- nwayo - Test - Unit - Install Extension Command
+//-- nwayo - Test - Unit - Console - Commands - Install Extension Command
 //--------------------------------------------------------
 'use strict';
 
@@ -7,18 +7,11 @@ const TestCase                = require('../../../TestCase');
 const InstallExtensionCommand = require('../../../../dist/node/app/console/commands/InstallExtensionsCommand');
 
 const fakeTerminal                = require('./stubs/fakeTerminal');
-const fakeProjectService          = require('./stubs/fakeProjectService');
 const fakeDependencyManager       = require('./stubs/fakeDependencyManager');
 const fakeDependencyManagerDriver = require('./stubs/fakeDependencyManagerDriver');
 
 
 class InstallExtensionCommandTest extends TestCase {
-
-	init() {
-		if (super.init) {
-			super.init();
-		}
-	}
 
 	beforeEach() {
 		super.beforeEach();
@@ -26,13 +19,13 @@ class InstallExtensionCommandTest extends TestCase {
 		this.givenCommandRunner();
 		this.givenFakeTerminal();
 		this.givenFakeDependencyManager();
-		this.givenFakeProjectService();
+		this.givenFakeCurrentWorkingDirectory();
 		this.givenCommand();
 	}
 
 	afterEach() {
 		super.afterEach();
-		this.thenRestoreFakeProjectService();
+		this.thenRestoreCurrentWorkingDirectory();
 	}
 
 	async testTriggersInstallationInProjectRootFolder() {
@@ -48,7 +41,6 @@ class InstallExtensionCommandTest extends TestCase {
 
 	givenFakeProjectRoot() {
 		this.fakeProjectRoot = '/path/to/fake/project/root';
-		fakeProjectService.__projectRootPath = this.fakeProjectRoot;
 	}
 
 	givenEmptyArgv() {
@@ -67,8 +59,11 @@ class InstallExtensionCommandTest extends TestCase {
 		this.app.singleton('dependency', fakeDependencyManager);
 	}
 
-	givenFakeProjectService() {
-		this.app.singleton('nwayo.project', fakeProjectService);
+	givenFakeCurrentWorkingDirectory() {
+		this.__processCwd = process.cwd;
+		process.cwd = jest.fn(() => {
+			return this.fakeProjectRoot;
+		});
 	}
 
 	givenCommand() {
@@ -97,8 +92,8 @@ class InstallExtensionCommandTest extends TestCase {
 		this.expect(fakeDependencyManagerDriver.install).toHaveBeenCalled();
 	}
 
-	thenRestoreFakeProjectService() {
-		fakeProjectService.__projectRootPath = '';
+	thenRestoreCurrentWorkingDirectory() {
+		process.cwd = this.__processCwd || process.cwd;
 	}
 
 }
