@@ -20,7 +20,7 @@ class Kernel extends _ioc.ConsoleKernel {
    * @inheritdoc
    */
   async handle() {
-    const isLegacy = await this.checkIfLegacy();
+    const isLegacy = this.checkIfLegacy();
 
     if (isLegacy) {
       await this.handleLegacy();
@@ -35,8 +35,9 @@ class Kernel extends _ioc.ConsoleKernel {
    */
 
 
-  async handleLegacy() {} //
-
+  handleLegacy() {
+    return this.app.make('handle.legacy').handleLegacy();
+  }
   /**
    * @inheritdoc
    */
@@ -79,13 +80,14 @@ class Kernel extends _ioc.ConsoleKernel {
     this.commandRegistrar.addFromFolder(this.app.commandPath());
   }
   /**
-   * Check if  current call is in legacy nwayo project.
+   * Check if current call is in legacy nwayo project.
    *
-   * @returns {Promise<boolean>} Indicates that the current project is a legacy nwayo project.
+   * @returns {boolean} Indicates that the current project is a legacy nwayo project.
    */
 
 
-  async checkIfLegacy() {//
+  checkIfLegacy() {
+    return this.app.make('nwayo.legacy').projectIsLegacy();
   }
 
 }

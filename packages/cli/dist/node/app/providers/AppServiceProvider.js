@@ -4,6 +4,12 @@ exports.default = void 0;
 
 var _ioc = require("@absolunet/ioc");
 
+var _NwayoLegacyService = _interopRequireDefault(require("../services/legacy/NwayoLegacyService"));
+
+var _HandleLegacyService = _interopRequireDefault(require("../services/legacy/HandleLegacyService"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 //--------------------------------------------------------
 //-- Nwayo - Providers - Application Service Provider
 //--------------------------------------------------------
@@ -42,6 +48,9 @@ class AppServiceProvider extends _ioc.ServiceProvider {
         });
       }
     }
+
+    this.app.singleton('nwayo.legacy', _NwayoLegacyService.default);
+    this.app.singleton('handle.legacy', _HandleLegacyService.default);
   }
 
 }

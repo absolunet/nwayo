@@ -3,6 +3,8 @@
 //--------------------------------------------------------
 
 import { ServiceProvider } from '@absolunet/ioc';
+import NwayoLegacyService from '../services/legacy/NwayoLegacyService';
+import HandleLegacyService from '../services/legacy/HandleLegacyService';
 
 
 /**
@@ -38,6 +40,9 @@ class AppServiceProvider extends ServiceProvider {
 				});
 			}
 		}
+
+		this.app.singleton('nwayo.legacy', NwayoLegacyService);
+		this.app.singleton('handle.legacy', HandleLegacyService);
 	}
 
 }
