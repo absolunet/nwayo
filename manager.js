@@ -9,6 +9,7 @@ const fsp         = require('@absolunet/fsp');
 const { manager } = require('@absolunet/manager');
 
 const ROOT                            = __dirname;
+const CLI_ROOT                        = `${ROOT}/packages/cli`;
 const CORE_ROOT                       = `${ROOT}/packages/core`;
 const GROW_PROJECT_ROOT               = `${ROOT}/packages/grow-project/boilerplate`;
 const PROJECT_BOILERPLATE_ROOT        = `${ROOT}/packages/grow-project/boilerplate`;
@@ -19,6 +20,8 @@ const GROW_PROJECT_PACKAGE               = `${GROW_PROJECT_ROOT}/package.json`;
 const PROJECT_BOILERPLATE_SOURCE_PACKAGE = `${PROJECT_BOILERPLATE_SOURCE_ROOT}/package.json`;
 const PROJECT_SAMPLE_INDEX               = `${PROJECT_BOILERPLATE_ROOT}/SAMPLE-HTML/index.html`;
 const PROJECT_CORE_EXTENSION             = `${PROJECT_BOILERPLATE_ROOT}/node_modules/@nwayo/core`;
+const NODE_IOC_CLI_PACKAGE               = `${CLI_ROOT}/node_modules/@absolunet/ioc`;
+const NODE_IOC_CORE_PACKAGE              = `${CORE_ROOT}/node_modules/@absolunet/ioc`;
 
 
 
@@ -34,6 +37,11 @@ manager.init({
 	tasks: {
 		install: {
 			postRun: async ({ terminal }) => {
+				terminal.println('Symlink @absolunet/ioc package to @nwayo/core node_modules to ensure singletons');
+				await fsp.remove(NODE_IOC_CORE_PACKAGE);
+				await fsp.ensureDir(path.dirname(NODE_IOC_CORE_PACKAGE));
+				await fsp.symlink(NODE_IOC_CLI_PACKAGE, NODE_IOC_CORE_PACKAGE);
+
 				terminal.println('Symlink @nwayo/core extension to grow-project boilerplate');
 				await fsp.remove(PROJECT_CORE_EXTENSION);
 				await fsp.ensureDir(path.dirname(PROJECT_CORE_EXTENSION));
