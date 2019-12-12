@@ -7,7 +7,7 @@ var _child_process = require("child_process");
 /**
  * Handle Legacy Service.
  */
-class HandleLegacyService {
+class LegacyHandler {
   /**
    * Class dependencies: <code>['app', 'file', 'helper.path', 'terminal']</code>.
    *
@@ -78,7 +78,7 @@ class HandleLegacyService {
 
 }
 
-var _default = HandleLegacyService;
+var _default = LegacyHandler;
 exports.default = _default;
 module.exports = exports.default;
 module.exports.default = exports.default;

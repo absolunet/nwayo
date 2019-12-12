@@ -36,7 +36,7 @@ class Kernel extends _ioc.ConsoleKernel {
 
 
   handleLegacy() {
-    return this.app.make('handle.legacy').handleLegacy();
+    return this.app.make('nwayo.legacy.handler').handleLegacy();
   }
   /**
    * @inheritdoc

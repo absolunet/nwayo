@@ -26,9 +26,14 @@ class CheckLegacyService {
       return false;
     }
 
-    const hasNwayoYaml = this.projectFileExists('nwayo.yaml');
-    const hasPackage = this.projectFileExists('src', 'package.json');
-    return !hasNwayoYaml || !hasPackage;
+    const legacyFileName = 'nwayo.yaml';
+    const hasNwayoYaml = this.projectFileExists(legacyFileName);
+
+    if (hasNwayoYaml) {
+      return this.getLegacyFile(legacyFileName).legacy;
+    }
+
+    return !hasNwayoYaml;
   }
   /**
    * Check if files or folders exists.
@@ -50,6 +55,17 @@ class CheckLegacyService {
 
   projectIsCurrentlyInApp() {
     return this.currentDirectory === this.app.basePath();
+  }
+  /**
+   * Get legacy file.
+   *
+   * @param {string} legacyFileName - The file name to load.
+   * @returns {object} The object of the file.
+   */
+
+
+  getLegacyFile(legacyFileName) {
+    return this.file.load(legacyFileName);
   }
   /**
    * Get currect directory.

@@ -6,7 +6,7 @@ var _ioc = require("@absolunet/ioc");
 
 var _NwayoLegacyService = _interopRequireDefault(require("../services/legacy/NwayoLegacyService"));
 
-var _HandleLegacyService = _interopRequireDefault(require("../services/legacy/HandleLegacyService"));
+var _LegacyHandler = _interopRequireDefault(require("../handler/legacy/LegacyHandler"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -50,7 +50,7 @@ class AppServiceProvider extends _ioc.ServiceProvider {
     }
 
     this.app.singleton('nwayo.legacy', _NwayoLegacyService.default);
-    this.app.singleton('handle.legacy', _HandleLegacyService.default);
+    this.app.singleton('nwayo.legacy.handler', _LegacyHandler.default);
   }
 
 }

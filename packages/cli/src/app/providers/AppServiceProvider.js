@@ -4,7 +4,7 @@
 
 import { ServiceProvider } from '@absolunet/ioc';
 import NwayoLegacyService from '../services/legacy/NwayoLegacyService';
-import HandleLegacyService from '../services/legacy/HandleLegacyService';
+import LegacyHandler from '../handler/legacy/LegacyHandler';
 
 
 /**
@@ -42,7 +42,7 @@ class AppServiceProvider extends ServiceProvider {
 		}
 
 		this.app.singleton('nwayo.legacy', NwayoLegacyService);
-		this.app.singleton('handle.legacy', HandleLegacyService);
+		this.app.singleton('nwayo.legacy.handler', LegacyHandler);
 	}
 
 }
