@@ -1,8 +1,8 @@
 //--------------------------------------------------------
-//-- Nwayo core - Command - Install Components Command
+//-- nwayo core - Console - Command - Install - Install Components Command
 //--------------------------------------------------------
 
-import { Command } from '@absolunet/ioc';
+import { Command, mixins } from '@absolunet/ioc';
 
 
 /**
@@ -12,7 +12,7 @@ import { Command } from '@absolunet/ioc';
  * @augments ioc.console.Command
  * @hideconstructor
  */
-class InstallComponentsCommand extends Command {
+class InstallComponentsCommand extends mixins.withTranslations(Command) {
 
 	/**
 	 * Class dependencies: <code>['dependency', 'nwayo.project', 'translator']</code>.
@@ -20,7 +20,7 @@ class InstallComponentsCommand extends Command {
 	 * @type {Array<string>}
 	 */
 	static get dependencies() {
-		return ['dependency', 'nwayo.project', 'translator'];
+		return (super.dependencies || []).concat(['dependency', 'nwayo.project']);
 	}
 
 	/**
@@ -55,16 +55,6 @@ class InstallComponentsCommand extends Command {
 		await this.dependency
 			.inFolder(this.nwayoProject.getSourcePath())
 			.install();
-	}
-
-	/**
-	 * Translate with the translator service.
-	 *
-	 * @param {...*} parameters - The translate parameters.
-	 * @returns {string} The translated value.
-	 */
-	t(...parameters) {
-		return this.translator.translate(...parameters);
 	}
 
 }

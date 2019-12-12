@@ -5,7 +5,7 @@ exports.default = void 0;
 var _ioc = require("@absolunet/ioc");
 
 //--------------------------------------------------------
-//-- Nwayo core - Command - Install Components Command
+//-- nwayo core - Console - Command - Install - Install Components Command
 //--------------------------------------------------------
 
 /**
@@ -15,14 +15,14 @@ var _ioc = require("@absolunet/ioc");
  * @augments ioc.console.Command
  * @hideconstructor
  */
-class InstallComponentsCommand extends _ioc.Command {
+class InstallComponentsCommand extends _ioc.mixins.withTranslations(_ioc.Command) {
   /**
    * Class dependencies: <code>['dependency', 'nwayo.project', 'translator']</code>.
    *
    * @type {Array<string>}
    */
   static get dependencies() {
-    return ['dependency', 'nwayo.project', 'translator'];
+    return (super.dependencies || []).concat(['dependency', 'nwayo.project']);
   }
   /**
    * @inheritdoc
@@ -60,17 +60,6 @@ class InstallComponentsCommand extends _ioc.Command {
 
   async installComponents() {
     await this.dependency.inFolder(this.nwayoProject.getSourcePath()).install();
-  }
-  /**
-   * Translate with the translator service.
-   *
-   * @param {...*} parameters - The translate parameters.
-   * @returns {string} The translated value.
-   */
-
-
-  t(...parameters) {
-    return this.translator.translate(...parameters);
   }
 
 }
