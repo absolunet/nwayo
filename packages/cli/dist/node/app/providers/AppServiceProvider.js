@@ -6,7 +6,7 @@ var _ioc = require("@absolunet/ioc");
 
 var _NwayoLegacyService = _interopRequireDefault(require("../services/legacy/NwayoLegacyService"));
 
-var _LegacyHandler = _interopRequireDefault(require("../handler/legacy/LegacyHandler"));
+var _LegacyHandler = _interopRequireDefault(require("../handlers/legacy/LegacyHandler"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

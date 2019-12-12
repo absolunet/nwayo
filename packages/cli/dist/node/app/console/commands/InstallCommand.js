@@ -28,7 +28,10 @@ class InstallCommand extends _ioc.mixins.withTranslations(_LegacyCommand.default
 
 
   get description() {
-    return '[DEPRECATED] Install dependencies ex:[workflow|vendors]';
+    return this.t('commands.install.description', {
+      type: this.t('deprecated').toUpperCase(),
+      command: Object.keys(this.legacyCommandMapping).join('|')
+    });
   }
   /**
    * Command parameters: <code>['scope']</code>.
@@ -38,7 +41,7 @@ class InstallCommand extends _ioc.mixins.withTranslations(_LegacyCommand.default
 
 
   get parameters() {
-    return [['scope', true, null, 'The installation scope.']];
+    return [['scope', true, null, this.t('commands.install.parameters.scope')]];
   }
   /**
    * Command flags: <code>['force']</code>.
@@ -48,7 +51,7 @@ class InstallCommand extends _ioc.mixins.withTranslations(_LegacyCommand.default
 
 
   get flags() {
-    return [['force', 'The install workflow force flag.']];
+    return [['force', this.t('commands.install.flags.force')]];
   }
   /**
    * @inheritdoc
@@ -58,26 +61,6 @@ class InstallCommand extends _ioc.mixins.withTranslations(_LegacyCommand.default
   async handle() {
     await super.handle();
     await this.runCommand();
-  }
-  /**
-   * Validate the command that will need to be call based on arguments from terminal.
-   *
-   * @returns {string} The command to run based on arguments.
-   */
-
-
-  getLegacyCommandName() {
-    const scope = this.parameter('scope');
-
-    if (scope === 'workflow') {
-      return this.installExtensionsCommand;
-    }
-
-    if (scope === 'vendors') {
-      return this.installComponentsCommand;
-    }
-
-    return '';
   }
   /**
    * Command that will be executed based on arguments from terminal.
@@ -90,6 +73,24 @@ class InstallCommand extends _ioc.mixins.withTranslations(_LegacyCommand.default
     await this.call(this.getLegacyCommandName());
   }
   /**
+   * Validate the command that will need to be call based on arguments from terminal.
+   *
+   * @returns {string} The command to run based on arguments.
+   */
+
+
+  getLegacyCommandName() {
+    const command = this.legacyCommandMapping[this.parameter('scope')];
+
+    if (!command) {
+      throw new TypeError(this.t('messages.nonExistingCommand', {
+        command: Object.values(this.legacyCommandMapping).join(` ${this.t('or')} `)
+      }));
+    }
+
+    return command;
+  }
+  /**
    * Get deprecation notice to show.
    *
    * @type {string}
@@ -97,32 +98,22 @@ class InstallCommand extends _ioc.mixins.withTranslations(_LegacyCommand.default
 
 
   get deprecationNotice() {
-    let isDeprecatedMessage = this.t('is deprecated');
-
-    if (this.getLegacyCommandName() === '') {
-      isDeprecatedMessage = this.t('doesn\'t exist');
-    }
-
-    return this.t('This command {{type}} Please use {{command}}', {
-      type: isDeprecatedMessage,
-      command: this.commandToUse
+    return this.t('messages.deprecatedCommand', {
+      command: this.getLegacyCommandName()
     });
   }
   /**
-   * Get command to use, for warning purpose.
+   * Get legacy command mapping.
    *
-   * @type {string}
+   * @type {object}
    */
 
 
-  get commandToUse() {
-    const commandToCall = this.getLegacyCommandName();
-
-    if (commandToCall) {
-      return commandToCall;
-    }
-
-    return `${this.installExtensionsCommand} ${this.t('or')} ${this.installComponentsCommand}`;
+  get legacyCommandMapping() {
+    return {
+      workflow: this.installExtensionsCommand,
+      vendors: this.installComponentsCommand
+    };
   }
   /**
    * Get workflow command to use.

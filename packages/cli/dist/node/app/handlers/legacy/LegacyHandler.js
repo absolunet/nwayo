@@ -2,7 +2,9 @@
 
 exports.default = void 0;
 
-var _child_process = require("child_process");
+//--------------------------------------------------------
+//-- Nwayo - Handlers - Legacy Hander
+//--------------------------------------------------------
 
 /**
  * Handle Legacy Service.
@@ -51,7 +53,7 @@ class LegacyHandler {
         nwayo: legacyNwayoBinPath
       }
     } = this.getLegacyNwayoPackage();
-    return (0, _child_process.spawn)('node', [this.app.formatPath(legacyNwayoPath, legacyNwayoBinPath), ...this.terminal.argv], {
+    return this.spawn('node', [this.app.formatPath(legacyNwayoPath, legacyNwayoBinPath), ...this.terminal.argv], {
       stdio: 'inherit'
     });
   }
@@ -74,6 +76,16 @@ class LegacyHandler {
 
   get legacyNwayoPath() {
     return this.helperPath.dirname(require.resolve('@absolunet/nwayo-cli'));
+  }
+  /**
+   * Child process spawn.
+   *
+   * @type {spawn}
+   */
+
+
+  get spawn() {
+    return require('child_process').spawn; // eslint-disable-line global-require
   }
 
 }

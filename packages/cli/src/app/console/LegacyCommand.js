@@ -2,7 +2,7 @@
 //-- Nwayo - Command - Install
 //--------------------------------------------------------
 
-import { Command } from '@absolunet/ioc';
+import { Command, NotImplementedError } from '@absolunet/ioc';
 
 
 /**

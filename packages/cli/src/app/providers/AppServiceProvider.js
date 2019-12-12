@@ -3,8 +3,8 @@
 //--------------------------------------------------------
 
 import { ServiceProvider } from '@absolunet/ioc';
-import NwayoLegacyService from '../services/legacy/NwayoLegacyService';
-import LegacyHandler from '../handler/legacy/LegacyHandler';
+import NwayoLegacyService  from '../services/legacy/NwayoLegacyService';
+import LegacyHandler       from '../handlers/legacy/LegacyHandler';
 
 
 /**

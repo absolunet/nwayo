@@ -35,7 +35,7 @@ class LegacyCommand extends _ioc.Command {
 
 
   get deprecationNotice() {
-    throw new NotImplementedError(this, 'deprecationNotice', 'string', 'accessor');
+    throw new _ioc.NotImplementedError(this, 'deprecationNotice', 'string', 'accessor');
   }
 
 }

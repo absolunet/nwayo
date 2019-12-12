@@ -2,7 +2,7 @@
 //-- Nwayo - Command - InstallCommand
 //--------------------------------------------------------
 
-import { mixins } from '@absolunet/ioc';
+import { mixins }    from '@absolunet/ioc';
 import LegacyCommand from '../LegacyCommand';
 
 
@@ -22,7 +22,10 @@ class InstallCommand extends mixins.withTranslations(LegacyCommand) {
 	 * @inheritdoc
 	 */
 	get description() {
-		return '[DEPRECATED] Install dependencies ex:[workflow|vendors]';
+		return this.t('commands.install.description', {
+			type: this.t('deprecated').toUpperCase(),
+			command: Object.keys(this.legacyCommandMapping).join('|')
+		});
 	}
 
 	/**
@@ -32,7 +35,7 @@ class InstallCommand extends mixins.withTranslations(LegacyCommand) {
 	 */
 	get parameters() {
 		return [
-			['scope', true, null, 'The installation scope.']
+			['scope', true, null, this.t('commands.install.parameters.scope')]
 		];
 	}
 
@@ -43,7 +46,7 @@ class InstallCommand extends mixins.withTranslations(LegacyCommand) {
 	 */
 	get flags() {
 		return [
-			['force', 'The install workflow force flag.']
+			['force', this.t('commands.install.flags.force')]
 		];
 	}
 
@@ -56,25 +59,6 @@ class InstallCommand extends mixins.withTranslations(LegacyCommand) {
 	}
 
 	/**
-	 * Validate the command that will need to be call based on arguments from terminal.
-	 *
-	 * @returns {string} The command to run based on arguments.
-	 */
-	getLegacyCommandName() {
-		const scope = this.parameter('scope');
-
-		if (scope === 'workflow') {
-			return this.installExtensionsCommand;
-		}
-
-		if (scope === 'vendors') {
-			return this.installComponentsCommand;
-		}
-
-		return '';
-	}
-
-	/**
 	 * Command that will be executed based on arguments from terminal.
 	 *
 	 * @returns {Promise} Call to execute in terminal.
@@ -84,34 +68,44 @@ class InstallCommand extends mixins.withTranslations(LegacyCommand) {
 	}
 
 	/**
+	 * Validate the command that will need to be call based on arguments from terminal.
+	 *
+	 * @returns {string} The command to run based on arguments.
+	 */
+	getLegacyCommandName() {
+		const command = this.legacyCommandMapping[this.parameter('scope')];
+
+		if (!command) {
+			throw new TypeError(this.t('messages.nonExistingCommand', {
+				command: Object.values(this.legacyCommandMapping).join(` ${this.t('or')} `)
+			}));
+		}
+
+		return command;
+	}
+
+	/**
 	 * Get deprecation notice to show.
 	 *
 	 * @type {string}
 	 */
 	get deprecationNotice() {
-		let isDeprecatedMessage = this.t('is deprecated');
-		if (this.getLegacyCommandName() === '') {
-			isDeprecatedMessage = this.t('doesn\'t exist');
-		}
-
-		return this.t('This command {{type}} Please use {{command}}', {
-			type: isDeprecatedMessage,
-			command: this.commandToUse
+		return this.t('messages.deprecatedCommand', {
+			command: this.getLegacyCommandName()
 		});
 	}
 
-	/**
-	 * Get command to use, for warning purpose.
-	 *
-	 * @type {string}
-	 */
-	get commandToUse() {
-		const commandToCall = this.getLegacyCommandName();
-		if (commandToCall) {
-			return commandToCall;
-		}
 
-		return `${this.installExtensionsCommand} ${this.t('or')} ${this.installComponentsCommand}`;
+	/**
+	 * Get legacy command mapping.
+	 *
+	 * @type {object}
+	 */
+	get legacyCommandMapping() {
+		return {
+			workflow: this.installExtensionsCommand,
+			vendors:  this.installComponentsCommand
+		};
 	}
 
 	/**

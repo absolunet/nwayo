@@ -1,3 +1,8 @@
+//--------------------------------------------------------
+//-- Nwayo - Providers - Application Service Provider
+//--------------------------------------------------------
+
+
 /**
  * Check Legacy Service.
  */
@@ -26,20 +31,20 @@ class CheckLegacyService {
 		const hasNwayoYaml   = this.projectFileExists(legacyFileName);
 
 		if (hasNwayoYaml) {
-			return this.getLegacyFile(legacyFileName).legacy;
+			return Boolean(this.getLegacyFile(legacyFileName).legacy);
 		}
 
-		return !hasNwayoYaml;
+		return false;
 	}
 
 	/**
 	 * Check if files or folders exists.
 	 *
-	 * @param {string} files - Files or folders to validate.
+	 * @param {...string} segments - Files or folders to validate.
 	 * @returns {boolean} Indicates that the files or folders exists.
 	 */
-	projectFileExists(...files) {
-		return this.file.exists(this.app.formatPath(this.currentDirectory, ...files));
+	projectFileExists(...segments) {
+		return this.file.exists(this.app.formatPath(this.currentDirectory, ...segments));
 	}
 
 	/**
@@ -54,11 +59,11 @@ class CheckLegacyService {
 	/**
 	 * Get legacy file.
 	 *
-	 * @param {string} legacyFileName - The file name to load.
+	 * @param {...string} segments - The file name to load.
 	 * @returns {object} The object of the file.
 	 */
-	getLegacyFile(legacyFileName) {
-		return this.file.load(legacyFileName);
+	getLegacyFile(...segments) {
+		return this.file.load(this.app.formatPath(this.currentDirectory, ...segments));
 	}
 
 	/**
@@ -71,5 +76,6 @@ class CheckLegacyService {
 	}
 
 }
+
 
 export default CheckLegacyService;

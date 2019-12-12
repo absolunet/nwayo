@@ -52,17 +52,9 @@ extensions:
   en: extensions
   fr: extensions
 
-'This command {{type}} Please use {{command}}':
-  en: This command {{type}}. Please use {{command}}
-  fr: Cette commande {{type}}. Veuillez utiliser {{command}}
-
-is deprecated:
-  en: is deprecated
-  fr: est obsolète
-
-doesn't exist:
-  en: doesn't exist
-  fr: n'existe pas
+deprecated:
+  en: deprecated
+  fr: obsolète
 
 or:
   en: or

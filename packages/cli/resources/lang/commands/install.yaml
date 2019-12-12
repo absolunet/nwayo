@@ -1,0 +1,13 @@
+description:
+  en: '[{{type}}] Install dependencies ex:[{{command}}]'
+  fr: '[{{type}}] Installer les dépendances ex:[{{command}}]'
+
+parameters:
+  scope:
+    en: The installation scope.
+    fr: L'étendue de l'installation.
+
+flags:
+  force:
+    en: The install workflow force flag.
+    fr: L'indicateur pour forcer l'installation du flux de travail.
