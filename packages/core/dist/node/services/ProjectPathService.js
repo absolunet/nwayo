@@ -3,7 +3,7 @@
 exports.default = void 0;
 
 //--------------------------------------------------------
-//-- Nwayo core - Services - Project Service
+//-- Nwayo core - Services - Project Path Service
 //--------------------------------------------------------
 
 /**
@@ -12,14 +12,14 @@ exports.default = void 0;
  * @memberof nwayo.core.services
  * @hideconstructor
  */
-class ProjectService {
+class ProjectPathService {
   /**
    * Class dependencies: <code>['helper.path']</code>.
    *
    * @type {Array<string>}
    */
   static get dependencies() {
-    return ['helper.path'];
+    return ['helper.path', 'nwayo.constant.misc'];
   }
   /**
    * Get project root path.
@@ -39,7 +39,7 @@ class ProjectService {
 
 
   getSourcePath() {
-    return this.pathHelper.join(this.getRootPath(), 'src');
+    return this.pathHelper.join(this.getRootPath(), this.genericPath.SOURCES);
   }
   /**
    * Get project's components path.
@@ -61,7 +61,7 @@ class ProjectService {
 
   getComponentPath(component) {
     try {
-      return require.resolve(`@nwayo/${component}`);
+      return require.resolve(`@nwayo-components/${component}`);
     } catch (error) {
       return this.pathHelper.join(this.getComponentsPath(), component);
     }
@@ -97,10 +97,20 @@ class ProjectService {
   get pathHelper() {
     return this.helperPath;
   }
+  /**
+   * Generic path enum.
+   *
+   * @returns {nwayo.core.enums.Path}
+   */
+
+
+  get genericPath() {
+    return this.nwayoPathGeneric;
+  }
 
 }
 
-var _default = ProjectService;
+var _default = ProjectPathService;
 exports.default = _default;
 module.exports = exports.default;
 module.exports.default = exports.default;

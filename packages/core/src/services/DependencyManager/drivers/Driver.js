@@ -20,7 +20,7 @@ class Driver {
 	 * @type {Array<string>}
 	 */
 	static get dependencies() {
-		return ['folder', 'terminal.interceptor'];
+		return ['app', 'file.system.async', 'folder', 'nwayo.path.generic', 'terminal.interceptor'];
 	}
 
 	/**
@@ -92,6 +92,119 @@ class Driver {
 					}
 				});
 		});
+	}
+
+	async all() {
+		const { dependencies } = await this.loadPackageJson();
+
+		return dependencies;
+	}
+
+	async has(component) {
+		const dependencies = await this.all();
+
+		return Object.prototype.hasOwnProperty.call(dependencies, component);
+	}
+
+	isLocal(component) {
+		return this.componentVersionMatchesRegex(component, this.localVersionRegex);
+	}
+
+	isExternal(component) {
+		return this.componentVersionMatchesRegex(component, this.externalVersionRegex);
+	}
+
+	async add(dependency, version) {
+		const packageJson = await this.loadPackageJson();
+
+		packageJson.dependencies[dependency] = version;
+
+		await this.savePackageJson(packageJson);
+	}
+
+	async remove(component) {
+		const packageJson = await this.loadPackageJson();
+
+		delete packageJson.dependencies[component];
+
+		await this.savePackageJson(packageJson);
+	}
+
+	async clear() {
+		const packageJson = await this.loadPackageJson();
+
+		packageJson.dependencies = {};
+
+		await this.savePackageJson(packageJson);
+	}
+
+	async clearLocal() {
+		await this.clearByRegex(this.localVersionRegex);
+	}
+
+	async clearExternal() {
+		await this.clearByRegex(this.externalVersionRegex);
+	}
+
+	async clearByRegex(regex) {
+		const packageJson = await this.loadPackageJson();
+
+		Object.entries(packageJson.dependencies).forEach(([name, version], i, components) => {
+			if (regex.test(version)) {
+				delete components[name];
+			}
+		});
+
+		await this.savePackageJson(packageJson);
+	}
+
+	async loadPackageJson() {
+		const packageJson = await this.fs.readJson(this.packageJsonPath);
+		packageJson.dependencies    = packageJson.dependencies || {};
+		packageJson.devDependencies = packageJson.devDependencies || {};
+
+		return packageJson;
+	}
+
+	async savePackageJson(packageJson) {
+		if (Object.keys(packageJson.dependencies || {}).length === 0) {
+			delete packageJson.dependencies;
+		}
+		if (Object.keys(packageJson.devDependencies || {}).length === 0) {
+			delete packageJson.devDependencies;
+		}
+
+		await this.fs.writeJson(this.packageJsonPath, packageJson);
+	}
+
+	async componentVersionMatchesRegex(component, regex) {
+		const components = await this.all();
+
+		if (!Object.prototype.hasOwnProperty.call(components, component)) {
+			return false;
+		}
+
+		return regex.test(components[component]);
+	}
+
+	get packageJsonPath() {
+		return this.app.formatPath(this.folder, this.nwayoGenericPath.PACKAGE_JSON);
+	}
+
+	get localIdentifier() {
+		return 'file:';
+	}
+
+	get localVersionRegex() {
+		new RegExp(`^${this.localIdentifier}`, 'u');
+	}
+
+	get externalVersionRegex() {
+		new RegExp(`^(?!${this.localIdentifier})`, 'u');
+	}
+
+	get fs() {
+		return this.fileSystemAsync;
 	}
 
 }

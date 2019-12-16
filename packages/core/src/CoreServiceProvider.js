@@ -5,9 +5,14 @@
 import { ServiceProvider } from '@absolunet/ioc';
 
 import DependencyManager   from './services/DependencyManager';
-import ProjectService      from './services/ProjectService';
+import ProjectPathService  from './services/ProjectPathService';
+
+import Package from './enums/constants/Package';
+import Path    from './enums/constants/Path';
+import Project from './enums/constants/Project';
 
 import InstallComponentsCommand from './console/commands/install/InstallComponentsCommand';
+import ProjectBootstrapCommand  from './console/commands/project/ProjectBootstrapCommand';
 
 
 /**
@@ -26,6 +31,7 @@ class CoreServiceProvider extends ServiceProvider {
 		this.loadAndPublishConfig(this.app.formatPath(__dirname, 'config'));
 		this.bindDependencyManager();
 		this.bindProjectService();
+		this.bindConstants();
 	}
 
 	/**
@@ -33,7 +39,8 @@ class CoreServiceProvider extends ServiceProvider {
 	 */
 	boot() {
 		this.loadCommands([
-			InstallComponentsCommand
+			InstallComponentsCommand,
+			ProjectBootstrapCommand
 		]);
 	}
 
@@ -48,7 +55,37 @@ class CoreServiceProvider extends ServiceProvider {
 	 * Bind project service.
 	 */
 	bindProjectService() {
-		this.app.singleton('nwayo.project', ProjectService);
+		this.app.singleton('nwayo.project.path', ProjectPathService);
+	}
+
+	/**
+	 * Bind constants.
+	 */
+	bindConstants() {
+		this.bindPackageConstants();
+		this.bindPathConstants();
+		this.bindProjectConstants();
+	}
+
+	/**
+	 * Bind package constant.
+	 */
+	bindPackageConstants() {
+		this.app.singleton('nwayo.constant.package', Package);
+	}
+
+	/**
+	 * Bind path constants.
+	 */
+	bindPathConstants() {
+		this.app.singleton('nwayo.constant.path', Path);
+	}
+
+	/**
+	 * Bind project constants.
+	 */
+	bindProjectConstants() {
+		this.app.singleton('nwayo.constant.project', Project);
 	}
 
 }

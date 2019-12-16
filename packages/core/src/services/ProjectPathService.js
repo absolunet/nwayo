@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Nwayo core - Services - Project Service
+//-- Nwayo core - Services - Project Path Service
 //--------------------------------------------------------
 
 
@@ -9,7 +9,7 @@
  * @memberof nwayo.core.services
  * @hideconstructor
  */
-class ProjectService {
+class ProjectPathService {
 
 	/**
 	 * Class dependencies: <code>['helper.path']</code>.
@@ -17,7 +17,7 @@ class ProjectService {
 	 * @type {Array<string>}
 	 */
 	static get dependencies() {
-		return ['helper.path'];
+		return ['helper.path', 'nwayo.constant.misc'];
 	}
 
 	/**
@@ -35,7 +35,7 @@ class ProjectService {
 	 * @returns {string} The project source path.
 	 */
 	getSourcePath() {
-		return this.pathHelper.join(this.getRootPath(), 'src');
+		return this.pathHelper.join(this.getRootPath(), this.genericPath.SOURCES);
 	}
 
 	/**
@@ -55,7 +55,7 @@ class ProjectService {
 	 */
 	getComponentPath(component) {
 		try {
-			return require.resolve(`@nwayo/${component}`);
+			return require.resolve(`@nwayo-components/${component}`);
 		} catch (error) {
 			return this.pathHelper.join(this.getComponentsPath(), component);
 		}
@@ -89,7 +89,16 @@ class ProjectService {
 		return this.helperPath;
 	}
 
+	/**
+	 * Generic path enum.
+	 *
+	 * @returns {nwayo.core.enums.Path}
+	 */
+	get genericPath() {
+		return this.nwayoPathGeneric;
+	}
+
 }
 
 
-export default ProjectService;
+export default ProjectPathService;

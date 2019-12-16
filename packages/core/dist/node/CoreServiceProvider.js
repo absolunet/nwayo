@@ -6,9 +6,17 @@ var _ioc = require("@absolunet/ioc");
 
 var _DependencyManager = _interopRequireDefault(require("./services/DependencyManager"));
 
-var _ProjectService = _interopRequireDefault(require("./services/ProjectService"));
+var _ProjectPathService = _interopRequireDefault(require("./services/ProjectPathService"));
+
+var _Package = _interopRequireDefault(require("./enums/constants/Package"));
+
+var _Path = _interopRequireDefault(require("./enums/constants/Path"));
+
+var _Project = _interopRequireDefault(require("./enums/constants/Project"));
 
 var _InstallComponentsCommand = _interopRequireDefault(require("./console/commands/install/InstallComponentsCommand"));
+
+var _ProjectBootstrapCommand = _interopRequireDefault(require("./console/commands/project/ProjectBootstrapCommand"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31,6 +39,7 @@ class CoreServiceProvider extends _ioc.ServiceProvider {
     this.loadAndPublishConfig(this.app.formatPath(__dirname, 'config'));
     this.bindDependencyManager();
     this.bindProjectService();
+    this.bindConstants();
   }
   /**
    * @inheritdoc
@@ -38,7 +47,7 @@ class CoreServiceProvider extends _ioc.ServiceProvider {
 
 
   boot() {
-    this.loadCommands([_InstallComponentsCommand.default]);
+    this.loadCommands([_InstallComponentsCommand.default, _ProjectBootstrapCommand.default]);
   }
   /**
    * Bind dependency manager.
@@ -54,7 +63,41 @@ class CoreServiceProvider extends _ioc.ServiceProvider {
 
 
   bindProjectService() {
-    this.app.singleton('nwayo.project', _ProjectService.default);
+    this.app.singleton('nwayo.project.path', _ProjectPathService.default);
+  }
+  /**
+   * Bind constants.
+   */
+
+
+  bindConstants() {
+    this.bindPackageConstants();
+    this.bindPathConstants();
+    this.bindProjectConstants();
+  }
+  /**
+   * Bind package constant.
+   */
+
+
+  bindPackageConstants() {
+    this.app.singleton('nwayo.constant.package', _Package.default);
+  }
+  /**
+   * Bind path constants.
+   */
+
+
+  bindPathConstants() {
+    this.app.singleton('nwayo.constant.path', _Path.default);
+  }
+  /**
+   * Bind project constants.
+   */
+
+
+  bindProjectConstants() {
+    this.app.singleton('nwayo.constant.project', _Project.default);
   }
 
 }
