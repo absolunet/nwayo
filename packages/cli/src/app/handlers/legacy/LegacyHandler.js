@@ -22,7 +22,7 @@ class LegacyHandler {
 	 *
 	 * @returns {Promise} The async process promise.
 	 */
-	async handleLegacy() {
+	async handle() {
 		const nwayoLegacyForward = this.forwardChildProcess();
 
 		await new Promise((resolve, reject) => {

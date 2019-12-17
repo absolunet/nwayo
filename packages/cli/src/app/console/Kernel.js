@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel {
 	 * @returns {Promise} The async process promise.
 	 */
 	handleLegacy() {
-		return this.app.make('nwayo.legacy.handler').handleLegacy();
+		return this.app.make('nwayo.legacy.handler').handle();
 	}
 
 	/**

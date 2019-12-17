@@ -25,7 +25,7 @@ class LegacyHandler {
    */
 
 
-  async handleLegacy() {
+  async handle() {
     const nwayoLegacyForward = this.forwardChildProcess();
     await new Promise((resolve, reject) => {
       nwayoLegacyForward.on('close', code => {
