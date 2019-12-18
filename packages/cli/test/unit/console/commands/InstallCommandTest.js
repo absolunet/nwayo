@@ -5,42 +5,53 @@
 
 const TestCase       = require('../../../TestCase');
 const InstallCommand = require('../../../../dist/node/app/console/commands/InstallCommand');
-const fakeTerminal   = require('./stubs/fakeTerminal');
+
+const fakeTerminal         = require('./stubs/fakeTerminal');
+const fakeTranslator       = require('./stubs/fakeTranslator');
+const fakeCommandRegistrar = require('./stubs/fakeCommandRegistrar');
 
 
 class InstallCommandTest extends TestCase {
 
 	beforeEach() {
 		super.beforeEach();
-		this.givenCommandRunner();
+		this.givenFakeTranslator();
 		this.givenFakeTerminal();
-		this.givenCommand();
+		this.givenFakeCommandRegistrar();
+		this.givenCommandRunner();
+		this.givenInstallCommand();
+		this.givenNoArgv();
 	}
 
-	async testInstallationExtensionsTriggerWithDeprecationWarning() {
-		this.givenCommandInstall();
-		this.givenArgv('workflow');
+	async testCanInstallWorkflowWithDeprecationWarning() {
+		this.givenScope('workflow');
 		await this.whenRunningCommand();
 		this.thenShouldNotHaveThrown();
-		this.thenShouldHaveCallInstallExtentions();
-		// this.thenShouldHaveThrownDeprecationWarning();
+		this.thenShouldHaveCalledCommand('install:extensions');
+		this.thenShouldHaveShownDeprecationWarning('messages.deprecatedCommand', 'install:extensions');
 	}
 
-	async testInstallationComponentsTriggerWithDeprecationWarning() {
-		this.givenCommandInstall();
-		this.givenArgv('vendors');
+	async testCanInstallVendorsWithDeprecationWarning() {
+		this.givenScope('vendors');
 		await this.whenRunningCommand();
 		this.thenShouldNotHaveThrown();
-		this.thenShouldHaveCallInstallComponents();
-		// this.thenShouldHaveThrownDeprecationWarning();
+		this.thenShouldHaveCalledCommand('install:components');
+		this.thenShouldHaveShownDeprecationWarning('messages.deprecatedCommand', 'install:components');
 	}
 
-	async testInstallationNotTrigger() {
-		this.givenCommandInstall();
-		this.givenArgv('nonexisting');
+	async testThrowsWhenInstallingUnknownScope() {
+		this.givenScope('unknown');
 		await this.whenRunningCommand();
 		this.thenShouldHaveThrown();
-		this.thenShouldHaveCallInstall();
+		this.thenShouldNotHaveCalledCommand();
+		this.thenShouldNotHaveShownDeprecationWarning();
+	}
+
+	async testThrowsWhenInstallingWithoutScope() {
+		await this.whenRunningCommand();
+		this.thenShouldHaveThrown();
+		this.thenShouldNotHaveCalledCommand();
+		this.thenShouldNotHaveShownDeprecationWarning();
 	}
 
 
@@ -55,19 +66,27 @@ class InstallCommandTest extends TestCase {
 		this.app.singleton('terminal', fakeTerminal);
 	}
 
-	givenCommand() {
+	givenFakeTranslator() {
+		this.app.singleton('translator', fakeTranslator);
+	}
+
+	givenInstallCommand() {
 		this.command = this.make(InstallCommand, {
 			app:      this.app,
 			terminal: this.app.make('terminal')
 		});
 	}
 
-	givenCommandInstall() {
-		this.command = 'install';
+	givenFakeCommandRegistrar() {
+		this.app.singleton('command.registrar', fakeCommandRegistrar);
 	}
 
-	givenArgv(argv) {
-		this.argv = argv;
+	givenNoArgv() {
+		this.argv = {};
+	}
+
+	givenScope(scope) {
+		this.argv.scope = scope;
 	}
 
 
@@ -76,8 +95,6 @@ class InstallCommandTest extends TestCase {
 
 	async whenRunningCommand() {
 		await this.attemptAsync(async () => {
-			console.log(this.command);
-			console.log(this.argv);
 			await this.commandRunner.unsafeRun(this.command, this.argv);
 		});
 	}
@@ -86,16 +103,23 @@ class InstallCommandTest extends TestCase {
 	//-- Then
 	//--------------------------------------------------------
 
-	thenShouldHaveCallInstallExtentions() {
-		//
+	thenShouldHaveCalledCommand(command) {
+		this.expect(fakeCommandRegistrar.resolve).toHaveBeenCalledWith(command, true);
+		this.expect(fakeCommandRegistrar._resolveAsyncSpy).toHaveBeenCalled();
 	}
 
-	thenShouldHaveCallInstallComponents() {
-		//
+	thenShouldNotHaveCalledCommand() {
+		this.expect(fakeCommandRegistrar.resolve).not.toHaveBeenCalled();
 	}
 
-	thenShouldHaveCallInstall() {
-		//
+	thenShouldNotHaveShownDeprecationWarning() {
+		this.expect(fakeTerminal.warning).not.toHaveBeenCalled();
+	}
+
+	thenShouldHaveShownDeprecationWarning(message, replacementCommand) {
+		this.expect(fakeTranslator.translate).toHaveBeenCalledWith(message, { command: replacementCommand });
+		const { results } = fakeTranslator.translate.mock;
+		this.expect(fakeTerminal.warning).toHaveBeenCalledWith(results[results.length - 1].value);
 	}
 
 }
