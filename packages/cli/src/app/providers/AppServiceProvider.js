@@ -41,7 +41,21 @@ class AppServiceProvider extends ServiceProvider {
 			}
 		}
 
+		this.bindNwayoLegacyService();
+		this.bindNwayoLegacyHandler();
+	}
+
+	/**
+	 * Bind Nwayo Legacy Service singleton.
+	 */
+	bindNwayoLegacyService() {
 		this.app.singleton('nwayo.legacy', NwayoLegacyService);
+	}
+
+	/**
+	 * Bind Legacy Handler singleton.
+	 */
+	bindNwayoLegacyHandler() {
 		this.app.singleton('nwayo.legacy.handler', LegacyHandler);
 	}
 

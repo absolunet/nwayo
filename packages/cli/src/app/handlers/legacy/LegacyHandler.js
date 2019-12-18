@@ -37,7 +37,7 @@ class LegacyHandler {
 	}
 
 	/**
-	 * Create the child process.
+	 * Create the child process to forward command.
 	 *
 	 * @returns {spawn} The child process.
 	 */
@@ -52,14 +52,14 @@ class LegacyHandler {
 	/**
 	 * Get legacy nwayo package.
 	 *
-	 * @returns {object} The object JSON from the package.json.
+	 * @returns {object} The JSON object from the package.json.
 	 */
 	getLegacyNwayoPackage() {
 		return this.file.load(this.app.formatPath(this.legacyNwayoPath, 'package.json'));
 	}
 
 	/**
-	 * Get legacy nwayo path.
+	 * Legacy nwayo path.
 	 *
 	 * @type {string}
 	 */

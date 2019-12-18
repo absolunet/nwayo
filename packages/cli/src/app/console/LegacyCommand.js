@@ -1,12 +1,12 @@
 //--------------------------------------------------------
-//-- Nwayo - Command - Install
+//-- Nwayo - Command - Legacy Command
 //--------------------------------------------------------
 
 import { Command, NotImplementedError } from '@absolunet/ioc';
 
 
 /**
- * Install.
+ * Legacy Command.
  */
 class LegacyCommand extends Command {
 
@@ -29,7 +29,8 @@ class LegacyCommand extends Command {
 	/**
 	 * Throw not implemented error for deprecation notice.
 	 *
-	 * @type {throw}
+	 * @type {string}
+	 * @abstract
 	 */
 	get deprecationNotice() {
 		throw new NotImplementedError(this, 'deprecationNotice', 'string', 'accessor');

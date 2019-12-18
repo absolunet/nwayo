@@ -1,7 +1,7 @@
 deprecatedCommand:
-  en: This command is deprecated. Please use {{command}}
-  fr: Cette commande est obsolète. Veuillez utiliser {{command}}
+  en: This command is deprecated. Please use {{command}}.
+  fr: Cette commande est obsolète. Veuillez utiliser {{command}}.
 
 nonExistingCommand:
-  en: This command doesn't exist. Please use {{command}}
-  fr: Cette commande n'existe pas. Veuillez utiliser {{command}}
+  en: This command doesn't exist. Please use one in this list{{command}}.
+  fr: Cette commande n'existe pas. Veuillez en utiliser une dans cette liste {{command}}.

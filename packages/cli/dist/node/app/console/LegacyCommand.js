@@ -5,11 +5,11 @@ exports.default = void 0;
 var _ioc = require("@absolunet/ioc");
 
 //--------------------------------------------------------
-//-- Nwayo - Command - Install
+//-- Nwayo - Command - Legacy Command
 //--------------------------------------------------------
 
 /**
- * Install.
+ * Legacy Command.
  */
 class LegacyCommand extends _ioc.Command {
   /**
@@ -30,7 +30,8 @@ class LegacyCommand extends _ioc.Command {
   /**
    * Throw not implemented error for deprecation notice.
    *
-   * @type {throw}
+   * @type {string}
+   * @abstract
    */
 
 

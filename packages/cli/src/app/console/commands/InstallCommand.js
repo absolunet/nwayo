@@ -29,9 +29,7 @@ class InstallCommand extends mixins.withTranslations(LegacyCommand) {
 	}
 
 	/**
-	 * Command parameters: <code>['scope']</code>.
-	 *
-	 * @type {Array<string>}
+	 * @inheritdoc
 	 */
 	get parameters() {
 		return [
@@ -40,9 +38,7 @@ class InstallCommand extends mixins.withTranslations(LegacyCommand) {
 	}
 
 	/**
-	 * Command flags: <code>['force']</code>.
-	 *
-	 * @type {Array<string>}
+	 * @inheritdoc
 	 */
 	get flags() {
 		return [
@@ -59,7 +55,7 @@ class InstallCommand extends mixins.withTranslations(LegacyCommand) {
 	}
 
 	/**
-	 * Command that will be executed based on arguments from terminal.
+	 * Run command based on deprecated command name.
 	 *
 	 * @returns {Promise} Call to execute in terminal.
 	 */
@@ -70,14 +66,16 @@ class InstallCommand extends mixins.withTranslations(LegacyCommand) {
 	/**
 	 * Validate the command that will need to be call based on arguments from terminal.
 	 *
+	 * @throws {TypeError} - Indicates that the command scope is not supported.
 	 * @returns {string} The command to run based on arguments.
 	 */
 	getLegacyCommandName() {
 		const command = this.legacyCommandMapping[this.parameter('scope')];
 
 		if (!command) {
+			const commandMapping = Object.values(this.legacyCommandMapping).map((c) => { return `"${c}"`; }).join(', ');
 			throw new TypeError(this.t('messages.nonExistingCommand', {
-				command: Object.values(this.legacyCommandMapping).join(` ${this.t('or')} `)
+				command: `: [${commandMapping}]`
 			}));
 		}
 
@@ -85,9 +83,7 @@ class InstallCommand extends mixins.withTranslations(LegacyCommand) {
 	}
 
 	/**
-	 * Get deprecation notice to show.
-	 *
-	 * @type {string}
+	 * @inheritdoc
 	 */
 	get deprecationNotice() {
 		return this.t('messages.deprecatedCommand', {
@@ -109,7 +105,7 @@ class InstallCommand extends mixins.withTranslations(LegacyCommand) {
 	}
 
 	/**
-	 * Get workflow command to use.
+	 * Workflow command to use.
 	 *
 	 * @type {string}
 	 */
@@ -118,7 +114,7 @@ class InstallCommand extends mixins.withTranslations(LegacyCommand) {
 	}
 
 	/**
-	 * Get vendors command to use.
+	 * Vendors command to use.
 	 *
 	 * @type {string}
 	 */

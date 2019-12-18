@@ -55,7 +55,3 @@ extensions:
 deprecated:
   en: deprecated
   fr: obsolète
-
-or:
-  en: or
-  fr: ou

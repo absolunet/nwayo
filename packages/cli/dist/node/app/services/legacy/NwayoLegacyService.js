@@ -34,7 +34,7 @@ class CheckLegacyService {
     const hasNwayoYaml = this.projectFileExists(legacyFileName);
 
     if (hasNwayoYaml) {
-      return Boolean(this.getLegacyFile(legacyFileName).legacy);
+      return Boolean(this.loadProjectFile(legacyFileName).legacy);
     }
 
     return false;
@@ -51,9 +51,9 @@ class CheckLegacyService {
     return this.file.exists(this.app.formatPath(this.currentDirectory, ...segments));
   }
   /**
-   * Check if project is nwayo kat.
+   * Check if project is nwayo app.
    *
-   * @returns {boolean} Indicates that the project run as nwayo kat.
+   * @returns {boolean} Indicates that the project run as nwayo app.
    */
 
 
@@ -61,18 +61,18 @@ class CheckLegacyService {
     return this.currentDirectory === this.app.basePath();
   }
   /**
-   * Get legacy file.
+   * Load content of legacy project file.
    *
-   * @param {...string} segments - The file name to load.
-   * @returns {object} The object of the file.
+   * @param {...string} segments - The relative path segments from the project's directory.
+   * @returns {object} The file content.
    */
 
 
-  getLegacyFile(...segments) {
+  loadProjectFile(...segments) {
     return this.file.load(this.app.formatPath(this.currentDirectory, ...segments));
   }
   /**
-   * Get currect directory.
+   * Currect directory.
    *
    * @type {string}
    */

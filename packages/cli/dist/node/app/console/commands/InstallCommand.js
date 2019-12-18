@@ -34,9 +34,7 @@ class InstallCommand extends _ioc.mixins.withTranslations(_LegacyCommand.default
     });
   }
   /**
-   * Command parameters: <code>['scope']</code>.
-   *
-   * @type {Array<string>}
+   * @inheritdoc
    */
 
 
@@ -44,9 +42,7 @@ class InstallCommand extends _ioc.mixins.withTranslations(_LegacyCommand.default
     return [['scope', true, null, this.t('commands.install.parameters.scope')]];
   }
   /**
-   * Command flags: <code>['force']</code>.
-   *
-   * @type {Array<string>}
+   * @inheritdoc
    */
 
 
@@ -63,7 +59,7 @@ class InstallCommand extends _ioc.mixins.withTranslations(_LegacyCommand.default
     await this.runCommand();
   }
   /**
-   * Command that will be executed based on arguments from terminal.
+   * Run command based on deprecated command name.
    *
    * @returns {Promise} Call to execute in terminal.
    */
@@ -75,6 +71,7 @@ class InstallCommand extends _ioc.mixins.withTranslations(_LegacyCommand.default
   /**
    * Validate the command that will need to be call based on arguments from terminal.
    *
+   * @throws {TypeError} - Indicates that the command scope is not supported.
    * @returns {string} The command to run based on arguments.
    */
 
@@ -83,17 +80,18 @@ class InstallCommand extends _ioc.mixins.withTranslations(_LegacyCommand.default
     const command = this.legacyCommandMapping[this.parameter('scope')];
 
     if (!command) {
+      const commandMapping = Object.values(this.legacyCommandMapping).map(c => {
+        return `"${c}"`;
+      }).join(', ');
       throw new TypeError(this.t('messages.nonExistingCommand', {
-        command: Object.values(this.legacyCommandMapping).join(` ${this.t('or')} `)
+        command: `: [${commandMapping}]`
       }));
     }
 
     return command;
   }
   /**
-   * Get deprecation notice to show.
-   *
-   * @type {string}
+   * @inheritdoc
    */
 
 
@@ -116,7 +114,7 @@ class InstallCommand extends _ioc.mixins.withTranslations(_LegacyCommand.default
     };
   }
   /**
-   * Get workflow command to use.
+   * Workflow command to use.
    *
    * @type {string}
    */
@@ -126,7 +124,7 @@ class InstallCommand extends _ioc.mixins.withTranslations(_LegacyCommand.default
     return 'install:extensions';
   }
   /**
-   * Get vendors command to use.
+   * Vendors command to use.
    *
    * @type {string}
    */

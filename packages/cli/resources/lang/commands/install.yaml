@@ -5,9 +5,9 @@ description:
 parameters:
   scope:
     en: The installation scope.
-    fr: L'étendue de l'installation.
+    fr: Le "scope" de l'installation.
 
 flags:
   force:
-    en: The install workflow force flag.
-    fr: L'indicateur pour forcer l'installation du flux de travail.
+    en: The "install workflow" force flag.
+    fr: L'indicateur pour forcer l'"install workflow".
