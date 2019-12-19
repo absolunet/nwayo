@@ -49,7 +49,23 @@ class AppServiceProvider extends _ioc.ServiceProvider {
       }
     }
 
+    this.bindNwayoLegacyService();
+    this.bindNwayoLegacyHandler();
+  }
+  /**
+   * Bind Nwayo Legacy Service singleton.
+   */
+
+
+  bindNwayoLegacyService() {
     this.app.singleton('nwayo.legacy', _NwayoLegacyService.default);
+  }
+  /**
+   * Bind Legacy Handler singleton.
+   */
+
+
+  bindNwayoLegacyHandler() {
     this.app.singleton('nwayo.legacy.handler', _LegacyHandler.default);
   }
 
