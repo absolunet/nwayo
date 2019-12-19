@@ -28,4 +28,6 @@ const tester = app.make(Tester);
 // Boot the tester, set the engine from environment configuration and run the given test suite.
 tester.boot();
 tester.setEngine(TEST_ENGINE);
-tester.run(TEST_REPOSITORY);
+tester.run(TEST_REPOSITORY, (testApp) => {
+	bootstrap(testApp, false);
+});

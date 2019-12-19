@@ -2,3 +2,4 @@
 //-- Nwayo - Bootstrap - Mixins
 //--------------------------------------------------------
 
+import './withTranslations';
