@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+### Added
+- `install workflow` works on nwayo legacy
+- `install vendors` works on nwayo legacy
+
+### Changed
+- Kernel handle legacy
 
 
 
