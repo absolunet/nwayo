@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Nwayo core - Test - End to end - SomeEndToEndTest
+//-- Nwayo Core - Test - End to end - Some End To End
 //--------------------------------------------------------
 'use strict';
 

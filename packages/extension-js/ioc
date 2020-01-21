@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+'use strict';
+
+// This file will only be used for local development and won't be published.
+// Feel free to bootstrap the application your own way.
+
+
+// Import Node IoC application class.
+const { Application } = require('@absolunet/ioc');
+
+
+// Import extension local bootstrapper.
+const bootstrap = require('./bootstrap');
+
+
+// Create the application instance.
+const app = Application.getInstance();
+
+
+// Bootstrap the application.
+bootstrap(app);
+
+
+// Expose the application.
+module.exports = app;

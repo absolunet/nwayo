@@ -1,0 +1,5 @@
+extends: '@absolunet/test'
+
+
+parserOptions:
+  sourceType: script

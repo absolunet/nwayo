@@ -10,19 +10,29 @@ const { manager } = require('@absolunet/manager');
 
 const ROOT                            = __dirname;
 const CORE_ROOT                       = `${ROOT}/packages/core`;
-const GROW_PROJECT_ROOT               = `${ROOT}/packages/grow-project/boilerplate`;
+const EXTENSION_JS_ROOT               = `${ROOT}/packages/extension-js`;
+const EXTENSION_SCSS_ROOT             = `${ROOT}/packages/extension-scss`;
+const PRESET_DEFAULT_ROOT             = `${ROOT}/packages/preset-default`;
+const GROW_PROJECT_ROOT               = `${ROOT}/packages/grow-project`;
 const PROJECT_BOILERPLATE_ROOT        = `${ROOT}/packages/grow-project/boilerplate`;
-const PROJECT_BOILERPLATE_SOURCE_ROOT = `${GROW_PROJECT_ROOT}/src`;
+const PROJECT_BOILERPLATE_SOURCE_ROOT = `${PROJECT_BOILERPLATE_ROOT}/src`;
 const DOCUMENTATION_BUILDER           = `${ROOT}/ressources/docs-builder`;
 
 const GROW_PROJECT_PACKAGE               = `${GROW_PROJECT_ROOT}/package.json`;
 const PROJECT_BOILERPLATE_SOURCE_PACKAGE = `${PROJECT_BOILERPLATE_SOURCE_ROOT}/package.json`;
 const PROJECT_SAMPLE_INDEX               = `${PROJECT_BOILERPLATE_ROOT}/SAMPLE-HTML/index.html`;
-const PROJECT_CORE_EXTENSION             = `${PROJECT_BOILERPLATE_ROOT}/node_modules/@nwayo/core`;
+const PROJECT_PRESET_DEFAULT             = `${PROJECT_BOILERPLATE_ROOT}/node_modules/@nwayo/preset-default`;
+const PRESET_DEFAULT_EXTENSION_JS        = `${PRESET_DEFAULT_ROOT}/node_modules/@nwayo/extension-js`;
+const PRESET_DEFAULT_EXTENSION_SCSS      = `${PRESET_DEFAULT_ROOT}/node_modules/@nwayo/extension-scss`;
 
-
-
-
+const WEBPACK_PLUGINS = [
+	'@babel/plugin-transform-runtime',
+	'resolve-url-loader',
+	'style-loader',
+	'css-loader',
+	'sass-loader',
+	'postcss-loader'
+];
 
 manager.init({
 	repositoryType: 'multi-package',
@@ -34,10 +44,31 @@ manager.init({
 	tasks: {
 		install: {
 			postRun: async ({ terminal }) => {
-				terminal.println('Symlink @nwayo/core extension to grow-project boilerplate');
-				await fsp.remove(PROJECT_CORE_EXTENSION);
-				await fsp.ensureDir(path.dirname(PROJECT_CORE_EXTENSION));
-				await fsp.symlink(CORE_ROOT, PROJECT_CORE_EXTENSION);
+				terminal.println('Install used Webpack plugins in grow-project boilerplate');
+				await terminal.runPromise(`cd ${PROJECT_BOILERPLATE_ROOT} && npm i --no-save ${WEBPACK_PLUGINS.join(' ')}`);
+
+				terminal.println('Symlink @nwayo/preset-default to grow-project boilerplate');
+				await fsp.remove(PROJECT_PRESET_DEFAULT);
+				await fsp.ensureDir(path.dirname(PROJECT_PRESET_DEFAULT));
+				await fsp.symlink(PRESET_DEFAULT_ROOT, PROJECT_PRESET_DEFAULT);
+
+				await Promise.all([EXTENSION_JS_ROOT, EXTENSION_SCSS_ROOT, PRESET_DEFAULT_ROOT].map(async (folder) => {
+					terminal.println(`Symlink @nwayo/core to ${path.basename(folder)}`);
+					const folderCore = `${folder}/node_modules/@nwayo/core`;
+					await fsp.remove(folderCore);
+					await fsp.ensureDir(path.dirname(folderCore));
+					await fsp.symlink(CORE_ROOT, folderCore);
+				}));
+
+				terminal.println('Symlink @nwayo/extension-js to preset-default');
+				await fsp.remove(PRESET_DEFAULT_EXTENSION_JS);
+				await fsp.ensureDir(path.dirname(PRESET_DEFAULT_EXTENSION_JS));
+				await fsp.symlink(EXTENSION_JS_ROOT, PRESET_DEFAULT_EXTENSION_JS);
+
+				terminal.println('Symlink @nwayo/extension-scss to preset-default');
+				await fsp.remove(PRESET_DEFAULT_EXTENSION_SCSS);
+				await fsp.ensureDir(path.dirname(PRESET_DEFAULT_EXTENSION_SCSS));
+				await fsp.symlink(EXTENSION_SCSS_ROOT, PRESET_DEFAULT_EXTENSION_SCSS);
 
 				terminal.println('Install grow-project boilerplate vendors');
 				await manager.installPackage(PROJECT_BOILERPLATE_SOURCE_ROOT);

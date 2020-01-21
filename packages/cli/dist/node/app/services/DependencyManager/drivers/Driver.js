@@ -1,11 +1,14 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
 var _ioc = require("@absolunet/ioc");
 
 //--------------------------------------------------------
-//-- Nwayo core - Services - Dependency Manager - Drivers - Driver
+//-- Nwayo - Services - Dependency Manager - Drivers - Driver
 //--------------------------------------------------------
 
 /**

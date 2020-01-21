@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Nwayo core - Services - Dependency Manager
+//-- Nwayo - Services - Dependency Manager
 //--------------------------------------------------------
 
 import { mixins }             from '@absolunet/ioc';

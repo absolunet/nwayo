@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Nwayo core - Services - Dependency Manager - Drivers - NPM Driver
+//-- Nwayo - Services - Dependency Manager - Drivers - NPM Driver
 //--------------------------------------------------------
 
 import Driver from './Driver';

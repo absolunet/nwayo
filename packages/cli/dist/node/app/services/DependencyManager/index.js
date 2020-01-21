@@ -1,5 +1,8 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
 var _DependencyManager = _interopRequireDefault(require("./DependencyManager"));
@@ -7,7 +10,7 @@ var _DependencyManager = _interopRequireDefault(require("./DependencyManager"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //--------------------------------------------------------
-//-- Nwayo core - Services - Dependency Manager
+//-- Nwayo - Services - Dependency Manager
 //--------------------------------------------------------
 var _default = _DependencyManager.default;
 exports.default = _default;

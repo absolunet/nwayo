@@ -7,7 +7,7 @@ description: 'Main Absolunet website'
 
 
 # Build path
-build: '../../../dist'
+output: '../../../dist/site'
 
 
 # Public URL

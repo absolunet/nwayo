@@ -1,5 +1,8 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
 var _Driver = _interopRequireDefault(require("./Driver"));
@@ -7,7 +10,7 @@ var _Driver = _interopRequireDefault(require("./Driver"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //--------------------------------------------------------
-//-- Nwayo core - Services - Dependency Manager - Drivers - NPM Driver
+//-- Nwayo - Services - Dependency Manager - Drivers - NPM Driver
 //--------------------------------------------------------
 
 /**

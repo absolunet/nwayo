@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Nwayo core - Services - Dependency Manager Proxy
+//-- Nwayo - Services - Dependency Manager Proxy
 //--------------------------------------------------------
 
 import { ForwardProxy } from '@absolunet/ioc';

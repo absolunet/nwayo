@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- nwayo - Test - Unit - Mixins - WithTranslationsTest
+//-- Nwayo - Test - Unit - Mixins - With Translations
 //--------------------------------------------------------
 'use strict';
 

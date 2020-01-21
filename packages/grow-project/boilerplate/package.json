@@ -2,7 +2,10 @@
   "name": "PROJECT_NAME",
   "license": "UNLICENSED",
   "private": true,
+  "scripts": {
+    "mix": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
   "dependencies": {
-    "@nwayo/core": "4.0.0-dev.1.0"
+    "@nwayo/preset-default": "file:../../preset-default"
   }
 }

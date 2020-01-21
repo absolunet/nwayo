@@ -45,12 +45,12 @@
     "manager:publish:unsafe": "node manager --task=publish:unsafe"
   },
   "devDependencies": {
-    "@absolunet/manager": "2.0.0",
+    "@absolunet/manager": "2.0.1",
     "@absolunet/tester": "3.1.0",
     "jest": "24.9.0"
   },
   "dependencies": {
-    "@absolunet/ioc": "1.0.0-rc.2",
+    "@absolunet/ioc": "1.0.0-rc.3",
     "@absolunet/private-registry": "^2.0.0",
     "@absolunet/nwayo-cli": "3.7.1"
   }

@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Nwayo core - Command - Install Components Command
+//-- Nwayo Core - Console - Command - Install - Install Components
 //--------------------------------------------------------
 
 import { Command } from '@absolunet/ioc';
@@ -8,19 +8,19 @@ import { Command } from '@absolunet/ioc';
 /**
  * Command that installs components as node modules from the project source path.
  *
- * @memberof nwayo.core.console.commands
+ * @memberof nwayo.core.console.commands.install
  * @augments ioc.console.Command
  * @hideconstructor
  */
 class InstallComponentsCommand extends Command {
 
 	/**
-	 * Class dependencies: <code>['dependency', 'nwayo.project', 'translator']</code>.
+	 * Class dependencies: <code>['translator']</code>.
 	 *
 	 * @type {Array<string>}
 	 */
 	static get dependencies() {
-		return ['dependency', 'nwayo.project', 'translator'];
+		return ['translator'];
 	}
 
 	/**
@@ -52,8 +52,8 @@ class InstallComponentsCommand extends Command {
 	 * @returns {Promise} The async process promise.
 	 */
 	async installComponents() {
-		await this.dependency
-			.inFolder(this.nwayoProject.getSourcePath())
+		await this.app.make('dependency')
+			.inFolder(this.app.make('nwayo.project').getSourcePath())
 			.install();
 	}
 

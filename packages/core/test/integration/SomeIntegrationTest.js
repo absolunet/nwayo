@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Nwayo core - Test - Integration - SomeIntegrationTest
+//-- Nwayo Core - Test - Integration - Some Integration
 //--------------------------------------------------------
 'use strict';
 

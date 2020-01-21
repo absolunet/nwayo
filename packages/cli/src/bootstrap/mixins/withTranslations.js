@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- nwayo - Bootstrap - Mixins - withTranslations
+//-- Nwayo - Bootstrap - Mixins - with Translations
 //--------------------------------------------------------
 
 import { mixins } from '@absolunet/ioc';

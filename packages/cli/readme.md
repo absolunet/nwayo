@@ -12,7 +12,7 @@
 ## Install
 
 ```bash
-$ npm install -g @absolunet/nwayo-cli
+$ npm install -g @nwayo/cli
 ```
 
 ## Documentation

@@ -1,0 +1,14 @@
+# Human-readable name
+name: 'Site'
+
+
+# Description and purpose
+description: 'Main Absolunet website'
+
+
+# Build path
+output: '../../../dist/other'
+
+
+# Public URL
+url: '/dist'

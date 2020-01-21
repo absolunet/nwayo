@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Nwayo core - Services - Dependency Manager - Drivers - Driver
+//-- Nwayo - Services - Dependency Manager - Drivers - Driver
 //--------------------------------------------------------
 
 import { NotImplementedError } from '@absolunet/ioc';

@@ -1,28 +1,31 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
 var _ioc = require("@absolunet/ioc");
 
 //--------------------------------------------------------
-//-- Nwayo core - Command - Install Components Command
+//-- Nwayo Core - Console - Command - Install - Install Components
 //--------------------------------------------------------
 
 /**
  * Command that installs components as node modules from the project source path.
  *
- * @memberof nwayo.core.console.commands
+ * @memberof nwayo.core.console.commands.install
  * @augments ioc.console.Command
  * @hideconstructor
  */
 class InstallComponentsCommand extends _ioc.Command {
   /**
-   * Class dependencies: <code>['dependency', 'nwayo.project', 'translator']</code>.
+   * Class dependencies: <code>['translator']</code>.
    *
    * @type {Array<string>}
    */
   static get dependencies() {
-    return ['dependency', 'nwayo.project', 'translator'];
+    return ['translator'];
   }
   /**
    * @inheritdoc
@@ -59,7 +62,7 @@ class InstallComponentsCommand extends _ioc.Command {
 
 
   async installComponents() {
-    await this.dependency.inFolder(this.nwayoProject.getSourcePath()).install();
+    await this.app.make('dependency').inFolder(this.app.make('nwayo.project').getSourcePath()).install();
   }
   /**
    * Translate with the translator service.

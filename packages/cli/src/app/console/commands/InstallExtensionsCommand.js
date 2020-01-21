@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Nwayo - Command - Install Extension Command
+//-- Nwayo - Console - Command - Install Extension
 //--------------------------------------------------------
 
 import { Command, mixins } from '@absolunet/ioc';

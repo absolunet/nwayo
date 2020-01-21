@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>console/commands/build/BuildWatchCommand.js - @nwayo/core API documentation</title>
+
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="shortcut icon"    href="../assets__/icons/favicon.ico">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-57.png">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-72.png"  sizes="72x72">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-76.png"  sizes="76x76">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-114.png" sizes="114x114">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-120.png" sizes="120x120">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-144.png" sizes="144x144">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-152.png" sizes="152x152">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-167.png" sizes="167x167">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-180.png" sizes="180x180">
+	<link rel="image_src"        href="../assets__/icons/touch-512.png">
+	<link rel="icon"             href="../assets__/icons/icon-64.png"  sizes="64x64">
+	<link rel="icon"             href="../assets__/icons/icon-96.png"  sizes="96x96">
+	<link rel="icon"             href="../assets__/icons/icon-192.png" sizes="192x192">
+	<link rel="icon"             href="../assets__/icons/icon-195.png" sizes="195x195">
+	<link rel="icon"             href="../assets__/icons/icon-196.png" sizes="196x196">
+	<link rel="icon"             href="../assets__/icons/icon-228.png" sizes="228x228">
+
+	<meta name="application-name"                content="@nwayo/core">
+	<meta name="msapplication-TileColor"         content="#2b2d3c">
+	<meta name="msapplication-square70x70logo"   content="../assets__/icons/tile-small.png">
+	<meta name="msapplication-square150x150logo" content="../assets__/icons/tile-medium.png">
+	<meta name="msapplication-wide310x150logo"   content="../assets__/icons/tile-wide.png">
+	<meta name="msapplication-square310x310logo" content="../assets__/icons/tile-large.png">
+
+	<link href="../assets__/main.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,500,700|Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+	
+	<!-- @absolunet/manager@2.0.1 (c) 2011-2020 Absolunet -->
+</head>
+<body>
+	
+
+	<header>
+		<p class="package"><a href="../">@nwayo/core</a><span class="version">1.0.0-dev.1.0</span></p>
+		<a href="https://github.com/absolunet/nwayo" class="github" data-external="external">View on GitHub</a>
+	</header>
+
+	<div class="container">
+		<nav><div>
+			<h2><a href="index.html">API Home</a></h2><h3>Classes</h3><ul><li><a href="nwayo.core.CoreServiceProvider.html">CoreServiceProvider</a><ul class='members'></ul><ul class='methods'><li data-type='method'><a href="nwayo.core.CoreServiceProvider.html#register">register</a></li><li data-type='method'><a href="nwayo.core.CoreServiceProvider.html#boot">boot</a></li><li data-type='method'><a href="nwayo.core.CoreServiceProvider.html#bindNwayo">bindNwayo</a></li><li data-type='method'><a href="nwayo.core.CoreServiceProvider.html#bindBuilder">bindBuilder</a></li><li data-type='method'><a href="nwayo.core.CoreServiceProvider.html#bindProjectService">bindProjectService</a></li><li data-type='method'><a href="nwayo.core.CoreServiceProvider.html#bindBuildType">bindBuildType</a></li><li data-type='method'><a href="nwayo.core.CoreServiceProvider.html#addDefaultBuildTypes">addDefaultBuildTypes</a></li><li data-type='method'><a href="nwayo.core.CoreServiceProvider.html#addBuildPolicies">addBuildPolicies</a></li></ul></li><li><a href="nwayo.core.console.commands.build.AbstractBuildCommand.html">AbstractBuildCommand</a><ul class='members'><li data-type='member'><a href="nwayo.core.console.commands.build.AbstractBuildCommand.html#.dependencies">dependencies</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.AbstractBuildCommand.html#policies">policies</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.AbstractBuildCommand.html#type">type</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.AbstractBuildCommand.html#name">name</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.AbstractBuildCommand.html#description">description</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.AbstractBuildCommand.html#options">options</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.AbstractBuildCommand.html#stringHelper">stringHelper</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.core.console.commands.build.AbstractBuildCommand.html#handle">handle</a></li><li data-type='method'><a href="nwayo.core.console.commands.build.AbstractBuildCommand.html#build">build</a></li><li data-type='method'><a href="nwayo.core.console.commands.build.AbstractBuildCommand.html#getBuildTypes">getBuildTypes</a></li><li data-type='method'><a href="nwayo.core.console.commands.build.AbstractBuildCommand.html#getBundles">getBundles</a></li><li data-type='method'><a href="nwayo.core.console.commands.build.AbstractBuildCommand.html#getBuildArguments">getBuildArguments</a></li></ul></li><li><a href="nwayo.core.console.commands.build.BuildAllCommand.html">BuildAllCommand</a><ul class='members'><li data-type='member'><a href="nwayo.core.console.commands.build.BuildAllCommand.html#policies">policies</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildAllCommand.html#type">type</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildAllCommand.html#name">name</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildAllCommand.html#description">description</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildAllCommand.html#options">options</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildAllCommand.html#stringHelper">stringHelper</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.core.console.commands.build.BuildAllCommand.html#handle">handle</a></li><li data-type='method'><a href="nwayo.core.console.commands.build.BuildAllCommand.html#build">build</a></li><li data-type='method'><a href="nwayo.core.console.commands.build.BuildAllCommand.html#getBuildTypes">getBuildTypes</a></li><li data-type='method'><a href="nwayo.core.console.commands.build.BuildAllCommand.html#getBundles">getBundles</a></li><li data-type='method'><a href="nwayo.core.console.commands.build.BuildAllCommand.html#getBuildArguments">getBuildArguments</a></li></ul></li><li><a href="nwayo.core.console.commands.build.BuildAssetsCommand.html">BuildAssetsCommand</a><ul class='members'><li data-type='member'><a href="nwayo.core.console.commands.build.BuildAssetsCommand.html#policies">policies</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildAssetsCommand.html#type">type</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildAssetsCommand.html#name">name</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildAssetsCommand.html#description">description</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildAssetsCommand.html#options">options</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildAssetsCommand.html#stringHelper">stringHelper</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.core.console.commands.build.BuildAssetsCommand.html#handle">handle</a></li><li data-type='method'><a href="nwayo.core.console.commands.build.BuildAssetsCommand.html#build">build</a></li><li data-type='method'><a href="nwayo.core.console.commands.build.BuildAssetsCommand.html#getBuildTypes">getBuildTypes</a></li><li data-type='method'><a href="nwayo.core.console.commands.build.BuildAssetsCommand.html#getBundles">getBundles</a></li><li data-type='method'><a href="nwayo.core.console.commands.build.BuildAssetsCommand.html#getBuildArguments">getBuildArguments</a></li></ul></li><li><a href="nwayo.core.console.commands.build.BuildScriptsCommand.html">BuildScriptsCommand</a><ul class='members'><li data-type='member'><a href="nwayo.core.console.commands.build.BuildScriptsCommand.html#policies">policies</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildScriptsCommand.html#type">type</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildScriptsCommand.html#name">name</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildScriptsCommand.html#description">description</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildScriptsCommand.html#options">options</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildScriptsCommand.html#stringHelper">stringHelper</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.core.console.commands.build.BuildScriptsCommand.html#handle">handle</a></li><li data-type='method'><a href="nwayo.core.console.commands.build.BuildScriptsCommand.html#build">build</a></li><li data-type='method'><a href="nwayo.core.console.commands.build.BuildScriptsCommand.html#getBuildTypes">getBuildTypes</a></li><li data-type='method'><a href="nwayo.core.console.commands.build.BuildScriptsCommand.html#getBundles">getBundles</a></li><li data-type='method'><a href="nwayo.core.console.commands.build.BuildScriptsCommand.html#getBuildArguments">getBuildArguments</a></li></ul></li><li><a href="nwayo.core.console.commands.build.BuildStylesCommand.html">BuildStylesCommand</a><ul class='members'><li data-type='member'><a href="nwayo.core.console.commands.build.BuildStylesCommand.html#policies">policies</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildStylesCommand.html#type">type</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildStylesCommand.html#name">name</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildStylesCommand.html#description">description</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildStylesCommand.html#options">options</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildStylesCommand.html#stringHelper">stringHelper</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.core.console.commands.build.BuildStylesCommand.html#handle">handle</a></li><li data-type='method'><a href="nwayo.core.console.commands.build.BuildStylesCommand.html#build">build</a></li><li data-type='method'><a href="nwayo.core.console.commands.build.BuildStylesCommand.html#getBuildTypes">getBuildTypes</a></li><li data-type='method'><a href="nwayo.core.console.commands.build.BuildStylesCommand.html#getBundles">getBundles</a></li><li data-type='method'><a href="nwayo.core.console.commands.build.BuildStylesCommand.html#getBuildArguments">getBuildArguments</a></li></ul></li><li><a href="nwayo.core.console.commands.build.BuildWatchCommand.html">BuildWatchCommand</a><ul class='members'><li data-type='member'><a href="nwayo.core.console.commands.build.BuildWatchCommand.html#policies">policies</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildWatchCommand.html#type">type</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildWatchCommand.html#name">name</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildWatchCommand.html#description">description</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildWatchCommand.html#options">options</a></li><li data-type='member'><a href="nwayo.core.console.commands.build.BuildWatchCommand.html#stringHelper">stringHelper</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.core.console.commands.build.BuildWatchCommand.html#getBuildTypes">getBuildTypes</a></li><li data-type='method'><a href="nwayo.core.console.commands.build.BuildWatchCommand.html#getBuildArguments">getBuildArguments</a></li><li data-type='method'><a href="nwayo.core.console.commands.build.BuildWatchCommand.html#handle">handle</a></li><li data-type='method'><a href="nwayo.core.console.commands.build.BuildWatchCommand.html#build">build</a></li><li data-type='method'><a href="nwayo.core.console.commands.build.BuildWatchCommand.html#getBundles">getBundles</a></li></ul></li><li><a href="nwayo.core.console.commands.install.InstallComponentsCommand.html">InstallComponentsCommand</a><ul class='members'><li data-type='member'><a href="nwayo.core.console.commands.install.InstallComponentsCommand.html#.dependencies">dependencies</a></li><li data-type='member'><a href="nwayo.core.console.commands.install.InstallComponentsCommand.html#name">name</a></li><li data-type='member'><a href="nwayo.core.console.commands.install.InstallComponentsCommand.html#description">description</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.core.console.commands.install.InstallComponentsCommand.html#handle">handle</a></li><li data-type='method'><a href="nwayo.core.console.commands.install.InstallComponentsCommand.html#installComponents">installComponents</a></li><li data-type='method'><a href="nwayo.core.console.commands.install.InstallComponentsCommand.html#t">t</a></li></ul></li><li><a href="nwayo.core.handlers.Handler.html">Handler</a><ul class='members'><li data-type='member'><a href="nwayo.core.handlers.Handler.html#.dependencies">dependencies</a></li><li data-type='member'><a href="nwayo.core.handlers.Handler.html#types">types</a></li><li data-type='member'><a href="nwayo.core.handlers.Handler.html#type">type</a></li></ul></li><li><a href="nwayo.core.policies.NwayoBuildPolicy.html">NwayoBuildPolicy</a><ul class='members'><li data-type='member'><a href="nwayo.core.policies.NwayoBuildPolicy.html#.dependencies">dependencies</a></li><li data-type='member'><a href="nwayo.core.policies.NwayoBuildPolicy.html#name">name</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.core.policies.NwayoBuildPolicy.html#passes">passes</a></li></ul></li><li><a href="nwayo.core.repositories.BuildTypeRepository.html">BuildTypeRepository</a><ul class='members'><li data-type='member'><a href="nwayo.core.repositories.BuildTypeRepository.html#.dependencies">dependencies</a></li><li data-type='member'><a href="nwayo.core.repositories.BuildTypeRepository.html#ALL">ALL</a></li><li data-type='member'><a href="nwayo.core.repositories.BuildTypeRepository.html#WATCH">WATCH</a></li><li data-type='member'><a href="nwayo.core.repositories.BuildTypeRepository.html#stringHelper">stringHelper</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.core.repositories.BuildTypeRepository.html#add">add</a></li><li data-type='method'><a href="nwayo.core.repositories.BuildTypeRepository.html#all">all</a></li><li data-type='method'><a href="nwayo.core.repositories.BuildTypeRepository.html#get">get</a></li><li data-type='method'><a href="nwayo.core.repositories.BuildTypeRepository.html#has">has</a></li><li data-type='method'><a href="nwayo.core.repositories.BuildTypeRepository.html#getIdByLabel">getIdByLabel</a></li></ul></li><li><a href="nwayo.core.repositories.BuildTypeRepositoryProxy.html">BuildTypeRepositoryProxy</a><ul class='members'></ul><ul class='methods'><li data-type='method'><a href="nwayo.core.repositories.BuildTypeRepositoryProxy.html#get">get</a></li></ul></li><li><a href="nwayo.core.services.Builder.html">Builder</a><ul class='members'><li data-type='member'><a href="nwayo.core.services.Builder.html#.dependencies">dependencies</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.core.services.Builder.html#driver">driver</a></li><li data-type='method'><a href="nwayo.core.services.Builder.html#make">make</a></li><li data-type='method'><a href="nwayo.core.services.Builder.html#getForward">getForward</a></li></ul></li><li><a href="nwayo.core.services.BuilderProxy.html">BuilderProxy</a><ul class='members'></ul></li><li><a href="nwayo.core.services.Builder.drivers.AbstractWebpackDriver.html">AbstractWebpackDriver</a><ul class='members'><li data-type='member'><a href="nwayo.core.services.Builder.drivers.AbstractWebpackDriver.html#webpack">webpack</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.core.services.Builder.drivers.AbstractWebpackDriver.html#getBuilder">getBuilder</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.AbstractWebpackDriver.html#addEntry">addEntry</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.AbstractWebpackDriver.html#registerHandler">registerHandler</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.AbstractWebpackDriver.html#hasHandler">hasHandler</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.AbstractWebpackDriver.html#callHandler">callHandler</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.AbstractWebpackDriver.html#afterBuild">afterBuild</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.AbstractWebpackDriver.html#getAfterBuild">getAfterBuild</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.AbstractWebpackDriver.html#buildConfig">buildConfig</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.AbstractWebpackDriver.html#run">run</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.AbstractWebpackDriver.html#watch">watch</a></li></ul></li><li><a href="nwayo.core.services.Builder.drivers.Driver.html">Driver</a><ul class='members'></ul><ul class='methods'><li data-type='method'><a href="nwayo.core.services.Builder.drivers.Driver.html#addEntry">addEntry</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.Driver.html#registerHandler">registerHandler</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.Driver.html#hasHandler">hasHandler</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.Driver.html#callHandler">callHandler</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.Driver.html#afterBuild">afterBuild</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.Driver.html#getAfterBuild">getAfterBuild</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.Driver.html#buildConfig">buildConfig</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.Driver.html#run">run</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.Driver.html#watch">watch</a></li></ul></li><li><a href="nwayo.core.services.Builder.drivers.LaravelMixDriver.html">LaravelMixDriver</a><ul class='members'><li data-type='member'><a href="nwayo.core.services.Builder.drivers.LaravelMixDriver.html#.dependencies">dependencies</a></li><li data-type='member'><a href="nwayo.core.services.Builder.drivers.LaravelMixDriver.html#laravelMix">laravelMix</a></li><li data-type='member'><a href="nwayo.core.services.Builder.drivers.LaravelMixDriver.html#WebpackConfig">WebpackConfig</a></li><li data-type='member'><a href="nwayo.core.services.Builder.drivers.LaravelMixDriver.html#ComponentFactory">ComponentFactory</a></li><li data-type='member'><a href="nwayo.core.services.Builder.drivers.LaravelMixDriver.html#Manifest">Manifest</a></li><li data-type='member'><a href="nwayo.core.services.Builder.drivers.LaravelMixDriver.html#webpack">webpack</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.core.services.Builder.drivers.LaravelMixDriver.html#javascript">javascript</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.LaravelMixDriver.html#typescript">typescript</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.LaravelMixDriver.html#scss">scss</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.LaravelMixDriver.html#copy">copy</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.LaravelMixDriver.html#getLaravelMix">getLaravelMix</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.LaravelMixDriver.html#run">run</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.LaravelMixDriver.html#watch">watch</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.LaravelMixDriver.html#getBuilder">getBuilder</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.LaravelMixDriver.html#addEntry">addEntry</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.LaravelMixDriver.html#registerHandler">registerHandler</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.LaravelMixDriver.html#hasHandler">hasHandler</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.LaravelMixDriver.html#callHandler">callHandler</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.LaravelMixDriver.html#afterBuild">afterBuild</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.LaravelMixDriver.html#getAfterBuild">getAfterBuild</a></li><li data-type='method'><a href="nwayo.core.services.Builder.drivers.LaravelMixDriver.html#buildConfig">buildConfig</a></li></ul></li><li><a href="nwayo.core.services.Nwayo.html">Nwayo</a><ul class='members'><li data-type='member'><a href="nwayo.core.services.Nwayo.html#.dependencies">dependencies</a></li><li data-type='member'><a href="nwayo.core.services.Nwayo.html#phases">phases</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.core.services.Nwayo.html#on">on</a></li><li data-type='method'><a href="nwayo.core.services.Nwayo.html#before">before</a></li><li data-type='method'><a href="nwayo.core.services.Nwayo.html#after">after</a></li><li data-type='method'><a href="nwayo.core.services.Nwayo.html#registerHook">registerHook</a></li><li data-type='method'><a href="nwayo.core.services.Nwayo.html#register">register</a></li><li data-type='method'><a href="nwayo.core.services.Nwayo.html#build">build</a></li><li data-type='method'><a href="nwayo.core.services.Nwayo.html#preprocess">preprocess</a></li><li data-type='method'><a href="nwayo.core.services.Nwayo.html#process">process</a></li><li data-type='method'><a href="nwayo.core.services.Nwayo.html#postprocess">postprocess</a></li><li data-type='method'><a href="nwayo.core.services.Nwayo.html#runHooks">runHooks</a></li><li data-type='method'><a href="nwayo.core.services.Nwayo.html#runHooksForBundles">runHooksForBundles</a></li><li data-type='method'><a href="nwayo.core.services.Nwayo.html#getHooks">getHooks</a></li><li data-type='method'><a href="nwayo.core.services.Nwayo.html#hasHook">hasHook</a></li><li data-type='method'><a href="nwayo.core.services.Nwayo.html#prepareHooks">prepareHooks</a></li><li data-type='method'><a href="nwayo.core.services.Nwayo.html#getRegisteredTypes">getRegisteredTypes</a></li><li data-type='method'><a href="nwayo.core.services.Nwayo.html#resolveTypes">resolveTypes</a></li><li data-type='method'><a href="nwayo.core.services.Nwayo.html#useState">useState</a></li></ul></li><li><a href="nwayo.core.services.ProjectService.html">ProjectService</a><ul class='members'><li data-type='member'><a href="nwayo.core.services.ProjectService.html#.dependencies">dependencies</a></li><li data-type='member'><a href="nwayo.core.services.ProjectService.html#pathHelper">pathHelper</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.core.services.ProjectService.html#addComponentNamespace">addComponentNamespace</a></li><li data-type='method'><a href="nwayo.core.services.ProjectService.html#getRootPath">getRootPath</a></li><li data-type='method'><a href="nwayo.core.services.ProjectService.html#getSourcePath">getSourcePath</a></li><li data-type='method'><a href="nwayo.core.services.ProjectService.html#getComponentsPath">getComponentsPath</a></li><li data-type='method'><a href="nwayo.core.services.ProjectService.html#getComponentPath">getComponentPath</a></li><li data-type='method'><a href="nwayo.core.services.ProjectService.html#getBundlesPath">getBundlesPath</a></li><li data-type='method'><a href="nwayo.core.services.ProjectService.html#getBundlePath">getBundlePath</a></li><li data-type='method'><a href="nwayo.core.services.ProjectService.html#getBundles">getBundles</a></li><li data-type='method'><a href="nwayo.core.services.ProjectService.html#loadBundleData">loadBundleData</a></li></ul></li></ul>
+		</div></nav>
+
+		<div id="main">
+		
+			<h1 class="page-title">console/commands/build/BuildWatchCommand.js</h1>
+		
+
+			
+
+
+
+    
+    <section>
+        <article>
+            <pre id="line" class="line-numbers"><code class="language-js">//--------------------------------------------------------
+//-- Node IoC - Console - Command - Build - Build Watch
+//--------------------------------------------------------
+
+import AbstractBuildCommand from './AbstractBuildCommand';
+
+
+/**
+ * Command that run all build types and watch for file changes to rebuild.
+ *
+ * @memberof nwayo.core.console.commands.build
+ * @augments nwayo.core.console.commands.build.AbstractBuildCommand
+ * @hideconstructor
+ */
+class BuildWatchCommand extends AbstractBuildCommand {
+
+	/**
+	 * @inheritdoc
+	 */
+	get policies() {
+		return [];
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	get name() {
+		return `build:${this.nwayoBuildType.WATCH}`;
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	get description() {
+		return 'Listen for changes on files and run appropriate build.';
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	get options() {
+		return (super.options || []).concat([
+			['type',  'all', 'Specific build types to build.']
+		]);
+	}
+
+	/**
+	 * Get the build type(s).
+	 *
+	 * @returns {string|Array&lt;string>} The build type(s).
+	 */
+	getBuildTypes() {
+		const types = (this.option('type') || '').split(',')
+			.map((type) => {
+				return type.trim();
+			})
+			.filter((type) => {
+				return type !== this.nwayoBuildType.WATCH;
+			});
+
+		if (types.includes(this.nwayoBuildType.ALL)) {
+			return this.nwayoBuildType.ALL;
+		}
+
+		return types;
+	}
+
+	/**
+	 * Get nwayo build arguments.
+	 *
+	 * @returns {Array&lt;*>} The nwayo build arguments.
+	 */
+	getBuildArguments() {
+		const [, bundles, options = {}, ...parameters] = super.getBuildArguments();
+		const watchOptions = Object.assign(typeof options === 'object' &amp;&amp; options ? options : {}, { watch: true });
+
+		return [this.nwayoBuildType.ALL, bundles, watchOptions, ...parameters];
+	}
+
+}
+
+
+export default BuildWatchCommand;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+		</div>
+	</div>
+
+	<footer>
+		MIT © 2011-2020 <span class="made">Made with <span class="adjective" data-component="adjective">&#x2764;</span> by <a href="https://absolunet.com" data-external="external">Absolunet</a></span>
+	</footer>
+
+	<script src="../assets__/main.js"></script>
+
+</body>
+</html>

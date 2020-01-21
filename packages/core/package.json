@@ -1,7 +1,7 @@
 {
   "name": "@nwayo/core",
-  "version": "4.0.0-dev.1.0",
-  "description": "Nwayo core extension",
+  "version": "1.0.0-dev.1.0",
+  "description": "nwayo core extension",
   "definition": "",
   "homepage": "https://github.com/absolunet/nwayo",
   "author": {
@@ -48,12 +48,15 @@
     "manager:publish:unsafe": "node manager --task=publish:unsafe"
   },
   "devDependencies": {
-    "@absolunet/ioc": "1.0.0-rc.2",
-    "@absolunet/manager": "2.0.0",
+    "@absolunet/ioc": "1.0.0-rc.3",
+    "@absolunet/manager": "2.0.1",
     "@absolunet/tester": "3.1.0",
     "jest": "24.9.0"
   },
   "peerDependencies": {
-    "@absolunet/ioc": "1.0.0-rc.2"
+    "@absolunet/ioc": "1.0.0-rc.3"
+  },
+  "dependencies": {
+    "laravel-mix": "5.0.1"
   }
 }
