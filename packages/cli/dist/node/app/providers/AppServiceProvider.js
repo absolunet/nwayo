@@ -9,6 +9,10 @@ var _ioc = require("@absolunet/ioc");
 
 var _DependencyManager = _interopRequireDefault(require("../services/DependencyManager"));
 
+var _NwayoLegacyService = _interopRequireDefault(require("../services/legacy/NwayoLegacyService"));
+
+var _LegacyHandler = _interopRequireDefault(require("../handlers/legacy/LegacyHandler"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //--------------------------------------------------------
@@ -40,6 +44,8 @@ class AppServiceProvider extends _ioc.ServiceProvider {
     }
 
     this.bindDependencyManager();
+    this.bindNwayoLegacyService();
+    this.bindNwayoLegacyHandler();
   }
   /**
    * Check if current working directory is located elsewhere than CLI folder.
@@ -73,9 +79,12 @@ class AppServiceProvider extends _ioc.ServiceProvider {
     const {
       dependencies = {}
     } = nwayoPackageJson || {};
-    Object.keys(dependencies).forEach(extension => {
-      this.app.register(this.getPathFromCwd('node_modules', extension));
-    });
+
+    if (Object.prototype.hasOwnProperty.call(dependencies, '@nwayo/core')) {
+      Object.keys(dependencies).forEach(extension => {
+        this.app.register(this.getPathFromCwd('node_modules', extension));
+      });
+    }
   }
   /**
    * Get path from the current working directory.
@@ -105,6 +114,22 @@ class AppServiceProvider extends _ioc.ServiceProvider {
 
   bindDependencyManager() {
     this.app.singleton('dependency', _DependencyManager.default);
+  }
+  /**
+   * Bind Nwayo Legacy Service singleton.
+   */
+
+
+  bindNwayoLegacyService() {
+    this.app.singleton('nwayo.legacy', _NwayoLegacyService.default);
+  }
+  /**
+   * Bind Legacy Handler singleton.
+   */
+
+
+  bindNwayoLegacyHandler() {
+    this.app.singleton('nwayo.legacy.handler', _LegacyHandler.default);
   }
   /**
    * File manager.

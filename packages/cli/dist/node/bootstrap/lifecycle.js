@@ -12,10 +12,13 @@ var _default = async (app, shouldHandleRequest = true) => {
   // Define exception handler callback for base process unhandled error events.
   const handleException = async exception => {
     await app.make('exception.handler').handle(exception);
-  }; // Bind exception handler callback on unhandled error events.
+  };
 
+  if (!process._events.uncaughtException) {
+    // Bind exception handler callback on unhandled error events.
+    process.on('unhandledRejection', handleException).on('uncaughtException', handleException);
+  } // Make the kernel instance.
 
-  process.on('unhandledRejection', handleException).on('uncaughtException', handleException); // Make the kernel instance
 
   const kernel = app.make('kernel'); // Boot the application.
 

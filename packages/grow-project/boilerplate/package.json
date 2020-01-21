@@ -6,6 +6,7 @@
     "mix": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "dependencies": {
+    "@nwayo/core": "file:../../core",
     "@nwayo/preset-default": "file:../../preset-default"
   }
 }

@@ -3,15 +3,16 @@
 //--------------------------------------------------------
 'use strict';
 
-const TestCase  = require('../../../../TestCase');
-const NpmDriver = require('../../../../../dist/node/app/services/DependencyManager/drivers/NpmDriver');
+const TestCase     = require('../../../../TestCase');
+const NpmDriver    = require('../../../../../dist/node/app/services/DependencyManager/drivers/NpmDriver');
+const fakeTerminal = require('./stubs/fakeTerminal');
 
 
 class NpmDriverTest extends TestCase {
 
 	beforeEach() {
 		super.beforeEach();
-		this.givenMockedSpawn();
+		this.givenFakeTerminal();
 		this.givenFakeFolder();
 		this.givenNpmDriver();
 		this.givenExitCode(0);
@@ -67,18 +68,8 @@ class NpmDriverTest extends TestCase {
 	//-- Given
 	//--------------------------------------------------------
 
-	givenMockedSpawn() {
-		jest.mock('child_process', () => {
-			this.fakeSpawnProcess = {
-				on: jest.fn((name, callback) => {
-					callback(this.code);
-				})
-			};
-			const spawn     = jest.fn(() => { return this.fakeSpawnProcess; });
-			this.spiedSpawn = spawn;
-
-			return { spawn };
-		});
+	givenFakeTerminal() {
+		this.app.singleton('terminal', fakeTerminal);
 	}
 
 	givenFakeFolder() {
@@ -86,7 +77,7 @@ class NpmDriverTest extends TestCase {
 	}
 
 	givenNpmDriver() {
-		this.driver = this.app.make(NpmDriver, { folder: this.folder });
+		this.driver = this.make(NpmDriver, { folder: this.folder });
 	}
 
 	givenExitCode(code) {
@@ -133,24 +124,26 @@ class NpmDriverTest extends TestCase {
 
 	thenShouldHaveSpawn() {
 		this.thenShouldNotHaveThrown();
-		this.expect(this.spiedSpawn).toHaveBeenCalled();
+		this.expect(fakeTerminal.spawn).toHaveBeenCalled();
+		this.expect(fakeTerminal._spawnSpy).toHaveBeenCalled();
 	}
 
 	thenShouldHaveSpawnTimes(times) {
 		this.thenShouldNotHaveThrown();
-		this.expect(this.spiedSpawn).toHaveBeenCalledTimes(times);
+		this.expect(fakeTerminal.spawn).toHaveBeenCalledTimes(times);
+		this.expect(fakeTerminal._spawnSpy).toHaveBeenCalledTimes(times);
 	}
 
 	thenShouldHaveNthCalledFromFakeFolder(nth) {
 		this.thenShouldHaveSpawn();
-		const spawnCall = this.spiedSpawn.mock.calls[nth - 1];
+		const spawnCall = fakeTerminal.spawn.mock.calls[nth - 1];
 		this.expect(spawnCall).toBeTruthy();
 		this.expect(spawnCall[2]).toHaveProperty('cwd', this.folder);
 	}
 
 	thenShouldHaveNthRunCommand(nth, binary, command) {
 		this.thenShouldHaveSpawn();
-		const spawnCall = this.spiedSpawn.mock.calls[nth - 1];
+		const spawnCall = fakeTerminal.spawn.mock.calls[nth - 1];
 		this.expect(spawnCall).toBeTruthy();
 		this.expect(spawnCall[0]).toBe(binary);
 		this.expect(spawnCall[1]).toStrictEqual(command);
@@ -158,10 +151,6 @@ class NpmDriverTest extends TestCase {
 
 	thenShouldHaveCalledFromFakeFolder() {
 		this.thenShouldHaveNthCalledFromFakeFolder(1);
-	}
-
-	thenShouldHaveRunCommand(binary, command) {
-		this.thenShouldHaveNthRunCommand(1, binary, command);
 	}
 
 	thenShouldHaveNthRunNpmCommand(nth, command) {

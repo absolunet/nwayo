@@ -5,7 +5,8 @@
 
 
 const fakeTerminal = {
-	box: jest.fn()
+	box: jest.fn(),
+	warning: jest.fn()
 };
 
 

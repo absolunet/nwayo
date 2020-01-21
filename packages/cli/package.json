@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "@absolunet/ioc": "1.0.0-rc.3",
-    "@absolunet/private-registry": "^2.0.0",
-    "@absolunet/nwayo-cli": "3.7.1"
+    "@absolunet/nwayo-cli": "3.7.1",
+    "@absolunet/private-registry": "^2.0.0"
   }
 }

@@ -4,6 +4,8 @@
 
 import { ServiceProvider } from '@absolunet/ioc';
 import DependencyManager   from '../services/DependencyManager';
+import NwayoLegacyService  from '../services/legacy/NwayoLegacyService';
+import LegacyHandler       from '../handlers/legacy/LegacyHandler';
 
 
 /**
@@ -31,6 +33,8 @@ class AppServiceProvider extends ServiceProvider {
 		}
 
 		this.bindDependencyManager();
+		this.bindNwayoLegacyService();
+		this.bindNwayoLegacyHandler();
 	}
 
 	/**
@@ -61,9 +65,11 @@ class AppServiceProvider extends ServiceProvider {
 
 		const { dependencies = {} } = nwayoPackageJson || {};
 
-		Object.keys(dependencies).forEach((extension) => {
-			this.app.register(this.getPathFromCwd('node_modules', extension));
-		});
+		if (Object.prototype.hasOwnProperty.call(dependencies, '@nwayo/core')) {
+			Object.keys(dependencies).forEach((extension) => {
+				this.app.register(this.getPathFromCwd('node_modules', extension));
+			});
+		}
 	}
 
 	/**
@@ -90,6 +96,20 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	bindDependencyManager() {
 		this.app.singleton('dependency', DependencyManager);
+	}
+
+	/**
+	 * Bind Nwayo Legacy Service singleton.
+	 */
+	bindNwayoLegacyService() {
+		this.app.singleton('nwayo.legacy', NwayoLegacyService);
+	}
+
+	/**
+	 * Bind Legacy Handler singleton.
+	 */
+	bindNwayoLegacyHandler() {
+		this.app.singleton('nwayo.legacy.handler', LegacyHandler);
 	}
 
 	/**

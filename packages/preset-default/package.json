@@ -54,11 +54,11 @@
     "jest": "24.9.0"
   },
   "dependencies": {
-    "@nwayo/core": "file:../core",
     "@nwayo/extension-js": "file:../extension-js",
     "@nwayo/extension-scss": "file:../extension-scss"
   },
   "peerDependencies": {
-    "@absolunet/ioc": "1.0.0-rc.3"
+    "@absolunet/ioc": "1.0.0-rc.3",
+    "@nwayo/core": "file:../core"
   }
 }

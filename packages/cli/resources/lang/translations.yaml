@@ -26,3 +26,7 @@ components:
 extensions:
   en: extensions
   fr: extensions
+
+deprecated:
+  en: deprecated
+  fr: obsolète

@@ -19,12 +19,12 @@ var _ioc = require("@absolunet/ioc");
  */
 class Driver {
   /**
-   * Class dependencies: <code>['folder', 'terminal.interceptor']</code>.
+   * Class dependencies: <code>['folder', 'terminal', 'terminal.interceptor']</code>.
    *
    * @type {Array<string>}
    */
   static get dependencies() {
-    return ['folder', 'terminal.interceptor'];
+    return ['folder', 'terminal', 'terminal.interceptor'];
   }
   /**
    * Install all packages.
@@ -93,18 +93,11 @@ class Driver {
 
   async run(command) {
     const [binary, ...parameters] = command.split(' ');
-    await new Promise((resolve, reject) => {
-      require('child_process') // eslint-disable-line global-require
-      .spawn(binary, parameters, {
-        cwd: this.folder,
-        stdio: 'inherit'
-      }).on('close', code => {
-        if (code === 0) {
-          resolve();
-        } else {
-          reject(code);
-        }
-      });
+    const {
+      folder: cwd
+    } = this;
+    await this.terminal.spawn(binary, parameters, {
+      cwd
     });
   }
 
