@@ -18004,7 +18004,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 //-------------------------------------
-//-- Foundation - 6.5.0
+//-- Foundation - 6.6.1
 //-------------------------------------
 function _typeof2(obj) {"@babel/helpers - typeof";if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {_typeof2 = function _typeof2(obj) {return typeof obj;};} else {_typeof2 = function _typeof2(obj) {return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;};}return _typeof2(obj);}(function webpackUniversalModuleDefinition(root, factory) {
   if ((typeof exports === "undefined" ? "undefined" : _typeof2(exports)) === 'object' && (typeof module === "undefined" ? "undefined" : _typeof2(module)) === 'object')
@@ -18184,7 +18184,7 @@ function _typeof2(obj) {"@babel/helpers - typeof";if (typeof Symbol === "functio
 
 
 
-        var FOUNDATION_VERSION = '6.5.3'; // Global Foundation object
+        var FOUNDATION_VERSION = '6.6.1'; // Global Foundation object
         // This is attached to the window, or used as a module for AMD/Browserify
 
         var Foundation = {
@@ -18338,16 +18338,15 @@ function _typeof2(obj) {"@babel/helpers - typeof";if (typeof Symbol === "functio
               // Get the current plugin
               var plugin = _this._plugins[name]; // Localize the search to all elements inside elem, as well as elem itself, unless elem === document
 
-              var $elem = jquery__WEBPACK_IMPORTED_MODULE_0___default()(elem).find('[data-' + name + ']').addBack('[data-' + name + ']'); // For each plugin found, initialize it
+              var $elem = jquery__WEBPACK_IMPORTED_MODULE_0___default()(elem).find('[data-' + name + ']').addBack('[data-' + name + ']').filter(function () {
+                return typeof jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data("zfPlugin") === 'undefined';
+              }); // For each plugin found, initialize it
 
               $elem.each(function () {
                 var $el = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this),
-                opts = {}; // Don't double-dip on plugins
+                opts = {
+                  reflow: true };
 
-                if ($el.data('zfPlugin')) {
-                  console.warn("Tried to initialize " + name + " on an element that already has a Foundation plugin.");
-                  return;
-                }
 
                 if ($el.attr('data-options')) {
                   var thing = $el.attr('data-options').split(';').forEach(function (e, i) {
@@ -18672,9 +18671,18 @@ function _typeof2(obj) {"@babel/helpers - typeof";if (typeof Symbol === "functio
            */
 
 
-        function GetYoDigits(length, namespace) {
-          length = length || 6;
-          return Math.round(Math.pow(36, length + 1) - Math.random() * Math.pow(36, length)).toString(36).slice(1) + (namespace ? "-".concat(namespace) : '');
+        function GetYoDigits() {
+          var length = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 6;
+          var namespace = arguments.length > 1 ? arguments[1] : undefined;
+          var str = '';
+          var chars = '0123456789abcdefghijklmnopqrstuvwxyz';
+          var charsLength = chars.length;
+
+          for (var i = 0; i < length; i++) {
+            str += chars[Math.floor(Math.random() * charsLength)];
+          }
+
+          return namespace ? "".concat(str, "-").concat(namespace) : str;
         }
         /**
            * Escape a string so it can be used as a regexp pattern
@@ -18824,6 +18832,14 @@ function _typeof2(obj) {"@babel/helpers - typeof";if (typeof Symbol === "functio
 
         function _typeof(obj) {if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {_typeof = function _typeof(obj) {return _typeof2(obj);};} else {_typeof = function _typeof(obj) {return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);};}return _typeof(obj);}
 
+        function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();}
+
+        function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance");}
+
+        function _iterableToArrayLimit(arr, i) {var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}
+
+        function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}
+
         // Default set of media queries
 
         var defaultQueries = {
@@ -18832,7 +18848,7 @@ function _typeof2(obj) {"@babel/helpers - typeof";if (typeof Symbol === "functio
           portrait: 'only screen and (orientation: portrait)',
           retina: 'only screen and (-webkit-min-device-pixel-ratio: 2),' + 'only screen and (min--moz-device-pixel-ratio: 2),' + 'only screen and (-o-min-device-pixel-ratio: 2/1),' + 'only screen and (min-device-pixel-ratio: 2),' + 'only screen and (min-resolution: 192dpi),' + 'only screen and (min-resolution: 2dppx)' };
         // matchMedia() polyfill - Test a CSS media type/query in JS.
-        // Authors & copyright(c) 2012: Scott Jehl, Paul Irish, Nicholas Zakas, David Knight. MIT license
+        // Authors & copyright © 2012: Scott Jehl, Paul Irish, Nicholas Zakas, David Knight. MIT license
 
         /* eslint-disable */
 
@@ -18891,6 +18907,13 @@ function _typeof2(obj) {"@babel/helpers - typeof";if (typeof Symbol === "functio
                         * @private
                         */
           _init: function _init() {
+            // make sure the initialization is only done once when calling _init() several times
+            if (this.isInitialized === true) {
+              return;
+            } else {
+              this.isInitialized = true;
+            }
+
             var self = this;
             var $meta = jquery__WEBPACK_IMPORTED_MODULE_0___default()('meta.foundation-mq');
 
@@ -18901,6 +18924,7 @@ function _typeof2(obj) {"@babel/helpers - typeof";if (typeof Symbol === "functio
             var extractedStyles = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.foundation-mq').css('font-family');
             var namedQueries;
             namedQueries = parseStyleToObject(extractedStyles);
+            self.queries = []; // reset
 
             for (var key in namedQueries) {
               if (namedQueries.hasOwnProperty(key)) {
@@ -18914,6 +18938,18 @@ function _typeof2(obj) {"@babel/helpers - typeof";if (typeof Symbol === "functio
             this.current = this._getCurrentSize();
 
             this._watcher();
+          },
+
+          /**
+              * Reinitializes the media query helper.
+              * Useful if your CSS breakpoint configuration has just been loaded or has changed since the initialization.
+              * @function
+              * @private
+              */
+          _reInit: function _reInit() {
+            this.isInitialized = false;
+
+            this._init();
           },
 
           /**
@@ -18933,21 +18969,67 @@ function _typeof2(obj) {"@babel/helpers - typeof";if (typeof Symbol === "functio
           },
 
           /**
+              * Checks if the screen is within the given breakpoint.
+              * If smaller than the breakpoint of larger than its upper limit it returns false.
+              * @function
+              * @param {String} size - Name of the breakpoint to check.
+              * @returns {Boolean} `true` if the breakpoint matches, `false` otherwise.
+              */
+          only: function only(size) {
+            return size === this._getCurrentSize();
+          },
+
+          /**
+              * Checks if the screen is within a breakpoint or smaller.
+              * @function
+              * @param {String} size - Name of the breakpoint to check.
+              * @returns {Boolean} `true` if the breakpoint matches, `false` if it's larger.
+              */
+          upTo: function upTo(size) {
+            var nextSize = this.next(size); // If the next breakpoint does not match, the screen is smaller than
+            // the upper limit of this breakpoint.
+
+            if (nextSize) {
+              return !this.atLeast(nextSize);
+            } // If there is no next breakpoint, the "size" breakpoint does not have
+            // an upper limit and the screen will always be within it or smaller.
+
+
+            return true;
+          },
+
+          /**
               * Checks if the screen matches to a breakpoint.
               * @function
               * @param {String} size - Name of the breakpoint to check, either 'small only' or 'small'. Omitting 'only' falls back to using atLeast() method.
               * @returns {Boolean} `true` if the breakpoint matches, `false` if it does not.
               */
           is: function is(size) {
-            size = size.trim().split(' ');
+            var parts = size.trim().split(' ').filter(function (p) {
+              return !!p.length;
+            });
 
-            if (size.length > 1 && size[1] === 'only') {
-              if (size[0] === this._getCurrentSize()) return true;
-            } else {
-              return this.atLeast(size[0]);
+            var _parts = _slicedToArray(parts, 2),
+            bpSize = _parts[0],
+            _parts$ = _parts[1],
+            bpModifier = _parts$ === void 0 ? '' : _parts$; // Only the breakpont
+
+
+            if (bpModifier === 'only') {
+              return this.only(bpSize);
+            } // At least the breakpoint (included)
+
+
+            if (!bpModifier || bpModifier === 'up') {
+              return this.atLeast(bpSize);
+            } // Up to the breakpoint (included)
+
+
+            if (bpModifier === 'down') {
+              return this.upTo(bpSize);
             }
 
-            return false;
+            throw new Error("\n      Invalid breakpoint passed to MediaQuery.is().\n      Expected a breakpoint name formatted like \"<size> <modifier>\", got \"".concat(size, "\".\n    "));
           },
 
           /**
@@ -18968,6 +19050,40 @@ function _typeof2(obj) {"@babel/helpers - typeof";if (typeof Symbol === "functio
           },
 
           /**
+              * Get the breakpoint following the given breakpoint.
+              * @function
+              * @param {String} size - Name of the breakpoint.
+              * @returns {String|null} - The name of the following breakpoint, or `null` if the passed breakpoint was the last one.
+              */
+          next: function next(size) {
+            var _this = this;
+
+            var queryIndex = this.queries.findIndex(function (q) {
+              return _this._getQueryName(q) === size;
+            });
+
+            if (queryIndex === -1) {
+              throw new Error("\n        Unknown breakpoint \"".concat(size, "\" passed to MediaQuery.next().\n        Ensure it is present in your Sass \"$breakpoints\" setting.\n      "));
+            }
+
+            var nextQuery = this.queries[queryIndex + 1];
+            return nextQuery ? nextQuery.name : null;
+          },
+
+          /**
+              * Returns the name of the breakpoint related to the given value.
+              * @function
+              * @private
+              * @param {String|Object} value - Breakpoint name or query object.
+              * @returns {String} Name of the breakpoint.
+              */
+          _getQueryName: function _getQueryName(value) {
+            if (typeof value === 'string') return value;
+            if (_typeof(value) === 'object') return value.name;
+            throw new TypeError("\n      Invalid value passed to MediaQuery._getQueryName().\n      Expected a breakpoint name (String) or a breakpoint query (Object), got \"".concat(value, "\" (").concat(_typeof(value), ")\n    "));
+          },
+
+          /**
               * Gets the current breakpoint name by testing every breakpoint and returning the last one to match (the biggest one).
               * @function
               * @private
@@ -18984,11 +19100,7 @@ function _typeof2(obj) {"@babel/helpers - typeof";if (typeof Symbol === "functio
               }
             }
 
-            if (_typeof(matched) === 'object') {
-              return matched.name;
-            } else {
-              return matched;
-            }
+            return matched && this._getQueryName(matched);
           },
 
           /**
@@ -18997,15 +19109,15 @@ function _typeof2(obj) {"@babel/helpers - typeof";if (typeof Symbol === "functio
               * @private
               */
           _watcher: function _watcher() {
-            var _this = this;
+            var _this2 = this;
 
             jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).off('resize.zf.mediaquery').on('resize.zf.mediaquery', function () {
-              var newSize = _this._getCurrentSize(),
-              currentSize = _this.current;
+              var newSize = _this2._getCurrentSize(),
+              currentSize = _this2.current;
 
               if (newSize !== currentSize) {
                 // Change the current media query
-                _this.current = newSize; // Broadcast the media query change on the window
+                _this2.current = newSize; // Broadcast the media query change on the window
 
                 jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).trigger('changed.zf.mediaquery', [newSize, currentSize]);
               }
@@ -19059,7 +19171,7 @@ function _typeof2(obj) {"@babel/helpers - typeof";if (typeof Symbol === "functio
       /*! no static exports found */
       /***/function _(module, exports, __webpack_require__) {
 
-        module.exports = __webpack_require__( /*! /Users/ncoden/Documents/Documents/Projects/Programmation/Web/2016/Foundation/foundation-sites/js/entries/plugins/foundation.core.js */"./js/entries/plugins/foundation.core.js");
+        module.exports = __webpack_require__( /*! /Volumes/Data/Development/Foundation/foundation-sites/js/entries/plugins/foundation.core.js */"./js/entries/plugins/foundation.core.js");
 
 
         /***/},
