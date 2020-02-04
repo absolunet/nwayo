@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Changed hover selection from 'mouse' to 'not-touch'
 - Changed jpeg optimization from jpegtran to MozJPEG
+- Update to Foundation 6.6.1
 - Update to Modernizr 3.9.0
 - Maintenance updates
 

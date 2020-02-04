@@ -93,6 +93,7 @@ $global-prototype-breakpoints:         false;
 $global-button-cursor:                 auto;
 $global-color-pick-contrast-tolerance: 0;
 $print-transparent-backgrounds:        true;
+$print-hrefs:                          true;
 
 @include add-foundation-colors();
 
@@ -105,6 +106,13 @@ $breakpoints:        (
 	'large':   konstan-get('dimension.medium') + 1,
 	'xlarge':  konstan-get('dimension.large') + 1,
 	'xxlarge': konstan-get('dimension.xlarge') + 1,
+);
+$breakpoints-hidpi: (
+	'hidpi-1':   1,
+	'hidpi-1-5': 1.5,
+	'hidpi-2':   2,
+	'retina':    2,
+	'hidpi-3':   3
 );
 $print-breakpoint:   large;
 $breakpoint-classes: (small medium large);
@@ -156,12 +164,7 @@ $header-small-font-color:      $common-bg-var2-color;
 $paragraph-lineheight:         $common-content-lineheight;
 $paragraph-margin-bottom:      1em;
 $paragraph-text-rendering:     optimizeLegibility;
-$code-color:                   $common-text-color;
-$code-font-family:             $font-family-monospace;
-$code-font-weight:             $global-weight-normal;
-$code-background:              $common-bg-var1-color;
-$code-border:                  common-border();
-$code-padding:                 .125em .3125em .0625em;
+$enable-code-inline:           true;
 $anchor-color:                 $common-primary-color;
 $anchor-color-hover:           scale-color($anchor-color, $lightness: -14%);
 $anchor-text-decoration:       none;
@@ -181,9 +184,7 @@ $defnlist-term-margin-bottom:  .3em;
 $blockquote-color:             $common-alt-color;
 $blockquote-padding:           .5em 1.25em 0 1.25em;
 $blockquote-border:            common-border();
-$cite-font-size:               $common-text-tiny-size;
-$cite-color:                   $common-alt-color;
-$cite-pseudo-content:          '\2014 \0020';
+$enable-cite-block:            true;
 $keystroke-font:               $font-family-monospace;
 $keystroke-color:              $common-text-color;
 $keystroke-background:         $common-bg-var1-color;
@@ -194,14 +195,25 @@ $abbr-underline:               common-border(1, dotted, $common-text-color);
 // 5. Typography Helpers
 // ---------------------
 
-$lead-font-size:          $common-title-size;
-$lead-lineheight:         $common-title-lineheight;
-$subheader-lineheight:    $common-title-lineheight;
-$subheader-color:         $common-alt-color;
-$subheader-font-weight:   $global-weight-normal;
-$subheader-margin-top:    .2em;
-$subheader-margin-bottom: .5em;
-$stat-font-size:          $common-title-biggest-size;
+$lead-font-size:           $common-title-size;
+$lead-lineheight:          $common-title-lineheight;
+$subheader-lineheight:     $common-title-lineheight;
+$subheader-color:          $common-alt-color;
+$subheader-font-weight:    $global-weight-normal;
+$subheader-margin-top:     .2em;
+$subheader-margin-bottom:  .5em;
+$stat-font-size:           $common-title-biggest-size;
+$cite-color:               $common-alt-color;
+$cite-font-size:           $common-text-tiny-size;
+$cite-pseudo-content:      '\2014 \0020';
+$code-color:               $common-text-color;
+$code-font-family:         $font-family-monospace;
+$code-font-weight:         $global-weight-normal;
+$code-background:          $common-bg-var1-color;
+$code-border:              common-border();
+$code-padding:             .125em .3125em .0625em;
+$code-block-padding:       1em;
+$code-block-margin-bottom: 1.5em;
 
 // 6. Abide
 // --------
@@ -219,6 +231,8 @@ $input-error-font-weight:  $global-weight-bold;
 
 $accordion-background:            $common-bg-color;
 $accordion-plusminus:             true;
+$accordion-plus-content:          '\002B';
+$accordion-minus-content:         '\2013';
 $accordion-title-font-size:       $common-text-tiny-size;
 $accordion-item-color:            $common-primary-color;
 $accordion-item-background-hover: $common-bg-var1-color;
@@ -274,6 +288,7 @@ $breadcrumbs-item-separator-color:    $common-bg-var2-color;
 // ----------
 
 $button-font-family:                inherit;
+$button-font-weight:                null;
 $button-padding:                    .85em 1em;
 $button-margin:                     0 0 $global-margin 0;
 $button-fill:                       solid;
@@ -282,6 +297,7 @@ $button-background-hover:           $common-button-bg-hover-color;
 $button-color:                      $common-button-text-color;
 $button-color-alt:                  $common-text-color;
 $button-radius:                     $global-radius;
+$button-border:                     common-border($color:transparent);
 $button-hollow-border-width:        0;
 $button-sizes: (
 	'tiny':    $common-text-nano-size,
@@ -312,7 +328,11 @@ $callout-background:      $common-bg-color;
 $callout-background-fade: 85%;
 $callout-border:          common-border($color:rgba($common-text-color, .25));
 $callout-margin:          0 0 1em 0;
-$callout-padding:         1em;
+$callout-sizes: (
+	'small':   .5em,
+	'default': 1em,
+	'large':   3em,
+);
 $callout-font-color:      $body-font-color;
 $callout-font-color-alt:  $body-background;
 $callout-radius:          $global-radius;
@@ -333,7 +353,9 @@ $card-margin-bottom:      $global-margin;
 // 15. Close Button
 // ----------------
 
-$closebutton-position:    right top;
+$closebutton-position:     right top;
+$closebutton-z-index:      null;
+$closebutton-default-size: medium;
 $closebutton-offset-horizontal: (
 	'small':  .66em,
 	'medium': 1em,
@@ -469,6 +491,7 @@ $menu-nested-margin:          $global-menu-nested-margin;
 $menu-items-padding:          $global-menu-padding;
 $menu-simple-margin:          1em;
 $menu-item-color-active:      $common-bg-color;
+$menu-item-color-alt-active:  $common-bg-var1-color;
 $menu-item-background-active: $common-primary-color;
 $menu-icon-spacing:           .25em;
 $menu-state-back-compat:      true;
@@ -540,6 +563,8 @@ $pagination-ellipsis-color:          $common-text-color;
 $pagination-mobile-items:            false;
 $pagination-mobile-current-item:     false;
 $pagination-arrows:                  true;
+$pagination-arrow-previous:          '\00AB';
+$pagination-arrow-next:              '\00BB';
 
 // 28. Progress Bar
 // ----------------
@@ -760,6 +785,8 @@ $switch-paddle-background: $common-bg-color;
 $switch-paddle-offset:     .25em;
 $switch-paddle-radius:     $global-radius;
 $switch-paddle-transition: all $common-animation-transition ease-out;
+$switch-opacity-disabled:  .5;
+$switch-cursor-disabled:   not-allowed;
 
 // 50. Table
 // ---------
