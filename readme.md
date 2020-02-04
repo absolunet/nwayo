@@ -59,7 +59,7 @@ nwayo is HTML5 ready and uses [gulp](https://gulpjs.com) as a build system
 - Builds with [gulp-include](https://www.npmjs.com/package/@absolunet/gulp-include) and is minified with [UglifyJS](http://lisperator.net/uglifyjs)
 
 #### Other
-- Optimizes images via [gifsicle](https://www.lcdf.org/gifsicle), [jpegtran](http://libjpeg-turbo.virtualgl.org), [optipng](http://optipng.sourceforge.net), [svgo](https://github.com/svg/svgo)
+- Optimizes images via [gifsicle](https://www.lcdf.org/gifsicle), [MozJPEG](https://github.com/mozilla/mozjpeg), [optipng](http://optipng.sourceforge.net), [svgo](https://github.com/svg/svgo)
 - Generates iconography via [GraphicsMagick](http://www.graphicsmagick.org), [ImageMagick](https://www.imagemagick.org)
 
 

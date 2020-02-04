@@ -291,9 +291,7 @@ Run ${chalk.cyan('nwayo install workflow')} to update`,
 					align:       'center',
 					borderColor: 'yellow'
 				}
-			));
-
-			terminal.exit();
+			)).exit();
 		}
 	}
 
@@ -372,10 +370,8 @@ Run ${chalk.cyan('nwayo install workflow')} to update`,
 
 	//-- Init CLI
 	initCli(globalUsage) {
-		terminal.setDefault({
-			logo:   env.logo,
-			color: 'cyan',
-			lang:  'en'
+		terminal.setTheme({
+			logo: env.logo
 		});
 
 		cli.init({

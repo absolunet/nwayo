@@ -91,9 +91,11 @@ class Toolbox {
 	//-- Plumber
 	plumber() {
 		return plumber((error) => {
-			terminal.spacer(2);
-			terminal.echo(`${emoji.get('monkey')}  ${error.toString()}`);
-			terminal.exit();
+			terminal
+				.spacer(2)
+				.echo(`${emoji.get('monkey')}  ${error.toString()}`)
+				.exit()
+			;
 		});
 	}
 

@@ -59,9 +59,11 @@ class NwayoExtension {
 	}
 
 	error(error) {
-		terminal.error(`[nwayo-extension:${this.id} error]`);
-		terminal.echo(error);
-		terminal.exit();
+		terminal
+			.error(`[nwayo-extension:${this.id} error]`)
+			.echo(error)
+			.exit()
+		;
 	}
 
 	getComponentDirectory(component) {

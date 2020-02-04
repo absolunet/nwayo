@@ -2,7 +2,7 @@
   "name": "nwayo",
   "private": true,
   "scripts": {
-    "test": "ava test/index.js",
+    "test": "ava test/index.js --timeout=10m",
     "postinstall": "node manager.js --task=postinstall",
     "outdated": "node manager.js --task=outdated",
     "build": "node manager.js --task=build",
@@ -12,7 +12,7 @@
     "@absolunet/fsp": "1.6.2",
     "@absolunet/fss": "1.6.2",
     "@absolunet/manager": "1.1.0",
-    "@absolunet/tester": "2.6.10",
-    "lerna": "3.18.3"
+    "@absolunet/tester": "2.6.11",
+    "lerna": "3.20.2"
   }
 }

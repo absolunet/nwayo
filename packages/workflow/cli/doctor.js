@@ -85,8 +85,10 @@ class DoctorTask extends Task {
 		verbose = flagVerbose;
 
 
-		terminal.spacer();
-		const spinner = terminal.startSpinner(`Diagnosing ${chalk.cyan(env.packageConfig.name)}...`);
+		terminal
+			.spacer()
+			.startSpinner(`Diagnosing ${chalk.cyan(env.packageConfig.name)}...`)
+		;
 
 		//-- Load here to speed up spinner first display
 		/* eslint-disable global-require */
@@ -107,7 +109,7 @@ class DoctorTask extends Task {
 			tester.syncWorkflowToolbox()
 		]);
 
-		spinner.stop();
+		terminal.stopSpinner();
 
 		//-- Reports
 		reporter('General', general);
@@ -139,13 +141,14 @@ class DoctorTask extends Task {
 			const pink   = chalk.hex('#ff69b4');
 			const green  = chalk.hex('#198c19');
 
-			terminal.echo(reward
-				.replace(/_.--._/ug, `_${pink('.--.')}_`)
-				.replace(/`--'/ug, pink('`--\''))
-				.replace(/\(\)/ug, pink('()'))
-				.replace(/.==./ug, green('.==.')))
+			terminal
+				.echo(reward
+					.replace(/_.--._/ug, `_${pink('.--.')}_`)
+					.replace(/`--'/ug, pink('`--\''))
+					.replace(/\(\)/ug, pink('()'))
+					.replace(/.==./ug, green('.==.')))
+				.spacer()
 			;
-			terminal.spacer();
 		}
 	}
 

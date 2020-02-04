@@ -382,7 +382,7 @@ html[data-whatintent=touch] .body {
 html[data-whatintent=mouse] .body {
   /* ... */
 }
-html[data-whatintent=mouse] .body a:hover {
+html:not([data-whatintent=touch]) .body a:hover {
   /* ... */
 }
 

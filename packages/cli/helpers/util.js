@@ -123,7 +123,7 @@ class Util {
 
 
 	//-- Check for updates and be obnoxious about it
-	obnoxiousNotificator(packageConfig, sync = false) {
+	async obnoxiousNotificator(packageConfig, sync = false) {
 		const boxen          = require('boxen');
 		const updateNotifier = require('update-notifier');
 
@@ -132,27 +132,21 @@ class Util {
 			updateCheckInterval: 1
 		};
 
-		if (sync) {
-			options.callback = (error, update) => {
-				if (!error) {
-					if (update.current !== update.latest) {
-						this.echo(boxen(obnoxiousMessage(update), {
-							padding:     1,
-							margin:      1,
-							align:       'center',
-							borderColor: 'yellow',
-							borderStyle: 'round'
-						}));
-					}
-				} else {
-					this.exit(error);
-				}
-			};
-		}
-
 		const notifier = updateNotifier(options);
 
-		if (!sync) {
+		if (sync) {
+			const update = await notifier.fetchInfo();
+
+			if (update.current !== update.latest) {
+				this.echo(boxen(obnoxiousMessage(update), {
+					padding:     1,
+					margin:      1,
+					align:       'center',
+					borderColor: 'yellow',
+					borderStyle: 'round'
+				}));
+			}
+		} else {
 			notifier.notify({ message: obnoxiousMessage(notifier.update) });
 		}
 	}

@@ -14,14 +14,12 @@ const availableScopes = ['vendors'];
 
 
 const vendorInstall = () => {
-	terminal.print(`
-		Installing vendors via npm
-	`);
+	terminal.spacer().print(`Installing vendors via npm`).spacer();
 
 	fss.remove(paths.directory.vendorsDependencies);
 	fss.remove(`${paths.directory.vendors}/package-lock.json`);
 
-	terminal.run(`cd ${paths.directory.vendors} && npm install --no-audit`);
+	terminal.process.run('npm install --no-audit', { directory: paths.directory.vendors });
 };
 
 
