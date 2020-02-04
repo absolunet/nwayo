@@ -20,7 +20,7 @@ const WORKFLOW = '@absolunet/nwayo-workflow';
 
 
 
-module.exports = () => {
+module.exports = async () => {
 
 	const cliPackageConfig = util.packageConfig;
 
@@ -44,7 +44,7 @@ module.exports = () => {
 
 	//-- Trap `outdated`
 	} else if (util.cmd('outdated')) {
-		util.obnoxiousNotificator(cliPackageConfig, true);
+		await util.obnoxiousNotificator(cliPackageConfig, true);
 
 	//-- Trap `update`
 	} else if (util.cmd('update')) {
@@ -61,7 +61,7 @@ module.exports = () => {
 				}
 
 				terminal.spacer();
-				terminal.run('npm uninstall -g @absolunet/nwayo-cli && npm install -g --no-audit @absolunet/nwayo-cli');
+				terminal.process.run('npm uninstall -g @absolunet/nwayo-cli && npm install -g --no-audit @absolunet/nwayo-cli');
 
 			} else {
 				util.exit(error);
@@ -81,7 +81,7 @@ module.exports = () => {
 	//-- Trap `docs`
 	} else if (util.cmd('docs')) {
 		const open = require('open');
-		const URL  = 'https://absolunet.github.io/nwayo/';
+		const URL  = 'https://documentation.absolunet.com/nwayo/';
 
 		util.echo(`\n${chalk.underline(URL)}`);
 		open(URL, { url: true });
@@ -134,14 +134,14 @@ module.exports = () => {
 			fss.remove(nodeModules);
 			fss.remove(`${root}/package-lock.json`);
 
-			terminal.run(`cd ${root} && npm install --no-audit`);
+			terminal.process.run('npm install --no-audit', { directory: root });
 			util.exit();
 		};
 
 		const npmCI = () => {
 			const { terminal } = require('@absolunet/terminal');
 			try {
-				terminal.run(`cd ${root} && npm ci`);
+				terminal.process.run('npm ci', { directory: root });
 				util.exit();
 			} catch (error) {
 				terminal.errorBox(`
@@ -192,7 +192,7 @@ module.exports = () => {
 					}
 
 					//-- Let's do this
-					util.obnoxiousNotificator(cliPackageConfig);
+					await util.obnoxiousNotificator(cliPackageConfig);
 
 
 					//-- Trap `nwayo install vendors` (for nwayo-workflow < 3.5.0)
@@ -237,7 +237,7 @@ module.exports = () => {
 				}
 
 				//-- Let's do this
-				util.obnoxiousNotificator(cliPackageConfig);
+				await util.obnoxiousNotificator(cliPackageConfig);
 				util.bootLegacyMode({ root });
 			}
 

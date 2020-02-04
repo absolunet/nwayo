@@ -16205,7 +16205,7 @@ return jQuery;
 
 
 /*!
- * modernizr v3.8.0
+ * modernizr v3.9.0
  * Build https://modernizr.com/download?-geolocation-inputtypes-localstorage-sessionstorage-addtest-printshiv-setclasses-dontmin
  *
  * Copyright (c)
@@ -16242,7 +16242,7 @@ return jQuery;
    */
   var ModernizrProto = {
     // The current version, dummy
-    _version: '3.8.0',
+    _version: '3.9.0',
 
     // Any settings that don't work as separate modules
     // can go in here as configuration.
@@ -18006,7 +18006,7 @@ return /******/ (function(modules) { // webpackBootstrap
 //-------------------------------------
 //-- Foundation - 6.5.0
 //-------------------------------------
-function _typeof2(obj) {if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {_typeof2 = function _typeof2(obj) {return typeof obj;};} else {_typeof2 = function _typeof2(obj) {return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;};}return _typeof2(obj);}(function webpackUniversalModuleDefinition(root, factory) {
+function _typeof2(obj) {"@babel/helpers - typeof";if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {_typeof2 = function _typeof2(obj) {return typeof obj;};} else {_typeof2 = function _typeof2(obj) {return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;};}return _typeof2(obj);}(function webpackUniversalModuleDefinition(root, factory) {
   if ((typeof exports === "undefined" ? "undefined" : _typeof2(exports)) === 'object' && (typeof module === "undefined" ? "undefined" : _typeof2(module)) === 'object')
   module.exports = factory(require("jquery"));else
   if (typeof define === 'function' && define.amd)
@@ -19132,7 +19132,7 @@ var nwayoStarterConfig = {
   lodash: {
     scope: 'private' } };
 
-function _typeof(obj) {if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {_typeof = function _typeof(obj) {return typeof obj;};} else {_typeof = function _typeof(obj) {return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;};}return _typeof(obj);} //-------------------------------------
+function _typeof(obj) {"@babel/helpers - typeof";if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {_typeof = function _typeof(obj) {return typeof obj;};} else {_typeof = function _typeof(obj) {return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;};}return _typeof(obj);} //-------------------------------------
 //-- Dependencies starter kit
 //-------------------------------------
 /* global nwayoStarterConfig */

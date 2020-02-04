@@ -22,7 +22,7 @@
     "url": "https://github.com/absolunet/nwayo-extension-MYEXTENSION/issues"
   },
   "engines": {
-    "node": ">= 12.0.0"
+    "node": ">= 12"
   },
   "main": "index.js",
   "scripts": {
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@absolunet/manager": "1.1.0",
-    "@absolunet/tester": "2.6.10"
+    "@absolunet/tester": "2.6.11"
   },
   "dependencies": {
     "@absolunet/fss": "^1.6.2"

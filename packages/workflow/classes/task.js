@@ -40,9 +40,12 @@ class Task {
 
 	cli(meowCli) {
 		if (__(this).get('deprecated')) {
-			terminal.spacer();
-			terminal.warning(`DEPRECATED - ${__(this).get('deprecated')}`);
-			terminal.exit();
+			terminal
+				.spacer()
+				.warning(`DEPRECATED - ${__(this).get('deprecated')}`)
+				.spacer()
+				.exit()
+			;
 		}
 
 		throw new Error('Not overwritten by subclass');

@@ -21,7 +21,7 @@
     "url": "https://github.com/absolunet/nwayo/issues"
   },
   "engines": {
-    "node": ">= 12.0.0"
+    "node": ">= 12"
   },
   "browser": "scripts/dependencies-starter.js",
   "peerDependencies": {

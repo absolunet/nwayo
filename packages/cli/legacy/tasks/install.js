@@ -17,7 +17,7 @@ module.exports = {
 
 		if (context.target === 'vendors') {
 			fss.remove(`${context.cwd}/bower_components`);
-			terminal.run(`cd ${context.cwd} && node ${path.dirname(require.resolve('bower'))}/../bin/bower install`);
+			terminal.process.run(`node ${path.dirname(require.resolve('bower'))}/../bin/bower install`, { directory: context.cwd });
 
 		} else {
 			helper.error(`Installation of '${context.target}' not supported`);

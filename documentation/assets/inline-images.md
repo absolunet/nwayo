@@ -17,7 +17,7 @@ The source files are located under `[NWAYO_ROOT]/components/[NAME]/assets/inline
 
 
 ## Processing
-Files are optimized losslessly via [gifsicle](https://www.lcdf.org/gifsicle), [jpegtran](http://libjpeg-turbo.virtualgl.org), [optipng](http://optipng.sourceforge.net), [svgo](https://github.com/svg/svgo), which means that they need to be quality-optimized beforehand because this process only shims the extra useless kB.
+Files are optimized losslessly via [gifsicle](https://www.lcdf.org/gifsicle), [MozJPEG](https://github.com/mozilla/mozjpeg), [optipng](http://optipng.sourceforge.net), [svgo](https://github.com/svg/svgo), which means that they need to be quality-optimized beforehand because this process only shims the extra useless kB.
 
 ### Binary formats (GIF, JPG, PNG)
 These will be embedded in the `background-image:url()` via a Base64 encoding.

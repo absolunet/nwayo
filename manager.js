@@ -30,7 +30,7 @@ manager.multiScriptsRunner({
 		postinstall: {
 			postRun: async ({ terminal }) => {
 
-				terminal.println('Symlink grow-project boilerplate workflow');
+				terminal.print('Symlink grow-project boilerplate workflow').spacer();
 				await fsp.remove(BOILER_WORKFLOW);
 				await fsp.ensureDir(`${BOILER_WORKFLOW}/..`);
 				await fsp.symlink('../../../../workflow', BOILER_WORKFLOW);
@@ -38,7 +38,7 @@ manager.multiScriptsRunner({
 				// Install grow-project boilerplate vendors
 				await manager.installPackage(BOILER_VENDOR);
 
-				terminal.println('Symlink grow-project boilerplate vendors toolbox');
+				terminal.print('Symlink grow-project boilerplate vendors toolbox').spacer();
 				await fsp.remove(BOILER_VENDOR_TOOLBOX);
 				await fsp.ensureDir(`${BOILER_VENDOR_TOOLBOX}/..`);
 				await fsp.symlink('../../../../../toolbox', BOILER_VENDOR_TOOLBOX);
@@ -67,17 +67,17 @@ manager.multiScriptsRunner({
 			postRun: async ({ terminal }) => {
 
 				//-- Version bump
-				terminal.println(`Version bump: grow-project boilerplate 'package.json'`);
+				terminal.print(`Version bump: grow-project boilerplate 'package.json'`).spacer();
 				const boilerPackage = await fsp.readJson(BOILER_PACKAGE);
 				boilerPackage.dependencies['@absolunet/nwayo-workflow'] = manager.version;
 				await fsp.writeJson(BOILER_PACKAGE, boilerPackage, { space: 2 });
 
-				terminal.println(`Version bump: grow-project boilerplate vendor 'package.json'`);
+				terminal.print(`Version bump: grow-project boilerplate vendor 'package.json'`).spacer();
 				const boilerVendor = await fsp.readJson(BOILER_VENDOR_PACKAGE);
 				boilerVendor.dependencies['@absolunet/nwayo-toolbox'] = manager.version;
 				await fsp.writeJson(BOILER_VENDOR_PACKAGE, boilerVendor, { space: 2 });
 
-				terminal.println(`Version bump: grow-project boilerplate 'SAMPLE-HTML/index.html'`);
+				terminal.print(`Version bump: grow-project boilerplate 'SAMPLE-HTML/index.html'`).spacer();
 				const boilerIndex = await fsp.readFile(BOILER_INDEX, 'utf-8');
 				await fsp.writeFile(BOILER_INDEX, boilerIndex.replace(/nwayo (v?(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-[\da-z-]+(?:\.[\da-z-]+)*)?(?:\+[\da-z-]+(?:\.[\da-z-]+)*)?)/ug, `nwayo ${manager.version}`));  // eslint-disable-line prefer-named-capture-group
 
@@ -87,7 +87,7 @@ manager.multiScriptsRunner({
 
 
 				//-- Workflow matrix
-				terminal.println(`Update workflow matrix`);
+				terminal.print(`Update workflow matrix`).spacer();
 				await fsp.remove(WORKFLOW_MATRIX);
 				await fsp.ensureDir(WORKFLOW_MATRIX);
 
@@ -102,13 +102,13 @@ manager.multiScriptsRunner({
 
 
 				//-- grow-project boilerplate 'nwayo rebuild'
-				terminal.println(`grow-project boilerplate 'nwayo rebuild'`);
+				terminal.print(`grow-project boilerplate 'nwayo rebuild'`).spacer();
 				terminal.run(`cd ${BOILER} && nwayo rebuild`);
 				terminal.spacer();
 
 
 				//-- Documentation rebuild
-				terminal.println(`Documentation rebuild`);
+				terminal.print(`Documentation rebuild`).spacer();
 				terminal.run(`cd ${DOCUMENTATION_BUILDER} && npm run build`);
 			}
 		}

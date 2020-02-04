@@ -25,7 +25,7 @@ class Assertions {
 
 	// If tracked by git
 	gitTracked(pathname, { root = '', tracked = true } = {}) {
-		const isTracked = Boolean(terminal.runAndGet(`cd ${paths.directory.root}/${root}; git ls-files ${pathname}`));
+		const isTracked = Boolean(terminal.process.runAndGet(`git ls-files ${pathname}`, { directory: `${paths.directory.root}/${root}` }));
 
 		return [{
 			type:    'gitTracked',
@@ -72,7 +72,7 @@ class Assertions {
 	// Is the tree completely tracked
 	areFilesGitTracked(files, pathname, { root = '' }) {
 		const rawFiles     = files.map((file) => { return `${pathname}/${file}`; });
-		const trackedFiles = terminal.runAndRead(`cd ${paths.directory.root}/${root}; git ls-files ${pathname}`).split('\n');
+		const trackedFiles = terminal.process.runAndRead(`git ls-files ${pathname}`, { directory: `${paths.directory.root}/${root}` }).split('\n');
 		const differences  = toolbox.compareLists(trackedFiles, rawFiles);
 
 		return {
