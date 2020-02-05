@@ -4,16 +4,14 @@
 'use strict';
 
 // const debug = require('gulp-debug');
-const gulp         = require('gulp');
-const gm           = require('gulp-gm');
-const gulpif       = require('gulp-if');
-const imagemin     = require('gulp-imagemin');
-const rename       = require('gulp-rename');
-const { terminal } = require('@absolunet/terminal');
-const flow         = require('~/helpers/flow');
-const paths        = require('~/helpers/paths');
-const toolbox      = require('~/helpers/toolbox');
-const util         = require('~/helpers/util');
+const gulp     = require('gulp');
+const gulpif   = require('gulp-if');
+const imagemin = require('gulp-imagemin');
+const rename   = require('gulp-rename');
+const flow     = require('~/helpers/flow');
+const paths    = require('~/helpers/paths');
+const toolbox  = require('~/helpers/toolbox');
+const util     = require('~/helpers/util');
 
 
 module.exports = () => {
@@ -37,12 +35,7 @@ module.exports = () => {
 			return stream
 				.pipe(toolbox.plumber())
 
-				.pipe(gm((gmfile) => {
-					return gmfile
-						.define(`icon:auto-resize=${sizes.join(',')}`)
-						.setFormat('ico')
-					;
-				}, { imageMagick: true }))
+				.pipe(toolbox.ico(sizes))
 
 				.pipe(rename(util.assetsRename()))
 			;
@@ -83,13 +76,8 @@ module.exports = () => {
 					return stream
 						.pipe(toolbox.plumber())
 
-						.pipe(gulpif(size !== 512, gm((gmfile, done) => {
-							gmfile.identify((error, info) => {
-								if (error) {
-									terminal.error(error);
-								}
-								done(null, toolbox.gmOptimization(gmfile.resize(size, size), info));
-							});
+						.pipe(gulpif(size !== 512, toolbox.jimp((Jimp, image) => {
+							image.resize(size, size, Jimp.RESIZE_BICUBIC);
 						})))
 
 						.pipe(rename(util.assetsRename(`touch-${size}`)))
@@ -128,13 +116,8 @@ module.exports = () => {
 					return stream
 						.pipe(toolbox.plumber())
 
-						.pipe(gulpif(size !== 256, gm((gmfile, done) => {
-							gmfile.identify((error, info) => {
-								if (error) {
-									terminal.error(error);
-								}
-								done(null, toolbox.gmOptimization(gmfile.resize(size, size), info));
-							});
+						.pipe(gulpif(size !== 256, toolbox.jimp((Jimp, image) => {
+							image.resize(size, size, Jimp.RESIZE_BICUBIC);
 						})))
 
 						.pipe(rename(util.assetsRename(`icon-${size}`)))
@@ -186,20 +169,8 @@ module.exports = () => {
 					return stream
 						.pipe(toolbox.plumber())
 
-						.pipe(gm((gmfile, done) => {
-							gmfile.identify((error, info) => {
-								if (error) {
-									terminal.error(error);
-								}
-
-								const file = toolbox.gmOptimization(gmfile.resize(size[0], size[1]), info);
-
-								if (name === 'wide') {
-									file.background('transparent').gravity('Center').extent(size[0], size[1]);
-								}
-
-								done(null, file);
-							});
+						.pipe(toolbox.jimp((Jimp, image) => {
+							image.contain(size[0], size[1], Jimp.RESIZE_BICUBIC);
 						}))
 
 						.pipe(rename(util.assetsRename(`tile-${name}`)))
