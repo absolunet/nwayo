@@ -1,5 +1,5 @@
 //-------------------------------------
-//-- Foundation - 6.5.0
+//-- Foundation - 6.6.1
 //-------------------------------------
 
 //= require vendor/node_modules/foundation-sites/dist/js/plugins/foundation.core
