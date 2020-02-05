@@ -16,6 +16,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update to Modernizr 3.9.0
 - Maintenance updates
 
+### Fixed
+- Script linting works when CLI is called outside `nwayo` directory
+
 
 
 ## [3.7.1] - 2019-11-05
