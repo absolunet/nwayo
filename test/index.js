@@ -6,6 +6,12 @@
 const tester = require('@absolunet/tester');
 
 
+const JS_MULTI = [
+	`*.js`,
+	`ressources/docs-builder/**/*.js`,
+	`test/**/*.js`
+];
+
 const EXCLUDE_MULTI = [
 	`!docs/static/**`,
 	`!packages/**`,
@@ -20,12 +26,13 @@ const EXCLUDE_SUB = [
 	`!boilerplate/components/**/scripts/vendor/**`,
 	`!boilerplate/components/**/styles/vendor/**`,
 	`!boilerplate/node_modules/**`,
+	`!boilerplate/node_modules/@absolunet/nwayo-workflow/**`,
 	`!boilerplate/vendor/node_modules/**`
 ];
 
 
 tester.npmPackage.validateMulti({
-	js:           tester.all.js.concat(EXCLUDE_MULTI),
+	js:           JS_MULTI.concat(EXCLUDE_MULTI),
 	json:         tester.all.json.concat(EXCLUDE_MULTI),
 	yaml:         tester.all.yaml.concat(EXCLUDE_MULTI),
 	bash:         tester.all.bash.concat(EXCLUDE_MULTI),
