@@ -86,9 +86,9 @@ filename.iconsLarge     = `large.png`;
 filename.iconsTile      = `tile.png`;
 
 const directory = {};
-directory.root         = ROOT;
-directory.cache        = `${directory.root}/${folder.cache}`;
-directory.cacheInline  = `${directory.root}/${folder.cacheInline}`;
+directory.root                = ROOT;
+directory.cache               = `${directory.root}/${folder.cache}`;
+directory.cacheInline         = `${directory.root}/${folder.cacheInline}`;
 directory.cacheScripts        = `${directory.root}/${folder.cacheScripts}`;
 directory.cacheStyles         = `${directory.root}/${folder.cacheStyles}`;
 directory.bundles             = `${directory.root}/${folder.bundles}`;
