@@ -38,6 +38,7 @@ module.exports = () => {
 			.pipe(gulpif(env.isWindows, lec()))
 
 			.pipe(eslint({
+				resolvePluginsRelativeTo:      paths.directory.root,
 				reportUnusedDisableDirectives: true
 			}))
 
