@@ -19,11 +19,11 @@ const fsp          = require('@absolunet/fsp');
 const fss          = require('@absolunet/fss');
 const include      = require('@absolunet/gulp-include');
 const { terminal } = require('@absolunet/terminal');
-const env          = require('~/helpers/env');
-const flow         = require('~/helpers/flow');
-const paths        = require('~/helpers/paths');
-const toolbox      = require('~/helpers/toolbox');
-const util         = require('~/helpers/util');
+const env          = require('../helpers/env');
+const flow         = require('../helpers/flow');
+const paths        = require('../helpers/paths');
+const toolbox      = require('../helpers/toolbox');
+const util         = require('../helpers/util');
 
 
 module.exports = () => {

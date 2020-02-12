@@ -4,8 +4,8 @@
 'use strict';
 
 const cli  = require('@absolunet/cli');
-const Task = require('~/classes/task');
-const util = require('~/helpers/util');
+const Task = require('../classes/task');
+const util = require('../helpers/util');
 
 
 class WatchTask extends Task {

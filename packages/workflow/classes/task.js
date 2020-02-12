@@ -5,7 +5,7 @@
 
 const __           = require('@absolunet/private-registry');
 const { terminal } = require('@absolunet/terminal');
-const paths        = require('~/helpers/paths');
+const paths        = require('../helpers/paths');
 
 
 class Task {
