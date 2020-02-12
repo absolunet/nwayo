@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Changed
 - Replace ImageMagick / GraphicsMagick with Node.js native `Jimp` and `to-ico`
+- Update ESLint config to 1.5.0
+- Update stylelint config to 1.3.1
 - Maintenance updates
 
 
@@ -37,8 +39,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Switch gulp-cssnano (DEPRECATED) to gulp-postcss
 - Switch from Modernizr.touchevents to What Input since it is more accurate
-- Update ESLint rules to 1.4.4
-- Update stylelint rules to 1.3.0
+- Update ESLint config to 1.4.4
+- Update stylelint config to 1.3.0
 - Changes in project boilerplate for consistency and clarity
 - Maintenance updates
 
@@ -60,7 +62,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [3.7.0-beta.2] - 2019-05-21
 ### Changed
 - Merge changes from version 3.6.5
-- META: Manager update
+- Manager update
 
 
 
