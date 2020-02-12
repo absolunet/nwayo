@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Changed
 - Replace ImageMagick / GraphicsMagick with Node.js native `Jimp` and `to-ico`
+- Maintenance updates
 
 
 
