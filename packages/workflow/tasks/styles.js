@@ -11,8 +11,6 @@ const gulp         = require('gulp');
 const cache        = require('gulp-cached');
 const gulpif       = require('gulp-if');
 const imagemin     = require('gulp-imagemin');
-const insert       = require('gulp-insert');
-const jsonsass     = require('gulp-json-sass');
 const postcss      = require('gulp-postcss');
 const rename       = require('gulp-rename');
 const gulpsass     = require('gulp-sass');
@@ -107,10 +105,7 @@ module.exports = () => {
 
 			/* eslint-disable function-paren-newline */
 			streams.push(
-				toolbox.vinylStream(paths.filename.konstanStyles, konstanJson)
-					.pipe(toolbox.plumber())
-					.pipe(jsonsass())
-					.pipe(insert.prepend(`${jsonToScss.convert(konstanJson)}\n\n`))
+				toolbox.vinylStream(paths.filename.konstanStyles, jsonToScss.convert(konstanJson))
 					.pipe(gulp.dest(`${paths.directory.cacheStyles}/${name}`))
 			);
 			/* eslint-enable function-paren-newline */

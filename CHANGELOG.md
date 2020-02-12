@@ -16,6 +16,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update stylelint config to 1.3.1
 - Maintenance updates
 
+### Removed
+- Removed `$konstan-*` SCSS variables that have been deprecated since 3.6.0
+
 
 
 ## [3.7.2] - 2020-02-06
