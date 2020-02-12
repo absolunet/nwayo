@@ -3,7 +3,7 @@
 //--------------------------------------------------------
 'use strict';
 
-const Task = require('~/classes/task');
+const Task = require('../classes/task');
 
 
 class DefaultTask extends Task {

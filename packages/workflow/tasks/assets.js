@@ -7,10 +7,10 @@
 const gulp     = require('gulp');
 const imagemin = require('gulp-imagemin');
 const rename   = require('gulp-rename');
-const flow     = require('~/helpers/flow');
-const paths    = require('~/helpers/paths');
-const toolbox  = require('~/helpers/toolbox');
-const util     = require('~/helpers/util');
+const flow     = require('../helpers/flow');
+const paths    = require('../helpers/paths');
+const toolbox  = require('../helpers/toolbox');
+const util     = require('../helpers/util');
 
 
 module.exports = () => {

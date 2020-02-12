@@ -22,11 +22,11 @@ const cloneDeep    = require('lodash.clonedeep');
 const pluralize    = require('pluralize');
 const sass         = require('sass');
 const jsonToScss   = require('@absolunet/json-to-scss');
-const env          = require('~/helpers/env');
-const flow         = require('~/helpers/flow');
-const paths        = require('~/helpers/paths');
-const toolbox      = require('~/helpers/toolbox');
-const util         = require('~/helpers/util');
+const env          = require('../helpers/env');
+const flow         = require('../helpers/flow');
+const paths        = require('../helpers/paths');
+const toolbox      = require('../helpers/toolbox');
+const util         = require('../helpers/util');
 
 
 module.exports = () => {
