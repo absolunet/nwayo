@@ -17,9 +17,8 @@
 
 
 
-## Requirements (All latest) - [Installation guide](documentation/requirements)
+## Requirements - [Installation guide](documentation/requirements)
 - [Node.js](https://nodejs.org) ([nwayo CLI](https://www.npmjs.com/package/@absolunet/nwayo-cli))
-- [GraphicsMagick](http://www.graphicsmagick.org) / [ImageMagick](https://www.imagemagick.org)
 
 
 
@@ -60,7 +59,7 @@ nwayo is HTML5 ready and uses [gulp](https://gulpjs.com) as a build system
 
 #### Other
 - Optimizes images via [gifsicle](https://www.lcdf.org/gifsicle), [MozJPEG](https://github.com/mozilla/mozjpeg), [optipng](http://optipng.sourceforge.net), [svgo](https://github.com/svg/svgo)
-- Generates iconography via [GraphicsMagick](http://www.graphicsmagick.org), [ImageMagick](https://www.imagemagick.org)
+- Generates iconography via [Jimp](https://github.com/oliver-moran/jimp), [to-ico](https://github.com/kevva/to-ico)
 
 
 
