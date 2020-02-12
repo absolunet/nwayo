@@ -8,8 +8,8 @@ Chocolatey is the entry point to install many tools
 @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
 ```
 
-#### Image processors ( [GraphicsMagick](http://www.graphicsmagick.org) / [ImageMagick](https://www.imagemagick.org) )
-These are used to manipulate images for the iconography
+#### Image processors ( [GraphicsMagick](http://www.graphicsmagick.org) / [ImageMagick](https://www.imagemagick.org) ) _[deprecated]_
+These were used to manipulate images for the iconography by nwayo prior to 3.8.0
 
 ```shell
 choco install graphicsmagick --confirm

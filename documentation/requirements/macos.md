@@ -17,8 +17,8 @@ Homebrew is the entry point to install many tools
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
-#### Image processors ( [GraphicsMagick](http://www.graphicsmagick.org) / [ImageMagick](https://www.imagemagick.org) )
-These are used to manipulate images for the iconography
+#### Image processors ( [GraphicsMagick](http://www.graphicsmagick.org) / [ImageMagick](https://www.imagemagick.org) ) _[deprecated]_
+These were used to manipulate images for the iconography by nwayo prior to 3.8.0
 
 ```shell
 brew install graphicsmagick

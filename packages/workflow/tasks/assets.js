@@ -4,15 +4,13 @@
 'use strict';
 
 // const debug = require('gulp-debug');
-const gulp         = require('gulp');
-const gm           = require('gulp-gm');
-const imagemin     = require('gulp-imagemin');
-const rename       = require('gulp-rename');
-const { terminal } = require('@absolunet/terminal');
-const flow         = require('~/helpers/flow');
-const paths        = require('~/helpers/paths');
-const toolbox      = require('~/helpers/toolbox');
-const util         = require('~/helpers/util');
+const gulp     = require('gulp');
+const imagemin = require('gulp-imagemin');
+const rename   = require('gulp-rename');
+const flow     = require('~/helpers/flow');
+const paths    = require('~/helpers/paths');
+const toolbox  = require('~/helpers/toolbox');
+const util     = require('~/helpers/util');
 
 
 module.exports = () => {
@@ -44,15 +42,9 @@ module.exports = () => {
 	flow.createTask('assets-images-highdensity', () => {
 		return util.assetsProcess(paths.files.images2x, (stream) => {
 			return stream
-				.pipe(toolbox.plumber())
-				.pipe(gm((gmfile, done) => {
-					gmfile.identify((error, info) => {
-						if (error) {
-							terminal.error(error);
-						}
-						toolbox.gmOptimization(gmfile.resize('50%', '50%'), info);
-						done(null, gmfile);
-					});
+
+				.pipe(toolbox.jimp((Jimp, image) => {
+					image.scale(0.5, Jimp.RESIZE_BICUBIC);
 				}))
 
 				.pipe(imagemin())

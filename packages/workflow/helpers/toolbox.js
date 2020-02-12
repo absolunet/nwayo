@@ -7,11 +7,16 @@ const chalk        = require('chalk');
 const deepKeys     = require('deep-keys');
 const log          = require('fancy-log');
 const plumber      = require('gulp-plumber');
+const gutil        = require('gulp-util');
+const Jimp         = require('jimp');
 const without      = require('lodash.without');
 const merge        = require('merge-stream');
 const emoji        = require('node-emoji');
+const path         = require('path');
 const prettyBytes  = require('pretty-bytes');
 const stream       = require('stream');
+const through2     = require('through2');
+const toIco        = require('to-ico');
 const Vinyl        = require('vinyl');
 const fss          = require('@absolunet/fss');
 const { terminal } = require('@absolunet/terminal');
@@ -62,17 +67,64 @@ class Toolbox {
 	}
 
 
-	//-- GraphicsMagick optimization
-	gmOptimization(gmfile, info) {
-		if (info.format === 'JPG') {
-			gmfile.noProfile().quality(95);
-		}
+	//-- Jimp wrapper
+	jimp(custom) {
+		return through2.obj(function(file, encoding, callback) {
 
-		if (info.format === 'PNG' && info.depth === 8) {
-			gmfile.dither(false).colors(256);
-		}
+			Jimp.read(file.contents).then((original) => {
+				const image = original.clone();
 
-		return gmfile;
+				// Type shenanigans
+				let mimeType;
+
+				switch (path.extname(file.path).slice(1).toLowerCase()) {
+
+					case 'jpg':
+						mimeType = Jimp.MIME_JPEG;
+						image.quality(100);
+						break;
+
+					case 'png':
+						mimeType = Jimp.MIME_PNG;
+						image.rgba(true);
+						break;
+
+					default: break;
+
+				}
+
+				custom(Jimp, image);
+
+				image.getBuffer(mimeType, (error, buffer) => {
+					this.push(new gutil.File({
+						base:     file.base,
+						path:     file.path,
+						contents: buffer
+					}));
+
+					return callback(error);
+				});
+			});
+
+		});
+	}
+
+
+	//-- Ico generator
+	ico(sizes) {
+		return through2.obj(function(file, encoding, callback) {
+
+			toIco(file.contents, { resize: true, sizes }).then((buffer) => {
+				this.push(new gutil.File({
+					base:     file.base,
+					path:     file.path.replace(/\.png$/u, '.ico'),
+					contents: buffer
+				}));
+
+				return callback();
+			});
+
+		});
 	}
 
 
