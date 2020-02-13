@@ -6,9 +6,9 @@
 const capitalize   = require('lodash.capitalize');
 const fss          = require('@absolunet/fss');
 const { terminal } = require('@absolunet/terminal');
-const Reporter     = require('~/classes/reporter');
-const paths        = require('~/helpers/paths');
-const toolbox      = require('~/helpers/toolbox');
+const Reporter     = require('../../classes/reporter');
+const paths        = require('../paths');
+const toolbox      = require('../toolbox');
 
 
 //-- Parse a linefeed-separated config

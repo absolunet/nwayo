@@ -4,8 +4,8 @@
 'use strict';
 
 const { terminal } = require('@absolunet/terminal');
-const paths        = require('~/helpers/paths');
-const toolbox      = require('~/helpers/toolbox');
+const paths        = require('../helpers/paths');
+const toolbox      = require('../helpers/toolbox');
 
 
 class NwayoExtension {
@@ -43,7 +43,7 @@ class NwayoExtension {
 	}
 
 	createTask(name, task) {
-		const flow = require('~/helpers/flow');
+		const flow = require('../helpers/flow');
 
 		flow.createTask(`${this.id}:${name}`, () => {
 			try {
@@ -71,7 +71,7 @@ class NwayoExtension {
 	}
 
 	getGeneratedBanner(name, type) {
-		const util = require('~/helpers/util');
+		const util = require('../helpers/util');
 
 		return util.getGeneratedBanner(name, type, this);
 	}

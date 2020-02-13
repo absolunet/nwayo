@@ -4,11 +4,11 @@
 'use strict';
 
 const fss      = require('@absolunet/fss');
-const Reporter = require('~/classes/reporter');
-const Tests    = require('~/classes/tests');
-const paths    = require('~/helpers/paths');
-const toolbox  = require('~/helpers/toolbox');
-const assert   = require('~/helpers/doctor/assertions');
+const Reporter = require('../../../classes/reporter');
+const Tests    = require('../../../classes/tests');
+const paths    = require('../../paths');
+const toolbox  = require('../../toolbox');
+const assert   = require('../assertions');
 
 
 const reports = new Reporter();
