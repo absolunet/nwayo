@@ -12,9 +12,9 @@ const ora          = require('ora');
 const pluralize    = require('pluralize');
 const fss          = require('@absolunet/fss');
 const { terminal } = require('@absolunet/terminal');
-const env          = require('~/helpers/env');
-const paths        = require('~/helpers/paths');
-const toolbox      = require('~/helpers/toolbox');
+const env          = require('./env');
+const paths        = require('./paths');
+const toolbox      = require('./toolbox');
 
 
 const __ = {

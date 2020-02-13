@@ -13,7 +13,7 @@ const emoji        = require('node-emoji');
 const os           = require('os');
 const fss          = require('@absolunet/fss');
 const { terminal } = require('@absolunet/terminal');
-const paths        = require('~/helpers/paths');
+const paths        = require('./paths');
 
 
 const NAME = 'nwayo';

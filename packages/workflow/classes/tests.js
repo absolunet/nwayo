@@ -3,7 +3,7 @@
 //-------------------------------------
 'use strict';
 
-const Reporter = require('~/classes/reporter');
+const Reporter = require('./reporter');
 
 
 class Tests {

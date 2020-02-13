@@ -5,9 +5,9 @@
 
 const lastestVersion = require('latest-version');
 const semver         = require('semver');
-const Reporter       = require('~/classes/reporter');
-const Tests          = require('~/classes/tests');
-const env            = require('~/helpers/env');
+const Reporter       = require('../../../classes/reporter');
+const Tests          = require('../../../classes/tests');
+const env            = require('../../env');
 
 
 const reports = new Reporter();

@@ -7,10 +7,10 @@ const { CLIEngine } = require('eslint');
 const replaceAll    = require('replaceall');
 const yamlLint      = require('yaml-lint');
 const fss           = require('@absolunet/fss');
-const Reporter      = require('~/classes/reporter');
-const Tests         = require('~/classes/tests');
-const paths         = require('~/helpers/paths');
-const toolbox       = require('~/helpers/toolbox');
+const Reporter      = require('../../../classes/reporter');
+const Tests         = require('../../../classes/tests');
+const paths         = require('../../paths');
+const toolbox       = require('../../toolbox');
 
 
 const reports = new Reporter();

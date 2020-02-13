@@ -7,8 +7,8 @@ const chalk        = require('chalk');
 const figures      = require('figures');
 const cli          = require('@absolunet/cli');
 const { terminal } = require('@absolunet/terminal');
-const Task         = require('~/classes/task');
-const env          = require('~/helpers/env');
+const Task         = require('../classes/task');
+const env          = require('../helpers/env');
 const { ow }       = cli;
 
 
@@ -94,8 +94,8 @@ class DoctorTask extends Task {
 		/* eslint-disable global-require */
 		const pluralize = require('pluralize');
 		const fss       = require('@absolunet/fss');
-		const paths     = require('~/helpers/paths');
-		const tester    = require('~/helpers/doctor/tester');
+		const paths     = require('../helpers/paths');
+		const tester    = require('../helpers/doctor/tester');
 		/* eslint-enable global-require */
 
 
