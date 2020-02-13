@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+
+
+
+## [3.8.0] - 2020-02-13
 ### Changed
 - Replace ImageMagick / GraphicsMagick with Node.js native `Jimp` and `to-ico`
 - Update ESLint config to 1.5.0
@@ -569,7 +573,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-[Unreleased]:    https://github.com/absolunet/nwayo/compare/3.7.2...HEAD
+[Unreleased]:    https://github.com/absolunet/nwayo/compare/3.8.0...HEAD
+[3.8.0]:         https://github.com/absolunet/nwayo/compare/3.7.2...3.8.0
 [3.7.2]:         https://github.com/absolunet/nwayo/compare/3.7.1...3.7.2
 [3.7.1]:         https://github.com/absolunet/nwayo/compare/3.7.0...3.7.1
 [3.7.0]:         https://github.com/absolunet/nwayo/compare/3.7.0-rc.1...3.7.0
