@@ -32,6 +32,6 @@
   "dependencies": {
     "@absolunet/fss": "^1.6.2",
     "chalk": "^3.0.0",
-    "figures": "^3.1.0"
+    "figures": "^3.2.0"
   }
 }
