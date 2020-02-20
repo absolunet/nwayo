@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+
+
+
+## [3.8.1] - 2020-02-20
 ### Changed
 - Update ESLint config to 1.5.1
 - Maintenance updates
@@ -579,7 +583,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-[Unreleased]:    https://github.com/absolunet/nwayo/compare/3.8.0...HEAD
+[Unreleased]:    https://github.com/absolunet/nwayo/compare/3.8.1...HEAD
+[3.8.1]:         https://github.com/absolunet/nwayo/compare/3.8.0...3.8.1
 [3.8.0]:         https://github.com/absolunet/nwayo/compare/3.7.2...3.8.0
 [3.7.2]:         https://github.com/absolunet/nwayo/compare/3.7.1...3.7.2
 [3.7.1]:         https://github.com/absolunet/nwayo/compare/3.7.0...3.7.1
