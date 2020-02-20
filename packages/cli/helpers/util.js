@@ -153,9 +153,11 @@ class Util {
 
 
 	//-- Check for updates
-	checkUpdate(packageConfig, callback) {
+	checkUpdate(packageConfig) {
 		const updateNotifier = require('update-notifier');
-		updateNotifier({ pkg: packageConfig, updateCheckInterval: 1, callback });  // eslint-disable-line unicorn/prevent-abbreviations
+		const notifier = updateNotifier({ pkg: packageConfig, updateCheckInterval: 1 });  // eslint-disable-line unicorn/prevent-abbreviations
+
+		return notifier.fetchInfo();
 	}
 
 
