@@ -48,25 +48,20 @@ module.exports = async () => {
 
 	//-- Trap `update`
 	} else if (util.cmd('update')) {
-		util.checkUpdate(cliPackageConfig, (error, update) => {
-			if (!error) {
-				const { terminal } = require('@absolunet/terminal');
+		const { terminal } = require('@absolunet/terminal');
 
-				terminal.spacer();
+		const update = await util.checkUpdate(cliPackageConfig);
 
-				if (update.current !== update.latest) {
-					util.echo(`Update available: ${chalk.dim(update.current)} ${chalk.reset('→')} ${chalk.green(update.latest)}\n\nUpdating...`);
-				} else {
-					util.echo('No update available\n\nReinstalling...');
-				}
+		terminal.spacer();
 
-				terminal.spacer();
-				terminal.process.run('npm uninstall -g @absolunet/nwayo-cli && npm install -g --no-audit @absolunet/nwayo-cli');
+		if (update.current !== update.latest) {
+			util.echo(`Update available: ${chalk.dim(update.current)} ${chalk.reset('→')} ${chalk.green(update.latest)}\n\nUpdating...`);
+		} else {
+			util.echo('No update available\n\nReinstalling...');
+		}
 
-			} else {
-				util.exit(error);
-			}
-		});
+		terminal.spacer();
+		terminal.process.run('npm uninstall -g @absolunet/nwayo-cli && npm install -g --no-audit @absolunet/nwayo-cli');
 
 	//-- Trap `grow`
 	} else if (util.cmd('grow')) {
