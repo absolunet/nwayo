@@ -27,8 +27,8 @@
   "main": "index.js",
   "dependencies": {
     "@absolunet/cli": "0.9.1",
-    "@absolunet/eslint-config-json": "1.5.0",
-    "@absolunet/eslint-config-nwayo": "1.5.0",
+    "@absolunet/eslint-config-json": "1.5.1",
+    "@absolunet/eslint-config-nwayo": "1.5.1",
     "@absolunet/fsp": "1.6.2",
     "@absolunet/fss": "1.6.2",
     "@absolunet/gulp-include": "0.5.1",
