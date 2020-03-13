@@ -27,14 +27,6 @@ class BuildAllCommand extends _AbstractBuildCommand.default {
   get policies() {
     return [];
   }
-  /**
-   * @inheritdoc
-   */
-
-
-  get description() {
-    return 'Run all build commands.';
-  }
 
 }
 

@@ -28,10 +28,6 @@ class BuildWatchCommandTest extends BuildCommandTestCase {
 		return [{ watch: true }];
 	}
 
-	getExpectedDescription() {
-		return 'Listen for changes on files and run appropriate build.';
-	}
-
 	getExpectedPolicies() {
 		return [];
 	}

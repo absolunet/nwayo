@@ -87,17 +87,13 @@
 /******/ ({
 
 /***/ "./src/bundles/site/scripts/main.js":
-/*!******************************************!*\
-  !*** ./src/bundles/site/scripts/main.js ***!
-  \******************************************/
-/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _nwayo_components_common_scripts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @nwayo-components/common/scripts */ "./src/components/common/scripts/index.js");
-/* harmony import */ var _nwayo_components_form_scripts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @nwayo-components/form/scripts */ "./src/components/form/scripts/index.js");
-/* harmony import */ var _nwayo_components_site_scripts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @nwayo-components/site/scripts */ "./src/components/site/scripts/index.js");
+/* harmony import */ var _nwayo_components_common_scripts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./src/components/common/scripts/index.js");
+/* harmony import */ var _nwayo_components_form_scripts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./src/components/form/scripts/index.js");
+/* harmony import */ var _nwayo_components_site_scripts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./src/components/site/scripts/index.js");
 
 
 
@@ -105,10 +101,6 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./src/bundles/site/styles/main.scss":
-/*!*******************************************!*\
-  !*** ./src/bundles/site/styles/main.scss ***!
-  \*******************************************/
-/*! no static exports found */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -116,31 +108,24 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./src/components/common/scripts/base.js":
-/*!***********************************************!*\
-  !*** ./src/components/common/scripts/base.js ***!
-  \***********************************************/
-/*! no static exports found */
 /***/ (function(module, exports) {
 
 //-------------------------------------
 //-- Common - Base
 //-------------------------------------
+
 console.log('Common - base');
 
 /***/ }),
 
 /***/ "./src/components/common/scripts/index.js":
-/*!************************************************!*\
-  !*** ./src/components/common/scripts/index.js ***!
-  \************************************************/
-/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _base__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./base */ "./src/components/common/scripts/base.js");
+/* harmony import */ var _base__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./src/components/common/scripts/base.js");
 /* harmony import */ var _base__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_base__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./util */ "./src/components/common/scripts/util.js");
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./src/components/common/scripts/util.js");
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_util__WEBPACK_IMPORTED_MODULE_1__);
 //-------------------------------------
 //-- Common
@@ -148,64 +133,52 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 /***/ }),
 
 /***/ "./src/components/common/scripts/util.js":
-/*!***********************************************!*\
-  !*** ./src/components/common/scripts/util.js ***!
-  \***********************************************/
-/*! no static exports found */
 /***/ (function(module, exports) {
 
 //-------------------------------------
 //-- Common - Util
 //-------------------------------------
+
 console.log('Common - util');
 
 /***/ }),
 
 /***/ "./src/components/form/scripts/base.js":
-/*!*********************************************!*\
-  !*** ./src/components/form/scripts/base.js ***!
-  \*********************************************/
-/*! no static exports found */
 /***/ (function(module, exports) {
 
 //-------------------------------------
 //-- Form - Base
 //-------------------------------------
+
 console.log('Form - base');
 
 /***/ }),
 
 /***/ "./src/components/form/scripts/index.js":
-/*!**********************************************!*\
-  !*** ./src/components/form/scripts/index.js ***!
-  \**********************************************/
-/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _base__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./base */ "./src/components/form/scripts/base.js");
+/* harmony import */ var _base__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./src/components/form/scripts/base.js");
 /* harmony import */ var _base__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_base__WEBPACK_IMPORTED_MODULE_0__);
 //-------------------------------------
 //-- Form
 //-------------------------------------
 
 
+
 /***/ }),
 
 /***/ "./src/components/foundation/scripts/index.js":
-/*!****************************************************!*\
-  !*** ./src/components/foundation/scripts/index.js ***!
-  \****************************************************/
-/*! exports provided: Abide, Accordion, AccordionMenu, Box, Core, CoreUtils, Drilldown, Dropdown, DropdownMenu, Equalizer, Foundation, Interchange, Keyboard, Magellan, MediaQuery, Motion, Move, Nest, OffCanvas, Orbit, ResponsiveAccordionTabs, ResponsiveMenu, ResponsiveToggle, Reveal, Slider, SmoothScroll, Sticky, Tabs, Timer, Toggler, Tooltip, Touch, Triggers, onImagesLoaded */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var foundation_sites__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! foundation-sites */ "./src/node_modules/foundation-sites/dist/js/foundation.esm.js");
+/* harmony import */ var foundation_sites__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./src/node_modules/foundation-sites/dist/js/foundation.esm.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Abide", function() { return foundation_sites__WEBPACK_IMPORTED_MODULE_0__["Abide"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Accordion", function() { return foundation_sites__WEBPACK_IMPORTED_MODULE_0__["Accordion"]; });
@@ -279,24 +252,25 @@ __webpack_require__.r(__webpack_exports__);
 //-------------------------------------
 
 
+
 /***/ }),
 
 /***/ "./src/components/site/scripts/base.js":
-/*!*********************************************!*\
-  !*** ./src/components/site/scripts/base.js ***!
-  \*********************************************/
-/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./src/node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./src/node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 //-------------------------------------
 //-- Site - Base
 //-------------------------------------
 
+
+
+
 console.log('Site - base');
+
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {
   console.log('Starting Foundation...');
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).foundation();
@@ -306,29 +280,22 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {
 /***/ }),
 
 /***/ "./src/components/site/scripts/index.js":
-/*!**********************************************!*\
-  !*** ./src/components/site/scripts/index.js ***!
-  \**********************************************/
-/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _nwayo_components_foundation_scripts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @nwayo-components/foundation/scripts */ "./src/components/foundation/scripts/index.js");
-/* harmony import */ var _base__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./base */ "./src/components/site/scripts/base.js");
+/* harmony import */ var _nwayo_components_foundation_scripts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./src/components/foundation/scripts/index.js");
+/* harmony import */ var _base__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./src/components/site/scripts/base.js");
 //-------------------------------------
 //-- Site
 //-------------------------------------
 
 
 
+
 /***/ }),
 
 /***/ "./src/node_modules/foundation-sites/dist/js/foundation.esm.js":
-/*!*********************************************************************!*\
-  !*** ./src/node_modules/foundation-sites/dist/js/foundation.esm.js ***!
-  \*********************************************************************/
-/*! exports provided: default, Abide, Accordion, AccordionMenu, Box, Core, CoreUtils, Drilldown, Dropdown, DropdownMenu, Equalizer, Foundation, Interchange, Keyboard, Magellan, MediaQuery, Motion, Move, Nest, OffCanvas, Orbit, ResponsiveAccordionTabs, ResponsiveMenu, ResponsiveToggle, Reveal, Slider, SmoothScroll, Sticky, Tabs, Timer, Toggler, Tooltip, Touch, Triggers, onImagesLoaded */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -367,7 +334,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Touch", function() { return Touch; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Triggers", function() { return Triggers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onImagesLoaded", function() { return onImagesLoaded; });
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./src/node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./src/node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 
 
@@ -12827,10 +12794,6 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 /***/ }),
 
 /***/ "./src/node_modules/jquery/dist/jquery.js":
-/*!************************************************!*\
-  !*** ./src/node_modules/jquery/dist/jquery.js ***!
-  \************************************************/
-/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -23437,14 +23400,10 @@ return jQuery;
 /***/ }),
 
 /***/ 0:
-/*!************************************************************************************!*\
-  !*** multi ./src/bundles/site/scripts/main.js ./src/bundles/site/styles/main.scss ***!
-  \************************************************************************************/
-/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/tparent/work/packages/nwayo/nwayo/packages/grow-project/boilerplate/src/bundles/site/scripts/main.js */"./src/bundles/site/scripts/main.js");
-module.exports = __webpack_require__(/*! /Users/tparent/work/packages/nwayo/nwayo/packages/grow-project/boilerplate/src/bundles/site/styles/main.scss */"./src/bundles/site/styles/main.scss");
+__webpack_require__("./src/bundles/site/scripts/main.js");
+module.exports = __webpack_require__("./src/bundles/site/styles/main.scss");
 
 
 /***/ })

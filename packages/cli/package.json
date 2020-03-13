@@ -24,7 +24,7 @@
     "nwayo": "ioc"
   },
   "engines": {
-    "node": ">= 12.0.0"
+    "node": ">= 12"
   },
   "main": "dist/node/index.js",
   "scripts": {
@@ -45,13 +45,13 @@
     "manager:publish:unsafe": "node manager --task=publish:unsafe"
   },
   "devDependencies": {
-    "@absolunet/manager": "2.0.1",
-    "@absolunet/tester": "3.1.0",
-    "jest": "24.9.0"
+    "@absolunet/manager": "2.1.0",
+    "@absolunet/tester": "3.2.2",
+    "jest": "25.1.0"
   },
   "dependencies": {
-    "@absolunet/ioc": "1.0.0-rc.3",
-    "@absolunet/nwayo-cli": "3.7.1",
+    "@absolunet/ioc": "1.0.1",
+    "@absolunet/nwayo-cli": "3.8.1",
     "@absolunet/private-registry": "^2.0.0"
   }
 }

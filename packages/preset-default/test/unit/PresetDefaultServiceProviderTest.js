@@ -5,7 +5,6 @@
 
 const path                         = require('path');
 const TestCase                     = require('../TestCase');
-const CoreServiceProvider          = require('@nwayo/core').default;
 const ExtensionJsServiceProvider   = require('@nwayo/extension-js').default;
 const ExtensionScssServiceProvider = require('@nwayo/extension-scss').default;
 
@@ -17,12 +16,7 @@ class PresetDefaultServiceProviderTest extends TestCase {
 		this.givenPresetDefaultServiceProvider();
 	}
 
-	testRegistersCore() {
-		this.whenRegisteringProvider();
-		this.thenShouldHaveRegistered(CoreServiceProvider);
-	}
-
-	testRegisteredExtensionJs() {
+	testRegistersExtensionJs() {
 		this.whenRegisteringProvider();
 		this.thenShouldHaveRegistered(ExtensionJsServiceProvider);
 	}

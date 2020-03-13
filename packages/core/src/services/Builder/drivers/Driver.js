@@ -21,6 +21,15 @@ const { hasEngine, checksTypes } = mixins;
 class Driver extends checksTypes(hasEngine()) {
 
 	/**
+	 * Class dependencies: <code>['event']</code>.
+	 *
+	 * @type {Array<string>}
+	 */
+	static get dependencies() {
+		return (super.dependencies || []).concat(['event']);
+	}
+
+	/**
 	 * @inheritdoc
 	 * @private
 	 */
@@ -36,11 +45,128 @@ class Driver extends checksTypes(hasEngine()) {
 	}
 
 	/**
+	 * Register an event through the event dispatcher.
+	 *
+	 * @param {string} eventName - The event name.
+	 * @param {Function} handler - The event handler.
+	 * @returns {nwayo.core.services.Builder.drivers.Driver} The current driver instance.
+	 */
+	on(eventName, handler) {
+		this.event.on(eventName, (event, ...parameters) => {
+			handler(...parameters);
+		});
+
+		return this;
+	}
+
+	/**
+	 * Register a start listener.
+	 *
+	 * @param {Function} handler - The handler function.
+	 * @returns {nwayo.core.services.Builder.drivers.Driver} The current driver instance.
+	 */
+	onStart(handler) {
+		return this.on(this.events.start, handler);
+	}
+
+	/**
+	 * Register a preparing listener.
+	 *
+	 * @param {Function} handler - The event handler.
+	 * @returns {nwayo.core.services.Builder.drivers.Driver} The current driver instance.
+	 */
+	onPreparing(handler) {
+		return this.on(this.events.preparing, handler);
+	}
+
+	/**
+	 * Register a prepared listener.
+	 *
+	 * @param {Function} handler - The event handler.
+	 * @returns {nwayo.core.services.Builder.drivers.Driver} The current driver instance.
+	 */
+	onPrepared(handler) {
+		return this.on(this.events.prepared, handler);
+	}
+
+	/**
+	 * Register a writing listener.
+	 *
+	 * @param {Function} handler - The event handler.
+	 * @returns {nwayo.core.services.Builder.drivers.Driver} The current driver instance.
+	 */
+	onWriting(handler) {
+		return this.on(this.events.writing, handler);
+	}
+
+	/**
+	 * Register a wrote listener.
+	 *
+	 * @param {Function} handler - The event handler.
+	 * @returns {nwayo.core.services.Builder.drivers.Driver} The current driver instance.
+	 */
+	onWrote(handler) {
+		return this.on(this.events.wrote, handler);
+	}
+
+	/**
+	 * Register a progress listener.
+	 *
+	 * @param {Function} handler - The event handler.
+	 * @returns {nwayo.core.services.Builder.drivers.Driver} The current driver instance.
+	 */
+	onProgress(handler) {
+		return this.on(this.events.progress, handler);
+	}
+
+	/**
+	 * Register a watch ready listener.
+	 *
+	 * @param {Function} handler - The event handler.
+	 * @returns {nwayo.core.services.Builder.drivers.Driver} The current driver instance.
+	 */
+	onWatchReady(handler) {
+		return this.on(this.events.watchReady, handler);
+	}
+
+	/**
+	 * Register a completed listener.
+	 *
+	 * @param {Function} handler - The event handler.
+	 * @returns {nwayo.core.services.Builder.drivers.Driver} The current driver instance.
+	 */
+	onCompleted(handler) {
+		return this.on(this.events.completed, handler);
+	}
+
+	/**
+	 * Register an error listener.
+	 *
+	 * @param {Function} handler - The event handler.
+	 * @returns {nwayo.core.services.Builder.drivers.Driver} The current driver instance.
+	 */
+	onError(handler) {
+		return this.on(this.events.error, handler);
+	}
+
+	/**
+	 * Add action to be run after build process.
+	 *
+	 * @param {Function} handler - The action to take during build process. Can be async.
+	 * @returns {nwayo.core.services.Builder.drivers.Driver} The current driver instance.
+	 */
+	onAfterBuild(handler) {
+		__(this.constructor).get('afterBuild').push(handler);
+
+		return this;
+	}
+
+	/**
 	 * Add an entry in the configuration object.
 	 *
 	 * @param {string} type - The entry type.
 	 * @param {...*} parameters - The entry parameters.
-	 * @returns {Driver} - The current driver instance.
+	 * @returns {Driver} The current driver instance.
 	 * @throws {ReferenceError} Indicates that the entry type is not supported.
 	 */
 	addEntry(type, ...parameters) {
@@ -95,18 +221,6 @@ class Driver extends checksTypes(hasEngine()) {
 	}
 
 	/**
-	 * Add action to be run after build process.
-	 *
-	 * @param {Function} action - The action to take during build process. Can be async.
-	 * @returns {nwayo.core.services.Builder.drivers.Driver} The current driver instance.
-	 */
-	afterBuild(action) {
-		__(this.constructor).get('afterBuild').push(action);
-
-		return this;
-	}
-
-	/**
 	 * Get global callback to be run on after build.
 	 * It will run all registered afterBuild callbacks.
 	 *
@@ -114,20 +228,39 @@ class Driver extends checksTypes(hasEngine()) {
 	 */
 	getAfterBuild() {
 		return async (...parameters) => {
-			await Promise.all(__(this.constructor).get('afterBuild').map(async (action) => {
-				await action(...parameters);
-			}));
+			const afterBuild = __(this.constructor).get('afterBuild');
+
+			for (const action of afterBuild) {
+				await action(...parameters); // eslint-disable-line no-await-in-loop
+			}
+		};
+	}
+
+	/**
+	 * Get a dispatch handler for the given event name.
+	 *
+	 * @param {string} event - The event name.
+	 * @returns {Function} The dispatch handler.
+	 */
+	getDispatchHandler(event) {
+		if (!Object.prototype.hasOwnProperty.call(this.events, event)) {
+			throw new TypeError(`Event [${event}] is not a nwayo builder event.`);
+		}
+
+		return (...parameters) => {
+			this.event.emit(this.events[event], parameters);
 		};
 	}
 
 	/**
 	 * Build configuration that can be run.
 	 *
+	 * @param {nwayo.core.services.BundleModel} bundle - The bundle model.
 	 * @returns {Promise<object>} The configuration object.
 	 * @async
 	 * @abstract
 	 */
-	buildConfig() {
+	buildConfig(bundle) { // eslint-disable-line no-unused-vars
 		throw new NotImplementedError(this, 'buildConfig', 'object');
 	}
 
@@ -147,12 +280,36 @@ class Driver extends checksTypes(hasEngine()) {
 	 * Run builder from configuration file and watch for file change.
 	 *
 	 * @param {object} config - The configuration object.
+	 * @param {object} [options] - The watch options object.
 	 * @returns {Promise} The async process promise.
 	 * @async
 	 * @abstract
 	 */
-	watch(config) { // eslint-disable-line no-unused-vars
+	watch(config, options) { // eslint-disable-line no-unused-vars
 		throw new NotImplementedError(this, 'watch', 'Promise');
+	}
+
+	/**
+	 * Event names that may be dispatched by driver.
+	 * For event key `foo`, the event name will be `nwayo.builder.foo`.
+	 *
+	 * @type {object<string, string>}
+	 */
+	get events() {
+		return Object.fromEntries([
+			'start',
+			'preparing',
+			'prepared',
+			'progress',
+			'writing',
+			'wrote',
+			'afterBuild',
+			'watchReady',
+			'error',
+			'completed'
+		].map((name) => {
+			return [name, `nwayo.builder.${name}`];
+		}));
 	}
 
 }

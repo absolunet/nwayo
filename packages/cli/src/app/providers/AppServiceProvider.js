@@ -4,8 +4,8 @@
 
 import { ServiceProvider } from '@absolunet/ioc';
 import DependencyManager   from '../services/DependencyManager';
-import NwayoLegacyService  from '../services/legacy/NwayoLegacyService';
-import LegacyHandler       from '../handlers/legacy/LegacyHandler';
+import ContextService      from '../services/ContextService';
+import LegacyHandler       from '../handlers/LegacyHandler';
 
 
 /**
@@ -28,67 +28,36 @@ class AppServiceProvider extends ServiceProvider {
 	 * Register the service provider.
 	 */
 	register() {
-		if (this.isInOtherFolder() && this.hasNodeModulesFolder()) {
-			this.registerModulesFromPackageJson();
-		}
-
 		this.bindDependencyManager();
-		this.bindNwayoLegacyService();
-		this.bindNwayoLegacyHandler();
-	}
+		this.bindContextService();
+		this.bindLegacyHandler();
 
-	/**
-	 * Check if current working directory is located elsewhere than CLI folder.
-	 *
-	 * @returns {boolean} Indicates that the current working directory is not the CLI base path.
-	 */
-	isInOtherFolder() {
-		return this.getCurrentWorkingDirectory() !== this.app.basePath();
-	}
+		const context = this.app.make('nwayo.context');
 
-	/**
-	 * Check if the "node_modules" folder can be found in the current working directory.
-	 *
-	 * @returns {boolean} Indicates that a "node_modules" folder exists in first level of the current working directory.
-	 */
-	hasNodeModulesFolder() {
-		return this.file.exists(this.getPathFromCwd('node_modules'));
+		if (!context.isInCliFolder() && context.hasNodeModulesFolder()) {
+			this.registerModulesFromPackageJson(context);
+		}
 	}
 
 	/**
 	 * Register all modules marked as dependencies in the "package.json" in the current working directory.
 	 *
 	 * All those modules should be registrable as Node IoC service providers.
+	 *
+	 * @param {nwayo.cli.services.ContextService} context - The context service.
 	 */
-	registerModulesFromPackageJson() {
-		const nwayoPackageJson = this.file.load(this.getPathFromCwd('package.json'));
+	registerModulesFromPackageJson(context) {
+		const nwayoPackageJson = context.loadProjectFile('package.json');
 
 		const { dependencies = {} } = nwayoPackageJson || {};
 
 		if (Object.prototype.hasOwnProperty.call(dependencies, '@nwayo/core')) {
 			Object.keys(dependencies).forEach((extension) => {
-				this.app.register(this.getPathFromCwd('node_modules', extension));
+				if (extension !== '@nwayo/cli') {
+					this.app.register(context.getPathFromCurrentDirectory('node_modules', extension));
+				}
 			});
 		}
-	}
-
-	/**
-	 * Get path from the current working directory.
-	 *
-	 * @param {...string} pathSegments - The path segments.
-	 * @returns {string} The formatted path from the current working directory.
-	 */
-	getPathFromCwd(...pathSegments) {
-		return this.app.formatPath(process.cwd(), ...pathSegments);
-	}
-
-	/**
-	 * Get formatted current working directory.
-	 *
-	 * @returns {string} The formatted current working directory.
-	 */
-	getCurrentWorkingDirectory() {
-		return this.getPathFromCwd();
 	}
 
 	/**
@@ -99,26 +68,17 @@ class AppServiceProvider extends ServiceProvider {
 	}
 
 	/**
-	 * Bind Nwayo Legacy Service singleton.
+	 * Bind context service.
 	 */
-	bindNwayoLegacyService() {
-		this.app.singleton('nwayo.legacy', NwayoLegacyService);
+	bindContextService() {
+		this.app.singleton('nwayo.context', ContextService);
 	}
 
 	/**
-	 * Bind Legacy Handler singleton.
+	 * Bind legacy handler.
 	 */
-	bindNwayoLegacyHandler() {
+	bindLegacyHandler() {
 		this.app.singleton('nwayo.legacy.handler', LegacyHandler);
-	}
-
-	/**
-	 * File manager.
-	 *
-	 * @type {ioc.file.services.FileManager}
-	 */
-	get file() {
-		return this.app.make('file');
 	}
 
 }

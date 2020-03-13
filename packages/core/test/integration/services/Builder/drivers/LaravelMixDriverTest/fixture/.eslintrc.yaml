@@ -1,0 +1,18 @@
+extends: '@absolunet/nwayo'
+
+
+parserOptions:
+  sourceType: module
+
+
+rules:
+  no-console: [off]
+
+
+overrides:
+  -
+    files:
+      - src/react.js
+    extends: '@absolunet/react'
+    rules:
+      no-console: [off]

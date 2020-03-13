@@ -1,0 +1,18 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "ie": "11"
+        },
+        "corejs": "3",
+        "useBuiltIns": "usage"
+      }
+    ]
+  ],
+  "compact": false,
+  "highlightCode": false,
+  "ast": false,
+  "retainLines": true
+}

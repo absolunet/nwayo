@@ -3,9 +3,24 @@
 //--------------------------------------------------------
 'use strict';
 
+const fakeGauge = require('./fakeGauge');
+
+
+const fakeChalkClosure = (text) => {
+	return text;
+};
 
 const fakeTerminal = {
-	println: jest.fn()
+	echo: jest.fn(),
+	spacer: jest.fn(),
+	startProgress: jest.fn(() => {
+		return fakeGauge;
+	}),
+	chalk: {
+		blue: jest.fn(fakeChalkClosure),
+		green: jest.fn(fakeChalkClosure),
+		red: jest.fn(fakeChalkClosure)
+	}
 };
 
 

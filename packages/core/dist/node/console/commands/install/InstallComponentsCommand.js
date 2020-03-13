@@ -5,7 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _ioc = require("@absolunet/ioc");
+var _Command = _interopRequireDefault(require("../../Command"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //--------------------------------------------------------
 //-- Nwayo Core - Console - Command - Install - Install Components
@@ -18,20 +20,10 @@ var _ioc = require("@absolunet/ioc");
  * @augments ioc.console.Command
  * @hideconstructor
  */
-class InstallComponentsCommand extends _ioc.Command {
-  /**
-   * Class dependencies: <code>['translator']</code>.
-   *
-   * @type {Array<string>}
-   */
-  static get dependencies() {
-    return ['translator'];
-  }
+class InstallComponentsCommand extends _Command.default {
   /**
    * @inheritdoc
    */
-
-
   get name() {
     return 'install:components';
   }
@@ -41,7 +33,7 @@ class InstallComponentsCommand extends _ioc.Command {
 
 
   get description() {
-    return 'Install components for the current project.';
+    return this.t('commands.install-components.description');
   }
   /**
    * @inheritdoc
@@ -63,17 +55,6 @@ class InstallComponentsCommand extends _ioc.Command {
 
   async installComponents() {
     await this.app.make('dependency').inFolder(this.app.make('nwayo.project').getSourcePath()).install();
-  }
-  /**
-   * Translate with the translator service.
-   *
-   * @param {...*} parameters - The translate parameters.
-   * @returns {string} The translated value.
-   */
-
-
-  t(...parameters) {
-    return this.translator.translate(...parameters);
   }
 
 }

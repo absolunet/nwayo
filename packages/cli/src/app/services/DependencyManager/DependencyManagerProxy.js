@@ -8,7 +8,7 @@ import { ForwardProxy } from '@absolunet/ioc';
 /**
  * Dependency manager forward proxy.
  *
- * @memberof nwayo.core.services
+ * @memberof nwayo.cli.services
  * @augments ioc.console.Command
  */
 class DependencyManagerProxy extends ForwardProxy {

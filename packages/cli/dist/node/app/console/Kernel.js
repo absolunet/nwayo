@@ -23,9 +23,7 @@ class Kernel extends _ioc.ConsoleKernel {
    * @inheritdoc
    */
   async handle() {
-    const isLegacy = this.checkIfLegacy();
-
-    if (isLegacy) {
+    if (this.projectIsLegacy()) {
       await this.handleLegacy();
     } else {
       await super.handle();
@@ -39,7 +37,7 @@ class Kernel extends _ioc.ConsoleKernel {
 
 
   handleLegacy() {
-    return this.app.make('nwayo.legacy.handler').handle();
+    return this.legacyHandler.handle();
   }
   /**
    * @inheritdoc
@@ -51,20 +49,6 @@ class Kernel extends _ioc.ConsoleKernel {
     this.registerCommands();
   }
   /**
-   * @inheritdoc
-   */
-
-
-  afterHandling() {} // Here, you can perform actions after request was handled, if no error was thrown.
-
-  /**
-   * @inheritdoc
-   */
-
-
-  terminating() {} // Here, you can perform actions before the application terminates.
-
-  /**
    * Load translations to prevent async translations.
    *
    * @returns {Promise} The async process promise.
@@ -72,7 +56,7 @@ class Kernel extends _ioc.ConsoleKernel {
 
 
   async loadTranslations() {
-    await this.app.make('translator').driver().loadTranslations();
+    await this.translator.loadTranslations();
   }
   /**
    * Register commands in the command registrar based on application command path.
@@ -89,8 +73,38 @@ class Kernel extends _ioc.ConsoleKernel {
    */
 
 
-  checkIfLegacy() {
-    return false; // this.app.make('nwayo.legacy').projectIsLegacy();
+  projectIsLegacy() {
+    return this.context.projectIsLegacy();
+  }
+  /**
+   * Context service.
+   *
+   * @type {nwayo.cli.services.ContextService}
+   */
+
+
+  get context() {
+    return this.app.make('nwayo.context');
+  }
+  /**
+   * Legacy handler.
+   *
+   * @type {nwayo.cli.handlers.LegacyHandler}
+   */
+
+
+  get legacyHandler() {
+    return this.app.make('nwayo.legacy.handler');
+  }
+  /**
+   * Translator service.
+   *
+   * @type {ioc.translation.services.Translator}
+   */
+
+
+  get translator() {
+    return this.app.make('translator');
   }
 
 }

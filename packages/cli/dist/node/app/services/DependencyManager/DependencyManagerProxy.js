@@ -14,7 +14,7 @@ var _ioc = require("@absolunet/ioc");
 /**
  * Dependency manager forward proxy.
  *
- * @memberof nwayo.core.services
+ * @memberof nwayo.cli.services
  * @augments ioc.console.Command
  */
 class DependencyManagerProxy extends _ioc.ForwardProxy {}

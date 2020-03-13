@@ -1,0 +1,50 @@
+options:
+  bundle:
+    en: 'Specific bundle to build.'
+    fr: 'Bundle spécifique à compiler.'
+
+
+messages:
+  start:
+    en: 'Build starts [{{type}}] for bundle [{{bundle}}].'
+    fr: 'Début de la compilation [{{type}}] pour le bundle [{{bundle}}].'
+
+  preparing:
+    en: 'Preparing compiler...'
+    fr: 'Préparation du compilateur...'
+
+  prepared:
+    en: 'Compiler prepared.'
+    fr: 'Compilateur préparé.'
+
+  writing:
+    en: 'File [{{path}}] in progress...'
+    fr: 'Le fichier [{{path}}] est en cours d''écriture...'
+
+  wrote:
+    en: 'File [{{path}}] successfully written.'
+    fr: 'Le fichier [{{path}}] a été écrit avec succès.'
+
+  watch-ready:
+    en: 'Ready to compile, watching...'
+    fr: 'Prêt à compiler, en attente...'
+
+  progress:
+    en: '{{percent}}% Compiling...'
+    fr: '{{percent}}% Compilation en cours...'
+
+  error:
+    en: 'Build failure for file [{{path}}].'
+    fr: 'Erreur lors de la compilation pour le fichier [{{path}}].'
+
+  completed:
+    en: 'Build successfully completed [{{type}}].'
+    fr: 'Compilation complétée avec succès [{{type}}].'
+
+  multiple-bundles:
+    en: 'Building for bundles [{{bundles}}].'
+    fr: 'Compilation pour les bundles [{{bundles}}].'
+
+  all-bundles:
+    en: 'Building for all bundles.'
+    fr: 'Compilation pour tous les bundles.'

@@ -7,17 +7,43 @@ exports.default = void 0;
 
 var _ioc = require("@absolunet/ioc");
 
+var _Command = _interopRequireDefault(require("./Command"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 //--------------------------------------------------------
-//-- Nwayo - Command - Legacy Command
+//-- Nwayo - Console - Legacy Command
 //--------------------------------------------------------
 
 /**
  * Legacy Command.
+ *
+ * @memberof nwayo.cli.console
+ * @augments nwayo.cli.console.Command
+ * @hideconstructor
+ * @abstract
  */
-class LegacyCommand extends _ioc.Command {
+class LegacyCommand extends _Command.default {
   /**
    * @inheritdoc
    */
+  init() {
+    const {
+      description
+    } = this;
+    Object.defineProperty(this, 'description', {
+      get() {
+        return `[${this.t('deprecated').toUpperCase()}] ${description}`;
+      }
+
+    });
+    super.init();
+  }
+  /**
+   * @inheritdoc
+   */
+
+
   handle() {
     this.logDeprecationNotice();
     return super.handle();

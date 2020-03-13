@@ -33,7 +33,7 @@ const fakeBuilder = {
 	buildConfig: jest.fn(() => {
 		return { _isMockedConfig: true };
 	}),
-	afterBuild: jest.fn((callback) => {
+	onAfterBuild: jest.fn((callback) => {
 		fakeBuilder._afterBuild.push(callback);
 
 		return fakeBuilder;

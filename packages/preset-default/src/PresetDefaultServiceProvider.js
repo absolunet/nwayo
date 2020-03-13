@@ -3,7 +3,6 @@
 //--------------------------------------------------------
 
 import { ServiceProvider }          from '@absolunet/ioc';
-import CoreServiceProvider          from '@nwayo/core';
 import ExtensionJsServiceProvider   from '@nwayo/extension-js';
 import ExtensionScssServiceProvider from '@nwayo/extension-scss';
 
@@ -21,16 +20,8 @@ class PresetDefaultServiceProvider extends ServiceProvider {
 	 * @inheritdoc
 	 */
 	register() {
-		this.registerCore();
 		this.registerExtensionJs();
 		this.registerExtensionScss();
-	}
-
-	/**
-	 * Register core.
-	 */
-	registerCore() {
-		this.app.register(CoreServiceProvider);
 	}
 
 	/**

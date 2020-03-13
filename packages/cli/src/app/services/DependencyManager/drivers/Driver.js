@@ -8,7 +8,7 @@ import { NotImplementedError } from '@absolunet/ioc';
 /**
  * Abstract driver that describe dependency manager implementation.
  *
- * @memberof nwayo.core.services.DependencyManager.drivers
+ * @memberof nwayo.cli.services.DependencyManager.drivers
  * @hideconstructor
  */
 class Driver {

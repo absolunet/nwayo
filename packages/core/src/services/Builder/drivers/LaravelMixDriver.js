@@ -15,7 +15,7 @@ import AbstractWebpackDriver from './AbstractWebpackDriver';
 class LaravelMixDriver extends AbstractWebpackDriver {
 
 	/**
-	 * Class dependencies: <code>['app', 'config']</code>.
+	 * Class dependencies: <code>['app', 'config', 'event', 'nwayo.project']</code>.
 	 *
 	 * @type {Array<string>}
 	 */
@@ -33,6 +33,40 @@ class LaravelMixDriver extends AbstractWebpackDriver {
 		}
 
 		this.setEngine(this.getLaravelMix());
+	}
+
+	/**
+	 * Overrides onWriting hook to ensure prepared assets is not dummy file.
+	 *
+	 * @inheritdoc
+	 */
+	onWriting(handler) {
+		return super.onWriting(this.getDummyFileHandler(handler));
+	}
+
+	/**
+	 * Overrides onWrote hook to ensure prepared assets is not dummy file.
+	 *
+	 * @inheritdoc
+	 */
+	onWrote(handler) {
+		return super.onWrote(this.getDummyFileHandler(handler));
+	}
+
+	/**
+	 * Get decorated handler to ignore dummy file handling.
+	 *
+	 * @param {Function} handler - The handler to decorate.
+	 * @returns {Function} The decorated handler.
+	 */
+	getDummyFileHandler(handler) {
+		return (...parameters) => {
+			const isDummyFile = parameters.some(({ path }) => {
+				return this.isDummyFile(path);
+			});
+
+			return !isDummyFile ? handler(...parameters) : undefined;
+		};
 	}
 
 	/**
@@ -104,19 +138,29 @@ class LaravelMixDriver extends AbstractWebpackDriver {
 	/**
 	 * @inheritdoc
 	 */
-	buildConfig() {
+	buildConfig(bundle) {
 		this.Mix.dispatch('init', this.Mix);
 
 		const config = new this.WebpackConfig().build();
 
-		config.plugins.forEach((plugin) => {
-			if (plugin.options && plugin.options.title === 'Laravel Mix' && plugin.options.contentImage) {
+		config.plugins = config.plugins.filter((plugin) => {
+			if (plugin instanceof this.WebpackNotifier) {
+				if (this.app.environment === 'test') {
+					return false;
+				}
+
 				Object.assign(plugin.options, {
 					title:        this.config.get('app.name'),
 					contentImage: this.app.formatPath(__dirname, '..', '..', '..', 'resources', 'static', 'images', 'nwayo.png')
 				});
 			}
+
+			return true;
 		});
+
+		this.addNwayoPlugin(config, bundle);
+
+		config.output.pathinfo = false;
 
 		return config;
 	}
@@ -152,6 +196,16 @@ class LaravelMixDriver extends AbstractWebpackDriver {
 		this.Mix = global.Mix;
 
 		return laravelMix;
+	}
+
+	/**
+	 * Check if the given file path is a Laravel Mix dummy file.
+	 *
+	 * @param {string} path - The file path to test.
+	 * @returns {boolean} Indicates that the file is a dummy file.
+	 */
+	isDummyFile(path) {
+		return (/^(?:[/]|\/.*\/)?mix\.js$/u).test(path);
 	}
 
 	/**

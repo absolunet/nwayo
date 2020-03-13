@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- nwayo - Test - Unit - Console - Commands - Install Extension Command
+//-- nwayo - Test - Unit - Console - Commands - Install Extension
 //--------------------------------------------------------
 'use strict';
 

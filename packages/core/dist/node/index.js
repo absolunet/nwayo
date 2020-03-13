@@ -9,6 +9,12 @@ Object.defineProperty(exports, "AbstractBuildCommand", {
     return _AbstractBuildCommand.default;
   }
 });
+Object.defineProperty(exports, "Command", {
+  enumerable: true,
+  get: function () {
+    return _Command.default;
+  }
+});
 Object.defineProperty(exports, "Handler", {
   enumerable: true,
   get: function () {
@@ -22,6 +28,8 @@ require("./mixins");
 var _CoreServiceProvider = _interopRequireDefault(require("./CoreServiceProvider"));
 
 var _AbstractBuildCommand = _interopRequireDefault(require("./console/commands/build/AbstractBuildCommand"));
+
+var _Command = _interopRequireDefault(require("./console/Command"));
 
 var _Handler = _interopRequireDefault(require("./handlers/Handler"));
 

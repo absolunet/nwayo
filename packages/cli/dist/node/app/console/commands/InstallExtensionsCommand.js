@@ -5,20 +5,22 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _ioc = require("@absolunet/ioc");
+var _Command = _interopRequireDefault(require("../Command"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //--------------------------------------------------------
-//-- Nwayo - Console - Command - Install Extension
+//-- Nwayo - Console - Commands - Install Extension
 //--------------------------------------------------------
 
 /**
  * Command that installs extensions as node modules from the project root path.
  *
- * @memberof nwayo.core.console.commands
- * @augments ioc.console.Command
+ * @memberof nwayo.cli.console.commands
+ * @augments nwayo.cli.console.Command
  * @hideconstructor
  */
-class InstallExtensionsCommand extends _ioc.mixins.withTranslations(_ioc.Command) {
+class InstallExtensionsCommand extends _Command.default {
   /**
    * @inheritdoc
    */
@@ -31,7 +33,7 @@ class InstallExtensionsCommand extends _ioc.mixins.withTranslations(_ioc.Command
 
 
   get description() {
-    return 'Install nwayo extensions for the current project.';
+    return this.t('commands.install-extensions.description');
   }
   /**
    * @inheritdoc

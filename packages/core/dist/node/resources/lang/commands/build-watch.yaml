@@ -1,0 +1,8 @@
+description:
+  en: 'Listen for changes on files and run appropriate build.'
+  fr: 'Écouter les modifications apportées aux fichiers et exécuter la compilation appropriée.'
+
+options:
+  type:
+    en: 'Specific build types to run.'
+    fr: 'Type de compilation spécifique à exécuter.'

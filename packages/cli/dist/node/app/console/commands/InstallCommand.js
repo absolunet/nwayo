@@ -5,20 +5,22 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _ioc = require("@absolunet/ioc");
-
 var _LegacyCommand = _interopRequireDefault(require("../LegacyCommand"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //--------------------------------------------------------
-//-- Nwayo - Command - InstallCommand
+//-- Nwayo - Console - Commands - Install
 //--------------------------------------------------------
 
 /**
- * InstallCommand.
+ * Command that installs workflow and vendors through the legacy CLI.
+ *
+ * @memberof nwayo.cli.console.commands
+ * @augments nwayo.cli.console.LegacyCommand
+ * @hideconstructor
  */
-class InstallCommand extends _ioc.mixins.withTranslations(_LegacyCommand.default) {
+class InstallCommand extends _LegacyCommand.default {
   /**
    * @inheritdoc
    */

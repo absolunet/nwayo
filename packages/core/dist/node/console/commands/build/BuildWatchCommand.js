@@ -32,24 +32,8 @@ class BuildWatchCommand extends _AbstractBuildCommand.default {
    */
 
 
-  get name() {
-    return `build:${this.nwayoBuildType.WATCH}`;
-  }
-  /**
-   * @inheritdoc
-   */
-
-
-  get description() {
-    return 'Listen for changes on files and run appropriate build.';
-  }
-  /**
-   * @inheritdoc
-   */
-
-
   get options() {
-    return (super.options || []).concat([['type', 'all', 'Specific build types to build.']]);
+    return (super.options || []).concat([['type', 'all', this.t('commands.build-watch.options.type')]]);
   }
   /**
    * Get the build type(s).
@@ -79,11 +63,11 @@ class BuildWatchCommand extends _AbstractBuildCommand.default {
 
 
   getBuildArguments() {
-    const [, bundles, options = {}, ...parameters] = super.getBuildArguments();
+    const [type, bundles, options = {}, ...parameters] = super.getBuildArguments();
     const watchOptions = Object.assign(typeof options === 'object' && options ? options : {}, {
       watch: true
     });
-    return [this.nwayoBuildType.ALL, bundles, watchOptions, ...parameters];
+    return [type, bundles, watchOptions, ...parameters];
   }
 
 }

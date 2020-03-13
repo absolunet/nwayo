@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Nwayo - Test - Unit - Console - Commands - InstallCommandTest
+//-- Nwayo - Test - Unit - Console - Commands - Install
 //--------------------------------------------------------
 'use strict';
 
@@ -23,10 +23,14 @@ class InstallCommandTest extends TestCase {
 		this.givenNoArgv();
 	}
 
+	testIndicatesThatCommandIsDeprecatedInDescription() {
+		this.whenGettingDescription();
+		this.thenShouldHaveReceivedDeprecatedDescription();
+	}
+
 	async testCanInstallWorkflowWithDeprecationWarning() {
 		this.givenScope('workflow');
 		await this.whenRunningCommand();
-		this.thenShouldNotHaveThrown();
 		this.thenShouldHaveCalledCommand('install:extensions');
 		this.thenShouldHaveShownDeprecationWarning('messages.deprecatedCommand', 'install:extensions');
 	}
@@ -34,7 +38,6 @@ class InstallCommandTest extends TestCase {
 	async testCanInstallVendorsWithDeprecationWarning() {
 		this.givenScope('vendors');
 		await this.whenRunningCommand();
-		this.thenShouldNotHaveThrown();
 		this.thenShouldHaveCalledCommand('install:components');
 		this.thenShouldHaveShownDeprecationWarning('messages.deprecatedCommand', 'install:components');
 	}
@@ -99,11 +102,23 @@ class InstallCommandTest extends TestCase {
 		});
 	}
 
+	whenGettingDescription() {
+		this.attempt(() => {
+			this.result = this.command.description;
+		});
+	}
+
 
 	//-- Then
 	//--------------------------------------------------------
 
+	thenShouldHaveReceivedDeprecatedDescription() {
+		this.thenShouldNotHaveThrown();
+		this.expect(this.result).toBe('[TRANSLATED: DEPRECATED] Translated: commands.install.description');
+	}
+
 	thenShouldHaveCalledCommand(command) {
+		this.thenShouldNotHaveThrown();
 		this.expect(fakeCommandRegistrar.resolve).toHaveBeenCalledWith(command, true);
 		this.expect(fakeCommandRegistrar._resolveAsyncSpy).toHaveBeenCalled();
 	}

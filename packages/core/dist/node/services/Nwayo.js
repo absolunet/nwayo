@@ -193,7 +193,7 @@ class Nwayo {
         await this.runHooks(types, this.phases.process, async (action, stack) => {
           await action(builder, bundle, options, stack);
         });
-        const singleConfig = builder.buildConfig();
+        const singleConfig = builder.buildConfig(bundle);
         await this.runHooks(types, this.phases.configGenerated, async (action, stack) => {
           await action(singleConfig, bundle, options, stack);
         });
@@ -205,7 +205,7 @@ class Nwayo {
       await action(config, bundles, options, stack);
     });
     await this.runHooks(types, this.phases.afterBuild, (action, stack) => {
-      this.nwayoBuilder.afterBuild((...parameters) => {
+      this.nwayoBuilder.onAfterBuild((...parameters) => {
         action(...parameters, stack);
       });
     });

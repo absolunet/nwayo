@@ -1,18 +1,18 @@
 //--------------------------------------------------------
-//-- Nwayo - Console - Command - Install Extension
+//-- Nwayo - Console - Commands - Install Extension
 //--------------------------------------------------------
 
-import { Command, mixins } from '@absolunet/ioc';
+import Command from '../Command';
 
 
 /**
  * Command that installs extensions as node modules from the project root path.
  *
- * @memberof nwayo.core.console.commands
- * @augments ioc.console.Command
+ * @memberof nwayo.cli.console.commands
+ * @augments nwayo.cli.console.Command
  * @hideconstructor
  */
-class InstallExtensionsCommand extends mixins.withTranslations(Command) {
+class InstallExtensionsCommand extends Command {
 
 	/**
 	 * @inheritdoc
@@ -25,7 +25,7 @@ class InstallExtensionsCommand extends mixins.withTranslations(Command) {
 	 * @inheritdoc
 	 */
 	get description() {
-		return 'Install nwayo extensions for the current project.';
+		return this.t('commands.install-extensions.description');
 	}
 
 	/**

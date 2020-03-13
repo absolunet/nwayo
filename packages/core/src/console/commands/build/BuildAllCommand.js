@@ -21,13 +21,6 @@ class BuildAllCommand extends AbstractBuildCommand {
 		return [];
 	}
 
-	/**
-	 * @inheritdoc
-	 */
-	get description() {
-		return 'Run all build commands.';
-	}
-
 }
 
 

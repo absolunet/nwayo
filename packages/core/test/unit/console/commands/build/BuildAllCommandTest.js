@@ -24,10 +24,6 @@ class BuildAllCommandTest extends BuildCommandTestCase {
 		return [];
 	}
 
-	getExpectedDescription() {
-		return 'Run all build commands.';
-	}
-
 	getExpectedPolicies() {
 		return [];
 	}

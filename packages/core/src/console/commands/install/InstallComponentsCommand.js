@@ -2,7 +2,7 @@
 //-- Nwayo Core - Console - Command - Install - Install Components
 //--------------------------------------------------------
 
-import { Command } from '@absolunet/ioc';
+import Command from '../../Command';
 
 
 /**
@@ -15,15 +15,6 @@ import { Command } from '@absolunet/ioc';
 class InstallComponentsCommand extends Command {
 
 	/**
-	 * Class dependencies: <code>['translator']</code>.
-	 *
-	 * @type {Array<string>}
-	 */
-	static get dependencies() {
-		return ['translator'];
-	}
-
-	/**
 	 * @inheritdoc
 	 */
 	get name() {
@@ -34,7 +25,7 @@ class InstallComponentsCommand extends Command {
 	 * @inheritdoc
 	 */
 	get description() {
-		return 'Install components for the current project.';
+		return this.t('commands.install-components.description');
 	}
 
 	/**
@@ -55,16 +46,6 @@ class InstallComponentsCommand extends Command {
 		await this.app.make('dependency')
 			.inFolder(this.app.make('nwayo.project').getSourcePath())
 			.install();
-	}
-
-	/**
-	 * Translate with the translator service.
-	 *
-	 * @param {...*} parameters - The translate parameters.
-	 * @returns {string} The translated value.
-	 */
-	t(...parameters) {
-		return this.translator.translate(...parameters);
 	}
 
 }

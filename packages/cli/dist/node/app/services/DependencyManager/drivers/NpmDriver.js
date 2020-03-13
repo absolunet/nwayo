@@ -16,8 +16,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * Driver that uses NPM as concrete dependency manager.
  *
- * @memberof nwayo.core.services.DependencyManager.drivers
- * @augments nwayo.core.services.DependencyManager.drivers.Driver
+ * @memberof nwayo.cli.services.DependencyManager.drivers
+ * @augments nwayo.cli.services.DependencyManager.drivers.Driver
  * @hideconstructor
  */
 class NpmDriver extends _Driver.default {

@@ -1,15 +1,18 @@
 //--------------------------------------------------------
-//-- Nwayo - Command - InstallCommand
+//-- Nwayo - Console - Commands - Install
 //--------------------------------------------------------
 
-import { mixins }    from '@absolunet/ioc';
 import LegacyCommand from '../LegacyCommand';
 
 
 /**
- * InstallCommand.
+ * Command that installs workflow and vendors through the legacy CLI.
+ *
+ * @memberof nwayo.cli.console.commands
+ * @augments nwayo.cli.console.LegacyCommand
+ * @hideconstructor
  */
-class InstallCommand extends mixins.withTranslations(LegacyCommand) {
+class InstallCommand extends LegacyCommand {
 
 	/**
 	 * @inheritdoc
@@ -74,6 +77,7 @@ class InstallCommand extends mixins.withTranslations(LegacyCommand) {
 
 		if (!command) {
 			const commandMapping = Object.values(this.legacyCommandMapping).map((c) => { return `"${c}"`; }).join(', ');
+
 			throw new TypeError(this.t('messages.nonExistingCommand', {
 				command: `: [${commandMapping}]`
 			}));

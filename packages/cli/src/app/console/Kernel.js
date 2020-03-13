@@ -18,9 +18,7 @@ class Kernel extends ConsoleKernel {
 	 * @inheritdoc
 	 */
 	async handle() {
-		const isLegacy = this.checkIfLegacy();
-
-		if (isLegacy) {
+		if (this.projectIsLegacy()) {
 			await this.handleLegacy();
 		} else {
 			await super.handle();
@@ -33,7 +31,7 @@ class Kernel extends ConsoleKernel {
 	 * @returns {Promise} The async process promise.
 	 */
 	handleLegacy() {
-		return this.app.make('nwayo.legacy.handler').handle();
+		return this.legacyHandler.handle();
 	}
 
 	/**
@@ -41,22 +39,7 @@ class Kernel extends ConsoleKernel {
 	 */
 	async beforeHandling() {
 		await this.loadTranslations();
-
 		this.registerCommands();
-	}
-
-	/**
-	 * @inheritdoc
-	 */
-	afterHandling() {
-		// Here, you can perform actions after request was handled, if no error was thrown.
-	}
-
-	/**
-	 * @inheritdoc
-	 */
-	terminating() {
-		// Here, you can perform actions before the application terminates.
 	}
 
 	/**
@@ -65,7 +48,7 @@ class Kernel extends ConsoleKernel {
 	 * @returns {Promise} The async process promise.
 	 */
 	async loadTranslations() {
-		await this.app.make('translator').driver().loadTranslations();
+		await this.translator.loadTranslations();
 	}
 
 	/**
@@ -80,8 +63,35 @@ class Kernel extends ConsoleKernel {
 	 *
 	 * @returns {boolean} Indicates that the current project is a legacy nwayo project.
 	 */
-	checkIfLegacy() {
-		return false; // this.app.make('nwayo.legacy').projectIsLegacy();
+	projectIsLegacy() {
+		return this.context.projectIsLegacy();
+	}
+
+	/**
+	 * Context service.
+	 *
+	 * @type {nwayo.cli.services.ContextService}
+	 */
+	get context() {
+		return this.app.make('nwayo.context');
+	}
+
+	/**
+	 * Legacy handler.
+	 *
+	 * @type {nwayo.cli.handlers.LegacyHandler}
+	 */
+	get legacyHandler() {
+		return this.app.make('nwayo.legacy.handler');
+	}
+
+	/**
+	 * Translator service.
+	 *
+	 * @type {ioc.translation.services.Translator}
+	 */
+	get translator() {
+		return this.app.make('translator');
 	}
 
 }

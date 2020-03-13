@@ -7,8 +7,6 @@ exports.default = void 0;
 
 var _ioc = require("@absolunet/ioc");
 
-var _core = _interopRequireDefault(require("@nwayo/core"));
-
 var _extensionJs = _interopRequireDefault(require("@nwayo/extension-js"));
 
 var _extensionScss = _interopRequireDefault(require("@nwayo/extension-scss"));
@@ -31,17 +29,8 @@ class PresetDefaultServiceProvider extends _ioc.ServiceProvider {
    * @inheritdoc
    */
   register() {
-    this.registerCore();
     this.registerExtensionJs();
     this.registerExtensionScss();
-  }
-  /**
-   * Register core.
-   */
-
-
-  registerCore() {
-    this.app.register(_core.default);
   }
   /**
    * Register JavaScript extension.

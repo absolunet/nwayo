@@ -1,16 +1,18 @@
 //--------------------------------------------------------
-//-- Node IoC - Test - Unit - Laravel Mix Driver
+//-- Node IoC - Test - Unit - Services - Builder - Drivers - Driver Test Case
 //--------------------------------------------------------
 'use strict';
 
 const { NotImplementedError } = require('@absolunet/ioc');
 const TestCase                = require('../../../../TestCase');
+const fakeProjectService      = require('./stubs/fakeProjectService');
 
 
 class DriverTestCase extends TestCase {
 
 	beforeEach() {
 		super.beforeEach();
+		this.givenFakeProjectService();
 		this.givenDriver();
 		this.givenFakePathAsEntry();
 	}
@@ -72,6 +74,10 @@ class DriverTestCase extends TestCase {
 
 	//-- Given
 	//--------------------------------------------------------
+
+	givenFakeProjectService() {
+		this.app.singleton('nwayo.project', fakeProjectService);
+	}
 
 	givenDriver() {
 		this.driver = this.getDriver();

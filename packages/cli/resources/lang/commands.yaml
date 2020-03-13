@@ -1,0 +1,618 @@
+yargs:
+  options:
+    en: 'Options:'
+    fr: 'Options:'
+
+  positionals:
+    en: 'Positionals:'
+    fr: 'Positionnels:'
+
+
+env:
+  description:
+    en: 'Display the application environment.'
+    fr: 'Afficher l''environnement de l''application.'
+
+  messages:
+    current:
+      en: 'Current application environment: {{name}}.'
+      fr: 'Enviromment actuel de l''application: {{name}}.'
+
+
+list:
+  description:
+    en: 'List all available commands.'
+    fr: 'Lister toutes les commandes disponibles.'
+
+  flags:
+    help:
+      en: 'Show help.'
+      fr: 'Afficher l''aide.'
+
+    version:
+      en: 'Show version number.'
+      fr: 'Afficher le numéro de version.'
+
+    verbose:
+      en: 'Adjust the verbosity of the command.'
+      fr: 'Ajuster la verbosité de la commande.'
+
+  messages:
+    usage:
+      en: 'Usage'
+      fr: 'Utilisation'
+
+    usage-example:
+      en: 'command [arguments] [options]'
+      fr: 'commande [arguments] [options]'
+
+    available-commands:
+      en: 'Available commands'
+      fr: 'Commandes disponibles'
+
+    options:
+      en: 'Options'
+      fr: 'Options'
+
+
+serve:
+  description:
+    en: 'Serve the application.'
+    fr: 'Servir l''application.'
+
+  options:
+    port:
+      en: 'Port to use to serve the application.'
+      fr: 'Port à utiliser pour servir l''application.'
+
+  flags:
+    daemon:
+      en: 'Use a daemon to automatically restart the process when a file has changed.'
+      fr: 'Utiliser un daemon pour automatiquement redémarrer le processus lorsqu''un fichier a changé.'
+
+    silent:
+      en: 'Silently run the process without any console output.'
+      fr: 'Exécuter le processus silencieusement sans aucune sortie console.'
+
+    start-silent:
+      en: 'Silently start the process, but still output data in the console afterwards.'
+      fr: 'Exécuter le processus silencieusement, mais toujours afficher l''information dans la console par après.'
+
+  messages:
+    starting:
+      en: 'Starting server on port {{port}}...'
+      fr: 'Démarrage du serveur sur le port {{port}}...'
+
+    reloading:
+      en: 'Daemon is reloading files...'
+      fr: 'Le daemon recharge les fichiers...'
+
+
+test:
+  description:
+    en: 'Test the application.'
+    fr: 'Tester l''application.'
+
+  options:
+    engine:
+      en: 'Test engine to work with.'
+      fr: 'L''engin de test à utiliser.'
+
+    type:
+      en: 'Type of test to run.'
+      fr: 'Le type de test à exécuter.'
+
+  flags:
+    unit:
+      en: 'Run unit tests.'
+      fr: 'Exécuter les tests unitaires.'
+
+    feature:
+      en: 'Run feature tests.'
+      fr: 'Exécuter les tests de fonctionnalité.'
+
+    integration:
+      en: 'Run integration tests.'
+      fr: 'Exécuter les tests d''intégration.'
+
+    endtoend:
+      en: 'Run end-to-end tests.'
+      fr: 'Exécuter les tests de bout en bout.'
+
+
+cache-clear:
+  description:
+    en: 'Flush the application cache.'
+    fr: 'Vider la cache de l''application.'
+
+  parameters:
+    store:
+      en: 'The name of the store you would like to clear.'
+      fr: 'Le nom du store que vous voulez vider.'
+
+  messages:
+    flushing:
+      en: 'Flushing cache...'
+      fr: 'Vidage de la cache...'
+
+    flushed:
+      en: 'Cache flushed.'
+      fr: 'Cache vidée.'
+
+    get-store:
+      en: 'Getting [{{store}}] store instance.'
+      fr: 'Obtention de l''instance du store [{{store}}].'
+
+
+cache-forget:
+  description:
+    en: 'Remove an item from the cache.'
+    fr: 'Retirer un élément de la cache.'
+
+  parameters:
+    key:
+      en: 'The name of the cache key you would like to clear.'
+      fr: 'Le nom de la clé de la cache que vous voulez effacer.'
+
+    store:
+      en: 'The name of the store for which you would like to clear the key.'
+      fr: 'Le nom du store pour lequel vous voulez effacer la clé.'
+
+
+  messages:
+    deleting:
+      en: 'Deleting cache key [{{key}}]...'
+      fr: 'Suppression de la clé de cache [{{key}}]...'
+
+    deleted:
+      en: 'Cache key [{{key}}] deleted.'
+      fr: 'Clé de cache [{{key}}] supprimée.'
+
+    get-store:
+      en: 'Getting [{{store}}] store instance.'
+      fr: 'Obtention de l''instance du store [{{store}}].'
+
+
+cache-table:
+  description:
+    en: 'Create a migration for the cache database table.'
+    fr: 'Créer une migration pour la table de la cache dans la base de données.'
+
+  messages:
+    generating:
+      en: 'Generating cache migration file...'
+      fr: 'Génération du fichier de migration de la cache...'
+
+    already-exists:
+      en: 'The migration already exists.'
+      fr: 'La migration existe déjà.'
+
+    success:
+      en: 'Cache migration file successfully generated!'
+      fr: 'Fichier de migration de la cache généré avec succès!'
+
+    reminder:
+      en: 'Don''t forget to run migration command.'
+      fr: 'N''oubliez pas d''exécuter la commande de migration.'
+
+
+db-migrate:
+  description:
+    en: 'Run the database migrations.'
+    fr: 'Exécuter les migrations de la base de données.'
+
+  flags:
+    seed:
+      en: 'Seed the database after the migrations.'
+      fr: 'Remplir la base de données après les migrations.'
+
+  messages:
+    migrating:
+      en: 'Running latest migrations...'
+      fr: 'Exécution des dernières migrations...'
+
+    up-to-date:
+      en: 'Already up to date.'
+      fr: 'Déjà à jour.'
+
+    migrated:
+      en: 'Migrated: {{migration}}.'
+      fr: 'Migré: {{migration}}.'
+
+
+
+db-migrate-fresh:
+  description:
+    en: 'Drop all tables and re-run all migrations.'
+    fr: 'Supprimer toutes les tables et rouler à nouveau les migrations.'
+
+  flags:
+    seed:
+      en: 'Seed the database after the migrations.'
+      fr: 'Remplir la base de données après les migrations.'
+
+  messages:
+    migrating:
+      en: 'Running all migrations in fresh database...'
+      fr: 'Exécution de toutes les migrations dans une base de donnée fraîche...'
+
+    dropping:
+      en: 'Dropping all tables...'
+      fr: 'Suppression de toputes les tables...'
+
+    dropped:
+      en: 'All tables dropped!'
+      fr: 'Toutes les tables ont été supprimées!'
+
+
+db-migrate-refresh:
+  description:
+    en: 'Reset and re-run all migrations.'
+    fr: 'Réinitialiser et rouler à nouveau les migrations.'
+
+  flags:
+    seed:
+      en: 'Seed the database after the migrations.'
+      fr: 'Remplir la base de données après les migrations.'
+
+  messages:
+    rolling-back:
+      en: 'Rolling back migrations...'
+      fr: 'Annulation des migrations...'
+
+    rolled-back:
+      en: 'Rolled back: {{migration}}.'
+      fr: 'Annulée: {{migration}}.'
+
+
+db-migrate-rollback:
+  description:
+    en: 'Rollback the last database migrations.'
+    fr: 'Restaurer les dernières migrations de base de données.'
+
+  messages:
+    rolling-back:
+      en: 'Rolling back last migration batch...'
+      fr: 'Annulation du dernier lot de migrations...'
+
+    up-to-date:
+      en: 'No migration rollback to run.'
+      fr: 'Aucune annulation de migration à exécuter.'
+
+    rolled-back:
+      en: 'Rolled back: {{migration}}.'
+      fr: 'Annulée: {{migration}}.'
+
+
+db-migrate-status:
+  description:
+    en: 'Shown the status of each migration.'
+    fr: 'Afficher le status de chaque migration.'
+
+  messages:
+    ran:
+      en: 'Ran?'
+      fr: 'Exécutée?'
+
+    migration:
+      en: 'Migration'
+      fr: 'Migration'
+
+    yes:
+      en: 'Y'
+      fr: 'O'
+
+    no:
+      en: 'N'
+      fr: 'N'
+
+
+db-seed:
+  description:
+    en: 'Seed the database with records.'
+    fr: 'Remplir la base de données de records.'
+
+  options:
+    file:
+      en: 'The file to run.'
+      fr: 'Le ficher à exécuter.'
+
+  messages:
+    seeding:
+      en: 'Seeding database...'
+      fr: 'Remplissage de la base de données...'
+
+    success:
+      en: 'Seed successful!'
+      fr: 'Remplissage réussi!'
+
+    seeded:
+      en: 'Seeded: {{seeder}}.'
+      fr: 'Seeder exécuté: {{seeder}}.'
+
+
+log-table:
+  description:
+    en: 'Create a migration for the log database table.'
+    fr: 'Créer une migration pour la table des logs dans la base de données.'
+
+  messages:
+    generating:
+      en: 'Generating log migration file...'
+      fr: 'Génération du fichier de migration des logs...'
+
+    already-exists:
+      en: 'The migration already exists.'
+      fr: 'La migration existe déjà.'
+
+    success:
+      en: 'Log migration file successfully generated!'
+      fr: 'Fichier de migration des logs généré avec succès!'
+
+    reminder:
+      en: 'Don''t forget to run migration command.'
+      fr: 'N''oubliez pas d''exécuter la commande de migration.'
+
+
+make-abstract:
+  description:
+    en: 'Create a {{type}} class.'
+    fr: 'Créer une classe de type {{type}}.'
+
+  parameters:
+    class:
+      en: 'Class name for the file type [{{type}}].'
+      fr: 'Nom de la classe pour le fichier de type [{{type}}].'
+
+  options:
+    destination:
+      en: 'File destination.'
+      fr: 'Destination du fichier.'
+
+
+make-command:
+  flags:
+    generator:
+      en: 'Generate a generator command class.'
+      fr: 'Générer une classe de commande génératrice.'
+
+    private:
+      en: 'Generate a private command class.'
+      fr: 'Générer une classe de commande privée.'
+
+  messages:
+    generating:
+      en: 'Generating {{name}} [{{type}}] command file...'
+      fr: 'Génération du fichier de commande {{name}} [{{type}}]...'
+
+    success:
+      en: '{{name}} command file [{{type}}] successfully generated!'
+      fr: 'Fichier de commande {{name}} [{{type}}] généré avec succès!'
+
+
+make-controller:
+  flags:
+    resource:
+      en: 'Generate a resource controller class.'
+      fr: 'Générer une classe de controlleur ressource.'
+
+    api:
+      en: 'Generate an API resource controller class, without "create" and "edit" actions.'
+      fr: 'Générer une classe de controlleur API, sans les actions "create" et "edit".'
+
+    handler:
+      en: 'Generate a single method handler controller class.'
+      fr: 'Générer une classe de controlleur "handler" contenant une seule méthode.'
+
+  messages:
+    generating:
+      en: 'Generating {{name}} [{{type}}] controller file...'
+      fr: 'Génération du fichier de controlleur {{name}} [{{type}}]...'
+
+    success:
+      en: '{{name}} controller file [{{type}}] successfully generated!`'
+      fr: 'Fichier de controlleur {{name}} [{{type}}] généré avec succès!'
+
+
+make-factory:
+  messages:
+    generating:
+      en: 'Generating {{name}} model factory file...'
+      fr: 'Génération du fichier de factory de modèle {{name}}...'
+
+    success:
+      en: '{{name}} model factory file successfully generated!'
+      fr: 'Fichier de factory de modèle {{name}} généré avec succès!'
+
+
+make-migration:
+  flags:
+    stub:
+      en: 'Generate stub migration file.'
+      fr: 'Générer un stub de fichier de migration.'
+
+  messages:
+    generating:
+      en: 'Generating {{name}} migration file...'
+      fr: 'Génération du fichier de migration {{name}}...'
+
+    success:
+      en: '{{name}} migration file successfully generated!'
+      fr: 'Fichier de migration {{name}} généré avec succès!'
+
+
+make-mixin:
+  parameters:
+    name:
+      en: 'The mixin name.'
+      fr: 'Le nom du mixin.'
+
+  flags:
+    no-bootstrap:
+      en: 'Indicates that the mixin should not be bootstrapped.'
+      fr: 'Indique que le mixin ne devrait pas être importé.'
+
+  messages:
+    generating:
+      en: 'Generating mixin file for "{{name}}"...'
+      fr: 'Génération du ficher de mixin pour "{{name}}"...'
+
+    success:
+      en: 'Mixin file for "{{name}}" successfully generated!'
+      fr: 'Fichier de mixin pour "{{name}}" généré avec succès!'
+
+    manual-bootstrap:
+      en: 'You will have to manually bootstrap the mixin.'
+      fr: 'Vous allez devoir manuellement importer le mixin.'
+
+    bootstrapping:
+      en: 'Adding auto-bootstrap statement...'
+      fr: 'Ajout de la déclaration d''import automatique...'
+
+    bootstrapped:
+      en: 'Mixin automatically bootstrapped!'
+      fr: 'Le mixin est automatiquement importé!'
+
+
+make-model:
+  flags:
+    all:
+      en: 'Generate factory, migration and seeder classes for the generated model.'
+      fr: 'Générer les classes de factory, de migration et de seeder pour le modèle généré.'
+
+    factory:
+      en: 'Generate a factory class for the generated model.'
+      fr: 'Générer la classe de factory pour le modèle généré.'
+
+    migration:
+      en: 'Generate a migration class for the generated model.'
+      fr: 'Générer la class de migration pour le modèle généré.'
+
+    seeder:
+      en: 'Generate a seeder class for the generated model.'
+      fr: 'Générer la classe de seeder pour le modèle généré.'
+
+  messages:
+    generating:
+      en: 'Generating {{name}} model file...'
+      fr: 'Génération du fichier de modèle {{name}}...'
+
+    success:
+      en: '{{name}} model file successfully generated!'
+      fr: 'Fichier de modèle {{name}} généré avec succès!'
+
+
+make-provider:
+  messages:
+    generating:
+      en: 'Generating {{name}} service provider file...'
+      fr: 'Génération du fichier de fournisseur de service {{name}}...'
+
+    success:
+      en: '{{name}} service provider file successfully generated!'
+      fr: 'Fichier de fournisseur de service {{name}} généré avec succès!'
+
+
+make-seeder:
+  messages:
+    generating:
+      en: 'Generating {{name}} seed file...'
+      fr: 'Génération du fichier de seed {{name}}...'
+
+    success:
+      en: '{{name}} seed file successfully generated!'
+      fr: 'Fichier de seed {{name}} généré avec succès!'
+
+
+make-test:
+  options:
+    type:
+      en: 'Indicates the test type.'
+      fr: 'Indique le type de test.'
+
+    for:
+      en: 'Indicates the file or the class the test is intended for.'
+      fr: 'Indique le fichier ou la classe pour lequel le test est prévu.'
+
+  flags:
+    unit:
+      en: 'Generate a unit test class.'
+      fr: 'Générer une classe de test unitaire.'
+
+    feature:
+      en: 'Generate a feature test class.'
+      fr: 'Générer une classe de test de fonctionnalité.'
+
+    integration:
+      en: 'Generate an integration test class.'
+      fr: 'Générer une classe de test d''intégration.'
+
+    endtoend:
+      en: 'Generate an end to end test class.'
+      fr: 'Gétérer une classe de test de bout en bout.'
+
+  messages:
+    generating:
+      en: 'Generating {{name}} [{{type}}] test file...'
+      fr: 'Génération du fichier de test {{name}} [{{type}}]...'
+
+    success:
+      en: '{{name}} test file [{{type}}] successfully generated!'
+      fr: 'Fichier de test {{name}} [{{type}}] généré avec succès!'
+
+
+vendor-publish:
+  description:
+    en: 'Publish any publishable files from extensions.'
+    fr: 'Publier tous les fichiers publiables depuis les extensions.'
+
+  options:
+    provider:
+      en: 'The service provider name to publish.'
+      fr: 'Le fournisseur de service à publier.'
+
+    tag:
+      en: 'The tag to publish.'
+      fr: 'Le tag à publier.'
+
+  flags:
+    all:
+      en: 'Publish all files from all providers and tags.'
+      fr: 'Publier tous les fichiers de tous les fournisseurs et les tags.'
+
+    overwrite:
+      en: 'Allow publishing already published or existing files.'
+      fr: 'Autoriser la publication des fichiers déjà publiés ou existants.'
+
+    safe:
+      en: 'Prevent publishing already published or existing files.'
+      fr: 'Empêcher la publication des fichiers déjà publiés ou existants.'
+
+  messages:
+    empty:
+      en: 'Nothing has been published.'
+      fr: 'Rien n''a été publié.'
+
+    success:
+      en: 'Successfully published from [{{from}}] to [{{to}}]!'
+      fr: 'Publication depuis [{{from}}] vers [{{to}}] effectuée avec succès!'
+
+    choose:
+      en: 'Please choose a provider or a tag to publish.'
+      fr: 'Veuillez sélectionner un fournisseur ou un tag à publier.'
+
+    publish-all:
+      en: 'Publish files from all providers and tags listed below.'
+      fr: 'Publier les fichier depuis l''ensemble des fournisseurs de service et des tags listés plus bas.'
+
+    publish-provider:
+      en: 'Provider: {{name}}.'
+      fr: 'Fournisseur: {{name}}.'
+
+    publish-tag:
+      en: 'Tag: {{name}}.'
+      fr: 'Tag: {{name}}.'
+
+    confirm-overwrite:
+      en: 'The file {{file}} already exists. Do you want to overwrite it?'
+      fr: 'Le fichier {{file}} existe déjà. Voulez-vous l''écraser?'

@@ -1,14 +1,33 @@
 //--------------------------------------------------------
-//-- Nwayo - Command - Legacy Command
+//-- Nwayo - Console - Legacy Command
 //--------------------------------------------------------
 
-import { Command, NotImplementedError } from '@absolunet/ioc';
+import { NotImplementedError } from '@absolunet/ioc';
+import Command                 from './Command';
 
 
 /**
  * Legacy Command.
+ *
+ * @memberof nwayo.cli.console
+ * @augments nwayo.cli.console.Command
+ * @hideconstructor
+ * @abstract
  */
 class LegacyCommand extends Command {
+
+	/**
+	 * @inheritdoc
+	 */
+	init() {
+		const { description } = this;
+		Object.defineProperty(this, 'description', {
+			get() {
+				return `[${this.t('deprecated').toUpperCase()}] ${description}`;
+			}
+		});
+		super.init();
+	}
 
 	/**
 	 * @inheritdoc

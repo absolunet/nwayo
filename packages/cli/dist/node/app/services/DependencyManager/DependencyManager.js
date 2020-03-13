@@ -20,7 +20,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * Dependency manager for external and local modules and packages.
  *
- * @memberof nwayo.core.services
+ * @memberof nwayo.cli.services
  * @augments ioc.support.mixins.HasDriver
  * @hideconstructor
  */

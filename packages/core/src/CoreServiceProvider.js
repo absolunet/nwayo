@@ -9,6 +9,7 @@ import Nwayo               from './services/Nwayo';
 import Builder             from './services/Builder';
 import BuildTypeRepository from './repositories/BuildTypeRepository';
 import NwayoBuildPolicy    from './policies/NwayoBuildPolicy';
+import TerminalDecorator   from './services/TerminalDecorator';
 
 import InstallComponentsCommand from './console/commands/install/InstallComponentsCommand';
 import BuildAllCommand          from './console/commands/build/BuildAllCommand';
@@ -32,10 +33,12 @@ class CoreServiceProvider extends ServiceProvider {
 	 */
 	register() {
 		this.loadAndPublishConfig(this.app.formatPath(__dirname, 'config'));
+		this.loadAndPublishTranslations(this.app.formatPath(__dirname, 'resources', 'lang'));
 		this.bindNwayo();
 		this.bindBuildType();
 		this.bindBuilder();
 		this.bindProjectService();
+		this.decorateTerminal();
 	}
 
 	/**
@@ -101,6 +104,15 @@ class CoreServiceProvider extends ServiceProvider {
 		const nwayoBuildPolicy = this.app.make(NwayoBuildPolicy);
 
 		this.app.make('gate').policy(nwayoBuildPolicy.name, nwayoBuildPolicy.passes.bind(nwayoBuildPolicy));
+	}
+
+	/**
+	 * Decorate default terminal.
+	 */
+	decorateTerminal() {
+		this.app.decorate('terminal', (terminal) => {
+			return new TerminalDecorator(terminal);
+		});
 	}
 
 }

@@ -12,6 +12,7 @@ import CoreServiceProvider from './CoreServiceProvider';
 
 // Load abstract classes to be used by other extensions.
 import AbstractBuildCommand from './console/commands/build/AbstractBuildCommand';
+import Command              from './console/Command';
 import Handler              from './handlers/Handler';
 
 
@@ -22,5 +23,6 @@ export default CoreServiceProvider;
 // Expose classes to be used by other extensions.
 export {
 	AbstractBuildCommand,
+	Command,
 	Handler
 };

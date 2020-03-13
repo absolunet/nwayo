@@ -6,20 +6,27 @@
 const { NotImplementedError } = require('@absolunet/ioc');
 const TestCase                = require('../../../../TestCase');
 const BuildTypeRepository     = require('../../../../../dist/node/repositories/BuildTypeRepository');
+const fakeBuilder             = require('./stubs/fakeBuilder');
+const fakeDateHelperFactory   = require('./stubs/fakeDateHelperFactory');
 const fakeNwayo               = require('./stubs/fakeNwayo');
 const fakeTerminal            = require('./stubs/fakeTerminal');
+const fakeGauge               = require('./stubs/fakeGauge');
+const fakeTranslator          = require('./stubs/fakeTranslator');
 
 
 class BuildCommandTestCase extends TestCase {
 
 	beforeEach() {
 		super.beforeEach();
+		this.givenFakeDateHelper();
 		this.givenFakeNwayo();
+		this.givenFakeBuilder();
 		this.givenBuildTypeRepository();
 		this.givenFakeBuildTypes();
 		this.givenCommandRunner();
 		this.givenEmptyArgv();
 		this.givenFakeTerminal();
+		this.givenFakeTranslator();
 		this.givenCommand();
 	}
 
@@ -41,26 +48,38 @@ class BuildCommandTestCase extends TestCase {
 	async testCanBuildForAllBundlesByDefault() {
 		await this.whenRunningCommand();
 		this.thenNwayoShouldHaveBuilt(this.getBuildType(), null, ...this.getExpectedNwayoBuildExtraArguments());
+		this.thenShouldHavePrintedOnHooks();
 	}
 
 	async testCanBuildForSpecificBundleIfProvided() {
 		this.givenBundleOption('foo');
 		await this.whenRunningCommand();
 		this.thenNwayoShouldHaveBuilt(this.getBuildType(), ['foo'], ...this.getExpectedNwayoBuildExtraArguments());
+		this.thenShouldHavePrintedOnHooks();
 	}
 
 	async testCanBuildForMultipleBundlesIfProvided() {
 		this.givenBundleOption('foo,bar');
 		await this.whenRunningCommand();
 		this.thenNwayoShouldHaveBuilt(this.getBuildType(), ['foo', 'bar'], ...this.getExpectedNwayoBuildExtraArguments());
+		this.thenShouldHavePrintedOnHooks();
 	}
 
 
 	//-- Given
 	//--------------------------------------------------------
 
+	givenFakeDateHelper() {
+		this.app.singleton('helper.date', fakeDateHelperFactory(this.app));
+	}
+
 	givenFakeNwayo() {
 		this.app.singleton('nwayo', fakeNwayo);
+	}
+
+	givenFakeBuilder() {
+		this.app.singleton('nwayo.builder', fakeBuilder);
+		fakeBuilder._hooks = {};
 	}
 
 	givenBuildTypeRepository() {
@@ -83,6 +102,10 @@ class BuildCommandTestCase extends TestCase {
 
 	givenFakeTerminal() {
 		this.app.singleton('terminal', fakeTerminal);
+	}
+
+	givenFakeTranslator() {
+		this.app.singleton('translator', fakeTranslator);
 	}
 
 	givenCommand() {
@@ -135,6 +158,24 @@ class BuildCommandTestCase extends TestCase {
 		this.expect(fakeNwayo._buildAsyncSpy).toHaveBeenCalledTimes(1);
 	}
 
+	thenShouldHavePrintedOnHooks() {
+		this.expect(fakeTerminal.echo).toHaveBeenCalledTimes(4);
+		this.expect(fakeTerminal.startProgress).toHaveBeenCalledTimes(1);
+		this.expect(fakeGauge.show).toHaveBeenCalledTimes(5);
+		this.expect(fakeGauge.show).toHaveBeenNthCalledWith(1, '', 0);
+		this.expect(fakeGauge.show).toHaveBeenNthCalledWith(2, '25%', 0.25);
+		this.expect(fakeGauge.show).toHaveBeenNthCalledWith(3, '50%', 0.5);
+		this.expect(fakeGauge.show).toHaveBeenNthCalledWith(4, '75%', 0.75);
+		this.expect(fakeGauge.show).toHaveBeenNthCalledWith(5, '100%', 1);
+		this.expect(fakeGauge.pulse).toHaveBeenCalledTimes(4); // 200ms / 50ms
+		this.expect(fakeGauge.disable).toHaveBeenCalledTimes(1);
+		const [showOrder]    = [...fakeGauge.show.mock.invocationCallOrder].reverse();
+		const [pulseOrder]   = [...fakeGauge.pulse.mock.invocationCallOrder].reverse();
+		const [disableOrder] = fakeGauge.disable.mock.invocationCallOrder;
+		this.expect(disableOrder).toBeGreaterThan(showOrder);
+		this.expect(disableOrder).toBeGreaterThan(pulseOrder);
+	}
+
 
 	//-- Helpers
 	//--------------------------------------------------------
@@ -168,7 +209,7 @@ class BuildCommandTestCase extends TestCase {
 	}
 
 	getExpectedDescription() {
-		return `Build ${this.getType()}.`;
+		return `Translated: commands.build-${this.getType()}.description`;
 	}
 
 	getExpectedPolicies() {

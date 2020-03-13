@@ -3,16 +3,18 @@
 //--------------------------------------------------------
 'use strict';
 
-const TestCase   = require('../../../TestCase');
-const Builder    = require('../../../../dist/node/services/Builder');
-const Driver     = require('../../../../dist/node/services/Builder/drivers/Driver');
-const fakeDriver = require('./stubs/fakeDriver');
+const TestCase           = require('../../../TestCase');
+const Builder            = require('../../../../dist/node/services/Builder');
+const Driver             = require('../../../../dist/node/services/Builder/drivers/Driver');
+const fakeDriver         = require('./stubs/fakeDriver');
+const fakeProjectService = require('./stubs/fakeProjectService');
 
 
 class BuilderTest extends TestCase {
 
 	beforeEach() {
 		super.beforeEach();
+		this.givenFakeProjectService();
 		this.givenBuilder();
 	}
 
@@ -50,6 +52,10 @@ class BuilderTest extends TestCase {
 	givenFakeDriverAsDefault() {
 		this.givenFakeDriver();
 		this.builder.setDefaultDriver('fake');
+	}
+
+	givenFakeProjectService() {
+		this.app.singleton('nwayo.project', fakeProjectService);
 	}
 
 	givenBuilder() {

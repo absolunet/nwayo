@@ -38,7 +38,9 @@ class Handler extends ExceptionHandler {
 	 * @inheritdoc
 	 */
 	async renderConsole(exception) {
-		await super.renderConsole(exception);
+		if (exception && exception.shouldRender !== false) {
+			await super.renderConsole(exception);
+		}
 	}
 
 }

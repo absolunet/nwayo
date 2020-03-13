@@ -13,7 +13,7 @@ channels:
 
   single:
     driver: file
-    path: '{{LOG_FILE|@/storage/logs/ioc.log}}'
+    path: '{{LOG_FILE|~/.nwayo/nwayo.log}}'
     limit: '{{LOG_FILE_LIMIT|10mb}}'
     level: debug
 

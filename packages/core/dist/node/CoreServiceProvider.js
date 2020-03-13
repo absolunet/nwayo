@@ -17,6 +17,8 @@ var _BuildTypeRepository = _interopRequireDefault(require("./repositories/BuildT
 
 var _NwayoBuildPolicy = _interopRequireDefault(require("./policies/NwayoBuildPolicy"));
 
+var _TerminalDecorator = _interopRequireDefault(require("./services/TerminalDecorator"));
+
 var _InstallComponentsCommand = _interopRequireDefault(require("./console/commands/install/InstallComponentsCommand"));
 
 var _BuildAllCommand = _interopRequireDefault(require("./console/commands/build/BuildAllCommand"));
@@ -48,10 +50,12 @@ class CoreServiceProvider extends _ioc.ServiceProvider {
    */
   register() {
     this.loadAndPublishConfig(this.app.formatPath(__dirname, 'config'));
+    this.loadAndPublishTranslations(this.app.formatPath(__dirname, 'resources', 'lang'));
     this.bindNwayo();
     this.bindBuildType();
     this.bindBuilder();
     this.bindProjectService();
+    this.decorateTerminal();
   }
   /**
    * @inheritdoc
@@ -111,6 +115,16 @@ class CoreServiceProvider extends _ioc.ServiceProvider {
   addBuildPolicies() {
     const nwayoBuildPolicy = this.app.make(_NwayoBuildPolicy.default);
     this.app.make('gate').policy(nwayoBuildPolicy.name, nwayoBuildPolicy.passes.bind(nwayoBuildPolicy));
+  }
+  /**
+   * Decorate default terminal.
+   */
+
+
+  decorateTerminal() {
+    this.app.decorate('terminal', terminal => {
+      return new _TerminalDecorator.default(terminal);
+    });
   }
 
 }
