@@ -2,5 +2,4 @@
 .nwayo-cache
 boilerplate/package-lock.json
 boilerplate/node_modules
-boilerplate/vendor/package-lock.json
-boilerplate/vendor/node_modules
+boilerplate/dist
