@@ -1,13 +1,12 @@
 //--------------------------------------------------------
-//-- Tests - Unit - Fake Gate
+//-- Tests - Unit - Services - Stubs - Fake Path Enum
 //--------------------------------------------------------
 'use strict';
 
 
-const fakeGate = {
-	policy: jest.fn(),
-	register: jest.fn()
+const fakePathEnum = {
+	SOURCES: 'src'
 };
 
 
-module.exports = fakeGate;
+module.exports = fakePathEnum;

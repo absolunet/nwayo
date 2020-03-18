@@ -31,6 +31,8 @@ var _BuildStylesCommand = _interopRequireDefault(require("./console/commands/bui
 
 var _BuildAssetsCommand = _interopRequireDefault(require("./console/commands/build/BuildAssetsCommand"));
 
+var _ProjectBootstrapCommand = _interopRequireDefault(require("./console/commands/project/ProjectBootstrapCommand"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //--------------------------------------------------------
@@ -65,7 +67,7 @@ class CoreServiceProvider extends _ioc.ServiceProvider {
   boot() {
     this.addDefaultBuildTypes();
     this.addBuildPolicies();
-    this.loadCommands([_InstallComponentsCommand.default, _BuildAllCommand.default, _BuildWatchCommand.default, _BuildScriptsCommand.default, _BuildStylesCommand.default, _BuildAssetsCommand.default]);
+    this.loadCommands([_InstallComponentsCommand.default, _BuildAllCommand.default, _BuildWatchCommand.default, _BuildScriptsCommand.default, _BuildStylesCommand.default, _BuildAssetsCommand.default, _ProjectBootstrapCommand.default]);
   }
   /**
    * Bind nwayo orchestrator.
@@ -113,8 +115,7 @@ class CoreServiceProvider extends _ioc.ServiceProvider {
 
 
   addBuildPolicies() {
-    const nwayoBuildPolicy = this.app.make(_NwayoBuildPolicy.default);
-    this.app.make('gate').policy(nwayoBuildPolicy.name, nwayoBuildPolicy.passes.bind(nwayoBuildPolicy));
+    this.app.make('gate').register(_NwayoBuildPolicy.default);
   }
   /**
    * Decorate default terminal.

@@ -17,6 +17,7 @@ import BuildWatchCommand        from './console/commands/build/BuildWatchCommand
 import BuildScriptsCommand      from './console/commands/build/BuildScriptsCommand';
 import BuildStylesCommand       from './console/commands/build/BuildStylesCommand';
 import BuildAssetsCommand       from './console/commands/build/BuildAssetsCommand';
+import ProjectBootstrapCommand  from './console/commands/project/ProjectBootstrapCommand';
 
 
 /**
@@ -54,7 +55,8 @@ class CoreServiceProvider extends ServiceProvider {
 			BuildWatchCommand,
 			BuildScriptsCommand,
 			BuildStylesCommand,
-			BuildAssetsCommand
+			BuildAssetsCommand,
+			ProjectBootstrapCommand
 		]);
 	}
 
@@ -101,9 +103,7 @@ class CoreServiceProvider extends ServiceProvider {
 	 * Add build policies to prevent useless build commands to show up.
 	 */
 	addBuildPolicies() {
-		const nwayoBuildPolicy = this.app.make(NwayoBuildPolicy);
-
-		this.app.make('gate').policy(nwayoBuildPolicy.name, nwayoBuildPolicy.passes.bind(nwayoBuildPolicy));
+		this.app.make('gate').register(NwayoBuildPolicy);
 	}
 
 	/**

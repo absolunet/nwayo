@@ -1,4 +1,5 @@
 {
+  "name": "@nwayo-components/cms",
   "private": true,
   "license": "UNLICENSED",
   "dependencies": {

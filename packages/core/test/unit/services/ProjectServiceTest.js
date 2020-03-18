@@ -3,9 +3,10 @@
 //--------------------------------------------------------
 'use strict';
 
-const TestCase = require('../../TestCase');
-const ProjectService = require('../../../dist/node/services/ProjectService');
+const TestCase        = require('../../TestCase');
+const ProjectService  = require('../../../dist/node/services/ProjectService');
 const fakeFileManager = require('./stubs/fakeFileManager');
+const fakePathEnum    = require('./stubs/fakePathEnum');
 
 
 class ProjectServiceTest extends TestCase {
@@ -14,6 +15,7 @@ class ProjectServiceTest extends TestCase {
 		super.beforeEach();
 		this.givenMockedProcessCwd();
 		this.givenFakeFileManager();
+		this.givenFakePathEnum();
 		this.givenProjectService();
 	}
 
@@ -266,6 +268,10 @@ class ProjectServiceTest extends TestCase {
 		this.app.singleton('file', fakeFileManager);
 		fakeFileManager._files = {};
 		fakeFileManager._folders = [];
+	}
+
+	givenFakePathEnum() {
+		this.app.singleton('nwayo.constant.path', fakePathEnum);
 	}
 
 	givenProjectService() {

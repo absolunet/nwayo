@@ -10,7 +10,7 @@ var _privateRegistry = _interopRequireDefault(require("@absolunet/private-regist
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //--------------------------------------------------------
-//-- Nwayo Core - Services - Project Service
+//-- Nwayo core - Services - Project Path Service
 //--------------------------------------------------------
 
 /**
@@ -44,7 +44,7 @@ class ProjectService {
    * @type {Array<string>}
    */
   static get dependencies() {
-    return ['app', 'file', 'helper.path'];
+    return ['app', 'file', 'helper.path', 'nwayo.constant.path'];
   }
   /**
    * @inheritdoc
@@ -90,7 +90,7 @@ class ProjectService {
 
 
   getSourcePath() {
-    return this.pathHelper.join(this.getRootPath(), 'src');
+    return this.pathHelper.join(this.getRootPath(), this.nwayoConstantPath.SOURCES);
   }
   /**
    * Get project's components path.
@@ -119,7 +119,11 @@ class ProjectService {
       }
     }
 
-    return this.pathHelper.join(this.getComponentsPath(), component);
+    try {
+      return require.resolve(`@nwayo-components/${component}`);
+    } catch (error) {
+      return this.pathHelper.join(this.getComponentsPath(), component);
+    }
   }
   /**
    * Get project's bundles path.

@@ -13,6 +13,10 @@ var _ContextService = _interopRequireDefault(require("../services/ContextService
 
 var _LegacyHandler = _interopRequireDefault(require("../handlers/LegacyHandler"));
 
+var _Package = _interopRequireDefault(require("../enums/Package"));
+
+var _Path = _interopRequireDefault(require("../enums/Path"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //--------------------------------------------------------
@@ -42,6 +46,7 @@ class AppServiceProvider extends _ioc.ServiceProvider {
     this.bindDependencyManager();
     this.bindContextService();
     this.bindLegacyHandler();
+    this.bindConstants();
     const context = this.app.make('nwayo.context');
 
     if (!context.isInCliFolder() && context.hasNodeModulesFolder()) {
@@ -94,6 +99,31 @@ class AppServiceProvider extends _ioc.ServiceProvider {
 
   bindLegacyHandler() {
     this.app.singleton('nwayo.legacy.handler', _LegacyHandler.default);
+  }
+  /**
+   * Bind constants.
+   */
+
+
+  bindConstants() {
+    this.bindPackageConstants();
+    this.bindPathConstants();
+  }
+  /**
+   * Bind package constants.
+   */
+
+
+  bindPackageConstants() {
+    this.app.singleton('nwayo.constant.package', _Package.default);
+  }
+  /**
+   * Bind path constants.
+   */
+
+
+  bindPathConstants() {
+    this.app.singleton('nwayo.constant.path', _Path.default);
   }
 
 }

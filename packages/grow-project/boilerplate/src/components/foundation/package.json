@@ -1,4 +1,5 @@
 {
+  "name": "@nwayo-components/foundation",
   "private": true,
   "license": "UNLICENSED",
   "dependencies": {

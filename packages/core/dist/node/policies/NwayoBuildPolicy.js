@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _ioc = require("@absolunet/ioc");
+
 //--------------------------------------------------------
 //-- Nwayo Core - Policies - Nwayo Build
 //--------------------------------------------------------
@@ -15,7 +17,7 @@ exports.default = void 0;
  * @memberof nwayo.core.policies
  * @hideconstructor
  */
-class NwayoBuildPolicy {
+class NwayoBuildPolicy extends _ioc.Policy {
   /**
    * Class dependencies: <code>['nwayo']</code>.
    *

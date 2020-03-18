@@ -1,0 +1,111 @@
+//--------------------------------------------------------
+//-- Node IoC - Command - Project - Project Bootstrap Command
+//--------------------------------------------------------
+
+import { Command } from '@absolunet/ioc';
+
+
+/**
+ * ProjectBootstrapCommand.
+ */
+class ProjectBootstrapCommand extends Command {
+
+	/**
+	 * Class dependencies: <code>['file.system.async', 'nwayo.constant.package', 'nwayo.project', 'helper.path']</code>.
+	 *
+	 * @type {Array<string>}
+	 */
+	static get dependencies() {
+		return (super.dependencies || []).concat(['file.system.async', 'nwayo.constant.package', 'nwayo.project', 'helper.path']);
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	get name() {
+		return 'project:bootstrap';
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	get description() {
+		return 'Bootstrap all the project components into the package.json.';
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	async handle() {
+		this.info(`Bootstrapping local components into source's "package.json"...`);
+		const components = await this.getComponentsMapping();
+		await this.updateDependencies(components);
+		this.success('Bootstrap completed!');
+		this.info('To install components, please run "install:components" command.');
+	}
+
+	/**
+	 * Get all components of the current project, mapped as "package.json" dependency entries.
+	 *
+	 * @returns {Array<string>} A list of all relative paths to components.
+	 */
+	async getComponentsMapping() {
+		const sourcePath = this.nwayoProject.getSourcePath();
+		const componentsPath = this.nwayoProject.getComponentsPath();
+		const componentsRelativePath = this.pathHelper.relative(sourcePath, componentsPath);
+
+		const files = await this.fs.scandir(componentsPath, 'file', { recursive: true });
+
+		const components = await Promise.all(files
+			.filter((file) => {
+				return file.endsWith(`/${this.nwayoConstantPackage.PACKAGE_JSON}`);
+			}).map(async (file) => {
+				const fullPath      = this.pathHelper.join(componentsPath, file);
+				const packageJson   = await this.fs.readJson(fullPath);
+				const { name }      = packageJson;
+				const componentPath = this.pathHelper.join(componentsRelativePath, this.pathHelper.dirname(file));
+
+				return [name, `file:${componentPath}`];
+			}));
+
+		return Object.fromEntries(components);
+	}
+
+	/**
+	 * Update dependencies in "package.json" by resetting local components.
+	 *
+	 * @param {object<string, string>} dependencies - A key-value pair that match component name to its path.
+	 * @returns {Promise} The async process promise.
+	 */
+	async updateDependencies(dependencies) {
+		const packageJsonPath = this.app.formatPath(this.nwayoProject.getSourcePath(), this.nwayoConstantPackage.PACKAGE_JSON);
+		const packageJson = await this.fs.readJson(packageJsonPath);
+		const originalDependencies = Object.fromEntries(Object.entries(packageJson.dependencies || {}).filter(([, value]) => {
+			return !value.startsWith('file');
+		}));
+		packageJson.dependencies = Object.assign(originalDependencies, dependencies);
+		await this.fs.writeJson(packageJsonPath, packageJson, { space: 2 });
+	}
+
+	/**
+	 * Path helper.
+	 *
+	 * @type {ioc.support.helpers.PathHelper}
+	 */
+	get pathHelper() {
+		return this.helperPath;
+	}
+
+	/**
+	 * Async file system.
+	 *
+	 * @returns {ioc.file.system.Async}
+	 */
+	get fs() {
+		return this.fileSystemAsync;
+	}
+
+}
+
+
+export default ProjectBootstrapCommand;

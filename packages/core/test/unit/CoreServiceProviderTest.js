@@ -9,6 +9,7 @@ const TestCase = require('../TestCase');
 const fakeGate                = require('./stubs/fakeGate');
 const fakeCommandRepository   = require('./stubs/fakeCommandRepository');
 const fakeBuildTypeRepository = require('./stubs/fakeBuildTypeRepository');
+const fakePathEnum            = require('./stubs/fakePathEnum');
 
 const InstallComponentsCommand = require('../../dist/node/console/commands/install/InstallComponentsCommand');
 const BuildAllCommand          = require('../../dist/node/console/commands/build/BuildAllCommand');
@@ -17,6 +18,8 @@ const BuildScriptsCommand      = require('../../dist/node/console/commands/build
 const BuildStylesCommand       = require('../../dist/node/console/commands/build/BuildStylesCommand');
 const BuildWatchCommand        = require('../../dist/node/console/commands/build/BuildWatchCommand');
 
+const NwayoBuildPolicy = require('../../dist/node/policies/NwayoBuildPolicy');
+
 
 class CoreServiceProviderTest extends TestCase {
 
@@ -24,6 +27,7 @@ class CoreServiceProviderTest extends TestCase {
 		super.beforeEach();
 		this.givenFakeGate();
 		this.givenFakeCommandRepository();
+		this.givenFakePathEnum();
 		this.givenCoreServiceProvider();
 	}
 
@@ -102,6 +106,10 @@ class CoreServiceProviderTest extends TestCase {
 		this.app.singleton('command', fakeCommandRepository);
 	}
 
+	givenFakePathEnum() {
+		this.app.singleton('nwayo.constant.path', fakePathEnum);
+	}
+
 	givenFakeBuildTypeRepository() {
 		this.app.decorate('nwayo.build.type', () => {
 			return fakeBuildTypeRepository;
@@ -160,12 +168,7 @@ class CoreServiceProviderTest extends TestCase {
 
 	thenShouldHaveRegisteredNwayoBuildPolicy() {
 		this.thenShouldNotHaveThrown();
-		this.expect(fakeGate.policy).toHaveBeenCalled();
-		const nwayoBuildPolicyCall = fakeGate.policy.mock.calls.find(([name]) => {
-			return name === 'nwayo.build';
-		});
-		this.expect(nwayoBuildPolicyCall).toBeTruthy();
-		this.expect(typeof nwayoBuildPolicyCall[1]).toBe('function');
+		this.expect(fakeGate.register).toHaveBeenCalledWith(NwayoBuildPolicy);
 	}
 
 	thenShouldHaveAddedBuiltType(key, value) {

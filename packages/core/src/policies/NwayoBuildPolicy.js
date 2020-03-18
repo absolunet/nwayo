@@ -3,13 +3,16 @@
 //--------------------------------------------------------
 
 
+import { Policy } from '@absolunet/ioc';
+
+
 /**
  * Nwayo Build Policy.
  *
  * @memberof nwayo.core.policies
  * @hideconstructor
  */
-class NwayoBuildPolicy {
+class NwayoBuildPolicy extends Policy {
 
 	/**
 	 * Class dependencies: <code>['nwayo']</code>.

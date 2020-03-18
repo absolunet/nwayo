@@ -1,4 +1,5 @@
 {
+  "name": "@nwayo-components/form",
   "private": true,
   "license": "UNLICENSED",
   "dependencies": {
