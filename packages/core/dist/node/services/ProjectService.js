@@ -10,7 +10,7 @@ var _privateRegistry = _interopRequireDefault(require("@absolunet/private-regist
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //--------------------------------------------------------
-//-- Nwayo core - Services - Project Path Service
+//-- Nwayo Core - Services - Project Path Service
 //--------------------------------------------------------
 
 /**

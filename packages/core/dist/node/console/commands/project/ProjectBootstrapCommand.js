@@ -8,7 +8,7 @@ exports.default = void 0;
 var _ioc = require("@absolunet/ioc");
 
 //--------------------------------------------------------
-//-- Node IoC - Command - Project - Project Bootstrap Command
+//-- Nwayo Core - Command - Project - Project Bootstrap Command
 //--------------------------------------------------------
 
 /**
@@ -110,7 +110,7 @@ class ProjectBootstrapCommand extends _ioc.Command {
   /**
    * Async file system.
    *
-   * @returns {ioc.file.system.Async}
+   * @type {ioc.file.system.Async}
    */
 
 

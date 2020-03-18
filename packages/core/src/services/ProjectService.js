@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Nwayo core - Services - Project Path Service
+//-- Nwayo Core - Services - Project Path Service
 //--------------------------------------------------------
 
 import __ from '@absolunet/private-registry';

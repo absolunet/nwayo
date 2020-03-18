@@ -88,7 +88,7 @@ class Driver {
 	/**
 	 * Get all dependencies associated with their version.
 	 *
-	 * @returns {Promise<Object<string, string>>} The listed dependencies.
+	 * @returns {Promise<object<string, string>>} The listed dependencies.
 	 */
 	async all() {
 		const { dependencies } = await this.loadPackageJson();
@@ -126,35 +126,6 @@ class Driver {
 	 */
 	isExternal(dependency) {
 		return this.dependencyVersionMatchesRegex(dependency, this.externalVersionRegex);
-	}
-
-	/**
-	 * Add a dependency to the given version.
-	 *
-	 * @param {string} dependency - The dependency name.
-	 * @param {string} version - The dependency version.
-	 * @returns {Promise} The async process promise.
-	 */
-	async add(dependency, version) {
-		const packageJson = await this.loadPackageJson();
-
-		packageJson.dependencies[dependency] = version;
-
-		await this.savePackageJson(packageJson);
-	}
-
-	/**
-	 * Remove a given dependency.
-	 *
-	 * @param {string} dependency
-	 * @returns {Promise<void>}
-	 */
-	async remove(dependency) {
-		const packageJson = await this.loadPackageJson();
-
-		delete packageJson.dependencies[dependency];
-
-		await this.savePackageJson(packageJson);
 	}
 
 	/**
@@ -226,10 +197,10 @@ class Driver {
 	 * @returns {Promise} The async process promise.
 	 */
 	async savePackageJson(packageJson) {
-		if (Object.keys(packageJson.dependencies || {}).length === 0) {
+		if (Object.keys(packageJson.dependencies || {}).length === 0) {
 			delete packageJson.dependencies;
 		}
-		if (Object.keys(packageJson.devDependencies || {}).length === 0) {
+		if (Object.keys(packageJson.devDependencies || {}).length === 0) {
 			delete packageJson.devDependencies;
 		}
 
@@ -239,7 +210,7 @@ class Driver {
 	/**
 	 * Check if a given component version matches the given regular expression.
 	 *
-	 * @param {string} component - The component name.
+	 * @param {string} dependency - The dependency name.
 	 * @param {RegExp} regex - The regular expression.
 	 * @returns {Promise<boolean>} Indicates that the component version matches the given regular expression.
 	 */

@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Node IoC - Console - Command - Build - Abstract Build
+//-- Nwayo Core - Console - Command - Build - Abstract Build
 //--------------------------------------------------------
 
 import { NotImplementedError, mixins } from '@absolunet/ioc';

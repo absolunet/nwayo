@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Node IoC - Command - Project - Project Bootstrap Command
+//-- Nwayo Core - Command - Project - Project Bootstrap Command
 //--------------------------------------------------------
 
 import { Command } from '@absolunet/ioc';
@@ -99,7 +99,7 @@ class ProjectBootstrapCommand extends Command {
 	/**
 	 * Async file system.
 	 *
-	 * @returns {ioc.file.system.Async}
+	 * @type {ioc.file.system.Async}
 	 */
 	get fs() {
 		return this.fileSystemAsync;

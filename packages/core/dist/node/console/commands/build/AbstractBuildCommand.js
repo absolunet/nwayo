@@ -12,7 +12,7 @@ var _Command = _interopRequireDefault(require("../../Command"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //--------------------------------------------------------
-//-- Node IoC - Console - Command - Build - Abstract Build
+//-- Nwayo Core - Console - Command - Build - Abstract Build
 //--------------------------------------------------------
 
 /**

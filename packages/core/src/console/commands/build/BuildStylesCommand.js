@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Node IoC - Console - Command - Build - Build Styles
+//-- Nwayo Core - Console - Command - Build - Build Styles
 //--------------------------------------------------------
 
 import AbstractBuildCommand from './AbstractBuildCommand';
