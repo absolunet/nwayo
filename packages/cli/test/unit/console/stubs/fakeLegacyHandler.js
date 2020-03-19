@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- nwayo - Test - Unit - Console - Stubs - Fake Legacy Handler
+//-- Nwayo - Test - Unit - Console - Stubs - Fake Legacy Handler
 //--------------------------------------------------------
 'use strict';
 

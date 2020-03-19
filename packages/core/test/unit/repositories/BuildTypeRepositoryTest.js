@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Node IoC - Test - Unit - Build Type Repository
+//-- Nwayo Core - Test - Unit - Repositories - Build Type Repository
 //--------------------------------------------------------
 'use strict';
 

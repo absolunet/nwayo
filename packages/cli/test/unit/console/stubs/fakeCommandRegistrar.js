@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- nwayo - Test - Unit - Console - Stubs - Fake Command Registrar
+//-- Nwayo - Test - Unit - Console - Stubs - Fake Command Registrar
 //--------------------------------------------------------
 'use strict';
 

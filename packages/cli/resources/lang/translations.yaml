@@ -15,10 +15,6 @@
 #     baz:            # Will create the "foo.bar.baz" translation key.
 #       en: qux
 
-Installing {{type}}:
-  en: Installing {{type}}
-  fr: Installation des {{type}}
-
 components:
   en: components
   fr: composantes

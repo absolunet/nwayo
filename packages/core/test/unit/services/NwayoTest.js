@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Node IoC - Test - Unit - Services - Nwayo
+//-- Nwayo Core - Test - Unit - Services - Nwayo
 //--------------------------------------------------------
 'use strict';
 

@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Node IoC - Test - Unit - Services - Builder - Drivers - Laravel Mix Driver
+//-- Nwayo Core - Test - Unit - Services - Builder - Drivers - Laravel Mix Driver
 //--------------------------------------------------------
 'use strict';
 

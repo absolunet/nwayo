@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Tests - Unit - Console - Commands - Build - Stubs - Fake Translator
+//-- Nwayo Core - Test - Unit - Console - Commands - Stubs - Fake Translator
 //--------------------------------------------------------
 'use strict';
 

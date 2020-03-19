@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- nwayo core - Test - Unit - Commands - Install - Install Components Command
+//-- Nwayo Core - Test - Unit - Console - Commands - Install - Install Components Command
 //--------------------------------------------------------
 'use strict';
 
@@ -88,7 +88,7 @@ class InstallComponentsCommandTest extends TestCase {
 		this.thenShouldNotHaveThrown();
 		this.expect(fakeDependencyManager.inFolder).toHaveBeenCalledWith('/path/to/fake/project/root/src');
 		this.expect(fakeDependencyManagerDriver.install).toHaveBeenCalled();
-		this.expect(fakeDependencyManagerDriver.installSpy).toHaveBeenCalled();
+		this.expect(fakeDependencyManagerDriver._installSpy).toHaveBeenCalled();
 	}
 
 	thenRestoreFakeProjectService() {

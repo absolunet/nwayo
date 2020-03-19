@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- nwayo - Test - Unit - Services - Dependency Manager - Drivers - NPM Driver
+//-- Nwayo - Test - Unit - Services - Dependency Manager - Drivers - NPM Driver
 //--------------------------------------------------------
 'use strict';
 

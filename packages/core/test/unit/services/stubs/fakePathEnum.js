@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Tests - Unit - Services - Stubs - Fake Path Enum
+//-- Nwayo Core - Test - Unit - Services - Stubs - Fake Path Enum
 //--------------------------------------------------------
 'use strict';
 

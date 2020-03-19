@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Tests - Unit - Console - Commands - Build - Stubs - Fake Terminal
+//-- Nwayo Core - Test - Unit - Console - Commands - Build - Stubs - Fake Terminal
 //--------------------------------------------------------
 'use strict';
 

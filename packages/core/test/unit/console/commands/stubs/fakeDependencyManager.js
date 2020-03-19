@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- nwayo core - Test - Unit - Console - Commands - Stubs - Fake Dependency Manager
+//-- Nwayo Core - Test - Unit - Console - Commands - Stubs - Fake Dependency Manager
 //--------------------------------------------------------
 'use strict';
 

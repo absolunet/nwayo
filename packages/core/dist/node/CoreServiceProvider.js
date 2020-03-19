@@ -15,6 +15,8 @@ var _Builder = _interopRequireDefault(require("./services/Builder"));
 
 var _BuildTypeRepository = _interopRequireDefault(require("./repositories/BuildTypeRepository"));
 
+var _ProjectComponentRepository = _interopRequireDefault(require("./repositories/ProjectComponentRepository"));
+
 var _NwayoBuildPolicy = _interopRequireDefault(require("./policies/NwayoBuildPolicy"));
 
 var _TerminalDecorator = _interopRequireDefault(require("./services/TerminalDecorator"));
@@ -57,6 +59,7 @@ class CoreServiceProvider extends _ioc.ServiceProvider {
     this.bindBuildType();
     this.bindBuilder();
     this.bindProjectService();
+    this.bindProjectComponentRepository();
     this.decorateTerminal();
   }
   /**
@@ -94,6 +97,14 @@ class CoreServiceProvider extends _ioc.ServiceProvider {
     this.app.singleton('nwayo.project', _ProjectService.default);
   }
   /**
+   * Bind project component repository.
+   */
+
+
+  bindProjectComponentRepository() {
+    this.app.singleton('nwayo.project.component', _ProjectComponentRepository.default);
+  }
+  /**
    * Bind build type repository.
    */
 
@@ -102,7 +113,7 @@ class CoreServiceProvider extends _ioc.ServiceProvider {
     this.app.singleton('nwayo.build.type', _BuildTypeRepository.default);
   }
   /**
-   * Add default buld types.
+   * Add default build types.
    */
 
 

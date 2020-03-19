@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- nwayo - Test - Unit - Services - Dependency Manager
+//-- Nwayo - Test - Unit - Services - Dependency Manager
 //--------------------------------------------------------
 'use strict';
 

@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Tests - Unit - Console - Commands - Build - Stubs - Fake Builder
+//-- Nwayo Core - Test - Unit - Console - Commands - Build - Stubs - Fake Builder
 //--------------------------------------------------------
 'use strict';
 

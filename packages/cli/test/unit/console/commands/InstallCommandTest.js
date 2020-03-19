@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Nwayo - Test - Unit - Console - Commands - Install
+//-- Nwayo - Test - Unit - Console - Commands - Install Command
 //--------------------------------------------------------
 'use strict';
 
@@ -32,14 +32,14 @@ class InstallCommandTest extends TestCase {
 		this.givenScope('workflow');
 		await this.whenRunningCommand();
 		this.thenShouldHaveCalledCommand('install:extensions');
-		this.thenShouldHaveShownDeprecationWarning('messages.deprecatedCommand', 'install:extensions');
+		this.thenShouldHaveShownDeprecationWarning('commands.messages.deprecated', 'install:extensions');
 	}
 
 	async testCanInstallVendorsWithDeprecationWarning() {
 		this.givenScope('vendors');
 		await this.whenRunningCommand();
 		this.thenShouldHaveCalledCommand('install:components');
-		this.thenShouldHaveShownDeprecationWarning('messages.deprecatedCommand', 'install:components');
+		this.thenShouldHaveShownDeprecationWarning('commands.messages.deprecated', 'install:components');
 	}
 
 	async testThrowsWhenInstallingUnknownScope() {

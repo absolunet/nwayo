@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Node IoC - Test - Unit - Nwayo Build Policy
+//-- Nwayo Core - Test - Unit - Nwayo Build Policy
 //--------------------------------------------------------
 'use strict';
 

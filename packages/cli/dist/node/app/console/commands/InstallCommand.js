@@ -34,7 +34,6 @@ class InstallCommand extends _LegacyCommand.default {
 
   get description() {
     return this.t('commands.install.description', {
-      type: this.t('deprecated').toUpperCase(),
       command: Object.keys(this.legacyCommandMapping).join('|')
     });
   }
@@ -82,15 +81,12 @@ class InstallCommand extends _LegacyCommand.default {
 
 
   getLegacyCommandName() {
-    const command = this.legacyCommandMapping[this.parameter('scope')];
+    const scope = this.parameter('scope');
+    const command = this.legacyCommandMapping[scope];
 
     if (!command) {
-      const commandMapping = Object.values(this.legacyCommandMapping).map(c => {
-        return `"${c}"`;
-      }).join(', ');
-      throw new TypeError(this.t('messages.nonExistingCommand', {
-        command: `: [${commandMapping}]`
-      }));
+      const commandMapping = Object.values(this.legacyCommandMapping).join(', ');
+      throw new TypeError(`Cannot install [${scope}]. Please use a scope in the list [${commandMapping}].`);
     }
 
     return command;
@@ -101,7 +97,7 @@ class InstallCommand extends _LegacyCommand.default {
 
 
   get deprecationNotice() {
-    return this.t('messages.deprecatedCommand', {
+    return this.t('commands.messages.deprecated', {
       command: this.getLegacyCommandName()
     });
   }

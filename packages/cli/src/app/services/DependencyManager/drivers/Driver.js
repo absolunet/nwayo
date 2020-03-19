@@ -90,10 +90,10 @@ class Driver {
 	 *
 	 * @returns {Promise<object<string, string>>} The listed dependencies.
 	 */
-	async all() {
-		const { dependencies } = await this.loadPackageJson();
+	async all(type = this.nwayoConstantPackage.DEPENDENCIES) {
+		const packageJson = await this.loadPackageJson();
 
-		return dependencies;
+		return packageJson[type] || {};
 	}
 
 	/**
@@ -128,17 +128,39 @@ class Driver {
 		return this.dependencyVersionMatchesRegex(dependency, this.externalVersionRegex);
 	}
 
+	async save(dependency, version, type = this.nwayoConstantPackage.DEPENDENCIES) {
+		const packageJson = await this.loadPackageJson();
+
+		packageJson[type][dependency] = version;
+
+		await this.savePackageJson(packageJson);
+	}
+
+	async saveLocal(dependency, relativePath, type) {
+		await this.save(dependency, this.getPathAsLocalVersion(relativePath), type);
+	}
+
+	async saveMultiple(dependencies, type = this.nwayoConstantPackage.DEPENDENCIES) {
+		const packageJson = await this.loadPackageJson();
+
+		Object.assign(packageJson[type], dependencies);
+
+		await this.savePackageJson(packageJson);
+	}
+
+	async saveMultipleLocal(dependencies, type) {
+		await this.saveMultiple(Object.fromEntries(Object.entries(dependencies).map(([dependency, relativePath]) => {
+			return [dependency, this.getPathAsLocalVersion(relativePath)];
+		})), type);
+	}
+
 	/**
 	 * Clear all dependencies from the "package.json" file.
 	 *
 	 * @returns {Promise} The async process promise.
 	 */
-	async clear() {
-		const packageJson = await this.loadPackageJson();
-
-		packageJson.dependencies = {};
-
-		await this.savePackageJson(packageJson);
+	async clear(type = this.nwayoConstantPackage.DEPENDENCIES) {
+		await this.clearByRegex(/.*/, type);
 	}
 
 	/**
@@ -146,8 +168,8 @@ class Driver {
 	 *
 	 * @returns {Promise} The async process promise.
 	 */
-	async clearLocal() {
-		await this.clearByRegex(this.localVersionRegex);
+	async clearLocal(type) {
+		await this.clearByRegex(this.localVersionRegex, type);
 	}
 
 	/**
@@ -155,20 +177,21 @@ class Driver {
 	 *
 	 * @returns {Promise} The async process promise.
 	 */
-	async clearExternal() {
-		await this.clearByRegex(this.externalVersionRegex);
+	async clearExternal(type) {
+		await this.clearByRegex(this.externalVersionRegex, type);
 	}
 
 	/**
 	 * Clear all dependencies that version match the given regular expression.
 	 *
 	 * @param {RegExp} regex - The regular expression.
+	 * @param {RegExp} [type='dependencies'] - The dependency type to clear.
 	 * @returns {Promise} The async process promise.
 	 */
-	async clearByRegex(regex) {
+	async clearByRegex(regex, type = this.nwayoConstantPackage.DEPENDENCIES) {
 		const packageJson = await this.loadPackageJson();
 
-		Object.entries(packageJson.dependencies).forEach(([name, version], i, dependencies) => {
+		Object.entries(packageJson[type]).forEach(([name, version], i, dependencies) => {
 			if (regex.test(version)) {
 				delete dependencies[name];
 			}
@@ -184,8 +207,11 @@ class Driver {
 	 */
 	async loadPackageJson() {
 		const packageJson = await this.fs.readJson(this.packageJsonPath);
-		packageJson.dependencies    = packageJson.dependencies || {};
-		packageJson.devDependencies = packageJson.devDependencies || {};
+
+		const { DEPENDENCIES, DEV_DEPENDENCIES } = this.nwayoConstantPackage;
+
+		packageJson[DEPENDENCIES]     = packageJson[DEPENDENCIES] || {};
+		packageJson[DEV_DEPENDENCIES] = packageJson[DEV_DEPENDENCIES] || {};
 
 		return packageJson;
 	}
@@ -197,14 +223,19 @@ class Driver {
 	 * @returns {Promise} The async process promise.
 	 */
 	async savePackageJson(packageJson) {
-		if (Object.keys(packageJson.dependencies || {}).length === 0) {
-			delete packageJson.dependencies;
-		}
-		if (Object.keys(packageJson.devDependencies || {}).length === 0) {
-			delete packageJson.devDependencies;
-		}
+		const { DEPENDENCIES, DEV_DEPENDENCIES } = this.nwayoConstantPackage;
 
-		await this.fs.writeJson(this.packageJsonPath, packageJson);
+		[DEPENDENCIES, DEV_DEPENDENCIES].forEach((type) => {
+			if (Object.keys(packageJson[type] || {}).length === 0) {
+				delete packageJson[type];
+			} else {
+				packageJson[type] = Object.fromEntries(Object.entries(packageJson[type]).sort(([a], [b]) => {
+					return a.localeCompare(b);
+				}));
+			}
+		});
+
+		await this.fs.writeJson(this.packageJsonPath, packageJson, { space: 2 });
 	}
 
 	/**
@@ -214,14 +245,24 @@ class Driver {
 	 * @param {RegExp} regex - The regular expression.
 	 * @returns {Promise<boolean>} Indicates that the component version matches the given regular expression.
 	 */
-	async dependencyVersionMatchesRegex(dependency, regex) {
-		const dependencies = await this.all();
+	async dependencyVersionMatchesRegex(dependency, regex, type) {
+		const dependencies = await this.all(type);
 
 		if (!Object.prototype.hasOwnProperty.call(dependencies, dependency)) {
 			return false;
 		}
 
 		return regex.test(dependencies[dependency]);
+	}
+
+	/**
+	 * Convert relative path to valid version identifier, such as "file:foo/bar".
+	 *
+	 * @param {string} relativePath - The dependency relative path.
+	 * @returns {string} The local version identifier.
+	 */
+	getPathAsLocalVersion(relativePath) {
+		return `${this.localIdentifier}${relativePath}`;
 	}
 
 	/**
@@ -239,7 +280,7 @@ class Driver {
 	 * @type {string}
 	 */
 	get localIdentifier() {
-		return 'file:';
+		return this.nwayoConstantPackage.LOCAL_IDENTIFIER;
 	}
 
 	/**

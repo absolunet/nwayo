@@ -107,11 +107,9 @@ class Driver {
    */
 
 
-  async all() {
-    const {
-      dependencies
-    } = await this.loadPackageJson();
-    return dependencies;
+  async all(type = this.nwayoConstantPackage.DEPENDENCIES) {
+    const packageJson = await this.loadPackageJson();
+    return packageJson[type] || {};
   }
   /**
    * Check if the given dependency is listed in the "package.json" file.
@@ -147,6 +145,28 @@ class Driver {
   isExternal(dependency) {
     return this.dependencyVersionMatchesRegex(dependency, this.externalVersionRegex);
   }
+
+  async save(dependency, version, type = this.nwayoConstantPackage.DEPENDENCIES) {
+    const packageJson = await this.loadPackageJson();
+    packageJson[type][dependency] = version;
+    await this.savePackageJson(packageJson);
+  }
+
+  async saveLocal(dependency, relativePath, type) {
+    await this.save(dependency, this.getPathAsLocalVersion(relativePath), type);
+  }
+
+  async saveMultiple(dependencies, type = this.nwayoConstantPackage.DEPENDENCIES) {
+    const packageJson = await this.loadPackageJson();
+    Object.assign(packageJson[type], dependencies);
+    await this.savePackageJson(packageJson);
+  }
+
+  async saveMultipleLocal(dependencies, type) {
+    await this.saveMultiple(Object.fromEntries(Object.entries(dependencies).map(([dependency, relativePath]) => {
+      return [dependency, this.getPathAsLocalVersion(relativePath)];
+    })), type);
+  }
   /**
    * Clear all dependencies from the "package.json" file.
    *
@@ -154,10 +174,8 @@ class Driver {
    */
 
 
-  async clear() {
-    const packageJson = await this.loadPackageJson();
-    packageJson.dependencies = {};
-    await this.savePackageJson(packageJson);
+  async clear(type = this.nwayoConstantPackage.DEPENDENCIES) {
+    await this.clearByRegex(/.*/, type);
   }
   /**
    * Clear all local dependencies from the "package.json" file.
@@ -166,8 +184,8 @@ class Driver {
    */
 
 
-  async clearLocal() {
-    await this.clearByRegex(this.localVersionRegex);
+  async clearLocal(type) {
+    await this.clearByRegex(this.localVersionRegex, type);
   }
   /**
    * Clear all external dependencies from the "package.json" file.
@@ -176,20 +194,21 @@ class Driver {
    */
 
 
-  async clearExternal() {
-    await this.clearByRegex(this.externalVersionRegex);
+  async clearExternal(type) {
+    await this.clearByRegex(this.externalVersionRegex, type);
   }
   /**
    * Clear all dependencies that version match the given regular expression.
    *
    * @param {RegExp} regex - The regular expression.
+   * @param {RegExp} [type='dependencies'] - The dependency type to clear.
    * @returns {Promise} The async process promise.
    */
 
 
-  async clearByRegex(regex) {
+  async clearByRegex(regex, type = this.nwayoConstantPackage.DEPENDENCIES) {
     const packageJson = await this.loadPackageJson();
-    Object.entries(packageJson.dependencies).forEach(([name, version], i, dependencies) => {
+    Object.entries(packageJson[type]).forEach(([name, version], i, dependencies) => {
       if (regex.test(version)) {
         delete dependencies[name];
       }
@@ -205,8 +224,12 @@ class Driver {
 
   async loadPackageJson() {
     const packageJson = await this.fs.readJson(this.packageJsonPath);
-    packageJson.dependencies = packageJson.dependencies || {};
-    packageJson.devDependencies = packageJson.devDependencies || {};
+    const {
+      DEPENDENCIES,
+      DEV_DEPENDENCIES
+    } = this.nwayoConstantPackage;
+    packageJson[DEPENDENCIES] = packageJson[DEPENDENCIES] || {};
+    packageJson[DEV_DEPENDENCIES] = packageJson[DEV_DEPENDENCIES] || {};
     return packageJson;
   }
   /**
@@ -218,15 +241,22 @@ class Driver {
 
 
   async savePackageJson(packageJson) {
-    if (Object.keys(packageJson.dependencies || {}).length === 0) {
-      delete packageJson.dependencies;
-    }
-
-    if (Object.keys(packageJson.devDependencies || {}).length === 0) {
-      delete packageJson.devDependencies;
-    }
-
-    await this.fs.writeJson(this.packageJsonPath, packageJson);
+    const {
+      DEPENDENCIES,
+      DEV_DEPENDENCIES
+    } = this.nwayoConstantPackage;
+    [DEPENDENCIES, DEV_DEPENDENCIES].forEach(type => {
+      if (Object.keys(packageJson[type] || {}).length === 0) {
+        delete packageJson[type];
+      } else {
+        packageJson[type] = Object.fromEntries(Object.entries(packageJson[type]).sort(([a], [b]) => {
+          return a.localeCompare(b);
+        }));
+      }
+    });
+    await this.fs.writeJson(this.packageJsonPath, packageJson, {
+      space: 2
+    });
   }
   /**
    * Check if a given component version matches the given regular expression.
@@ -237,14 +267,25 @@ class Driver {
    */
 
 
-  async dependencyVersionMatchesRegex(dependency, regex) {
-    const dependencies = await this.all();
+  async dependencyVersionMatchesRegex(dependency, regex, type) {
+    const dependencies = await this.all(type);
 
     if (!Object.prototype.hasOwnProperty.call(dependencies, dependency)) {
       return false;
     }
 
     return regex.test(dependencies[dependency]);
+  }
+  /**
+   * Convert relative path to valid version identifier, such as "file:foo/bar".
+   *
+   * @param {string} relativePath - The dependency relative path.
+   * @returns {string} The local version identifier.
+   */
+
+
+  getPathAsLocalVersion(relativePath) {
+    return `${this.localIdentifier}${relativePath}`;
   }
   /**
    * The "package.json" file path from current folder.
@@ -264,7 +305,7 @@ class Driver {
 
 
   get localIdentifier() {
-    return 'file:';
+    return this.nwayoConstantPackage.LOCAL_IDENTIFIER;
   }
   /**
    * Local version regular expression.

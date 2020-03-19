@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Node IoC - Test - Unit - Console - Commands - Build Scripts Command
+//-- Nwayo Core - Test - Unit - Console - Commands - Build Scripts Command
 //--------------------------------------------------------
 'use strict';
 

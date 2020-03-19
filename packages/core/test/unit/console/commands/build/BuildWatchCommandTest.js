@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Node IoC - Test - Unit - Console - Commands - Build Watch Command
+//-- Nwayo Core - Test - Unit - Console - Commands - Build Watch Command
 //--------------------------------------------------------
 'use strict';
 

@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Node IoC - Test - Unit - Console - Commands - Build Assets Command
+//-- Nwayo Core - Test - Unit - Console - Commands - Build Assets Command
 //--------------------------------------------------------
 'use strict';
 

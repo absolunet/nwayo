@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Node IoC - Test - Unit - Console - Commands - Build Command Test Case
+//-- Nwayo Core - Test - Unit - Console - Commands - Build Command Test Case
 //--------------------------------------------------------
 'use strict';
 
@@ -11,7 +11,7 @@ const fakeDateHelperFactory   = require('./stubs/fakeDateHelperFactory');
 const fakeNwayo               = require('./stubs/fakeNwayo');
 const fakeTerminal            = require('./stubs/fakeTerminal');
 const fakeGauge               = require('./stubs/fakeGauge');
-const fakeTranslator          = require('./stubs/fakeTranslator');
+const fakeTranslator          = require('../stubs/fakeTranslator');
 
 
 class BuildCommandTestCase extends TestCase {

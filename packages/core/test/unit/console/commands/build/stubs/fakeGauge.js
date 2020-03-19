@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Tests - Unit - Console - Commands - Build - Stubs - Fake Gauge
+//-- Nwayo Core - Test - Unit - Console - Commands - Build - Stubs - Fake Gauge
 //--------------------------------------------------------
 'use strict';
 

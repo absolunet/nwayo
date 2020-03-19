@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- nwayo - Test - Unit - Services - Legacy - Stubs - Fake File Manager
+//-- Nwayo - Test - Unit - Services - Legacy - Stubs - Fake File Manager
 //--------------------------------------------------------
 'use strict';
 

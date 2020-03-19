@@ -1,22 +1,25 @@
 //--------------------------------------------------------
-//-- Nwayo Core - Command - Project - Project Bootstrap Command
+//-- Nwayo Core - Console - Command - Project - Project Bootstrap
 //--------------------------------------------------------
 
-import { Command } from '@absolunet/ioc';
+import Command from '../../Command';
 
 
 /**
- * ProjectBootstrapCommand.
+ * Command that bootstrap components into source code's package manager.
+ *
+ * @memberof nwayo.core.console.commands.project
+ * @augments nwayo.core.console.Command
  */
 class ProjectBootstrapCommand extends Command {
 
 	/**
-	 * Class dependencies: <code>['file.system.async', 'nwayo.constant.package', 'nwayo.project', 'helper.path']</code>.
+	 * Class dependencies: <code>['nwayo.project', 'dependency', 'nwayo.project.component']</code>.
 	 *
 	 * @type {Array<string>}
 	 */
 	static get dependencies() {
-		return (super.dependencies || []).concat(['file.system.async', 'nwayo.constant.package', 'nwayo.project', 'helper.path']);
+		return (super.dependencies || []).concat(['nwayo.project', 'dependency', 'nwayo.project.component']);
 	}
 
 	/**
@@ -30,79 +33,66 @@ class ProjectBootstrapCommand extends Command {
 	 * @inheritdoc
 	 */
 	get description() {
-		return 'Bootstrap all the project components into the package.json.';
+		return this.t('commands.project-bootstrap.description');
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	get flags() {
+		return [
+			['install', this.t('commands.project-bootstrap.flags.install')]
+		];
 	}
 
 	/**
 	 * @inheritdoc
 	 */
 	async handle() {
-		this.info(`Bootstrapping local components into source's "package.json"...`);
-		const components = await this.getComponentsMapping();
-		await this.updateDependencies(components);
-		this.success('Bootstrap completed!');
-		this.info('To install components, please run "install:components" command.');
+		this.info(this.t('commands.project-bootstrap.messages.start'));
+
+		await this.refreshComponents();
+
+		this.success(this.t('commands.project-bootstrap.messages.completed'));
+
+		await this.handleInstallation();
 	}
 
 	/**
-	 * Get all components of the current project, mapped as "package.json" dependency entries.
+	 * Refresh components in source's package.json.
 	 *
-	 * @returns {Array<string>} A list of all relative paths to components.
-	 */
-	async getComponentsMapping() {
-		const sourcePath = this.nwayoProject.getSourcePath();
-		const componentsPath = this.nwayoProject.getComponentsPath();
-		const componentsRelativePath = this.pathHelper.relative(sourcePath, componentsPath);
-
-		const files = await this.fs.scandir(componentsPath, 'file', { recursive: true });
-
-		const components = await Promise.all(files
-			.filter((file) => {
-				return file.endsWith(`/${this.nwayoConstantPackage.PACKAGE_JSON}`);
-			}).map(async (file) => {
-				const fullPath      = this.pathHelper.join(componentsPath, file);
-				const packageJson   = await this.fs.readJson(fullPath);
-				const { name }      = packageJson;
-				const componentPath = this.pathHelper.join(componentsRelativePath, this.pathHelper.dirname(file));
-
-				return [name, `file:${componentPath}`];
-			}));
-
-		return Object.fromEntries(components);
-	}
-
-	/**
-	 * Update dependencies in "package.json" by resetting local components.
-	 *
-	 * @param {object<string, string>} dependencies - A key-value pair that match component name to its path.
 	 * @returns {Promise} The async process promise.
 	 */
-	async updateDependencies(dependencies) {
-		const packageJsonPath = this.app.formatPath(this.nwayoProject.getSourcePath(), this.nwayoConstantPackage.PACKAGE_JSON);
-		const packageJson = await this.fs.readJson(packageJsonPath);
-		const originalDependencies = Object.fromEntries(Object.entries(packageJson.dependencies || {}).filter(([, value]) => {
-			return !value.startsWith('file');
-		}));
-		packageJson.dependencies = Object.assign(originalDependencies, dependencies);
-		await this.fs.writeJson(packageJsonPath, packageJson, { space: 2 });
+	async refreshComponents() {
+		const components        = await this.nwayoProjectComponent.all();
+		const dependencyManager = this.dependency.inFolder(this.nwayoProject.getSourcePath());
+
+		await dependencyManager.clearLocal();
+		await dependencyManager.saveMultipleLocal(components);
 	}
 
 	/**
-	 * Path helper.
+	 * Handle component installation, by either installing components or by indicating the next steps.
 	 *
-	 * @type {ioc.support.helpers.PathHelper}
+	 * @returns {Promise} The async process promise.
 	 */
-	get pathHelper() {
-		return this.helperPath;
+	async handleInstallation() {
+		const { installComponentsCommand } = this;
+
+		if (this.flag('install')) {
+			await this.call(installComponentsCommand);
+		} else {
+			this.info(this.t('commands.project-bootstrap.messages.manual', { command: installComponentsCommand }));
+		}
 	}
 
 	/**
-	 * Async file system.
+	 * The command name that installs components.
 	 *
-	 * @type {ioc.file.system.Async}
+	 * @type {string}
 	 */
-	get fs() {
-		return this.fileSystemAsync;
+	get installComponentsCommand() {
+		return 'install:components';
 	}
 
 }

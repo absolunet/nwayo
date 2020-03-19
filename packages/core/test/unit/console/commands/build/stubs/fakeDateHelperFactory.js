@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Tests - Unit - Console - Commands - Build - Stubs - Fake Date Helper
+//-- Nwayo Core - Test - Unit - Console - Commands - Build - Stubs - Fake Date Helper
 //--------------------------------------------------------
 'use strict';
 

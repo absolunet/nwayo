@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Tests - Unit - Services - Builder - Drivers - Stubs - Mocked Laravel Mix API
+//-- Nwayo Core - Test - Unit - Services - Builder - Drivers - Stubs - Mocked Laravel Mix API
 //--------------------------------------------------------
 'use strict';
 

@@ -1,3 +1,6 @@
+//--------------------------------------------------------
+//-- Nwayo Core - Test - Unit - Console - Commands - Stubs - Fake Project Service
+//--------------------------------------------------------
 'use strict';
 
 

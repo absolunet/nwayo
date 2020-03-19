@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Tests - Unit - Fake Command Repository
+//-- Nwayo Core - Test - Unit - Fake Command Repository
 //--------------------------------------------------------
 'use strict';
 

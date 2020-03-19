@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Tests - Unit - Services - Stubs - Fake Project Service
+//-- Nwayo Core - Test - Unit - Services - Stubs - Fake Project Service
 //--------------------------------------------------------
 'use strict';
 

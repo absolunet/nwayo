@@ -32,9 +32,11 @@ class InstallExtensionsCommand extends Command {
 	 * @inheritdoc
 	 */
 	async handle() {
-		this.terminal.box(this.t('Installing {{type}}', { type: this.t('extensions') }));
+		this.info(this.t('commands.install-extensions.messages.start'));
 
 		await this.installExtensions();
+
+		this.success(this.t('commands.install-extensions.messages.completed'));
 	}
 
 	/**

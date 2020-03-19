@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Node IoC - Test - Integration - Services - Builder - Drivers - Laravel Mix Driver - Stubs - Fake Project Service
+//-- Nwayo Core - Test - Integration - Services - Builder - Drivers - Laravel Mix Driver - Stubs - Fake Project Service
 //--------------------------------------------------------
 'use strict';
 

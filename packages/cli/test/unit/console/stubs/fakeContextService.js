@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- nwayo - Test - Unit - Console - Stubs - Fake Context Service
+//-- Nwayo - Test - Unit - Console - Stubs - Fake Context Service
 //--------------------------------------------------------
 'use strict';
 

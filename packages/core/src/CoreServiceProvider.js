@@ -4,12 +4,13 @@
 
 import { ServiceProvider } from '@absolunet/ioc';
 
-import ProjectService      from './services/ProjectService';
-import Nwayo               from './services/Nwayo';
-import Builder             from './services/Builder';
-import BuildTypeRepository from './repositories/BuildTypeRepository';
-import NwayoBuildPolicy    from './policies/NwayoBuildPolicy';
-import TerminalDecorator   from './services/TerminalDecorator';
+import ProjectService             from './services/ProjectService';
+import Nwayo                      from './services/Nwayo';
+import Builder                    from './services/Builder';
+import BuildTypeRepository        from './repositories/BuildTypeRepository';
+import ProjectComponentRepository from './repositories/ProjectComponentRepository';
+import NwayoBuildPolicy           from './policies/NwayoBuildPolicy';
+import TerminalDecorator          from './services/TerminalDecorator';
 
 import InstallComponentsCommand from './console/commands/install/InstallComponentsCommand';
 import BuildAllCommand          from './console/commands/build/BuildAllCommand';
@@ -39,6 +40,7 @@ class CoreServiceProvider extends ServiceProvider {
 		this.bindBuildType();
 		this.bindBuilder();
 		this.bindProjectService();
+		this.bindProjectComponentRepository();
 		this.decorateTerminal();
 	}
 
@@ -82,6 +84,13 @@ class CoreServiceProvider extends ServiceProvider {
 	}
 
 	/**
+	 * Bind project component repository.
+	 */
+	bindProjectComponentRepository() {
+		this.app.singleton('nwayo.project.component', ProjectComponentRepository);
+	}
+
+	/**
 	 * Bind build type repository.
 	 */
 	bindBuildType() {
@@ -89,7 +98,7 @@ class CoreServiceProvider extends ServiceProvider {
 	}
 
 	/**
-	 * Add default buld types.
+	 * Add default build types.
 	 */
 	addDefaultBuildTypes() {
 		this.app.make('nwayo.build.type')

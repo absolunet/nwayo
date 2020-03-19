@@ -616,3 +616,10 @@ vendor-publish:
     confirm-overwrite:
       en: 'The file {{file}} already exists. Do you want to overwrite it?'
       fr: 'Le fichier {{file}} existe déjà. Voulez-vous l''écraser?'
+
+
+
+messages:
+  deprecated:
+    en: 'This command is deprecated. Please use [{{command}}].'
+    fr: 'Cette commande est obsolète. Veuillez utiliser [{{command}}].'

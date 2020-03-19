@@ -1,0 +1,21 @@
+description:
+  en: 'Bootstrap all the project components into the package.json.'
+  fr: 'Lier l''ensemble des composantes du projet dans le package.json'
+
+flags:
+  install:
+    en: 'Install components after execution'
+    fr: 'Installer les composantes après l''exécution'
+
+messages:
+  start:
+    en: 'Bootstrapping local components into source code''s package.json...'
+    fr: 'Liaison des composantes locales dans le package.json du code source...'
+
+  completed:
+    en: 'Bootstrap completed!'
+    fr: 'Liaison complétée!'
+
+  manual:
+    en: 'To install components, please run "{{command}}" command.'
+    fr: 'Pour installer les composantes, veuillez exécuter la commande "{{command}}".'

@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- nwayo - Test - Unit - Services - Dependency Manager - Stubs - Fake Driver
+//-- Nwayo - Test - Unit - Services - Dependency Manager - Stubs - Fake Driver
 //--------------------------------------------------------
 'use strict';
 

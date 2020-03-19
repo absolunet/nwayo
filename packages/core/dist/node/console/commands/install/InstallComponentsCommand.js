@@ -41,10 +41,9 @@ class InstallComponentsCommand extends _Command.default {
 
 
   async handle() {
-    this.terminal.box(this.t('Installing {{type}}', {
-      type: this.t('components')
-    }));
+    this.info(this.t('commands.install-components.messages.start'));
     await this.installComponents();
+    this.success(this.t('commands.install-components.messages.completed'));
   }
   /**
    * Install project components.

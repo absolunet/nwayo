@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Tests - Unit - Policies - Stubs - Fake Build Type Repository
+//-- Nwayo Core - Test - Unit - Policies - Stubs - Fake Build Type Repository
 //--------------------------------------------------------
 'use strict';
 

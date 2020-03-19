@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//-- Tests - Unit - Services - Builder - Drivers - Stubs - Mocked Laravel Mix Webpack Config
+//-- Nwayo Core - Test - Unit - Services - Builder - Drivers - Stubs - Mocked Laravel Mix Webpack Config
 //--------------------------------------------------------
 'use strict';
 
