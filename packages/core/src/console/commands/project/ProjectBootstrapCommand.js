@@ -10,6 +10,7 @@ import Command from '../../Command';
  *
  * @memberof nwayo.core.console.commands.project
  * @augments nwayo.core.console.Command
+ * @hideconstructor
  */
 class ProjectBootstrapCommand extends Command {
 

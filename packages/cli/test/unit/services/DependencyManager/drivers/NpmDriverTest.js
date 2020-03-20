@@ -3,19 +3,15 @@
 //--------------------------------------------------------
 'use strict';
 
-const TestCase     = require('../../../../TestCase');
-const NpmDriver    = require('../../../../../dist/node/app/services/DependencyManager/drivers/NpmDriver');
-const fakeTerminal = require('./stubs/fakeTerminal');
+const DriverTestCase = require('./DriverTestCase');
+const NpmDriver      = require('../../../../../dist/node/app/services/DependencyManager/drivers/NpmDriver');
 
 
-class NpmDriverTest extends TestCase {
+class NpmDriverTest extends DriverTestCase {
 
 	beforeEach() {
 		super.beforeEach();
-		this.givenFakeTerminal();
-		this.givenFakeFolder();
 		this.givenNpmDriver();
-		this.givenExitCode(0);
 		this.givenPackageName(undefined);
 		this.givenPackageVersion(undefined);
 	}
@@ -68,20 +64,8 @@ class NpmDriverTest extends TestCase {
 	//-- Given
 	//--------------------------------------------------------
 
-	givenFakeTerminal() {
-		this.app.singleton('terminal', fakeTerminal);
-	}
-
-	givenFakeFolder() {
-		this.folder = '/path/to/fake/folder';
-	}
-
 	givenNpmDriver() {
-		this.driver = this.make(NpmDriver, { folder: this.folder });
-	}
-
-	givenExitCode(code) {
-		this.code = code;
+		this.givenDriver(NpmDriver);
 	}
 
 	givenPackageName(name) {
@@ -93,61 +77,8 @@ class NpmDriverTest extends TestCase {
 	}
 
 
-	//-- When
-	//--------------------------------------------------------
-
-	async whenCalling(method, parameters) {
-		await this.attemptAsync(async () => {
-			await this.driver[method](...parameters);
-		});
-	}
-
-	async whenInstalling() {
-		await this.whenCalling('install', []);
-	}
-
-	async whenAdding() {
-		await this.whenCalling('add', [this.package, this.version]);
-	}
-
-	async whenUpdating() {
-		await this.whenCalling('update', [this.package, this.version]);
-	}
-
-	async whenRemoving() {
-		await this.whenCalling('remove', [this.package]);
-	}
-
-
 	//-- Then
 	//--------------------------------------------------------
-
-	thenShouldHaveSpawn() {
-		this.thenShouldNotHaveThrown();
-		this.expect(fakeTerminal.spawn).toHaveBeenCalled();
-		this.expect(fakeTerminal._spawnSpy).toHaveBeenCalled();
-	}
-
-	thenShouldHaveSpawnTimes(times) {
-		this.thenShouldNotHaveThrown();
-		this.expect(fakeTerminal.spawn).toHaveBeenCalledTimes(times);
-		this.expect(fakeTerminal._spawnSpy).toHaveBeenCalledTimes(times);
-	}
-
-	thenShouldHaveNthCalledFromFakeFolder(nth) {
-		this.thenShouldHaveSpawn();
-		const spawnCall = fakeTerminal.spawn.mock.calls[nth - 1];
-		this.expect(spawnCall).toBeTruthy();
-		this.expect(spawnCall[2]).toHaveProperty('cwd', this.folder);
-	}
-
-	thenShouldHaveNthRunCommand(nth, binary, command) {
-		this.thenShouldHaveSpawn();
-		const spawnCall = fakeTerminal.spawn.mock.calls[nth - 1];
-		this.expect(spawnCall).toBeTruthy();
-		this.expect(spawnCall[0]).toBe(binary);
-		this.expect(spawnCall[1]).toStrictEqual(command);
-	}
 
 	thenShouldHaveCalledFromFakeFolder() {
 		this.thenShouldHaveNthCalledFromFakeFolder(1);

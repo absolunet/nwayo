@@ -179,7 +179,7 @@ class ProjectComponentRepositoryTest extends TestCase {
 	thenShouldHaveThrownForDuplicates(duplicates) {
 		this.thenShouldHaveThrown();
 		Object.entries(duplicates).forEach(([name, paths]) => {
-			this.expect(this.exception.message).toMatch(new RegExp(`\\[${name}\\]:\\n\\s+- ${paths.join(`\\n\\s+- `)}`));
+			this.expect(this.exception.message).toMatch(new RegExp(`\\[${name}\\]:\\n\\s+- ${paths.join(`\\n\\s+- `)}`, 'u'));
 		});
 	}
 

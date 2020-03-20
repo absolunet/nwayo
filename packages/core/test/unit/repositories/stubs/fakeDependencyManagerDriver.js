@@ -7,7 +7,7 @@ const fakeAsyncFileSystem = require('./fakeAsyncFileSystem');
 
 
 const fakeDependencyManagerDriver = {
-	loadPackageJson: jest.fn(() => {
+	loadPackageJson: jest.fn(() => {
 		return fakeAsyncFileSystem.readJson(`${fakeDependencyManagerDriver._folder}/package.json`);
 	})
 };

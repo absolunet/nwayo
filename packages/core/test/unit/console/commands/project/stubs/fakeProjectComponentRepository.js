@@ -14,7 +14,7 @@ const fakeProjectComponentRepository = {
 		await new Promise(setTimeout);
 		fakeProjectComponentRepository._allSpy();
 
-		return fakeProjectComponentRepository._components
+		return fakeProjectComponentRepository._components;
 	})
 };
 

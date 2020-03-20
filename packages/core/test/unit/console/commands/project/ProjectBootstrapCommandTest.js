@@ -130,7 +130,7 @@ class InstallComponentsCommandTest extends TestCase {
 		this.thenShouldNotHaveThrown();
 		this.expect(fakeCommandRegistrar.resolve).not.toHaveBeenCalled();
 		const { results } = fakeTranslator.translate.mock;
-		this.expect(fakeTranslator.translate).toHaveBeenLastCalledWith('commands.project-bootstrap.messages.manual', { command: 'install:components'}, undefined);
+		this.expect(fakeTranslator.translate).toHaveBeenLastCalledWith('commands.project-bootstrap.messages.manual', { command: 'install:components' }, undefined);
 		this.expect(fakeTerminal.println).toHaveBeenLastCalledWith(results[results.length - 1].value);
 	}
 

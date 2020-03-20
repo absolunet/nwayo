@@ -103,6 +103,7 @@ class Driver {
   /**
    * Get all dependencies associated with their version.
    *
+   * @param {string} [type='dependencies'] - The dependencies type.
    * @returns {Promise<object<string, string>>} The listed dependencies.
    */
 
@@ -115,52 +116,89 @@ class Driver {
    * Check if the given dependency is listed in the "package.json" file.
    *
    * @param {string} dependency - The dependency name.
+   * @param {string} [type] - The dependency type.
    * @returns {Promise<boolean>} Indicates that the dependency is listed.
    */
 
 
-  async has(dependency) {
-    const dependencies = await this.all();
+  async has(dependency, type) {
+    const dependencies = await this.all(type);
     return Object.prototype.hasOwnProperty.call(dependencies, dependency);
   }
   /**
    * Check if the given dependency is a local dependency.
    *
    * @param {string} dependency - The dependency name.
+   * @param {string} [type] - The dependency type.
    * @returns {Promise<boolean>} Indicates that the dependency is local and must exist on the current machine.
    */
 
 
-  isLocal(dependency) {
-    return this.dependencyVersionMatchesRegex(dependency, this.localVersionRegex);
+  isLocal(dependency, type) {
+    return this.dependencyVersionMatchesRegex(dependency, this.localVersionRegex, type);
   }
   /**
    * Check if the given dependency is an external dependency.
    *
    * @param {string} dependency - The dependency name.
+   * @param {string} [type] - The dependency type.
    * @returns {Promise<boolean>} Indicates that the dependency is external and must be downloaded.
    */
 
 
-  isExternal(dependency) {
-    return this.dependencyVersionMatchesRegex(dependency, this.externalVersionRegex);
+  isExternal(dependency, type) {
+    return this.dependencyVersionMatchesRegex(dependency, this.externalVersionRegex, type);
   }
+  /**
+   * Save a dependency in the package.json with its given version, without installing it.
+   *
+   * @param {string} dependency - The dependency name.
+   * @param {string} version - The dependency version.
+   * @param {string} [type='dependencies'] - The dependency type.
+   * @returns {Promise} The async process promise.
+   */
+
 
   async save(dependency, version, type = this.nwayoConstantPackage.DEPENDENCIES) {
     const packageJson = await this.loadPackageJson();
     packageJson[type][dependency] = version;
     await this.savePackageJson(packageJson);
   }
+  /**
+   * Save a local dependency from its relative path, without installing it.
+   *
+   * @param {string} dependency - The dependency name.
+   * @param {string} relativePath - The relative path of the dependency from the current folder.
+   * @param {string} [type] - The dependency type.
+   * @returns {Promise} The async process promise.
+   */
+
 
   async saveLocal(dependency, relativePath, type) {
     await this.save(dependency, this.getPathAsLocalVersion(relativePath), type);
   }
+  /**
+   * Save multiple dependencies, without installing them.
+   *
+   * @param {object<string, string>} dependencies - The dependencies, mapping names with their version.
+   * @param {string} [type='dependencies'] - The dependencies type.
+   * @returns {Promise} The async process promise.
+   */
+
 
   async saveMultiple(dependencies, type = this.nwayoConstantPackage.DEPENDENCIES) {
     const packageJson = await this.loadPackageJson();
     Object.assign(packageJson[type], dependencies);
     await this.savePackageJson(packageJson);
   }
+  /**
+   * Save multiple local dependencies with relative paths, without installing them.
+   *
+   * @param {object<string, string>} dependencies - The dependencies, mapping names with their relative path.
+   * @param {string} [type] - The dependencies type.
+   * @returns {Promise} The async process promise.
+   */
+
 
   async saveMultipleLocal(dependencies, type) {
     await this.saveMultiple(Object.fromEntries(Object.entries(dependencies).map(([dependency, relativePath]) => {
@@ -170,47 +208,68 @@ class Driver {
   /**
    * Clear all dependencies from the "package.json" file.
    *
+   * @param {string} [type] - The dependencies type.
    * @returns {Promise} The async process promise.
    */
 
 
-  async clear(type = this.nwayoConstantPackage.DEPENDENCIES) {
-    await this.clearByRegex(/.*/, type);
+  async clear(type) {
+    await this.clearByVersionRegex(/.*/u, type);
   }
   /**
    * Clear all local dependencies from the "package.json" file.
    *
+   * @param {string} [type] - The dependencies type.
    * @returns {Promise} The async process promise.
    */
 
 
   async clearLocal(type) {
-    await this.clearByRegex(this.localVersionRegex, type);
+    await this.clearByVersionRegex(this.localVersionRegex, type);
   }
   /**
    * Clear all external dependencies from the "package.json" file.
    *
+   * @param {string} [type] - The dependencies type.
    * @returns {Promise} The async process promise.
    */
 
 
   async clearExternal(type) {
-    await this.clearByRegex(this.externalVersionRegex, type);
+    await this.clearByVersionRegex(this.externalVersionRegex, type);
   }
   /**
-   * Clear all dependencies that version match the given regular expression.
+   * Clear all dependencies that name matches the given regular expression.
    *
    * @param {RegExp} regex - The regular expression.
-   * @param {RegExp} [type='dependencies'] - The dependency type to clear.
+   * @param {string} [type='dependencies'] - The dependencies type to clear.
    * @returns {Promise} The async process promise.
    */
 
 
   async clearByRegex(regex, type = this.nwayoConstantPackage.DEPENDENCIES) {
     const packageJson = await this.loadPackageJson();
-    Object.entries(packageJson[type]).forEach(([name, version], i, dependencies) => {
-      if (regex.test(version)) {
+    Object.entries(packageJson[type]).forEach(([name], i, dependencies) => {
+      if (regex.test(name)) {
         delete dependencies[name];
+      }
+    });
+    await this.savePackageJson(packageJson);
+  }
+  /**
+   * Clear all dependencies that version matches the given regular expression.
+   *
+   * @param {RegExp} regex - The regular expression.
+   * @param {string} [type='dependencies'] - The dependencies type to clear.
+   * @returns {Promise} The async process promise.
+   */
+
+
+  async clearByVersionRegex(regex, type = this.nwayoConstantPackage.DEPENDENCIES) {
+    const packageJson = await this.loadPackageJson();
+    Object.entries(packageJson[type]).forEach(([name, version], i) => {
+      if (regex.test(version)) {
+        delete packageJson[type][name];
       }
     });
     await this.savePackageJson(packageJson);
@@ -263,6 +322,7 @@ class Driver {
    *
    * @param {string} dependency - The dependency name.
    * @param {RegExp} regex - The regular expression.
+   * @param {string} [type] - The dependency type.
    * @returns {Promise<boolean>} Indicates that the component version matches the given regular expression.
    */
 

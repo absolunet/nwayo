@@ -8,10 +8,32 @@ exports.default = void 0;
 //--------------------------------------------------------
 //-- Nwayo Core - Repositories - Project Components Repository
 //--------------------------------------------------------
+
+/**
+ * Repository that allows to get all available components in the current project.
+ *
+ * @memberof nwayo.core.repositories
+ * @hideconstructor
+ */
 class ProjectComponentRepository {
+  /**
+   * Class dependencies: <code>['dependency', 'file.system.async', 'helper.path', 'nwayo.constant.package', 'nwayo.project']</code>.
+   *
+   * @type {Array<string>}
+   */
   static get dependencies() {
     return ['dependency', 'file.system.async', 'helper.path', 'nwayo.constant.package', 'nwayo.project'];
   }
+  /**
+   * Get all components fully qualified name in the current project,
+   * associated with their relative path from the source folder.
+   * It uses the "package.json" file to identify a component and its name.
+   * It also handle duplicates by throwing an error.
+   *
+   * @returns {Promise<object<string, string>>} The list of all components.
+   * @throws {Error} Indicates that there are at least two components sharing the same name.
+   */
+
 
   async all() {
     const sourcePath = this.nwayoProject.getSourcePath();
@@ -58,15 +80,34 @@ class ProjectComponentRepository {
 
     return Object.fromEntries(components);
   }
+  /**
+   * Check it the component exists by fully qualified name.
+   *
+   * @param {string} name - The fully qualified component name.
+   * @returns {Promise<boolean>} Indicates that the given component name exists in the current project.
+   */
+
 
   async has(name) {
     const components = await this.all();
     return Object.prototype.hasOwnProperty.call(components, name);
   }
+  /**
+   * Path helper.
+   *
+   * @type {ioc.support.helpers.PathHelper}
+   */
+
 
   get pathHelper() {
     return this.helperPath;
   }
+  /**
+   * Async file system.
+   *
+   * @type {ioc.file.system.Async}
+   */
+
 
   get fs() {
     return this.fileSystemAsync;

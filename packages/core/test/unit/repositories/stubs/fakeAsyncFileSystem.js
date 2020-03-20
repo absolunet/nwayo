@@ -28,7 +28,7 @@ const fakeAsyncFileSystem = {
 		const content = fakeAsyncFileSystem._files[file];
 
 		if (!content) {
-			throw new Error();
+			throw new Error('File not found.');
 		}
 
 		return content;

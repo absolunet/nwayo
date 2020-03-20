@@ -18,6 +18,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  * @memberof nwayo.core.console.commands.project
  * @augments nwayo.core.console.Command
+ * @hideconstructor
  */
 class ProjectBootstrapCommand extends _Command.default {
   /**
