@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+### Changed
+- Maintenance updates
+
+### Fixed
+- Fixes 'Could not find plugin "proposal-numeric-separator"' with `@babel/preset-env` update 
 
 
 

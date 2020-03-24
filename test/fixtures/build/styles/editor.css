@@ -310,7 +310,6 @@ html {
 a:not(.button) {
   color: #659d32;
   text-decoration: none;
-  -webkit-transition: color 100ms ease-out;
   transition: color 100ms ease-out;
 }
 a:not(.button):hover, a:not(.button):active, a:not(.button):focus {
@@ -527,12 +526,9 @@ html:not([data-whatintent=touch]) .body a:hover {
   text-decoration: none;
   line-height: 1.2;
   letter-spacing: 0.02em;
-  -webkit-transition-property: background-color, border-color, color;
   transition-property: background-color, border-color, color;
-  -webkit-transition-duration: 100ms;
-          transition-duration: 100ms;
-  -webkit-transition-timing-function: ease-out;
-          transition-timing-function: ease-out;
+  transition-duration: 100ms;
+  transition-timing-function: ease-out;
   cursor: pointer;
 }
 .styleguide-sample .button.primary:hover, .styleguide-sample .button.primary:focus, .styleguide-sample .button.primary:active {
@@ -567,12 +563,9 @@ html:not([data-whatintent=touch]) .body a:hover {
   text-decoration: none;
   line-height: 1.2;
   letter-spacing: 0.02em;
-  -webkit-transition-property: background-color, border-color, color;
   transition-property: background-color, border-color, color;
-  -webkit-transition-duration: 100ms;
-          transition-duration: 100ms;
-  -webkit-transition-timing-function: ease-out;
-          transition-timing-function: ease-out;
+  transition-duration: 100ms;
+  transition-timing-function: ease-out;
   cursor: pointer;
 }
 .styleguide-sample .button.secondary:hover, .styleguide-sample .button.secondary:focus, .styleguide-sample .button.secondary:active {
@@ -607,12 +600,9 @@ html:not([data-whatintent=touch]) .body a:hover {
   text-decoration: none;
   line-height: 1.2;
   letter-spacing: 0.02em;
-  -webkit-transition-property: background-color, border-color, color;
   transition-property: background-color, border-color, color;
-  -webkit-transition-duration: 100ms;
-          transition-duration: 100ms;
-  -webkit-transition-timing-function: ease-out;
-          transition-timing-function: ease-out;
+  transition-duration: 100ms;
+  transition-timing-function: ease-out;
   cursor: pointer;
 }
 .styleguide-sample .button.cta:hover, .styleguide-sample .button.cta:focus, .styleguide-sample .button.cta:active {
