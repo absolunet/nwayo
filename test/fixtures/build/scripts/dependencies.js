@@ -17486,7 +17486,7 @@ Modernizr.inputtypes.week
 //-------------------------------------
 /**
  * what-input - A global utility for tracking the current input method (mouse, keyboard or touch).
- * @version v5.2.6
+ * @version v5.2.7
  * @link https://github.com/ten1seven/what-input
  * @license MIT
  */
