@@ -56,6 +56,16 @@ class NpmDriver extends _Driver.default {
       await this.run(`npm update ${packageName}`);
     }
   }
+  /**
+   * @inheritdoc
+   */
+
+
+  async getAvailableVersions(packageName) {
+    // This promise purpose is to start a parallel process since terminal.runAndGet is sync.
+    await new Promise(setTimeout);
+    return JSON.parse(this.terminal.runAndGet(`npm view ${packageName} versions --json`).replace(/\//gu, ''));
+  }
 
 }
 

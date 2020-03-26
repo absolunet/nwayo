@@ -3,9 +3,10 @@
 //--------------------------------------------------------
 'use strict';
 
-const TestCase            = require('../../../../TestCase');
-const fakeTerminal        = require('./stubs/fakeTerminal');
-const fakeAsyncFileSystem = require('./stubs/fakeAsyncFileSystem');
+const { NotImplementedError } = require('@absolunet/ioc');
+const TestCase                = require('../../../../TestCase');
+const fakeTerminal            = require('./stubs/fakeTerminal');
+const fakeAsyncFileSystem     = require('./stubs/fakeAsyncFileSystem');
 
 
 class DriverTestCase extends TestCase {
@@ -16,6 +17,55 @@ class DriverTestCase extends TestCase {
 		this.givenFakeFolder();
 		this.givenFakeAsyncFileSystem();
 		this.givenPackageJson();
+	}
+
+	/**
+	 * @abstract
+	 */
+	testCanInstallPackages() {
+		throw new NotImplementedError(this, 'testCanInstallPackages');
+	}
+
+	/**
+	 * @abstract
+	 */
+	testCanAddPackage() {
+		throw new NotImplementedError(this, 'testCanAddPackage');
+	}
+
+	/**
+	 * @abstract
+	 */
+	testCanAddPackageWithSpecificVersion() {
+		throw new NotImplementedError(this, 'testCanAddPackageWithSpecificVersion');
+	}
+
+	/**
+	 * @abstract
+	 */
+	testCanUpdatePackage() {
+		throw new NotImplementedError(this, 'testCanUpdatePackage');
+	}
+
+	/**
+	 * @abstract
+	 */
+	testCanUpdatePackageToSpecificVersion() {
+		throw new NotImplementedError(this, 'testCanUpdatePackageToSpecificVersion');
+	}
+
+	/**
+	 * @abstract
+	 */
+	testCanRemovePackage() {
+		throw new NotImplementedError(this, 'testCanRemovePackage');
+	}
+
+	/**
+	 * @abstract
+	 */
+	testCanGetPackageAvailableVersions() {
+		throw new NotImplementedError(this, 'testCanGetAvailableVersionsOfPackage');
 	}
 
 	async testCanGetAllDependencies() {
@@ -262,8 +312,8 @@ class DriverTestCase extends TestCase {
 			bar: '2.1.3'
 		});
 		this.thenShouldHaveDependencies({
-			foo: '1.0.1',
-			bar: '2.1.3',
+			foo:       '1.0.1',
+			bar:       '2.1.3',
 			permanent: '1.0.0'
 		}, 'dependencies');
 		this.thenShouldHaveDependencies({
@@ -285,8 +335,8 @@ class DriverTestCase extends TestCase {
 		}, 'dependencies');
 		this.thenShouldHaveDependencies({
 			permanent: '1.0.0',
-			bar: '1.0.1',
-			baz: '2.1.3'
+			bar:       '1.0.1',
+			baz:       '2.1.3'
 		}, 'devDependencies');
 	}
 
@@ -476,7 +526,7 @@ class DriverTestCase extends TestCase {
 	}
 
 	givenDependency(dependency, version, type) {
-		this.packageJson[type] = this.packageJson[type] || {};
+		this.packageJson[type]             = this.packageJson[type] || {};
 		this.packageJson[type][dependency] = version;
 	}
 
@@ -512,6 +562,10 @@ class DriverTestCase extends TestCase {
 
 	async whenRemoving() {
 		await this.whenCalling('remove', [this.package]);
+	}
+
+	async whenGettingAvailableVersions() {
+		await this.whenCalling('getAvailableVersions', [this.package]);
 	}
 
 	async whenGettingAll(...parameters) {

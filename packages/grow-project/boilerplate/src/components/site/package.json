@@ -6,6 +6,6 @@
     "@nwayo-components/common": "file:../common",
     "@nwayo-components/form": "file:../form",
     "@nwayo-components/foundation": "file:../foundation",
-    "jquery": "^3.4.1"
+    "jquery": "3.4.1"
   }
 }

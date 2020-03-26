@@ -318,7 +318,7 @@ module.exports = ReactPropTypesSecret;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v16.13.0
+/** @license React v16.13.1
  * react.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -338,7 +338,7 @@ if (true) {
 var _assign = __webpack_require__("./node_modules/object-assign/index.js");
 var checkPropTypes = __webpack_require__("./node_modules/prop-types/checkPropTypes.js");
 
-var ReactVersion = '16.13.0';
+var ReactVersion = '16.13.1';
 
 // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
 // nor polyfill, then a plain number is used for performance.
@@ -2255,8 +2255,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-var world = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "World");
-console.log(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello ".concat(world)));
+var world = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "World");
+console.log( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello ".concat(world)));
 
 /***/ }),
 

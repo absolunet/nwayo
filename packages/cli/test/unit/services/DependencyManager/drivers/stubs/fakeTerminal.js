@@ -9,7 +9,8 @@ const fakeTerminal = {
 	spawn: jest.fn(async () => {
 		await new Promise(setTimeout);
 		fakeTerminal._spawnSpy();
-	})
+	}),
+	runAndGet: jest.fn()
 };
 
 

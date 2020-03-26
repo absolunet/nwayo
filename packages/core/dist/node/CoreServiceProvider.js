@@ -23,6 +23,8 @@ var _TerminalDecorator = _interopRequireDefault(require("./services/TerminalDeco
 
 var _InstallComponentsCommand = _interopRequireDefault(require("./console/commands/install/InstallComponentsCommand"));
 
+var _InstallDependencyCommand = _interopRequireDefault(require("./console/commands/install/InstallDependencyCommand"));
+
 var _BuildAllCommand = _interopRequireDefault(require("./console/commands/build/BuildAllCommand"));
 
 var _BuildWatchCommand = _interopRequireDefault(require("./console/commands/build/BuildWatchCommand"));
@@ -70,7 +72,7 @@ class CoreServiceProvider extends _ioc.ServiceProvider {
   boot() {
     this.addDefaultBuildTypes();
     this.addBuildPolicies();
-    this.loadCommands([_InstallComponentsCommand.default, _BuildAllCommand.default, _BuildWatchCommand.default, _BuildScriptsCommand.default, _BuildStylesCommand.default, _BuildAssetsCommand.default, _ProjectBootstrapCommand.default]);
+    this.loadCommands([_InstallComponentsCommand.default, _InstallDependencyCommand.default, _BuildAllCommand.default, _BuildWatchCommand.default, _BuildScriptsCommand.default, _BuildStylesCommand.default, _BuildAssetsCommand.default, _ProjectBootstrapCommand.default]);
   }
   /**
    * Bind nwayo orchestrator.

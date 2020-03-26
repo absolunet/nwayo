@@ -5,6 +5,7 @@
 
 const DriverTestCase = require('./DriverTestCase');
 const NpmDriver      = require('../../../../../dist/node/app/services/DependencyManager/drivers/NpmDriver');
+const fakeTerminal   = require('./stubs/fakeTerminal');
 
 
 class NpmDriverTest extends DriverTestCase {
@@ -60,6 +61,18 @@ class NpmDriverTest extends DriverTestCase {
 		this.thenShouldHaveRunNpmCommand(['uninstall', '@nwayo/core']);
 	}
 
+	async testCanGetPackageAvailableVersions() {
+		this.givenPackageName('@nwayo/core');
+		this.givenCommandResponse('npm view @nwayo/core versions --json', `[
+			"1.0.0",
+			"1.0.1",
+			"1.1.0",
+			"2.0.0"
+		]`);
+		await this.whenGettingAvailableVersions();
+		this.thenResultShouldEqual(['1.0.0', '1.0.1', '1.1.0', '2.0.0']);
+	}
+
 
 	//-- Given
 	//--------------------------------------------------------
@@ -74,6 +87,12 @@ class NpmDriverTest extends DriverTestCase {
 
 	givenPackageVersion(version) {
 		this.version = version;
+	}
+
+	givenCommandResponse(command, response) {
+		fakeTerminal.runAndGet.mockImplementationOnce((input) => {
+			return input === command ? response : '';
+		});
 	}
 
 

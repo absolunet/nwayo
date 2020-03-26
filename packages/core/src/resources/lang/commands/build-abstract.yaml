@@ -6,8 +6,8 @@ options:
 
 messages:
   start:
-    en: 'Build starts [{{type}}] for bundle [{{bundle}}].'
-    fr: 'Début de la compilation [{{type}}] pour le bundle [{{bundle}}].'
+    en: 'Build starts [{{type}}] for bundle "{{bundle}}".'
+    fr: 'Début de la compilation [{{type}}] pour le bundle "{{bundle}}".'
 
   preparing:
     en: 'Preparing compiler...'
@@ -18,12 +18,12 @@ messages:
     fr: 'Compilateur préparé.'
 
   writing:
-    en: 'File [{{path}}] in progress...'
-    fr: 'Le fichier [{{path}}] est en cours d''écriture...'
+    en: 'File "{{path}}" in progress...'
+    fr: 'Le fichier "{{path}}" est en cours d''écriture...'
 
   wrote:
-    en: 'File [{{path}}] successfully written.'
-    fr: 'Le fichier [{{path}}] a été écrit avec succès.'
+    en: 'File "{{path}}" successfully written.'
+    fr: 'Le fichier "{{path}}" a été écrit avec succès.'
 
   watch-ready:
     en: 'Ready to compile, watching...'
@@ -34,8 +34,8 @@ messages:
     fr: '{{percent}}% Compilation en cours...'
 
   error:
-    en: 'Build failure for file [{{path}}].'
-    fr: 'Erreur lors de la compilation pour le fichier [{{path}}].'
+    en: 'Build failure for file "{{path}}".'
+    fr: 'Erreur lors de la compilation pour le fichier "{{path}}".'
 
   completed:
     en: 'Build successfully completed [{{type}}].'

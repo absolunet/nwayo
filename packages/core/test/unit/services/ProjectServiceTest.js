@@ -252,6 +252,11 @@ class ProjectServiceTest extends TestCase {
 		]);
 	}
 
+	testCanGetDefaultNamespace() {
+		this.whenGettingDefaultNamespace();
+		this.thenResultShouldBe('@nwayo-components');
+	}
+
 
 	//-- Given
 	//--------------------------------------------------------
@@ -339,6 +344,12 @@ class ProjectServiceTest extends TestCase {
 	whenLoadingBundleData(bundleName) {
 		this.attempt(() => {
 			this.setResult(this.projectService.loadBundleData(bundleName));
+		});
+	}
+
+	whenGettingDefaultNamespace() {
+		this.attempt(() => {
+			this.setResult(this.projectService.defaultNamespace);
 		});
 	}
 
