@@ -90,6 +90,7 @@
 		font-family: $name;
 		font-weight: $weight;
 		font-style: $style;
+		font-display: swap;
 		src: #{$woff2} url($url + '.woff' + nwayo-cacheinvalidator-querystring($path + '.woff'));  // stylelint-disable-line function-url-quotes
 	}
 }
