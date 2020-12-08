@@ -1,0 +1,12 @@
+//-------------------------------------
+//-- nwayo - Variables - Selectors
+//-------------------------------------
+
+// All text-like fields
+$textfields-selector: 'input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], input[type="date"], input[type="number"]';
+
+// Hover only on non-touch devices
+$hover-selector: 'html:not([data-whatintent="touch"]) &:hover';
+
+// Apply only when document loaded
+$docloaded-selector: 'body.document-loaded';

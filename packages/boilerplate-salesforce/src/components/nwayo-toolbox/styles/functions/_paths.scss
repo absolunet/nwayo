@@ -1,0 +1,54 @@
+//-------------------------------------
+//-- nwayo - Functions - Paths
+//-------------------------------------
+@use '~@nwayo-components/common/styles/variables/paths';
+
+
+@function -get-path($path, $context: '') {
+	$base-url: '';
+	$src-path: '~@nwayo-components/' + $context + '/assets';
+
+	@if $path == 'buildroot' {
+		$base-url: paths.$build-path;
+	} @else if $path == 'images' {
+		$base-url: paths.$static-url + '/images';
+	} @else if $path == 'inline' {
+		$base-url: $src-path + '/inline-images';
+	} @else if $path == 'fonts' {
+		$base-url: paths.$static-url + '/fonts';
+	}
+
+	@return $base-url;
+}
+
+
+
+
+
+
+//-- Assets path
+@function assets-path($file, $context, $type) {
+	@if $type == 'images' {
+		@return -get-path('images', $context) + '/' + $file;
+	} @else if $type == 'inline' {
+		@return -get-path('inline', $context) + '/' + $file;
+	} @else if $type == 'fonts' {
+		@return -get-path('fonts', $context) + '/' + $file;
+	}
+}
+
+
+//-- Build path
+@function build-path($file, $context, $type) {
+	@if $type == 'images' {
+		@return -get-path('buildroot') + 'images/' + $context + '/' + $file;
+	} @else if $type == 'fonts' {
+		@return -get-path('buildroot') + 'fonts/' + $file;
+	}
+}
+
+
+//-- Return cache invalidation query string
+@function cacheinvalidator-querystring($file) {
+	@return '?v=' + nwayo-api-checksum($file);
+}

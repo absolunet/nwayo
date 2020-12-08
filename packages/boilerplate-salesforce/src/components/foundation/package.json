@@ -1,0 +1,11 @@
+{
+  "name": "@nwayo-components/foundation",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "foundation-sites": "6.6.3"
+  },
+  "peerDependencies": {
+    "@nwayo-components/common": "*"
+  }
+}

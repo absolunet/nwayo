@@ -1,0 +1,8 @@
+{
+  "name": "@nwayo-components/header",
+  "license": "UNLICENSED",
+  "private": true,
+  "peerDependencies": {
+    "@nwayo-components/common": "*"
+  }
+}

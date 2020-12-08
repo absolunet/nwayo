@@ -1,0 +1,182 @@
+//-------------------------------------
+//-- Layout - Base
+//-------------------------------------
+@use '~@nwayo-components/nwayo-toolbox/styles/mixins'    as nwayo-mixins;
+@use '~@nwayo-components/nwayo-toolbox/styles/variables' as nwayo-variables;
+@use '~@nwayo-components/common/styles/functions'        as common-functions;
+@use '~@nwayo-components/common/styles/mixins'           as common-mixins;
+@use '~@nwayo-components/common/styles/variables'        as common-variables;
+@use 'mixins';
+@import '~@nwayo-components/foundation/styles/global-export';
+
+
+//-- Base
+html {
+	background-color: common-variables.$bg-site-color;
+}
+
+a:not(.button) {
+	color: common-variables.$link-color;
+	text-decoration: none;
+	transition: color common-variables.$hover-transition ease-out;
+
+	&:hover, &:active, &:focus {
+		color: common-variables.$link-hover-color;
+		text-decoration: underline;
+	}
+}
+
+
+
+
+::selection {
+	background-color: common-variables.$text-color;
+	color: common-variables.$bg-color;
+}
+
+
+//-- Body
+.body {
+	visibility: visible;
+
+	//-- Foundation media exceptions
+	@media #{bp(small only)} {
+		/* ... */
+	}
+
+	@media #{bp(medium)} {
+		/* ... */
+	}
+
+	@media #{bp(medium down)} {
+		/* ... */
+	}
+
+	@media #{bp(medium only)} {
+		/* ... */
+	}
+
+	@media #{bp(large)} {
+		/* ... */
+	}
+
+	@media #{bp(large down)} {
+		/* ... */
+	}
+
+	@media #{bp(large only)} {
+		/* ... */
+	}
+
+
+
+	//-- Apply only when document is loaded (great for heavy imagery)
+	#{nwayo-variables.$docloaded-selector} & {
+		/* ... */
+	}
+
+	//-- Only on touch devices
+	html[data-whatintent='touch'] & {
+		/* ... */
+	}
+
+	//-- Only on mouse devices
+	html[data-whatintent='mouse'] & {
+		/* ... */
+	}
+
+	//-- Hover only on mouse devices :)
+	a {
+		#{nwayo-variables.$hover-selector} {
+			/* ... */
+		}
+	}
+
+}
+
+
+//-- Content
+.content {
+	@include mixins.editable();
+
+	/* ... */
+}
+
+
+//-- Lateral column
+.lateral-col {
+	/* ... */
+}
+
+
+
+
+
+
+//-- Styleguide sample for SAMPLE-HTML/index.html (TO REMOVE)
+.styleguide-sample {
+	padding: 2em;
+
+	.content {
+		padding: 2em;
+		border: common-functions.border();
+
+		h2 ~ h2 {
+			margin-top: 2em;
+		}
+
+	}
+
+	.button {
+		&.primary {
+			@include common-mixins.button();
+		}
+
+		&.secondary {
+			@include common-mixins.button($type:secondary);
+		}
+
+		&.cta {
+			@include common-mixins.button($type:cta);
+		}
+	}
+
+	.message {
+		position: relative;
+		padding: .5em 1em .5em 2em;
+		color: common-variables.$text-var2-color;
+
+		&::before {
+			@include nwayo-mixins.pseudo-image(1em);
+			position: absolute;
+			top: .8em;
+			left: .65em;
+			display: block;
+		}
+
+		&.success {
+			background-color: common-variables.$success-text-color;
+
+			&::before {
+				@include common-mixins.success-image();
+			}
+		}
+
+		&.warning {
+			background-color: common-variables.$warning-text-color;
+
+			&::before {
+				@include common-mixins.warning-image();
+			}
+		}
+
+		&.error {
+			background-color: common-variables.$error-text-color;
+
+			&::before {
+				@include common-mixins.error-image();
+			}
+		}
+	}
+
+}

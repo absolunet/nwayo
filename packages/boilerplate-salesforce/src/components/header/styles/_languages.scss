@@ -1,0 +1,11 @@
+//-------------------------------------
+//-- Header - Languages
+//-------------------------------------
+@use '~@nwayo-components/common/styles/functions' as common-functions;
+
+
+.THIS {
+	.language-switcher {
+		z-index: common-functions.z-index(header);
+	}
+}

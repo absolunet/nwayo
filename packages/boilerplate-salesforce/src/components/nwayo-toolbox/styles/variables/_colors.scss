@@ -1,0 +1,20 @@
+//-------------------------------------
+//-- nwayo - Variables - Colors
+//-------------------------------------
+
+// SVG replacement
+$svg-replacement-1-color: #ba0bab;
+$svg-replacement-2-color: #c0ffee;
+$svg-replacement-colors:  ($svg-replacement-1-color, $svg-replacement-2-color);
+
+// Social network
+$social-colors: (
+	'facebook':   #3b5998,
+	'pinterest':  #bd081c,
+	'twitter':    #55acee,
+	'instagram':  #bc2a8d,
+	'youtube':    #cd201f,
+	'vimeo':      #1ab7ea,
+	'linkedin':   #0a77b6,
+	'googleplus': #dc4a38
+);

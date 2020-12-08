@@ -1,0 +1,20 @@
+//-------------------------------------
+//-- nwayo - Functions - Helpers
+//-------------------------------------
+@use '../variables';
+
+
+//-- Get a relative z-index for the scope
+@function z-index($scopes, $scope, $delta:0) {
+	@return map-get($scopes, $scope) + $delta;
+}
+
+
+//-- Simulate a breakpoint
+@function breakpoint-media($bp, $direction) {
+	@if $direction == up {
+		@return 'screen and (min-width: #{($bp + 1) / variables.$basic-size * 1em})';
+	} @else if $direction == down {
+		@return 'screen and (max-width: #{$bp / variables.$basic-size * 1em})';
+	}
+}

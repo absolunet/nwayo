@@ -1,0 +1,17 @@
+extends: '@absolunet/browser'
+
+parserOptions:
+  sourceType: 'module'
+
+rules:
+  no-restricted-globals: off
+  linebreak-style: off
+
+overrides:
+  -
+    files:
+      - 'webpack.nwayo.js'
+      - 'jest.config.js'
+      - 'tailwind.config.js'
+
+    extends: '@absolunet/node'

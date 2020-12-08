@@ -1,0 +1,8 @@
+{
+  "name": "@nwayo-components/nwayo-toolbox",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "jquery": "3.5.1"
+  }
+}

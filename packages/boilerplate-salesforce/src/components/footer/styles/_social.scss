@@ -1,0 +1,19 @@
+//-------------------------------------
+//-- Footer - Social
+//-------------------------------------
+@use '~@nwayo-components/common/styles/variables' as common-variables;
+
+
+.THIS {
+	.footer-wrapper {
+		.social-links {
+			li {
+				font-size: common-variables.$text-tiny-size;
+			}
+
+			a {
+				display: inline-block;
+			}
+		}
+	}
+}

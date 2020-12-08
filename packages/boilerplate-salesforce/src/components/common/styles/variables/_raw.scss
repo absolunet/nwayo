@@ -1,0 +1,56 @@
+//-------------------------------------
+//-- Common - Variables - Raw
+//-------------------------------------
+
+//-- Responsive breakpoints
+$small-mobile-dimension:  450;
+$mobile-dimension:        600;
+$tablet-dimension:        900;
+$desktop-dimension:      1200;
+$largedesktop-dimension: 1500;
+
+
+
+
+
+
+//-- Transition speeds in ms
+$hover-transition:     100;
+$animation-transition: 500;
+
+
+
+
+
+
+//-- Colors
+// Base
+$black-color: #000000;
+$white-color: #ffffff;
+
+// Brand
+$logo-shell-color:       #659d32;
+$logo-shell-shade-color: #618931;
+$logo-fruit-color:       #423228;
+$logo-fruit-shade-color: #5e483c;
+
+// Grey
+$charcoal-color:   #36454f;
+$nickel-color:     #727472;
+$battleship-color: #848482;
+$ash-color:        #b2beb5;
+$platinum-color:   #e5e4e2;
+
+// Messages
+$ocean-green-color:   #4fb980;
+$golden-tainoi-color: #ffd061;
+$chestnut-rose-color: #d66161;
+
+
+
+
+
+
+//-- Fonts
+$open-sans-font:    'Open Sans';
+$merriweather-font: 'Merriweather';

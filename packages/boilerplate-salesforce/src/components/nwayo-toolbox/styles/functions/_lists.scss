@@ -1,0 +1,16 @@
+//-------------------------------------
+//-- nwayo - Functions - Lists
+//-------------------------------------
+
+//-- Check if list contains value
+//     @mixin xyz($options:()) {
+//       $a: list-contains($options, a);
+//       $b: list-contains($options, b);
+//     }
+@function list-contains($list, $var) {
+	@if index($list, $var) {
+		@return true;
+	}
+
+	@return false;
+}

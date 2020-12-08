@@ -1,0 +1,22 @@
+//-------------------------------------
+//-- Header - Base
+//-------------------------------------
+@use '~@nwayo-components/nwayo-toolbox/styles/mixins' as nwayo-mixins;
+@use '~@nwayo-components/common/styles/mixins'        as common-mixins;
+@use '~@nwayo-components/common/styles/variables'     as common-variables;
+
+
+.THIS {
+	.navigation-toggler {
+		position: relative;
+		background-color: common-variables.$bg-var1-color;
+
+		&::after {
+			@include nwayo-mixins.pseudo-image(1em);
+			@include common-mixins.warning-image();
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+	}
+}

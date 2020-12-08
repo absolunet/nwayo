@@ -1,0 +1,891 @@
+//-------------------------------------
+//-- Foundation - Variables
+//-------------------------------------
+
+//  Table of Contents:
+//
+//   1. Global
+//   2. Breakpoints
+//   3. The Grid
+//   4. Base Typography
+//   5. Typography Helpers
+//   6. Abide
+//   7. Accordion
+//   8. Accordion Menu
+//   9. Badge
+//  10. Breadcrumbs
+//  11. Button
+//  12. Button Group
+//  13. Callout
+//  14. Card
+//  15. Close Button
+//  16. Drilldown
+//  17. Dropdown
+//  18. Dropdown Menu
+//  19. Flexbox Utilities
+//  20. Forms
+//  21. Label
+//  22. Media Object
+//  23. Menu
+//  24. Meter
+//  25. Off-canvas
+//  26. Orbit
+//  27. Pagination
+//  28. Progress Bar
+//  29. Prototype Arrow
+//  30. Prototype Border-Box
+//  31. Prototype Border-None
+//  32. Prototype Bordered
+//  33. Prototype Display
+//  34. Prototype Font-Styling
+//  35. Prototype List-Style-Type
+//  36. Prototype Overflow
+//  37. Prototype Position
+//  38. Prototype Rounded
+//  39. Prototype Separator
+//  40. Prototype Shadow
+//  41. Prototype Sizing
+//  42. Prototype Spacing
+//  43. Prototype Text-Decoration
+//  44. Prototype Text-Transformation
+//  45. Prototype Text-Utilities
+//  46. Responsive Embed
+//  47. Reveal
+//  48. Slider
+//  49. Switch
+//  50. Table
+//  51. Tabs
+//  52. Thumbnail
+//  53. Title Bar
+//  54. Tooltip
+//  55. Top Bar
+//  56. Xy Grid
+
+@use '~@nwayo-components/common/styles/functions' as common-functions;
+@use '~@nwayo-components/common/styles/variables' as common-variables;
+
+
+// 1. Global
+// ---------
+$global-font-size:                     100%;
+$global-width:                         rem-calc(common-variables.$max-dimension);  // stylelint-disable-line declaration-property-value-disallowed-list
+$global-lineheight:                    common-variables.$text-lineheight;
+$foundation-palette:                   (
+	'primary':   common-variables.$primary-color,
+	'secondary': common-variables.$alt-color,
+	'success':   common-variables.$success-text-color,
+	'warning':   common-variables.$warning-text-color,
+	'alert':     common-variables.$error-text-color,
+);
+
+$body-background:                      common-variables.$bg-color;
+$body-font-color:                      common-variables.$text-color;
+$body-font-family:                     common-variables.$text-font;
+$body-antialiased:                     true;
+$global-margin:                        1em;
+$global-padding:                       1em;
+$global-position:                      1em;
+$global-weight-normal:                 common-variables.$text-base-weight;
+$global-weight-bold:                   common-variables.$text-fat-weight;
+$global-radius:                        common-functions.radius();
+$global-menu-padding:                  .7em 1em;
+$global-menu-nested-margin:            1em;
+$global-text-direction:                ltr;
+$global-flexbox:                       false;
+$global-prototype-breakpoints:         false;
+$global-button-cursor:                 auto;
+$global-color-pick-contrast-tolerance: 0;
+$print-transparent-backgrounds:        true;
+$print-hrefs:                          true;
+
+@include add-foundation-colors();
+
+// 2. Breakpoints
+// --------------
+
+$breakpoints:        (
+	'small':   0,
+	'medium':  common-variables.$small-dimension + 1,
+	'large':   common-variables.$medium-dimension + 1,
+	'xlarge':  common-variables.$large-dimension + 1,
+	'xxlarge': common-variables.$xlarge-dimension + 1,
+);
+$breakpoints-hidpi: (
+	'hidpi-1':   1,
+	'hidpi-1-5': 1.5,
+	'hidpi-2':   2,
+	'retina':    2,
+	'hidpi-3':   3
+);
+$print-breakpoint:   large;
+$breakpoint-classes: (small medium large);
+
+// 3. The Grid
+// -----------
+
+$grid-row-width:         $global-width;
+$grid-column-count:      12;
+$grid-column-gutter:     (
+	'small':  common-variables.$column-gutter-size * 2,
+	'medium': common-variables.$column-gutter-size * 2,
+);
+$grid-column-align-edge: true;
+$grid-column-alias:      'columns';
+$block-grid-max:         8;
+
+// 4. Base Typography
+// ------------------
+
+$header-font-family:           $body-font-family;
+$header-font-weight:           $global-weight-normal;
+$header-font-style:            normal;
+$font-family-monospace:        common-variables.$code-font;
+$header-color:                 inherit;
+$header-lineheight:            common-variables.$title-lineheight;
+$header-margin-bottom:         .5em;
+$header-styles: (
+	'small': (
+		'h1': ('font-size': 24),
+		'h2': ('font-size': 20),
+		'h3': ('font-size': 19),
+		'h4': ('font-size': 18),
+		'h5': ('font-size': 17),
+		'h6': ('font-size': 16),
+	),
+	'medium': (
+		'h1': ('font-size': 48),
+		'h2': ('font-size': 40),
+		'h3': ('font-size': 31),
+		'h4': ('font-size': 25),
+		'h5': ('font-size': 20),
+		'h6': ('font-size': 16),
+	),
+);
+$header-text-rendering:        optimizeLegibility;
+$small-font-size:              80%;
+$header-small-font-color:      common-variables.$bg-var2-color;
+$paragraph-lineheight:         common-variables.$content-lineheight;
+$paragraph-margin-bottom:      1em;
+$paragraph-text-rendering:     optimizeLegibility;
+$enable-code-inline:           true;
+$anchor-color:                 common-variables.$primary-color;
+$anchor-color-hover:           scale-color($anchor-color, $lightness: -14%);
+$anchor-text-decoration:       none;
+$anchor-text-decoration-hover: none;
+$hr-width:                     $global-width;
+$hr-border:                    common-functions.border();
+$hr-margin:                    1.25em auto;
+$list-lineheight:              $paragraph-lineheight;
+$list-margin-bottom:           $paragraph-margin-bottom;
+$list-style-type:              disc;
+$list-style-position:          outside;
+$list-side-margin:             1.25em;
+$list-nested-side-margin:      1.25em;
+$defnlist-margin-bottom:       1em;
+$defnlist-term-weight:         $global-weight-bold;
+$defnlist-term-margin-bottom:  .3em;
+$blockquote-color:             common-variables.$alt-color;
+$blockquote-padding:           .5em 1.25em 0 1.25em;
+$blockquote-border:            common-functions.border();
+$enable-cite-block:            true;
+$keystroke-font:               $font-family-monospace;
+$keystroke-color:              common-variables.$text-color;
+$keystroke-background:         common-variables.$bg-var1-color;
+$keystroke-padding:            .125em .25em 0;
+$keystroke-radius:             $global-radius;
+$abbr-underline:               common-functions.border(1, dotted, common-variables.$text-color);
+
+// 5. Typography Helpers
+// ---------------------
+
+$lead-font-size:           common-variables.$title-size;
+$lead-lineheight:          common-variables.$title-lineheight;
+$subheader-lineheight:     common-variables.$title-lineheight;
+$subheader-color:          common-variables.$alt-color;
+$subheader-font-weight:    $global-weight-normal;
+$subheader-margin-top:     .2em;
+$subheader-margin-bottom:  .5em;
+$stat-font-size:           common-variables.$title-biggest-size;
+$cite-color:               common-variables.$alt-color;
+$cite-font-size:           common-variables.$text-tiny-size;
+$cite-pseudo-content:      '\2014 \0020';
+$code-color:               common-variables.$text-color;
+$code-font-family:         $font-family-monospace;
+$code-font-weight:         $global-weight-normal;
+$code-background:          common-variables.$bg-var1-color;
+$code-border:              common-functions.border();
+$code-padding:             .125em .3125em .0625em;
+$code-block-padding:       1em;
+$code-block-margin-bottom: 1.5em;
+
+// 6. Abide
+// --------
+
+$abide-inputs:             true;
+$abide-labels:             true;
+$input-background-invalid: get-color(alert);
+$form-label-color-invalid: get-color(alert);
+$input-error-color:        get-color(alert);
+$input-error-font-size:    common-variables.$text-tiny-size;
+$input-error-font-weight:  $global-weight-bold;
+
+// 7. Accordion
+// ------------
+
+$accordion-background:            common-variables.$bg-color;
+$accordion-plusminus:             true;
+$accordion-plus-content:          '\002B';
+$accordion-minus-content:         '\2013';
+$accordion-title-font-size:       common-variables.$text-tiny-size;
+$accordion-item-color:            common-variables.$primary-color;
+$accordion-item-background-hover: common-variables.$bg-var1-color;
+$accordion-item-padding:          1.25em 1em;
+$accordion-content-background:    common-variables.$bg-color;
+$accordion-content-border:        common-functions.border();
+$accordion-content-color:         $body-font-color;
+$accordion-content-padding:       1em;
+
+// 8. Accordion Menu
+// -----------------
+
+$accordionmenu-padding:                   $global-menu-padding;
+$accordionmenu-nested-margin:             $global-menu-nested-margin;
+$accordionmenu-submenu-padding:           $accordionmenu-padding;
+$accordionmenu-arrows:                    true;
+$accordionmenu-arrow-color:               common-variables.$primary-color;
+$accordionmenu-item-background:           null;
+$accordionmenu-border:                    null;
+$accordionmenu-submenu-toggle-background: null;
+$accordion-submenu-toggle-border:         $accordionmenu-border;
+$accordionmenu-submenu-toggle-width:      2.5em;
+$accordionmenu-submenu-toggle-height:     $accordionmenu-submenu-toggle-width;
+$accordionmenu-arrow-size:                .375em;
+
+// 9. Badge
+// --------
+
+$badge-background: common-variables.$primary-color;
+$badge-color:      common-variables.$bg-color;
+$badge-color-alt:  common-variables.$text-color;
+$badge-palette:    $foundation-palette;
+$badge-padding:    .3em;
+$badge-minwidth:   2.1em;
+$badge-font-size:  common-variables.$text-nano-size;
+
+// 10. Breadcrumbs
+// ---------------
+
+$breadcrumbs-margin:                  0 0 $global-margin 0;
+$breadcrumbs-item-font-size:          common-variables.$text-micro-size;
+$breadcrumbs-item-color:              common-variables.$primary-color;
+$breadcrumbs-item-color-current:      common-variables.$text-color;
+$breadcrumbs-item-color-disabled:     common-variables.$bg-var2-color;
+$breadcrumbs-item-margin:             1em;
+$breadcrumbs-item-uppercase:          true;
+$breadcrumbs-item-separator:          true;
+$breadcrumbs-item-separator-item:     '\002f'; // '/'
+$breadcrumbs-item-separator-item-rtl: '\005c'; // '\'
+$breadcrumbs-item-separator-color:    common-variables.$bg-var2-color;
+
+// 11. Button
+// ----------
+
+$button-font-family:                inherit;
+$button-font-weight:                null;
+$button-padding:                    .85em 1em;
+$button-margin:                     0 0 $global-margin 0;
+$button-fill:                       solid;
+$button-background:                 common-variables.$button-bg-color;
+$button-background-hover:           common-variables.$button-bg-hover-color;
+$button-color:                      common-variables.$button-text-color;
+$button-color-alt:                  common-variables.$text-color;
+$button-radius:                     $global-radius;
+$button-border:                     common-functions.border($color:transparent);
+$button-hollow-border-width:        0;
+$button-sizes: (
+	'tiny':    common-variables.$text-nano-size,
+	'small':   common-variables.$text-tiny-size,
+	'default': common-variables.$text-small-size,
+	'large':   common-variables.$text-medium-size,
+);
+$button-palette:                    $foundation-palette;
+$button-opacity-disabled:           .25;
+$button-background-hover-lightness: -20%;
+$button-hollow-hover-lightness:     -50%;
+$button-transition:                 background-color common-variables.$hover-transition ease-out, color common-variables.$hover-transition ease-out;
+$button-responsive-expanded:        false;
+
+// 12. Button Group
+// ----------------
+
+$buttongroup-margin:         1em;
+$buttongroup-spacing:        .0625em;
+$buttongroup-child-selector: '.button';
+$buttongroup-expand-max:     6;
+$buttongroup-radius-on-each: true;
+
+// 13. Callout
+// -----------
+
+$callout-background:      common-variables.$bg-color;
+$callout-background-fade: 85%;
+$callout-border:          common-functions.border($color:rgba(common-variables.$text-color, .25));
+$callout-margin:          0 0 1em 0;
+$callout-sizes: (
+	'small':   .5em,
+	'default': 1em,
+	'large':   3em,
+);
+$callout-font-color:      $body-font-color;
+$callout-font-color-alt:  $body-background;
+$callout-radius:          $global-radius;
+$callout-link-tint:       30%;
+
+// 14. Card
+// --------
+
+$card-background:         common-variables.$bg-color;
+$card-font-color:         $body-font-color;
+$card-divider-background: common-variables.$bg-var1-color;
+$card-border:             common-functions.border();
+$card-shadow:             none;
+$card-border-radius:      $global-radius;
+$card-padding:            $global-padding;
+$card-margin-bottom:      $global-margin;
+
+// 15. Close Button
+// ----------------
+
+$closebutton-position:     right top;
+$closebutton-z-index:      null;
+$closebutton-default-size: medium;
+$closebutton-offset-horizontal: (
+	'small':  .66em,
+	'medium': 1em,
+);
+$closebutton-offset-vertical: (
+	'small':  .33em,
+	'medium': .5em,
+);
+$closebutton-size: (
+	'small':  1.5em,
+	'medium': 2em,
+);
+$closebutton-lineheight:  1;
+$closebutton-color:       common-variables.$alt-color;
+$closebutton-color-hover: common-variables.$text-color;
+
+// 16. Drilldown
+// -------------
+
+$drilldown-transition:         transform common-variables.$animation-transition linear;
+$drilldown-arrows:             true;
+$drilldown-padding:            $global-menu-padding;
+$drilldown-nested-margin:      0;
+$drilldown-background:         common-variables.$bg-color;
+$drilldown-submenu-padding:    $drilldown-padding;
+$drilldown-submenu-background: common-variables.$bg-color;
+$drilldown-arrow-color:        common-variables.$primary-color;
+$drilldown-arrow-size:         .375em;
+
+// 17. Dropdown
+// ------------
+
+$dropdown-padding:    1em;
+$dropdown-background: $body-background;
+$dropdown-border:     common-functions.border();
+$dropdown-font-size:  common-variables.$text-base-size;
+$dropdown-width:      18.75em;
+$dropdown-radius:     $global-radius;
+$dropdown-sizes: (
+	'tiny':  6.25em,
+	'small': 12.5em,
+	'large': 25em,
+);
+
+// 18. Dropdown Menu
+// -----------------
+
+$dropdownmenu-arrows:                  true;
+$dropdownmenu-arrow-color:             $anchor-color;
+$dropdownmenu-arrow-size:              .375em;
+$dropdownmenu-arrow-padding:           1em;
+$dropdownmenu-min-width:               12.5em;
+$dropdownmenu-background:              common-variables.$bg-color;
+$dropdownmenu-submenu-background:      $dropdownmenu-background;
+$dropdownmenu-padding:                 $global-menu-padding;
+$dropdownmenu-nested-margin:           0;
+$dropdownmenu-submenu-padding:         $dropdownmenu-padding;
+$dropdownmenu-border:                  common-functions.border();
+$dropdown-menu-item-color-active:      common-variables.$primary-color;
+$dropdown-menu-item-background-active: transparent;
+
+// 19. Flexbox Utilities
+// ---------------------
+
+$flex-source-ordering-count:     6;
+$flexbox-responsive-breakpoints: true;
+
+// 20. Forms
+// ---------
+
+$fieldset-border:           common-functions.border();
+$fieldset-padding:          1.25em;
+$fieldset-margin:           1.125em 0;
+$legend-padding:            0 .1875em;
+$form-spacing:              1em;
+$helptext-color:            common-variables.$text-color;
+$helptext-font-size:        common-variables.$text-small-size;
+$helptext-font-style:       italic;
+$input-prefix-color:        common-variables.$text-color;
+$input-prefix-background:   common-variables.$bg-var1-color;
+$input-prefix-border:       common-functions.border();
+$input-prefix-padding:      1em;
+$form-label-color:          common-variables.$text-color;
+$form-label-font-size:      common-variables.$text-small-size;
+$form-label-font-weight:    $global-weight-normal;
+$form-label-line-height:    1.8;
+$select-background:         common-variables.$bg-color;
+$select-triangle-color:     common-variables.$alt-color;
+$select-radius:             $global-radius;
+$input-color:               common-variables.$input-text-color;
+$input-placeholder-color:   common-variables.$input-placeholder-color;
+$input-font-family:         common-variables.$input-font;
+$input-font-size:           common-variables.$input-size;
+$input-font-weight:         $global-weight-normal;
+$input-line-height:         common-variables.$input-lineheight;
+$input-background:          common-variables.$input-bg-color;
+$input-background-focus:    common-variables.$input-bg-color;
+$input-background-disabled: common-variables.$bg-var1-color;
+$input-border:              common-functions.border($color:common-variables.$input-border-color);
+$input-border-focus:        common-functions.border($color:common-variables.$alt-color);
+$input-padding:             $form-spacing / 2;
+$input-shadow:              inset 0 .0625em .125em rgba(common-variables.$text-color, .1);
+$input-shadow-focus:        0 0 .3125em common-variables.$bg-var2-color;
+$input-cursor-disabled:     not-allowed;
+$input-transition:          box-shadow common-variables.$animation-transition * 2, border-color common-variables.$animation-transition ease-in-out;
+$input-number-spinners:     true;
+$input-radius:              $global-radius;
+$form-button-radius:        $global-radius;
+
+// 21. Label
+// ---------
+
+$label-background: common-variables.$primary-color;
+$label-color:      common-variables.$bg-color;
+$label-color-alt:  common-variables.$text-color;
+$label-palette:    $foundation-palette;
+$label-font-size:  common-variables.$text-tiny-size;
+$label-padding:    .35em .5em;
+$label-radius:     $global-radius;
+
+// 22. Media Object
+// ----------------
+
+$mediaobject-margin-bottom:       $global-margin;
+$mediaobject-section-padding:     $global-padding;
+$mediaobject-image-width-stacked: 100%;
+
+// 23. Menu
+// --------
+
+$menu-margin:                 0;
+$menu-nested-margin:          $global-menu-nested-margin;
+$menu-items-padding:          $global-menu-padding;
+$menu-simple-margin:          1em;
+$menu-item-color-active:      common-variables.$bg-color;
+$menu-item-color-alt-active:  common-variables.$bg-var1-color;
+$menu-item-background-active: common-variables.$primary-color;
+$menu-icon-spacing:           .25em;
+$menu-state-back-compat:      true;
+$menu-centered-back-compat:   true;
+$menu-icons-back-compat:      true;
+
+// 24. Meter
+// ---------
+
+$meter-height:      1em;
+$meter-radius:      $global-radius;
+$meter-background:  common-variables.$bg-var2-color;
+$meter-fill-good:   $success-color;
+$meter-fill-medium: $warning-color;
+$meter-fill-bad:    $alert-color;
+
+// 25. Off-canvas
+// --------------
+
+$offcanvas-sizes: (
+	'small': 15.625em,
+);
+$offcanvas-vertical-sizes: (
+	'small': 15.625em,
+);
+$offcanvas-background:         common-variables.$bg-var1-color;
+$offcanvas-shadow:             0 0 .625em rgba(common-variables.$shadow-color, .7);
+$offcanvas-inner-shadow-size:  1.25em;
+$offcanvas-inner-shadow-color: rgba(common-variables.$text-color, .25);
+$offcanvas-overlay-zindex:     common-functions.z-index(offcanvas, 1);
+$offcanvas-push-zindex:        common-functions.z-index(offcanvas, 2);
+$offcanvas-overlap-zindex:     common-functions.z-index(offcanvas, 3);
+$offcanvas-reveal-zindex:      common-functions.z-index(offcanvas, 2);
+$offcanvas-transition-length:  common-variables.$animation-transition;
+$offcanvas-transition-timing:  ease;
+$offcanvas-fixed-reveal:       true;
+$offcanvas-exit-background:    rgba(common-variables.$bg-color, .25);
+$maincontent-class:            'off-canvas-content';
+
+// 26. Orbit
+// ---------
+
+$orbit-bullet-background:        common-variables.$bg-var2-color;
+$orbit-bullet-background-active: common-variables.$alt-color;
+$orbit-bullet-diameter:          1.2em;
+$orbit-bullet-margin:            .1em;
+$orbit-bullet-margin-top:        .8em;
+$orbit-bullet-margin-bottom:     .8em;
+$orbit-caption-background:       rgba(common-variables.$text-color, .5);
+$orbit-caption-padding:          1em;
+$orbit-control-background-hover: rgba(common-variables.$text-color, .5);
+$orbit-control-padding:          1em;
+$orbit-control-zindex:           10;
+
+// 27. Pagination
+// --------------
+
+$pagination-font-size:               common-variables.$text-small-size;
+$pagination-margin-bottom:           $global-margin;
+$pagination-item-color:              common-variables.$text-color;
+$pagination-item-padding:            .1875em .625em;
+$pagination-item-spacing:            .0625em;
+$pagination-radius:                  $global-radius;
+$pagination-item-background-hover:   common-variables.$bg-var1-color;
+$pagination-item-background-current: common-variables.$primary-color;
+$pagination-item-color-current:      common-variables.$bg-color;
+$pagination-item-color-disabled:     common-variables.$bg-var2-color;
+$pagination-ellipsis-color:          common-variables.$text-color;
+$pagination-mobile-items:            false;
+$pagination-mobile-current-item:     false;
+$pagination-arrows:                  true;
+$pagination-arrow-previous:          '\00AB';
+$pagination-arrow-next:              '\00BB';
+
+// 28. Progress Bar
+// ----------------
+
+$progress-height:           1em;
+$progress-background:       common-variables.$bg-var2-color;
+$progress-margin-bottom:    $global-margin;
+$progress-meter-background: common-variables.$primary-color;
+$progress-radius:           $global-radius;
+
+// 29. Prototype Arrow
+// -------------------
+
+$prototype-arrow-directions: (
+	down,
+	up,
+	right,
+	left
+);
+$prototype-arrow-size: .4375em;
+$prototype-arrow-color: common-variables.$text-color;
+
+// 30. Prototype Border-Box
+// ------------------------
+
+$prototype-border-box-breakpoints: $global-prototype-breakpoints;
+
+// 31. Prototype Border-None
+// -------------------------
+
+$prototype-border-none-breakpoints: $global-prototype-breakpoints;
+
+// 32. Prototype Bordered
+// ----------------------
+
+$prototype-bordered-breakpoints: $global-prototype-breakpoints;
+$prototype-border-width:         .0625em;
+$prototype-border-type:          solid;
+$prototype-border-color:         common-variables.$bg-var2-color;
+
+// 33. Prototype Display
+// ---------------------
+
+$prototype-display-breakpoints: $global-prototype-breakpoints;
+$prototype-display: (
+	inline,
+	inline-block,
+	block,
+	table,
+	table-cell
+);
+
+// 34. Prototype Font-Styling
+// --------------------------
+
+$prototype-font-breakpoints:    $global-prototype-breakpoints;
+$prototype-wide-letter-spacing: .25em;
+$prototype-font-normal:         $global-weight-normal;
+$prototype-font-bold:           $global-weight-bold;
+
+// 35. Prototype List-Style-Type
+// -----------------------------
+
+$prototype-list-breakpoints: $global-prototype-breakpoints;
+$prototype-style-type-unordered: (
+	disc,
+	circle,
+	square
+);
+$prototype-style-type-ordered: (
+	decimal,
+	lower-alpha,
+	lower-latin,
+	lower-roman,
+	upper-alpha,
+	upper-latin,
+	upper-roman
+);
+
+// 36. Prototype Overflow
+// ----------------------
+
+$prototype-overflow-breakpoints: $global-prototype-breakpoints;
+$prototype-overflow: (
+	visible,
+	hidden,
+	scroll
+);
+
+// 37. Prototype Position
+// ----------------------
+
+$prototype-position-breakpoints: $global-prototype-breakpoints;
+$prototype-position: (
+	static,
+	relative,
+	absolute,
+	fixed
+);
+$prototype-position-z-index: 975;
+
+// 38. Prototype Rounded
+// ---------------------
+
+$prototype-rounded-breakpoints: $global-prototype-breakpoints;
+$prototype-border-radius:       .1875em;
+
+// 39. Prototype Separator
+// -----------------------
+
+$prototype-separator-breakpoints: $global-prototype-breakpoints;
+$prototype-separator-align:       center;
+$prototype-separator-height:      .125em;
+$prototype-separator-width:       3em;
+$prototype-separator-background:  common-variables.$primary-color;
+$prototype-separator-margin-top:  $global-margin;
+
+// 40. Prototype Shadow
+// --------------------
+
+$prototype-shadow-breakpoints: $global-prototype-breakpoints;
+$prototype-box-shadow: 0 .125em .3125em 0 rgba(common-variables.$shadow-color, .16), 0 .125em .625em  0 rgba(common-variables.$shadow-color, .12);
+
+// 41. Prototype Sizing
+// --------------------
+
+$prototype-sizing-breakpoints: $global-prototype-breakpoints;
+$prototype-sizing: (
+	width,
+	height
+);
+$prototype-sizes: (
+	'25':   25%,
+	'50':   50%,
+	'75':   75%,
+	'100': 100%
+);
+
+// 42. Prototype Spacing
+// ---------------------
+
+$prototype-spacing-breakpoints: $global-prototype-breakpoints;
+$prototype-spacers-count:       3;
+
+// 43. Prototype Text-Decoration
+// -----------------------------
+
+$prototype-decoration-breakpoints: $global-prototype-breakpoints;
+$prototype-text-decoration: (
+	overline,
+	underline,
+	line-through,
+);
+
+// 44. Prototype Text-Transformation
+// ---------------------------------
+
+$prototype-transformation-breakpoints: $global-prototype-breakpoints;
+$prototype-text-transformation: (
+	lowercase,
+	uppercase,
+	capitalize
+);
+
+// 45. Prototype Text-Utilities
+// ----------------------------
+
+$prototype-utilities-breakpoints: $global-prototype-breakpoints;
+$prototype-text-overflow:         ellipsis;
+
+// 46. Responsive Embed
+// --------------------
+
+$responsive-embed-margin-bottom: 1em;
+$responsive-embed-ratios: (
+	'default':     4 by 3,
+	'widescreen': 16 by 9,
+);
+
+// 47. Reveal
+// ----------
+
+$reveal-background:         common-variables.$bg-color;
+$reveal-width:              37.5em;
+$reveal-max-width:          $global-width;
+$reveal-padding:            $global-padding;
+$reveal-border:             common-functions.border();
+$reveal-radius:             $global-radius;
+$reveal-zindex:             common-functions.z-index(reveal);
+$reveal-overlay-background: rgba(common-variables.$text-color, .45);
+
+// 48. Slider
+// ----------
+
+$slider-width-vertical:    .5em;
+$slider-transition:        all common-variables.$animation-transition ease-in-out;
+$slider-height:            .5em;
+$slider-background:        common-variables.$bg-var1-color;
+$slider-fill-background:   common-variables.$bg-var2-color;
+$slider-handle-height:     1.4em;
+$slider-handle-width:      1.4em;
+$slider-handle-background: common-variables.$primary-color;
+$slider-opacity-disabled:  .25;
+$slider-radius:            $global-radius;
+
+// 49. Switch
+// ----------
+
+$switch-background:        common-variables.$bg-var2-color;
+$switch-background-active: common-variables.$primary-color;
+$switch-height:            2em;
+$switch-height-tiny:       1.5em;
+$switch-height-small:      1.75em;
+$switch-height-large:      2.5em;
+$switch-radius:            $global-radius;
+$switch-margin:            $global-margin;
+$switch-paddle-background: common-variables.$bg-color;
+$switch-paddle-offset:     .25em;
+$switch-paddle-radius:     $global-radius;
+$switch-paddle-transition: all common-variables.$animation-transition ease-out;
+$switch-opacity-disabled:  .5;
+$switch-cursor-disabled:   not-allowed;
+
+// 50. Table
+// ---------
+
+$table-background:         common-variables.$bg-color;
+$table-color-scale:        5%;
+$table-border:             common-functions.border($color:smart-scale($table-background, $table-color-scale));
+$table-padding:            .5em .625em .625em;
+$table-hover-scale:        2%;
+$table-row-hover:          darken($table-background, $table-hover-scale);
+$table-row-stripe-hover:   darken($table-background, $table-color-scale + $table-hover-scale);
+$table-is-striped:         true;
+$table-striped-background: smart-scale($table-background, $table-color-scale);
+$table-stripe:             even;
+$table-head-background:    smart-scale($table-background, $table-color-scale / 2);
+$table-head-row-hover:     darken($table-head-background, $table-hover-scale);
+$table-foot-background:    smart-scale($table-background, $table-color-scale);
+$table-foot-row-hover:     darken($table-foot-background, $table-hover-scale);
+$table-head-font-color:    $body-font-color;
+$table-foot-font-color:    $body-font-color;
+$show-header-for-stacked:  false;
+$table-stack-breakpoint:   medium;
+
+// 51. Tabs
+// --------
+
+$tab-margin:                0;
+$tab-background:            common-variables.$bg-color;
+$tab-color:                 common-variables.$primary-color;
+$tab-background-active:     common-variables.$bg-var1-color;
+$tab-active-color:          common-variables.$primary-color;
+$tab-item-font-size:        common-variables.$text-tiny-size;
+$tab-item-background-hover: common-variables.$bg-color;
+$tab-item-padding:          1.65em 2em;
+$tab-content-background:    common-variables.$bg-color;
+$tab-content-border:        common-variables.$bg-var1-color;
+$tab-content-color:         $body-font-color;
+$tab-content-padding:       1em;
+
+// 52. Thumbnail
+// -------------
+
+$thumbnail-border:        common-functions.border(4, solid, common-variables.$bg-color);
+$thumbnail-margin-bottom: $global-margin;
+$thumbnail-shadow:        0 0 0 .0625em rgba(common-variables.$text-color, .2);
+$thumbnail-shadow-hover:  0 0 .375em .0625em rgba(common-variables.$primary-color, .5);
+$thumbnail-transition:    box-shadow common-variables.$animation-transition ease-out;
+$thumbnail-radius:        $global-radius;
+
+// 53. Title Bar
+// -------------
+
+$titlebar-background:       common-variables.$text-color;
+$titlebar-color:            common-variables.$bg-color;
+$titlebar-padding:          .5em;
+$titlebar-text-font-weight: common-variables.$text-fat-weight;
+$titlebar-icon-color:       common-variables.$bg-color;
+$titlebar-icon-color-hover: common-variables.$bg-var2-color;
+$titlebar-icon-spacing:     .25em;
+
+// 54. Tooltip
+// -----------
+
+$has-tip-cursor:           help;
+$has-tip-font-weight:      $global-weight-bold;
+$has-tip-border-bottom:    common-functions.border(1, dotted, $color:common-variables.$alt-color);
+$tooltip-background-color: common-variables.$text-color;
+$tooltip-color:            common-variables.$bg-color;
+$tooltip-padding:          .75em;
+$tooltip-max-width:        10em;
+$tooltip-font-size:        $small-font-size;
+$tooltip-pip-width:        .75em;
+$tooltip-pip-height:       $tooltip-pip-width * .866;
+$tooltip-radius:           $global-radius;
+
+// 55. Top Bar
+// -----------
+
+$topbar-padding:            .5em;
+$topbar-background:         common-variables.$bg-var1-color;
+$topbar-submenu-background: $topbar-background;
+$topbar-title-spacing:      .5em 1em .5em 0;
+$topbar-input-width:        12.5em;
+$topbar-unstack-breakpoint: medium;
+
+// 56. Xy Grid
+// -----------
+
+$xy-grid:                true;
+$grid-container:         $global-width;
+$grid-columns:           12;
+$grid-margin-gutters:    (
+	'small':  common-variables.$column-gutter-size * 2,
+	'medium': common-variables.$column-gutter-size * 2,
+);
+$grid-padding-gutters:   $grid-margin-gutters;
+$grid-container-padding: $grid-padding-gutters;
+$grid-container-max:     $global-width;
+$xy-block-grid-max:      8;

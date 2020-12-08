@@ -1,0 +1,79 @@
+//-------------------------------------
+//-- nwayo - Mixins - Images
+//-------------------------------------
+@use '../functions';
+@use '../variables';
+
+
+//-- Background image
+@mixin background-image($file, $component, $inline:false, $color:false) {
+
+	// URI
+	$uri: '';
+	@if $inline {
+		$inline-image-path: functions.assets-path($file, $component, 'inline');
+
+		@if str-index($file, '.svg') {
+			$svg: nwayo-api-read-file($inline-image-path);
+
+			@if $color {
+
+				// Single color
+				@if type-of($color) == 'color' {
+					$svg: functions.color-replace($svg, variables.$svg-replacement-1-color, $color);
+
+					// List
+				} @else if type-of($color) == 'list' {
+					@for $i from 1 through length($color) {
+						$svg: functions.color-replace($svg, nth(variables.$svg-replacement-colors, $i), nth($color, $i));
+					}
+
+					// Hash
+				} @else {
+					@each $source, $target in $color {
+						$svg: functions.color-replace($svg, $source, $target);
+					}
+				}
+			}
+
+			$uri: functions.svg-data-uri($svg);
+
+		} @else {
+			$uri: nwayo-api-inline-file($inline-image-path);
+		}
+
+	} @else {
+		$path: functions.build-path($file, $component, images);
+		$url:  functions.assets-path($file, $component, images);
+
+		// High density
+		@if str-index($file, '@2x') {
+			@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {  // stylelint-disable-line
+				background-image: url($url + functions.cacheinvalidator-querystring($path));  // stylelint-disable-line function-url-quotes
+			}
+
+			$path: functions.str-replace($path, '@2x', '');
+			$url:  functions.str-replace($url, '@2x', '');
+		}
+
+		$uri: url($url + functions.cacheinvalidator-querystring($path));  // stylelint-disable-line function-url-quotes
+	}
+
+	// Output
+	background-image: #{$uri};
+}
+
+
+//-- Scalable icon
+@mixin scalable-icon($file, $component, $color:false) {
+	@include background-image($file, $component, $inline:true, $color:$color);
+	background-position: center center;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+
+//-- Scalable icon multicolored states
+@mixin scalable-icon-colored-states($name, $component, $state:default, $states:()) {
+	@include scalable-icon($name, $component, $color:map-get($states, $state));
+}

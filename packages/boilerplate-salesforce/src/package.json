@@ -1,0 +1,12 @@
+{
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@nwayo-components/common": "file:components/common",
+    "@nwayo-components/footer": "file:components/footer",
+    "@nwayo-components/foundation": "file:components/foundation",
+    "@nwayo-components/header": "file:components/header",
+    "@nwayo-components/layout": "file:components/layout",
+    "@nwayo-components/nwayo-toolbox": "file:components/nwayo-toolbox"
+  }
+}

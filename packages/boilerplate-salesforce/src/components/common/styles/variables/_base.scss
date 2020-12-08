@@ -1,0 +1,140 @@
+//-------------------------------------
+//-- Common - Variables - Base
+//-------------------------------------
+@use '~@nwayo-components/nwayo-toolbox/styles/functions' as nwayo-functions;
+@use '~@nwayo-components/nwayo-toolbox/styles/mixins'    as nwayo-mixins;
+@use '~@nwayo-components/nwayo-toolbox/styles/variables' as nwayo-variables;
+@use 'raw';
+
+
+//-- Foundation
+$xsmall-dimension: raw.$small-mobile-dimension;
+$small-dimension:  raw.$mobile-dimension;
+$medium-dimension: raw.$tablet-dimension;
+$large-dimension:  raw.$desktop-dimension;
+$xlarge-dimension: raw.$largedesktop-dimension;
+$max-dimension:    $xlarge-dimension;
+
+// stylelint-disable declaration-property-value-disallowed-list
+$column-gutter-size: nwayo-functions.rem-calc(15);
+$column-small-size:  nwayo-functions.rem-calc(290);
+$max-width-size:     nwayo-functions.rem-calc($max-dimension);
+// stylelint-enable declaration-property-value-disallowed-list
+
+
+
+//-- Colors
+$base-color:    raw.$charcoal-color;
+$primary-color: raw.$logo-shell-color;
+$alt-color:     raw.$nickel-color;
+$bg-color:      raw.$white-color;
+$bg-site-color: raw.$platinum-color;
+$bg-var1-color: raw.$ash-color;
+$bg-var2-color: raw.$ash-color;
+
+$text-color:      $base-color;
+$text-var1-color: raw.$battleship-color;
+$text-var2-color: raw.$black-color;
+
+$border-color:     raw.$nickel-color;
+$border-alt-color: raw.$ash-color;
+
+$link-color:       $primary-color;
+$link-hover-color: raw.$logo-shell-shade-color;
+
+$shadow-color:  raw.$charcoal-color;
+$overlay-color: rgba(raw.$charcoal-color, .7);
+
+$success-text-color: raw.$ocean-green-color;
+$warning-text-color: raw.$golden-tainoi-color;
+$error-text-color:   raw.$chestnut-rose-color;
+
+$input-bg-color:          $bg-color;
+$input-border-color:      $border-color;
+$input-text-color:        $text-color;
+$input-placeholder-color: lighten($text-color, 50%);
+$input-error-color:       $error-text-color;
+
+
+
+//-- Fonts
+$text-font:  raw.$open-sans-font, nwayo-variables.$sansserif-font;
+$title-font: raw.$merriweather-font, nwayo-variables.$sansserif-font;
+$code-font:  nwayo-variables.$monospace-font;
+$input-font: $text-font;
+
+$text-slimmest-weight: nwayo-variables.$thin-weight;
+$text-slimmer-weight:  nwayo-variables.$extralight-weight;
+$text-slim-weight:     nwayo-variables.$light-weight;
+$text-base-weight:     nwayo-variables.$normal-weight;
+$text-fat-weight:      nwayo-variables.$bold-weight;
+$text-fatter-weight:   nwayo-variables.$extrabold-weight;
+$text-fattest-weight:  nwayo-variables.$black-weight;
+
+// stylelint-disable declaration-property-value-disallowed-list
+$text-nano-size:     nwayo-functions.rem-calc(10);
+$text-micro-size:    nwayo-functions.rem-calc(11);
+$text-tiny-size:     nwayo-functions.rem-calc(12);
+$text-small-size:    nwayo-functions.rem-calc(14);
+$text-base-size:     nwayo-functions.rem-calc(16);
+$text-medium-size:   nwayo-functions.rem-calc(18);
+$title-size:         nwayo-functions.rem-calc(24);
+$title-big-size:     nwayo-functions.rem-calc(30);
+$title-bigger-size:  nwayo-functions.rem-calc(36);
+$title-biggest-size: nwayo-functions.rem-calc(42);
+$title-mega-size:    nwayo-functions.rem-calc(50);
+$title-ultra-size:   nwayo-functions.rem-calc(60);
+$input-size:         $text-base-size;
+// stylelint-enable declaration-property-value-disallowed-list
+
+$text-lineheight:    1.3;
+$title-lineheight:   1.15;
+$content-lineheight: 1.5;
+$input-lineheight:   $text-lineheight;
+
+
+
+//-- Buttons
+$button-bg-color:              raw.$logo-fruit-color;
+$button-bg-hover-color:        raw.$logo-fruit-shade-color;
+$button-bg-disabled-color:     raw.$platinum-color;
+$button-text-color:            raw.$white-color;
+$button-text-hover-color:      raw.$white-color;
+$button-text-disabled-color:   raw.$ash-color;
+$button-border-color:          raw.$logo-fruit-color;
+$button-border-hover-color:    raw.$logo-fruit-shade-color;
+$button-border-disabled-color: raw.$platinum-color;
+
+$button-secondary-bg-color:              raw.$white-color;
+$button-secondary-bg-hover-color:        raw.$white-color;
+$button-secondary-bg-disabled-color:     raw.$white-color;
+$button-secondary-text-color:            raw.$logo-fruit-color;
+$button-secondary-text-hover-color:      raw.$logo-fruit-shade-color;
+$button-secondary-text-disabled-color:   raw.$ash-color;
+$button-secondary-border-color:          raw.$logo-fruit-color;
+$button-secondary-border-hover-color:    raw.$logo-fruit-shade-color;
+$button-secondary-border-disabled-color: raw.$platinum-color;
+
+$button-cta-bg-color:              raw.$logo-shell-color;
+$button-cta-bg-hover-color:        raw.$logo-shell-shade-color;
+$button-cta-bg-disabled-color:     lighten(desaturate(raw.$logo-shell-shade-color, 30%), 30%);
+$button-cta-text-color:            raw.$white-color;
+$button-cta-text-hover-color:      raw.$white-color;
+$button-cta-text-disabled-color:   raw.$platinum-color;
+$button-cta-border-color:          raw.$logo-shell-color;
+$button-cta-border-hover-color:    raw.$logo-shell-shade-color;
+$button-cta-border-disabled-color: lighten(desaturate(raw.$logo-shell-shade-color, 30%), 30%);
+
+
+
+//-- Transitions
+$hover-transition:     raw.$hover-transition * 1ms;
+$animation-transition: raw.$animation-transition * 1ms;
+
+
+
+
+
+
+//-- Special bp
+$xsmall-down-media: 'only screen and (max-width: #{nwayo-functions.rem-calc($xsmall-dimension)})';  // stylelint-disable-line declaration-property-value-disallowed-list

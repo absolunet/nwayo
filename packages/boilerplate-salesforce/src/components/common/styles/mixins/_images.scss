@@ -1,0 +1,19 @@
+//-------------------------------------
+//-- Common - Mixins - Images
+//-------------------------------------
+@use '~@nwayo-components/nwayo-toolbox/styles/mixins' as nwayo-mixins;
+@use '../variables';
+
+
+//-- Images
+@mixin success-image {
+	@include nwayo-mixins.scalable-icon('success.svg', 'common', $color:variables.$text-var2-color);
+}
+
+@mixin warning-image {
+	@include nwayo-mixins.scalable-icon('warning.svg', 'common', $color:variables.$text-var2-color);
+}
+
+@mixin error-image {
+	@include nwayo-mixins.scalable-icon('error.svg', 'common', $color:variables.$text-var2-color);
+}

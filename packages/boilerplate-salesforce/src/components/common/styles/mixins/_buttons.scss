@@ -1,0 +1,101 @@
+//-------------------------------------
+//-- Common - Mixins - Buttons
+//-------------------------------------
+@use '../functions';
+@use '../variables';
+
+
+//-- Button
+@mixin button($type:false, $size:false, $action:false) {
+	$padding:          .75em 1.5em;
+	$border-color:     variables.$button-border-color;
+	$background-color: variables.$button-bg-color;
+	$color:            variables.$button-text-color;
+	$font-size:        variables.$text-small-size;
+
+	@if $type == secondary {
+		$border-color:     variables.$button-secondary-border-color;
+		$background-color: variables.$button-secondary-bg-color;
+		$color:            variables.$button-secondary-text-color;
+	} @else if $type == cta {
+		$border-color:     variables.$button-cta-border-color;
+		$background-color: variables.$button-cta-bg-color;
+		$color:            variables.$button-cta-text-color;
+	}
+
+	@if $size == icon {
+		$padding:   .75em;
+		$font-size: variables.$text-small-size;
+	} @else if $size == large {
+		$padding:   .75em 1em;
+		$font-size: variables.$text-medium-size;
+	} @else if $size == small {
+		$padding:   .5em .75em;
+		$font-size: variables.$text-micro-size;
+	}
+
+	//
+	display: inline-block;
+	vertical-align: middle;
+	box-sizing: border-box;
+	padding: $padding;
+	border: functions.border($width:2, $color:$border-color);
+	border-radius: functions.radius(button);
+	margin: 0;
+	background: $background-color;
+	color: $color;
+	font-family: variables.$text-font;
+	font-size: $font-size;
+	font-weight: variables.$text-base-weight;
+	text-align: center;
+	text-transform: uppercase;
+	text-decoration: none;
+	line-height: 1.2;
+	letter-spacing: .02em;
+	transition-property: background-color, border-color, color;
+	transition-duration: variables.$hover-transition;
+	transition-timing-function: ease-out;
+	cursor: pointer;
+
+	&:hover, &:focus, &:active {
+		$hover-border-color:     variables.$button-border-hover-color;
+		$hover-background-color: variables.$button-bg-hover-color;
+		$hover-color:            variables.$button-text-hover-color;
+
+		@if $type == secondary {
+			$hover-border-color:     variables.$button-secondary-border-hover-color;
+			$hover-background-color: variables.$button-secondary-bg-hover-color;
+			$hover-color:            variables.$button-secondary-text-hover-color;
+		} @else if $type == cta {
+			$hover-border-color:     variables.$button-cta-border-hover-color;
+			$hover-background-color: variables.$button-cta-bg-hover-color;
+			$hover-color:            variables.$button-cta-text-hover-color;
+		}
+		border-color: $hover-border-color;
+		background-color: $hover-background-color;
+		color: $hover-color;
+		text-decoration: none;
+	}
+
+	&.disabled, &[disabled], fieldset[disabled] & {
+		$disabled-border-color:     variables.$button-border-disabled-color;
+		$disabled-background-color: variables.$button-bg-disabled-color;
+		$disabled-color:            variables.$button-text-disabled-color;
+
+		@if $type == secondary {
+			$disabled-border-color:     variables.$button-secondary-border-disabled-color;
+			$disabled-background-color: variables.$button-secondary-bg-disabled-color;
+			$disabled-color:            variables.$button-secondary-text-disabled-color;
+		} @else if $type == cta {
+			$disabled-border-color:     variables.$button-cta-border-disabled-color;
+			$disabled-background-color: variables.$button-cta-bg-disabled-color;
+			$disabled-color:            variables.$button-cta-text-disabled-color;
+		}
+		border-color: $disabled-border-color;
+		background-color: $disabled-background-color;
+		color: $disabled-color;
+		text-decoration: none;
+		cursor: not-allowed;
+		pointer-events: none;
+	}
+}

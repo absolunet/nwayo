@@ -1,0 +1,140 @@
+//-------------------------------------
+//-- Layout - Mixins - Editable
+//-------------------------------------
+@use '~@nwayo-components/common/styles/functions' as common-functions;
+@use '~@nwayo-components/common/styles/variables' as common-variables;
+@import '~@nwayo-components/foundation/styles/global-export';
+
+
+//-- Editable content styles
+@mixin subtitle {
+	color: common-variables.$text-var1-color;
+	font-family: common-variables.$title-font;
+	font-weight: common-variables.$text-fat-weight;
+	line-height: common-variables.$title-lineheight;
+}
+
+
+
+@mixin h1 {
+	padding: 1em 0;
+	margin: 0;
+	color: common-variables.$text-color;
+	font-family: common-variables.$title-font;
+	font-size: common-variables.$title-size;
+	font-weight: common-variables.$text-fat-weight;
+	text-transform: uppercase;
+
+	@media #{bp(medium)} {
+		font-size: common-variables.$title-biggest-size;
+	}
+}
+
+@mixin h2 {
+	@include subtitle();
+	margin: .4em 0;
+	color: common-variables.$text-color;
+	font-size: common-variables.$title-size;
+
+	@media #{bp(medium)} {
+		font-size: common-variables.$title-big-size;
+	}
+}
+
+@mixin h3 {
+	@include subtitle();
+	font-size: common-variables.$text-medium-size;
+
+	@media #{bp(medium)} {
+		font-size: common-variables.$title-size;
+	}
+}
+
+@mixin h4 {
+	@include subtitle();
+	font-size: common-variables.$text-medium-size;
+	line-height: common-variables.$text-lineheight;
+
+	@media #{bp(medium)} {
+		font-size: common-variables.$text-medium-size;
+	}
+}
+
+@mixin h5 {
+	@include subtitle();
+	font-size: common-variables.$text-small-size;
+	line-height: common-variables.$text-lineheight;
+}
+
+@mixin h6 {
+	@include subtitle();
+	font-size: common-variables.$text-small-size;
+	line-height: common-variables.$text-lineheight;
+}
+
+
+
+@mixin editable {
+	margin-bottom: 1em;
+	font-size: common-variables.$text-small-size;
+	font-weight: common-variables.$text-base-weight;
+	line-height: common-variables.$content-lineheight;
+
+	h1, .h1 {
+		@include h1();
+	}
+
+	h2, .h2 {
+		@include h2();
+	}
+
+	h3, .h3 {
+		@include h3();
+	}
+
+	h4, .h4 {
+		@include h4();
+	}
+
+	h5, .h5 {
+		@include h5();
+	}
+
+	h6, .h6 {
+		@include h6();
+	}
+
+	.small {
+		font-size: .8em;  // stylelint-disable-line scale-unlimited/declaration-strict-value
+	}
+
+	p {
+		margin-bottom: 1em;
+		font-size: common-variables.$text-small-size;
+		font-weight: common-variables.$text-base-weight;
+		line-height: common-variables.$content-lineheight;
+
+		+ h1, + h2, + h3, + h4, + h5, + h6 {
+			margin-top: 1em;
+		}
+	}
+
+	table.table td {
+		vertical-align: top;
+	}
+
+	blockquote {
+		padding: 0 0 0 1.25em;
+		border-left: common-functions.border(3);
+		margin: 0 0 2em;
+		color: common-variables.$text-color;
+
+		p {
+			margin: 0;
+			color: common-variables.$text-color;
+			font-size: common-variables.$text-small-size;
+			font-style: initial;
+			line-height: common-variables.$content-lineheight;
+		}
+	}
+}

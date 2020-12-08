@@ -1,0 +1,59 @@
+extends: '@absolunet/stylelint-config-nwayo'
+
+
+rules:
+
+  # --- BEGIN temporary fix (will be corrected by future version of configs) --- #
+
+  # Rules renamed
+  at-rule-blacklist: null
+  at-rule-disallowed-list:
+    - extend
+    - message: Unexpected @extend directive (at-rule-disallowed-list)
+
+  comment-word-blacklist: null
+  comment-word-disallowed-list:
+    - /todo/i
+    - severity: warning
+      message:  Don't forget this TODO
+
+  declaration-property-value-blacklist: null
+  declaration-property-value-disallowed-list:
+    - /^border/:     /none|rem-calc/
+      /^transition/: /all/
+      /.*/:          /rem-calc/
+
+  property-blacklist: null
+  property-disallowed-list:
+    - font-smoothing
+
+  unit-whitelist: null
+  unit-allowed-list:
+      - em
+      - '%'
+      - vw
+      - vh
+      - ms
+      - s
+      - deg
+
+
+  # Support Module System
+  scale-unlimited/declaration-strict-value: null
+
+  scss/at-mixin-pattern:
+    - ^([a-z][a-z0-9]*)(-[a-z0-9]+)*$
+    - message: Mixin name must be kebab-case (scss/at-mixin-pattern)
+
+  scss/at-function-pattern:
+    - ^-?([a-z][a-z0-9]*)(-[a-z0-9]+)*$
+    - message: Function name must be kebab-case (scss/at-function-pattern)
+
+
+  # Salesforce .THIS
+  selector-class-pattern:
+    - ^([a-z][a-z0-9]*)(-[a-z0-9]+)*$|^THIS$
+    - resolveNestedSelectors: true
+      message:                Class selector must be kebab-case or THIS (selector-class-pattern)
+
+  # --- END temporary fix --- #

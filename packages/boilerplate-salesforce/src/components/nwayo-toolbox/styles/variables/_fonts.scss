@@ -1,0 +1,26 @@
+//-------------------------------------
+//-- nwayo - Variables - Fonts
+//-------------------------------------
+
+// Family
+/* stylelint-disable value-keyword-case */
+$sansserif-font: Helvetica, Arial, Verdana, sans-serif;
+$serif-font:     'Times New Roman', Times, serif;
+$monospace-font: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', Courier, monospace;
+/* stylelint-enable value-keyword-case */
+
+// Weight
+$thin-weight:       100;
+$extralight-weight: 200;
+$light-weight:      300;
+$normal-weight:     400;
+$medium-weight:     500;
+$semibold-weight:   600;
+$bold-weight:       700;
+$extrabold-weight:  800;
+$black-weight:      900;
+
+// Characters
+$bull-char:   '\2022';
+$times-char:  '\00D7';
+$endash-char: '\2013';

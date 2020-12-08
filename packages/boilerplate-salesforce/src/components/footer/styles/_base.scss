@@ -1,0 +1,16 @@
+//-------------------------------------
+//-- Footer - Base
+//-------------------------------------
+@use '~@nwayo-components/common/styles/functions' as common-functions;
+@use '~@nwayo-components/common/styles/variables' as common-variables;
+
+
+.THIS {
+	.footer-wrapper {
+		padding-top: 3.5em;
+		padding-bottom: 2em;
+		border-top: common-functions.border();
+		font-size: common-variables.$text-small-size;
+		text-align: center;
+	}
+}

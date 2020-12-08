@@ -1,0 +1,50 @@
+//-------------------------------------
+//-- nwayo - Functions - Maps
+//-------------------------------------
+
+
+//-- Deep map: Path splitter
+@function map-deep-split-path($path) {
+	$keys:      ();
+	$separator: '.';
+	$index:     str-index($path, $separator);
+
+	@while $index != null {
+		$item:  str-slice($path, 1, $index - 1);
+		$keys:  append($keys, $item);
+		$path:  str-slice($path, $index + 1);
+		$index: str-index($path, $separator);
+	}
+
+	@return append($keys, $path);
+}
+
+
+//-- Deep map: Has key
+@function map-deep-has-key($map, $path) {
+	@each $key in map-deep-split-path($path) {
+		@if map-has-key($map, $key) {
+			$map: map-get($map, $key);
+		} @else {
+			@return false;
+		}
+	}
+
+	@return true;
+}
+
+
+//-- Deep map: Get value
+@function map-deep-get($map, $path) {
+	@each $key in map-deep-split-path($path) {
+		@if $map != null {  // stylelint-disable-line scss/at-if-no-null
+			@if map-has-key($map, $key) {
+				$map: map-get($map, $key);
+			} @else {
+				$map: null;
+			}
+		}
+	}
+
+	@return $map;
+}

@@ -1,0 +1,39 @@
+//-------------------------------------
+//-- Common - Functions
+//-------------------------------------
+@use '~@nwayo-components/nwayo-toolbox/styles/functions' as nwayo-functions;
+@use '../variables';
+
+
+@function z-index($scope, $delta:0) {
+	@return nwayo-functions.z-index((
+		max:          2147483647,  // For reference only do not use - 2,147,483,647
+
+		reveal:       1000000000,
+		offcanvas:     100000000,
+
+		header:           100000,
+
+
+		min:                   0   // For reference only do not use - 0
+
+	), $scope, $delta);
+}
+
+
+
+@function radius($type:default) {
+	@return map-get((
+		default:  0,
+		button:   0,
+		select:   0,
+		checkbox: 0,
+		radio:    50%
+	), $type);
+}
+
+
+
+@function border($width:1, $style:solid, $color:variables.$border-color) {
+	@return nwayo-functions.rem-calc($width) $style $color;
+}

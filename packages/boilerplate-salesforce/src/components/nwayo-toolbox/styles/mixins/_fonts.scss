@@ -1,0 +1,19 @@
+//-------------------------------------
+//-- nwayo - Mixins - Fonts
+//-------------------------------------
+@use '../functions';
+
+
+//-- Font-face
+@mixin font-face($name, $filename, $component, $weight:normal, $style:normal) {
+	$path:  functions.build-path($filename, $component, 'fonts');
+	$url:   functions.assets-path($filename, $component, 'fonts');
+	$woff2: if(nwayo-api-file-exists('#{$path}.woff2'), url('#{$url}.woff2#{functions.cacheinvalidator-querystring('#{$path}.woff2')}') format('woff2') + ',', '');  // stylelint-disable-line function-url-quotes
+
+	@font-face {
+		font-family: $name;
+		font-weight: $weight;
+		font-style: $style;
+		src: #{$woff2} url('#{$url}.woff#{functions.cacheinvalidator-querystring('#{$path}.woff')}');  // stylelint-disable-line function-url-quotes
+	}
+}

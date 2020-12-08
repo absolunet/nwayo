@@ -1,0 +1,38 @@
+//-------------------------------------
+//-- Common - Fonts
+//-------------------------------------
+@use '~@nwayo-components/nwayo-toolbox/styles/mixins'    as nwayo-mixins;
+@use '~@nwayo-components/nwayo-toolbox/styles/variables' as nwayo-variables;
+@use 'variables/raw';
+
+
+//-- Open Sans
+// @include nwayo-mixins.font-face(raw.$open-sans-font, 'opensans-light-webfont',           'common', $weight:nwayo-variables.$light-weight);
+// @include nwayo-mixins.font-face(raw.$open-sans-font, 'opensans-lightitalic-webfont',     'common', $weight:nwayo-variables.$light-weight, $style:italic);
+
+// @include nwayo-mixins.font-face(raw.$open-sans-font, 'opensans-regular-webfont',         'common', $weight:nwayo-variables.$normal-weight);
+// @include nwayo-mixins.font-face(raw.$open-sans-font, 'opensans-italic-webfont',          'common', $weight:nwayo-variables.$normal-weight, $style:italic);
+
+// @include nwayo-mixins.font-face(raw.$open-sans-font, 'opensans-semibold-webfont',        'common', $weight:nwayo-variables.$semibold-weight, $style:italic);
+// @include nwayo-mixins.font-face(raw.$open-sans-font, 'opensans-semibolditalic-webfont',  'common', $weight:nwayo-variables.$semibold-weight, $style:italic);
+
+// @include nwayo-mixins.font-face(raw.$open-sans-font, 'opensans-bold-webfont',            'common', $weight:nwayo-variables.$bold-weight);
+// @include nwayo-mixins.font-face(raw.$open-sans-font, 'opensans-bolditalic-webfont',      'common', $weight:nwayo-variables.$bold-weight, $style:italic);
+
+// @include nwayo-mixins.font-face(raw.$open-sans-font, 'opensans-extrabold-webfont',       'common', $weight:nwayo-variables.$extrabold-weight);
+// @include nwayo-mixins.font-face(raw.$open-sans-font, 'opensans-extrabolditalic-webfont', 'common', $weight:nwayo-variables.$extrabold-weight, $style:italic);
+
+
+
+//-- Merriweather
+// @include nwayo-mixins.font-face(raw.$merriweather-font, 'merriweather-light-webfont',       'common', $weight:nwayo-variables.$light-weight);
+// @include nwayo-mixins.font-face(raw.$merriweather-font, 'merriweather-lightitalic-webfont', 'common', $weight:nwayo-variables.$light-weight, $style:italic);
+
+// @include nwayo-mixins.font-face(raw.$merriweather-font, 'merriweather-regular-webfont',     'common', $weight:nwayo-variables.$normal-weight);
+// @include nwayo-mixins.font-face(raw.$merriweather-font, 'merriweather-italic-webfont',      'common', $weight:nwayo-variables.$normal-weight, $style:italic);
+
+// @include nwayo-mixins.font-face(raw.$merriweather-font, 'merriweather-bold-webfont',        'common', $weight:nwayo-variables.$bold-weight);
+// @include nwayo-mixins.font-face(raw.$merriweather-font, 'merriweather-bolditalic-webfont',  'common', $weight:nwayo-variables.$bold-weight, $style:italic);
+
+// @include nwayo-mixins.font-face(raw.$merriweather-font, 'merriweather-black-webfont',       'common', $weight:nwayo-variables.$black-weight);
+// @include nwayo-mixins.font-face(raw.$merriweather-font, 'merriweather-blackitalic-webfont', 'common', $weight:nwayo-variables.$black-weight, $style:italic);
