@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@nwayo/core": "file:../../core",
-    "@nwayo/cli": "file:../../cli",
-    "@nwayo/preset-default": "file:../../preset-default"
+    "@nwayo/cli": "file:../../cli"
   }
 }

@@ -2,7 +2,7 @@
 //-- Nwayo Core - Console - Command - Project - Project Bootstrap
 //--------------------------------------------------------
 
-import Command from '../../Command';
+import { Command } from '@absolunet/ioc';
 
 
 /**
@@ -20,7 +20,7 @@ class ProjectBootstrapCommand extends Command {
 	 * @type {Array<string>}
 	 */
 	static get dependencies() {
-		return (super.dependencies || []).concat(['nwayo.project', 'dependency', 'nwayo.project.component']);
+		return (super.dependencies || []).concat(['dependency', 'nwayo.project.component']);
 	}
 
 	/**
@@ -34,7 +34,7 @@ class ProjectBootstrapCommand extends Command {
 	 * @inheritdoc
 	 */
 	get description() {
-		return this.t('commands.project-bootstrap.description');
+		return 'Bootstrap the project.';
 	}
 
 	/**
@@ -50,11 +50,11 @@ class ProjectBootstrapCommand extends Command {
 	 * @inheritdoc
 	 */
 	async handle() {
-		this.info(this.t('commands.project-bootstrap.messages.start'));
+		this.info('Bootstrapping project...');
 
 		await this.refreshComponents();
 
-		this.success(this.t('commands.project-bootstrap.messages.completed'));
+		this.success('Project bootstrapped!');
 
 		await this.handleInstallation();
 	}

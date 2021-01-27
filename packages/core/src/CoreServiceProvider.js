@@ -5,17 +5,12 @@
 import { ServiceProvider } from '@absolunet/ioc';
 
 import ProjectService             from './services/ProjectService';
-import Nwayo                      from './services/Nwayo';
-import Builder                    from './services/Builder';
 import BuildTypeRepository        from './repositories/BuildTypeRepository';
 import ProjectComponentRepository from './repositories/ProjectComponentRepository';
-import NwayoBuildPolicy           from './policies/NwayoBuildPolicy';
-import TerminalDecorator          from './services/TerminalDecorator';
 
 import InstallComponentsCommand from './console/commands/install/InstallComponentsCommand';
 import InstallDependencyCommand from './console/commands/install/InstallDependencyCommand';
 import BuildAllCommand          from './console/commands/build/BuildAllCommand';
-import BuildWatchCommand        from './console/commands/build/BuildWatchCommand';
 import BuildScriptsCommand      from './console/commands/build/BuildScriptsCommand';
 import BuildStylesCommand       from './console/commands/build/BuildStylesCommand';
 import BuildAssetsCommand       from './console/commands/build/BuildAssetsCommand';
@@ -34,48 +29,27 @@ class CoreServiceProvider extends ServiceProvider {
 	/**
 	 * @inheritdoc
 	 */
-	register() {
-		this.loadAndPublishConfig(this.app.formatPath(__dirname, 'config'));
+	register() { try {
 		this.loadAndPublishTranslations(this.app.formatPath(__dirname, 'resources', 'lang'));
-		this.bindNwayo();
-		this.bindBuildType();
-		this.bindBuilder();
 		this.bindProjectService();
-		this.bindProjectComponentRepository();
-		this.decorateTerminal();
+		this.bindBuildTypeRepository();
+		this.bindProjectComponentRepository(); } catch (error) { console.error(error); throw error; }
 	}
 
 	/**
 	 * @inheritdoc
 	 */
-	boot() {
+	boot() { try {
 		this.addDefaultBuildTypes();
-		this.addBuildPolicies();
-
 		this.loadCommands([
 			InstallComponentsCommand,
 			InstallDependencyCommand,
 			BuildAllCommand,
-			BuildWatchCommand,
 			BuildScriptsCommand,
 			BuildStylesCommand,
 			BuildAssetsCommand,
 			ProjectBootstrapCommand
-		]);
-	}
-
-	/**
-	 * Bind nwayo orchestrator.
-	 */
-	bindNwayo() {
-		this.app.singleton('nwayo', Nwayo);
-	}
-
-	/**
-	 * Bind builder.
-	 */
-	bindBuilder() {
-		this.app.singleton('nwayo.builder', Builder);
+		]); } catch (error) {} console.error(error); throw error; }
 	}
 
 	/**
@@ -86,6 +60,13 @@ class CoreServiceProvider extends ServiceProvider {
 	}
 
 	/**
+	 * Bind the build type repository.
+	 */
+	bindBuildTypeRepository() {
+		this.app.singleton('nwayo.build-type', BuildTypeRepository);
+	}
+
+	/**
 	 * Bind project component repository.
 	 */
 	bindProjectComponentRepository() {
@@ -93,37 +74,10 @@ class CoreServiceProvider extends ServiceProvider {
 	}
 
 	/**
-	 * Bind build type repository.
-	 */
-	bindBuildType() {
-		this.app.singleton('nwayo.build.type', BuildTypeRepository);
-	}
-
-	/**
 	 * Add default build types.
 	 */
 	addDefaultBuildTypes() {
-		this.app.make('nwayo.build.type')
-			.add('SCRIPTS', 'scripts')
-			.add('STYLES',  'styles')
-			.add('ASSETS',  'assets')
-		;
-	}
-
-	/**
-	 * Add build policies to prevent useless build commands to show up.
-	 */
-	addBuildPolicies() {
-		this.app.make('gate').register(NwayoBuildPolicy);
-	}
-
-	/**
-	 * Decorate default terminal.
-	 */
-	decorateTerminal() {
-		this.app.decorate('terminal', (terminal) => {
-			return new TerminalDecorator(terminal);
-		});
+		this.app.make('nwayo.build-type').add(['scripts', 'styles', 'assets']);
 	}
 
 }

@@ -11,8 +11,6 @@ var _DependencyManager = _interopRequireDefault(require("../services/DependencyM
 
 var _ContextService = _interopRequireDefault(require("../services/ContextService"));
 
-var _LegacyHandler = _interopRequireDefault(require("../handlers/LegacyHandler"));
-
 var _Package = _interopRequireDefault(require("../enums/Package"));
 
 var _Path = _interopRequireDefault(require("../enums/Path"));
@@ -45,7 +43,6 @@ class AppServiceProvider extends _ioc.ServiceProvider {
   register() {
     this.bindDependencyManager();
     this.bindContextService();
-    this.bindLegacyHandler();
     this.bindConstants();
     const context = this.app.make('nwayo.context');
 
@@ -91,14 +88,6 @@ class AppServiceProvider extends _ioc.ServiceProvider {
 
   bindContextService() {
     this.app.singleton('nwayo.context', _ContextService.default);
-  }
-  /**
-   * Bind legacy handler.
-   */
-
-
-  bindLegacyHandler() {
-    this.app.singleton('nwayo.legacy.handler', _LegacyHandler.default);
   }
   /**
    * Bind constants.

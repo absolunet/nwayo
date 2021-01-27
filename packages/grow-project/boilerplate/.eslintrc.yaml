@@ -1,5 +1,8 @@
-extends: '@absolunet/nwayo'
+extends: '@absolunet/browser'
 
+
+parserOptions:
+  sourceType: module
 
 # Environments
 #env:
@@ -13,4 +16,10 @@ extends: '@absolunet/nwayo'
 
 
 # Rules
-#rules:
+rules:
+
+  no-console: [warn]
+  no-debugger: [warn]
+
+  no-alert: [warn]
+  no-warning-comments: [warn, { location: anywhere }]

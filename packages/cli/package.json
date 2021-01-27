@@ -50,7 +50,7 @@
     "jest": "25.1.0"
   },
   "dependencies": {
-    "@absolunet/ioc": "1.0.1",
+    "@absolunet/ioc": "^2.0.0",
     "@absolunet/nwayo-cli": "3.8.1",
     "@absolunet/private-registry": "^2.0.0"
   }

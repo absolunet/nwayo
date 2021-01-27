@@ -37,6 +37,10 @@ messages:
     en: 'Build failure for file "{{path}}".'
     fr: 'Erreur lors de la compilation pour le fichier "{{path}}".'
 
+  completed-with-warnings:
+    en: 'Build completed with warnings [{{type}}].'
+    fr: 'Compilation complétée avec avertissements [{{type}}].'
+
   completed:
     en: 'Build successfully completed [{{type}}].'
     fr: 'Compilation complétée avec succès [{{type}}].'

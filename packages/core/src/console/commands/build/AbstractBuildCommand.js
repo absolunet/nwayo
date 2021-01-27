@@ -2,8 +2,7 @@
 //-- Nwayo Core - Console - Command - Build - Abstract Build
 //--------------------------------------------------------
 
-import { NotImplementedError, mixins } from '@absolunet/ioc';
-import Command                         from '../../Command';
+import { Command, NotImplementedError, mixins } from '@absolunet/ioc';
 
 
 /**
@@ -17,19 +16,12 @@ import Command                         from '../../Command';
 class AbstractBuildCommand extends mixins.checksTypes(Command) {
 
 	/**
-	 * Class dependencies: <code>['helper.date', 'helper.string', 'nwayo', 'nwayo.builder', 'nwayo.build.type']</code>.
+	 * Class dependencies: <code>['helper.date', 'helper.string', 'nwayo.build-type']</code>.
 	 *
 	 * @type {Array<string>}
 	 */
 	static get dependencies() {
-		return (super.dependencies || []).concat(['helper.date', 'helper.string', 'nwayo', 'nwayo.builder', 'nwayo.build.type']);
-	}
-
-	/**
-	 * @inheritdoc
-	 */
-	get policies() {
-		return [`nwayo.build:${this.type}`];
+		return (super.dependencies || []).concat(['helper.date', 'helper.string', 'nwayo.build-type']);
 	}
 
 	/**
@@ -48,11 +40,8 @@ class AbstractBuildCommand extends mixins.checksTypes(Command) {
 		const { name } = this.constructor;
 
 		if (name && name !== AbstractBuildCommand.name) {
-			const type = this.stringHelper.constant(name.replace(/^Build(?<type>[A-Z][A-Za-z]+)Command$/u, '$<type>'));
-
-			if (this.nwayoBuildType.has(type)) {
-				return this.nwayoBuildType.get(type);
-			}
+			if (this.buildTypeRepository)
+			return this.stringHelper.lower(name.replace(/^Build(?<type>[A-Z][A-Za-z]+)Command$/u, '$<type>'));
 		}
 
 		throw new NotImplementedError(this, 'type', 'string', 'accessor');
@@ -84,342 +73,104 @@ class AbstractBuildCommand extends mixins.checksTypes(Command) {
 	/**
 	 * @inheritdoc
 	 */
+	get flags() {
+		return [
+			['watch', 'Watch files for changes to trigger a compilation.'],
+			['watch-poll', 'Watch files with the polling strategy for performance. To be used on large projects.'],
+			['production', 'Compile for production.'],
+			['analyze', 'Produce a bundle analysis report at the end of the process.']
+		];
+	}
+
+	/**
+	 * @inheritdoc
+	 */
 	async handle() {
-		this.translationContext = {
-			type: this.type
-		};
+		const crossEnvBinaryFile    = this.resolveModuleFilePath('cross-env', ['src', 'bin', 'cross-env.js']);
+		const webpackBinaryFilePath = this.resolveModuleFilePath('webpack', ['bin', 'webpack.js']);
+		const webpackConfigFilePath = this.resolveModuleFilePath('@nwayo/api', ['dist', 'node', 'setup', 'webpack.config.js']);
 
-		this.bindEventHandlers();
+		const isProduction = this.flag('production');
+		const isWatching   = !isProduction && (this.flag('watch') || this.flag('watch-poll'));
+		const isPolling    = isWatching && this.flag('watch-poll');
+		const isAnalyzing  = isWatching && this.flag('analyze');
+		const verboseLevel = this.verbose;
 
-		this.terminal.spacer();
+		const buildTypes = this.getTypes();
+		const bundles    = this.getBundles();
 
-		try {
-			await this.build();
-		} finally {
-			this.stopProgress(true);
-		}
-	}
+		const nodeEnvironment = isProduction ? 'production'          : 'development';
+		const progressFlag    = isProduction ? '--no-progress'       : '--progress';
+		const watchFlag       = isWatching   ? '--watch'             : '';
+		const pollFlag        = isPolling    ? '--watch-poll=1000'   : '';
+		const analyzeFlag     = isAnalyzing  ? '--env.nwayo.analyze' : '';
 
-	/**
-	 * Build the command type.
-	 *
-	 * @see {nwayo.core.commands.AbstractBuildCommand#type}
-	 * @returns {Promise} The async process promise.
-	 */
-	async build() {
-		const bundles = this.getBundles();
-		this.progressCount = 0;
+		const parameters = [
+			crossEnvBinaryFile,
+			`NODE_ENV=${nodeEnvironment}`,
+			webpackBinaryFilePath,
+			'--hide-modules',
+			`--config=${webpackConfigFilePath}`,
+			analyzeFlag,
+			...buildTypes.map((buildType) => {
+				return `--env.nwayo.type=${buildType}`;
+			}),
+			`--env.nwayo.verbose=${verboseLevel}`,
+			progressFlag,
+			watchFlag,
+			pollFlag
+		].filter(Boolean);
 
-		const hasMultipleBundle = Array.isArray(bundles) && bundles.length > 0;
-		this.log(this.t(`commands.build-abstract.messages.${hasMultipleBundle ? 'multiple' : 'all'}-bundles`, {
-			bundles
+		await Promise.all(bundles.map(async (bundleName) => {
+			await this.run([...parameters, `--env.nwayo.bundle=${bundleName}`])
 		}));
-
-		await this.nwayo.build(...this.getBuildArguments());
 	}
 
 	/**
-	 * Bind builder event handlers.
+	 * Resolve the given module file path, and append the given path segments.
 	 *
-	 * @returns {nwayo.core.console.commands.build.AbstractBuildCommand} The current command instance.
+	 * @param {string} moduleName - The module name, which should be located in node_modules.
+	 * @param {Array<string>} pathSegments - The path segments to append to the resolved path.
+	 * @returns {string} The resolved module file path.
 	 */
-	bindEventHandlers() {
-		Object.keys(this.nwayoBuilder.events).forEach((event) => {
-			const method = `on${this.stringHelper.pascal(event)}`;
-
-			if (this.methodExists(method)) {
-				this.nwayoBuilder[method](this[method].bind(this));
-			}
-		});
-
-		return this;
+	resolveModuleFilePath(moduleName, pathSegments = []) {
+		return this.pathHelper.join(process.cwd(), 'node_modules', moduleName, ...pathSegments);
 	}
 
 	/**
-	 * Get build type(s).
+	 * Get all build types that should be compiled.
 	 *
-	 * @returns {string|Array<string>} The build type(s).
+	 * @returns {Array<string>} The build types that should be compiled.
 	 */
-	getBuildTypes() {
-		return this.type;
+	getTypes() {
+		const { type } = this;
+
+		if (type === 'all') {
+			return this.buildTypeRepository.all()
+		}
+
+		return [type];
 	}
 
 	/**
-	 * Get bundles to build.
+	 * Get all available bundles.
 	 *
-	 * @returns {Array<string>|null} The bundles list.
+	 * @returns {Array<string>} The available bundle names.
 	 */
 	getBundles() {
-		const bundles = this.option('bundle');
+		const bundles = this.app.make('nwayo.project').getBundles();
 
-		if (!bundles) {
-			return null;
-		}
+		const bundle = this.option('bundle');
 
-		return bundles.split(',').map((bundle) => {
-			return bundle.trim();
-		});
-	}
-
-	/**
-	 * Get nwayo.build() arguments.
-	 *
-	 * @returns {Array} The nwayo.build() arguments.
-	 */
-	getBuildArguments() {
-		return [
-			this.getBuildTypes(),
-			this.getBundles()
-		];
-	}
-
-	/**
-	 * Handle "start" event.
-	 */
-	onStart({ bundleName: bundle } = {}) {
-		this.info(this.t('commands.build-abstract.messages.start', { bundle }));
-		this.startProgress();
-	}
-
-	/**
-	 * Handle "preparing" event.
-	 */
-	onPreparing() {
-		this.log(this.t('commands.build-abstract.messages.preparing'));
-	}
-
-	/**
-	 * Handle "prepared" event.
-	 */
-	onPrepared() {
-		this.log(this.t('commands.build-abstract.messages.prepared'));
-	}
-
-	/**
-	 * Handle "progress" event.
-	 *
-	 * @param {object} payload - The event payload.
-	 * @param {number} payload.percent - The completion percent, between 0 and 1.
-	 */
-	onProgress({ percent }) {
-		if (this.progress) {
-			this.progress.show(`${(percent * 100).toFixed(0)}%`, percent);
-		}
-	}
-
-	/**
-	 * Handle "writing" event.
-	 */
-	onWriting({ path }) {
-		this.write(this.terminal.chalk.blue(this.t('commands.build-abstract.messages.writing', { path })));
-	}
-
-	/**
-	 * Handle "wrote" event.
-	 *
-	 * @param {Array<string|Buffer>} payload - The event payload.
-	 * @param {string} payload.file - The wrote file path.
-	 */
-	onWrote({ path }) {
-		this.success(this.t('commands.build-abstract.messages.wrote', { path }));
-	}
-
-	/**
-	 * Handle "watchReady" event.
-	 */
-	onWatchReady() {
-		this.stopProgress();
-		if (!this.hasProgress()) {
-			this.terminal.spacer();
-			this.write(this.terminal.chalk.blue(this.t('commands.build-abstract.messages.watch-ready')));
-			this.terminal.spacer();
-		}
-	}
-
-	/**
-	 * Handle "completed" event.
-	 */
-	onCompleted() {
-		this.stopProgress();
-		this.success(this.t('commands.build-abstract.messages.completed'));
-	}
-
-	/**
-	 * Handle "error" event.
-	 */
-	onError({ paths }) {
-		paths.forEach(({ path, message }) => {
-			this.failure(this.t('commands.build-abstract.messages.error', { path }));
-			super.write(message.split('\n').map((s) => {
-				return `${' '.repeat(4)}${s}`;
-			}).join('\n'));
-		});
-		this.stopProgress();
-	}
-
-	/**
-	 * Start progress bar in console.
-	 */
-	startProgress() {
-		this.progressCount++;
-
-		if (!this.progress) {
-			this.app.make('terminal.interceptor').disable();
-			this.progress = this.terminal.startProgress();
-			this.progress.show('', 0);
-			this.progressInterval = setInterval(() => {
-				this.progress.pulse();
-			}, 50);
-		}
-	}
-
-	/**
-	 * Stop progress bar in console.
-	 *
-	 * @param {boolean} [force=false] - Indicates to force the progress bar removal, even if more than one progress is pending.
-	 */
-	stopProgress(force = false) {
-		this.progressCount--;
-
-		if (!this.hasProgress()) {
-			if (this.progressInterval) {
-				clearInterval(this.progressInterval);
+		if (bundle) {
+			if (!bundles.includes(bundle)) {
+				throw new Error(`Bundle [${bundle}] does not exist.`);
 			}
 
-			if (this.progress) {
-				this.progress.disable();
-			}
-
-			delete this.progress;
-		} else if (force) {
-			this.stopProgress(true);
+			return [bundle];
 		}
-	}
 
-	/**
-	 * Check if progress is displayed in CLI.
-	 *
-	 * @returns {boolean} Indicates that the progress is currently printed in CLI.
-	 */
-	hasProgress() {
-		return this.progressCount > 0;
-	}
-
-	/**
-	 * Print with write instead of terminal.writeln.
-	 *
-	 * @inheritdoc
-	 */
-	print(level, ...parameters) {
-		if (this.verbose >= level) {
-			parameters.forEach((parameter) => {
-				this.write(this.prependLevel(level, parameter));
-			});
-		}
-	}
-
-	/**
-	 * Write with timestamp.
-	 *
-	 * @inheritdoc
-	 */
-	write(...parameters) {
-		return super.write(...this.batchPrependTimestamp(parameters));
-	}
-
-	/**
-	 * @inheritdoc
-	 */
-	info(...parameters) {
-		parameters.forEach((parameter) => {
-			this.write(this.terminal.chalk.blue(parameter));
-		});
-	}
-
-	/**
-	 * @inheritdoc
-	 */
-	success(...parameters) {
-		parameters.forEach((parameter) => {
-			this.write(this.terminal.chalk.green(parameter));
-		});
-	}
-
-	/**
-	 * @inheritdoc
-	 */
-	failure(...parameters) {
-		parameters.forEach((parameter) => {
-			this.write(this.terminal.chalk.red(parameter));
-		});
-	}
-
-	/**
-	 * Prepend timestamps for all given parameters.
-	 *
-	 * @param {...string} parameters - The parameters to prepend timestamp on.
-	 * @returns {Array<string>} The mapped parameters.
-	 */
-	batchPrependTimestamp(...parameters) {
-		return parameters.map((parameter) => {
-			return this.prependTimestamp(parameter);
-		});
-	}
-
-	/**
-	 * Prepend level name on the given parameter.
-	 *
-	 * @param {number} level - The level code.
-	 * @param {string} parameter - The parameter to prepend level on.
-	 * @returns {string} The mapped parameter.
-	 */
-	prependLevel(level, parameter) {
-		return `[${this.getLevelName(level).toUpperCase()}] ${parameter}`;
-	}
-
-	/**
-	 * Prepend formatted timestamp on the given parameter.
-	 *
-	 * @param {string} parameter - The parameter to prepend level on.
-	 * @returns {string} The mapped parameter.
-	 */
-	prependTimestamp(parameter) {
-		return `[${this.getTimestamp()}] ${parameter}`;
-	}
-
-	/**
-	 * Get level name based on level code.
-	 *
-	 * @param {number} level - The level code.
-	 * @returns {string} The level name.
-	 */
-	getLevelName(level) {
-		const levelNames = [
-			'info',
-			'log',
-			'debug',
-			'spam'
-		];
-
-		return levelNames[level] || levelNames[0];
-	}
-
-	/**
-	 * Get current timestamps, properly formatted.
-	 *
-	 * @returns {string} The formatted timestamp.
-	 */
-	getTimestamp() {
-		return this.dateHelper().format('YYYY-MM-DD HH:mm:ss');
-	}
-
-	/**
-	 * Date helper.
-	 *
-	 * @type {ioc.support.helpers.DateHelper}
-	 */
-	get dateHelper() {
-		return this.helperDate;
+		return bundles;
 	}
 
 	/**
@@ -429,6 +180,24 @@ class AbstractBuildCommand extends mixins.checksTypes(Command) {
 	 */
 	get stringHelper() {
 		return this.helperString;
+	}
+
+	/**
+	 * Path helper.
+	 *
+	 * @type {ioc.support.helpers.PathHelper}
+	 */
+	get pathHelper() {
+		return this.helperPath;
+	}
+
+	/**
+	 * Build type repository.
+	 *
+	 * @type {nwayo.core.repositories.BuildTypeRepository}
+	 */
+	get buildTypeRepository() {
+		return this.nwayoBuildType;
 	}
 
 }

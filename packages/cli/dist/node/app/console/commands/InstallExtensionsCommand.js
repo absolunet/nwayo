@@ -5,9 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _Command = _interopRequireDefault(require("../Command"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _ioc = require("@absolunet/ioc");
 
 //--------------------------------------------------------
 //-- Nwayo - Console - Commands - Install Extension
@@ -20,7 +18,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @augments nwayo.cli.console.Command
  * @hideconstructor
  */
-class InstallExtensionsCommand extends _Command.default {
+class InstallExtensionsCommand extends _ioc.Command {
   /**
    * @inheritdoc
    */
@@ -33,7 +31,7 @@ class InstallExtensionsCommand extends _Command.default {
 
 
   get description() {
-    return this.t('commands.install-extensions.description');
+    return 'Install extensions.';
   }
   /**
    * @inheritdoc
@@ -41,9 +39,9 @@ class InstallExtensionsCommand extends _Command.default {
 
 
   async handle() {
-    this.info(this.t('commands.install-extensions.messages.start'));
+    this.info('Installing extensions...');
     await this.installExtensions();
-    this.success(this.t('commands.install-extensions.messages.completed'));
+    this.success('Extensions installed!');
   }
   /**
    * Install project extensions.

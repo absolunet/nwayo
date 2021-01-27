@@ -1,0 +1,771 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>LaravelMixApiFactory - @nwayo/api API documentation</title>
+
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="shortcut icon"    href="../assets__/icons/favicon.ico">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-57.png">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-72.png"  sizes="72x72">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-76.png"  sizes="76x76">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-114.png" sizes="114x114">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-120.png" sizes="120x120">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-144.png" sizes="144x144">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-152.png" sizes="152x152">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-167.png" sizes="167x167">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-180.png" sizes="180x180">
+	<link rel="image_src"        href="../assets__/icons/touch-512.png">
+	<link rel="icon"             href="../assets__/icons/icon-64.png"  sizes="64x64">
+	<link rel="icon"             href="../assets__/icons/icon-96.png"  sizes="96x96">
+	<link rel="icon"             href="../assets__/icons/icon-192.png" sizes="192x192">
+	<link rel="icon"             href="../assets__/icons/icon-195.png" sizes="195x195">
+	<link rel="icon"             href="../assets__/icons/icon-196.png" sizes="196x196">
+	<link rel="icon"             href="../assets__/icons/icon-228.png" sizes="228x228">
+
+	<meta name="application-name"                content="@nwayo/api">
+	<meta name="msapplication-TileColor"         content="#2b2d3c">
+	<meta name="msapplication-square70x70logo"   content="../assets__/icons/tile-small.png">
+	<meta name="msapplication-square150x150logo" content="../assets__/icons/tile-medium.png">
+	<meta name="msapplication-wide310x150logo"   content="../assets__/icons/tile-wide.png">
+	<meta name="msapplication-square310x310logo" content="../assets__/icons/tile-large.png">
+
+	<link href="../assets__/main.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,500,700|Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+	
+	<!-- @absolunet/manager@2.1.0 (c) 2011-2020 Absolunet -->
+</head>
+<body>
+	
+
+	<header>
+		<p class="package"><a href="../">@nwayo/api</a><span class="version">5.0.4</span></p>
+		<a href="https://github.com/absolunet/nwayo" class="github" data-external="external">View on GitHub</a>
+	</header>
+
+	<div class="container">
+		<nav><div>
+			<h2><a href="index.html">API Home</a></h2><h3>Classes</h3><ul><li><a href="nwayo.api.NwayoApi.html">NwayoApi</a><ul class='members'></ul><ul class='methods'><li data-type='method'><a href="nwayo.api.NwayoApi.html#.make">make</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#plugin">plugin</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#withLaravelMix">withLaravelMix</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#pathFromBundle">pathFromBundle</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#copyFile">copyFile</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#copyDirectory">copyDirectory</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#images">images</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#destination">destination</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#url">url</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#webpackConfig">webpackConfig</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#then">then</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#js">js</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#ts">ts</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#react">react</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#vue">vue</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#dependencies">dependencies</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#eslint">eslint</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#sass">sass</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#less">less</a></li></ul></li><li><a href="nwayo.api.Plugin.html">Plugin</a><ul class='members'><li data-type='member'><a href="nwayo.api.Plugin.html#dependencies">dependencies</a></li><li data-type='member'><a href="nwayo.api.Plugin.html#type">type</a></li><li data-type='member'><a href="nwayo.api.Plugin.html#nwayoApi">nwayoApi</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.api.Plugin.html#getBuildTypes">getBuildTypes</a></li><li data-type='method'><a href="nwayo.api.Plugin.html#register">register</a></li><li data-type='method'><a href="nwayo.api.Plugin.html#boot">boot</a></li><li data-type='method'><a href="nwayo.api.Plugin.html#createMethod">createMethod</a></li><li data-type='method'><a href="nwayo.api.Plugin.html#setNwayoApi">setNwayoApi</a></li></ul></li><li><a href="nwayo.api.Context.html">Context</a><ul class='members'><li data-type='member'><a href="nwayo.api.Context.html#nwayo">nwayo</a></li><li data-type='member'><a href="nwayo.api.Context.html#bundles">bundles</a></li><li data-type='member'><a href="nwayo.api.Context.html#buildTypes">buildTypes</a></li><li data-type='member'><a href="nwayo.api.Context.html#shouldAnalyze">shouldAnalyze</a></li><li data-type='member'><a href="nwayo.api.Context.html#bundle">bundle</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.api.Context.html#setBundle">setBundle</a></li></ul></li><li><a href="nwayo.api.laravelMix.LaravelMixApiFactory.html">LaravelMixApiFactory</a><ul class='members'></ul><ul class='methods'><li data-type='method'><a href="nwayo.api.laravelMix.LaravelMixApiFactory.html#make">make</a></li><li data-type='method'><a href="nwayo.api.laravelMix.LaravelMixApiFactory.html#getLaravelMix">getLaravelMix</a></li><li data-type='method'><a href="nwayo.api.laravelMix.LaravelMixApiFactory.html#flushLaravelMixModuleCache">flushLaravelMixModuleCache</a></li><li data-type='method'><a href="nwayo.api.laravelMix.LaravelMixApiFactory.html#ensureGlobalOverridesAvailable">ensureGlobalOverridesAvailable</a></li><li data-type='method'><a href="nwayo.api.laravelMix.LaravelMixApiFactory.html#installAllComponents">installAllComponents</a></li></ul></li><li><a href="nwayo.api.laravelMix.LaravelMixBuilder.html">LaravelMixBuilder</a><ul class='members'></ul><ul class='methods'><li data-type='method'><a href="nwayo.api.laravelMix.LaravelMixBuilder.html#build">build</a></li></ul></li><li><a href="nwayo.api.Paths.html">Paths</a><ul class='members'><li data-type='member'><a href="nwayo.api.Paths.html#root">root</a></li><li data-type='member'><a href="nwayo.api.Paths.html#bundlesRoot">bundlesRoot</a></li><li data-type='member'><a href="nwayo.api.Paths.html#webpackFileName">webpackFileName</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.api.Paths.html#bundle">bundle</a></li><li data-type='method'><a href="nwayo.api.Paths.html#bundleWebpackFile">bundleWebpackFile</a></li><li data-type='method'><a href="nwayo.api.Paths.html#format">format</a></li></ul></li><li><a href="nwayo.api.plugins.AssetsPlugin.html">AssetsPlugin</a><ul class='members'><li data-type='member'><a href="nwayo.api.plugins.AssetsPlugin.html#dependencies">dependencies</a></li><li data-type='member'><a href="nwayo.api.plugins.AssetsPlugin.html#type">type</a></li><li data-type='member'><a href="nwayo.api.plugins.AssetsPlugin.html#nwayoApi">nwayoApi</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.api.plugins.AssetsPlugin.html#getBuildTypes">getBuildTypes</a></li><li data-type='method'><a href="nwayo.api.plugins.AssetsPlugin.html#register">register</a></li><li data-type='method'><a href="nwayo.api.plugins.AssetsPlugin.html#boot">boot</a></li><li data-type='method'><a href="nwayo.api.plugins.AssetsPlugin.html#createMethod">createMethod</a></li><li data-type='method'><a href="nwayo.api.plugins.AssetsPlugin.html#setNwayoApi">setNwayoApi</a></li></ul></li><li><a href="nwayo.api.plugins.CorePlugin.html">CorePlugin</a><ul class='members'><li data-type='member'><a href="nwayo.api.plugins.CorePlugin.html#dependencies">dependencies</a></li><li data-type='member'><a href="nwayo.api.plugins.CorePlugin.html#type">type</a></li><li data-type='member'><a href="nwayo.api.plugins.CorePlugin.html#nwayoApi">nwayoApi</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.api.plugins.CorePlugin.html#getBuildTypes">getBuildTypes</a></li><li data-type='method'><a href="nwayo.api.plugins.CorePlugin.html#register">register</a></li><li data-type='method'><a href="nwayo.api.plugins.CorePlugin.html#boot">boot</a></li><li data-type='method'><a href="nwayo.api.plugins.CorePlugin.html#createMethod">createMethod</a></li><li data-type='method'><a href="nwayo.api.plugins.CorePlugin.html#setNwayoApi">setNwayoApi</a></li></ul></li><li><a href="nwayo.api.plugins.ScriptsPlugin.html">ScriptsPlugin</a><ul class='members'><li data-type='member'><a href="nwayo.api.plugins.ScriptsPlugin.html#dependencies">dependencies</a></li><li data-type='member'><a href="nwayo.api.plugins.ScriptsPlugin.html#type">type</a></li><li data-type='member'><a href="nwayo.api.plugins.ScriptsPlugin.html#nwayoApi">nwayoApi</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.api.plugins.ScriptsPlugin.html#getBuildTypes">getBuildTypes</a></li><li data-type='method'><a href="nwayo.api.plugins.ScriptsPlugin.html#register">register</a></li><li data-type='method'><a href="nwayo.api.plugins.ScriptsPlugin.html#boot">boot</a></li><li data-type='method'><a href="nwayo.api.plugins.ScriptsPlugin.html#createMethod">createMethod</a></li><li data-type='method'><a href="nwayo.api.plugins.ScriptsPlugin.html#setNwayoApi">setNwayoApi</a></li></ul></li><li><a href="nwayo.api.plugins.StylesPlugin.html">StylesPlugin</a><ul class='members'><li data-type='member'><a href="nwayo.api.plugins.StylesPlugin.html#dependencies">dependencies</a></li><li data-type='member'><a href="nwayo.api.plugins.StylesPlugin.html#type">type</a></li><li data-type='member'><a href="nwayo.api.plugins.StylesPlugin.html#nwayoApi">nwayoApi</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.api.plugins.StylesPlugin.html#getBuildTypes">getBuildTypes</a></li><li data-type='method'><a href="nwayo.api.plugins.StylesPlugin.html#register">register</a></li><li data-type='method'><a href="nwayo.api.plugins.StylesPlugin.html#boot">boot</a></li><li data-type='method'><a href="nwayo.api.plugins.StylesPlugin.html#createMethod">createMethod</a></li><li data-type='method'><a href="nwayo.api.plugins.StylesPlugin.html#setNwayoApi">setNwayoApi</a></li></ul></li></ul>
+		</div></nav>
+
+		<div id="main">
+		
+			<h1 class="page-title">LaravelMixApiFactory</h1>
+		
+
+			
+
+
+
+
+<section>
+
+<div>
+    
+        </h2>
+        
+            <div class="class-description">Laravel Mix API Factory.</div>
+        
+    
+</div>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+<div class="method">
+
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="LaravelMixApiFactory"><span class="type-signature"></span>new LaravelMixApiFactory<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="laravelMix_LaravelMixApiFactory.js.html#line-14">laravelMix/LaravelMixApiFactory.js:14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    LaravelMixApiFactory constructor.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+<div class="method">
+
+    
+
+    <h4 class="name" id="make"><span class="type-signature"></span>make<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="laravelMix_LaravelMixApiFactory.js.html#line-26">laravelMix/LaravelMixApiFactory.js:26</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Make a fresh Laravel Mix API instance.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The Laravel Mix API instance.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Api</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+</div>
+
+        
+            
+<div class="method">
+
+    
+
+    <h4 class="name" id="getLaravelMix"><span class="type-signature"></span>getLaravelMix<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="laravelMix_LaravelMixApiFactory.js.html#line-42">laravelMix/LaravelMixApiFactory.js:42</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Get the current Laravel Mix API instance.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The current Laravel Mix API instance.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Api</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+</div>
+
+        
+            
+<div class="method">
+
+    
+
+    <h4 class="name" id="flushLaravelMixModuleCache"><span class="type-signature"></span>flushLaravelMixModuleCache<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="laravelMix_LaravelMixApiFactory.js.html#line-51">laravelMix/LaravelMixApiFactory.js:51</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Flush Laravel Mix module cache.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The current LaravelMixApiFactory instance.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="nwayo.api.laravelMix.LaravelMixApiFactory.html">nwayo.api.laravelMix.LaravelMixApiFactory</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+</div>
+
+        
+            
+<div class="method">
+
+    
+
+    <h4 class="name" id="ensureGlobalOverridesAvailable"><span class="type-signature"></span>ensureGlobalOverridesAvailable<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="laravelMix_LaravelMixApiFactory.js.html#line-73">laravelMix/LaravelMixApiFactory.js:73</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Ensure that global variable overrides are made available.
+Since Laravel Mix defines a `tap` Array helper, without defining the `configurable` property,
+we must clearly indicate that the property is configurable to prevent TypeError on module reload.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The current LaravelMixApiFactory instance.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="nwayo.api.laravelMix.LaravelMixApiFactory.html">nwayo.api.laravelMix.LaravelMixApiFactory</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+</div>
+
+        
+            
+<div class="method">
+
+    
+
+    <h4 class="name" id="installAllComponents"><span class="type-signature"></span>installAllComponents<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="laravelMix_LaravelMixApiFactory.js.html#line-84">laravelMix/LaravelMixApiFactory.js:84</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Install all Laravel Mix components.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The current LaravelMixApiFactory instance.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="nwayo.api.laravelMix.LaravelMixApiFactory.html">nwayo.api.laravelMix.LaravelMixApiFactory</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+</div>
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+		</div>
+	</div>
+
+	<footer>
+		MIT © 2011-2020 <span class="made">Made with <span class="adjective" data-component="adjective">&#x2764;</span> by <a href="https://absolunet.com" data-external="external">Absolunet</a></span>
+	</footer>
+
+	<script src="../assets__/main.js"></script>
+
+</body>
+</html>

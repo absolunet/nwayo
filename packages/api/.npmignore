@@ -1,0 +1,17 @@
+.DS_Store
+.github
+.editorconfig
+.eslintignore
+.eslintrc.yaml
+.gitignore
+.travis.yml
+bitbucket-pipelines.yml
+code_of_conduct.md
+contributing.md
+manager.js
+security.md
+support.md
+docs
+src
+test
+!dist/**

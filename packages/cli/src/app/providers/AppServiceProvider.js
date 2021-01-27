@@ -5,7 +5,6 @@
 import { ServiceProvider } from '@absolunet/ioc';
 import DependencyManager   from '../services/DependencyManager';
 import ContextService      from '../services/ContextService';
-import LegacyHandler       from '../handlers/LegacyHandler';
 import PackageConstants    from '../enums/Package';
 import PathConstants       from '../enums/Path';
 
@@ -32,7 +31,6 @@ class AppServiceProvider extends ServiceProvider {
 	register() {
 		this.bindDependencyManager();
 		this.bindContextService();
-		this.bindLegacyHandler();
 		this.bindConstants();
 
 		const context = this.app.make('nwayo.context');
@@ -75,13 +73,6 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	bindContextService() {
 		this.app.singleton('nwayo.context', ContextService);
-	}
-
-	/**
-	 * Bind legacy handler.
-	 */
-	bindLegacyHandler() {
-		this.app.singleton('nwayo.legacy.handler', LegacyHandler);
 	}
 
 	/**

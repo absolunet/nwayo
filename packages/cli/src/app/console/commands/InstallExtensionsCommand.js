@@ -2,7 +2,7 @@
 //-- Nwayo - Console - Commands - Install Extension
 //--------------------------------------------------------
 
-import Command from '../Command';
+import { Command } from '@absolunet/ioc';
 
 
 /**
@@ -25,18 +25,18 @@ class InstallExtensionsCommand extends Command {
 	 * @inheritdoc
 	 */
 	get description() {
-		return this.t('commands.install-extensions.description');
+		return 'Install extensions.';
 	}
 
 	/**
 	 * @inheritdoc
 	 */
 	async handle() {
-		this.info(this.t('commands.install-extensions.messages.start'));
+		this.info('Installing extensions...');
 
 		await this.installExtensions();
 
-		this.success(this.t('commands.install-extensions.messages.completed'));
+		this.success('Extensions installed!');
 	}
 
 	/**

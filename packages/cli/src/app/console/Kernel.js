@@ -17,26 +17,6 @@ class Kernel extends ConsoleKernel {
 	/**
 	 * @inheritdoc
 	 */
-	async handle() {
-		if (this.projectIsLegacy()) {
-			await this.handleLegacy();
-		} else {
-			await super.handle();
-		}
-	}
-
-	/**
-	 * Handle calls for legacy nwayo project.
-	 *
-	 * @returns {Promise} The async process promise.
-	 */
-	handleLegacy() {
-		return this.legacyHandler.handle();
-	}
-
-	/**
-	 * @inheritdoc
-	 */
 	async beforeHandling() {
 		await this.loadTranslations();
 		this.registerCommands();
@@ -56,33 +36,6 @@ class Kernel extends ConsoleKernel {
 	 */
 	registerCommands() {
 		this.commandRegistrar.addFromFolder(this.app.commandPath());
-	}
-
-	/**
-	 * Check if current call is in legacy nwayo project.
-	 *
-	 * @returns {boolean} Indicates that the current project is a legacy nwayo project.
-	 */
-	projectIsLegacy() {
-		return this.context.projectIsLegacy();
-	}
-
-	/**
-	 * Context service.
-	 *
-	 * @type {nwayo.cli.services.ContextService}
-	 */
-	get context() {
-		return this.app.make('nwayo.context');
-	}
-
-	/**
-	 * Legacy handler.
-	 *
-	 * @type {nwayo.cli.handlers.LegacyHandler}
-	 */
-	get legacyHandler() {
-		return this.app.make('nwayo.legacy.handler');
 	}
 
 	/**

@@ -1,0 +1,1077 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Plugin - @nwayo/api API documentation</title>
+
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="shortcut icon"    href="../assets__/icons/favicon.ico">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-57.png">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-72.png"  sizes="72x72">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-76.png"  sizes="76x76">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-114.png" sizes="114x114">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-120.png" sizes="120x120">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-144.png" sizes="144x144">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-152.png" sizes="152x152">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-167.png" sizes="167x167">
+	<link rel="apple-touch-icon" href="../assets__/icons/touch-180.png" sizes="180x180">
+	<link rel="image_src"        href="../assets__/icons/touch-512.png">
+	<link rel="icon"             href="../assets__/icons/icon-64.png"  sizes="64x64">
+	<link rel="icon"             href="../assets__/icons/icon-96.png"  sizes="96x96">
+	<link rel="icon"             href="../assets__/icons/icon-192.png" sizes="192x192">
+	<link rel="icon"             href="../assets__/icons/icon-195.png" sizes="195x195">
+	<link rel="icon"             href="../assets__/icons/icon-196.png" sizes="196x196">
+	<link rel="icon"             href="../assets__/icons/icon-228.png" sizes="228x228">
+
+	<meta name="application-name"                content="@nwayo/api">
+	<meta name="msapplication-TileColor"         content="#2b2d3c">
+	<meta name="msapplication-square70x70logo"   content="../assets__/icons/tile-small.png">
+	<meta name="msapplication-square150x150logo" content="../assets__/icons/tile-medium.png">
+	<meta name="msapplication-wide310x150logo"   content="../assets__/icons/tile-wide.png">
+	<meta name="msapplication-square310x310logo" content="../assets__/icons/tile-large.png">
+
+	<link href="../assets__/main.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,500,700|Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+	
+	<!-- @absolunet/manager@2.1.0 (c) 2011-2020 Absolunet -->
+</head>
+<body>
+	
+
+	<header>
+		<p class="package"><a href="../">@nwayo/api</a><span class="version">5.0.4</span></p>
+		<a href="https://github.com/absolunet/nwayo" class="github" data-external="external">View on GitHub</a>
+	</header>
+
+	<div class="container">
+		<nav><div>
+			<h2><a href="index.html">API Home</a></h2><h3>Classes</h3><ul><li><a href="nwayo.api.NwayoApi.html">NwayoApi</a><ul class='members'></ul><ul class='methods'><li data-type='method'><a href="nwayo.api.NwayoApi.html#.make">make</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#plugin">plugin</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#withLaravelMix">withLaravelMix</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#pathFromBundle">pathFromBundle</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#copyFile">copyFile</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#copyDirectory">copyDirectory</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#images">images</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#destination">destination</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#url">url</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#webpackConfig">webpackConfig</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#then">then</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#js">js</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#ts">ts</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#react">react</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#vue">vue</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#dependencies">dependencies</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#eslint">eslint</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#sass">sass</a></li><li data-type='method'><a href="nwayo.api.NwayoApi.html#less">less</a></li></ul></li><li><a href="nwayo.api.Plugin.html">Plugin</a><ul class='members'><li data-type='member'><a href="nwayo.api.Plugin.html#dependencies">dependencies</a></li><li data-type='member'><a href="nwayo.api.Plugin.html#type">type</a></li><li data-type='member'><a href="nwayo.api.Plugin.html#nwayoApi">nwayoApi</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.api.Plugin.html#getBuildTypes">getBuildTypes</a></li><li data-type='method'><a href="nwayo.api.Plugin.html#register">register</a></li><li data-type='method'><a href="nwayo.api.Plugin.html#boot">boot</a></li><li data-type='method'><a href="nwayo.api.Plugin.html#createMethod">createMethod</a></li><li data-type='method'><a href="nwayo.api.Plugin.html#setNwayoApi">setNwayoApi</a></li></ul></li><li><a href="nwayo.api.Context.html">Context</a><ul class='members'><li data-type='member'><a href="nwayo.api.Context.html#nwayo">nwayo</a></li><li data-type='member'><a href="nwayo.api.Context.html#bundles">bundles</a></li><li data-type='member'><a href="nwayo.api.Context.html#buildTypes">buildTypes</a></li><li data-type='member'><a href="nwayo.api.Context.html#shouldAnalyze">shouldAnalyze</a></li><li data-type='member'><a href="nwayo.api.Context.html#bundle">bundle</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.api.Context.html#setBundle">setBundle</a></li></ul></li><li><a href="nwayo.api.laravelMix.LaravelMixApiFactory.html">LaravelMixApiFactory</a><ul class='members'></ul><ul class='methods'><li data-type='method'><a href="nwayo.api.laravelMix.LaravelMixApiFactory.html#make">make</a></li><li data-type='method'><a href="nwayo.api.laravelMix.LaravelMixApiFactory.html#getLaravelMix">getLaravelMix</a></li><li data-type='method'><a href="nwayo.api.laravelMix.LaravelMixApiFactory.html#flushLaravelMixModuleCache">flushLaravelMixModuleCache</a></li><li data-type='method'><a href="nwayo.api.laravelMix.LaravelMixApiFactory.html#ensureGlobalOverridesAvailable">ensureGlobalOverridesAvailable</a></li><li data-type='method'><a href="nwayo.api.laravelMix.LaravelMixApiFactory.html#installAllComponents">installAllComponents</a></li></ul></li><li><a href="nwayo.api.laravelMix.LaravelMixBuilder.html">LaravelMixBuilder</a><ul class='members'></ul><ul class='methods'><li data-type='method'><a href="nwayo.api.laravelMix.LaravelMixBuilder.html#build">build</a></li></ul></li><li><a href="nwayo.api.Paths.html">Paths</a><ul class='members'><li data-type='member'><a href="nwayo.api.Paths.html#root">root</a></li><li data-type='member'><a href="nwayo.api.Paths.html#bundlesRoot">bundlesRoot</a></li><li data-type='member'><a href="nwayo.api.Paths.html#webpackFileName">webpackFileName</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.api.Paths.html#bundle">bundle</a></li><li data-type='method'><a href="nwayo.api.Paths.html#bundleWebpackFile">bundleWebpackFile</a></li><li data-type='method'><a href="nwayo.api.Paths.html#format">format</a></li></ul></li><li><a href="nwayo.api.plugins.AssetsPlugin.html">AssetsPlugin</a><ul class='members'><li data-type='member'><a href="nwayo.api.plugins.AssetsPlugin.html#dependencies">dependencies</a></li><li data-type='member'><a href="nwayo.api.plugins.AssetsPlugin.html#type">type</a></li><li data-type='member'><a href="nwayo.api.plugins.AssetsPlugin.html#nwayoApi">nwayoApi</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.api.plugins.AssetsPlugin.html#getBuildTypes">getBuildTypes</a></li><li data-type='method'><a href="nwayo.api.plugins.AssetsPlugin.html#register">register</a></li><li data-type='method'><a href="nwayo.api.plugins.AssetsPlugin.html#boot">boot</a></li><li data-type='method'><a href="nwayo.api.plugins.AssetsPlugin.html#createMethod">createMethod</a></li><li data-type='method'><a href="nwayo.api.plugins.AssetsPlugin.html#setNwayoApi">setNwayoApi</a></li></ul></li><li><a href="nwayo.api.plugins.CorePlugin.html">CorePlugin</a><ul class='members'><li data-type='member'><a href="nwayo.api.plugins.CorePlugin.html#dependencies">dependencies</a></li><li data-type='member'><a href="nwayo.api.plugins.CorePlugin.html#type">type</a></li><li data-type='member'><a href="nwayo.api.plugins.CorePlugin.html#nwayoApi">nwayoApi</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.api.plugins.CorePlugin.html#getBuildTypes">getBuildTypes</a></li><li data-type='method'><a href="nwayo.api.plugins.CorePlugin.html#register">register</a></li><li data-type='method'><a href="nwayo.api.plugins.CorePlugin.html#boot">boot</a></li><li data-type='method'><a href="nwayo.api.plugins.CorePlugin.html#createMethod">createMethod</a></li><li data-type='method'><a href="nwayo.api.plugins.CorePlugin.html#setNwayoApi">setNwayoApi</a></li></ul></li><li><a href="nwayo.api.plugins.ScriptsPlugin.html">ScriptsPlugin</a><ul class='members'><li data-type='member'><a href="nwayo.api.plugins.ScriptsPlugin.html#dependencies">dependencies</a></li><li data-type='member'><a href="nwayo.api.plugins.ScriptsPlugin.html#type">type</a></li><li data-type='member'><a href="nwayo.api.plugins.ScriptsPlugin.html#nwayoApi">nwayoApi</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.api.plugins.ScriptsPlugin.html#getBuildTypes">getBuildTypes</a></li><li data-type='method'><a href="nwayo.api.plugins.ScriptsPlugin.html#register">register</a></li><li data-type='method'><a href="nwayo.api.plugins.ScriptsPlugin.html#boot">boot</a></li><li data-type='method'><a href="nwayo.api.plugins.ScriptsPlugin.html#createMethod">createMethod</a></li><li data-type='method'><a href="nwayo.api.plugins.ScriptsPlugin.html#setNwayoApi">setNwayoApi</a></li></ul></li><li><a href="nwayo.api.plugins.StylesPlugin.html">StylesPlugin</a><ul class='members'><li data-type='member'><a href="nwayo.api.plugins.StylesPlugin.html#dependencies">dependencies</a></li><li data-type='member'><a href="nwayo.api.plugins.StylesPlugin.html#type">type</a></li><li data-type='member'><a href="nwayo.api.plugins.StylesPlugin.html#nwayoApi">nwayoApi</a></li></ul><ul class='methods'><li data-type='method'><a href="nwayo.api.plugins.StylesPlugin.html#getBuildTypes">getBuildTypes</a></li><li data-type='method'><a href="nwayo.api.plugins.StylesPlugin.html#register">register</a></li><li data-type='method'><a href="nwayo.api.plugins.StylesPlugin.html#boot">boot</a></li><li data-type='method'><a href="nwayo.api.plugins.StylesPlugin.html#createMethod">createMethod</a></li><li data-type='method'><a href="nwayo.api.plugins.StylesPlugin.html#setNwayoApi">setNwayoApi</a></li></ul></li></ul>
+		</div></nav>
+
+		<div id="main">
+		
+			<h1 class="page-title">Plugin</h1>
+		
+
+			
+
+
+
+
+<section>
+
+<div>
+    
+        </h2>
+        
+            <div class="class-description">Base plugin.</div>
+        
+    
+</div>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+<div class="method">
+
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="Plugin"><span class="type-signature">(abstract) </span>new Plugin<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Plugin.js.html#line-11">Plugin.js:11</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<div class="member">
+<h4 class="name" id="dependencies"><span class="type-signature"></span>dependencies<span class="type-signature"> :Array.&lt;string></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Plugin.js.html#line-22">Plugin.js:22</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Plugin dependencies.
+Dependencies should be modules that can be required.
+If one or more dependencies are exposing a Plugin by default,
+it will be registered in the current NwayoApi instance during
+the register process, right before the boot phase.
+</div>
+
+
+
+
+
+
+
+</div>
+
+        
+            
+<div class="member">
+<h4 class="name" id="type"><span class="type-signature">(abstract) </span>type<span class="type-signature"> :string|Array.&lt;string>|null</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Plugin.js.html#line-32">Plugin.js:32</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Type, or types, that the plugin is responding to.
+</div>
+
+
+
+
+
+
+
+</div>
+
+        
+            
+<div class="member">
+<h4 class="name" id="nwayoApi"><span class="type-signature"></span>nwayoApi<span class="type-signature"> :<a href="nwayo.api.NwayoApi.html">nwayo.api.NwayoApi</a>|undefined</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Plugin.js.html#line-128">Plugin.js:128</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    The current NwayoApi instance.
+</div>
+
+
+
+
+
+
+
+</div>
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+<div class="method">
+
+    
+
+    <h4 class="name" id="getBuildTypes"><span class="type-signature"></span>getBuildTypes<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Plugin.js.html#line-41">Plugin.js:41</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Get types that the plugin is responding to.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The types that the plugin is responding to.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;string></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+</div>
+
+        
+            
+<div class="method">
+
+    
+
+    <h4 class="name" id="register"><span class="type-signature"></span>register<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Plugin.js.html#line-48">Plugin.js:48</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Register the plugin.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+        
+            
+<div class="method">
+
+    
+
+    <h4 class="name" id="boot"><span class="type-signature">(abstract) </span>boot<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Plugin.js.html#line-63">Plugin.js:63</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Boot the plugin.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+        
+            
+<div class="method">
+
+    
+
+    <h4 class="name" id="createMethod"><span class="type-signature">(protected) </span>createMethod<span class="signature">(name, handler)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Plugin.js.html#line-107">Plugin.js:107</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Create a method in the current NwayoApi instance.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre><code class="language-js">this.createMethod('methodName', this._handleMethodName.bind(this));</code></pre>
+
+    <pre><code class="language-js">// Here is an example to replicate for every additional methods provided by the plugin.
+// This is mostly for IDE auto-completion and documentation.
+/**
+ * Method description. Should be as explicit as possible.
+ *
+ * @function methodName
+ * @param {string} foo - The first argument.
+ * @param {object} [bar={}] - The second argument, which is optional and has a default value.
+ * @returns {nwayo.api.NwayoApi} The current NwayoApi instance.
+ * @memberof nwayo.api.NwayoApi
+ * @instance
+ *‌/</code></pre>
+
+    <pre><code class="language-js">// Here is an example to replicate for every internal method handler.
+// Internal handlers should be kept private and start with an underscore (&lt;code>_handleMethodName() {}&lt;/code>).
+// This is mostly for internal plugin documentation, but for maintenance as well.
+/**
+ * Handle "methodName" method.
+ *
+ * @see nwayo.api.NwayoApi#methodName
+ *
+ * @param {string} foo - The first argument
+ * @param {object} [bar={}] - The second argument, which is optional and has a default value.
+ * @private
+ *‌/
+_handleMethodName(foo, bar={}) {}</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The method name.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>handler</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The method handler.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The current Plugin instance.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="nwayo.api.Plugin.html">nwayo.api.Plugin</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+</div>
+
+        
+            
+<div class="method">
+
+    
+
+    <h4 class="name" id="setNwayoApi"><span class="type-signature"></span>setNwayoApi<span class="signature">(nwayoApi)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Plugin.js.html#line-138">Plugin.js:138</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Set the current NwayoApi instance.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>nwayoApi</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="nwayo.api.NwayoApi.html">nwayo.api.NwayoApi</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The NwayoApi instance.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The current Plugin instance.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="nwayo.api.Plugin.html">nwayo.api.Plugin</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+</div>
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+		</div>
+	</div>
+
+	<footer>
+		MIT © 2011-2020 <span class="made">Made with <span class="adjective" data-component="adjective">&#x2764;</span> by <a href="https://absolunet.com" data-external="external">Absolunet</a></span>
+	</footer>
+
+	<script src="../assets__/main.js"></script>
+
+</body>
+</html>

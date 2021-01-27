@@ -2,7 +2,7 @@
 //-- Nwayo Core - Console - Command - Install - Install Components
 //--------------------------------------------------------
 
-import Command from '../../Command';
+import { Command } from '@absolunet/ioc';
 
 
 /**
@@ -25,18 +25,18 @@ class InstallComponentsCommand extends Command {
 	 * @inheritdoc
 	 */
 	get description() {
-		return this.t('commands.install-components.description');
+		return 'Install components.'
 	}
 
 	/**
 	 * @inheritdoc
 	 */
 	async handle() {
-		this.info(this.t('commands.install-components.messages.start'));
+		this.info('Installing components...');
 
 		await this.installComponents();
 
-		this.success(this.t('commands.install-components.messages.completed'));
+		this.success('Components installed!');
 	}
 
 	/**

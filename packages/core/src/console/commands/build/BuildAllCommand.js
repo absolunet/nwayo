@@ -14,13 +14,6 @@ import AbstractBuildCommand from './AbstractBuildCommand';
  */
 class BuildAllCommand extends AbstractBuildCommand {
 
-	/**
-	 * @inheritdoc
-	 */
-	get policies() {
-		return [];
-	}
-
 }
 
 
