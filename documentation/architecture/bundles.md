@@ -8,17 +8,51 @@ The bundles files are located under `[NWAYO_ROOT]/bundles/[NAME]`
 
 ## Content
 ### Output paths
-- Builds
-- JSON konstan
-- Root URL
+- Include in the main Bundle file
+  - Will be applied to all the collections in this bundle
+- Available settings
+  - `build` : Build's path relative to Nwayo folder and output url
+  - `konstan` : JSON konstan's path relative to Nwayo folder and output url
+  - `konstan` : Root URL
+
+#### Exemple
+```yaml
+#-- Output paths (relative to nwayo folder) and output url
+output:
+  konstan: [PATH_ROOT]/[BUILD_FOLDER_NAME]/[BUNDLE_NAME]
+  build:   [PATH_ROOT]/[BUILD_FOLDER_NAME]/[BUNDLE_NAME]
+  url:     /[BUILD_FOLDER_NAME]/[BUNDLE_NAME]
+```
 
 ### Assets
-- Component
+- Component : Declare in the collection file
+- Can list more than one
+```yaml
+#-- Assets
+assets:
+  components:
+    - [COMPONENT_NAME]
+```
 
 ### Scripts
 - Collections
 - Babel
 - Minification
+
+```yaml
+#-- Scripts
+scripts:
+  options:
+    minify: true
+    babel:
+      - '> .25%'
+      - 'not dead'
+      -
+  allowBabel:
+    - vendor/node_modules/foundation-sites
+    - vendor/node_modules/@absolunet
+
+```
 
 ### Styles
 - Collections
@@ -26,6 +60,17 @@ The bundles files are located under `[NWAYO_ROOT]/bundles/[NAME]`
 - Source maps
 - Minification
 
+```yaml
+#-- Styles
+styles:
+  options:
+    minify: true
+    sourcemaps: false
+    autoprefixer:
+      - '> .25%'
+      - 'not dead'
+
+```
 
 
 ## Good practices
@@ -57,6 +102,7 @@ Almost all the tasks will interact with a component
 #-- [BUNDLE_NAME]
 #-------------------------------------
 
+#-- Output
 #-- Output paths (relative to nwayo folder) and output url
 output:
   konstan: [PATH_ROOT]/[BUILD_FOLDER_NAME]/[BUNDLE_NAME]
@@ -70,6 +116,10 @@ scripts:
     babel:
       - '> .25%'
       - 'not dead'
+      - 
+  allowBabel:
+    - vendor/node_modules/foundation-sites
+    - vendor/node_modules/@absolunet
 
 #-- Styles
 styles:
@@ -79,6 +129,7 @@ styles:
     autoprefixer:
       - '> .25%'
       - 'not dead'
+
 ```
 
 #### `nwayo/bundles/[BUNDLE_NAME]/_[BUNDLE_COMPONENT_NAME_1].yaml`
