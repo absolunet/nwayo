@@ -2,11 +2,18 @@
 
 > A bundle is the result of is one or many collections put together to form a specific groupment of ressources (assets, images, scripts and styles) with a common purpose.
 
-## Path
+## Path and settings
 The bundles files are located under `[NWAYO_ROOT]/bundles/[NAME]`
+There can be many sub-bundle inside of a primary bundle
+
+### Exemple:
+`[NWAYO_ROOT]/bundles/[PRIMARY_BUNDLE_NAME]`
+`[NWAYO_ROOT]/bundles/[PRIMARY_BUNDLE_NAME]/[PRIMARY_BUNDLE_NAME].yaml`
 
 
-## Content
+## Content of the `[NWAYO_ROOT]/bundles/[PRIMARY_BUNDLE_NAME]/[PRIMARY_BUNDLE_NAME].yaml`
+This is where we set the global configurations for the compilation of this specific bundle
+
 ### Output paths
 - Include in the main Bundle file
   - Will be applied to all the collections in this bundle
@@ -132,10 +139,41 @@ styles:
 
 ```
 
-#### `nwayo/bundles/[BUNDLE_NAME]/_[BUNDLE_COMPONENT_NAME_1].yaml`
+
+## Content of the `[NWAYO_ROOT]/bundles/[PRIMARY_BUNDLE_NAME]/_[SUB_BUNDLE_NAME].yaml`
+This is where we set the content of this sub-bundle that will be build
+
+### Scripts
+- Component : ...
+```yaml
+#-- Assets
+assets:
+  components:
+    - [COMPONENT_NAME]
+```
+
+### Style
+- Component : ...
+```yaml
+#-- Assets
+assets:
+  components:
+    - [COMPONENT_NAME]
+```
+
+### Assets
+- Component : Declare in the collection file
+- Can list more than one
+```yaml
+#-- Assets
+assets:
+  components:
+    - [COMPONENT_NAME]
+```
+###`[NWAYO_ROOT]/bundles/[PRIMARY_BUNDLE_NAME]/_[SUB_BUNDLE_NAME].yaml`
 ```yaml
 #-------------------------------------
-#-- [BUNDLE_NAME] - [BUNDLE_COMPONENT_NAME_1]
+#-- [BUNDLE_NAME] - [SUB_BUNDLE_NAME]
 #-------------------------------------
 
 #-- Scripts
