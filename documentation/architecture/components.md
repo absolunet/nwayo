@@ -12,6 +12,3 @@ They are 3 types content that is included in a component:
 
 ## Good practices
 - One purpose by component
-
-## Tasks
-Almost all the tasks will interact with a component

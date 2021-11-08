@@ -29,7 +29,7 @@
 - **Blog => Main :** `main.css` & `main.js`
 - **Blog => Sub :** `sub.css` & `sub.js`
 
-## Assets
+## [Assets](../assets/readme.md)
 - Store => `lato.woff`
 - Store => `poppins.woff`
 - Store => `logo.png`
@@ -39,3 +39,29 @@
 - Blog => `logo.png`
 - Blog => `post.png`
 
+## Exemple
+This exemple will generate the following files
+- store /
+  - styles /
+    - `main.css`
+    - `sub.css`
+  - scripts /
+    - `main.js`
+    - `sub.js`
+  - assets /
+    - `lato.woff`
+    - `poppins.woff`
+    - `logo.png`
+    - `checkout.png`
+- blog /
+  - styles /
+    - `main.css`
+    - `sub.css`
+  - scripts /
+    - `main.js`
+    - `sub.js`
+  - assets /
+    - `lato.woff`
+    - `fira.woff`
+    - `logo.png`
+    - `post.png`
