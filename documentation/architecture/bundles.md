@@ -8,8 +8,8 @@ There can be many sub-bundle inside of a primary bundle
 
 ### Exemple:
 `[NWAYO_ROOT]/bundles/[PRIMARY_BUNDLE_NAME]`
-`[NWAYO_ROOT]/bundles/[PRIMARY_BUNDLE_NAME]/[PRIMARY_BUNDLE_NAME].yaml`
 
+`[NWAYO_ROOT]/bundles/[PRIMARY_BUNDLE_NAME]/[PRIMARY_BUNDLE_NAME].yaml`
 
 ## Content of the `[NWAYO_ROOT]/bundles/[PRIMARY_BUNDLE_NAME]/[PRIMARY_BUNDLE_NAME].yaml`
 This is where we set the global configurations for the compilation of this specific bundle
@@ -197,3 +197,4 @@ assets:
     - [COMPONENT_NAME]
 
 ```
+
