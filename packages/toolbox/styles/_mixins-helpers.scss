@@ -182,9 +182,9 @@
 /// Arrow Styles
 /// @param {String} $direction [right] - Direction of the arrow (up, down, left, right)
 /// @param {Number} $size [.625em] - Size of the arrow
-/// @param {Color} $color [$common-text-color] - Color of the arrow
+/// @param {Color} $color - Color of the arrow
 /// @output Arrow Styles
-@mixin nwayo-arrow-styles($direction:right, $size:.625em, $color:$common-text-color) {
+@mixin nwayo-arrow-styles($direction:right, $size:.625em, $color) {
 	display: inline-block;
 	border: 0;
 
