@@ -16,6 +16,15 @@ relate to each other could be set in a variable.
 - Try to give significant name that describes what they are used for to the variables and not only one that describes what they are.
 
 
+##Toolbox
+To see a complet list of functions that are available in Nwayo you can consult:
+- [mixins-core](../../../packages/toolbox/styles/_fmixins-core.scss)
+  - **nwayo-bg-image-styles :** Generate Background image Styles (Inline or not)
+  - **nwayo-scalable-icon-styles :** Generate Scalable icon Styles (Inline)
+  - **nwayo-scalable-icon-colored-states-styles :** Generate Scalable icon multicolored states with state (Inline)
+  - **nwayo-load-font-styles :** Generate Font-face Styles
+
+
 ## Exemple
 ```scss
 //-------------------------------------

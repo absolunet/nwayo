@@ -1,12 +1,20 @@
-//-------------------------------------
-//-- nwayo - Mixins - Core
-//-------------------------------------
+////
+/// Nwayo - Mixins - Core
+/// @group toolbox
+/// @since 3.8.2 - TBD - Documentation update
+////
 @use 'sass:list';
 @use 'sass:map';
 @use 'sass:meta';
 @use 'sass:string';
 
-//-- Background image
+
+/// Generate Background image Styles (Inline or not)
+/// @param {String} $file - File name with extension
+/// @param {String} $component - Component Name
+/// @param {Bool} $inline [false] - Is the image included inline
+/// @param {Bool | Sting} $color [false] - Color(s) that need to be remplace
+/// @return {Style} - Style of the background image
 @mixin nwayo-bg-image-styles($file, $component, $inline:false, $color:false) {
 
 	// URI
@@ -65,7 +73,11 @@
 }
 
 
-//-- Scalable icon
+/// Generate Scalable icon Styles (Inline)
+/// @param {String} $file - File name with extension
+/// @param {String} $component - Component Name
+/// @param {Bool | Sting} $color [false] - Color(s) that need to be remplace
+/// @return {Style} - Style of the scalable icon (Inline)
 @mixin nwayo-scalable-icon-styles($file, $component, $color:false) {
 	@include nwayo-bg-image-styles($file, $component, $inline:true, $color:$color);
 	background-position: center center;
@@ -74,17 +86,24 @@
 }
 
 
-//-- Scalable icon multicolored states
+/// Generate Scalable icon multicolored states with state (Inline)
+/// @param {String} $file - File name with extension
+/// @param {String} $component - Component Name
+/// @param {Sting} $state [default] - Current state of the icon
+/// @param {Maps} $states [()] - Maps of all the states and their color
+/// @return {Style} - Style of the scalable icon (Inline) with state color
 @mixin nwayo-scalable-icon-colored-states-styles($name, $component, $state:default, $states:()) {
 	@include nwayo-scalable-icon-styles($name, $component, $color:map.get($states, $state));
 }
 
 
-
-
-
-
-//-- Font-face
+/// Generate Font-face Styles
+/// @param {String} $name - Name of the font
+/// @param {String} $filename - File name with extension
+/// @param {String} $component - Component Name
+/// @param {String} $weight [normal] - Weight of the font
+/// @param {String} $style [normal] - Style of the font
+/// @return {Style} - Style of the Font-face
 @mixin nwayo-load-font-styles($name, $filename, $component, $weight:normal, $style:normal) {
 	$path:  nwayo-build-path($filename, $component, 'fonts');
 	$url:   nwayo-assets-path($filename, $component, 'fonts');

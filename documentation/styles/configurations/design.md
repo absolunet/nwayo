@@ -32,34 +32,36 @@ $[COMPONENT_NAME]-alt-text-color: konstan-get('color.black');
 
 ```
 
-##Toolbox(../../../packages/toolbox/styles/_variables.scss)
-- **$nwayo-svg-replacement-1-color :** #ba0bab;
-- **$nwayo-svg-replacement-2-color :** #c0ffee;
-- **$nwayo-svg-replacement-colors :**  ($nwayo-svg-replacement-1-color, $nwayo-svg-replacement-2-color);
-- **$nwayo-social-colors :** Social network colors
-- **$nwayo-sansserif-font :**  Helvetica, Arial, Verdana, sans-serif;                                         // stylelint-disable-line value-keyword-case
-- **$nwayo-serif-font :**      'Times New Roman', Times, serif;                                               // stylelint-disable-line value-keyword-case 
-- **$nwayo-monospace-font :**  Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', Courier, monospace; // stylelint-disable-line value-keyword-case
-- **$nwayo-thin-weight :**       100; 
-- **$nwayo-extralight-weight :** 200; 
-- **$nwayo-light-weight :**      300; 
-- **$nwayo-normal-weight :**     400; 
-- **$nwayo-medium-weight :**     500; 
-- **$nwayo-semibold-weight :**   600; 
-- **$nwayo-bold-weight :**       700; 
-- **$nwayo-extrabold-weight :**  800; 
-- **$nwayo-black-weight :**      900;
-- **$nwayo-bull-char :**   '\2022'
-- **$nwayo-times-char :**  '\00D7'; 
-- **$nwayo-endash-char :** '\2013';
-- **$nwayo-textfields-selector :** 'input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], input[type="date"], input[type="number"]';
-- **$nwayo-hover-selector :**     'html:not([data-whatintent="touch"]) &:hover';
-- **$nwayo-docloaded-selector :** 'body.document-loaded';
-- **$debug-red :**    #ee2c2c; 
-- **$debug-orange :** #ffa500; 
-- **$debug-yellow :** #ffdf33; 
-- **$debug-green :**  #76ee00; 
-- **$debug-blue :**   #1e90ff; 
-- **$debug-purple :** #a020f0;
+##Toolbox
+To see a complet list of functions that are available in Nwayo you can consult:
+- [Variables](../../../packages/toolbox/styles/_variables.scss)
+  - **$nwayo-svg-replacement-1-color :** #ba0bab;
+  - **$nwayo-svg-replacement-2-color :** #c0ffee;
+  - **$nwayo-svg-replacement-colors :**  ($nwayo-svg-replacement-1-color, $nwayo-svg-replacement-2-color);
+  - **$nwayo-social-colors :** Social network colors
+  - **$nwayo-sansserif-font :**  Helvetica, Arial, Verdana, sans-serif;                                         // stylelint-disable-line value-keyword-case
+  - **$nwayo-serif-font :**      'Times New Roman', Times, serif;                                               // stylelint-disable-line value-keyword-case 
+  - **$nwayo-monospace-font :**  Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', Courier, monospace; // stylelint-disable-line value-keyword-case
+  - **$nwayo-thin-weight :**       100; 
+  - **$nwayo-extralight-weight :** 200; 
+  - **$nwayo-light-weight :**      300; 
+  - **$nwayo-normal-weight :**     400; 
+  - **$nwayo-medium-weight :**     500; 
+  - **$nwayo-semibold-weight :**   600; 
+  - **$nwayo-bold-weight :**       700; 
+  - **$nwayo-extrabold-weight :**  800; 
+  - **$nwayo-black-weight :**      900;
+  - **$nwayo-bull-char :**   '\2022'
+  - **$nwayo-times-char :**  '\00D7'; 
+  - **$nwayo-endash-char :** '\2013';
+  - **$nwayo-textfields-selector :** 'input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], input[type="date"], input[type="number"]';
+  - **$nwayo-hover-selector :**     'html:not([data-whatintent="touch"]) &:hover';
+  - **$nwayo-docloaded-selector :** 'body.document-loaded';
+  - **$debug-red :**    #ee2c2c; 
+  - **$debug-orange :** #ffa500; 
+  - **$debug-yellow :** #ffdf33; 
+  - **$debug-green :**  #76ee00; 
+  - **$debug-blue :**   #1e90ff; 
+  - **$debug-purple :** #a020f0;
 
 
