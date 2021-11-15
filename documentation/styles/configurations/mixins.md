@@ -18,11 +18,25 @@ relate to each other could be set in a variable.
 
 ##Toolbox
 To see a complet list of functions that are available in Nwayo you can consult:
-- [mixins-core](../../../packages/toolbox/styles/_fmixins-core.scss)
+- [mixins-core](../../../packages/toolbox/styles/_mixins-core.scss)
   - **nwayo-bg-image-styles :** Generate Background image Styles (Inline or not)
   - **nwayo-scalable-icon-styles :** Generate Scalable icon Styles (Inline)
   - **nwayo-scalable-icon-colored-states-styles :** Generate Scalable icon multicolored states with state (Inline)
   - **nwayo-load-font-styles :** Generate Font-face Styles
+- [mixins-helpers](../../../packages/toolbox/styles/_mixins-helpers.scss)
+  - **nwayo-pseudo-image-styles :** Style of the image in ::before/::after pseudo-elements Styles
+  - **nwayo-textreplace-image-styles :** Style of the image which replaces text
+  - **nwayo-clearfix-styles :** Clearfix
+  - **nwayo-visually-hidden-styles :** Visually Hidden
+  - **nwayo-scaling-block-styles :** Create a block that scale within a ratio styles
+  - **nwayo-valign-parent-styles :** Vertical center the child within the parent styles
+  - **nwayo-list-reset-styles :** Reset List Styles
+  - **nwayo-list-inline-styles :** Reset List Inline Styles
+  - **nwayo-placeholder-styles :** Placeholder Styles
+  - **nwayo-select-reset-styles :** Reset Select Styles
+  - **nwayo-input-file-button-styles :** Input type file button Styles
+  - **nwayo-arrow-styles :** Arrow Styles
+  - **nwayo-column-list-styles :** Create a list with columns Styles
 
 
 ## Exemple

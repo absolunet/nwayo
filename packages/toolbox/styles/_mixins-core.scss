@@ -13,8 +13,8 @@
 /// @param {String} $file - File name with extension
 /// @param {String} $component - Component Name
 /// @param {Bool} $inline [false] - Is the image included inline
-/// @param {Bool | Sting} $color [false] - Color(s) that need to be remplace
-/// @return {Style} - Style of the background image
+/// @param {Bool | Color} $color [false] - Color(s) that need to be remplace
+/// @output Style of the background image
 @mixin nwayo-bg-image-styles($file, $component, $inline:false, $color:false) {
 
 	// URI
@@ -76,8 +76,8 @@
 /// Generate Scalable icon Styles (Inline)
 /// @param {String} $file - File name with extension
 /// @param {String} $component - Component Name
-/// @param {Bool | Sting} $color [false] - Color(s) that need to be remplace
-/// @return {Style} - Style of the scalable icon (Inline)
+/// @param {Bool | Color} $color [false] - Color(s) that need to be remplace
+/// @output Style of the scalable icon (Inline)
 @mixin nwayo-scalable-icon-styles($file, $component, $color:false) {
 	@include nwayo-bg-image-styles($file, $component, $inline:true, $color:$color);
 	background-position: center center;
@@ -92,8 +92,8 @@
 /// @param {Sting} $state [default] - Current state of the icon
 /// @param {Maps} $states [()] - Maps of all the states and their color
 /// @return {Style} - Style of the scalable icon (Inline) with state color
-@mixin nwayo-scalable-icon-colored-states-styles($name, $component, $state:default, $states:()) {
-	@include nwayo-scalable-icon-styles($name, $component, $color:map.get($states, $state));
+@mixin nwayo-scalable-icon-colored-states-styles($file, $component, $state:default, $states:()) {
+	@include nwayo-scalable-icon-styles($file, $component, $color:map.get($states, $state));
 }
 
 
@@ -103,7 +103,7 @@
 /// @param {String} $component - Component Name
 /// @param {String} $weight [normal] - Weight of the font
 /// @param {String} $style [normal] - Style of the font
-/// @return {Style} - Style of the Font-face
+/// @output Style of the Font-face
 @mixin nwayo-load-font-styles($name, $filename, $component, $weight:normal, $style:normal) {
 	$path:  nwayo-build-path($filename, $component, 'fonts');
 	$url:   nwayo-assets-path($filename, $component, 'fonts');

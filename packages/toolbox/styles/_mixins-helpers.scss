@@ -1,9 +1,15 @@
-//-------------------------------------
-//-- nwayo - Mixins - Helpers
-//-------------------------------------
+////
+/// Nwayo - Mixins - Helpers
+/// @group toolbox
+/// @since 3.8.2 - TBD - Documentation update
+////
 @use 'sass:math';
 
-//-- Images in ::before/::after pseudo-elements
+
+/// Generate Image in ::before/::after pseudo-elements Styles
+/// @param {Numbers} $width - Width of the pseudo-elements image
+/// @param {Numbers} $height [$width] - height of the pseudo-elements image
+/// @output Style of the image in ::before/::after pseudo-elements Styles
 @mixin nwayo-pseudo-image-styles($width, $height:$width) {
 	content: '';
 	width: $width;
@@ -11,7 +17,10 @@
 }
 
 
-//-- Images which replaces text
+/// Generate image which replaces text
+/// @param {Numbers} $width - Width of the pseudo-elements image
+/// @param {Numbers} $height [$width] - Width of the pseudo-elements image
+/// @output Style of the image which replaces text
 @mixin nwayo-textreplace-image-styles($width, $height:$width) {
 	overflow: hidden;
 	width: 0;
@@ -20,11 +29,8 @@
 }
 
 
-
-
-
-
-//-- Clearfix
+/// Clearfix
+/// @output Clearfix styles
 @mixin nwayo-clearfix-styles {
 	&::before, &::after {
 		content: '';
@@ -37,7 +43,8 @@
 }
 
 
-//-- Visually hidden
+/// Visually hidden
+/// @return {Styles} Visually hidden styles
 @mixin nwayo-visually-hidden-styles {
 	position: absolute;
 	overflow: hidden;
@@ -50,16 +57,15 @@
 }
 
 
-
-
-
-
-//-- Create a block that scale within a ratio
-@mixin nwayo-scaling-block-styles($w: 2, $h:1) {
+/// Create a block that scale within a ratio
+/// @param {Numbers} $width [2] - Width of the block
+/// @param {Numbers} $height [1] - Height of the block
+/// @return {Styles} Create a block that scale within a ratio styles
+@mixin nwayo-scaling-block-styles($width: 2, $height:1) {
 	position: relative;
 	display: block;
 	height: 0;
-	padding-top: math.percentage(math.div($h, $w));
+	padding-top: math.percentage(math.div($height, $width));
 
 	.scaling-block-content {
 		position: absolute;
@@ -71,7 +77,8 @@
 }
 
 
-//-- Vertical center the child within the parent
+/// Vertical center the child within the parent
+/// @output Vertical center the child within the parent styles
 @mixin nwayo-valign-parent-styles {
 	font-size: 0;  // stylelint-disable-line scale-unlimited/declaration-strict-value
 
@@ -89,11 +96,8 @@
 }
 
 
-
-
-
-
-//-- List
+/// Reset List Styles
+/// @output Reset List Styles
 @mixin nwayo-list-reset-styles {
 	list-style: none;
 	padding: 0;
@@ -104,6 +108,9 @@
 	}
 }
 
+
+/// Reset List Inline Styles
+/// @output Reset List Inline Styles
 @mixin nwayo-list-inline-styles {
 	@include nwayo-list-reset-styles();
 
@@ -114,11 +121,12 @@
 }
 
 
-
-
-
-
-//-- Placeholder
+/// Placeholder - Reversed mixin. Will inject content in the 3 selector
+/// @output Placeholder Styles
+/// @example scss - Usage Case
+/// 	@include nwayo-placeholder-styles {
+/// 		color: red;
+/// 	}
 @mixin nwayo-placeholder-styles() {
 	select.placeholder {
 		@content;
@@ -134,7 +142,12 @@
 }
 
 
-//-- Select reset
+/// Reset Select Styles - Reversed mixin. Will inject content in the 3 selector
+/// @output Reset Select Styles
+/// @example scss - Usage Case
+/// 	@include nwayo-select-reset-styles {
+/// 		color: red;
+/// 	}
 @mixin nwayo-select-reset-styles() {
 	@-moz-document url-prefix() {
 		select {
@@ -148,7 +161,13 @@
 }
 
 
-//-- Input type file button
+/// Input type file button - Reversed mixin
+/// @output Input type file button Styles
+/// @link https://sass-lang.com/documentation/at-rules/mixin#content-blocks Sass Documentation - Content Blocks
+/// @example scss - Usage Case
+/// 	@include nwayo-input-file-button-styles {
+/// 		color: red;
+/// 	}
 @mixin nwayo-input-file-button-styles() {
 	&::-webkit-file-upload-button {
 		@content;
@@ -160,11 +179,11 @@
 }
 
 
-
-
-
-
-//-- Arrow
+/// Arrow Styles
+/// @param {String} $direction [right] - Direction of the arrow (up, down, left, right)
+/// @param {Number} $size [.625em] - Size of the arrow
+/// @param {Color} $color [$common-text-color] - Color of the arrow
+/// @output Arrow Styles
 @mixin nwayo-arrow-styles($direction:right, $size:.625em, $color:$common-text-color) {
 	display: inline-block;
 	border: 0;
@@ -194,16 +213,13 @@
 }
 
 
-
-
-
-
-//-- Create a list with columns
-// $nb-column - The number of columns (Min.: 2)
-// $bullet-spacing - Spacing reserved outside of <li> for a bullet
-// $column-spacing - Spacing between columns
-// $row-spacing - Spacing between rows
-// $base-style - Wether or not to output base styles (Ex.: set to false in a media query to prevent repeating the styles already defined)
+/// Create a list with columns
+/// @param {Number} $nb-column [2]- The number of columns (Min.: 2)
+/// @param {Number} $bullet-spacing [1.0625em] - Spacing reserved outside of <li> for a bullet
+/// @param {Number} $column-spacing [1.875em] - Spacing between columns
+/// @param {Number} $row-spacing [.625em] - Spacing between rows
+/// @param {Boolean} $base-style [true] - Wether or not to output base styles (Ex.: set to false in a media query to prevent repeating the styles already defined)
+/// @output Create a list with columns Styles
 @mixin nwayo-column-list-styles($nb-column:2, $bullet-spacing:1.0625em, $column-spacing:1.875em, $row-spacing:.625em, $base-style:true) {
 	// calculate a column offset : $column-spacing * ($column - 1) + $bullet-spacing * $column
 	$total-spacing: $column-spacing * ($nb-column - 1) + $bullet-spacing * $nb-column;
