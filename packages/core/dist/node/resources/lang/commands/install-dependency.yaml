@@ -1,0 +1,33 @@
+description:
+  en: 'Install dependency in a given component for the current project.'
+  fr: 'Installer une dépendance dans une composante donnée pour le projet courant.'
+
+parameters:
+  dependency:
+    en: 'Dependency to install.'
+    fr: 'La dépendance à installer.'
+
+  component:
+    en: 'Component in which to install the dependency.'
+    fr: 'La composante dans laquelle installer la dépendance.'
+
+messages:
+  start:
+    en: 'Installing dependency "{{dependency}}" into component "{{component}}"...'
+    fr: 'Installation de la dépendance "{{dependency}}" dans la composante "{{component}}"...'
+
+  completed:
+    en: 'Dependency installation successful!'
+    fr: 'Installation de la dépendance complétée avec succès!'
+
+  choose-dependency:
+    en: 'Please give a dependency name:'
+    fr: 'Veuillez fournir un nom de dépendance:'
+
+  choose-version:
+    en: 'Please choose a version:'
+    fr: 'Veuillez choisir une version:'
+
+  choose-component:
+    en: 'Please choose a component:'
+    fr: 'Veuillez choisir une composante:'

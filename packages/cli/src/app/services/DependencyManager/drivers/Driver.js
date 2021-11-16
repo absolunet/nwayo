@@ -60,6 +60,18 @@ class Driver {
 	}
 
 	/**
+	 * Get all available versions for a given package.
+	 *
+	 * @param {string} packageName - The package name.
+	 * @returns {Promise<Array<string>>} A list of all available versions.
+	 * @abstract
+	 * @async
+	 */
+	getAvailableVersions(packageName) { // eslint-disable-line no-unused-vars
+		throw new NotImplementedError(this, 'getAvailableVersions', 'Promise<Array<string>>');
+	}
+
+	/**
 	 * IRemove a single package.
 	 *
 	 * @param {string} packageName - The package name.
@@ -75,14 +87,15 @@ class Driver {
 	 * Run command through a spawn child process.
 	 *
 	 * @param {string} command - The command to run.
+	 * @param {object} [options={}] - The spawn options.
 	 * @returns {Promise} The async process promise.
 	 * @protected
 	 */
-	async run(command) {
+	async run(command, options = {}) {
 		const [binary, ...parameters] = command.split(' ');
 		const { folder: cwd } = this;
 
-		await this.terminal.spawn(binary, parameters, { cwd });
+		await this.terminal.spawn(binary, parameters, { cwd, ...options });
 	}
 
 	/**

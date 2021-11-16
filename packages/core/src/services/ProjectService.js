@@ -48,7 +48,7 @@ class ProjectService {
 	init() {
 		__(this).set('namespaces', []);
 		this.addComponentNamespace('@nwayo/component-');
-		this.addComponentNamespace('@nwayo-components/');
+		this.addComponentNamespace(`${this.defaultNamespace}/`);
 	}
 
 	/**
@@ -109,7 +109,7 @@ class ProjectService {
 		}
 
 		try {
-			return require.resolve(`@nwayo-components/${component}`);
+			return require.resolve(`${this.defaultNamespace}/${component}`);
 		} catch (error) {
 			return this.pathHelper.join(this.getComponentsPath(), component);
 		}
@@ -179,6 +179,15 @@ class ProjectService {
 			config,
 			files
 		};
+	}
+
+	/**
+	 * Default namespace.
+	 *
+	 * @type {string}
+	 */
+	get defaultNamespace() {
+		return '@nwayo-components';
 	}
 
 	/**

@@ -11,15 +11,6 @@ const fakeCommandRepository   = require('./stubs/fakeCommandRepository');
 const fakeBuildTypeRepository = require('./stubs/fakeBuildTypeRepository');
 const fakePathEnum            = require('./stubs/fakePathEnum');
 
-const InstallComponentsCommand = require('../../dist/node/console/commands/install/InstallComponentsCommand');
-const BuildAllCommand          = require('../../dist/node/console/commands/build/BuildAllCommand');
-const BuildAssetsCommand       = require('../../dist/node/console/commands/build/BuildAssetsCommand');
-const BuildScriptsCommand      = require('../../dist/node/console/commands/build/BuildScriptsCommand');
-const BuildStylesCommand       = require('../../dist/node/console/commands/build/BuildStylesCommand');
-const BuildWatchCommand        = require('../../dist/node/console/commands/build/BuildWatchCommand');
-
-const NwayoBuildPolicy = require('../../dist/node/policies/NwayoBuildPolicy');
-
 
 class CoreServiceProviderTest extends TestCase {
 
@@ -66,32 +57,37 @@ class CoreServiceProviderTest extends TestCase {
 
 	testAddInstallComponentsCommand() {
 		this.whenRegisteringProvider();
-		this.thenShouldHaveAddedCommand(InstallComponentsCommand);
+		this.thenShouldHaveAddedCommand('install/InstallComponentsCommand');
+	}
+
+	testAddInstallDependencyCommand() {
+		this.whenRegisteringProvider();
+		this.thenShouldHaveAddedCommand('install/InstallDependencyCommand');
 	}
 
 	testAddBuildAllCommand() {
 		this.whenRegisteringProvider();
-		this.thenShouldHaveAddedCommand(BuildAllCommand);
+		this.thenShouldHaveAddedCommand('build/BuildAllCommand');
 	}
 
 	testAddBuildWatchCommand() {
 		this.whenRegisteringProvider();
-		this.thenShouldHaveAddedCommand(BuildWatchCommand);
+		this.thenShouldHaveAddedCommand('build/BuildWatchCommand');
 	}
 
 	testAddBuildScriptsCommand() {
 		this.whenRegisteringProvider();
-		this.thenShouldHaveAddedCommand(BuildScriptsCommand);
+		this.thenShouldHaveAddedCommand('build/BuildScriptsCommand');
 	}
 
 	testAddBuildStylesCommand() {
 		this.whenRegisteringProvider();
-		this.thenShouldHaveAddedCommand(BuildStylesCommand);
+		this.thenShouldHaveAddedCommand('build/BuildStylesCommand');
 	}
 
 	testAddBuildAssetsCommand() {
 		this.whenRegisteringProvider();
-		this.thenShouldHaveAddedCommand(BuildAssetsCommand);
+		this.thenShouldHaveAddedCommand('build/BuildAssetsCommand');
 	}
 
 
@@ -168,6 +164,8 @@ class CoreServiceProviderTest extends TestCase {
 
 	thenShouldHaveRegisteredNwayoBuildPolicy() {
 		this.thenShouldNotHaveThrown();
+		// eslint-disable-next-line global-require
+		const NwayoBuildPolicy = require('../../dist/node/policies/NwayoBuildPolicy');
 		this.expect(fakeGate.register).toHaveBeenCalledWith(NwayoBuildPolicy);
 	}
 
@@ -181,8 +179,10 @@ class CoreServiceProviderTest extends TestCase {
 		this.expect(call[1]).toBe(value);
 	}
 
-	thenShouldHaveAddedCommand(command) {
+	thenShouldHaveAddedCommand(relativePath) {
 		this.thenShouldNotHaveThrown();
+		// eslint-disable-next-line global-require
+		const command = require(`../../dist/node/console/commands/${relativePath}`);
 		this.expect(fakeCommandRepository.add).toHaveBeenCalled();
 		this.expect(fakeCommandRepository.add.mock.calls.some(([commandClass]) => {
 			return commandClass === command;

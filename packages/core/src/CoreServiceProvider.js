@@ -13,6 +13,7 @@ import NwayoBuildPolicy           from './policies/NwayoBuildPolicy';
 import TerminalDecorator          from './services/TerminalDecorator';
 
 import InstallComponentsCommand from './console/commands/install/InstallComponentsCommand';
+import InstallDependencyCommand from './console/commands/install/InstallDependencyCommand';
 import BuildAllCommand          from './console/commands/build/BuildAllCommand';
 import BuildWatchCommand        from './console/commands/build/BuildWatchCommand';
 import BuildScriptsCommand      from './console/commands/build/BuildScriptsCommand';
@@ -53,6 +54,7 @@ class CoreServiceProvider extends ServiceProvider {
 
 		this.loadCommands([
 			InstallComponentsCommand,
+			InstallDependencyCommand,
 			BuildAllCommand,
 			BuildWatchCommand,
 			BuildScriptsCommand,
