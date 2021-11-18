@@ -1,6 +1,10 @@
 //-------------------------------------
 //-- nwayo - Mixins - Core
 //-------------------------------------
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:string';
 
 //-- Background image
 @mixin nwayo-bg-image-styles($file, $component, $inline:false, $color:false) {
@@ -10,19 +14,19 @@
 	@if $inline {
 		$inline-image-path: nwayo-assets-path($file, $component, 'inline');
 
-		@if str-index($file, '.svg') {
+		@if string.index($file, '.svg') {
 			$svg: nwayodart-read-file($inline-image-path);
 
 			@if $color {
 
 				// Single color
-				@if type-of($color) == 'color' {
+				@if meta.type-of($color) == 'color' {
 					$svg: nwayo-color-replace($svg, $nwayo-svg-replacement-1-color, $color);
 
 					// List
-				} @else if type-of($color) == 'list' {
-					@for $i from 1 through length($color) {
-						$svg: nwayo-color-replace($svg, nth($nwayo-svg-replacement-colors, $i), nth($color, $i));
+				} @else if meta.type-of($color) == 'list' {
+					@for $i from 1 through list.length($color) {
+						$svg: nwayo-color-replace($svg, list.nth($nwayo-svg-replacement-colors, $i), list.nth($color, $i));
 					}
 
 					// Hash
@@ -44,7 +48,7 @@
 		$url:  nwayo-assets-path($file, $component, images);
 
 		// High density
-		@if str-index($file, '@2x') {
+		@if string.index($file, '@2x') {
 			@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {  // stylelint-disable-line
 				background-image: url($url + nwayo-cacheinvalidator-querystring($path));  // stylelint-disable-line function-url-quotes
 			}
@@ -72,7 +76,7 @@
 
 //-- Scalable icon multicolored states
 @mixin nwayo-scalable-icon-colored-states-styles($name, $component, $state:default, $states:()) {
-	@include nwayo-scalable-icon-styles($name, $component, $color:map-get($states, $state));
+	@include nwayo-scalable-icon-styles($name, $component, $color:map.get($states, $state));
 }
 
 

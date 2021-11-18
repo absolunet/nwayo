@@ -1,6 +1,8 @@
 //-------------------------------------
 //-- nwayo - Functions - Core
 //-------------------------------------
+@use 'sass:map';
+@use 'sass:math';
 
 // Konstan shortcut: Get value
 @function konstan-get($path) {
@@ -38,7 +40,7 @@
 
 //-- Get a relative z-index for the scope
 @function nwayo-zindex($scopes, $scope, $delta:0) {
-	@return map-get($scopes, $scope) + $delta;
+	@return map.get($scopes, $scope) + $delta;
 }
 
 
@@ -46,9 +48,9 @@
 //-- Simulate a breakpoint
 @function nwayo-breakpoint-media($bp, $direction) {
 	@if $direction == up {
-		@return 'screen and (min-width: #{($bp + 1) / $nwayo-basic-size * 1em})';
+		@return 'screen and (min-width: #{math.div($bp + 1, $nwayo-basic-size) * 1em})';
 	} @else if $direction == down {
-		@return 'screen and (max-width: #{$bp / $nwayo-basic-size * 1em})';
+		@return 'screen and (max-width: #{math.div($bp, $nwayo-basic-size) * 1em})';
 	}
 }
 

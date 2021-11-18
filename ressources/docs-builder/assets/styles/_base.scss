@@ -162,7 +162,6 @@ main {
 	h1, h2, h3, h4, h5, h6 {
 		position: relative;
 
-		/* stylelint-disable unit-whitelist */
 		&::before {
 			content: '';
 			position: absolute;
@@ -185,8 +184,6 @@ main {
 			color: $docs-main-anchor-color;
 			font-size: $docs-main-anchor-size;
 		}
-
-		/* stylelint-enable unit-whitelist */
 	}
 
 	.external::after {

@@ -10,8 +10,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+### Added
+- Add Node.js 16 support
+
 ### Changed
+- Change default stylelint config to `@absolunet/stylelint-config-scss`
+- Move linters packages to `peerDependencies` for manual updates
+- Update to Autoprefixer 10.x
+- Update to cssnano 5.x
+- Update to ESLint 8.x
+- Update to Foundation 6.7.x
+- Update to SASS 1.45.x
+- Linters updates
 - Documentation updates
+- Maintenance updates
+
+### Removed
+- Remove `fibers` dependency
 
 
 

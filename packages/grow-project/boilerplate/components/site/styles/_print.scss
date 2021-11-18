@@ -6,7 +6,7 @@ $site-print-color: konstan-get('color.black');
 
 @media print {
 	@page {
-		margin: 1cm; // stylelint-disable-line unit-whitelist
+		margin: 1cm; // stylelint-disable-line unit-allowed-list
 	}
 
 	.body {

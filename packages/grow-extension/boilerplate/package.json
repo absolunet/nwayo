@@ -37,6 +37,6 @@
     "@absolunet/tester": "2.6.11"
   },
   "dependencies": {
-    "@absolunet/fss": "^1.6.2"
+    "@absolunet/fss": "^1.7.0"
   }
 }

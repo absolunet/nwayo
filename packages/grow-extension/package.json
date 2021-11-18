@@ -30,7 +30,7 @@
   },
   "main": "index.js",
   "dependencies": {
-    "@absolunet/fss": "^1.6.2",
+    "@absolunet/fss": "^1.7.0",
     "chalk": "^3.0.0",
     "figures": "^3.2.0"
   }

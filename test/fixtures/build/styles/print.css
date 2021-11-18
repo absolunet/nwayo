@@ -28,9 +28,9 @@
 /* ... */
 /* ... */
 /**
- * Foundation for Sites by ZURB
- * Version 6.6.1
- * foundation.zurb.com
+ * Foundation for Sites
+ * Version 6.7.4
+ * https://get.foundation
  * Licensed under MIT Open Source
  */
 @media print {
@@ -54,8 +54,7 @@
     color: #000000 !important;
     text-indent: 0 !important;
     text-shadow: none !important;
-    -webkit-filter: none !important;
-            filter: none !important;
+    filter: none !important;
   }
   *::before, *::after {
     display: none !important;

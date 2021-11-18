@@ -1,6 +1,8 @@
 //-------------------------------------
 //-- Foundation - Config - Design
 //-------------------------------------
+@use 'sass:color';
+@use 'sass:math';
 
 //  Table of Contents:
 //
@@ -65,7 +67,7 @@
 // ---------
 
 $global-font-size:                     100%;
-$global-width:                         rem-calc(konstan-get('dimension.max'));  // stylelint-disable-line declaration-property-value-blacklist
+$global-width:                         rem-calc(konstan-get('dimension.max'));  // stylelint-disable-line declaration-property-value-disallowed-list
 $global-lineheight:                    $common-text-lineheight;
 $foundation-palette:                   (
 	'primary':   $common-primary-color,
@@ -78,6 +80,7 @@ $foundation-palette:                   (
 $body-background:                      $common-bg-color;
 $body-font-color:                      $common-text-color;
 $body-font-family:                     $common-text-font;
+$body-safe-padding:                    false;
 $body-antialiased:                     true;
 $global-margin:                        1em;
 $global-padding:                       1em;
@@ -166,7 +169,7 @@ $paragraph-margin-bottom:      1em;
 $paragraph-text-rendering:     optimizeLegibility;
 $enable-code-inline:           true;
 $anchor-color:                 $common-primary-color;
-$anchor-color-hover:           scale-color($anchor-color, $lightness: -14%);
+$anchor-color-hover:           color.scale($anchor-color, $lightness: -14%);
 $anchor-text-decoration:       none;
 $anchor-text-decoration-hover: none;
 $hr-width:                     $global-width;
@@ -456,7 +459,7 @@ $input-background-focus:    $form-input-bg-color;
 $input-background-disabled: $common-bg-var1-color;
 $input-border:              common-border($color:$form-input-border-color);
 $input-border-focus:        common-border($color:$common-alt-color);
-$input-padding:             $form-spacing / 2;
+$input-padding:             math.div($form-spacing, 2);
 $input-shadow:              inset 0 .0625em .125em rgba($common-text-color, .1);
 $input-shadow-focus:        0 0 .3125em $common-bg-var2-color;
 $input-cursor-disabled:     not-allowed;
@@ -796,15 +799,15 @@ $table-color-scale:        5%;
 $table-border:             common-border($color:smart-scale($table-background, $table-color-scale));
 $table-padding:            .5em .625em .625em;
 $table-hover-scale:        2%;
-$table-row-hover:          darken($table-background, $table-hover-scale);
-$table-row-stripe-hover:   darken($table-background, $table-color-scale + $table-hover-scale);
+$table-row-hover:          color.adjust($table-background, $lightness: $table-hover-scale * -1);
+$table-row-stripe-hover:   color.adjust($table-background, $lightness: ($table-color-scale + $table-hover-scale) * -1);
 $table-is-striped:         true;
 $table-striped-background: smart-scale($table-background, $table-color-scale);
 $table-stripe:             even;
-$table-head-background:    smart-scale($table-background, $table-color-scale / 2);
-$table-head-row-hover:     darken($table-head-background, $table-hover-scale);
+$table-head-background:    smart-scale($table-background, math.div($table-color-scale, 2));
+$table-head-row-hover:     color.adjust($table-head-background, $lightness: $table-hover-scale * -1);
 $table-foot-background:    smart-scale($table-background, $table-color-scale);
-$table-foot-row-hover:     darken($table-foot-background, $table-hover-scale);
+$table-foot-row-hover:     color.adjust($table-foot-background, $lightness: $table-hover-scale * -1);
 $table-head-font-color:    $body-font-color;
 $table-foot-font-color:    $body-font-color;
 $show-header-for-stacked:  false;
