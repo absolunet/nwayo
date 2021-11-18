@@ -7,7 +7,7 @@
 [![Code style](https://img.shields.io/badge/code_style-eslint_@absolunet/nwayo-659d32.svg)](https://github.com/absolunet/eslint-config)
 [![Code style](https://img.shields.io/badge/code_style-stylelint_@absolunet/nwayo-659d32.svg)](https://github.com/absolunet/stylelint-config)
 
-> Boilerplate generator for [nwayo](https://absolunet.github.io/nwayo) project
+> Boilerplate generator for [nwayo](https://documentation.absolunet.com/nwayo) project
 
 ## Usage
 
@@ -17,7 +17,7 @@ $ npx @absolunet/nwayo-grow-project
 
 ## Documentation
 
-[https://absolunet.github.io/nwayo/](https://absolunet.github.io/nwayo/)
+[https://documentation.absolunet.com/nwayo/](https://documentation.absolunet.com/nwayo/)
 
 
 ## License

@@ -6,7 +6,7 @@
 [![Travis CI](https://api.travis-ci.org/absolunet/nwayo-extension-MYEXTENSION.svg?branch=master)](https://travis-ci.org/absolunet/nwayo-extension-MYEXTENSION/builds)
 [![Code style ESLint](https://img.shields.io/badge/code_style-@absolunet/node-659d32.svg)](https://github.com/absolunet/eslint-config-node)
 
-> My extension for [nwayo](https://absolunet.github.io/nwayo)
+> My extension for [nwayo](https://documentation.absolunet.com/nwayo)
 
 ## Install
 

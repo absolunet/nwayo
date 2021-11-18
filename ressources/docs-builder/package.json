@@ -2,7 +2,7 @@
   "name": "nwayo-docs",
   "license": "UNLICENSED",
   "private": true,
-  "homepage": "https://absolunet.github.io/nwayo",
+  "homepage": "https://documentation.absolunet.com/nwayo",
   "dependencies": {
     "axios": "0.19.2",
     "foundation-sites": "6.6.1",
