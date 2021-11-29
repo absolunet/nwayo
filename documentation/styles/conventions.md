@@ -6,6 +6,10 @@
 - Try to give significant name that describes what they are used for to the variables and not only one that describes what they are.
 - The variable must end by the type of value they are. [Consult the list of the allowed sass values](https://sass-lang.com/documentation/values).
 - Give a general idea of what the variable is without giving any visual clue of what they are.
+- Mixins must end with the type of content they output
+- Use mixins to avoid duplicate code
+- You can include mixins in another mixins
+- If you need to adjust something that should be in the mixins but that modification only apply to an edge case, add a parameter to the mixin so the right output is generated.
 
 ## Useful tips
 > We asked our internal developers that use Nwayo daily their tips and tricks and here's the result

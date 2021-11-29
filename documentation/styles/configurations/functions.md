@@ -1,6 +1,6 @@
 # [Functions](https://sass-lang.com/documentation/at-rules/function)
 ## Content
-The difference between functions and mixins is that the mixins generate styling directive and
+The difference between functions and mixins is that the mixins generate an output (mostly styling directives) and
 functions generates values
 
 ## Exemple

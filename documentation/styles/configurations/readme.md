@@ -1,18 +1,18 @@
 # Configurations
 
-> It is possible to set including design variables, mixins and function inside a component. 
-> Those configurations can be imported to an other component and or bundle to make sure that the styling and 
-> features are apply with consistency.
-> 
-It's a good idea to have a general component where you declare the general look and feel of your project and remap those 
+> It is possible to set including design variables, mixins and function inside a component.
+> Those configurations can be imported to another component and or bundle to make sure that the styling and
+> features are applied with consistency.
+
+It's a good idea to have a general component where you declare the general look and feel of your project and remap those
 variable into more specifics components
 
 ## Types
 They are 4 types of assets:
-- [Design](configurations/design.md)
-- [Functions](configurations/functions.md)
-- [Mixins](configurations/mixins.md)
-- [Selectors](configurations/selectors.md)
+- [Design](design.md)
+- [Functions](functions.md)
+- [Mixins](mixins.md)
+- [Selectors](selectors.md)
 
 
 ## Structures

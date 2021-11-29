@@ -1,13 +1,19 @@
-# Polices
-Les polices sont situées sous le dossier `fonts`, sous la composante associée à la police en question.
-Il faut les 4 formats de police sous le dossier `fonts` avec le même nom de fichier:
+# Fonts
+The fonts are located under the `fonts` folder, under the component associated with the font in question.
+
+[When declaring fonts, use the nwayo variables for the font-weight.](../../packages/toolbox/styles/_variables.scss).
+
+You need the 4 font formats under the `fonts` folder with the same filename:
 - `eot`
 - `ttf`
 - `woff`
 - `woff2`
 
 ## Mixin
-Le mixin utilisé pour générer le `@font-face`au niveau du css.
+The `@font-face` mixins is used to generate the css
+
+[Consult the list of all mixins for more details](configurations/mixins.md)
+
 ```scss
 //-- Font-face
 @mixin load-font-mixin ($name, $filename, $context, $weight:normal, $style:normal) {
@@ -21,33 +27,34 @@ Le mixin utilisé pour générer le `@font-face`au niveau du css.
 	}
 }
 ```
-- `$name` = Le nom de la police utilisé pour la `font-family` dans le css.
-- `$filename` = Le nom du fichier de la police.
-- `$context` = Le contexte dans lequel se situe la police.
-- `$weight` = Le poids de la police. `normal` est mis par défaut.
-- `$style` = Le style de la police. `normal` est mis par défaut.
+- `$name` = The name of the font used for the `font-family` in the css.
+- `$filename` = File name of the font.
+- `$context` = In what context the font is used. (component)
+- `$weight` = The weight of the font. `normal` is the default value.
+- `$style` = The style of the font. `normal` is the default value.
 
-## Comment utiliser
-Pour générer le bon code, vous devez au moins fournir `$name`, `$filename` et `$context`.
+### How to use
+To generate valid css, `$name`, `$filename` and `$context` are required.
 ```scss
-//-- Ligne de code appelé pour générer la font-family
+//-- Generate font-family
 @include load-font-mixin('roboto', 'roboto-light-webfont', 'common', $weight:$light-weight);
 
-//-- Utilisation au niveau d'une variable
-$text-font: 'Open Sans', sans-serif;
+//-- Variable usage
+$common-text-font: 'Open Sans', sans-serif;
 ```
 
-## Gestion de font-weight
-Il est préférable d'avoir une police pour chacune des graisses utilisées dans la composante et d'utiliser le même `$name`pour chacun d'eux. Il est ainsi plus facile de gérer la graisse de manière globale.
-```scss
-//-- Chargement des différentes graisses
-@include load-font-mixin('roboto', 'roboto-light-webfont', 'common', $light-weight);
-@include load-font-mixin('roboto', 'roboto-regular-webfont', 'common', $normal-weight);
-@include load-font-mixin('roboto', 'roboto-bold-webfont', 'common', $bold-weight);
-@include load-font-mixin('roboto', 'roboto-black-webfont', 'common', $black-weight);
+## Font-weight management
+It is preferable to have a font for each of the weights used in the component and to use the same `$ name` for each of them. This makes it easier to manage fat overall.
 
-//-- Appel dans le css
-$text-font: 'roboto', sans-serif;
+```scss
+//-- Generate font-weight
+@include load-font-mixin('roboto', 'roboto-light-webfont', 'common', $nwayo-light-weight);
+@include load-font-mixin('roboto', 'roboto-regular-webfont', 'common', $nwayo-normal-weight);
+@include load-font-mixin('roboto', 'roboto-bold-webfont', 'common', $nwayo-bold-weight);
+@include load-font-mixin('roboto', 'roboto-black-webfont', 'common', $nwayo-black-weight);
+
+//-- SCSS usages
+$common-text-font: 'roboto', sans-serif;
 
 body {
 	font-family: $text-font;

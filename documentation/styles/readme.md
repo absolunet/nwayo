@@ -1,4 +1,10 @@
 # Styles
-- [Fonts](fonts.md)
+- [Configurations](configurations)
+- [Conventions](conventions.md)
+- [Fonts](fonts.md) | [Polices](polices.md)
+- [Foundation's Components](components.md)
+- [Generation Tools](generation-tools.md)
+- [Global Architecture](global-architecture.md)
 - [Images](images.md)
 - [Inline images](inline-images.md)
+- [Recipes](recipes)

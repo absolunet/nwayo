@@ -1,10 +1,10 @@
 # nwayo
 
-- [Requirements](requirements)
-- [CLI](cli)
 - [Architecture](architecture)
 - [Assets](assets)
-- [Scripts](scripts)
-- [Styles](styles)
+- [CLI](cli)
 - [Extensions](extensions)
 - [Migration](migration)
+- [Requirements](requirements)
+- [Scripts](scripts)
+- [Styles](styles)
