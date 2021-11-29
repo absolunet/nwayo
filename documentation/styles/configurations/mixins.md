@@ -1,20 +1,16 @@
 # [Mixins](https://sass-lang.com/documentation/at-rules/mixin)
-## Content
-In this configuration file, we set up variable that can be reused in this component. Every property that is reused or
-relate to each other could be set in a variable.
 
-- Colors
-- Transitions
-- Size
-- Font and text related attributes
-- Border
-- Media queries
+## Content
+Mixins purpose is to encapsulate styles to which it can be included and reused at multiple places. They can be modified with variable and conditions inside.
 
 ## Good practices
 - Order mixins by type and or purpose
-- It's a good idea to have a general component where you declare the general aesthetic of you site and map those variables into the component
+- It's a good idea to have a general component where you declare your general site aesthetic and map those variables into the component
 - Try to give significant name that describes what they are used for to the variables and not only one that describes what they are.
-- Mixins must end with the type of the output 
+- Mixins must end with the type of content they output
+- Use mixins to avoid duplicate code
+- You can include mixins in another mixins
+- If you need to adjust something that should be in the mixins but that modification only apply to an edge case, add a parameter to the mixin so the right output is generated.
 
 
 ##Toolbox

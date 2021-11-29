@@ -1,7 +1,7 @@
 # [Selectors](https://sass-lang.com/documentation/style-rules/parent-selector)
 
 ## Content
-blip
+You can store selector in a variable, so it can be reused multiple times. It is recommended to use the sass parent selector when needed.  
 
 
 ## Good practices
