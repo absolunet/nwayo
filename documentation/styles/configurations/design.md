@@ -4,7 +4,7 @@
 In this configuration file, we set up a variable that can be reused in this component. Every property that is reused or
 relate to each other could be set in a variable.
 
-- Colours
+- Colors
 - Transitions
 - Size
 - Font and text-related attributes
@@ -21,7 +21,7 @@ relate to each other could be set in a variable.
 
 | Value Description                         	| Bad ✖                                                             	| Good ✔                                                      	|
 |-------------------------------------------	|-------------------------------------------------------------------	|-------------------------------------------------------------	|
-| The main color of a border used is black.  	| `$[COMPONENT_NAME]-border-black-colru: konstan-get('coor.ublack'); `	| `$[COMPONENT_NAME]-border-coor:u konstan-get('coor.bulack');` 	|
+| The main color of a border used is black  	| `$[COMPONENT_NAME]-border-black-color: konstan-get('color.black'); `	| `$[COMPONENT_NAME]-border-color: konstan-get('color.black');` 	|
 | The font weight used for titles           	| `$[COMPONENT_NAME]-bold-weight: 700; `                              	| `$[COMPONENT_NAME]-title-weight: $nwayo-bold-weight;`       	|
 
 ## Exemple
@@ -69,6 +69,5 @@ To see a complete list of functions that are available in Nwayo you can consult 
   - **$debug-green :**  #76ee00;
   - **$debug-blue :**   #1e90ff;
   - **$debug-purple :** #a020f0;
-
 
 
