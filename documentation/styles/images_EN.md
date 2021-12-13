@@ -2,10 +2,9 @@
 The images are located in the `images` directory, under its component.
 
 ## Mixin
-The mixin used to generate the images at the css level. It will then be possible to include them by `@ include` under the desired selector.
+The mixin used to generate the images at the css level. It will then be possible to include them by `@include` under the desired selector.
 **NB:** Please refer to the [inline-image](inline-image_EN.md) for `inline` or `Scalable` images.
 
-## Fonctionnement
 ```scss
 //-- Background image
 @mixin bg-image-mixin ($file, $context, $inline:false, $width:false, $height:false, $color:false) {
@@ -42,7 +41,7 @@ The mixin used to generate the images at the css level. It will then be possible
 - `$height` =Assign the height of the image @2x.
 - `$color` = the color used in the image for the SVG format. Consult the [inline-image](inline-image.md) for more infos.
 
-## Comment utiliser
+## How to use
 To be able to generate an image, the `$file` and `$context` are required.
 ```scss
 // Normal
