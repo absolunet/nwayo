@@ -1,6 +1,7 @@
 # Conventions and useful tips
 
 ## Conventions
+- Use [StyleLint](component/stylelint.md)
 - Order variables and mixins by type and or purpose
 - It's a good idea to have a general component where you declare your general site esthetics and map those variables into the component
 - Try to give significant name that describes what they are used for to the variables and not only one that describes what they are.
