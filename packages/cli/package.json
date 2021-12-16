@@ -30,19 +30,13 @@
   "dependencies": {
     "@absolunet/fss": "^1.7.0",
     "@absolunet/terminal": "^3.2.0",
-    "async": "^3.2.2",
-    "bower": "^1.8.13",
     "boxen": "^5.1.2",
     "chalk": "^3.0.0",
-    "cli-spinner": "^0.2.10",
     "cross-spawn": "^7.0.3",
-    "david": "^12.0.0",
     "find-up": "^5.0.0",
-    "grunt-cli": "^1.4.3",
     "js-yaml": "^4.1.0",
     "minimist": "^1.2.5",
     "open": "^8.4.0",
-    "semver": "^7.3.5",
     "string-width": "^4.2.3",
     "update-notifier": "^5.1.0"
   }

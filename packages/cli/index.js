@@ -176,27 +176,12 @@ module.exports = async () => {
 					//-- Trap `--completion-logic`
 					const completion = util.flag('completion-logic');
 					if (completion) {
-
-						const completionLogic = `${workflow}/completion`;
-						if (fs.existsSync(completionLogic)) {
-							util.echo(require(completionLogic)({ completion, root }));
-						} else {
-							util.echo(require(`./legacy/completion`)({ completion, root }));
-						}
+						util.echo(require(`${workflow}/completion`)({ completion, root }));
 						util.exit();
 					}
 
 					//-- Let's do this
 					await util.obnoxiousNotificator(cliPackageConfig);
-
-
-					//-- Trap `nwayo install vendors` (for nwayo-workflow < 3.5.0)
-					if (util.cmd('install vendors') === true) {
-						if (!fs.existsSync(`${workflow}/cli/install.js`)) {
-							util.bootLegacyMode({ root });
-							util.exit();
-						}
-					}
 
 
 					//-- Load workflow
@@ -221,19 +206,9 @@ module.exports = async () => {
 					util.workflowNotInstalled();
 				}
 
-			//-- Ricochet to legacy
+			//-- No workflow found
 			} else {
-
-				//-- Trap `--completion-logic`
-				const completion = util.flag('completion-logic');
-				if (completion) {
-					util.echo(require(`./legacy/completion`)({ completion, root }));
-					util.exit();
-				}
-
-				//-- Let's do this
-				await util.obnoxiousNotificator(cliPackageConfig);
-				util.bootLegacyMode({ root });
+				util.exit(`No ${chalk.underline(WORKFLOW)} found in ${chalk.underline(PACKAGE)}`);
 			}
 
 		// Duuuuude.... Install the workflow

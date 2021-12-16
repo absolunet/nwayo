@@ -165,13 +165,6 @@ class Util {
 
 
 
-	//-- Boot in legacy mode
-	bootLegacyMode({ root }) {
-		this.echo(chalk.yellow(`\n [Legacy mode]\n\n`));
-		require(`../legacy`)({ root });
-	}
-
-
 	//-- Show usage
 	showUsageIfNotArguments() {
 		if (Object.keys(argv).length === 1 && argv._.length === 0) {
