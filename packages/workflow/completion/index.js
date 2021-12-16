@@ -20,7 +20,6 @@ const LEVEL1_FLAGS          = ['-h', '--help', '-v', '--version', '--pronounce']
 const REBUILD_FLAGS         = ['--prod'];
 const INSTALL_SCOPES        = ['workflow', 'vendors'];
 const INSTALL_WORKFLOW_FLAG = ['--force'];
-const DOCTOR_FLAGS          = ['--verbose'];
 /* eslint-enable array-element-newline */
 
 
@@ -105,10 +104,6 @@ module.exports = ({ completion, root }) => {
 
 				case 'install':
 					values = INSTALL_SCOPES;
-					break;
-
-				case 'doctor':
-					values = flag(items, DOCTOR_FLAGS);
 					break;
 
 				default: break;

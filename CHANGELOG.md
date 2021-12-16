@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 - Remove CLI support for nwayo < 3.3.x (legacy mode)
+- Remove CLI `doctor` command
 - Remove `___nwayo-recommended___` in boilerplate vendors
 
 
@@ -39,7 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Maintenance updates
 
 ### Fixed
-- Fixes 'Could not find plugin "proposal-numeric-separator"' with `@babel/preset-env` update 
+- Fixes 'Could not find plugin "proposal-numeric-separator"' with `@babel/preset-env` update
 
 
 

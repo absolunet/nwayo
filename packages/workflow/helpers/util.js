@@ -392,16 +392,14 @@ Run ${chalk.cyan('nwayo install workflow')} to update`,
 				'run':     [`run ${cli.placeholder('<task>')} ${cli.optionalPlaceholder('<bundle>')}`, `Run a task ex:[${tasks.join('|')}]`, [tasks]],
 				'rebuild': [`rebuild ${cli.optionalPlaceholder('<bundle>')} ${cli.optional('--prod')}`, `Rebuild the entire project from scratch`],
 				'watch':   [`watch ${cli.optionalPlaceholder('<bundle>')}`, `Listens for changes on files and run appropriate tasks`],
-				'install': [`install ${cli.optionalPlaceholder('<scope>')} ${cli.optional('--force')}`, `Install dependencies ex:[${installScopes.join('|')}]`, [installScopes]],
-				'doctor':  [`doctor ${cli.optional('--verbose')}`, `Analyze project for conformity`, [tasks]]
-
+				'install': [`install ${cli.optionalPlaceholder('<scope>')} ${cli.optional('--force')}`, `Install dependencies ex:[${installScopes.join('|')}]`, [installScopes]]
 			},
 			globalUsage.tasks
 		));
 
 		cli.setFullUsage(Object.assign(
 			{},
-			{ 'Project': ['run', 'rebuild', 'watch', 'install', 'doctor'] },
+			{ 'Project': ['run', 'rebuild', 'watch', 'install'] },
 			globalUsage.full
 		), { showBin: false });
 		/* eslint-enable quote-props */
