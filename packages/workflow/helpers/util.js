@@ -284,7 +284,7 @@ class Util {
 The required version in your project's package.json
 is greater than the installed one
 
-Run ${chalk.cyan('nwayo install workflow')} to update`,
+Run ${chalk.cyan('npm install')} to update`,
 				{
 					padding:     1,
 					margin:      0.5,
@@ -382,8 +382,7 @@ Run ${chalk.cyan('nwayo install workflow')} to update`,
 
 
 
-		const tasks         = ['assets', 'icons', 'local', 'scripts', 'styles'];
-		const installScopes = ['workflow', 'vendors'];
+		const tasks = ['assets', 'icons', 'local', 'scripts', 'styles'];
 
 		/* eslint-disable quote-props */
 		cli.setUsageTasks(Object.assign(
@@ -391,15 +390,14 @@ Run ${chalk.cyan('nwayo install workflow')} to update`,
 			{
 				'run':     [`run ${cli.placeholder('<task>')} ${cli.optionalPlaceholder('<bundle>')}`, `Run a task ex:[${tasks.join('|')}]`, [tasks]],
 				'rebuild': [`rebuild ${cli.optionalPlaceholder('<bundle>')} ${cli.optional('--prod')}`, `Rebuild the entire project from scratch`],
-				'watch':   [`watch ${cli.optionalPlaceholder('<bundle>')}`, `Listens for changes on files and run appropriate tasks`],
-				'install': [`install ${cli.optionalPlaceholder('<scope>')} ${cli.optional('--force')}`, `Install dependencies ex:[${installScopes.join('|')}]`, [installScopes]]
+				'watch':   [`watch ${cli.optionalPlaceholder('<bundle>')}`, `Listens for changes on files and run appropriate tasks`]
 			},
 			globalUsage.tasks
 		));
 
 		cli.setFullUsage(Object.assign(
 			{},
-			{ 'Project': ['run', 'rebuild', 'watch', 'install'] },
+			{ 'Project': ['run', 'rebuild', 'watch'] },
 			globalUsage.full
 		), { showBin: false });
 		/* eslint-enable quote-props */

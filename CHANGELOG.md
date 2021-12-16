@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Remove CLI support for nwayo < 3.3.x (legacy mode)
 - Remove CLI `doctor` command
+- Remove CLI `install` command
 - Remove `___nwayo-recommended___` in boilerplate vendors
 
 

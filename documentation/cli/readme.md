@@ -11,11 +11,11 @@ $ npm i -g @absolunet/nwayo-cli
 
 
 ## Usage
-In any subfolder of the project's root folder, where the `nwayo.yaml` is located
+In the nwayo root folder.
 
 ### In each project, install the project's workflow
 ```shell
-$ nwayo install workflow
+$ npm install
 ```
 
 ### Then you can run any `nwayo` command
@@ -104,37 +104,6 @@ Whenever `watch` behaves weirdly, restart it and/or run a `rebuild`.
 $ nwayo watch
 
 $ nwayo watch site
-```
-
-### install
-`nwayo install [<scope>] [--force]`
-
-Install project dependencies.
-
-The `workflow` scope installs the workflow via `npm`
-- By default it uses `npm ci` which is faster but requires a valid `package-lock.json` in sync with the `package.json`
-- If the `--force` flag is used, it will use `npm install` and regenerate the `package-lock.json`
-
-The `vendors` scope installs the vendor dependencies via `npm`
-
-**Examples:**
-```shell
-$ nwayo install workflow
-
-$ nwayo install vendors
-```
-
-## \<bundle\> param
-
-If a bundle is specified, the command will be run against this bundle only.
-
-If a sub-bundle is specified, the command will be run against this sub-bundle only.
-
-**Examples:**
-```shell
-$ nwayo rebuild site
-
-$ nwayo watch site:editor
 ```
 
 

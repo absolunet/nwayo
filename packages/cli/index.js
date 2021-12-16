@@ -48,20 +48,18 @@ module.exports = async () => {
 
 	//-- Trap `update`
 	} else if (util.cmd('update')) {
-		const { terminal } = require('@absolunet/terminal');
-
 		const update = await util.checkUpdate(cliPackageConfig);
 
-		terminal.spacer();
+		util.echo('');
 
 		if (update.current !== update.latest) {
-			util.echo(`Update available: ${chalk.dim(update.current)} ${chalk.reset('→')} ${chalk.green(update.latest)}\n\nUpdating...`);
-		} else {
-			util.echo('No update available\n\nReinstalling...');
-		}
+			util.echo(`Update available: ${chalk.dim(update.current)} ${chalk.reset('→')} ${chalk.green(update.latest)}\n\nUpdating...\n`);
 
-		terminal.spacer();
-		terminal.process.run('npm uninstall -g @absolunet/nwayo-cli && npm install -g --no-audit @absolunet/nwayo-cli');
+			const terminal = require('@absolunet/terminal');
+			terminal.process.run('npm uninstall -g @absolunet/nwayo-cli && npm install -g --no-audit @absolunet/nwayo-cli');
+		} else {
+			util.echo('No update available');
+		}
 
 	//-- Trap `grow`
 	} else if (util.cmd('grow')) {
@@ -120,49 +118,8 @@ module.exports = async () => {
 		}
 
 
-		//-- Trap `nwayo install workflow`
-		const nodeModules = `${root}/node_modules`;
-		const npmInstall = () => {
-			const fss          = require('@absolunet/fss');
-			const { terminal } = require('@absolunet/terminal');
-
-			fss.remove(nodeModules);
-			fss.remove(`${root}/package-lock.json`);
-
-			terminal.process.run('npm install --no-audit', { directory: root });
-			util.exit();
-		};
-
-		const npmCI = () => {
-			const { terminal } = require('@absolunet/terminal');
-			try {
-				terminal.process.run('npm ci', { directory: root });
-				util.exit();
-			} catch (error) {
-				terminal.errorBox(`
-					The package-lock.json file is outdated
-					Please run ${chalk.underline('nwayo install workflow --force')} to update it
-				`);
-				util.exit();
-			}
-		};
-
-		const installWorkflow = util.cmd('install workflow', 'force');
-		const lockFile        = fs.existsSync(`${root}/package-lock.json`);
-		if (installWorkflow) {
-			if (installWorkflow === true) {
-				if (lockFile) {
-					npmCI();
-				} else {
-					npmInstall();
-				}
-			} else if (installWorkflow.flag === true) {
-				npmInstall();
-			}
-		}
-
-
 		//-- Are dependencies installed ?
+		const nodeModules = `${root}/node_modules`;
 		if (fs.existsSync(nodeModules)) {
 
 			//-- If uses workflow as a package

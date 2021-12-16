@@ -113,7 +113,7 @@ class Util {
 	workflowNotInstalled() {
 		this.exit(`
 			Workflow not installed
-			Please run ${chalk.underline('nwayo install workflow')}
+			Please run ${chalk.underline('npm install')}
 		`);
 	}
 
