@@ -70,7 +70,6 @@ class GrowProject {
 
 		// Configuration
 		const config = fss.readYaml(CONFIG_ORIGINAL);
-		config.root = 'nwayo';
 		fss.writeYaml(CONFIG, config);
 		fss.remove(CONFIG_ORIGINAL);
 

@@ -42,7 +42,6 @@
     "core-js-builder": "^3.20.0",
     "cssnano": "^5.0.13",
     "fancy-log": "^1.3.3",
-    "find-up": "^5.0.0",
     "glob": "^7.2.0",
     "glob-all": "^3.2.1",
     "gulp": "^4.0.2",

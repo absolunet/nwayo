@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update to Foundation 6.7.x
 - Update to SASS 1.45.x
 - Linters updates
+- `nwayo.yaml` file must now be in root `nwayo` folder
 - Documentation updates
 - Maintenance updates
 
@@ -30,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 - Remove CLI support for nwayo < 3.3.x (legacy mode)
+- Remove CLI support to be run outside root `nwayo` folder
 - Remove CLI `doctor` command
 - Remove CLI `install` command
 - Remove `___nwayo-recommended___` in boilerplate vendors

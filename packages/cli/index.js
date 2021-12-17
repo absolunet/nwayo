@@ -11,7 +11,6 @@ const spawn = require('cross-spawn');
 const fs    = require('fs');
 const util  = require('./helpers/util');
 
-const CONFIG   = 'nwayo.yaml';
 const PACKAGE  = 'package.json';
 const WORKFLOW = '@absolunet/nwayo-workflow';
 
@@ -82,25 +81,8 @@ module.exports = async () => {
 
 	} else {
 
-		const findUp = require('find-up');
-		const yaml   = require('js-yaml');
-		const path   = require('path');
-
 		//-- Set nwayo root
-		const configFilepath = findUp.sync(CONFIG, { cwd: process.cwd() });
-		let config;
-		let root = process.cwd();
-
-		if (configFilepath !== undefined) {
-			config = yaml.load(fs.readFileSync(configFilepath, 'utf8'));
-
-			if (config && config.root) {
-				root = path.normalize(`${path.dirname(configFilepath)}/${config.root}`);
-			} else {
-				util.showUsageIfNotArguments();
-				util.exit(`No root defined in ${chalk.underline(CONFIG)}`);
-			}
-		}
+		const root = process.cwd();
 
 
 		//-- Search for 'package.json'
@@ -109,12 +91,9 @@ module.exports = async () => {
 
 		if (fs.existsSync(projetPackagePath)) {
 			projetPackageConfig = require(projetPackagePath);
-		} else if (config) {
-			util.showUsageIfNotArguments();
-			util.exit(`No ${chalk.underline(PACKAGE)} found under root defined in ${chalk.underline(CONFIG)}`);
 		} else {
 			util.showUsageIfNotArguments();
-			util.exit(`No ${chalk.underline(CONFIG)} or ${chalk.underline(PACKAGE)} found`);
+			util.exit(`No ${chalk.underline(PACKAGE)} found`);
 		}
 
 
