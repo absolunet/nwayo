@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update to SASS 1.45.x
 - Linters updates
 - `nwayo.yaml` file must now be in root `nwayo` folder
+- Workflow installation now installs vendor via a `postinstall`
 - Documentation updates
 - Maintenance updates
 

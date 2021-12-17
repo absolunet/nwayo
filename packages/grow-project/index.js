@@ -96,9 +96,8 @@ ${chalk.green(`${figures.tick} ${chalk.bold(projectId)} via nwayo ${PACKAGE.vers
 
   1. If not already present, install nwayo CLI via ${chalk.yellow('npm i -g @absolunet/nwayo-cli')}
   2. Run ${chalk.yellow('npm install')} in the nwayo root folder
-  3. Run ${chalk.yellow('npm install')} in the vendor folder
-  4. Run ${chalk.yellow('nwayo rebuild')} in the nwayo root folder
-  5. Enjoy !
+  3. Run ${chalk.yellow('nwayo rebuild')} in the nwayo root folder
+  4. Enjoy !
 		`);
 	}
 

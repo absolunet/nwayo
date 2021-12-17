@@ -28,10 +28,7 @@ Run in your project root folder
 # Get boilerplate
 npx @absolunet/nwayo-grow-project
 
-# Install workflow (in nwayo root folder)
-npm install
-
-# Install vendor (in vendor folder)
+# Install workflow and vendor (in nwayo root folder)
 npm install
 
 # Install CLI
