@@ -24,7 +24,7 @@ These will be embedded in the `background-image:url()` via a Base64 encoding.
 
 **Example:**
 ```scss
-background-image: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7");
+background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42m");
 ```
 
 ### SVG
