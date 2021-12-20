@@ -3,23 +3,14 @@
 //-------------------------------------
 'use strict';
 
-const findUp = require('find-up');
-const path   = require('path');
-const slash  = require('slash');
-const fss    = require('@absolunet/fss');
+const path  = require('path');
+const slash = require('slash');
 
 
-const VENDORS          = 'vendor';
-const CACHE            = '.nwayo-cache';
-const NOLINT           = 'vendor';
-const MAIN_CONFIG      = 'nwayo.yaml';
-const MAIN_CONFIG_PATH = findUp.sync(MAIN_CONFIG, { cwd: process.cwd() });
-
-const ROOT = (() => {
-	const prjConfig = fss.readYaml(MAIN_CONFIG_PATH);
-
-	return slash(path.normalize(`${path.dirname(MAIN_CONFIG_PATH)}/${prjConfig.root}`)).replace(/\/$/u, '');
-})();
+const VENDORS = 'vendor';
+const CACHE   = '.nwayo-cache';
+const NOLINT  = 'vendor';
+const ROOT    = process.cwd();
 
 
 
@@ -79,7 +70,7 @@ filename.konstanStyles  = `${filename.konstan}.${extension.styles}`;
 filename.lodash         = `lodash`;
 filename.modernizr      = `modernizr`;
 filename.polyfill       = `polyfill`;
-filename.mainConfig     = MAIN_CONFIG;
+filename.mainConfig     = `nwayo.yaml`;
 filename.iconsFavicon   = `favicon.png`;
 filename.iconsTouch     = `touch.png`;
 filename.iconsIcon      = `icon.png`;
@@ -134,10 +125,9 @@ workflow.root       = slash(path.normalize(`${__dirname}/..`));
 workflow.cliTasks   = `${workflow.root}/cli`;
 workflow.tasks      = `${workflow.root}/tasks`;
 workflow.ressources = `${workflow.root}/ressources`;
-workflow.matrix     = `${workflow.ressources}/doctor-matrix`;
 
 const config = {};
-config.main               = MAIN_CONFIG_PATH;
+config.main               = `${directory.root}/${filename.mainConfig}`;
 config.vendors            = `${directory.vendors}/package.json`;
 config.konstan            = `${directory.root}/konstan.yaml`;
 config.projectPackage     = `${directory.root}/package.json`;

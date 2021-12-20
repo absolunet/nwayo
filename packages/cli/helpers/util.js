@@ -113,7 +113,7 @@ class Util {
 	workflowNotInstalled() {
 		this.exit(`
 			Workflow not installed
-			Please run ${chalk.underline('nwayo install workflow')}
+			Please run ${chalk.underline('npm install')}
 		`);
 	}
 
@@ -163,13 +163,6 @@ class Util {
 
 
 
-
-
-	//-- Boot in legacy mode
-	bootLegacyMode({ root }) {
-		this.echo(chalk.yellow(`\n [Legacy mode]\n\n`));
-		require(`../legacy`)({ root });
-	}
 
 
 	//-- Show usage

@@ -70,7 +70,6 @@ class GrowProject {
 
 		// Configuration
 		const config = fss.readYaml(CONFIG_ORIGINAL);
-		config.root = 'nwayo';
 		fss.writeYaml(CONFIG, config);
 		fss.remove(CONFIG_ORIGINAL);
 
@@ -96,10 +95,9 @@ ${chalk.green(`${figures.tick} ${chalk.bold(projectId)} via nwayo ${PACKAGE.vers
 
 
   1. If not already present, install nwayo CLI via ${chalk.yellow('npm i -g @absolunet/nwayo-cli')}
-  2. Run ${chalk.yellow('nwayo install workflow')}
-  3. Run ${chalk.yellow('nwayo install vendors')}
-  4. Run ${chalk.yellow('nwayo rebuild')}
-  5. Enjoy !
+  2. Run ${chalk.yellow('npm install')} in the nwayo root folder
+  3. Run ${chalk.yellow('nwayo rebuild')} in the nwayo root folder
+  4. Enjoy !
 		`);
 	}
 

@@ -16,11 +16,8 @@ const TASKS = [
 	'rebuild', 'rebuild-ss',
 	'watch'
 ];
-const LEVEL1_FLAGS          = ['-h', '--help', '-v', '--version', '--pronounce'];
-const REBUILD_FLAGS         = ['--prod'];
-const INSTALL_SCOPES        = ['workflow', 'vendors'];
-const INSTALL_WORKFLOW_FLAG = ['--force'];
-const DOCTOR_FLAGS          = ['--verbose'];
+const LEVEL1_FLAGS  = ['-h', '--help', '-v', '--version', '--pronounce'];
+const REBUILD_FLAGS = ['--prod'];
 /* eslint-enable array-element-newline */
 
 
@@ -103,14 +100,6 @@ module.exports = ({ completion, root }) => {
 					values = bundles(root);
 					break;
 
-				case 'install':
-					values = INSTALL_SCOPES;
-					break;
-
-				case 'doctor':
-					values = flag(items, DOCTOR_FLAGS);
-					break;
-
 				default: break;
 
 			}
@@ -125,12 +114,6 @@ module.exports = ({ completion, root }) => {
 
 				case 'rebuild':
 					values = flag(items, REBUILD_FLAGS);
-					break;
-
-				case 'install':
-					if (items[1] === 'workflow') {
-						values = INSTALL_WORKFLOW_FLAG;
-					}
 					break;
 
 				default: break;

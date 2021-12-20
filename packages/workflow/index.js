@@ -7,8 +7,6 @@
 class NwayoClasses {
 
 	get extension() { return require('./classes/extension'); }
-	get reporter()  { return require('./classes/reporter'); }
-	get tests()     { return require('./classes/tests'); }
 
 }
 

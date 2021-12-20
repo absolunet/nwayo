@@ -21,7 +21,12 @@ const NAME = 'nwayo';
 //-- Existence validated by CLI
 const WORKFLOW_PACKAGE = fss.readJson(paths.config.workflowPackage);
 const PACKAGE          = fss.readJson(paths.config.projectPackage);
-const CONFIG           = fss.readYaml(paths.config.main);
+
+if (!fss.exists(paths.config.main)) {
+	terminal.exit(`'${paths.filename.mainConfig}' not found`);
+}
+const CONFIG = fss.readYaml(paths.config.main);
+
 
 const EXTENSIONS = (() => {
 	const enabled = {};

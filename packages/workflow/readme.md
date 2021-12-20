@@ -12,7 +12,7 @@
 ## Install
 
 ```bash
-$ npm install -g @absolunet/nwayo-workflow
+$ npm install @absolunet/nwayo-workflow
 ```
 
 ## Documentation
