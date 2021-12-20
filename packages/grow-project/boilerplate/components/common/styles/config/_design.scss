@@ -1,6 +1,7 @@
 //-------------------------------------
 //-- Common - Config - Design
 //-------------------------------------
+@use 'sass:color';
 
 /* -- Quick reference --
 
@@ -29,11 +30,11 @@
 
 
 //-- Foundation
-// stylelint-disable declaration-property-value-blacklist
+// stylelint-disable declaration-property-value-disallowed-list
 $common-column-gutter-size: rem-calc(15);
 $common-column-small-size:  rem-calc(290);
 $common-max-width-size:     rem-calc(konstan-get('dimension.max'));
-// stylelint-enable declaration-property-value-blacklist
+// stylelint-enable declaration-property-value-disallowed-list
 
 
 
@@ -78,7 +79,7 @@ $common-text-fat-weight:      $nwayo-bold-weight;
 $common-text-fatter-weight:   $nwayo-extrabold-weight;
 $common-text-fattest-weight:  $nwayo-black-weight;
 
-// stylelint-disable declaration-property-value-blacklist
+// stylelint-disable declaration-property-value-disallowed-list
 $common-text-nano-size:     rem-calc(10);
 $common-text-micro-size:    rem-calc(11);
 $common-text-tiny-size:     rem-calc(12);
@@ -91,7 +92,7 @@ $common-title-bigger-size:  rem-calc(36);
 $common-title-biggest-size: rem-calc(42);
 $common-title-mega-size:    rem-calc(50);
 $common-title-ultra-size:   rem-calc(60);
-// stylelint-enable declaration-property-value-blacklist
+// stylelint-enable declaration-property-value-disallowed-list
 
 $common-text-lineheight:    1.3;
 $common-title-lineheight:   1.15;
@@ -122,13 +123,13 @@ $common-button-secondary-border-disabled-color: konstan-get('color.platinum');
 
 $common-button-cta-bg-color:              konstan-get('color.logo-shell');
 $common-button-cta-bg-hover-color:        konstan-get('color.logo-shell-shade');
-$common-button-cta-bg-disabled-color:     lighten(desaturate(konstan-get('color.logo-shell-shade'), 30%), 30%);
+$common-button-cta-bg-disabled-color:     color.adjust(konstan-get('color.logo-shell-shade'), $lightness: 30%, $saturation: -30%);
 $common-button-cta-text-color:            konstan-get('color.white');
 $common-button-cta-text-hover-color:      konstan-get('color.white');
 $common-button-cta-text-disabled-color:   konstan-get('color.platinum');
 $common-button-cta-border-color:          konstan-get('color.logo-shell');
 $common-button-cta-border-hover-color:    konstan-get('color.logo-shell-shade');
-$common-button-cta-border-disabled-color: lighten(desaturate(konstan-get('color.logo-shell-shade'), 30%), 30%);
+$common-button-cta-border-disabled-color: color.adjust(konstan-get('color.logo-shell-shade'), $lightness: 30%, $saturation: -30%);
 
 
 
@@ -158,6 +159,6 @@ $common-animation-transition: konstan-get('transition.animation') * 1ms;
 
 
 //-- Special bp
-// stylelint-disable declaration-property-value-blacklist
+// stylelint-disable declaration-property-value-disallowed-list
 $common-xsmall-down-media: 'only screen and (max-width: #{rem-calc(konstan-get('dimension.xsmall'))})';
-// stylelint-enable declaration-property-value-blacklist
+// stylelint-enable declaration-property-value-disallowed-list

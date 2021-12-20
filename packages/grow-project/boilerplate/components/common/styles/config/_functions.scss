@@ -1,6 +1,7 @@
 //-------------------------------------
 //-- Common - Config - Functions
 //-------------------------------------
+@use 'sass:map';
 
 @function common-zindex($scope, $delta:0) {
 	@return nwayo-zindex((
@@ -20,7 +21,7 @@
 
 
 @function common-radius($type:default) {
-	@return map-get((
+	@return map.get((
 		default:  0,
 		button:   0,
 		select:   0,

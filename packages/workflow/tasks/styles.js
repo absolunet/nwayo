@@ -6,20 +6,18 @@
 // const debug = require('gulp-debug');
 const autoprefixer = require('autoprefixer');
 const cssnano      = require('cssnano');
-const Fiber        = require('fibers');
 const gulp         = require('gulp');
 const cache        = require('gulp-cached');
 const gulpif       = require('gulp-if');
 const imagemin     = require('gulp-imagemin');
 const postcss      = require('gulp-postcss');
 const rename       = require('gulp-rename');
-const gulpsass     = require('gulp-sass');
+const gulpsass     = require('gulp-sass')(require('sass'));
 const sourcemaps   = require('gulp-sourcemaps');
-const stylelint    = require('gulp-stylelint');
 const cloneDeep    = require('lodash.clonedeep');
 const pluralize    = require('pluralize');
-const sass         = require('sass');
 const jsonToScss   = require('@absolunet/json-to-scss');
+const stylelint    = require('@ronilaukkarinen/gulp-stylelint');
 const env          = require('../helpers/env');
 const flow         = require('../helpers/flow');
 const paths        = require('../helpers/paths');
@@ -52,7 +50,7 @@ module.exports = () => {
 
 			.pipe(stylelint({
 				configFile:     paths.config.stylelint,
-				syntax:         'scss',
+				customSyntax:  'postcss-scss',
 				failAfterError: true,
 				reporters: [
 					{
@@ -119,8 +117,6 @@ module.exports = () => {
 
 
 	//-- Compile
-	gulpsass.compiler = sass;
-
 	flow.createTask(
 		'styles-compile',
 
@@ -165,7 +161,6 @@ module.exports = () => {
 
 							.pipe(
 								gulpsass({
-									fiber:        Fiber,
 									includePaths: [paths.directory.root],
 									functions:    sassFunctions
 									// sourcemaps  (bundle.styles.options.sourcemaps)

@@ -3,6 +3,9 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "@absolunet/nwayo-workflow": "3.8.2"
+    "@absolunet/nwayo-workflow": "3.9.0-beta.1"
+  },
+  "scripts": {
+    "postinstall": "cd vendor; npm install"
   }
 }

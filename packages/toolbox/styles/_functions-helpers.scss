@@ -1,28 +1,33 @@
 //-------------------------------------
 //-- nwayo - Functions - Helpers
 //-------------------------------------
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:meta';
+@use 'sass:string';
 
 //-- Deep map: Path splitter
 @function nwayo-map-deep-split-path($path) {
 	$keys:      ();
 	$separator: '.';
-	$index:     str-index($path, $separator);
+	$index:     string.index($path, $separator);
 
 	@while $index {
-		$item:  str-slice($path, 1, $index - 1);
-		$keys:  append($keys, $item);
-		$path:  str-slice($path, $index + 1);
-		$index: str-index($path, $separator);
+		$item:  string.slice($path, 1, $index - 1);
+		$keys:  list.append($keys, $item);
+		$path:  string.slice($path, $index + 1);
+		$index: string.index($path, $separator);
 	}
 
-	@return append($keys, $path);
+	@return list.append($keys, $path);
 }
 
 //-- Deep map: Has key
 @function nwayo-map-deep-has-key($map, $path) {
 	@each $key in nwayo-map-deep-split-path($path) {
-		@if map-has-key($map, $key) {
-			$map: map-get($map, $key);
+		@if map.has-key($map, $key) {
+			$map: map.get($map, $key);
 		} @else {
 			@return false;
 		}
@@ -35,8 +40,8 @@
 @function nwayo-map-deep-get($map, $path) {
 	@each $key in nwayo-map-deep-split-path($path) {
 		@if $map {
-			@if map-has-key($map, $key) {
-				$map: map-get($map, $key);
+			@if map.has-key($map, $key) {
+				$map: map.get($map, $key);
 			} @else {
 				$map: null;
 			}
@@ -50,9 +55,9 @@
 
 //-- String replace
 @function nwayo-str-replace($string, $search, $replace: '') {
-	$index: str-index($string, $search);
+	$index: string.index($string, $search);
 	@if $index {
-		@return str-slice($string, 1, $index - 1) + $replace + nwayo-str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+		@return string.slice($string, 1, $index - 1) + $replace + nwayo-str-replace(string.slice($string, $index + string.length($search)), $search, $replace);
 	}
 	@return $string;
 }
@@ -62,7 +67,7 @@
 //-- Color replace
 @function nwayo-color-replace($string, $source, $target) {
 	$string: nwayo-str-replace($string, nwayo-to-string($source), nwayo-to-string($target));
-	$string: nwayo-str-replace($string, to-upper-case(nwayo-to-string($source)), nwayo-to-string($target));
+	$string: nwayo-str-replace($string, string.to-upper-case(nwayo-to-string($source)), nwayo-to-string($target));
 	@return $string;
 }
 
@@ -70,7 +75,7 @@
 
 //-- Cast to string
 @function nwayo-to-string($value) {
-	@return inspect($value);
+	@return meta.inspect($value);
 }
 
 
@@ -81,7 +86,7 @@
 //       $b: nwayo-list-contains($options, b);
 //     }
 @function nwayo-list-contains($list, $var) {
-	@if index($list, $var) {
+	@if list.index($list, $var) {
 		@return true;
 	}
 	@return false;
@@ -94,9 +99,9 @@
 	$encoded: '';
 	$slice: 2000;
 	$index: 0;
-	$loops: ceil(str-length($svg) / $slice);
+	$loops: math.ceil(math.div(string.length($svg), $slice));
 	@for $i from 1 through $loops {
-		$chunk: str-slice($svg, $index, $index + $slice - 1);
+		$chunk: string.slice($svg, $index, $index + $slice - 1);
 		$chunk: nwayo-str-replace($chunk, '"', "'");
 		$chunk: nwayo-str-replace($chunk, '<', '%3C');
 		$chunk: nwayo-str-replace($chunk, '>', '%3E');

@@ -86,12 +86,12 @@ a:not(.button) {
 	}
 
 	//-- Only on touch devices
-	html[data-whatintent='touch'] & {
+	html[data-whatintent='touch'] & {  // stylelint-disable-line selector-attribute-name-disallowed-list
 		/* ... */
 	}
 
 	//-- Only on mouse devices
-	html[data-whatintent='mouse'] & {
+	html[data-whatintent='mouse'] & {  // stylelint-disable-line selector-attribute-name-disallowed-list
 		/* ... */
 	}
 

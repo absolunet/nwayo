@@ -10,8 +10,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+### Added
+- Add Node.js 16 support
+
 ### Changed
+- Change default stylelint config to `@absolunet/stylelint-config-scss`
+- Move linters packages to `peerDependencies` for manual updates
+- Update to Autoprefixer 10.x
+- Update to cssnano 5.x
+- Update to ESLint 8.x
+- Update to Foundation 6.7.x
+- Update to SASS 1.45.x
+- Linters updates
+- `nwayo.yaml` file must now be in root `nwayo` folder
+- Convert empty image from gif to png
+- Workflow installation now installs vendor via a `postinstall`
 - Documentation updates
+- Maintenance updates
+
+### Removed
+- Remove `fibers` dependency
+- Remove CLI support for nwayo < 3.3.x (legacy mode)
+- Remove CLI support to be run outside root `nwayo` folder
+- Remove CLI `doctor` command
+- Remove CLI `install` command
+- Remove `___nwayo-recommended___` in boilerplate vendors
 
 
 
@@ -20,7 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Maintenance updates
 
 ### Fixed
-- Fixes 'Could not find plugin "proposal-numeric-separator"' with `@babel/preset-env` update 
+- Fixes 'Could not find plugin "proposal-numeric-separator"' with `@babel/preset-env` update
 
 
 

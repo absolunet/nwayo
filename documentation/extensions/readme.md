@@ -17,10 +17,8 @@ Add the extension to your `package.json`
 ```
 
 ## How to enable and configure
-Add the extension to your  `nwayo.yaml`
+Add the extension to your `nwayo.yaml`
 ```yaml
-root: nwayo
-
 extensions:
   '@absolunet/officially-perfect':
     enabled: true
