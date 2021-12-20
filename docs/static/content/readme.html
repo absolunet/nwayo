@@ -7,55 +7,54 @@
 <a href="https://travis-ci.org/absolunet/nwayo/builds" class="external" rel="external"><img src="https://api.travis-ci.org/absolunet/nwayo.svg?branch=master" alt="Travis CI"></a>
 <a href="https://lernajs.io/" class="external" rel="external"><img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg" alt="lerna"></a></p>
 <br>
-<h2 id="what-is-nwayo-%3F"><a class="anchor" href="#what-is-nwayo-%3F">⚭</a> What is nwayo ?</h2>
+<h2 id="what-is-nwayo-%3F" tabindex="-1"><a class="anchor" href="#what-is-nwayo-%3F">⚭</a> What is nwayo ?</h2>
 <ul>
 <li>A completely hackable and extendable front end boilerplate</li>
 <li>A multi-theme, multi-site, multi-CMS front end framework</li>
 <li>A back end agnostic environment</li>
 </ul>
-<h2 id="requirements---installation-guide"><a class="anchor" href="#requirements---installation-guide">⚭</a> Requirements - <a href="/nwayo/requirements">Installation guide</a></h2>
+<h2 id="requirements---installation-guide" tabindex="-1"><a class="anchor" href="#requirements---installation-guide">⚭</a> Requirements - <a href="/nwayo/requirements">Installation guide</a></h2>
 <ul>
 <li><a href="https://nodejs.org" class="external" rel="external">Node.js</a> (<a href="https://www.npmjs.com/package/@absolunet/nwayo-cli" class="external" rel="external">nwayo CLI</a>)</li>
 </ul>
-<h2 id="get-started"><a class="anchor" href="#get-started">⚭</a> Get started</h2>
+<h2 id="get-started" tabindex="-1"><a class="anchor" href="#get-started">⚭</a> Get started</h2>
 <p>Run in your project root folder</p>
 <pre><code class="language-shell"># Get boilerplate
 npx @absolunet/nwayo-grow-project
 
+# Install workflow and vendor (in nwayo root folder)
+npm install
+
 # Install CLI
 npm install -g @absolunet/nwayo-cli
 
-# Install dependencies
-nwayo install workflow
-nwayo install vendors
-
-# Build
+# Build (in nwayo root folder)
 nwayo rebuild
 </code></pre>
-<h2 id="tools"><a class="anchor" href="#tools">⚭</a> Tools   <img src="/nwayo/static/images/vendors.png" width="375" alt="nwayo vendors"></h2>
+<h2 id="tools" tabindex="-1"><a class="anchor" href="#tools">⚭</a> Tools   <img src="/nwayo/static/images/vendors.png" width="375" alt="nwayo vendors"></h2>
 <p>nwayo is HTML5 ready and uses <a href="https://gulpjs.com" class="external" rel="external">gulp</a> as a build system</p>
 <ul>
 <li>Based (but not mandatory) on <a href="https://foundation.zurb.com" class="external" rel="external">Zurb Foundation</a></li>
 <li>Uses <a href="https://www.npmjs.com" class="external" rel="external">npm</a> as dependencies manager and <a href="https://editorconfig.org" class="external" rel="external">EditorConfig</a> for consistency</li>
 </ul>
-<h4 id="styling"><a class="anchor" href="#styling">⚭</a> Styling</h4>
+<h4 id="styling" tabindex="-1"><a class="anchor" href="#styling">⚭</a> Styling</h4>
 <ul>
 <li>CSS3 ready via <a href="https://github.com/postcss/autoprefixer" class="external" rel="external">Autoprefixer</a> and linted via <a href="https://stylelint.io" class="external" rel="external">stylelint</a></li>
 <li>Comes with <a href="https://sass-lang.com" class="external" rel="external">Sass</a>, built via <a href="https://www.npmjs.com/package/dart-sass" class="external" rel="external">Dart Sass</a></li>
 <li>Minifies with <a href="https://cssnano.co" class="external" rel="external">cssnano</a></li>
 </ul>
-<h4 id="scripting"><a class="anchor" href="#scripting">⚭</a> Scripting</h4>
+<h4 id="scripting" tabindex="-1"><a class="anchor" href="#scripting">⚭</a> Scripting</h4>
 <ul>
 <li>ES6+ ready via <a href="https://babeljs.io" class="external" rel="external">Babel</a> and linted via <a href="https://eslint.org" class="external" rel="external">ESLint</a></li>
-<li>Comes with <a href="https://jquery.com" class="external" rel="external">jQuery</a>, <a href="https://modernizr.com" class="external" rel="external">Modernizr</a>, <a href="https://lodash.com" class="external" rel="external">Lodash</a>, <a href="https://github.com/absolunet/pinki" class="external" rel="external">pinki</a>, <a href="https://www.jsviews.com" class="external" rel="external">JsRender</a>, <a href="https://absolunet.github.io/kafe/" class="external" rel="external">kafe</a></li>
+<li>Comes with <a href="https://jquery.com" class="external" rel="external">jQuery</a>, <a href="https://modernizr.com" class="external" rel="external">Modernizr</a>, <a href="https://lodash.com" class="external" rel="external">Lodash</a>, <a href="https://github.com/absolunet/pinki" class="external" rel="external">pinki</a>, <a href="https://www.jsviews.com" class="external" rel="external">JsRender</a>, <a href="https://documentation.absolunet.com/kafe/" class="external" rel="external">kafe</a></li>
 <li>Builds with <a href="https://www.npmjs.com/package/@absolunet/gulp-include" class="external" rel="external">gulp-include</a> and is minified with <a href="http://lisperator.net/uglifyjs" class="external" rel="external">UglifyJS</a></li>
 </ul>
-<h4 id="other"><a class="anchor" href="#other">⚭</a> Other</h4>
+<h4 id="other" tabindex="-1"><a class="anchor" href="#other">⚭</a> Other</h4>
 <ul>
 <li>Optimizes images via <a href="https://www.lcdf.org/gifsicle" class="external" rel="external">gifsicle</a>, <a href="https://github.com/mozilla/mozjpeg" class="external" rel="external">MozJPEG</a>, <a href="http://optipng.sourceforge.net" class="external" rel="external">optipng</a>, <a href="https://github.com/svg/svgo" class="external" rel="external">svgo</a></li>
 <li>Generates iconography via <a href="https://github.com/oliver-moran/jimp" class="external" rel="external">Jimp</a>, <a href="https://github.com/kevva/to-ico" class="external" rel="external">to-ico</a></li>
 </ul>
-<h2 id="tried-and-tested"><a class="anchor" href="#tried-and-tested">⚭</a> Tried and tested</h2>
+<h2 id="tried-and-tested" tabindex="-1"><a class="anchor" href="#tried-and-tested">⚭</a> Tried and tested</h2>
 <p>Currently deployed on 200+ sites including:</p>
 <ul>
 <li><a href="https://www.drupal.org" class="external" rel="external">Drupal</a></li>
@@ -66,9 +65,9 @@ nwayo rebuild
 <li><a href="https://www.insitesoft.com" class="external" rel="external">Insite (On Premise &amp; Cloud)</a></li>
 <li><a href="https://www.shopify.ca" class="external" rel="external">Shopify</a></li>
 </ul>
-<h2 id="extensions"><a class="anchor" href="#extensions">⚭</a> Extensions</h2>
+<h2 id="extensions" tabindex="-1"><a class="anchor" href="#extensions">⚭</a> Extensions</h2>
 <p>Multiple extensions <a href="https://www.npmjs.com/search?q=keywords:nwayo-extension" class="external" rel="external">available</a></p>
-<h2 id="release-history"><a class="anchor" href="#release-history">⚭</a> Release history</h2>
+<h2 id="release-history" tabindex="-1"><a class="anchor" href="#release-history">⚭</a> Release history</h2>
 <p>See the <a href="https://github.com/absolunet/nwayo/releases" class="external" rel="external">releases</a>.</p>
-<h2 id="contributing"><a class="anchor" href="#contributing">⚭</a> Contributing</h2>
+<h2 id="contributing" tabindex="-1"><a class="anchor" href="#contributing">⚭</a> Contributing</h2>
 <p><a href="https://github.com/absolunet/nwayo/issues" class="external" rel="external">Issues</a> | <a href="https://github.com/absolunet/nwayo/pulls" class="external" rel="external">Pull requests</a></p>
