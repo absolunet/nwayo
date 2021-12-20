@@ -30,8 +30,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 - Remove `fibers` dependency
-
-### Removed
 - Remove CLI support for nwayo < 3.3.x (legacy mode)
 - Remove CLI support to be run outside root `nwayo` folder
 - Remove CLI `doctor` command
