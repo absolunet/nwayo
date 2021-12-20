@@ -9,10 +9,10 @@
     "deploy": "node manager.js --task=deploy"
   },
   "devDependencies": {
-    "@absolunet/fsp": "1.6.2",
-    "@absolunet/fss": "1.6.2",
+    "@absolunet/fsp": "1.7.0",
+    "@absolunet/fss": "1.7.0",
     "@absolunet/manager": "1.1.0",
     "@absolunet/tester": "2.6.11",
-    "lerna": "3.20.2"
+    "lerna": "4.0.0"
   }
 }

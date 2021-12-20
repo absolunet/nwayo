@@ -1,6 +1,7 @@
 //-------------------------------------
 //-- Docs - Configuration
 //-------------------------------------
+@use 'sass:color';
 
 // Brand
 $palette-brand-sockeye:  #ff5252;
@@ -21,7 +22,7 @@ $palette-myst:                     #b1c0c7;
 $palette-greyhound:                #68738b;
 $palette-toundra:                  #e2e9ed;
 $palette-white-rabbit-in-the-snow: #f2f6f7;
-$palette-mysty-toundra:            mix($palette-myst, $palette-toundra, 25%);
+$palette-mysty-toundra:            color.mix($palette-myst, $palette-toundra, 25%);
 
 // Vendor
 $vendor-github-color:     #0366d6;
@@ -59,7 +60,7 @@ $docs-code-radius:   .2em;
 
 
 //-- Table
-$docs-table-border:          1px $palette-myst solid;  // stylelint-disable-line unit-whitelist
+$docs-table-border:          1px $palette-myst solid;
 $docs-table-header-color:    $palette-myst;
 $docs-table-alternate-color: $palette-toundra;
 
@@ -80,8 +81,8 @@ $docs-nav-active-weight: $nwayo-black-weight;
 //-- Main
 $docs-main-bg-color:      $palette-white-rabbit-in-the-snow;
 $docs-main-anchor-color:  $palette-myst;
-$docs-main-anchor-size:   1.2rem;  // stylelint-disable-line unit-whitelist
-$docs-main-external-size: .8rem;   // stylelint-disable-line unit-whitelist
+$docs-main-anchor-size:   1.2rem;
+$docs-main-external-size: .8rem;
 
 //-- Footer
 $docs-footer-bg-color:   $palette-brand-victoria;

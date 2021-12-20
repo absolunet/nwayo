@@ -8,7 +8,7 @@ const { exec }     = require('child_process');
 const corejs       = require('core-js-builder');
 const gulp         = require('gulp');
 const cache        = require('gulp-cached');
-const eslint       = require('gulp-eslint');
+const eslint       = require('gulp-eslint-new');
 const gulpif       = require('gulp-if');
 const lec          = require('gulp-line-ending-corrector');
 const uglify       = require('gulp-uglify');
@@ -39,7 +39,7 @@ module.exports = () => {
 
 			.pipe(eslint({
 				resolvePluginsRelativeTo:      paths.directory.root,
-				reportUnusedDisableDirectives: true
+				reportUnusedDisableDirectives: 'error'
 			}))
 
 			.pipe(eslint.results((files) => {

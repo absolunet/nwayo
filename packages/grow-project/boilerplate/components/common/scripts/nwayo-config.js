@@ -9,6 +9,7 @@ const nwayoStarterConfig = {
 	//   'private': .noConflit(true)
 	//   'semi':    .noConflit()
 	//   'public':  [does nothing]
+	// eslint-disable-next-line unicorn/prevent-abbreviations
 	jQuery: {
 		scope: 'private'
 	},

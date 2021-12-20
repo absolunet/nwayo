@@ -79,7 +79,7 @@ module.exports = async () => {
 		const URL  = 'https://documentation.absolunet.com/nwayo/';
 
 		util.echo(`\n${chalk.underline(URL)}`);
-		open(URL, { url: true });
+		open(URL);
 		util.exit();
 
 	} else {
@@ -94,7 +94,7 @@ module.exports = async () => {
 		let root = process.cwd();
 
 		if (configFilepath !== undefined) {
-			config = yaml.safeLoad(fs.readFileSync(configFilepath, 'utf8'));
+			config = yaml.load(fs.readFileSync(configFilepath, 'utf8'));
 
 			if (config && config.root) {
 				root = path.normalize(`${path.dirname(configFilepath)}/${config.root}`);

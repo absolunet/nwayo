@@ -114,11 +114,12 @@ scandirectory(`${paths.root}/documentation`, { readFiles: true }, (error, list, 
 		};
 
 		md.use(anchor, {
-			level:           2,
-			permalink:       true,
-			permalinkClass:  'anchor',
-			permalinkSymbol: '⚭',
-			permalinkBefore: true
+			level:     2,
+			permalink: anchor.permalink.linkInsideHeader({
+				'class':     'anchor',
+				'symbol':    '⚭',
+				'placement': 'before'
+			})
 		});
 
 		md.use(externalLinks, {
