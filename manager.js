@@ -3,14 +3,12 @@
 //--------------------------------------------------------
 'use strict';
 
-const fss     = require('@absolunet/fss');
 const fsp     = require('@absolunet/fsp');
 const manager = require('@absolunet/manager');
 
 const ROOT                  = '.';
 const BOILER                = `${ROOT}/packages/grow-project/boilerplate`;
 const EXTENSION_BOILER      = `${ROOT}/packages/grow-extension/boilerplate`;
-const WORKFLOW_MATRIX       = `${ROOT}/packages/workflow/ressources/doctor-matrix`;
 const DOCUMENTATION_BUILDER = `${ROOT}/ressources/docs-builder`;
 
 const BOILER_PACKAGE        = `${BOILER}/package.json`;
@@ -86,24 +84,9 @@ manager.multiScriptsRunner({
 				await manager.updatePackageMeta(EXTENSION_BOILER);
 
 
-				//-- Workflow matrix
-				terminal.print(`Update workflow matrix`).spacer();
-				await fsp.remove(WORKFLOW_MATRIX);
-				await fsp.ensureDir(WORKFLOW_MATRIX);
-
-				const BOILER_FULL = fss.realpath(BOILER);
-				fss.scandir(BOILER_FULL, 'file', { pattern: '!+(-gitignore|nwayo.yaml)' }).forEach((file) => {
-					fss.copy(`${BOILER}/${file}`, `${WORKFLOW_MATRIX}/${file}`);
-				});
-
-				fss.scandir(BOILER_FULL, 'dir', { pattern: '!+(.nwayo-cache|node_modules)' }).forEach((directory) => {
-					fss.ensureFile(`${WORKFLOW_MATRIX}/${directory}/.gitkeep`);
-				});
-
-
 				//-- grow-project boilerplate 'nwayo rebuild'
 				terminal.print(`grow-project boilerplate 'nwayo rebuild'`).spacer();
-				terminal.run(`cd ${BOILER} && nwayo rebuild`);
+				terminal.run(`cd ${BOILER} && ../../cli/bin/nwayo rebuild`);
 				terminal.spacer();
 
 

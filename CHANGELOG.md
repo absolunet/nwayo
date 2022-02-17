@@ -10,6 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+
+
+
+## [3.9.0-beta.2] - 2022-02-17
+### Changed
+- Corrections to monorepo manager
+- Maintenance updates
+
 ### Fixed
 - Fixes bad paths in Windows during SASS compilation
 
@@ -623,8 +631,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-[Unreleased]:    https://github.com/absolunet/nwayo/compare/3.9.0-beta.1...HEAD
-[3.8.2]:         https://github.com/absolunet/nwayo/compare/3.8.2...3.9.0-beta.1
+[Unreleased]:    https://github.com/absolunet/nwayo/compare/3.9.0-beta.2...HEAD
+[3.9.0-beta.2]:  https://github.com/absolunet/nwayo/compare/3.9.0-beta.1...3.9.0-beta.2
+[3.9.0-beta.1]:  https://github.com/absolunet/nwayo/compare/3.8.2...3.9.0-beta.1
 [3.8.2]:         https://github.com/absolunet/nwayo/compare/3.8.1...3.8.2
 [3.8.1]:         https://github.com/absolunet/nwayo/compare/3.8.0...3.8.1
 [3.8.0]:         https://github.com/absolunet/nwayo/compare/3.7.2...3.8.0
