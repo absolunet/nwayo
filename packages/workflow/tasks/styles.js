@@ -16,6 +16,7 @@ const gulpsass     = require('gulp-sass')(require('sass'));
 const sourcemaps   = require('gulp-sourcemaps');
 const cloneDeep    = require('lodash.clonedeep');
 const pluralize    = require('pluralize');
+const slash        = require('slash');
 const jsonToScss   = require('@absolunet/json-to-scss');
 const stylelint    = require('@ronilaukkarinen/gulp-stylelint');
 const env          = require('../helpers/env');
@@ -133,7 +134,7 @@ module.exports = () => {
 					const list = cloneDeep(bundle.styles.collections[collection]);
 
 					// Add konstan
-					list.unshift(`${paths.directory.cacheStyles}/${name}/${paths.filename.konstan}`);
+					list.unshift(slash(`${paths.directory.cacheStyles}/${name}/${paths.filename.konstan}`));
 
 					// Require each file
 					list.forEach((file, i) => {
