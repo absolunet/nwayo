@@ -1,11 +1,12 @@
 //-------------------------------------
 //-- Form - Config - Design
 //-------------------------------------
+@use 'sass:color';
 
 $form-input-bg-color:          $common-bg-color;
 $form-input-border-color:      $common-border-color;
 $form-input-text-color:        $common-text-color;
-$form-input-placeholder-color: lighten($common-text-color, 50%);
+$form-input-placeholder-color: color.adjust($common-text-color, $lightness: 50%);
 $form-error-text-color:        $common-error-text-color;
 
 $form-input-text-font:         $common-text-font;

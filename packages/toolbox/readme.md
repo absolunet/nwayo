@@ -6,7 +6,7 @@
 [![Travis CI](https://api.travis-ci.org/absolunet/nwayo.svg?branch=master)](https://travis-ci.org/absolunet/nwayo/builds)
 [![Code style ESLint](https://img.shields.io/badge/code_style-@absolunet/node-659d32.svg)](https://github.com/absolunet/eslint-config-node)
 
-> Workflow for [nwayo](https://absolunet.github.io/nwayo/)
+> Workflow for [nwayo](https://documentation.absolunet.com/nwayo/)
 
 
 ## Install
@@ -17,7 +17,7 @@ $ npm install -g @absolunet/nwayo-workflow
 
 ## Documentation
 
-[https://absolunet.github.io/nwayo/](https://absolunet.github.io/nwayo/)
+[https://documentation.absolunet.com/nwayo/](https://documentation.absolunet.com/nwayo/)
 
 ## License
 

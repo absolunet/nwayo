@@ -6,7 +6,7 @@
 [![Travis CI](https://api.travis-ci.org/absolunet/nwayo.svg?branch=master)](https://travis-ci.org/absolunet/nwayo/builds)
 [![Code style ESLint](https://img.shields.io/badge/code_style-@absolunet/node-659d32.svg)](https://github.com/absolunet/eslint-config-node)
 
-> CLI for [nwayo](https://absolunet.github.io/nwayo/)
+> CLI for [nwayo](https://documentation.absolunet.com/nwayo/)
 
 
 ## Install
@@ -17,7 +17,7 @@ $ npm install -g @absolunet/nwayo-cli
 
 ## Documentation
 
-[https://absolunet.github.io/nwayo/cli/](https://absolunet.github.io/nwayo/cli/)
+[https://documentation.absolunet.com/nwayo/cli/](https://documentation.absolunet.com/nwayo/cli/)
 
 ## License
 

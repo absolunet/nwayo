@@ -1,1 +1,1 @@
-extends: '@absolunet/stylelint-config-nwayo'
+extends: '@absolunet/stylelint-config-scss'

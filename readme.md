@@ -28,14 +28,13 @@ Run in your project root folder
 # Get boilerplate
 npx @absolunet/nwayo-grow-project
 
+# Install workflow and vendor (in nwayo root folder)
+npm install
+
 # Install CLI
 npm install -g @absolunet/nwayo-cli
 
-# Install dependencies
-nwayo install workflow
-nwayo install vendors
-
-# Build
+# Build (in nwayo root folder)
 nwayo rebuild
 ```
 
@@ -54,7 +53,7 @@ nwayo is HTML5 ready and uses [gulp](https://gulpjs.com) as a build system
 
 #### Scripting
 - ES6+ ready via [Babel](https://babeljs.io) and linted via [ESLint](https://eslint.org)
-- Comes with [jQuery](https://jquery.com), [Modernizr](https://modernizr.com), [Lodash](https://lodash.com), [pinki](https://github.com/absolunet/pinki), [JsRender](https://www.jsviews.com), [kafe](https://absolunet.github.io/kafe/)
+- Comes with [jQuery](https://jquery.com), [Modernizr](https://modernizr.com), [Lodash](https://lodash.com), [pinki](https://github.com/absolunet/pinki), [JsRender](https://www.jsviews.com), [kafe](https://documentation.absolunet.com/kafe/)
 - Builds with [gulp-include](https://www.npmjs.com/package/@absolunet/gulp-include) and is minified with [UglifyJS](http://lisperator.net/uglifyjs)
 
 #### Other
@@ -90,7 +89,7 @@ Multiple extensions [available](https://www.npmjs.com/search?q=keywords:nwayo-ex
 | [@absolunet/nwayo-grow-extension](packages/grow-extension) | [![npm](https://img.shields.io/npm/v/@absolunet/nwayo-grow-extension.svg)](https://www.npmjs.com/package/@absolunet/nwayo-grow-extension) | Boilerplate generator for nwayo extension |
 
 ## Documentation
-- [Full documentation](https://absolunet.github.io/nwayo) ([source](documentation))  &nbsp; &nbsp; _[in progress...]_
+- [Full documentation](https://documentation.absolunet.com/nwayo) ([source](documentation))  &nbsp; &nbsp; _[in progress...]_
 - [CodePen examples](https://codepen.io/collection/XJWozK/)
 
 [//]: # (/Doc)

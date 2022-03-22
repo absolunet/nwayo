@@ -10,8 +10,50 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+
+
+
+## [3.9.0] - 2022-03-22
+- Maintenance updates
+
+
+
+## [3.9.0-beta.2] - 2022-02-17
 ### Changed
+- Corrections to monorepo manager
+- Maintenance updates
+
+### Fixed
+- Fixes bad paths in Windows during SASS compilation
+
+
+
+## [3.9.0-beta.1] - 2021-12-20
+### Added
+- Add Node.js 16 support
+
+### Changed
+- Change default stylelint config to `@absolunet/stylelint-config-scss`
+- Move linters packages to `peerDependencies` for manual updates
+- Update to Autoprefixer 10.x
+- Update to cssnano 5.x
+- Update to ESLint 8.x
+- Update to Foundation 6.7.x
+- Update to SASS 1.45.x
+- Linters updates
+- `nwayo.yaml` file must now be in root `nwayo` folder
+- Convert empty image from gif to png
+- Workflow installation now installs vendor via a `postinstall`
 - Documentation updates
+- Maintenance updates
+
+### Removed
+- Remove `fibers` dependency
+- Remove CLI support for nwayo < 3.3.x (legacy mode)
+- Remove CLI support to be run outside root `nwayo` folder
+- Remove CLI `doctor` command
+- Remove CLI `install` command
+- Remove `___nwayo-recommended___` in boilerplate vendors
 
 
 
@@ -20,7 +62,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Maintenance updates
 
 ### Fixed
-- Fixes 'Could not find plugin "proposal-numeric-separator"' with `@babel/preset-env` update 
+- Fixes 'Could not find plugin "proposal-numeric-separator"' with `@babel/preset-env` update
 
 
 
@@ -594,7 +636,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-[Unreleased]:    https://github.com/absolunet/nwayo/compare/3.8.2...HEAD
+[Unreleased]:    https://github.com/absolunet/nwayo/compare/3.9.0...HEAD
+[3.9.0]:         https://github.com/absolunet/nwayo/compare/3.9.0-beta.2...3.9.0
+[3.9.0-beta.2]:  https://github.com/absolunet/nwayo/compare/3.9.0-beta.1...3.9.0-beta.2
+[3.9.0-beta.1]:  https://github.com/absolunet/nwayo/compare/3.8.2...3.9.0-beta.1
 [3.8.2]:         https://github.com/absolunet/nwayo/compare/3.8.1...3.8.2
 [3.8.1]:         https://github.com/absolunet/nwayo/compare/3.8.0...3.8.1
 [3.8.0]:         https://github.com/absolunet/nwayo/compare/3.7.2...3.8.0

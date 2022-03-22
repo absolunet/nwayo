@@ -1,0 +1,82 @@
+<h1>3.8.x → 3.9.x</h1>
+<p><a href="https://github.com/absolunet/nwayo/compare/3.8.0...3.9.0" class="external" rel="external">View the source differences on GitHub</a></p>
+<h2 id="key-changes" tabindex="-1"><a class="anchor" href="#key-changes">⚭</a> Key changes</h2>
+<ul>
+<li>Support for Node.js 16 via the update of the SASS compiler</li>
+<li>Major updates to linters (rules and moved to peerDependencies)</li>
+<li>Unmanaged support to Prettier</li>
+<li>Remove CLI support for legacy version, calls outside root folder, <code>install</code> and <code>doctor</code> commands</li>
+</ul>
+<h2 id="what-to-do" tabindex="-1"><a class="anchor" href="#what-to-do">⚭</a> What to do</h2>
+<ul>
+<li>Update version <code>package.json</code> (duh...)</li>
+<li>Update CLI via <code>nwayo update</code></li>
+</ul>
+<h2 id="styles-(sass)" tabindex="-1"><a class="anchor" href="#styles-(sass)">⚭</a> Styles (SASS)</h2>
+<p>All divisions must use the <code>math.div()</code> <a href="https://sass-lang.com/documentation/modules/math#div" class="external" rel="external">method</a>.</p>
+<pre><code class="language-scss">$half: 1 / 2;
+
+// Becomes
+@use 'sass:math';
+
+$half: math.div(1, 2);
+</code></pre>
+<h3 id="foundation" tabindex="-1"><a class="anchor" href="#foundation">⚭</a> Foundation</h3>
+<p>If you are using Foundation, you need to update it to 6.7.x or later.</p>
+<h2 id="linters" tabindex="-1"><a class="anchor" href="#linters">⚭</a> Linters</h2>
+<p>Linter configurations are now included via <code>peerDependencies</code> meaning you can optionally upgrade these in your project.</p>
+<p>If you are using npm 6 or lower, or want to upgrade the rulesets you just have to <a href="https://github.com/absolunet/nwayo/blob/production/packages/workflow/package.json" class="external" rel="external">add them directly and/or their dependencies</a> in your <code>./package.json</code>. <em>(Let npm guide you to which dependencies are needed)</em></p>
+<p>Example:</p>
+<pre><code class="language-json">{
+  &quot;dependencies&quot;: {
+    &quot;@absolunet/eslint-config-nwayo&quot;: &quot;9.9.9&quot;
+  }
+}
+</code></pre>
+<h3 id="stylelint" tabindex="-1"><a class="anchor" href="#stylelint">⚭</a> stylelint</h3>
+<p>Change configuration extension in <code>./.stylelintrc.yaml</code> to</p>
+<pre><code class="language-yaml">extends: '@absolunet/stylelint-config-scss'
+</code></pre>
+<h3 id="eslint" tabindex="-1"><a class="anchor" href="#eslint">⚭</a> ESlint</h3>
+<p>Here you have the choice of either stay with classic rules or self-manage a <a href="https://prettier.io/" class="external" rel="external">Prettier</a> installation.</p>
+<h4 id="classic-rules" tabindex="-1"><a class="anchor" href="#classic-rules">⚭</a> Classic rules</h4>
+<p>Add an entry in your <code>./.eslintrc.yaml</code> to reinstate pre-Prettier rules in your project.</p>
+<pre><code class="language-yaml">extends:
+  - '@absolunet/nwayo'
+  - './node_modules/@absolunet/nwayo-workflow/ressources/eslint-config-pre-prettier.cjs'
+</code></pre>
+<h4 id="prettier" tabindex="-1"><a class="anchor" href="#prettier">⚭</a> Prettier</h4>
+<p>Add <a href="https://prettier.io/" class="external" rel="external">Prettier</a> to your <code>./package.json</code></p>
+<pre><code class="language-json">{
+  &quot;dependencies&quot;: {
+    &quot;@absolunet/prettier-config-core&quot;: &quot;^1.0.0&quot;,
+    &quot;prettier&quot;: &quot;^2.5.1&quot;
+  },
+  &quot;scripts&quot;: {
+    &quot;prettier&quot;: &quot;./node_modules/.bin/prettier --write .&quot;
+  }
+}
+</code></pre>
+<p>Add a <code>./.prettierignore</code></p>
+<pre><code>*.*
+!*.js
+</code></pre>
+<p>Add a <code>./.prettierrc.cjs</code></p>
+<pre><code class="language-js">module.exports = {
+	...require(&quot;@absolunet/prettier-config-core&quot;),
+};
+</code></pre>
+<p>In the root folder run this command to reformat the code following Prettier standards</p>
+<pre><code class="language-shell">npm run prettier
+</code></pre>
+<h2 id="cli-maintenance" tabindex="-1"><a class="anchor" href="#cli-maintenance">⚭</a> CLI Maintenance</h2>
+<h3 id="nwayo.yaml" tabindex="-1"><a class="anchor" href="#nwayo.yaml">⚭</a> <code>nwayo.yaml</code></h3>
+<p>Make sure your <code>nwayo.yaml</code> file is in your project's root folder and remove the <code>root</code> entry in it.</p>
+<h3 id="autoinstall-vendors" tabindex="-1"><a class="anchor" href="#autoinstall-vendors">⚭</a> Autoinstall vendors</h3>
+<p>Inside your <code>./package.json</code> add a <code>postinstall</code> script to install vendors when installing the workflow.</p>
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;postinstall&quot;: &quot;cd vendor; npm install&quot;
+  }
+}
+</code></pre>

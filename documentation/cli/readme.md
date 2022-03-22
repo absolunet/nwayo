@@ -11,11 +11,11 @@ $ npm i -g @absolunet/nwayo-cli
 
 
 ## Usage
-In any subfolder of the project's root folder, where the `nwayo.yaml` is located
+In the nwayo root folder.
 
 ### In each project, install the project's workflow
 ```shell
-$ nwayo install workflow
+$ npm install
 ```
 
 ### Then you can run any `nwayo` command
@@ -106,71 +106,6 @@ $ nwayo watch
 $ nwayo watch site
 ```
 
-### install
-`nwayo install [<scope>] [--force]`
-
-Install project dependencies.
-
-The `workflow` scope installs the workflow via `npm`
-- By default it uses `npm ci` which is faster but requires a valid `package-lock.json` in sync with the `package.json`
-- If the `--force` flag is used, it will use `npm install` and regenerate the `package-lock.json`
-
-The `vendors` scope installs the vendor dependencies via `npm`
-
-**Examples:**
-```shell
-$ nwayo install workflow
-
-$ nwayo install vendors
-```
-
-### doctor
-`nwayo doctor`
-
-Analyze project for conformity
-
-Checks npm packages for updates and lists what is outdated.
-
-Checks if the toolbox version is the same as the workflow version.
-
-Check if project follows conventions
-
-**Examples:**
-```shell
-$ nwayo doctor
-
-  Workflow diagnosis
-    ✓  You are cutting edge   (^_^)
-
-
-  Vendor diagnosis
-    ✘  You are a dull blade   ಠ_ಠ
-
-    [@absolunet/kafe] : 3.2.1 → 3.2.4
-    [foundation-sites] : 6.4.0 → 6.5.1
-    [imagesloaded] : 4.1.3 → 4.1.4
-    [jquery] : 3.2.1 → 3.3.1
-    [jsrender] : 0.9.86 → 1.0.0
-    [slick.js] : 1.6.0 → 1.8.1
-
-
-  Synchronization diagnosis
-    ✓  You are cutting edge   (^_^)
-```
-
-## \<bundle\> param
-
-If a bundle is specified, the command will be run against this bundle only.
-
-If a sub-bundle is specified, the command will be run against this sub-bundle only.
-
-**Examples:**
-```shell
-$ nwayo rebuild site
-
-$ nwayo watch site:editor
-```
-
 
 ## CLI
 
@@ -248,7 +183,6 @@ $ nwayo --help
   rebuild [<bundle>] [--prod]     Rebuild the entire project from scratch
   watch [<bundle>]                Listens for changes on files and run appropriate tasks
   install [<scope>] [--force]     Install dependencies ex:[workflow|vendors]
-  doctor                          Analyze project for conformity
 
   Global
   update                          Update the CLI

@@ -7,7 +7,7 @@ Il faut les 4 formats de police sous le dossier <code>fonts</code> avec le même
 <li><code>woff</code></li>
 <li><code>woff2</code></li>
 </ul>
-<h2 id="mixin"><a class="anchor" href="#mixin">⚭</a> Mixin</h2>
+<h2 id="mixin" tabindex="-1"><a class="anchor" href="#mixin">⚭</a> Mixin</h2>
 <p>Le mixin utilisé pour générer le <code>@font-face</code>au niveau du css.</p>
 <pre><code class="language-scss">//-- Font-face
 @mixin load-font-mixin ($name, $filename, $context, $weight:normal, $style:normal) {
@@ -28,7 +28,7 @@ Il faut les 4 formats de police sous le dossier <code>fonts</code> avec le même
 <li><code>$weight</code> = Le poids de la police. <code>normal</code> est mis par défaut.</li>
 <li><code>$style</code> = Le style de la police. <code>normal</code> est mis par défaut.</li>
 </ul>
-<h2 id="comment-utiliser"><a class="anchor" href="#comment-utiliser">⚭</a> Comment utiliser</h2>
+<h2 id="comment-utiliser" tabindex="-1"><a class="anchor" href="#comment-utiliser">⚭</a> Comment utiliser</h2>
 <p>Pour générer le bon code, vous devez au moins fournir <code>$name</code>, <code>$filename</code> et <code>$context</code>.</p>
 <pre><code class="language-scss">//-- Ligne de code appelé pour générer la font-family
 @include load-font-mixin('roboto', 'roboto-light-webfont', 'common', $weight:$light-weight);
@@ -36,7 +36,7 @@ Il faut les 4 formats de police sous le dossier <code>fonts</code> avec le même
 //-- Utilisation au niveau d'une variable
 $text-font: 'Open Sans', sans-serif;
 </code></pre>
-<h2 id="gestion-de-font-weight"><a class="anchor" href="#gestion-de-font-weight">⚭</a> Gestion de font-weight</h2>
+<h2 id="gestion-de-font-weight" tabindex="-1"><a class="anchor" href="#gestion-de-font-weight">⚭</a> Gestion de font-weight</h2>
 <p>Il est préférable d'avoir une police pour chacune des graisses utilisées dans la composante et d'utiliser le même <code>$name</code>pour chacun d'eux. Il est ainsi plus facile de gérer la graisse de manière globale.</p>
 <pre><code class="language-scss">//-- Chargement des différentes graisses
 @include load-font-mixin('roboto', 'roboto-light-webfont', 'common', $light-weight);

@@ -1,6 +1,7 @@
 //-------------------------------------
 //-- nwayo - Mixins - Helpers
 //-------------------------------------
+@use 'sass:math';
 
 //-- Images in ::before/::after pseudo-elements
 @mixin nwayo-pseudo-image-styles($width, $height:$width) {
@@ -41,11 +42,11 @@
 	position: absolute;
 	overflow: hidden;
 	clip: rect(0, 0, 0, 0);
-	width: rem-calc(1);   // stylelint-disable-line declaration-property-value-blacklist
-	height: rem-calc(1);  // stylelint-disable-line declaration-property-value-blacklist
+	width: rem-calc(1);
+	height: rem-calc(1);
 	padding: 0;
 	border: 0;
-	margin: rem-calc(-1);  // stylelint-disable-line declaration-property-value-blacklist
+	margin: rem-calc(-1);
 }
 
 
@@ -58,7 +59,7 @@
 	position: relative;
 	display: block;
 	height: 0;
-	padding-top: percentage($h / $w);
+	padding-top: math.percentage(math.div($h, $w));
 
 	.scaling-block-content {
 		position: absolute;
@@ -228,7 +229,7 @@
 			position: relative;
 			float: left;
 		}
-		width: percentage(1 / $nb-column);
+		width: math.percentage(math.div(1, $nb-column));
 		// reset styles for media query usage
 		&:nth-of-type(n) {
 			left: auto;

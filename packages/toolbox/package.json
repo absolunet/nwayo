@@ -1,9 +1,9 @@
 {
   "name": "@absolunet/nwayo-toolbox",
-  "version": "3.8.2",
+  "version": "3.9.0",
   "description": "Toolbox for nwayo",
   "definition": "",
-  "homepage": "https://absolunet.github.io/nwayo/",
+  "homepage": "https://documentation.absolunet.com/nwayo/",
   "author": {
     "name": "Absolunet",
     "url": "https://absolunet.com"
@@ -27,10 +27,10 @@
   "peerDependencies": {
     "@absolunet/pinki": "^3.0.0",
     "imagesloaded": "^4.1.4",
-    "jquery": "^3.4.1"
+    "jquery": "^3.6.0"
   },
   "optionalDependencies": {
-    "lodash": "^4.17.15",
-    "modernizr": "^3.8.0"
+    "lodash": "^4.17.21",
+    "modernizr": "^3.11.8"
   }
 }

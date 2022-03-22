@@ -4,12 +4,10 @@
 'use strict';
 
 const chalk        = require('chalk');
-const deepKeys     = require('deep-keys');
 const log          = require('fancy-log');
 const plumber      = require('gulp-plumber');
 const gutil        = require('gulp-util');
 const Jimp         = require('jimp');
-const without      = require('lodash.without');
 const merge        = require('merge-stream');
 const emoji        = require('node-emoji');
 const path         = require('path');
@@ -149,33 +147,6 @@ class Toolbox {
 				.exit()
 			;
 		});
-	}
-
-
-	//-- Compare lists
-	compareLists(assertion, expectation) {
-		const superfluous = without(assertion, ...expectation);
-		const missing     = without(expectation, ...assertion);
-
-		return {
-			pass:        superfluous.length === 0 && missing.length === 0,
-			superfluous,
-			missing
-		};
-	}
-
-
-	//-- Flatten keys
-	flattenKeys(data, { depth = '' } = {}) {
-		return deepKeys(data, true).filter((key) => {
-			return new RegExp(`^[a-z0-9-]+(\\.[a-z0-9-]+){0,${depth}}$`, 'ui').test(key);
-		});
-	}
-
-
-	//-- Is kebab-case
-	isKebabCase(text) {
-		return (/^(?<kebab1>[a-z][a-z0-9]*)(?<kebab2>-[a-z0-9]+)*$/u).test(text);
 	}
 
 }

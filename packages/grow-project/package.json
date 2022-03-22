@@ -1,9 +1,9 @@
 {
   "name": "@absolunet/nwayo-grow-project",
-  "version": "3.8.2",
+  "version": "3.9.0",
   "description": "Boilerplate generator for nwayo project",
   "definition": "",
-  "homepage": "https://absolunet.github.io/nwayo",
+  "homepage": "https://documentation.absolunet.com/nwayo",
   "author": {
     "name": "Absolunet",
     "url": "https://absolunet.com"
@@ -29,10 +29,10 @@
   },
   "main": "index.js",
   "dependencies": {
-    "@absolunet/fss": "^1.6.2",
+    "@absolunet/fss": "^1.7.0",
     "chalk": "^3.0.0",
     "figures": "^3.2.0",
-    "inquirer": "^7.1.0",
-    "replace-in-file": "^5.0.2"
+    "inquirer": "^8.2.1",
+    "replace-in-file": "^6.3.2"
   }
 }
