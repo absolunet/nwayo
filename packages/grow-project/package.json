@@ -32,7 +32,7 @@
     "@absolunet/fss": "^1.7.0",
     "chalk": "^3.0.0",
     "figures": "^3.2.0",
-    "inquirer": "^8.2.0",
+    "inquirer": "^8.2.1",
     "replace-in-file": "^6.3.2"
   }
 }

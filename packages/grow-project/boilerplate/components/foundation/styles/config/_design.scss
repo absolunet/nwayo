@@ -161,12 +161,12 @@ $header-styles: (
 		'h6': ('font-size': 16),
 	),
 );
-$header-text-rendering:        optimizelegibility;
+$header-text-rendering:        optimizeLegibility;
 $small-font-size:              80%;
 $header-small-font-color:      $common-bg-var2-color;
 $paragraph-lineheight:         $common-content-lineheight;
 $paragraph-margin-bottom:      1em;
-$paragraph-text-rendering:     optimizelegibility;
+$paragraph-text-rendering:     optimizeLegibility;
 $enable-code-inline:           true;
 $anchor-color:                 $common-primary-color;
 $anchor-color-hover:           color.scale($anchor-color, $lightness: -14%);
