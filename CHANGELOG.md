@@ -13,7 +13,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+## [3.9.1] - 2022-03-28
+### Changed
+- Update documentation
+
+### Removed
+- Remove TravisCI
+
+### Fixed
+- Fixes SVG converting endlessly
+
+
+
 ## [3.9.0] - 2022-03-22
+### Changed
 - Maintenance updates
 
 
@@ -636,7 +649,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-[Unreleased]:    https://github.com/absolunet/nwayo/compare/3.9.0...HEAD
+[Unreleased]:    https://github.com/absolunet/nwayo/compare/3.9.1...HEAD
+[3.9.1]:         https://github.com/absolunet/nwayo/compare/3.9.0...3.9.1
 [3.9.0]:         https://github.com/absolunet/nwayo/compare/3.9.0-beta.2...3.9.0
 [3.9.0-beta.2]:  https://github.com/absolunet/nwayo/compare/3.9.0-beta.1...3.9.0-beta.2
 [3.9.0-beta.1]:  https://github.com/absolunet/nwayo/compare/3.8.2...3.9.0-beta.1

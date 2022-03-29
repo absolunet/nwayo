@@ -18,7 +18,7 @@ class App extends React.PureComponent {
 
 	render() {
 		return (
-			<BrowserRouter basename={process.env.PUBLIC_URL || paths.root}>
+			<BrowserRouter basename={paths.root}>
 				<Route
 					path=":path(.*)"
 					render={({ match }) => {

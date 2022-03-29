@@ -94,10 +94,11 @@
 
 
 
-//-- SVG optimized for data-uri (http://codepen.io/Tigt/blog/optimizing-svgs-in-data-uris)
+//-- SVG optimized for data-uri (https://github.com/waldemarfm/sass-svg-uri)
+//-- Chunk up string in order to avoid "stack level too deep" error
 @function nwayo-svg-data-uri($svg) {
 	$encoded: '';
-	$slice: 2000;
+	$slice: 1000;
 	$index: 0;
 	$loops: math.ceil(math.div(string.length($svg), $slice));
 	@for $i from 1 through $loops {

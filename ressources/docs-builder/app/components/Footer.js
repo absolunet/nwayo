@@ -14,7 +14,7 @@ class Footer extends React.PureComponent {
 		return (
 
 			<footer>
-				<a href={`${paths.github}/blob/master/license`} rel="external">MIT</a>
+				<a href={`${paths.github}/blob/production/license`} rel="external">MIT</a>
 				&copy; 2011-
 				{env.year}
 
