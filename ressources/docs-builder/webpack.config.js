@@ -3,8 +3,7 @@
 //--------------------------------------------------------
 'use strict';
 
-const path    = require('path');
-const webpack = require('webpack');
+const path = require('path');
 
 
 module.exports = {
@@ -25,10 +24,10 @@ module.exports = {
 		filename:   'app.js'
 	},
 	devServer: {  // eslint-disable-line unicorn/prevent-abbreviations
-		contentBase: path.join(__dirname, 'local-server'),
-		port:        3000,
-		publicPath:  'http://localhost:3000/nwayo/static/scripts',
-		hotOnly:     true
-	},
-	plugins: [new webpack.HotModuleReplacementPlugin()]
+		'static': {
+			directory: path.join(__dirname, 'local-server')
+		},
+		'port': 3000,
+		'hot':  'only'
+	}
 };

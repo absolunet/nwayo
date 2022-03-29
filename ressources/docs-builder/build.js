@@ -135,7 +135,7 @@ scandirectory(`${paths.root}/documentation`, { readFiles: true }, (error, list, 
 				md.set({ html: true });
 				content = content
 					.replace(/\]\(documentation\//ug, `](${ROOT}/`)
-					.replace(/https:\/\/github.com\/absolunet\/nwayo\/raw\/master\/ressources\/images\//ug, `${ROOT}/static/images/`)
+					.replace(/https:\/\/github.com\/absolunet\/nwayo\/raw\/production\/ressources\/images\//ug, `${ROOT}/static/images/`)
 					.replace(/nwayo\.png/ug, `nwayo.svg`)
 					.replace(/\[\/\/\]: # \(Doc\)(?<spaces>[\s\S]*?)\[\/\/\]: # \(\/Doc\)/ug, '')
 				;
