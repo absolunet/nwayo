@@ -113,6 +113,10 @@ const runTask = ({ name, task, start }) => {
 			}
 
 			// Close stream
+			if (name === 'scripts-lint') {
+				this.emit('finish');
+			}
+
 			this.emit('end');
 		})
 	;
