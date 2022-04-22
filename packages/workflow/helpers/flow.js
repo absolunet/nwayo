@@ -23,8 +23,7 @@ const __ = {
 	activeGuards:    {},     // Registry of guards that are currently running
 	ignoredChanges:  {},     // Registry of changes that were made during a watched task
 	cascadeSkip:     false,  // In watch mode, is currently skipping tasks because of one failed task ?
-	watchSkip:       {},     // In watch mode, skip these tasks
-	delayedLog:      false   // Patch for stylelint reporter
+	watchSkip:       {}      // In watch mode, skip these tasks
 };
 
 
@@ -88,13 +87,7 @@ const runTask = ({ name, task, start }) => {
 		// Log task as completed
 		.on('finish', () => {
 			if (!__.cascadeSkip) {
-
-				// Patch for stylelint to make reporter show this
-				if (name === 'styles-lint') {
-					__.delayedLog = { name, start };
-				} else {
-					logStep(END, TASK, name, start);
-				}
+				logStep(END, TASK, name, start);
 			} else {
 				logStep(HALT, TASK, name);
 			}
@@ -279,16 +272,6 @@ class Flow {
 	//-- Add a task to skip
 	skipOnWatch(task) {
 		__.watchSkip[task] = true;
-	}
-
-
-	//-- Show delayed log
-	showDelayedLog(error) {
-		if (!(error && !env.watching)) {
-			const { name, start } = __.delayedLog;
-			logStep(error ? HALT : END, TASK, name, start);
-			__.delayedLog = undefined;
-		}
 	}
 
 }
