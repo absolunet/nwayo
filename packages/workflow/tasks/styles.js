@@ -80,11 +80,6 @@ module.exports = () => {
 					{
 						formatter: 'string',
 						console:   true
-					},
-					{
-						formatter: () => {
-							flow.showDelayedLog(hasErrors);
-						}
 					}
 				]
 			}))
