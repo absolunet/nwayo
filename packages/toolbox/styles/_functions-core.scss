@@ -1,35 +1,46 @@
 ////
-/// Nwayo - Functions - Core
-/// @group toolbox
-/// @since 3.8.2 - TBD - Documentation update
+/// nwayo - Functions - Core
+///
+/// @group @absolunet/nwayo-toolbox
 ////
+
 @use 'sass:map';
 @use 'sass:math';
 
 
-/// Konstan access shortcut
-/// @param {String} $path - path to access the Konstan
-/// @todo What about the var $konstan
-/// @return {Function} nwayo-map-deep-get / Value
+/// Get a konstan value.
+///
+/// @requires {Function} nwayo-map-deep-get
+///
+/// @param {String} $path - Path in dot notation.
+/// @returns {*} The value.
+///
 @function konstan-get($path) {
 	@return nwayo-map-deep-get($konstan, $path);
 }
 
 
-/// Konstan Value has key shortcut
-/// @param {String} $path - path to access the Konstan
-/// @todo What about the var $konstan
-/// @return {Function | Bool} nwayo-map-deep-has-key
+/// Check if a path exists in konstan.
+///
+/// @requires {Function} nwayo-map-deep-has-key
+///
+/// @param {String} $path - Path in dot notation.
+/// @returns {Boolean} If path exists in konstan.
+///
 @function konstan-has-key($path) {
 	@return nwayo-map-deep-has-key($konstan, $path);
 }
 
 
-/// Return assets path based on file type
-/// @param {String} $file - complete file name including the extension
-/// @param {String} $component - Component Name
-/// @param {String} $type - Type of the file
-/// @return {String} path to a file
+/// Get asset url based on current bundle.
+///
+/// @requires {Function} konstan-get
+///
+/// @param {String} $file - Filename.
+/// @param {String} $component - Component name.
+/// @param {String} $type - Asset type [images|inline|fonts].
+/// @returns {String} Asset url.
+///
 @function nwayo-assets-path($file, $component, $type) {
 	@if $type == 'images' {
 		@return konstan-get('path.images') + '/' + $component + '/' + $file;
@@ -41,11 +52,15 @@
 }
 
 
-/// Return assets Build path based on file type from on the build root
-/// @param {String} $file - complete file name including the extension
-/// @param {String} $component - Component Name
-/// @param {String} $type - Type of the file
-/// @return {String} path to a file
+/// Get asset absolute build path based on current bundle.
+///
+/// @requires {Function} konstan-get
+///
+/// @param {String} $file - Filename.
+/// @param {String} $component - Component name.
+/// @param {String} $type - Asset type [images|fonts].
+/// @returns {String} Asset absolute build path.
+///
 @function nwayo-build-path($file, $component, $type) {
 	@if $type == 'images' {
 		@return konstan-get('path.buildroot') + '/images/' + $component + '/' + $file;
@@ -55,33 +70,42 @@
 }
 
 
-/// Get a relative z-index for the scope
-/// @param {Maps} $scopes - All scopes and their z-index
-/// @param {String} $scope - The scope that we want to use ass base
-/// @param {Number} $delta - The value to be add to the base value of the scope
-/// @return {Number | null} z-index
+/// Get a z-index relative to a defined scope.
+///
+/// @param {Map<String,Number>} $scopes - Scope names and base z-index values.
+/// @param {String} $scope - Scope to use.
+/// @param {Number} $delta [0] - Variance to apply to the scope value.
+/// @returns {Number} Final z-index value.
+///
 @function nwayo-zindex($scopes, $scope, $delta:0) {
 	@return map.get($scopes, $scope) + $delta;
 }
 
 
-/// Simulate a breakpoint
-/// @param {Number} $bp - the value of the breakpoint
-/// @param {up | down} $direction - Difference between min-width or max-with
-/// @todo What happen if an other value is given for direction (left, right, cha-cha reel smooth..)
-/// @return {String} media query with a breakpoint
-@function nwayo-breakpoint-media($bp, $direction) {
+/// Get a breakpoint media query.
+///
+/// @requires {Number} $nwayo-basic-size
+///
+/// @param {Number} $breakpoint - Breakpoint pixel value (unitless).
+/// @param {String} $direction - Include smaller or larger sizes [up|down].
+/// @returns {String} Media query without the "@media".
+///
+@function nwayo-breakpoint-media($breakpoint, $direction) {
 	@if $direction == up {
-		@return 'screen and (min-width: #{math.div($bp + 1, $nwayo-basic-size) * 1em})';
+		@return 'screen and (min-width: #{math.div($breakpoint + 1, $nwayo-basic-size) * 1em})';
 	} @else if $direction == down {
-		@return 'screen and (max-width: #{math.div($bp, $nwayo-basic-size) * 1em})';
+		@return 'screen and (max-width: #{math.div($breakpoint, $nwayo-basic-size) * 1em})';
 	}
 }
 
 
-/// Return cache invalidation query string
-/// @param $file - The target file
-/// @return {String} cache invalidation query string
+/// Get a cache invalidation query string based on file content.
+///
+/// @requires {CustomFunction} nwayodart-checksum
+///
+/// @param {String} $file - File absolute path.
+/// @returns {String} Complete query string.
+///
 @function nwayo-cacheinvalidator-querystring($file) {
 	@return '?v=' + nwayodart-checksum($file);
 }

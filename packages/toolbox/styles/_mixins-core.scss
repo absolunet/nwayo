@@ -1,20 +1,63 @@
 ////
-/// Nwayo - Mixins - Core
-/// @group toolbox
-/// @since 3.8.2 - TBD - Documentation update
+/// nwayo - Mixins - Core
+/// @group @absolunet/nwayo-toolbox
 ////
+
 @use 'sass:list';
 @use 'sass:map';
 @use 'sass:meta';
 @use 'sass:string';
 
-
-/// Generate Background image Styles (Inline or not)
-/// @param {String} $file - File name with extension
-/// @param {String} $component - Component Name
-/// @param {Bool} $inline [false] - Is the image included inline
-/// @param {Bool | Color} $color [false] - Color(s) that need to be remplace
-/// @output Style of the background image
+/// Background image via a component asset.
+///
+/// @requires {Number} $nwayo-svg-replacement-1-color
+/// @requires {Number} $nwayo-svg-replacement-colors
+/// @requires {Function} nwayo-assets-path
+/// @requires {Function} nwayo-build-path
+/// @requires {Function} nwayo-cacheinvalidator-querystring
+/// @requires {Function} nwayo-color-replace
+/// @requires {Function} nwayo-str-replace
+/// @requires {Function} nwayo-svg-data-uri
+/// @requires {CustomFunction} nwayodart-read-file
+/// @requires {CustomFunction} nwayodart-inline-file
+///
+/// @param {String} $file - Filename.
+/// @param {String} $component - Component name.
+/// @param {Boolean} $inline [false] - Does the asset will be inlined.
+/// @param {Color | List<Color> | Map<Color,Color>} $color [false] - Remplacement colors.
+/// @outputs Background image property.
+///
+/// @example scss - Default usage outputs the image url, with a cache busting query string, based on the current bundle.
+///   @include nwayo-bg-image-styles("ipsum.png", "lorem");
+///   // background-image: url("/build/images/lorem/ipsum.png?v=x1y2z3");
+///
+/// @example scss - If filename ends with @2x, it outputs the image url with a media query for high density image and a fallback for default image.
+///   @include nwayo-bg-image-styles("ipsum@2x.png", "lorem");
+///   // @media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
+///   //   background-image: url("/build/images/lorem/ipsum@2x.png?v=x4y5z6");
+///   // }
+///   // background-image: url("/build/images/lorem/ipsum.png?v=x7y8z9");
+///
+/// @example scss - If a binary image is inlined, it outputs a Base64 data-uri.
+///   @include nwayo-bg-image-styles("ipsum.png", "lorem", $inline:true);
+///   // background-image: url("data:image/png;base64,x1y2z3==");
+///
+/// @example scss - If a SVG is inlined, it outputs a raw source data-uri.
+///   @include nwayo-bg-image-styles("ipsum.svg", "lorem", $inline:true);
+///   // background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%3E%3Cpath d='xyz' fill='#c0ffee'/%3E%3Cpath d='xyz' fill='#ba0bab'/%3E%3Cpath d='xyz' fill='#888888'/%3E%3C/svg%3E");
+///
+/// @example scss - If has a remplacement color, it replaces the default $nwayo-svg-replacement-1-color color before outputing,
+///   @include nwayo-bg-image-styles("ipsum.svg", "lorem", $inline:true, $color:#ff0000);
+///   // background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%3E%3Cpath d='xyz' fill='#c0ffee'/%3E%3Cpath d='xyz' fill='#ff0000'/%3E%3Cpath d='xyz' fill='#888888'/%3E%3C/svg%3E");
+///
+/// @example scss - If has a list of remplacement colors, it replaces the default $nwayo-svg-replacement-colors colors before outputing.
+///   @include nwayo-bg-image-styles("ipsum.svg", "lorem", $inline:true, $color:(#ff0000, #0000ff));
+///   // background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%3E%3Cpath d='xyz' fill='#0000ff'/%3E%3Cpath d='xyz' fill='#ff0000'/%3E%%3Cpath d='xyz' fill='#888888'/%3E3C/svg%3E");
+///
+/// @example scss - If has a map of remplacement colors, it replaces key colors with value colors before outputing.
+///   @include nwayo-bg-image-styles("ipsum.svg", "lorem", $inline:true, $color:(#888888: #abcdef));
+///   // background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%3E%3Cpath d='xyz' fill='#c0ffee'/%3E%3Cpath d='xyz' fill='#ba0bab'/%3E%3Cpath d='xyz' fill='#abcdef'/%3E%3C/svg%3E");
+///
 @mixin nwayo-bg-image-styles($file, $component, $inline:false, $color:false) {
 
 	// URI
@@ -72,38 +115,75 @@
 	background-image: #{$uri};
 }
 
-
-/// Generate Scalable icon Styles (Inline)
-/// @param {String} $file - File name with extension
-/// @param {String} $component - Component Name
-/// @param {Bool | Color} $color [false] - Color(s) that need to be remplace
-/// @output Style of the scalable icon (Inline)
-@mixin nwayo-scalable-icon-styles($file, $component, $color:false) {
+/// Inline background image that scales with the HTML element.
+///
+/// @requires {Function} nwayo-bg-image-styles
+///
+/// @param {String} $file - Filename.
+/// @param {String} $component - Component name.
+/// @param {Color | List<Color> | Map<Color,Color>} $color - Remplacement colors.
+/// @outputs Background image properties that stick its dimensions to the HTML element.
+///
+/// @example scss
+///   @include nwayo-scalable-icon-styles("ipsum.svg", "lorem");
+///   @include nwayo-scalable-icon-styles("ipsum.svg", "lorem", $color:#ff0000);
+///   @include nwayo-scalable-icon-styles("ipsum.svg", "lorem", $color:(#ff0000, #0000ff));
+///   @include nwayo-scalable-icon-styles("ipsum.svg", "lorem", $color:(#888888: #abcdef));
+///
+@mixin nwayo-scalable-icon-styles($file, $component, $color) {
 	@include nwayo-bg-image-styles($file, $component, $inline:true, $color:$color);
 	background-position: center center;
 	background-size: contain;
 	background-repeat: no-repeat;
 }
 
-
-/// Generate Scalable icon multicolored states with state (Inline)
-/// @param {String} $file - File name with extension
-/// @param {String} $component - Component Name
-/// @param {Sting} $state [default] - Current state of the icon
-/// @param {Maps} $states [()] - Maps of all the states and their color
-/// @return {Style} - Style of the scalable icon (Inline) with state color
+/// Inline scalable background image associating replacement colors to states.
+///
+/// @requires {Function} nwayo-scalable-icon-styles
+///
+/// @param {String} $file - Filename.
+/// @param {String} $component - Component name.
+/// @param {Sting} $state [default] - Chosen state.
+/// @param {Map<String,Color | List<Color> | Map<Color,Color>>} $states [()] - Map of states and their remplacement colors.
+/// @outputs Scalable background image properties.
+///
+/// @example scss
+///   @mixin lorem-ipsum($state) {
+///     @include nwayo-scalable-icon-colored-states-styles("ipsum.svg", "lorem", $state, $states:(
+///       default: #ff0000,
+///       hover:   (#ff0000, #0000ff),
+///       active:  (#888888: #abcdef)
+///     )));
+///   }
+///
+///   @include lorem-ipsum();
+///   @include lorem-ipsum(hover);
+///   @include lorem-ipsum(active);
+///
 @mixin nwayo-scalable-icon-colored-states-styles($file, $component, $state:default, $states:()) {
 	@include nwayo-scalable-icon-styles($file, $component, $color:map.get($states, $state));
 }
 
-
-/// Generate Font-face Styles
-/// @param {String} $name - Name of the font
-/// @param {String} $filename - File name with extension
-/// @param {String} $component - Component Name
-/// @param {String} $weight [normal] - Weight of the font
-/// @param {String} $style [normal] - Style of the font
-/// @output Style of the Font-face
+/// @font-face WOFF (WOFF2 if file exists) declaration via component assets.
+///
+/// @requires {Function} nwayo-assets-path
+/// @requires {Function} nwayo-build-path
+/// @requires {CustomFunction} nwayo-cacheinvalidator-querystring
+/// @requires {CustomFunction} nwayodart-file-exists
+///
+/// @param {String} $name - Name of the font.
+/// @param {String} $filename - Filename without extension of WOFF/WOFF2 files.
+/// @param {String} $component - Component name.
+/// @param {String} $weight [normal] - Weight of the font.
+/// @param {String} $style [normal] - Style of the font.
+/// @outputs Font face declaration with a cache busting query string.
+///
+/// @example scss
+///   @include nwayo-load-font-styles("Open Sans", "opensans-regular-webfont", "lorem");
+///   @include nwayo-load-font-styles("Open Sans", "opensans-italic-webfont", "lorem", $style:italic);
+///   @include nwayo-load-font-styles("Open Sans", "opensans-bold-webfont", "lorem", $weight:700);
+///   @include nwayo-load-font-styles("Open Sans", "opensans-bolditalic-webfont", "lorem", $weight:700, $style:italic);
+///
 @mixin nwayo-load-font-styles($name, $filename, $component, $weight:normal, $style:normal) {
 	$path:  nwayo-build-path($filename, $component, 'fonts');
 	$url:   nwayo-assets-path($filename, $component, 'fonts');

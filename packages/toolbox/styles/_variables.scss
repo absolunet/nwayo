@@ -1,85 +1,165 @@
-//-------------------------------------
-//-- nwayo - Variables
-//-------------------------------------
+////
+/// nwayo - Variables
+/// @group @absolunet/nwayo-toolbox
+////
 
-// All rem / em sizes depend on this
+/// All rem / em sizes depend on this.
+/// @type Number
 $nwayo-basic-size: 16;
 
 
-// SVG colors
+
+/// First replacement color for SVG in nwayo-bg-image-styles.
+/// @type Color
 $nwayo-svg-replacement-1-color: #ba0bab;
+
+/// Second replacement color for SVG in nwayo-bg-image-styles.
+/// @type Color
 $nwayo-svg-replacement-2-color: #c0ffee;
-$nwayo-svg-replacement-colors:  ($nwayo-svg-replacement-1-color, $nwayo-svg-replacement-2-color);
 
-// Social network colors
+/// All replacement colors for SVG in nwayo-bg-image-styles.
+/// @requires {Color} $nwayo-svg-replacement-1-color
+/// @requires {Color} $nwayo-svg-replacement-2-color
+/// @type List<Color>
+$nwayo-svg-replacement-colors: ($nwayo-svg-replacement-1-color, $nwayo-svg-replacement-2-color);
+
+
+
+// Social network colors.
+/// @type Map<String,Color>
+/// @prop {Color} facebook - Facebook. (https://www.facebook.com/brand/resources/facebookapp/logo)
+/// @prop {Color} messenger - Messenger. (https://www.facebook.com/brand/resources/messenger/messenger-brand)
+/// @prop {Color} pinterest - Pinterest. (https://business.pinterest.com/brand-guidelines/)
+/// @prop {Color} twitter - Twitter. (https://about.twitter.com/en/who-we-are/brand-toolkit)
+/// @prop {Color} instagram - Instagram. (https://www.facebook.com/brand/resources/instagram/instagram-brand/ https://www.facebook.com/brand/resources/instagram/icons)
+/// @prop {Color} youtube - YouTube. (https://www.youtube.com/howyoutubeworks/resources/brand-resources/#logos-icons-and-colors)
+/// @prop {Color} vimeo - Vimeo. (https://press.vimeo.com/brand-guidelines/)
+/// @prop {Color} linkedin - LinkedIn. (https://brand.linkedin.com/content/brand/global/en_us/index/visual-identity/color-palettes)
+/// @prop {Color} whatsApp - WhatsApp. (https://www.facebook.com/brand/resources/whatsapp/logo)
+/// @prop {Color} snapchat - Snapchat. (https://snap.com/en-US/brand-guidelines)
+/// @prop {Color} tiktok - TikTok. (https://www.tiktok.com/en)
 $nwayo-social-colors: (
-	'facebook':   #1877F2,
-	'messenger':   #000000,
-	'pinterest':  #d6001c,
-	'twitter':    #1d9bf0,
-	'instagram':  #bc2a8d,
-	'youtube':    #FF0000,
-	'vimeo':      #1ab7ea,
-	'linkedin':   #0077B5,
-	'googleplus': #dc4a38,
-	'whatsapp':   #25D366,
-	'snapchat':   #FFFC00,
-	'tiktok':     #000000
+	'facebook': #1877f2,
+	'messenger': #000000,
+	'pinterest': #d6001c,
+	'twitter': #1d9bf0,
+	'instagram': #bc2a8d,
+	'youtube': #ff0000,
+	'vimeo': #1ab7ea,
+	'linkedin': #0077b5,
+	'whatsapp': #25d366,
+	'snapchat': #fffc00,
+	'tiktok': #000000
 );
-// Facebook : https://www.facebook.com/brand/resources/facebookapp/logo
-// Messenger  : https://www.facebook.com/brand/resources/messenger/messenger-brand
-// Pinterest : https://business.pinterest.com/brand-guidelines/
-// Twitter : https://about.twitter.com/en/who-we-are/brand-toolkit
-// Instagram : https://www.facebook.com/brand/resources/instagram/instagram-brand/ https://www.facebook.com/brand/resources/instagram/icons
-// Youtube : https://www.youtube.com/howyoutubeworks/resources/brand-resources/#logos-icons-and-colors
-// Vimeo : https://press.vimeo.com/brand-guidelines/
-// Linkedin : https://brand.linkedin.com/content/brand/global/en_us/index/visual-identity/color-palettes
-// Googleplus : ¯\_(ツ)_/¯
-// Snapchat : https://snap.com/en-US/brand-guidelines
-// WhatsApp : https://www.facebook.com/brand/resources/whatsapp/logo
-// Tiktok : https://www.tiktok.com/en
 
 
 
+/// Default sans-serif fonts fallback.
+/// @type String
+$nwayo-sansserif-font: Helvetica, Arial, Verdana, sans-serif;  // stylelint-disable-line value-keyword-case
 
-// Font family
-$nwayo-sansserif-font: Helvetica, Arial, Verdana, sans-serif;                                         // stylelint-disable-line value-keyword-case
-$nwayo-serif-font:     'Times New Roman', Times, serif;                                               // stylelint-disable-line value-keyword-case
-$nwayo-monospace-font: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', Courier, monospace; // stylelint-disable-line value-keyword-case
+/// Default serif fonts fallback.
+/// @type String
+$nwayo-serif-font: 'Times New Roman', Times, serif;  // stylelint-disable-line value-keyword-case
 
-// Font weights
-$nwayo-thin-weight:       100;/// @type Number
-$nwayo-extralight-weight: 200;/// @type Number
-$nwayo-light-weight:      300;/// @type Number
-$nwayo-normal-weight:     400;/// @type Number
-$nwayo-medium-weight:     500;/// @type Number
-$nwayo-semibold-weight:   600;/// @type Number
-$nwayo-bold-weight:       700;/// @type Number
-$nwayo-extrabold-weight:  800;/// @type Number
-$nwayo-black-weight:      900;/// @type Number
+/// Default monospace fonts fallback.
+/// @type String
+$nwayo-monospace-font: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', Courier, monospace;  // stylelint-disable-line value-keyword-case
 
 
 
-// Characters
-$nwayo-bull-char:   '\2022';
+/// Thin / Hairline font weight.
+/// @type Number
+$nwayo-thin-weight: 100;
+
+/// Ultra-light / Extra-light font weight.
+/// @type Number
+$nwayo-extralight-weight: 200;
+
+/// Light font weight.
+/// @type Number
+$nwayo-light-weight: 300;
+
+/// Normal / Regular font weight.
+/// @type Number
+$nwayo-normal-weight: 400;
+
+/// Medium font weight.
+/// @type Number
+$nwayo-medium-weight: 500;
+
+/// Semi-bold / Demi-bold font weight.
+/// @type Number
+$nwayo-semibold-weight: 600;
+
+/// Bold font weight.
+/// @type Number
+$nwayo-bold-weight: 700;
+
+/// Extra-bold / Ultra-bold font weight.
+/// @type Number
+$nwayo-extrabold-weight: 800;
+
+/// Heavy / Black font weight.
+/// @type Number
+$nwayo-black-weight: 900;
+
+/// Extra-black / Ultra-black font weight.
+/// @type Number
+$nwayo-extrablack-weight: 950;
+
+
+
+/// "•" character.
+/// @type String
+$nwayo-bull-char: '\2022';
+
+/// "×" character.
+/// @type String
 $nwayo-times-char:  '\00D7';
+
+/// "–" character.
+/// @type String
 $nwayo-endash-char: '\2013';
 
 
 
-// All text-like fields
+/// All text-like inputs.
+/// @type String
 $nwayo-textfields-selector: 'input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], input[type="date"], input[type="number"]';
 
-// Selectors
-$nwayo-hover-selector:     'html:not([data-whatintent="touch"]) &:hover';
+
+
+/// :hover selector active only on non-touch devices according to What Input?.
+/// @type String
+$nwayo-hover-selector: 'html:not([data-whatintent="touch"]) &:hover';
+
+/// Body selector active only after document has loaded.
+/// @type String
 $nwayo-docloaded-selector: 'body.document-loaded';
 
 
 
-// Debug colors
-$debug-red:    #ee2c2c;
+/// Pleasant red for debugging.
+/// @type Color
+$debug-red: #ee2c2c;
+
+/// Pleasant orange for debugging.
+/// @type Color
 $debug-orange: #ffa500;
+
+/// Pleasant yellow for debugging.
+/// @type Color
 $debug-yellow: #ffdf33;
-$debug-green:  #76ee00;
-$debug-blue:   #1e90ff;
+
+/// Pleasant green for debugging.
+/// @type Color
+$debug-green: #76ee00;
+
+/// Pleasant blue for debugging.
+/// @type Color
+$debug-blue: #1e90ff;
+
+/// Pleasant purple for debugging.
+/// @type Color
 $debug-purple: #a020f0;
