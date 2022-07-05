@@ -1,3 +1,5 @@
+> [Work in progress]
+
 # Images
 Les images sont situées sous le dossier `images`, sous la composante associée à l'image en question.
 
@@ -9,7 +11,7 @@ Le mixin utilisé pour générer les images au niveau du css. Il sera ensuite po
 ```scss
 //-- Background image
 @mixin bg-image-mixin ($file, $context, $inline:false, $width:false, $height:false, $color:false) {
-	
+
 	// uri
 	$uri: '';
 	@if $inline {
@@ -17,7 +19,7 @@ Le mixin utilisé pour générer les images au niveau du css. Il sera ensuite po
 	} @else {
 		$uri: url(assets-path($file, $context, 'images'));
 	}
-	
+
 	// high density
 	@if str-index($file, '@2x') {
 		$path: 'components/' + $context + '/assets/' + if($inline, 'inline-', '') + 'images/' + $file;

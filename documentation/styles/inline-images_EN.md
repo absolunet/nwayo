@@ -1,3 +1,5 @@
+> [Work in progress]
+
 # Inline image
 The main difference between `images inline` and `images` is that `image inline` will embed the content of the image directly into the stylesheet, eliminating another HTTP request.
 The images are located under the `inline-images` folder, under the component associated with the image in question.
@@ -8,7 +10,7 @@ The mixin used to generate the images at the css level. It will then be possible
 ```scss
 //-- Background image
 @mixin bg-image-mixin ($file, $context, $inline:false, $width:false, $height:false, $color:false) {
-	
+
 	// uri
 	$uri: '';
 	@if $inline {
@@ -45,7 +47,7 @@ The mixin used to generate the images at the css level. It will then be possible
 	} @else {
 		$uri: url(assets-path($file, $context, 'images'));
 	}
-	
+
 	// high density
 	@if str-index($file, '@2x') {
 		$path: 'components/' + $context + '/assets/' + if($inline, 'inline-', '') + 'images/' + $file;
@@ -84,7 +86,7 @@ It is also possible to use `scalable-icon-mixin` for icons and thus have basic s
 
 ## How to use
 To be able to generate an image, the `$file` and `$context` are required.
-The `$inline` is required when used with `bg-image-mixin`. 
+The `$inline` is required when used with `bg-image-mixin`.
 For the `scalable-icon-mixin`, the `$inline` variable default value is `true`.
 
 ```scss

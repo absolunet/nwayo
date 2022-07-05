@@ -1,3 +1,5 @@
+> [Work in progress]
+
 # Components
 > Nwayo is base on a system of components what are enabled or disabled depending on the usages
 
@@ -7,6 +9,6 @@
 
 > Being written
 
-# TODO : 
+# TODO :
 - Explain how fondation is included
 - Explain how enable component

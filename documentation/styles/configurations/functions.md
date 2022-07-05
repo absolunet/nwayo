@@ -1,3 +1,5 @@
+> [Work in progress]
+
 # [Functions](https://sass-lang.com/documentation/at-rules/function)
 ## Content
 The difference between functions and mixins is that the mixins generate an output (mostly styling directives) and
@@ -17,7 +19,7 @@ functions generates values
 ```
 
 ##Toolbox
-To see a complet list of functions that are available in Nwayo you can consult: 
+To see a complet list of functions that are available in Nwayo you can consult:
 - [functions-core](../../../packages/toolbox/styles/_functions-core.scss)
   - **konstan-get :** Konstan shortcut: Get value
   - **nwayo-assets-path** : Generate an asset path based on file type

@@ -1,3 +1,5 @@
+> [Work in progress]
+
 # CLI - Assets
 ## assets-fonts
 ```shell
@@ -9,8 +11,8 @@ Move a copy of the font in the build directory
 ```shell
 $ nwayo run assets-images-optimization
 ```
-Optimize images with [gulp-imagemin](https://www.npmjs.com/package/gulp-imagemin). 
-Move the optimized images to the build directory. 
+Optimize images with [gulp-imagemin](https://www.npmjs.com/package/gulp-imagemin).
+Move the optimized images to the build directory.
 
 ## assets-images-highdensity
 ```shell

@@ -1,3 +1,5 @@
+> [Work in progress]
+
 # Fonts
 The fonts are located under the `fonts` folder, under the component associated with the font in question.
 

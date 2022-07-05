@@ -1,3 +1,5 @@
+> [Work in progress]
+
 # Components
 > A component is composer by different type of content that is included in one of many bundle. A general component can be created and imported in other to make sure there's no duplicate content and reuse what has already put in place.
 

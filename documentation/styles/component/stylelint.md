@@ -1,3 +1,5 @@
+> [Work in progress]
+
 # Stylelint
 > [For more details as how to use Stylelint, please consult its official documentation](https://stylelint.io/).
 
@@ -24,7 +26,7 @@ rules:
 ### Add file or directory to ignore
 You can add the path to the specific file or directory in the `.stylelintignore` file at the root of your Nwayo directory
 
-Ex: 
+Ex:
 ```
 components/*/styles/vendor
 node_modules
@@ -37,7 +39,7 @@ node_modules
 // stylelint-enable rule-to-disable
 ```
 
-### Enable or disable a rule for a line 
+### Enable or disable a rule for a line
 ```scss
 @media print {
 	@page {

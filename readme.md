@@ -16,8 +16,9 @@
 
 
 
-## Requirements - [Installation guide](documentation/requirements)
-- [Node.js](https://nodejs.org) ([nwayo CLI](https://www.npmjs.com/package/@absolunet/nwayo-cli))
+## Requirements
+- [Node.js](https://nodejs.org)
+- [nwayo CLI](https://www.npmjs.com/package/@absolunet/nwayo-cli)
 
 
 

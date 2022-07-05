@@ -1,3 +1,5 @@
+> [Work in progress]
+
 # Bundles
 
 > A bundle is the result of is one or many collections put together to form a specific groupment of ressources (assets, images, scripts and styles) with a common purpose.
@@ -92,12 +94,12 @@ Almost all the tasks will interact with a component
 ```
 / nwayo
     / bundles
-        / [BUNDLE_NAME] / 
+        / [BUNDLE_NAME] /
             _[BUNDLE_COMPONENT_NAME_1].yaml
             _[BUNDLE_COMPONENT_NAME_2].yaml
             _...
             [BUNDLE_NAME].yaml
-            
+
         / ..
     / components
         / ...
@@ -123,7 +125,7 @@ scripts:
     babel:
       - '> .25%'
       - 'not dead'
-      - 
+      -
   allowBabel:
     - vendor/node_modules/foundation-sites
     - vendor/node_modules/@absolunet

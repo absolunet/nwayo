@@ -1,3 +1,5 @@
+> [Work in progress]
+
 # Polices
 Les polices sont situées sous le dossier `fonts`, sous la composante associée à la police en question.
 Il faut les 4 formats de police sous le dossier `fonts` avec le même nom de fichier:

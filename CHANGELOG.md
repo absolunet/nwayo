@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+### Added
+- Add partial documentation
+- Add SassDoc toolbox styles
+
 ### Fixed
 - Fix `scripts-lint` on `watch` that would stop on lint error
 - Fix `styles-lint` on `watch` that would still halt after fixing lint error, by removing custom patch

@@ -1,3 +1,5 @@
+> [Work in progress]
+
 # Inline image
 La différence entre les `images inline` et les `images` est que l'`image inline` intégrera le contenu de l'image directement dans la feuille de styles, ce qui élimine une autre requête HTTP.
 Les images sont situées sous le dossier `inline-images`, sous la composante associée à l'image en question.
@@ -10,7 +12,7 @@ Le mixin utilisé pour générer les images au niveau du css. Il sera ensuite po
 ```scss
 //-- Background image
 @mixin bg-image-mixin ($file, $context, $inline:false, $width:false, $height:false, $color:false) {
-	
+
 	// uri
 	$uri: '';
 	@if $inline {
@@ -47,7 +49,7 @@ Le mixin utilisé pour générer les images au niveau du css. Il sera ensuite po
 	} @else {
 		$uri: url(assets-path($file, $context, 'images'));
 	}
-	
+
 	// high density
 	@if str-index($file, '@2x') {
 		$path: 'components/' + $context + '/assets/' + if($inline, 'inline-', '') + 'images/' + $file;

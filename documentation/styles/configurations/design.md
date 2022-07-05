@@ -1,3 +1,5 @@
+> [Work in progress]
+
 # [Design](https://sass-lang.com/documentation/variables)
 
 ## Content
@@ -13,7 +15,7 @@ relate to each other could be set in a variable.
 - ...
 
 ## Good practices
-- Make sure you use the proper social media color and be aware of how you legally can use it. For reference, [consult the variable files](../../../packages/toolbox/styles/_variables.scss) and make sure they did not change since the last release. [If they did, you can create an issue to have them updated.](https://github.com/absolunet/nwayo/issues) 
+- Make sure you use the proper social media color and be aware of how you legally can use it. For reference, [consult the variable files](../../../packages/toolbox/styles/_variables.scss) and make sure they did not change since the last release. [If they did, you can create an issue to have them updated.](https://github.com/absolunet/nwayo/issues)
 - Order variables by type and or purpose
 - It's a good idea to have a general component where you declare your general site esthetics and map those variables into the component
 - Try to give significant name that describes what they are used for to the variables and not only one that describes what they are.
