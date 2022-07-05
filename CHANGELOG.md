@@ -13,6 +13,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add partial documentation
 - Add SassDoc toolbox styles
+- SCSS function `nwayo-strip-unit`: Add function
+- SCSS mixin `nwayo-scaling-block-styles`: Add parameter `$subselector`
+- SCSS mixin `nwayo-valign-parent-styles`: Add parameter `$subselector`
+- SCSS mixin `nwayo-placeholder-styles`: Add parameter `$selector`
+- SCSS mixin `nwayo-column-list-styles`: Add parameter `$subselector`
+- SCSS variable `$nwayo-social-colors`: Add `messenger`, `whatsapp`, `snapchat`, `tiktok`
+- SCSS variable `$nwayo-extrablack-weight`: Add variable
+
+### Changed
+- SCSS function `nwayo-breakpoint-media`: Parameter name change from `$bp` → `$breakpoint`
+- SCSS function `nwayo-str-replace`: Parameter name change from `$string` → `$subject`
+- SCSS function `nwayo-color-replace`: Parameter names change from `$string` → `$subject`, `$source` → `$search`, `$target` → `$replace`
+- SCSS function `nwayo-list-contains`: Parameter name change from `$var` → `$value`
+- SCSS mixin `nwayo-scalable-icon-colored-states-styles`: Parameter name change from `$name` → `$file`
+- SCSS mixin `nwayo-scaling-block-styles`: Parameter names change from `$w` → `$width`, `$h` → `$height`
+
+### Removed
+- SCSS variable `$nwayo-social-colors`: Remove `googleplus`
 
 ### Fixed
 - Fix `scripts-lint` on `watch` that would stop on lint error

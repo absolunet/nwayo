@@ -5,11 +5,8 @@ The fonts are located under the `fonts` folder, under the component associated w
 
 [When declaring fonts, use the nwayo variables for the font-weight.](../../packages/toolbox/styles/_variables.scss).
 
-You need the 4 font formats under the `fonts` folder with the same filename:
-- `eot`
-- `ttf`
-- `woff`
-- `woff2`
+You need to have a WOFF 1.0 font (`.woff`) under the `fonts` folder. Optionnally you can add a WOFF 2.0 font (`.woff2`) with the same filename if it is available.
+
 
 ## Mixin
 The `@font-face` mixins is used to generate the css

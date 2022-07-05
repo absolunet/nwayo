@@ -1,7 +1,10 @@
+.idea
+.vscode
 .DS_Store
+Thumbs.db
+
 .nwayo-cache
 .publish-tarballs
 node_modules
 npm-debug.log
 package-lock.json
-/.idea/*
