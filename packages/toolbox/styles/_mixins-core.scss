@@ -144,7 +144,7 @@
 /// @param {String} $file - Filename.
 /// @param {String} $component - Component name.
 /// @param {Sting} $state [default] - Chosen state.
-/// @param {Map<String,Color | List<Color> | Map<Color,Color>>} $states [()] - Map of states and their remplacement colors.
+/// @param {Map<String,Color_or_List.Color_or_Map.Color.Color>} $states [()] - Map of states and their remplacement colors.
 /// @outputs Scalable background image properties.
 ///
 /// @example scss
@@ -164,7 +164,7 @@
 	@include nwayo-scalable-icon-styles($file, $component, $color:map.get($states, $state));
 }
 
-/// @font-face WOFF (WOFF2 if file exists) declaration via component assets.
+/// WOFF (WOFF2 if file exists) @font-face declaration via component assets.
 ///
 /// @requires {Function} nwayo-assets-path
 /// @requires {Function} nwayo-build-path

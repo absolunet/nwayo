@@ -89,6 +89,7 @@ Multiple extensions [available](https://www.npmjs.com/search?q=keywords:nwayo-ex
 
 ## Documentation
 - [Full documentation](https://documentation.absolunet.com/nwayo) ([source](documentation))  &nbsp; &nbsp; _[in progress...]_
+- [Toolbox styles documentation](https://documentation.absolunet.com/nwayo/toolbox/styles) (generated from [comments](http://sassdoc.com/) directly inside the [source code](packages/toolbox/styles))
 - [CodePen examples](https://codepen.io/collection/XJWozK/)
 
 [//]: # (/Doc)
