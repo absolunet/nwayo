@@ -1,17 +1,28 @@
-//-------------------------------------
-//-- nwayo - Mixins - Helpers
-//-------------------------------------
+////
+/// nwayo - Mixins - Helpers
+/// @group @absolunet/nwayo-toolbox
+////
+
 @use 'sass:math';
 
-//-- Images in ::before/::after pseudo-elements
+/// Prepare a ::before/::after pseudo-element to be used with a background image.
+///
+/// @param {Number} $width - Width.
+/// @param {Number} $height [$width] - Height.
+/// @outputs Empty content, width and height.
+///
 @mixin nwayo-pseudo-image-styles($width, $height:$width) {
 	content: '';
 	width: $width;
 	height: $height;
 }
 
-
-//-- Images which replaces text
+/// Hide text inside an element to replace it by a background image.
+///
+/// @param {Number} $width - Width.
+/// @param {Number} $height [$width] - Height.
+/// @outputs Replaced width/height with padding that overflows the content outside the visible container.
+///
 @mixin nwayo-textreplace-image-styles($width, $height:$width) {
 	overflow: hidden;
 	width: 0;
@@ -19,13 +30,12 @@
 	padding: $height 0 0 $width;
 }
 
-
-
-
-
-
-//-- Clearfix
-@mixin nwayo-clearfix-styles {
+/// Force an element to self-clear its children.
+/// @link https://css-tricks.com/snippets/css/clear-fix/
+///
+/// @outputs Ye Olde Clearfix.
+///
+@mixin nwayo-clearfix-styles() {
 	&::before, &::after {
 		content: '';
 		display: table;
@@ -36,9 +46,11 @@
 	}
 }
 
-
-//-- Visually hidden
-@mixin nwayo-visually-hidden-styles {
+/// Visually hide an element without removing its presence.
+///
+/// @outputs Clipped content.
+///
+@mixin nwayo-visually-hidden-styles() {
 	position: absolute;
 	overflow: hidden;
 	clip: rect(0, 0, 0, 0);
@@ -49,19 +61,20 @@
 	margin: rem-calc(-1);
 }
 
-
-
-
-
-
-//-- Create a block that scale within a ratio
-@mixin nwayo-scaling-block-styles($w: 2, $h:1) {
+/// Make an element scalable within a ratio.
+///
+/// @param {Number} $width [2] - Width ratio.
+/// @param {Number} $height [1] - Height ratio.
+/// @param {String} $subselector [.scaling-block-content] - Subelement selector.
+/// @outputs Scalable element that requires a subelement accessible via $subselector.
+///
+@mixin nwayo-scaling-block-styles($width: 2, $height:1, $subselector:'.scaling-block-content') {
 	position: relative;
 	display: block;
 	height: 0;
-	padding-top: math.percentage(math.div($h, $w));
+	padding-top: math.percentage(math.div($height, $width));
 
-	.scaling-block-content {
+	#{$subselector} {
 		position: absolute;
 		top: 0;
 		right: 0;
@@ -70,9 +83,12 @@
 	}
 }
 
-
-//-- Vertical center the child within the parent
-@mixin nwayo-valign-parent-styles {
+/// Center vertically the child within its parent.
+///
+/// @param {String} $subselector [.valign-child] - Subelement selector.
+/// @outputs A container which vertically centers a subelement accessible via $subselector.
+///
+@mixin nwayo-valign-parent-styles($subselector:'.valign-child') {
 	font-size: 0;  // stylelint-disable-line scale-unlimited/declaration-strict-value
 
 	&::before {
@@ -82,19 +98,17 @@
 		height: 100%;
 	}
 
-	.valign-child {
+	#{$subselector} {
 		display: inline-block;
 		vertical-align: middle;
 	}
 }
 
-
-
-
-
-
-//-- List
-@mixin nwayo-list-reset-styles {
+/// Reset basic list styles (spacing, markers).
+///
+/// @outputs Resetter.
+///
+@mixin nwayo-list-reset-styles() {
 	list-style: none;
 	padding: 0;
 	margin: 0;
@@ -104,7 +118,13 @@
 	}
 }
 
-@mixin nwayo-list-inline-styles {
+/// Reset basic list styles to make it inline (spacing, markers).
+///
+/// @requires {Mixin} nwayo-list-reset-styles
+///
+/// @outputs Resetter.
+///
+@mixin nwayo-list-inline-styles() {
 	@include nwayo-list-reset-styles();
 
 	> li {
@@ -113,18 +133,18 @@
 	}
 }
 
-
-
-
-
-
-//-- Placeholder
-@mixin nwayo-placeholder-styles() {
-	select.placeholder {
+/// Define input and select placeholder.
+///
+/// @param {String} $selector [.placeholder] - Selector for manual placeholder.
+/// @content Placeholder styles.
+/// @outputs Styled placeholders.
+///
+@mixin nwayo-placeholder-styles($selector:'.placeholder') {
+	#{'select' + $selector} {
 		@content;
 	}
 
-	input.placeholder {
+	#{'input' + $selector} {
 		@content;
 	}
 
@@ -133,8 +153,11 @@
 	}
 }
 
-
-//-- Select reset
+/// Reset select styles.
+///
+/// @content Select styles.
+/// @outputs Resetted select.
+///
 @mixin nwayo-select-reset-styles() {
 	@-moz-document url-prefix() {
 		select {
@@ -147,8 +170,11 @@
 	}
 }
 
-
-//-- Input type file button
+/// Customize input file button.
+///
+/// @content Button styles.
+/// @outputs Styled button.
+///
 @mixin nwayo-input-file-button-styles() {
 	&::-webkit-file-upload-button {
 		@content;
@@ -159,13 +185,14 @@
 	//}
 }
 
-
-
-
-
-
-//-- Arrow
-@mixin nwayo-arrow-styles($direction:right, $size:.625em, $color:$common-text-color) {
+/// Pseudo-arrow via creative border management.
+///
+/// @param {String} $direction [right] - Pointing direction (up, down, left, right).
+/// @param {Number} $size [.625em] - Size.
+/// @param {Color} $color - Color.
+/// @outputs Pseudo-arrow.
+///
+@mixin nwayo-arrow-styles($direction:right, $size:.625em, $color) {
 	display: inline-block;
 	border: 0;
 
@@ -193,58 +220,60 @@
 	}
 }
 
+/// Stylize a list into columns.
+///
+/// @requires {Mixin} nwayo-clearfix-styles
+///
+/// @param {String} $subselector [> li] - Subelement selector.
+/// @param {Number} $nb-column [2]- Number of columns.
+/// @param {Number} $bullet-spacing [1.0625em] - Spacing reserved outside of <li> for a bullet.
+/// @param {Number} $column-spacing [1.875em] - Spacing between columns.
+/// @param {Number} $row-spacing [.625em] - Spacing between rows.
+/// @param {Boolean} $base-style [true] - Wether or not to output base styles.
+/// @outputs Columned list.
+///
+@mixin nwayo-column-list-styles($subselector:'> li', $nb-column:2, $bullet-spacing:1.0625em, $column-spacing:1.875em, $row-spacing:.625em, $base-style:true) {
 
-
-
-
-
-//-- Create a list with columns
-// $nb-column - The number of columns (Min.: 2)
-// $bullet-spacing - Spacing reserved outside of <li> for a bullet
-// $column-spacing - Spacing between columns
-// $row-spacing - Spacing between rows
-// $base-style - Wether or not to output base styles (Ex.: set to false in a media query to prevent repeating the styles already defined)
-@mixin nwayo-column-list-styles($nb-column:2, $bullet-spacing:1.0625em, $column-spacing:1.875em, $row-spacing:.625em, $base-style:true) {
-	// calculate a column offset : $column-spacing * ($column - 1) + $bullet-spacing * $column
+	// Calculate a column offset : $column-spacing * ($column - 1) + $bullet-spacing * $column
 	$total-spacing: $column-spacing * ($nb-column - 1) + $bullet-spacing * $nb-column;
+
 	@if $base-style {
 		padding-left: 0;
 	}
-	padding-right: $total-spacing;
-	@if $base-style {
-		box-sizing: border-box;
-		// clearfix
-		&::before, &::after {
-			content: ' ';
-			display: table;
-		}
 
-		&::after {
-			clear: both;
-		}
+	padding-right: $total-spacing;
+
+	@if $base-style {
+		@include nwayo-clearfix-styles();
+		box-sizing: border-box;
 	}
 
-	> li {
+	#{$subselector} {
 		@if $base-style {
 			position: relative;
 			float: left;
 		}
+
 		width: math.percentage(math.div(1, $nb-column));
-		// reset styles for media query usage
+
+		// Reset styles for media query usage
 		&:nth-of-type(n) {
 			left: auto;
 			clear: none;
 			margin-top: $row-spacing;
 		}
-		// remove margin from first row
+
+		// Remove margin from first row
 		&:nth-of-type(-n+#{$nb-column}) {
 			margin-top: 0;
 		}
-		// clear rows
+
+		// Clear rows
 		&:nth-of-type(#{$nb-column}n+1) {
 			clear: both;
 		}
-		// column offsets
+
+		// Column offsets
 		@for $i from 1 through $nb-column - 1 {
 			&:nth-of-type(#{$nb-column}n-#{($i)}) {
 				left: $column-spacing * ($nb-column - $i - 1) + $bullet-spacing * ($nb-column - $i);

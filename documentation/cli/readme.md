@@ -32,26 +32,26 @@ $ nwayo [...]
 Runs a specific task and its dependencies.
 
 **Available tasks:**
-- assets
+- [assets](assets.md)
 	- assets-fonts
 	- assets-images-optimization
 	- assets-images-highdensity
 	- assets-raw
 	- assets-images
-- icons
+- [icons](icons.md)
 	- icons-favicon
 	- icons-touch
 	- icons-icon
 	- icons-large
 	- icons-tile
-- local
+- [local](local.md)
 	- local-constants
-- scripts
+- [scripts](scripts.md)
 	- scripts-lint
 	- scripts-constants
 	- scripts-vendors
 	- scripts-compile
-- styles
+- [styles](styles.md)
 	- styles-images
 	- styles-lint
 	- styles-constants

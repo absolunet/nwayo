@@ -1,16 +1,16 @@
+> [Work in progress]
+
 # Inline image
-La différence entre les `images inline` et les `images` est que l'`image inline` intégrera le contenu de l'image directement dans la feuille de styles, ce qui élimine une autre requête HTTP.
-Les images sont situées sous le dossier `inline-images`, sous la composante associée à l'image en question.
+The main difference between `images inline` and `images` is that `image inline` will embed the content of the image directly into the stylesheet, eliminating another HTTP request.
+The images are located under the `inline-images` folder, under the component associated with the image in question.
 
 ## Mixin
-Le mixin utilisé pour générer les images au niveau du css. Il sera ensuite possible de les inclure par `@include` sous le sélecteur voulu.
-
-## Fonctionnement
+The mixin used to generate the images at the css level. It will then be possible to include them by `@include` under the desired selector.
 
 ```scss
 //-- Background image
 @mixin bg-image-mixin ($file, $context, $inline:false, $width:false, $height:false, $color:false) {
-	
+
 	// uri
 	$uri: '';
 	@if $inline {
@@ -47,7 +47,7 @@ Le mixin utilisé pour générer les images au niveau du css. Il sera ensuite po
 	} @else {
 		$uri: url(assets-path($file, $context, 'images'));
 	}
-	
+
 	// high density
 	@if str-index($file, '@2x') {
 		$path: 'components/' + $context + '/assets/' + if($inline, 'inline-', '') + 'images/' + $file;
@@ -65,14 +65,14 @@ Le mixin utilisé pour générer les images au niveau du css. Il sera ensuite po
 	background-image: #{$uri};
 }
 ```
-- `$file` = Le nom du fichier image.
-- `$context` = Le contexte dans lequel se situe l'image.
-- `$inline` = Si l'image est inline ou non.
-- `$width` = Assigner la largeur d'une image @2x.
-- `$height` = Assigner la hauteur d'une image @2x.
-- `$color` = La couleur utilisée pour les svg.
+- `$file` = Name of the file
+- `$context` = The usage context of this image
+- `$inline` = If the image is inline or not
+- `$width` = Assign the width of the image @2x.
+- `$height` =Assign the height of the image @2x.
+- `$color` = the color used in the image for the SVG format
 
-Il est aussi possible d'utiliser `scalable-icon-mixin` pour les icônes et ainsi avoir des styles de bases pour les différentes propriétés de background importantes.
+It is also possible to use `scalable-icon-mixin` for icons and thus have basic styles for the various important background properties.
 
 ```scss
 //-- Scalable icon
@@ -84,8 +84,10 @@ Il est aussi possible d'utiliser `scalable-icon-mixin` pour les icônes et ainsi
 }
 ```
 
-## Comment utiliser
-Pour générer le bon code, vous devez au moins fournir `$file` et `$context`. La variable `$inline` est nécessaire lors de l'utilisation au niveau du `bg-image-mixin`. Pour le mixin `scalable-icon-mixin`, la variable `$inline` est automatiquement ajouté à `true`.
+## How to use
+To be able to generate an image, the `$file` and `$context` are required.
+The `$inline` is required when used with `bg-image-mixin`.
+For the `scalable-icon-mixin`, the `$inline` variable default value is `true`.
 
 ```scss
 // Inline
@@ -95,16 +97,17 @@ Pour générer le bon code, vous devez au moins fournir `$file` et `$context`. L
 // Scalable
 @mixin icon4-image { @include scalable-icon-mixin('icon4.svg', 'foobar'); }
 
-//-- Appel dans le css
+//-- Usage in scss
 .logo {
 	@include logo1-image;
 }
 ```
 
-Pour générer un svg d'une ou plusieurs couleurs, le svg doit absolument corresponde à l'une de ces options.
-1. **Couleur simple**: la couleur passée en paramètre remplacera la couleur `#BA0BAB` du svg.
-2. **Liste**: deux couleurs doivent être passées en paramètre sous ce format `($firstColor, $secondColor)`. Ces couleurs remplaceront les couleurs du svg dans l'ordre `#BA0BAB`, `#C0FFEE`.
-3. **Hash**: À l'aide d'un map auquel la valeur remplacera la key. `(key1: value1, key2: value2, key3: value3)`
+### Colors usage
+To generate an svg of one or more colors, the svg must absolutely match one of these options.
+1. **Simple color**: the color passed in parameter will replace the `# BA0BAB` color of the svg.
+2. **Colors list**: two colors must be passed as a parameter in this format `($ firstColor, $ secondColor)`. These colors will replace the colors of the svg in the order `# BA0BAB`,` # C0FFEE`.
+3. **Hash**: Using a map where the value will replace the key. `(key1: value1, key2: value2, key3: value3)`
 
 ```scss
 // Scalable with color
