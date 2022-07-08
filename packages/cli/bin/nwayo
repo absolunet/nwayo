@@ -2,5 +2,5 @@
 'use strict';
 
 (async () => {
-	await require('..')();  // eslint-disable-line global-require
+	await require('..')();  // eslint-disable-line node/global-require
 })();

@@ -3,9 +3,8 @@
 //-------------------------------------
 
 class Paths {
-
 	get root() {
-		return '/nwayo';
+		return "/nwayo";
 	}
 
 	get github() {
@@ -15,8 +14,6 @@ class Paths {
 	get githubSource() {
 		return `${this.github}/blob/production/documentation`;
 	}
-
 }
-
 
 export default new Paths();

@@ -4,7 +4,6 @@
 
 /* eslint-disable strict */
 (() => {
-
 	const ORIGINAL_GLOBAL = global.define;
 	global.define = undefined;
 
@@ -13,5 +12,4 @@
 	//= require vendor/node_modules/@absolunet/pinki/dist/browser
 
 	global.define = ORIGINAL_GLOBAL;
-
 })();

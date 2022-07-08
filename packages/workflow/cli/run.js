@@ -1,15 +1,13 @@
 //--------------------------------------------------------
 //-- Run
 //--------------------------------------------------------
-'use strict';
+"use strict";
 
-const cli  = require('@absolunet/cli');
-const Task = require('../classes/task');
-const util = require('../helpers/util');
-
+const cli = require("@absolunet/cli");
+const Task = require("../classes/task");
+const util = require("../helpers/util");
 
 class RunTask extends Task {
-
 	constructor() {
 		super();
 		this.filename = __filename;
@@ -24,17 +22,13 @@ class RunTask extends Task {
 
 			if (task) {
 				util.runWorkflowTask(task, { bundle });
-
 			} else {
 				cli.showTaskUsage(meowCli);
 			}
-
 		} else {
 			cli.showTaskUsage(meowCli);
 		}
 	}
-
 }
-
 
 module.exports = new RunTask();
