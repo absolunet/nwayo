@@ -24,7 +24,7 @@
     "nwayo": "bin/nwayo"
   },
   "engines": {
-    "node": ">= 12"
+    "node": ">= 14.17.0"
   },
   "main": "index.js",
   "dependencies": {

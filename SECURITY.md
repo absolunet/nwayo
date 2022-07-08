@@ -4,7 +4,7 @@
 
 By default, only the latest version is supported.
 
-If older versions are supported, they will be listed in the [README](readme.md) file of the project.
+If older versions are supported, they will be listed in the [README](README.md) file of the project.
 
 ## Reporting a Vulnerability
 

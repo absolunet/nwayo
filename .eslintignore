@@ -1,0 +1,6 @@
+docs
+packages/grow-project/boilerplate/components/*/scripts/vendor
+ressources/docs-builder/app/helpers/generated
+ressources/docs-builder/assets/*/vendor
+ressources/docs-builder/local-server
+test/fixtures

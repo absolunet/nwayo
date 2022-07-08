@@ -7,3 +7,7 @@ Thumbs.db
 .publish-tarballs
 node_modules
 npm-debug.log
+
+packages/grow-extension/boilerplate/package-lock.json
+packages/grow-project/boilerplate/package-lock.json
+packages/grow-project/boilerplate/vendor/package-lock.json
