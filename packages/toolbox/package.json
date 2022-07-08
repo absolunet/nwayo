@@ -26,11 +26,11 @@
   "browser": "scripts/dependencies-starter.js",
   "peerDependencies": {
     "@absolunet/pinki": "^3.0.0",
-    "imagesloaded": "^4.1.4",
+    "imagesloaded": "^5.0.0",
     "jquery": "^3.6.0"
   },
   "optionalDependencies": {
     "lodash": "^4.17.21",
-    "modernizr": "^3.11.8"
+    "modernizr": "^3.12.0"
   }
 }

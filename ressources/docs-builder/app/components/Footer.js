@@ -4,7 +4,7 @@
 
 import React from 'react';
 
-import env   from '../helpers/env';
+import env   from '../helpers/env'; // eslint-disable-line unicorn/prevent-abbreviations
 import paths from '../helpers/paths';
 
 

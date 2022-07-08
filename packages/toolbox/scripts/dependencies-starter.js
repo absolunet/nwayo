@@ -37,7 +37,7 @@
 	});
 
 	// Vendors
-	let jQueryScoped;
+	let jQueryScoped;  // eslint-disable-line unicorn/prevent-abbreviations
 	switch (nwayoStarterConfig.jQuery.scope) {
 
 		case 'private': jQueryScoped = global.jQuery.noConflict(true); break;

@@ -5,7 +5,7 @@
 
 // const debug = require('gulp-debug');
 const gulp    = require('gulp');
-const env     = require('../helpers/env');
+const env     = require('../helpers/env'); // eslint-disable-line unicorn/prevent-abbreviations
 const flow    = require('../helpers/flow');
 const paths   = require('../helpers/paths');
 const toolbox = require('../helpers/toolbox');
@@ -29,7 +29,6 @@ module.exports = () => {
 				konstan:  util.parseKonstan('local', name, bundle.output)
 			};
 
-			/* eslint-disable function-paren-newline */
 			streams.push(
 				toolbox.vinylStream(paths.filename.konstanLocal, JSON.stringify(data, null, 2))
 					.pipe(toolbox.plumber())
@@ -38,7 +37,6 @@ module.exports = () => {
 						toolbox.log(taskName, `'${bundle.output.konstan}/${paths.filename.konstanLocal}' written`, toolbox.filesize(`${paths.directory.root}/${bundle.output.konstan}/${paths.filename.konstanLocal}`));
 					})
 			);
-			/* eslint-enable function-paren-newline */
 		}
 
 		return toolbox.mergeStreams(streams);

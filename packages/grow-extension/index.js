@@ -11,7 +11,7 @@ const fss     = require('@absolunet/fss');
 const LOCAL     = fss.realpath('.');
 const EXTENSION = `${LOCAL}/my-extension`;
 
-const ROOT        = fss.realpath(`${__dirname}`);
+const ROOT        = fss.realpath(__dirname);
 const BOILERPLATE = `${ROOT}/boilerplate`;
 const PACKAGE     = fss.readJson(`${ROOT}/package.json`);
 
@@ -19,7 +19,7 @@ const echo = console.log;  // eslint-disable-line no-console
 
 const error = (message) => {
 	console.error(chalk.red(`\n  ${figures.cross} ${message}`));  // eslint-disable-line no-console
-	process.exit();  // eslint-disable-line no-process-exit, unicorn/no-process-exit
+	process.exit();  // eslint-disable-line node/no-process-exit, unicorn/no-process-exit
 };
 
 

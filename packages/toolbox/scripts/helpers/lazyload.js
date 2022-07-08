@@ -100,18 +100,20 @@
 
 
 	//-- Public class
-	global.nwayo.helpers.lazyload = class {
+	class Lazyload {
 
 		// Register new types
-		static register(types) {
+		register(types) {
 			_.merge(local.types, types);
 		}
 
-		static repass() {
+		repass() {
 			local.firstPass();
 		}
 
 	};
+
+	global.nwayo.helpers.lazyload = new Lazyload();
 
 
 

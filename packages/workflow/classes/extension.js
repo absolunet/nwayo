@@ -18,18 +18,18 @@ class NwayoExtension {
 		throw new Error('Version must be defined by extension');
 	}
 
-	set options(options) {
-		this._options = options;
-	}
-
 	get options() {
 		return this._options;
+	}
+
+	set options(options) {
+		this._options = options;
 	}
 
 
 
 	// Params kept to show methods signature, on-the-spot require to avoid inclusion loop
-	/* eslint-disable no-unused-vars, global-require */
+	/* eslint-disable no-unused-vars */
 	init({ options }) {
 		this.options = options;
 	}
@@ -43,7 +43,7 @@ class NwayoExtension {
 	}
 
 	createTask(name, task) {
-		const flow = require('../helpers/flow');
+		const flow = require('../helpers/flow'); // eslint-disable-line node/global-require
 
 		flow.createTask(`${this.id}:${name}`, () => {
 			try {
@@ -71,7 +71,7 @@ class NwayoExtension {
 	}
 
 	getGeneratedBanner(name, type) {
-		const util = require('../helpers/util');
+		const util = require('../helpers/util'); // eslint-disable-line node/global-require
 
 		return util.getGeneratedBanner(name, type, this);
 	}

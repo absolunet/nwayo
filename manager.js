@@ -3,6 +3,8 @@
 //--------------------------------------------------------
 'use strict';
 
+/* eslint-disable node/no-unpublished-require */
+
 const fsp     = require('@absolunet/fsp');
 const manager = require('@absolunet/manager');
 
@@ -76,7 +78,7 @@ manager.multiScriptsRunner({
 				await fsp.writeJson(BOILER_VENDOR_PACKAGE, boilerVendor, { space: 2 });
 
 				terminal.print(`Version bump: grow-project boilerplate 'SAMPLE-HTML/index.html'`).spacer();
-				const boilerIndex = await fsp.readFile(BOILER_INDEX, 'utf-8');
+				const boilerIndex = await fsp.readFile(BOILER_INDEX, 'utf8');
 				await fsp.writeFile(BOILER_INDEX, boilerIndex.replace(/nwayo (v?(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-[\da-z-]+(?:\.[\da-z-]+)*)?(?:\+[\da-z-]+(?:\.[\da-z-]+)*)?)/ug, `nwayo ${manager.version}`));  // eslint-disable-line prefer-named-capture-group
 
 

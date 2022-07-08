@@ -3,6 +3,7 @@
 //--------------------------------------------------------
 'use strict';
 
+/* eslint-disable node/no-unpublished-require */
 const gulp          = require('gulp');
 const cssnano       = require('gulp-cssnano');
 const gulpsass      = require('gulp-dart-sass');
@@ -10,6 +11,7 @@ const uglify        = require('gulp-uglify');
 const MarkdownIt    = require('markdown-it');
 const anchor        = require('markdown-it-anchor');
 const externalLinks = require('markdown-it-external-links');
+const path          = require('path');
 const scandirectory = require('scandirectory');
 const sass          = require('sass');
 const fss           = require('@absolunet/fss');
@@ -18,7 +20,7 @@ const babel         = require('@babel/core');
 
 
 const paths      = {};
-paths.root       = fss.realpath(`${__dirname}/../..`);
+paths.root       = fss.realpath(path.join(__dirname, '..','..'));
 paths.ressources = `${paths.root}/ressources`;
 paths.builder    = `${paths.ressources}/docs-builder`;
 paths.assets     = `${paths.builder}/assets`;
@@ -36,13 +38,13 @@ const isBeingWritten = (string) => {
 	return (/> Being written/u).test(string);
 };
 
-const processNav = (tree, path = '') => {
+const processNav = (tree, section = '') => {
 	const data = {};
 
 	Object.keys(tree).forEach((page) => {
 		const name    = page.replace('.md', '');
 		const content = tree[page];
-		const url     = `${path}/${name}`;
+		const url     = `${section}/${name}`;
 
 		if (!isBeingWritten(content) && !isBeingWritten(content['readme.md'])) {
 			if (typeof content === 'string') {
@@ -134,10 +136,10 @@ scandirectory(`${paths.root}/documentation`, { readFiles: true }, (error, list, 
 			if (file === 'readme.md') {
 				md.set({ html: true });
 				content = content
-					.replace(/\]\(documentation\//ug, `](${ROOT}/`)
-					.replace(/https:\/\/github.com\/absolunet\/nwayo\/raw\/production\/ressources\/images\//ug, `${ROOT}/static/images/`)
-					.replace(/nwayo\.png/ug, `nwayo.svg`)
-					.replace(/\[\/\/\]: # \(Doc\)(?<spaces>[\s\S]*?)\[\/\/\]: # \(\/Doc\)/ug, '')
+					.replaceAll(/\]\(documentation\//ug, `](${ROOT}/`)
+					.replaceAll(/https:\/\/github.com\/absolunet\/nwayo\/raw\/production\/ressources\/images\//ug, `${ROOT}/static/images/`)
+					.replaceAll(/nwayo\.png/ug, `nwayo.svg`)
+					.replaceAll(/\[\/\/\]: # \(Doc\)(?<spaces>[\s\S]*?)\[\/\/\]: # \(\/Doc\)/ug, '')
 				;
 			} else {
 				md.set({ html: false });

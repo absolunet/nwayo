@@ -19,7 +19,7 @@ const fsp          = require('@absolunet/fsp');
 const fss          = require('@absolunet/fss');
 const include      = require('@absolunet/gulp-include');
 const { terminal } = require('@absolunet/terminal');
-const env          = require('../helpers/env');
+const env          = require('../helpers/env'); // eslint-disable-line unicorn/prevent-abbreviations
 const flow         = require('../helpers/flow');
 const paths        = require('../helpers/paths');
 const toolbox      = require('../helpers/toolbox');
@@ -76,13 +76,11 @@ module.exports = () => {
 				konstan:  util.parseKonstan('scripts', name, env.bundles[name].output)
 			};
 
-			/* eslint-disable function-paren-newline */
 			streams.push(
 				toolbox.vinylStream(paths.filename.konstanScripts, `var konstan = ${JSON.stringify(data, null, '\t')};`)
 					.pipe(toolbox.plumber())
 					.pipe(gulp.dest(`${paths.directory.cacheScripts}/${name}`))
 			);
-			/* eslint-enable function-paren-newline */
 		}
 
 		return toolbox.mergeStreams(streams).on('finish', () => {
@@ -184,8 +182,8 @@ module.exports = () => {
 					}
 
 					// Require each file
-					list.forEach((file, i) => {
-						list[i] = `//= require ${file}`;
+					list.forEach((file, index) => {
+						list[index] = `//= require ${file}`;
 					});
 
 					const toMinify    = (bundle.scripts.options.minify && !env.watching) || env.production;
@@ -193,7 +191,6 @@ module.exports = () => {
 					const destination = `${bundle.output.build}/${paths.build.scripts}`;
 					const source      = `${util.getGeneratedBanner(name)} (function(global, undefined) { \n\t${list.join('\n')}\n })(typeof window !== 'undefined' ? window : this);\n`;
 
-					/* eslint-disable function-paren-newline */
 					streams.push(
 						toolbox.vinylStream(filename, source)
 							.pipe(toolbox.plumber())
@@ -215,7 +212,6 @@ module.exports = () => {
 								toolbox.log(taskName, `'${destination}/${filename}' written`, toolbox.filesize(`${paths.directory.root}/${destination}/${filename}`));
 							})
 					);
-					/* eslint-enable function-paren-newline */
 				}
 			}
 

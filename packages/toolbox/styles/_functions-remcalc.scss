@@ -6,6 +6,7 @@
 /// @group @absolunet/nwayo-toolbox
 ////
 
+// stylelint-disable -- Foundation code
 @use 'sass:list';
 @use 'sass:math';
 @use 'sass:meta';
@@ -60,7 +61,7 @@
 /// @param {Number} $base [null] - Base for pixel conversion.
 /// @returns {Number} A number in rems, calculated based on the given value and the base pixel value. rem values are passed through as is.
 ///
-@function ___-zf-to-rem___($value, $base: null) {  // stylelint-disable-line scss/at-function-pattern
+@function ___-zf-to-rem___($value, $base: null) {
 	$unit-warnings: true;
 
 	// Check if the value is a number
@@ -82,7 +83,7 @@
 	}
 
 	// Turn 0rem into 0
-	@if $value == 0rem {  // stylelint-disable-line length-zero-no-unit
+	@if $value == 0rem {
 		$value: 0;
 	}
 

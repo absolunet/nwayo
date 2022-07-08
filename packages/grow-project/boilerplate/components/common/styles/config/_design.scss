@@ -30,7 +30,7 @@
 
 
 //-- Foundation
-// stylelint-disable declaration-property-value-disallowed-list
+// stylelint-disable declaration-property-value-disallowed-list -- Need static values
 $common-column-gutter-size: rem-calc(15);
 $common-column-small-size:  rem-calc(290);
 $common-max-width-size:     rem-calc(konstan-get('dimension.max'));
@@ -79,7 +79,7 @@ $common-text-fat-weight:      $nwayo-bold-weight;
 $common-text-fatter-weight:   $nwayo-extrabold-weight;
 $common-text-fattest-weight:  $nwayo-black-weight;
 
-// stylelint-disable declaration-property-value-disallowed-list
+// stylelint-disable declaration-property-value-disallowed-list -- Need static values
 $common-text-nano-size:     rem-calc(10);
 $common-text-micro-size:    rem-calc(11);
 $common-text-tiny-size:     rem-calc(12);
@@ -159,6 +159,6 @@ $common-animation-transition: konstan-get('transition.animation') * 1ms;
 
 
 //-- Special bp
-// stylelint-disable declaration-property-value-disallowed-list
+// stylelint-disable declaration-property-value-disallowed-list -- Exception for variable
 $common-xsmall-down-media: 'only screen and (max-width: #{rem-calc(konstan-get('dimension.xsmall'))})';
 // stylelint-enable declaration-property-value-disallowed-list

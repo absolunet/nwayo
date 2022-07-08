@@ -12,7 +12,7 @@ const ora          = require('ora');
 const pluralize    = require('pluralize');
 const fss          = require('@absolunet/fss');
 const { terminal } = require('@absolunet/terminal');
-const env          = require('./env');
+const env          = require('./env'); // eslint-disable-line unicorn/prevent-abbreviations
 const paths        = require('./paths');
 const toolbox      = require('./toolbox');
 
@@ -46,7 +46,7 @@ const logStep = (action, scope, name, start) => {
 	const nameStyles    = scope  === TASK ? chalk.cyan : chalk.cyan.underline;
 	const logName       = action === START ? nameStyles(name) : nameStyles.dim(name);
 	const logScopedName = scope  === DEPENDENCIES ? `${logName} ${scope}` : `${scope} ${logName}`;
-	const logTime       = start ? `after ${chalk.magenta(`${(new Date() - start) / 1000}s`)}` : '';
+	const logTime       = start ? `after ${chalk.magenta(`${(Date.now() - start) / 1000}s`)}` : '';
 
 	logType(`${logAction} ${logScopedName} ${logTime}`);
 };
@@ -66,7 +66,7 @@ const logGuard = (action, name, file) => {
 				__.ignoredChanges[name] ? chalk.yellow(`    ⚠ ${pluralize('change', __.ignoredChanges[name], true)} ${__.ignoredChanges[name] === 1 ? 'was' : 'were'} ignored`) : ''
 			}\n`);
 
-		default: return undefined;
+		default: return undefined; // eslint-disable-line unicorn/no-useless-undefined
 
 	}
 };

@@ -19,7 +19,7 @@ const pluralize    = require('pluralize');
 const slash        = require('slash');
 const jsonToScss   = require('@absolunet/json-to-scss');
 const stylelint    = require('@ronilaukkarinen/gulp-stylelint');
-const env          = require('../helpers/env');
+const env          = require('../helpers/env'); // eslint-disable-line unicorn/prevent-abbreviations
 const flow         = require('../helpers/flow');
 const paths        = require('../helpers/paths');
 const toolbox      = require('../helpers/toolbox');
@@ -59,7 +59,7 @@ module.exports = () => {
 							hasErrors = false;
 
 							results.forEach((item) => {
-								if (item.warnings.length !== 0 || item.deprecations.length !== 0 || item.invalidOptionWarnings.length !== 0) {
+								if (item.warnings.length > 0 || item.deprecations.length > 0 || item.invalidOptionWarnings.length > 0) {
 									delete cache.caches.styles[item.source];
 
 									if (!hasErrors) {
@@ -97,12 +97,10 @@ module.exports = () => {
 
 			const konstanJson = JSON.stringify({ konstan: data });
 
-			/* eslint-disable function-paren-newline */
 			streams.push(
 				toolbox.vinylStream(paths.filename.konstanStyles, jsonToScss.convert(konstanJson))
 					.pipe(gulp.dest(`${paths.directory.cacheStyles}/${name}`))
 			);
-			/* eslint-enable function-paren-newline */
 		}
 
 		return toolbox.mergeStreams(streams).on('finish', () => {
@@ -117,7 +115,7 @@ module.exports = () => {
 		'styles-compile',
 
 		({ taskName }) => {
-			const sassFunctions = require(paths.config.sassFunctions);  // eslint-disable-line global-require
+			const sassFunctions = require(paths.config.sassFunctions);  // eslint-disable-line node/global-require
 
 			const streams = [];
 
@@ -132,8 +130,8 @@ module.exports = () => {
 					list.unshift(slash(`${paths.directory.cacheStyles}/${name}/${paths.filename.konstan}`));
 
 					// Require each file
-					list.forEach((file, i) => {
-						list[i] = `@import '${file}';`;
+					list.forEach((file, index) => {
+						list[index] = `@import '${file}';`;
 					});
 
 					const toMinify      = (bundle.styles.options.minify && !env.watching) || env.production;
@@ -148,7 +146,6 @@ module.exports = () => {
 						postCssPlugins.push(cssnano({ autoprefixer: false, discardUnused: false, mergeIdents: false, reduceIdents: false, zindex: false }));
 					}
 
-					/* eslint-disable function-paren-newline */
 					streams.push(
 						toolbox.vinylStream(filename, source)
 							.pipe(toolbox.plumber())
@@ -177,7 +174,6 @@ module.exports = () => {
 								toolbox.log(taskName, `'${destination}/${filenameBuild}' written`, toolbox.filesize(`${paths.directory.root}/${destination}/${filenameBuild}`));
 							})
 					);
-					/* eslint-enable function-paren-newline */
 				}
 			}
 

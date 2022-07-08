@@ -31,7 +31,7 @@
     "@absolunet/fss": "^1.7.0",
     "@absolunet/terminal": "^3.2.0",
     "boxen": "^5.1.2",
-    "chalk": "^3.0.0",
+    "chalk": "^4.1.2",
     "cross-spawn": "^7.0.3",
     "minimist": "^1.2.6",
     "open": "^8.4.0",

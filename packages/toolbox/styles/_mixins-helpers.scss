@@ -54,11 +54,11 @@
 	position: absolute;
 	overflow: hidden;
 	clip: rect(0, 0, 0, 0);
-	width: rem-calc(1);
-	height: rem-calc(1);
+	width: rem-calc(1);  // stylelint-disable-line declaration-property-value-disallowed-list -- Has to be static
+	height: rem-calc(1);  // stylelint-disable-line declaration-property-value-disallowed-list -- Has to be static
 	padding: 0;
 	border: 0;
-	margin: rem-calc(-1);
+	margin: rem-calc(-1);  // stylelint-disable-line declaration-property-value-disallowed-list -- Has to be static
 }
 
 /// Make an element scalable within a ratio.
@@ -89,7 +89,7 @@
 /// @outputs A container which vertically centers a subelement accessible via $subselector.
 ///
 @mixin nwayo-valign-parent-styles($subselector:'.valign-child') {
-	font-size: 0;  // stylelint-disable-line scale-unlimited/declaration-strict-value
+	font-size: 0;  // stylelint-disable-line scale-unlimited/declaration-strict-value -- Hack
 
 	&::before {
 		content: '';
@@ -240,7 +240,6 @@
 	@if $base-style {
 		padding-left: 0;
 	}
-
 	padding-right: $total-spacing;
 
 	@if $base-style {
@@ -253,7 +252,6 @@
 			position: relative;
 			float: left;
 		}
-
 		width: math.percentage(math.div(1, $nb-column));
 
 		// Reset styles for media query usage

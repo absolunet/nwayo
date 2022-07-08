@@ -3,7 +3,7 @@
 //--------------------------------------------------------
 'use strict';
 
-/* eslint-disable global-require */
+/* eslint-disable node/global-require */
 class NwayoClasses {
 
 	get extension() { return require('./classes/extension'); }

@@ -4,11 +4,12 @@
 'use strict';
 
 // We disable global require rule to optimize the speed of the CLI for unrelated workflow stuff
-/* eslint-disable global-require */
+/* eslint-disable node/global-require */
 
 const chalk = require('chalk');
 const spawn = require('cross-spawn');
 const fs    = require('fs');
+const path  = require('path');
 const util  = require('./helpers/util');
 
 const PACKAGE  = 'package.json';
@@ -30,7 +31,7 @@ module.exports = async () => {
 
 	//-- Trap `--completion`
 	} else if (util.flag('completion')) {
-		util.echo(fs.readFileSync(`${__dirname}/completion/bash`, 'utf8'));
+		util.echo(fs.readFileSync(path.join(__dirname, 'completion', 'bash'), 'utf8'));
 		util.exit();
 
 	//-- Trap `--pronounce`

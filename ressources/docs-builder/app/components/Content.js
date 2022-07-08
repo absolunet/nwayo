@@ -64,7 +64,7 @@ class Content extends React.Component {
 				({ sourceFile, title } = contentData(tree[ERROR404], true));
 				isError = true;
 			}
-		} catch (error) {
+		} catch {
 			({ sourceFile, title } = contentData(tree[ERROR404], true));
 			isError = true;
 		}
