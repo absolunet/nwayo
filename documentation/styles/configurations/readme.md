@@ -1,6 +1,7 @@
-> [Work in progress]
-
 # Configurations
+
+#### ⚠️ Work in progress ⚠️
+####
 
 > It is possible to set including design variables, mixins and function inside a component.
 > Those configurations can be imported to another component and or bundle to make sure that the styling and

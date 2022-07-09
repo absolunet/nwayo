@@ -1,6 +1,7 @@
-> [Work in progress]
-
 # Bundles
+
+#### ⚠️ Work in progress ⚠️
+####
 
 > A bundle is the result of is one or many collections put together to form a specific groupment of ressources (assets, images, scripts and styles) with a common purpose.
 

@@ -1,6 +1,7 @@
-> [Work in progress]
-
 # Conventions and useful tips
+
+#### ⚠️ Work in progress ⚠️
+####
 
 ## Conventions
 - Use [StyleLint](component/stylelint.md)

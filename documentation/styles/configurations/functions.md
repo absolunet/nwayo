@@ -1,6 +1,8 @@
-> [Work in progress]
-
 # [Functions](https://sass-lang.com/documentation/at-rules/function)
+
+#### ⚠️ Work in progress ⚠️
+####
+
 ## Content
 The difference between functions and mixins is that the mixins generate an output (mostly styling directives) and
 functions generates values

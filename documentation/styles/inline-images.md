@@ -1,6 +1,8 @@
-> [Work in progress]
-
 # Inline image
+
+#### ⚠️ Work in progress ⚠️
+####
+
 The main difference between `images inline` and `images` is that `image inline` will embed the content of the image directly into the stylesheet, eliminating another HTTP request.
 The images are located under the `inline-images` folder, under the component associated with the image in question.
 

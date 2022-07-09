@@ -1,6 +1,8 @@
-> [Work in progress]
-
 # Components
+
+#### ⚠️ Work in progress ⚠️
+####
+
 > Nwayo is base on a system of components what are enabled or disabled depending on the usages
 
 ## Available Components

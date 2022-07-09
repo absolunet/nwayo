@@ -16,9 +16,19 @@ module.exports = {
 				loader: "babel-loader",
 				options: { presets: ["@babel/env", "@babel/preset-react"] },
 			},
+			{
+				test: /\.js$/u,
+				include: /node_modules\/react-dom/u,
+				use: ["react-hot-loader/webpack"],
+			},
 		],
 	},
-	resolve: { extensions: ["*", ".js", ".jsx"] },
+	resolve: {
+		extensions: ["*", ".js", ".jsx"],
+		alias: {
+			"react-dom": "@hot-loader/react-dom",
+		},
+	},
 	output: {
 		path: path.resolve(__dirname, "../../docs/static/scripts"),
 		publicPath: "/nwayo/static/scripts",

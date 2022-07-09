@@ -1,6 +1,8 @@
-> [Work in progress]
-
 # CLI - Assets
+
+#### ⚠️ Work in progress ⚠️
+####
+
 ## assets-fonts
 ```shell
 $ nwayo run assets-fonts

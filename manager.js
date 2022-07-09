@@ -11,8 +11,10 @@ const manager = require("@absolunet/manager");
 
 const ROOT = ".";
 const PACKAGES = `${ROOT}/packages`;
+const CLI_BINARY = `${PACKAGES}/cli/bin/nwayo`;
 const BOILER = `${PACKAGES}/grow-project/boilerplate`;
 const EXTENSION_BOILER = `${PACKAGES}/grow-extension/boilerplate`;
+const TOOLBOX = `${PACKAGES}/toolbox`;
 const WORKFLOW = `${PACKAGES}/workflow`;
 const DOCUMENTATION_BUILDER = `${ROOT}/ressources/docs-builder`;
 
@@ -39,19 +41,29 @@ manager.multiScriptsRunner({
 				await terminal.runPromise(`cd ${BOILER}; npm install ${workflowPackage} --save=false`);
 				await fsp.remove(workflowPackage);
 
-				// Install grow-project boilerplate vendors
-				await manager.installPackage(BOILER_VENDOR);
+				// Install grow-project boilerplate toolbox from current toolbox
+				terminal.print("Install static current version of toolbox to grow-project boilerplate").spacer();
 
-				terminal.print("Symlink grow-project boilerplate vendors toolbox").spacer();
-				await fsp.remove(BOILER_VENDOR_TOOLBOX);
-				await fsp.ensureDir(`${BOILER_VENDOR_TOOLBOX}/..`);
-				await fsp.symlink("../../../../../toolbox", BOILER_VENDOR_TOOLBOX);
+				await terminal.runPromise(`npm pack ${TOOLBOX} --pack-destination=${ROOT}`);
+				const [toolboxPackage] = await fsp.scandir(ROOT, "file", {
+					fullPath: true,
+					pattern: "absolunet-nwayo-toolbox-*.tgz",
+				});
+
+				terminal.print("npm install").spacer();
+				await terminal.runPromise(`cd ${BOILER_VENDOR}; npm install ${toolboxPackage} --save=false`);
+				await fsp.remove(toolboxPackage);
+
+				await manager.installPackage(BOILER_VENDOR);
 
 				// Install grow-extension boilerplate
 				await manager.installPackage(EXTENSION_BOILER);
 
 				// Install documentation builder
 				await manager.installPackage(DOCUMENTATION_BUILDER);
+
+				// Make sure CLI binary is executable
+				await terminal.runPromise(`chmod +x ${CLI_BINARY}`);
 			},
 		},
 

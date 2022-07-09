@@ -1,6 +1,8 @@
-> [Work in progress]
-
 # Stylelint
+
+#### ⚠️ Work in progress ⚠️
+####
+
 > [For more details as how to use Stylelint, please consult its official documentation](https://stylelint.io/).
 
 

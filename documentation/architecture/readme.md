@@ -1,6 +1,7 @@
-> [Work in progress]
-
 # Architecture
+
+#### ⚠️ Work in progress ⚠️
+####
 
 ![Architecture](../../ressources/images/architecture.png)
 

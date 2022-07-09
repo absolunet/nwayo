@@ -1,6 +1,7 @@
-> [Work in progress]
-
 # [Design](https://sass-lang.com/documentation/variables)
+
+#### ⚠️ Work in progress ⚠️
+####
 
 ## Content
 In this configuration file, we set up a variable that can be reused in this component. Every property that is reused or

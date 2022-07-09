@@ -1,6 +1,8 @@
-> [Work in progress]
-
 # Fonts
+
+#### ⚠️ Work in progress ⚠️
+####
+
 The fonts are located under the `fonts` folder, under the component associated with the font in question.
 
 [When declaring fonts, use the nwayo variables for the font-weight.](../../packages/toolbox/styles/_variables.scss).

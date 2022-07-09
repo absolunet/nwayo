@@ -1,6 +1,8 @@
-> [Work in progress]
-
 # Images
+
+#### ⚠️ Work in progress ⚠️
+####
+
 The images are located in the `images` directory, under its component.
 
 ## Mixin
