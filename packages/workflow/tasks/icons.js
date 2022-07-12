@@ -1,47 +1,42 @@
 //-------------------------------------
 //-- Icons
 //-------------------------------------
-'use strict';
+"use strict";
 
 // const debug = require('gulp-debug');
-const gulp     = require('gulp');
-const gulpif   = require('gulp-if');
-const imagemin = require('gulp-imagemin');
-const rename   = require('gulp-rename');
-const flow     = require('../helpers/flow');
-const paths    = require('../helpers/paths');
-const toolbox  = require('../helpers/toolbox');
-const util     = require('../helpers/util');
-
+const gulp = require("gulp");
+const gulpif = require("gulp-if");
+const imagemin = require("gulp-imagemin");
+const rename = require("gulp-rename");
+const flow = require("../helpers/flow");
+const paths = require("../helpers/paths");
+const toolbox = require("../helpers/toolbox");
+const util = require("../helpers/util");
 
 module.exports = () => {
 	// https://github.com/gleero/grunt-favicons
 	// https://github.com/audreyr/favicon-cheat-sheet
 
-
 	//-- Favicon.ico
 	// https://mathiasbynens.be/notes/rel-shortcut-icon
-	flow.createTask('icons-favicon', () => {
+	flow.createTask("icons-favicon", () => {
 		const sizes = [
-			16,  // IE9 address bar, Pinned site Jump List/Toolbar/Overlay
-			24,  // IE9 Pinned site browser UI
-			32,  // New tab page in IE, taskbar button in Win 7+, Safari Read Later sidebar
-			48,  // Windows site icons
-			64   // Windows site icons, Safari Reading List sidebar in HiDPI/Retina
+			16, // IE9 address bar, Pinned site Jump List/Toolbar/Overlay
+			24, // IE9 Pinned site browser UI
+			32, // New tab page in IE, taskbar button in Win 7+, Safari Read Later sidebar
+			48, // Windows site icons
+			64, // Windows site icons, Safari Reading List sidebar in HiDPI/Retina
 		];
 
 		return util.assetsProcess(paths.files.iconsFavicon, (stream) => {
-
 			return stream
 				.pipe(toolbox.plumber())
 
 				.pipe(toolbox.ico(sizes))
 
-				.pipe(rename(util.assetsRename()))
-			;
+				.pipe(rename(util.assetsRename()));
 		});
 	});
-
 
 	//-- Share icons
 	// https://mathiasbynens.be/notes/touch-icons
@@ -50,39 +45,41 @@ module.exports = () => {
 	// http://operacoast.com/developer
 
 	//-- Touch
-	flow.createTask('icons-touch', () => {
+	flow.createTask("icons-touch", () => {
 		const touchSizes = [
-			57,   // For non-Retina (@1× display) iPhone, iPod Touch, and Android 2.1+ devices
-			72,   // For the iPad mini and the first- and second-generation iPad (@1× display) on iOS ≤ 6
-			76,   // For the iPad mini and the first- and second-generation iPad (@1× display) on iOS ≥ 7
-			114,  // For iPhone with @2× display running iOS ≤ 6:
-			120,  // For iPhone with @2× display running iOS ≥ 7
-			144,  // For iPad with @2× display running iOS ≤ 6
-			152,  // For iPad with @2× display running iOS ≤ 7
-			167,  // For iPad Pro with @2× display running iOS ≤ 9
-			180,  // For iPhone 6 Plus with @3× display
-			512   // General share icon
+			57, // For non-Retina (@1× display) iPhone, iPod Touch, and Android 2.1+ devices
+			72, // For the iPad mini and the first- and second-generation iPad (@1× display) on iOS ≤ 6
+			76, // For the iPad mini and the first- and second-generation iPad (@1× display) on iOS ≥ 7
+			114, // For iPhone with @2× display running iOS ≤ 6:
+			120, // For iPhone with @2× display running iOS ≥ 7
+			144, // For iPad with @2× display running iOS ≤ 6
+			152, // For iPad with @2× display running iOS ≤ 7
+			167, // For iPad Pro with @2× display running iOS ≤ 9
+			180, // For iPhone 6 Plus with @3× display
+			512, // General share icon
 		];
 
 		const streams = [];
 
 		// Foreach each sizes
 		for (const size of touchSizes) {
-
 			streams.push(
 				util.assetsProcess(paths.files.iconsTouch, (stream) => {
-
 					return stream
 						.pipe(toolbox.plumber())
 
-						.pipe(gulpif(size !== 512, toolbox.jimp((Jimp, image) => {
-							image.resize(size, size, Jimp.RESIZE_BICUBIC);
-						})))
+						.pipe(
+							gulpif(
+								size !== 512,
+								toolbox.jimp((Jimp, image) => {
+									image.resize(size, size, Jimp.RESIZE_BICUBIC);
+								})
+							)
+						)
 
 						.pipe(rename(util.assetsRename(`touch-${size}`)))
 
-						.pipe(imagemin())
-					;
+						.pipe(imagemin());
 				})
 			);
 		}
@@ -90,37 +87,38 @@ module.exports = () => {
 		return toolbox.mergeStreams(streams);
 	});
 
-
 	//-- Icons
-	flow.createTask('icons-icon', () => {
+	flow.createTask("icons-icon", () => {
 		const iconSizes = [
-			64,   // Windows site icons, Safari Reading List, Modern browsers
-			96,   // Google TV Favicon
-			192,  // For Chrome for Android
-			195,  // Opera Speed Dial icon
-			196,  // For Chrome for Android home screen icon
-			228   // For Coast for iOS
+			64, // Windows site icons, Safari Reading List, Modern browsers
+			96, // Google TV Favicon
+			192, // For Chrome for Android
+			195, // Opera Speed Dial icon
+			196, // For Chrome for Android home screen icon
+			228, // For Coast for iOS
 		];
 
 		const streams = [];
 
 		// Foreach each sizes
 		for (const size of iconSizes) {
-
 			streams.push(
 				util.assetsProcess(paths.files.iconsIcon, (stream) => {
-
 					return stream
 						.pipe(toolbox.plumber())
 
-						.pipe(gulpif(size !== 256, toolbox.jimp((Jimp, image) => {
-							image.resize(size, size, Jimp.RESIZE_BICUBIC);
-						})))
+						.pipe(
+							gulpif(
+								size !== 256,
+								toolbox.jimp((Jimp, image) => {
+									image.resize(size, size, Jimp.RESIZE_BICUBIC);
+								})
+							)
+						)
 
 						.pipe(rename(util.assetsRename(`icon-${size}`)))
 
-						.pipe(imagemin())
-					;
+						.pipe(imagemin());
 				})
 			);
 		}
@@ -128,28 +126,25 @@ module.exports = () => {
 		return toolbox.mergeStreams(streams);
 	});
 
-
 	//-- Large
-	flow.createTask('icons-large', () => {
+	flow.createTask("icons-large", () => {
 		return util.assetsProcess(paths.files.iconsLarge, (stream) => {
 			return stream
 				.pipe(toolbox.plumber())
-				.pipe(rename(util.assetsRename('large')))
-				.pipe(imagemin())
-			;
+				.pipe(rename(util.assetsRename("large")))
+				.pipe(imagemin());
 		});
 	});
-
 
 	//-- Windows metro tile
 	// http://msdn.microsoft.com/en-us/library/ie/dn455106(v=vs.85).aspx
 	// http://msdn.microsoft.com/en-us/library/ie/bg183312(v=vs.85).aspx
-	flow.createTask('icons-tile', () => {
+	flow.createTask("icons-tile", () => {
 		const sizes = {
-			small:  [128, 128],  // Officially:  70 x  70 | Recommended: 128 x 128
-			medium: [270, 270],  // Officially: 150 x 150 | Recommended: 270 x 270
-			large:  [558, 558],  // Officially: 310 x 310 | Recommended: 558 x 558
-			wide:   [558, 270]   // Officially: 310 x 150 | Recommended: 558 x 270
+			small: [128, 128], // Officially:  70 x  70 | Recommended: 128 x 128
+			medium: [270, 270], // Officially: 150 x 150 | Recommended: 270 x 270
+			large: [558, 558], // Officially: 310 x 310 | Recommended: 558 x 558
+			wide: [558, 270], // Officially: 310 x 150 | Recommended: 558 x 270
 		};
 
 		const streams = [];
@@ -160,18 +155,18 @@ module.exports = () => {
 
 			streams.push(
 				util.assetsProcess(paths.files.iconsTile, (stream) => {
-
 					return stream
 						.pipe(toolbox.plumber())
 
-						.pipe(toolbox.jimp((Jimp, image) => {
-							image.contain(size[0], size[1], Jimp.RESIZE_BICUBIC);
-						}))
+						.pipe(
+							toolbox.jimp((Jimp, image) => {
+								image.contain(size[0], size[1], Jimp.RESIZE_BICUBIC);
+							})
+						)
 
 						.pipe(rename(util.assetsRename(`tile-${name}`)))
 
-						.pipe(imagemin())
-					;
+						.pipe(imagemin());
 				})
 			);
 		}
@@ -179,16 +174,14 @@ module.exports = () => {
 		return toolbox.mergeStreams(streams);
 	});
 
-
-
-
-
-
 	//-- Rebuild
-	flow.createSequence('icons', gulp.parallel('icons-favicon', 'icons-touch', 'icons-icon', 'icons-large', 'icons-tile'), {
-		cleanBundle: ({ bundle }) => {
-			return [`${paths.directory.root}/${bundle.output.build}/${paths.build.icons}`];
+	flow.createSequence(
+		"icons",
+		gulp.parallel("icons-favicon", "icons-touch", "icons-icon", "icons-large", "icons-tile"),
+		{
+			cleanBundle: ({ bundle }) => {
+				return [`${paths.directory.root}/${bundle.output.build}/${paths.build.icons}`];
+			},
 		}
-	});
-
+	);
 };

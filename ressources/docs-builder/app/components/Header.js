@@ -2,18 +2,15 @@
 //-- Header
 //-------------------------------------
 
-import React    from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import { version } from '../helpers/generated';
-import paths       from '../helpers/paths';
-
+import { version } from "../helpers/generated";
+import paths from "../helpers/paths";
 
 class Header extends React.PureComponent {
-
 	render() {
 		return (
-
 			<header>
 				<p className="nwayo">
 					<Link to="/">
@@ -22,13 +19,12 @@ class Header extends React.PureComponent {
 					</Link>
 					<span className="version">{version}</span>
 				</p>
-				<a href={paths.github} className="github" rel="external">View on GitHub</a>
+				<a href={paths.github} className="github" rel="external">
+					View on GitHub
+				</a>
 			</header>
-
 		);
 	}
-
 }
-
 
 export default Header;

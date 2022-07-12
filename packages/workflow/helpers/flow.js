@@ -1,131 +1,120 @@
 //-------------------------------------
 //-- Flow
 //-------------------------------------
-'use strict';
+"use strict";
 
-const chalk        = require('chalk');
-const log          = require('fancy-log');
-const globAll      = require('glob-all');
-const gulp         = require('gulp');
-const emoji        = require('node-emoji');
-const ora          = require('ora');
-const pluralize    = require('pluralize');
-const fss          = require('@absolunet/fss');
-const { terminal } = require('@absolunet/terminal');
-const env          = require('./env'); // eslint-disable-line unicorn/prevent-abbreviations
-const paths        = require('./paths');
-const toolbox      = require('./toolbox');
-
+const chalk = require("chalk");
+const log = require("fancy-log");
+const globAll = require("glob-all");
+const gulp = require("gulp");
+const emoji = require("node-emoji");
+const ora = require("ora");
+const pluralize = require("pluralize");
+const fss = require("@absolunet/fss");
+const { terminal } = require("@absolunet/terminal");
+const env = require("./env"); // eslint-disable-line unicorn/prevent-abbreviations
+const paths = require("./paths");
+const toolbox = require("./toolbox");
 
 const __ = {
-	standingSpinner: false,  // Recceing spinner
-	totalGuards:     0,      // Total of called guards
-	activeGuards:    {},     // Registry of guards that are currently running
-	ignoredChanges:  {},     // Registry of changes that were made during a watched task
-	cascadeSkip:     false,  // In watch mode, is currently skipping tasks because of one failed task ?
-	watchSkip:       {}      // In watch mode, skip these tasks
+	standingSpinner: false, // Recceing spinner
+	totalGuards: 0, // Total of called guards
+	activeGuards: {}, // Registry of guards that are currently running
+	ignoredChanges: {}, // Registry of changes that were made during a watched task
+	cascadeSkip: false, // In watch mode, is currently skipping tasks because of one failed task ?
+	watchSkip: {}, // In watch mode, skip these tasks
 };
 
-
-
-
-
-
-const START        = 'Starting';
-const END          = 'Finished';
-const HALT         = 'Halting';
-const ALERT        = 'Alerted';
-const TASK         = 'task';
-const SEQUENCE     = 'sequence';
-const DEPENDENCIES = 'dependencies';
-
+const START = "Starting";
+const END = "Finished";
+const HALT = "Halting";
+const ALERT = "Alerted";
+const TASK = "task";
+const SEQUENCE = "sequence";
+const DEPENDENCIES = "dependencies";
 
 const logStep = (action, scope, name, start) => {
-	const logType       = action === HALT  ? log : log.warn;
-	const logAction     = action === HALT  ? chalk.yellow(action) : action;
-	const nameStyles    = scope  === TASK ? chalk.cyan : chalk.cyan.underline;
-	const logName       = action === START ? nameStyles(name) : nameStyles.dim(name);
-	const logScopedName = scope  === DEPENDENCIES ? `${logName} ${scope}` : `${scope} ${logName}`;
-	const logTime       = start ? `after ${chalk.magenta(`${(Date.now() - start) / 1000}s`)}` : '';
+	const logType = action === HALT ? log : log.warn;
+	const logAction = action === HALT ? chalk.yellow(action) : action;
+	const nameStyles = scope === TASK ? chalk.cyan : chalk.cyan.underline;
+	const logName = action === START ? nameStyles(name) : nameStyles.dim(name);
+	const logScopedName = scope === DEPENDENCIES ? `${logName} ${scope}` : `${scope} ${logName}`;
+	const logTime = start ? `after ${chalk.magenta(`${(Date.now() - start) / 1000}s`)}` : "";
 
 	logType(`${logAction} ${logScopedName} ${logTime}`);
 };
 
-
 const logGuard = (action, name, file) => {
 	switch (action) {
-
 		case START:
-			return `${emoji.get('guardsman')}  Guard n°${__.totalGuards + 1} standing guard...`;
+			return `${emoji.get("guardsman")}  Guard n°${__.totalGuards + 1} standing guard...`;
 
 		case ALERT:
-			return terminal.echo(`${emoji.get('mega')}  Guard n°${__.totalGuards} alerted by ${chalk.magenta(file.split(`${paths.directory.root}/`)[1])} calling ${chalk.cyan(name)}`);
+			return terminal.echo(
+				`${emoji.get("mega")}  Guard n°${__.totalGuards} alerted by ${chalk.magenta(
+					file.split(`${paths.directory.root}/`)[1]
+				)} calling ${chalk.cyan(name)}`
+			);
 
 		case END:
-			return terminal.echo(`${emoji.get('zzz')}  Guard n°${__.activeGuards[name]} duty is completed ${chalk.cyan.dim(`(${name})`)}${
-				__.ignoredChanges[name] ? chalk.yellow(`    ⚠ ${pluralize('change', __.ignoredChanges[name], true)} ${__.ignoredChanges[name] === 1 ? 'was' : 'were'} ignored`) : ''
-			}\n`);
+			return terminal.echo(
+				`${emoji.get("zzz")}  Guard n°${__.activeGuards[name]} duty is completed ${chalk.cyan.dim(`(${name})`)}${
+					__.ignoredChanges[name]
+						? chalk.yellow(
+								`    ⚠ ${pluralize("change", __.ignoredChanges[name], true)} ${
+									__.ignoredChanges[name] === 1 ? "was" : "were"
+								} ignored`
+						  )
+						: ""
+				}\n`
+			);
 
-		default: return undefined; // eslint-disable-line unicorn/no-useless-undefined
-
+		default:
+			return undefined; // eslint-disable-line unicorn/no-useless-undefined
 	}
 };
-
-
-
-
-
 
 const isSkipping = (name) => {
 	return __.cascadeSkip || __.watchSkip[name];
 };
 
-
 const runTask = ({ name, task, start }) => {
-	return task({ taskName: name })
+	return (
+		task({ taskName: name })
+			// Log task as completed
+			.on("finish", () => {
+				if (!__.cascadeSkip) {
+					logStep(END, TASK, name, start);
+				} else {
+					logStep(HALT, TASK, name);
+				}
+			})
 
-		// Log task as completed
-		.on('finish', () => {
-			if (!__.cascadeSkip) {
-				logStep(END, TASK, name, start);
-			} else {
-				logStep(HALT, TASK, name);
-			}
-		})
+			// Error
+			.on("error", function () {
+				// In watch mode, cascade skip all pending tasks
+				if (env.watching) {
+					__.cascadeSkip = true;
 
-		// Error
-		.on('error', function() {
+					// In run mode, rage quit  (╯°□°）╯︵ ┻━┻
+				} else {
+					terminal.exit();
+				}
 
-			// In watch mode, cascade skip all pending tasks
-			if (env.watching) {
-				__.cascadeSkip = true;
+				// Close stream
+				if (name === "scripts-lint") {
+					this.emit("finish");
+				}
 
-			// In run mode, rage quit  (╯°□°）╯︵ ┻━┻
-			} else {
-				terminal.exit();
-			}
-
-			// Close stream
-			if (name === 'scripts-lint') {
-				this.emit('finish');
-			}
-
-			this.emit('end');
-		})
-	;
+				this.emit("end");
+			})
+	);
 };
 
-
-
-
-
-
 class Flow {
-
 	//-- Create gulp task
 	createTask(name, task, dependencies) {
 		gulp.task(name, (callback) => {
-
 			// Run task if not skipping tasks
 			if (!isSkipping(name)) {
 				const start = new Date();
@@ -135,15 +124,13 @@ class Flow {
 					logStep(START, DEPENDENCIES, name);
 
 					return gulp.series(dependencies, () => {
-
 						// Run task if not skipping
 						if (!isSkipping()) {
 							logStep(END, DEPENDENCIES, name);
 							logStep(START, TASK, name);
 
 							// Then run task
-							return runTask({ name, task, start }).on('finish', () => {
-
+							return runTask({ name, task, start }).on("finish", () => {
 								// Close stream
 								return callback ? callback() : undefined;
 							});
@@ -170,7 +157,6 @@ class Flow {
 		});
 	}
 
-
 	//-- Create tasks sequence
 	createSequence(name, sequence, { cleanPaths = [], cleanBundle } = {}) {
 		gulp.task(name, (callback) => {
@@ -194,7 +180,6 @@ class Flow {
 
 			// Run sequence
 			gulp.series(sequence, () => {
-
 				// Log sequence as completed
 				if (!__.cascadeSkip) {
 					logStep(END, SEQUENCE, name, start);
@@ -208,7 +193,6 @@ class Flow {
 		});
 	}
 
-
 	//-- Create watch tasks sequence
 	watchSequence(name, patterns, sequence) {
 		__.activeGuards[name] = 0;
@@ -217,41 +201,45 @@ class Flow {
 		// Can't trust chokidar to do globbing
 		const files = globAll.sync(patterns);
 
-		return gulp.watch(files, { queue: false }, gulp.series(sequence, (callback) => {
+		return (
+			gulp
+				.watch(
+					files,
+					{ queue: false },
+					gulp.series(sequence, (callback) => {
+						// Log watcher as completed
+						logGuard(END, name);
+						__.activeGuards[name] = 0;
+						__.ignoredChanges[name] = 0;
 
-			// Log watcher as completed
-			logGuard(END, name);
-			__.activeGuards[name] = 0;
-			__.ignoredChanges[name] = 0;
+						// When there is no more running watchers
+						let anyGuardLeft = false;
+						Object.keys(__.activeGuards).forEach((key) => {
+							if (__.activeGuards[key]) {
+								anyGuardLeft = true;
+							}
+						});
 
-			// When there is no more running watchers
-			let anyGuardLeft = false;
-			Object.keys(__.activeGuards).forEach((key) => {
-				if (__.activeGuards[key]) {
-					anyGuardLeft = true;
-				}
-			});
+						if (!anyGuardLeft) {
+							this.startWatchSpinner();
+						}
 
-			if (!anyGuardLeft) {
-				this.startWatchSpinner();
-			}
+						callback();
+					})
+				)
 
-			callback();
-		}))
-
-			// When watcher triggered
-			.on('all', (action, triggeredPath) => {
-				if (__.activeGuards[name]) {
-					++__.ignoredChanges[name];
-				} else {
-					__.activeGuards[name] = ++__.totalGuards;
-					__.standingSpinner.stop();
-					logGuard(ALERT, name, triggeredPath);
-				}
-			})
-		;
+				// When watcher triggered
+				.on("all", (action, triggeredPath) => {
+					if (__.activeGuards[name]) {
+						++__.ignoredChanges[name];
+					} else {
+						__.activeGuards[name] = ++__.totalGuards;
+						__.standingSpinner.stop();
+						logGuard(ALERT, name, triggeredPath);
+					}
+				})
+		);
 	}
-
 
 	//-- Start watch spinner
 	startWatchSpinner() {
@@ -259,22 +247,19 @@ class Flow {
 
 		terminal.spacer();
 		__.standingSpinner = ora({
-			text:    logGuard(START),
+			text: logGuard(START),
 			spinner: {
 				interval: 250,
-				frames: ['●', '○']
+				frames: ["●", "○"],
 			},
-			color:   'green'
+			color: "green",
 		}).start();
 	}
-
 
 	//-- Add a task to skip
 	skipOnWatch(task) {
 		__.watchSkip[task] = true;
 	}
-
 }
-
 
 module.exports = new Flow();

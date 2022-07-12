@@ -20,15 +20,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - SCSS mixin `nwayo-column-list-styles`: Add parameter `$subselector`
 - SCSS variable `$nwayo-social-colors`: Add `messenger`, `whatsapp`, `snapchat`, `tiktok`
 - SCSS variable `$nwayo-extrablack-weight`: Add variable
+- Add fixer maintenance scripts
 
 ### Changed
+- Remove support for Node.js 12.x
 - SCSS function `nwayo-breakpoint-media`: Parameter name change from `$bp` → `$breakpoint`
 - SCSS function `nwayo-str-replace`: Parameter name change from `$string` → `$subject`
 - SCSS function `nwayo-color-replace`: Parameter names change from `$string` → `$subject`, `$source` → `$search`, `$target` → `$replace`
 - SCSS function `nwayo-list-contains`: Parameter name change from `$var` → `$value`
 - SCSS mixin `nwayo-scalable-icon-colored-states-styles`: Parameter name change from `$name` → `$file`
 - SCSS mixin `nwayo-scaling-block-styles`: Parameter names change from `$w` → `$width`, `$h` → `$height`
-- Remove support for Node.js 12.x
+- Prettierfy codebase
 - Maintenance updates
 
 ### Removed

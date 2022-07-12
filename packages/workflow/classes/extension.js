@@ -1,21 +1,19 @@
 //--------------------------------------------------------
 //-- Extension
 //--------------------------------------------------------
-'use strict';
+"use strict";
 
-const { terminal } = require('@absolunet/terminal');
-const paths        = require('../helpers/paths');
-const toolbox      = require('../helpers/toolbox');
-
+const { terminal } = require("@absolunet/terminal");
+const paths = require("../helpers/paths");
+const toolbox = require("../helpers/toolbox");
 
 class NwayoExtension {
-
 	get id() {
-		throw new Error('Id must be defined by extension');
+		throw new Error("Id must be defined by extension");
 	}
 
 	get version() {
-		throw new Error('Version must be defined by extension');
+		throw new Error("Version must be defined by extension");
 	}
 
 	get options() {
@@ -25,8 +23,6 @@ class NwayoExtension {
 	set options(options) {
 		this._options = options;
 	}
-
-
 
 	// Params kept to show methods signature, on-the-spot require to avoid inclusion loop
 	/* eslint-disable no-unused-vars */
@@ -43,7 +39,7 @@ class NwayoExtension {
 	}
 
 	createTask(name, task) {
-		const flow = require('../helpers/flow'); // eslint-disable-line node/global-require
+		const flow = require("../helpers/flow"); // eslint-disable-line node/global-require
 
 		flow.createTask(`${this.id}:${name}`, () => {
 			try {
@@ -59,11 +55,7 @@ class NwayoExtension {
 	}
 
 	error(error) {
-		terminal
-			.error(`[nwayo-extension:${this.id} error]`)
-			.echo(error)
-			.exit()
-		;
+		terminal.error(`[nwayo-extension:${this.id} error]`).echo(error).exit();
 	}
 
 	getComponentDirectory(component) {
@@ -71,13 +63,11 @@ class NwayoExtension {
 	}
 
 	getGeneratedBanner(name, type) {
-		const util = require('../helpers/util'); // eslint-disable-line node/global-require
+		const util = require("../helpers/util"); // eslint-disable-line node/global-require
 
 		return util.getGeneratedBanner(name, type, this);
 	}
 	/* eslint-enable no-unused-vars, global-require */
-
 }
-
 
 module.exports = NwayoExtension;

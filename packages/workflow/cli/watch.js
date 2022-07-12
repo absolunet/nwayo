@@ -1,15 +1,13 @@
 //--------------------------------------------------------
 //-- Watch
 //--------------------------------------------------------
-'use strict';
+"use strict";
 
-const cli  = require('@absolunet/cli');
-const Task = require('../classes/task');
-const util = require('../helpers/util');
-
+const cli = require("@absolunet/cli");
+const Task = require("../classes/task");
+const util = require("../helpers/util");
 
 class WatchTask extends Task {
-
 	constructor() {
 		super();
 		this.filename = __filename;
@@ -22,14 +20,11 @@ class WatchTask extends Task {
 		if (meowCli.input.length <= 2) {
 			const [, bundle] = meowCli.input;
 
-			util.runWorkflowTask('watch', { bundle });
-
+			util.runWorkflowTask("watch", { bundle });
 		} else {
 			cli.showTaskUsage(meowCli);
 		}
 	}
-
 }
-
 
 module.exports = new WatchTask();

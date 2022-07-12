@@ -1,32 +1,30 @@
 //-------------------------------------
 //-- Environment variables
 //-------------------------------------
-'use strict';
+"use strict";
 
-const chalk        = require('chalk');
-const glob         = require('glob');
-const flatten      = require('lodash.flatten');
-const map          = require('lodash.map');
-const property     = require('lodash.property');
-const uniq         = require('lodash.uniq');
-const emoji        = require('node-emoji');
-const os           = require('os');
-const fss          = require('@absolunet/fss');
-const { terminal } = require('@absolunet/terminal');
-const paths        = require('./paths');
+const chalk = require("chalk");
+const glob = require("glob");
+const flatten = require("lodash.flatten");
+const map = require("lodash.map");
+const property = require("lodash.property");
+const uniq = require("lodash.uniq");
+const emoji = require("node-emoji");
+const os = require("os");
+const fss = require("@absolunet/fss");
+const { terminal } = require("@absolunet/terminal");
+const paths = require("./paths");
 
-
-const NAME = 'nwayo';
+const NAME = "nwayo";
 
 //-- Existence validated by CLI
 const WORKFLOW_PACKAGE = fss.readJson(paths.config.workflowPackage);
-const PACKAGE          = fss.readJson(paths.config.projectPackage);
+const PACKAGE = fss.readJson(paths.config.projectPackage);
 
 if (!fss.exists(paths.config.main)) {
 	terminal.exit(`'${paths.filename.mainConfig}' not found`);
 }
 const CONFIG = fss.readYaml(paths.config.main);
-
 
 const EXTENSIONS = (() => {
 	const enabled = {};
@@ -34,13 +32,13 @@ const EXTENSIONS = (() => {
 
 	Object.keys(CONFIG.extensions || {}).forEach((name) => {
 		if (CONFIG.extensions[name].enabled === true) {
-			let normalizedName = '';
+			let normalizedName = "";
 
-			const scopedMatch = (/^(?<kebab1>@[a-z0-9-]+\/)(?<kebab2>[a-z0-9-]+)$/u).exec(name);
+			const scopedMatch = /^(?<kebab1>@[a-z0-9-]+\/)(?<kebab2>[a-z0-9-]+)$/u.exec(name);
 			if (scopedMatch !== null) {
 				normalizedName = `${scopedMatch[1]}${prefix}${scopedMatch[2]}`;
 			} else {
-				const namedMatch = (/^[a-z0-9-]+$/u).exec(name);
+				const namedMatch = /^[a-z0-9-]+$/u.exec(name);
 				if (namedMatch !== null) {
 					normalizedName = `${prefix}${name}`;
 				} else {
@@ -50,7 +48,7 @@ const EXTENSIONS = (() => {
 
 			let extension;
 			try {
-				extension = require(normalizedName);  // eslint-disable-line node/global-require
+				extension = require(normalizedName); // eslint-disable-line node/global-require
 			} catch {
 				terminal.exit(`Extension '${name}' not found`);
 			}
@@ -64,52 +62,68 @@ const EXTENSIONS = (() => {
 	return enabled;
 })();
 
-
 const deployTier = {
-	local:      Symbol('local'),
-	production: Symbol('production')
+	local: Symbol("local"),
+	production: Symbol("production"),
 };
 
 const __ = {
-	watching:   false,
-	deployTier: deployTier.local
+	watching: false,
+	deployTier: deployTier.local,
 };
-
-
-
-
 
 // eslint-disable-next-line unicorn/prevent-abbreviations
 class Env {
+	get packageConfig() {
+		return PACKAGE;
+	}
 
-	get packageConfig()     { return PACKAGE; }
-	get workflowConfig()    { return WORKFLOW_PACKAGE; }
-	get konstan()           { return __.konstan; }
-	get bundles()           { return __.bundles; }
-	get bundlesComponents() { return __.bundlesComponents; }
-	get isScopeSubbundle()  { return __.scope === 'subbundle'; }
-	get watching()          { return __.watching; }
-	get deployTier()        { return __.deployTier; }
-	get isWindows()         { return os.platform() === 'win32'; }
+	get workflowConfig() {
+		return WORKFLOW_PACKAGE;
+	}
 
+	get konstan() {
+		return __.konstan;
+	}
+
+	get bundles() {
+		return __.bundles;
+	}
+
+	get bundlesComponents() {
+		return __.bundlesComponents;
+	}
+
+	get isScopeSubbundle() {
+		return __.scope === "subbundle";
+	}
+
+	get watching() {
+		return __.watching;
+	}
+
+	get deployTier() {
+		return __.deployTier;
+	}
+
+	get isWindows() {
+		return os.platform() === "win32";
+	}
 
 	//-- Logo
 	get logo() {
-		return emoji.get('chestnut');  // 🌰;
+		return emoji.get("chestnut"); // 🌰;
 	}
-
 
 	//-- Id
 	get id() {
 		return NAME;
 	}
 
-
 	//-- Package name
 	get packageName() {
 		return WORKFLOW_PACKAGE.name;
 	}
-
 
 	//-- Is deployment tier production
 	get production() {
@@ -131,28 +145,24 @@ class Env {
 		__.deployTier = deployTier.production;
 	}
 
-
 	//-- Set to 'watch' mode
 	setToWatching() {
 		__.watching = true;
 	}
 
-
 	//-- Init workflow env
-	initWorkflow({ bundle = '*' }) {
-
+	initWorkflow({ bundle = "*" }) {
 		// Load konstan
 		__.konstan = fss.readYaml(paths.config.konstan);
 
-
 		// Get bundle list
-		const [requiredName, requiredSubname = '*'] = bundle.split(':');
-		if (requiredName === '*') {
-			__.scope = 'all';
-		} else if (requiredSubname === '*') {
-			__.scope = 'bundle';
+		const [requiredName, requiredSubname = "*"] = bundle.split(":");
+		if (requiredName === "*") {
+			__.scope = "all";
+		} else if (requiredSubname === "*") {
+			__.scope = "bundle";
 		} else {
-			__.scope = 'subbundle';
+			__.scope = "subbundle";
 		}
 
 		const bundlesList = glob.sync(`${paths.directory.bundles}/${requiredName}/`);
@@ -160,7 +170,6 @@ class Env {
 		// Process bundles
 		const data = {};
 		if (bundlesList.length > 0) {
-
 			for (const folder of bundlesList) {
 				const [, name] = folder.match(/\/(?<alphanum>[0-9a-zA-Z-]+)\/$/u);
 				data[name] = fss.readYaml(`${folder}/${name}.${paths.extension.bundles}`);
@@ -181,13 +190,16 @@ class Env {
 					data[name].styles.collections = {};
 				}
 
-				const subBundlesList = glob.sync(`${paths.directory.bundles}/${name}/_${requiredSubname}.${paths.extension.bundles}`);
+				const subBundlesList = glob.sync(
+					`${paths.directory.bundles}/${name}/_${requiredSubname}.${paths.extension.bundles}`
+				);
 				if (subBundlesList.length > 0) {
 					for (const subBundleFile of subBundlesList) {
-
 						const subBundleData = fss.readYaml(subBundleFile);
 						if (subBundleData.assets && subBundleData.assets.components) {
-							data[name].assets.components = [...new Set([...data[name].assets.components, ...subBundleData.assets.components])];
+							data[name].assets.components = [
+								...new Set([...data[name].assets.components, ...subBundleData.assets.components]),
+							];
 						}
 
 						if (subBundleData.scripts && subBundleData.scripts.collections) {
@@ -198,20 +210,17 @@ class Env {
 							Object.assign(data[name].styles.collections, subBundleData.styles.collections);
 						}
 					}
-
-				} else if (requiredSubname !== '*') {
+				} else if (requiredSubname !== "*") {
 					terminal.exit(`Bundle ${chalk.underline(bundle)} does not exists`);
 				}
 			}
 		} else {
-			terminal.exit(requiredName !== '*' ? `Bundle ${chalk.underline(bundle)} does not exists` : `No bundle found`);
+			terminal.exit(requiredName !== "*" ? `Bundle ${chalk.underline(bundle)} does not exists` : `No bundle found`);
 		}
 
 		__.bundles = data;
-		__.bundlesComponents = uniq(flatten(map(__.bundles, property('assets.components'))));
+		__.bundlesComponents = uniq(flatten(map(__.bundles, property("assets.components"))));
 	}
-
 }
-
 
 module.exports = new Env();
