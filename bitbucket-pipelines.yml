@@ -7,13 +7,21 @@ pipelines:
             caches:
               - node
             script:
-              - npm install --unsafe-perm
+              - npm ci --unsafe-perm
               - npm test
         - step:
-            name: Test latest stable Node.js version
-            image: 'node:12'
+            name: Test Node.js 16
+            image: 'node:16'
             caches:
               - node
             script:
-              - npm install --unsafe-perm
+              - npm ci --unsafe-perm
+              - npm test
+        - step:
+            name: Test Node.js 14
+            image: 'node:14'
+            caches:
+              - node
+            script:
+              - npm ci --unsafe-perm
               - npm test

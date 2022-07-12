@@ -97,15 +97,25 @@ Multiple extensions [available](https://www.npmjs.com/search?q=keywords:nwayo-ex
 
 
 ## Release history
-See the [releases](https://github.com/absolunet/nwayo/releases).
 
-## Contributing
-[Issues](https://github.com/absolunet/nwayo/issues) | [Pull requests](https://github.com/absolunet/nwayo/pulls)
+See the [Changelog](CHANGELOG.md) to see what has changed.
+
+
+## Contribute
+
+See the [Contributing Guidelines](CONTRIBUTING.md) for ways to get started.
+
+See the [Support Guide](SUPPORT.md) for ways to get help.
+
+See the [Security Policy](SECURITY.md) for sharing vulnerability reports.
+
+This project has a [Code of Conduct](CODE_OF_CONDUCT.md).
+By interacting with this repository, organization, or community you agree to abide by its terms.
 
 
 [//]: # (Doc)
 
 ## License
-MIT © [Absolunet](https://absolunet.com)
+[MIT](LICENSE) © [Absolunet](https://absolunet.com)
 
 [//]: # (/Doc)

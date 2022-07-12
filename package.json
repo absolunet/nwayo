@@ -2,16 +2,37 @@
   "name": "nwayo",
   "private": true,
   "scripts": {
-    "test": "ava test/index.js --timeout=10m",
+    "test": "npm run test:eslint && npm run test:stylelint",
+    "test:eslint": "./node_modules/.bin/eslint --report-unused-disable-directives .",
+    "test:stylelint": "./node_modules/.bin/stylelint --report-descriptionless-disables --report-invalid-scope-disables --report-needless-disables \"**/*.scss\"",
     "postinstall": "node manager.js --task=postinstall",
     "outdated": "node manager.js --task=outdated",
     "build": "node manager.js --task=build",
     "deploy": "node manager.js --task=deploy"
   },
   "devDependencies": {
+    "@absolunet/eslint-config-node": "3.2.2",
+    "@absolunet/eslint-config-nwayo": "3.2.2",
+    "@absolunet/eslint-config-react": "3.2.2",
     "@absolunet/fsp": "1.7.0",
     "@absolunet/manager": "1.1.0",
-    "@absolunet/tester": "2.6.11",
-    "lerna": "4.0.0"
+    "@absolunet/stylelint-config-scss": "3.1.1",
+    "@babel/core": "7.18.6",
+    "@babel/eslint-parser": "7.18.2",
+    "@babel/preset-react": "7.18.6",
+    "eslint": "8.19.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-jsx-a11y": "6.6.0",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-ordered-imports": "0.6.0",
+    "eslint-plugin-react": "7.30.1",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "eslint-plugin-unicorn": "43.0.0",
+    "lerna": "5.1.8",
+    "postcss-scss": "4.0.4",
+    "stylelint": "14.9.1",
+    "stylelint-declaration-strict-value": "1.8.0",
+    "stylelint-order": "5.0.0",
+    "stylelint-scss": "4.3.0"
   }
 }

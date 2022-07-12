@@ -2,9 +2,10 @@
 //-- Util
 //-------------------------------------
 
+import React       from 'react';
+
 import axios       from 'axios';
 import HtmlToReact from 'html-to-react';
-import React       from 'react';
 
 
 class Util {

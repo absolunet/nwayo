@@ -11,21 +11,21 @@ const paths        = require('../helpers/paths');
 class Task {
 
 	/* eslint-disable no-unused-vars */
-	set filename(filename) {
-		__(this).set('filename', filename);
-	}
-
 	get filename() {
 		return __(this).get('filename');
 	}
 
-
-	set deprecate(message) {
-		__(this).set('deprecated', message);
+	set filename(filename) {
+		__(this).set('filename', filename);
 	}
+
 
 	get deprecate() {
 		return __(this).get('deprecated');
+	}
+
+	set deprecate(message) {
+		__(this).set('deprecated', message);
 	}
 
 

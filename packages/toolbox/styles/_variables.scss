@@ -56,15 +56,15 @@ $nwayo-social-colors: (
 
 /// Default sans-serif fonts fallback.
 /// @type String
-$nwayo-sansserif-font: Helvetica, Arial, Verdana, sans-serif;  // stylelint-disable-line value-keyword-case
+$nwayo-sansserif-font: Helvetica, Arial, Verdana, sans-serif;  // stylelint-disable-line value-keyword-case -- Font exception
 
 /// Default serif fonts fallback.
 /// @type String
-$nwayo-serif-font: 'Times New Roman', Times, serif;  // stylelint-disable-line value-keyword-case
+$nwayo-serif-font: 'Times New Roman', Times, serif;  // stylelint-disable-line value-keyword-case -- Font exception
 
 /// Default monospace fonts fallback.
 /// @type String
-$nwayo-monospace-font: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', Courier, monospace;  // stylelint-disable-line value-keyword-case
+$nwayo-monospace-font: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', Courier, monospace;  // stylelint-disable-line value-keyword-case -- Font exception
 
 
 

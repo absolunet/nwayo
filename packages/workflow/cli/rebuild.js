@@ -5,7 +5,7 @@
 
 const cli    = require('@absolunet/cli');
 const Task   = require('../classes/task');
-const env    = require('../helpers/env');
+const env    = require('../helpers/env'); // eslint-disable-line unicorn/prevent-abbreviations
 const util   = require('../helpers/util');
 const { ow } = cli;
 

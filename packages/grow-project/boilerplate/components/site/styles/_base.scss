@@ -86,12 +86,12 @@ a:not(.button) {
 	}
 
 	//-- Only on touch devices
-	html[data-whatintent='touch'] & {  // stylelint-disable-line selector-attribute-name-disallowed-list
+	html[data-whatintent='touch'] & {  // stylelint-disable-line selector-attribute-name-disallowed-list -- Exception for What Input?
 		/* ... */
 	}
 
 	//-- Only on mouse devices
-	html[data-whatintent='mouse'] & {  // stylelint-disable-line selector-attribute-name-disallowed-list
+	html[data-whatintent='mouse'] & {  // stylelint-disable-line selector-attribute-name-disallowed-list -- Exception for What Input?
 		/* ... */
 	}
 

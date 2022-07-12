@@ -4,7 +4,7 @@
 
 First off, thank you for considering contributing to this project.
 
-Following these guidelines helps to communicate that you respect the time of the developers managing and developing this open source project. In return, they should reciprocate that respect in addressing your issue, assessing changes, and helping you finalize your pull requests. See our [Code of Conduct](code_of_conduct.md).
+Following these guidelines helps to communicate that you respect the time of the developers managing and developing this open source project. In return, they should reciprocate that respect in addressing your issue, assessing changes, and helping you finalize your pull requests. See our [Code of Conduct](CODE_OF_CONDUCT.md).
 
 
 ## What we are looking for _(Spoiler alert: ANYTHING)_
@@ -29,7 +29,7 @@ We love to receive contributions from the community! There are many ways to cont
 ## How to report a bug
 
 ### Security vulnerability
-If you find a security vulnerability, please follow the instructions from our [Security Policy](security.md).
+If you find a security vulnerability, please follow the instructions from our [Security Policy](SECURITY.md).
 
 ### Anything else
 Open a 'Bug report' issue.

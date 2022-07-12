@@ -69,7 +69,6 @@ module.exports = () => {
 		// Foreach each sizes
 		for (const size of touchSizes) {
 
-			/* eslint-disable function-paren-newline */
 			streams.push(
 				util.assetsProcess(paths.files.iconsTouch, (stream) => {
 
@@ -86,7 +85,6 @@ module.exports = () => {
 					;
 				})
 			);
-			/* eslint-enable function-paren-newline */
 		}
 
 		return toolbox.mergeStreams(streams);
@@ -109,7 +107,6 @@ module.exports = () => {
 		// Foreach each sizes
 		for (const size of iconSizes) {
 
-			/* eslint-disable function-paren-newline */
 			streams.push(
 				util.assetsProcess(paths.files.iconsIcon, (stream) => {
 
@@ -126,7 +123,6 @@ module.exports = () => {
 					;
 				})
 			);
-			/* eslint-enable function-paren-newline */
 		}
 
 		return toolbox.mergeStreams(streams);
@@ -162,7 +158,6 @@ module.exports = () => {
 		for (const name of Object.keys(sizes)) {
 			const size = sizes[name];
 
-			/* eslint-disable function-paren-newline */
 			streams.push(
 				util.assetsProcess(paths.files.iconsTile, (stream) => {
 
@@ -179,7 +174,6 @@ module.exports = () => {
 					;
 				})
 			);
-			/* eslint-enable function-paren-newline */
 		}
 
 		return toolbox.mergeStreams(streams);

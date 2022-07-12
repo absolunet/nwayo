@@ -100,15 +100,15 @@
 
 		// High density
 		@if string.index($file, '@2x') {
-			@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {  // stylelint-disable-line
-				background-image: url($url + nwayo-cacheinvalidator-querystring($path));  // stylelint-disable-line function-url-quotes
+			@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {  // stylelint-disable-line -- Has to be this way
+				background-image: url($url + nwayo-cacheinvalidator-querystring($path));  // stylelint-disable-line function-url-quotes -- Variables
 			}
 
 			$path: nwayo-str-replace($path, '@2x', '');
 			$url:  nwayo-str-replace($url, '@2x', '');
 		}
 
-		$uri: url($url + nwayo-cacheinvalidator-querystring($path));  // stylelint-disable-line function-url-quotes
+		$uri: url($url + nwayo-cacheinvalidator-querystring($path));  // stylelint-disable-line function-url-quotes -- Variables
 	}
 
 	// Output
@@ -187,13 +187,13 @@
 @mixin nwayo-load-font-styles($name, $filename, $component, $weight:normal, $style:normal) {
 	$path:  nwayo-build-path($filename, $component, 'fonts');
 	$url:   nwayo-assets-path($filename, $component, 'fonts');
-	$woff2: if(nwayodart-file-exists($path + '.woff2'), url($url + '.woff2' + nwayo-cacheinvalidator-querystring($path + '.woff2')) format('woff2') + ',', '');  // stylelint-disable-line function-url-quotes
+	$woff2: if(nwayodart-file-exists($path + '.woff2'), url($url + '.woff2' + nwayo-cacheinvalidator-querystring($path + '.woff2')) format('woff2') + ',', '');  // stylelint-disable-line function-url-quotes -- Variables
 
 	@font-face {
 		font-family: $name;
 		font-weight: $weight;
 		font-style: $style;
 		font-display: swap;
-		src: #{$woff2} url($url + '.woff' + nwayo-cacheinvalidator-querystring($path + '.woff'));  // stylelint-disable-line function-url-quotes
+		src: #{$woff2} url($url + '.woff' + nwayo-cacheinvalidator-querystring($path + '.woff'));  // stylelint-disable-line function-url-quotes -- Variables
 	}
 }

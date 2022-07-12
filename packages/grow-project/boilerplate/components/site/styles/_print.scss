@@ -6,7 +6,7 @@ $site-print-color: konstan-get('color.black');
 
 @media print {
 	@page {
-		margin: 1cm; // stylelint-disable-line unit-allowed-list
+		margin: 1cm; // stylelint-disable-line unit-allowed-list -- Exception for print
 	}
 
 	.body {
@@ -18,7 +18,7 @@ $site-print-color: konstan-get('color.black');
 	}
 
 	//-- Reset what hasn't been redefined
-	// stylelint-disable selector-max-universal
+	// stylelint-disable selector-max-universal -- Exception for print overwrite
 	* {
 		position: static !important;
 		overflow: visible !important;

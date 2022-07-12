@@ -3,6 +3,7 @@
 //-------------------------------------
 'use strict';
 
+const { Buffer }   = require('buffer'); // eslint-disable-line no-redeclare
 const chalk        = require('chalk');
 const log          = require('fancy-log');
 const plumber      = require('gulp-plumber');
@@ -40,7 +41,7 @@ class Toolbox {
 
 	//-- Return merged streams or self-closing stream
 	mergeStreams(streams) {
-		return streams.length !== 0 ? merge(...streams) : this.selfClosingStream();
+		return streams.length > 0 ? merge(...streams) : this.selfClosingStream();
 	}
 
 

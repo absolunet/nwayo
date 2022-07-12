@@ -3,12 +3,17 @@
 //--------------------------------------------------------
 'use strict';
 
+/* eslint-disable node/no-unpublished-require */
+
+const fss     = require('@absolunet/fss');
 const fsp     = require('@absolunet/fsp');
 const manager = require('@absolunet/manager');
 
 const ROOT                  = '.';
-const BOILER                = `${ROOT}/packages/grow-project/boilerplate`;
-const EXTENSION_BOILER      = `${ROOT}/packages/grow-extension/boilerplate`;
+const PACKAGES              = `${ROOT}/packages`;
+const BOILER                = `${PACKAGES}/grow-project/boilerplate`;
+const EXTENSION_BOILER      = `${PACKAGES}/grow-extension/boilerplate`;
+const WORKFLOW              = `${PACKAGES}/workflow`;
 const DOCUMENTATION_BUILDER = `${ROOT}/ressources/docs-builder`;
 
 const BOILER_PACKAGE        = `${BOILER}/package.json`;
@@ -16,7 +21,6 @@ const BOILER_VENDOR         = `${BOILER}/vendor`;
 const BOILER_VENDOR_PACKAGE = `${BOILER_VENDOR}/package.json`;
 const BOILER_VENDOR_TOOLBOX = `${BOILER_VENDOR}/node_modules/@absolunet/nwayo-toolbox`;
 const BOILER_INDEX          = `${BOILER}/SAMPLE-HTML/index.html`;
-const BOILER_WORKFLOW       = `${BOILER}/node_modules/@absolunet/nwayo-workflow`;
 
 
 
@@ -28,10 +32,18 @@ manager.multiScriptsRunner({
 		postinstall: {
 			postRun: async ({ terminal }) => {
 
-				terminal.print('Symlink grow-project boilerplate workflow').spacer();
-				await fsp.remove(BOILER_WORKFLOW);
-				await fsp.ensureDir(`${BOILER_WORKFLOW}/..`);
-				await fsp.symlink('../../../../workflow', BOILER_WORKFLOW);
+				// Install grow-project boilerplate from current workflow
+				terminal.print('Install static current version of workflow to grow-project boilerplate').spacer();
+
+				await terminal.runPromise(`npm pack ${WORKFLOW} --pack-destination=${ROOT}`);
+				const [workflowPackage] = await fsp.scandir(ROOT, 'file', {
+					fullPath: true,
+					pattern: 'absolunet-nwayo-workflow-*.tgz'
+				});
+
+				terminal.print('npm install').spacer();
+				await terminal.runPromise(`cd ${BOILER}; npm install ${workflowPackage} --save=false`);
+				await fsp.remove(workflowPackage);
 
 				// Install grow-project boilerplate vendors
 				await manager.installPackage(BOILER_VENDOR);
@@ -76,12 +88,28 @@ manager.multiScriptsRunner({
 				await fsp.writeJson(BOILER_VENDOR_PACKAGE, boilerVendor, { space: 2 });
 
 				terminal.print(`Version bump: grow-project boilerplate 'SAMPLE-HTML/index.html'`).spacer();
-				const boilerIndex = await fsp.readFile(BOILER_INDEX, 'utf-8');
+				const boilerIndex = await fsp.readFile(BOILER_INDEX, 'utf8');
 				await fsp.writeFile(BOILER_INDEX, boilerIndex.replace(/nwayo (v?(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-[\da-z-]+(?:\.[\da-z-]+)*)?(?:\+[\da-z-]+(?:\.[\da-z-]+)*)?)/ug, `nwayo ${manager.version}`));  // eslint-disable-line prefer-named-capture-group
 
 
 				//-- Update grow-extension
 				await manager.updatePackageMeta(EXTENSION_BOILER);
+
+
+				//-- Counter old manager
+				const packages = await fsp.scandir(PACKAGES, 'dir', {
+					fullPath: true,
+					pattern: '*'
+				});
+				packages.shift();
+				packages.push(EXTENSION_BOILER);
+
+				packages.forEach((directory) => {
+					const content = fss.readJson(`${directory}/package.json`);
+					content.engines.node = '>= 14.17.0';
+					fss.writeJson(`${directory}/package.json`, content, { space: 2 });
+				});
+
 
 
 				//-- grow-project boilerplate 'nwayo rebuild'

@@ -4,9 +4,8 @@
 'use strict';
 
 // We disable global require rule to optimize the speed of the CLI for unrelated workflow stuff
-/* eslint-disable global-require */
+/* eslint-disable node/global-require */
 
-/* eslint-disable array-element-newline */
 const TASKS = [
 	'assets', 'assets-fonts', 'assets-images-optimization', 'assets-images-highdensity', 'assets-raw', 'assets-images',
 	'icons', 'icons-favicon', 'icons-touch', 'icons-icon', 'icons-large', 'icons-tile',
@@ -18,7 +17,6 @@ const TASKS = [
 ];
 const LEVEL1_FLAGS  = ['-h', '--help', '-v', '--version', '--pronounce'];
 const REBUILD_FLAGS = ['--prod'];
-/* eslint-enable array-element-newline */
 
 
 const flag = (items, flags) => {
@@ -28,9 +26,10 @@ const flag = (items, flags) => {
 
 const level1Cmds = () => {
 	const fs = require('fs');
+	const path = require('path');
 
 	const list = [];
-	fs.readdirSync(`${__dirname}/../cli`).forEach((cmdName) => {
+	fs.readdirSync(path.join(__dirname, '..', 'cli')).forEach((cmdName) => {
 		const [, cmd] = cmdName.match(/^(?<alphanum>[a-zA-Z0-9-]+).js$/u) || [];
 
 		if (cmd && cmd !== 'default') {
@@ -82,7 +81,7 @@ module.exports = ({ completion, root }) => {
 	switch (items.length) {
 
 		case 1:
-			values = [].concat(level1Cmds(), flag(items, LEVEL1_FLAGS));
+			values = [...level1Cmds(), ...flag(items, LEVEL1_FLAGS)];
 			break;
 
 		case 2:
@@ -93,7 +92,7 @@ module.exports = ({ completion, root }) => {
 					break;
 
 				case 'rebuild':
-					values = [].concat(bundles(root), flag(items, REBUILD_FLAGS));
+					values = [...bundles(root), ...flag(items, REBUILD_FLAGS)];
 					break;
 
 				case 'watch':

@@ -5,7 +5,7 @@
 
 // const debug = require('gulp-debug');
 const gulp  = require('gulp');
-const env   = require('../helpers/env');
+const env   = require('../helpers/env'); // eslint-disable-line unicorn/prevent-abbreviations
 const flow  = require('../helpers/flow');
 const paths = require('../helpers/paths');
 const util  = require('../helpers/util');

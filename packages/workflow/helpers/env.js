@@ -50,8 +50,8 @@ const EXTENSIONS = (() => {
 
 			let extension;
 			try {
-				extension = require(normalizedName);  // eslint-disable-line global-require
-			} catch (error) {
+				extension = require(normalizedName);  // eslint-disable-line node/global-require
+			} catch {
 				terminal.exit(`Extension '${name}' not found`);
 			}
 
@@ -159,7 +159,7 @@ class Env {
 
 		// Process bundles
 		const data = {};
-		if (bundlesList.length !== 0) {
+		if (bundlesList.length > 0) {
 
 			for (const folder of bundlesList) {
 				const [, name] = folder.match(/\/(?<alphanum>[0-9a-zA-Z-]+)\/$/u);
@@ -182,7 +182,7 @@ class Env {
 				}
 
 				const subBundlesList = glob.sync(`${paths.directory.bundles}/${name}/_${requiredSubname}.${paths.extension.bundles}`);
-				if (subBundlesList.length !== 0) {
+				if (subBundlesList.length > 0) {
 					for (const subBundleFile of subBundlesList) {
 
 						const subBundleData = fss.readYaml(subBundleFile);
@@ -204,7 +204,7 @@ class Env {
 				}
 			}
 		} else {
-			terminal.exit(`${requiredName !== '*' ? `Bundle ${chalk.underline(bundle)} does not exists` : `No bundle found`}`);
+			terminal.exit(requiredName !== '*' ? `Bundle ${chalk.underline(bundle)} does not exists` : `No bundle found`);
 		}
 
 		__.bundles = data;

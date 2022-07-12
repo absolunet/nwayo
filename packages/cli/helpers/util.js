@@ -4,9 +4,10 @@
 'use strict';
 
 // We disable global require rule to optimize the speed of the CLI for unrelated workflow stuff
-/* eslint-disable global-require */
+/* eslint-disable node/global-require */
 
 const chalk = require('chalk');
+const path = require('path');
 
 const argv = require('minimist')(process.argv.slice(2));
 
@@ -106,7 +107,7 @@ class Util {
 			const { terminal } = require('@absolunet/terminal');
 			terminal.exit(message);
 		} else {
-			process.exit();  // eslint-disable-line no-process-exit, unicorn/no-process-exit
+			process.exit();  // eslint-disable-line node/no-process-exit, unicorn/no-process-exit
 		}
 	}
 
@@ -175,7 +176,7 @@ class Util {
 
   ${chalk.underline('Global')}
 ${this.usageTasks}
-  cli${chalk.yellow('@')}${this.packageConfig.version} ${fs.realpathSync(`${__dirname}/..`)}
+  cli${chalk.yellow('@')}${this.packageConfig.version} ${fs.realpathSync(path.join(__dirname, '..'))}
 			`);
 
 			this.exit();

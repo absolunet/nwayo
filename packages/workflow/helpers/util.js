@@ -18,7 +18,7 @@ const slash        = require('slash');
 const cli          = require('@absolunet/cli');
 const fss          = require('@absolunet/fss');
 const { terminal } = require('@absolunet/terminal');
-const env          = require('./env');
+const env          = require('./env'); // eslint-disable-line unicorn/prevent-abbreviations
 const paths        = require('./paths');
 const toolbox      = require('./toolbox');
 
@@ -71,8 +71,7 @@ class Util {
 
 		if (type === 'styles') {
 			options.escape = options.escape || [];
-			options.escape.push('path.root');
-			options.escape.push('util.emptyimage');
+			options.escape.push('path.root', 'util.emptyimage');
 			urls.inline = slash(paths.directory.cacheInline);
 			urls.buildroot = slash(fss.realpath(`${paths.directory.root}/${buildRoot}`));
 		}
@@ -119,7 +118,7 @@ class Util {
 		let cliParameters = '';
 
 		for (const option of Object.keys(config)) {
-			if (config[option].length !== 0) {
+			if (config[option].length > 0) {
 				cliParameters += ` ${option}=${config[option].join(',')}`;
 			}
 		}
@@ -131,10 +130,10 @@ class Util {
 	//-- Babel allowed rules
 	getBabelAllowedRules(includedFiles) {
 		let includes = '';
-		if (Boolean(includedFiles) && includedFiles.length !== 0) {
+		if (Boolean(includedFiles) && includedFiles.length > 0) {
 			const includesLength = includedFiles.length - 1;
-			includedFiles.forEach((file, i) => {
-				includes += (i === 0 ? '(?!' : '|') + escapeForRegex(file) + (i === includesLength ? ')' : '');
+			includedFiles.forEach((file, index) => {
+				includes += (index === 0 ? '(?!' : '|') + escapeForRegex(file) + (index === includesLength ? ')' : '');
 			});
 		}
 
@@ -145,31 +144,29 @@ class Util {
 	//-- Babel processing
 	babelProcess(options, targets, allowed) {
 		// Babel is really heavy on load
-		const babel = require('@babel/core');  // eslint-disable-line global-require
+		const babel = require('@babel/core');  // eslint-disable-line node/global-require
 
 		const { fullPath, rawPath } = options;
 		let { content } = options;
-		if (fullPath.slice(-3) === '.js') {
-			if (!allowed.test(rawPath)) {
-				const targetsDigest = crypto.createHash('sha1').update(JSON.stringify(targets)).digest('hex');
-				content = cache(`babel:${fullPath}:${targetsDigest}`, content, (data) => {
+		if (fullPath.slice(-3) === '.js' && !allowed.test(rawPath)) {
+			const targetsDigest = crypto.createHash('sha1').update(JSON.stringify(targets)).digest('hex');
+			content = cache(`babel:${fullPath}:${targetsDigest}`, content, (data) => {
 
-					return babel.transform(data, {
-						presets: [
-							[
-								paths.config.babelPreset, {
-									modules: false,
-									targets: { browsers: targets }
-								}
-							]
-						],
-						compact:       false,
-						highlightCode: false,
-						ast:           false,
-						retainLines:   true
-					}).code;
-				});
-			}
+				return babel.transform(data, {
+					presets: [
+						[
+							paths.config.babelPreset, {
+								modules: false,
+								targets: { browsers: targets }
+							}
+						]
+					],
+					compact:       false,
+					highlightCode: false,
+					ast:           false,
+					retainLines:   true
+				}).code;
+			});
 		}
 
 		return content;
@@ -196,14 +193,14 @@ class Util {
 	//-- Assets processing pattern
 	assetsProcess(files, customPiping) {
 		// gulp.js is really heavy on load
-		const gulp = require('gulp');   // eslint-disable-line global-require
+		const gulp = require('gulp');   // eslint-disable-line node/global-require
 
 		const streams = [];
 		for (const component of env.bundlesComponents) {
 
 			// Check if component has assets
 			const componentFiles = files.replace(paths.pattern.anytree, component);
-			if (glob.sync(componentFiles).length !== 0) {
+			if (glob.sync(componentFiles).length > 0) {
 
 				// Create stream for component
 				let componentStream = gulp.src(componentFiles, { base: paths.directory.root });
@@ -224,7 +221,7 @@ class Util {
 			}
 		}
 
-		return streams.length !== 0 ? toolbox.mergeStreams(streams) : toolbox.vinylStream('empty-stream', '');
+		return streams.length > 0 ? toolbox.mergeStreams(streams) : toolbox.vinylStream('empty-stream', '');
 	}
 
 
@@ -234,7 +231,7 @@ class Util {
 
 		switch (type) {
 
-			case 'text': return `${banner}`;
+			case 'text': return banner;
 			default:     return `/*!\n * @preserve ${banner}\n */\n\n`;
 
 		}
@@ -329,7 +326,7 @@ Run ${chalk.cyan('npm install')} to update`,
 
 
 		//-- Load tasks
-		/* eslint-disable global-require */
+		/* eslint-disable node/global-require */
 		process.stdout.write(`\n${env.logo}  Gathering intel... `);
 
 		const gulp = require('gulp');  // gulp.js is really heavy on load
@@ -384,7 +381,6 @@ Run ${chalk.cyan('npm install')} to update`,
 
 		const tasks = ['assets', 'icons', 'local', 'scripts', 'styles'];
 
-		/* eslint-disable quote-props */
 		cli.setUsageTasks(Object.assign(
 			{},
 			{
@@ -400,7 +396,6 @@ Run ${chalk.cyan('npm install')} to update`,
 			{ 'Project': ['run', 'rebuild', 'watch'] },
 			globalUsage.full
 		), { showBin: false });
-		/* eslint-enable quote-props */
 	}
 
 }

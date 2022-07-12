@@ -67,7 +67,7 @@
 // ---------
 
 $global-font-size:                     100%;
-$global-width:                         rem-calc(konstan-get('dimension.max'));  // stylelint-disable-line declaration-property-value-disallowed-list
+$global-width:                         rem-calc(konstan-get('dimension.max'));  // stylelint-disable-line declaration-property-value-disallowed-list -- Need static value
 $global-lineheight:                    $common-text-lineheight;
 $foundation-palette:                   (
 	'primary':   $common-primary-color,
