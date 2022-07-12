@@ -1,2 +1,157 @@
 <h1>Architecture</h1>
+<h4 id="%E2%9A%A0%EF%B8%8F-work-in-progress-%E2%9A%A0%EF%B8%8F" tabindex="-1"><a class="anchor" href="#%E2%9A%A0%EF%B8%8F-work-in-progress-%E2%9A%A0%EF%B8%8F">⚭</a> ⚠️ Work in progress ⚠️</h4>
+<h4 id="" tabindex="-1"><a class="anchor" href="#">⚭</a> </h4>
 <p><img src="/nwayo/static/images/architecture.png" alt="Architecture"></p>
+<table>
+<thead>
+<tr>
+<th>Components</th>
+<th style="text-align:center">store</th>
+<th style="text-align:center">product</th>
+<th style="text-align:center">common</th>
+<th style="text-align:center">post</th>
+<th style="text-align:center">blog</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bundle : Store =&gt; main</strong></td>
+<td style="text-align:center">main.css&lt;br&gt;main.js</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">main.css&lt;br&gt;main.js</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">❌</td>
+</tr>
+<tr>
+<td><strong>Bundle : Store =&gt; sub</strong></td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">sub.css&lt;br&gt;sub.js</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">❌</td>
+</tr>
+<tr>
+<td><strong>Bundle : Store =&gt; Assets</strong></td>
+<td style="text-align:center">poppin.woff&lt;br&gt;checkout.png</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">lato.woff&lt;br&gt;logo.png</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">❌</td>
+</tr>
+<tr>
+<td>-----</td>
+<td style="text-align:center">---</td>
+<td style="text-align:center">---</td>
+<td style="text-align:center">---</td>
+<td style="text-align:center">---</td>
+<td style="text-align:center">---</td>
+</tr>
+<tr>
+<td><strong>Bundle : Blog =&gt; main</strong></td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">main.css&lt;br&gt;main.js</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">main.css&lt;br&gt;main.js</td>
+</tr>
+<tr>
+<td><strong>Bundle : Blog =&gt; sub</strong></td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">sub.css</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">sub.css&lt;br&gt;sub.js</td>
+<td style="text-align:center">❌</td>
+</tr>
+<tr>
+<td><strong>Bundle : Blog =&gt; Assets</strong></td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">logo.pnp&lt;br&gt;lato.woff</td>
+<td style="text-align:center">post.png</td>
+<td style="text-align:center">fira.woff</td>
+</tr>
+</tbody>
+</table>
+<h2 id="components" tabindex="-1"><a class="anchor" href="#components">⚭</a> <a href="components">Components</a></h2>
+<ul>
+<li>Store</li>
+<li>Product</li>
+<li>Common</li>
+<li>Post</li>
+<li>Blog</li>
+</ul>
+<h2 id="bundles" tabindex="-1"><a class="anchor" href="#bundles">⚭</a> <a href="bundles">Bundles</a></h2>
+<ul>
+<li><code>store.yaml</code></li>
+<li><code>blog.yaml</code></li>
+</ul>
+<h2 id="collections" tabindex="-1"><a class="anchor" href="#collections">⚭</a> <a href="collections">Collections</a></h2>
+<ul>
+<li><strong>Store =&gt;  Main :</strong> <code>main.css</code> &amp; <code>main.js</code></li>
+<li><strong>Store =&gt; Sub :</strong> <code>sub.css</code> &amp; <code>sub.js</code></li>
+<li><strong>Blog =&gt; Main :</strong> <code>main.css</code> &amp; <code>main.js</code></li>
+<li><strong>Blog =&gt; Sub :</strong> <code>sub.css</code> &amp; <code>sub.js</code></li>
+</ul>
+<h2 id="assets" tabindex="-1"><a class="anchor" href="#assets">⚭</a> <a href="../assets/readme">Assets</a></h2>
+<ul>
+<li>Store =&gt; <code>lato.woff</code></li>
+<li>Store =&gt; <code>poppins.woff</code></li>
+<li>Store =&gt; <code>logo.png</code></li>
+<li>Store =&gt; <code>checkout.png</code></li>
+<li>Blog =&gt; <code>lato.woff</code></li>
+<li>Blog =&gt; <code>fira.woff</code></li>
+<li>Blog =&gt; <code>logo.png</code></li>
+<li>Blog =&gt; <code>post.png</code></li>
+</ul>
+<h2 id="exemple" tabindex="-1"><a class="anchor" href="#exemple">⚭</a> Exemple</h2>
+<p>This exemple will generate the following files</p>
+<ul>
+<li>store /
+<ul>
+<li>styles /
+<ul>
+<li><code>main.css</code></li>
+<li><code>sub.css</code></li>
+</ul>
+</li>
+<li>scripts /
+<ul>
+<li><code>main.js</code></li>
+<li><code>sub.js</code></li>
+</ul>
+</li>
+<li>assets /
+<ul>
+<li><code>lato.woff</code></li>
+<li><code>poppins.woff</code></li>
+<li><code>logo.png</code></li>
+<li><code>checkout.png</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>blog /
+<ul>
+<li>styles /
+<ul>
+<li><code>main.css</code></li>
+<li><code>sub.css</code></li>
+</ul>
+</li>
+<li>scripts /
+<ul>
+<li><code>main.js</code></li>
+<li><code>sub.js</code></li>
+</ul>
+</li>
+<li>assets /
+<ul>
+<li><code>lato.woff</code></li>
+<li><code>fira.woff</code></li>
+<li><code>logo.png</code></li>
+<li><code>post.png</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>

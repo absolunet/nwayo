@@ -1,0 +1,48 @@
+<h1><a href="https://sass-lang.com/documentation/at-rules/function" class="external" rel="external">Functions</a></h1>
+<h4 id="%E2%9A%A0%EF%B8%8F-work-in-progress-%E2%9A%A0%EF%B8%8F" tabindex="-1"><a class="anchor" href="#%E2%9A%A0%EF%B8%8F-work-in-progress-%E2%9A%A0%EF%B8%8F">⚭</a> ⚠️ Work in progress ⚠️</h4>
+<h4 id="" tabindex="-1"><a class="anchor" href="#">⚭</a> </h4>
+<h2 id="content" tabindex="-1"><a class="anchor" href="#content">⚭</a> Content</h2>
+<p>The difference between functions and mixins is that the mixins generate an output (mostly styling directives) and
+functions generates values</p>
+<h2 id="exemple" tabindex="-1"><a class="anchor" href="#exemple">⚭</a> Exemple</h2>
+<pre><code class="language-scss">//-------------------------------------
+//-- [COMPONENT_NAME] - Config - Functions
+//-------------------------------------
+
+@function bp($arguments) {
+	@return 'screen and ' + breakpoint($arguments);
+}
+
+
+</code></pre>
+<p>##Toolbox
+To see a complet list of functions that are available in Nwayo you can consult:</p>
+<ul>
+<li><a href="../../../packages/toolbox/styles/_functions-core.scss">functions-core</a>
+<ul>
+<li><strong>konstan-get :</strong> Konstan shortcut: Get value</li>
+<li><strong>nwayo-assets-path</strong> : Generate an asset path based on file type</li>
+<li><strong>nwayo-build-path</strong> : Generate an asset path  based on file type from build root</li>
+<li><strong>nwayo-zindex :</strong> Return a z-index value including a delta that for a scope includes in given scopes</li>
+<li><strong>nwayo-breakpoint-media :</strong> Simulate a breakpoint</li>
+<li><strong>nwayo-cacheinvalidator-querystring :</strong> Return cache invalidation query string</li>
+</ul>
+</li>
+<li><a href="../../../packages/toolbox/styles/_functions-helpers.scss">functions-helpers</a>
+<ul>
+<li><strong>nwayo-map-deep-split-path :</strong> Deep map: Path splitter</li>
+<li><strong>nwayo-map-deep-has-key :</strong> Deep map: Has key</li>
+<li><strong>nwayo-map-deep-get :</strong> Deep map: Get value</li>
+<li><strong>nwayo-str-replace :</strong> String replace</li>
+<li><strong>nwayo-color-replace :</strong> Color replace</li>
+<li><strong>nwayo-to-string :</strong> Cast to string</li>
+<li><strong>nwayo-list-contains :</strong> Check if list contains value</li>
+<li><strong>nwayo-svg-data-uri :</strong> SVG optimized for data-uri (http://codepen.io/Tigt/blog/optimizing-svgs-in-data-uris)</li>
+</ul>
+</li>
+<li><a href="../../../packages/toolbox/styles/_functions-remcalc.scss">functions-remcalcs</a>
+<ul>
+<li><a href="https://github.com/zurb/foundation-sites/blob/v6.5.3/scss/util/_unit.scss" class="external" rel="external">Shameless copy of Foundation's rem-calc()</a></li>
+</ul>
+</li>
+</ul>

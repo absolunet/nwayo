@@ -21,7 +21,6 @@ const DOCUMENTATION_BUILDER = `${ROOT}/ressources/docs-builder`;
 const BOILER_PACKAGE = `${BOILER}/package.json`;
 const BOILER_VENDOR = `${BOILER}/vendor`;
 const BOILER_VENDOR_PACKAGE = `${BOILER_VENDOR}/package.json`;
-const BOILER_VENDOR_TOOLBOX = `${BOILER_VENDOR}/node_modules/@absolunet/nwayo-toolbox`;
 const BOILER_INDEX = `${BOILER}/SAMPLE-HTML/index.html`;
 
 manager.multiScriptsRunner({

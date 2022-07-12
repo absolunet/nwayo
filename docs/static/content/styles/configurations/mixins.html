@@ -1,0 +1,62 @@
+<h1><a href="https://sass-lang.com/documentation/at-rules/mixin" class="external" rel="external">Mixins</a></h1>
+<h4 id="%E2%9A%A0%EF%B8%8F-work-in-progress-%E2%9A%A0%EF%B8%8F" tabindex="-1"><a class="anchor" href="#%E2%9A%A0%EF%B8%8F-work-in-progress-%E2%9A%A0%EF%B8%8F">⚭</a> ⚠️ Work in progress ⚠️</h4>
+<h4 id="" tabindex="-1"><a class="anchor" href="#">⚭</a> </h4>
+<h2 id="content" tabindex="-1"><a class="anchor" href="#content">⚭</a> Content</h2>
+<p>Mixins purpose is to encapsulate styles to which it can be included and reused at multiple places. They can be modified with variable and conditions inside.</p>
+<h2 id="good-practices" tabindex="-1"><a class="anchor" href="#good-practices">⚭</a> Good practices</h2>
+<ul>
+<li>Order mixins by type and or purpose</li>
+<li>It's a good idea to have a general component where you declare your general site aesthetic and map those variables into the component</li>
+<li>Try to give significant name that describes what they are used for to the variables and not only one that describes what they are.</li>
+<li>Mixins must end with the type of content they output</li>
+<li>Use mixins to avoid duplicate code</li>
+<li>You can include mixins in another mixins</li>
+<li>If you need to adjust something that should be in the mixins but that modification only apply to an edge case, add a parameter to the mixin so the right output is generated.</li>
+</ul>
+<p>##Toolbox
+To see a complet list of functions that are available in Nwayo you can consult:</p>
+<ul>
+<li><a href="../../../packages/toolbox/styles/_mixins-core.scss">mixins-core</a>
+<ul>
+<li><strong>nwayo-bg-image-styles :</strong> Generate Background image Styles (Inline or not)</li>
+<li><strong>nwayo-scalable-icon-styles :</strong> Generate Scalable icon Styles (Inline)</li>
+<li><strong>nwayo-scalable-icon-colored-states-styles :</strong> Generate Scalable icon multicolored states with state (Inline)</li>
+<li><strong>nwayo-load-font-styles :</strong> Generate Font-face Styles</li>
+</ul>
+</li>
+<li><a href="../../../packages/toolbox/styles/_mixins-helpers.scss">mixins-helpers</a>
+<ul>
+<li><strong>nwayo-pseudo-image-styles :</strong> Style of the image in ::before/::after pseudo-elements Styles</li>
+<li><strong>nwayo-textreplace-image-styles :</strong> Style of the image which replaces text</li>
+<li><strong>nwayo-clearfix-styles :</strong> Clearfix</li>
+<li><strong>nwayo-visually-hidden-styles :</strong> Visually Hidden</li>
+<li><strong>nwayo-scaling-block-styles :</strong> Create a block that scale within a ratio styles</li>
+<li><strong>nwayo-valign-parent-styles :</strong> Vertical center the child within the parent styles</li>
+<li><strong>nwayo-list-reset-styles :</strong> Reset List Styles</li>
+<li><strong>nwayo-list-inline-styles :</strong> Reset List Inline Styles</li>
+<li><strong>nwayo-placeholder-styles :</strong> Placeholder Styles</li>
+<li><strong>nwayo-select-reset-styles :</strong> Reset Select Styles</li>
+<li><strong>nwayo-input-file-button-styles :</strong> Input type file button Styles</li>
+<li><strong>nwayo-arrow-styles :</strong> Arrow Styles</li>
+<li><strong>nwayo-column-list-styles :</strong> Create a list with columns Styles</li>
+</ul>
+</li>
+</ul>
+<h2 id="exemple" tabindex="-1"><a class="anchor" href="#exemple">⚭</a> Exemple</h2>
+<pre><code class="language-scss">//-------------------------------------
+//-- [COMPONENT_NAME] - Config - Mixins
+//-------------------------------------
+
+...
+@mixin grid-column-styles(
+  $columns: $grid-column-count,
+  $gutters: $grid-column-gutter
+) {
+  @include grid-column-size($columns);
+  @include grid-column-gutter($gutters: $gutters);
+  float: $global-left;
+}
+
+...
+
+</code></pre>

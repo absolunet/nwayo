@@ -1,0 +1,93 @@
+<h1><a href="https://sass-lang.com/documentation/variables" class="external" rel="external">Design</a></h1>
+<h4 id="%E2%9A%A0%EF%B8%8F-work-in-progress-%E2%9A%A0%EF%B8%8F" tabindex="-1"><a class="anchor" href="#%E2%9A%A0%EF%B8%8F-work-in-progress-%E2%9A%A0%EF%B8%8F">⚭</a> ⚠️ Work in progress ⚠️</h4>
+<h4 id="" tabindex="-1"><a class="anchor" href="#">⚭</a> </h4>
+<h2 id="content" tabindex="-1"><a class="anchor" href="#content">⚭</a> Content</h2>
+<p>In this configuration file, we set up a variable that can be reused in this component. Every property that is reused or
+relate to each other could be set in a variable.</p>
+<ul>
+<li>Colors</li>
+<li>Transitions</li>
+<li>Size</li>
+<li>Font and text-related attributes</li>
+<li>Border</li>
+<li>Media queries</li>
+<li>...</li>
+</ul>
+<h2 id="good-practices" tabindex="-1"><a class="anchor" href="#good-practices">⚭</a> Good practices</h2>
+<ul>
+<li>Make sure you use the proper social media color and be aware of how you legally can use it. For reference, <a href="../../../packages/toolbox/styles/_variables.scss">consult the variable files</a> and make sure they did not change since the last release. <a href="https://github.com/absolunet/nwayo/issues" class="external" rel="external">If they did, you can create an issue to have them updated.</a></li>
+<li>Order variables by type and or purpose</li>
+<li>It's a good idea to have a general component where you declare your general site esthetics and map those variables into the component</li>
+<li>Try to give significant name that describes what they are used for to the variables and not only one that describes what they are.</li>
+<li>The variable must end by the type of value they are. <a href="https://sass-lang.com/documentation/values" class="external" rel="external">Consult the list of the allowed sass values</a>.</li>
+<li>Give a general idea of what the variable is without giving any visual clue of what they are.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Value Description</th>
+<th>Bad ✖</th>
+<th>Good ✔</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The main color of a border used is black</td>
+<td><code>$[COMPONENT_NAME]-border-black-color: konstan-get('color.black'); </code></td>
+<td><code>$[COMPONENT_NAME]-border-color: konstan-get('color.black');</code></td>
+</tr>
+<tr>
+<td>The font weight used for titles</td>
+<td><code>$[COMPONENT_NAME]-bold-weight: 700; </code></td>
+<td><code>$[COMPONENT_NAME]-title-weight: $nwayo-bold-weight;</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="exemple" tabindex="-1"><a class="anchor" href="#exemple">⚭</a> Exemple</h2>
+<pre><code class="language-scss">//-------------------------------------
+//-- [COMPONENT_NAME] - Config - Design
+//-------------------------------------
+
+...
+$[COMPONENT_NAME]-title-color: #ffffff;
+$[COMPONENT_NAME]-text-color: $text-color;
+$[COMPONENT_NAME]-alt-text-color: konstan-get('color.black');
+...
+
+</code></pre>
+<p>##Toolbox
+To see a complete list of functions that are available in Nwayo you can consult :</p>
+<ul>
+<li><a href="../../../packages/toolbox/styles/_variables.scss">Variables</a>
+<ul>
+<li><strong>$nwayo-svg-replacement-1-color :</strong> #ba0bab;</li>
+<li><strong>$nwayo-svg-replacement-2-color :</strong> #c0ffee;</li>
+<li><strong>$nwayo-svg-replacement-colors :</strong>  ($nwayo-svg-replacement-1-color, $nwayo-svg-replacement-2-color);</li>
+<li><strong>$nwayo-social-colors :</strong> Social network colors</li>
+<li><strong>$nwayo-sansserif-font :</strong>  Helvetica, Arial, Verdana, sans-serif;                                         // stylelint-disable-line value-keyword-case</li>
+<li><strong>$nwayo-serif-font :</strong>      'Times New Roman', Times, serif;                                               // stylelint-disable-line value-keyword-case</li>
+<li><strong>$nwayo-monospace-font :</strong>  Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', Courier, monospace; // stylelint-disable-line value-keyword-case</li>
+<li><strong>$nwayo-thin-weight :</strong>       100;</li>
+<li><strong>$nwayo-extralight-weight :</strong> 200;</li>
+<li><strong>$nwayo-light-weight :</strong>      300;</li>
+<li><strong>$nwayo-normal-weight :</strong>     400;</li>
+<li><strong>$nwayo-medium-weight :</strong>     500;</li>
+<li><strong>$nwayo-semibold-weight :</strong>   600;</li>
+<li><strong>$nwayo-bold-weight :</strong>       700;</li>
+<li><strong>$nwayo-extrabold-weight :</strong>  800;</li>
+<li><strong>$nwayo-black-weight :</strong>      900;</li>
+<li><strong>$nwayo-bull-char :</strong>   '\2022'</li>
+<li><strong>$nwayo-times-char :</strong>  '\00D7';</li>
+<li><strong>$nwayo-endash-char :</strong> '\2013';</li>
+<li><strong>$nwayo-textfields-selector :</strong> 'input[type=&quot;text&quot;], input[type=&quot;password&quot;], input[type=&quot;email&quot;], input[type=&quot;tel&quot;], input[type=&quot;url&quot;], input[type=&quot;search&quot;], input[type=&quot;date&quot;], input[type=&quot;number&quot;]';</li>
+<li><strong>$nwayo-hover-selector :</strong>     'html:not([data-whatintent=&quot;touch&quot;]) &amp;:hover';</li>
+<li><strong>$nwayo-docloaded-selector :</strong> 'body.document-loaded';</li>
+<li><strong>$debug-red :</strong>    #ee2c2c;</li>
+<li><strong>$debug-orange :</strong> #ffa500;</li>
+<li><strong>$debug-yellow :</strong> #ffdf33;</li>
+<li><strong>$debug-green :</strong>  #76ee00;</li>
+<li><strong>$debug-blue :</strong>   #1e90ff;</li>
+<li><strong>$debug-purple :</strong> #a020f0;</li>
+</ul>
+</li>
+</ul>

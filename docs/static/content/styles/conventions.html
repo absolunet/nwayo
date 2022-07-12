@@ -1,0 +1,33 @@
+<h1>Conventions and useful tips</h1>
+<h4 id="%E2%9A%A0%EF%B8%8F-work-in-progress-%E2%9A%A0%EF%B8%8F" tabindex="-1"><a class="anchor" href="#%E2%9A%A0%EF%B8%8F-work-in-progress-%E2%9A%A0%EF%B8%8F">⚭</a> ⚠️ Work in progress ⚠️</h4>
+<h4 id="" tabindex="-1"><a class="anchor" href="#">⚭</a> </h4>
+<h2 id="conventions" tabindex="-1"><a class="anchor" href="#conventions">⚭</a> Conventions</h2>
+<ul>
+<li>Use <a href="component/stylelint">StyleLint</a></li>
+<li>Order variables and mixins by type and or purpose</li>
+<li>It's a good idea to have a general component where you declare your general site esthetics and map those variables into the component</li>
+<li>Try to give significant name that describes what they are used for to the variables and not only one that describes what they are.</li>
+<li>The variable must end by the type of value they are. <a href="https://sass-lang.com/documentation/values" class="external" rel="external">Consult the list of the allowed sass values</a>.</li>
+<li>Give a general idea of what the variable is without giving any visual clue of what they are.</li>
+<li>Mixins must end with the type of content they output</li>
+<li>Use mixins to avoid duplicate code</li>
+<li>You can include mixins in another mixins</li>
+<li>If you need to adjust something that should be in the mixins but that modification only apply to an edge case, add a parameter to the mixin so the right output is generated.</li>
+</ul>
+<h2 id="useful-tips" tabindex="-1"><a class="anchor" href="#useful-tips">⚭</a> Useful tips</h2>
+<blockquote>
+<p>We asked our internal developers that use Nwayo daily their tips and tricks and here's the result</p>
+</blockquote>
+<h3 id="in-kebab-case-your-selector-you-shall-write" tabindex="-1"><a class="anchor" href="#in-kebab-case-your-selector-you-shall-write">⚭</a> In <a href="https://en.wiktionary.org/wiki/kebab_case" class="external" rel="external">Kebab case</a> your selector you shall write</h3>
+<h3 id="separate-concerns%2C-separates-files-it-will-be" tabindex="-1"><a class="anchor" href="#separate-concerns%2C-separates-files-it-will-be">⚭</a> Separate concerns, separates files it will be</h3>
+<p>This also apply to components.</p>
+<h3 id="yes%2C-there's-still-jquery-features-%C2%AF%5C_(%E3%83%84)_%2F%C2%AF" tabindex="-1"><a class="anchor" href="#yes%2C-there's-still-jquery-features-%C2%AF%5C_(%E3%83%84)_%2F%C2%AF">⚭</a> Yes, there's still jQuery features ¯\_(ツ)_/¯</h3>
+<p>Even us we need to get over it.</p>
+<h3 id="time-to-go-trough-the-nwayo-toolbox-you-will-invest." tabindex="-1"><a class="anchor" href="#time-to-go-trough-the-nwayo-toolbox-you-will-invest.">⚭</a> Time to go trough the <a href="TODO">Nwayo Toolbox</a> you will invest.</h3>
+<p>There's a bunch of mixins and other stuff available. Why do it again? Ain't nobody got time for that!</p>
+<h3 id="nwayo-watch-is-a-horse-wearing-blinders%F0%9F%8F%87%F0%9F%8F%BB" tabindex="-1"><a class="anchor" href="#nwayo-watch-is-a-horse-wearing-blinders%F0%9F%8F%87%F0%9F%8F%BB">⚭</a> <code>nwayo watch</code> is a horse wearing blinders🏇🏻</h3>
+<p>When we do some modifications to yaml files (include new stuff or change konstan), you need to stop and restart the <code>nwayo watch</code>. Otherwise, changes won't be take into consideration.</p>
+<h3 id="if-you-don't-know-how-to-say-nwayo%2C-try-nwayo---pronounce" tabindex="-1"><a class="anchor" href="#if-you-don't-know-how-to-say-nwayo%2C-try-nwayo---pronounce">⚭</a> If you don't know how to say Nwayo, try <code>nwayo --pronounce</code></h3>
+<p>It's always easier to now how to pronouns what you're talking about</p>
+<h3 id="properly-your-development-tools-you-shall-set" tabindex="-1"><a class="anchor" href="#properly-your-development-tools-you-shall-set">⚭</a> Properly your development tools you shall set</h3>
+<p>Exemple, automatically order css value so that the linters don't scream at you for the same things all the time 😱</p>

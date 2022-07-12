@@ -1,14 +1,12 @@
-<h1>Polices</h1>
-<p>Les polices sont situées sous le dossier <code>fonts</code>, sous la composante associée à la police en question.
-Il faut les 4 formats de police sous le dossier <code>fonts</code> avec le même nom de fichier:</p>
-<ul>
-<li><code>eot</code></li>
-<li><code>ttf</code></li>
-<li><code>woff</code></li>
-<li><code>woff2</code></li>
-</ul>
+<h1>Fonts</h1>
+<h4 id="%E2%9A%A0%EF%B8%8F-work-in-progress-%E2%9A%A0%EF%B8%8F" tabindex="-1"><a class="anchor" href="#%E2%9A%A0%EF%B8%8F-work-in-progress-%E2%9A%A0%EF%B8%8F">⚭</a> ⚠️ Work in progress ⚠️</h4>
+<h4 id="" tabindex="-1"><a class="anchor" href="#">⚭</a> </h4>
+<p>The fonts are located under the <code>fonts</code> folder, under the component associated with the font in question.</p>
+<p><a href="../../packages/toolbox/styles/_variables.scss">When declaring fonts, use the nwayo variables for the font-weight.</a>.</p>
+<p>You need to have a WOFF 1.0 font (<code>.woff</code>) under the <code>fonts</code> folder. Optionnally you can add a WOFF 2.0 font (<code>.woff2</code>) with the same filename if it is available.</p>
 <h2 id="mixin" tabindex="-1"><a class="anchor" href="#mixin">⚭</a> Mixin</h2>
-<p>Le mixin utilisé pour générer le <code>@font-face</code>au niveau du css.</p>
+<p>The <code>@font-face</code> mixins is used to generate the css</p>
+<p><a href="configurations/mixins">Consult the list of all mixins for more details</a></p>
 <pre><code class="language-scss">//-- Font-face
 @mixin load-font-mixin ($name, $filename, $context, $weight:normal, $style:normal) {
 	$url:   assets-path($filename, $context, 'fonts');
@@ -22,30 +20,30 @@ Il faut les 4 formats de police sous le dossier <code>fonts</code> avec le même
 }
 </code></pre>
 <ul>
-<li><code>$name</code> = Le nom de la police utilisé pour la <code>font-family</code> dans le css.</li>
-<li><code>$filename</code> = Le nom du fichier de la police.</li>
-<li><code>$context</code> = Le contexte dans lequel se situe la police.</li>
-<li><code>$weight</code> = Le poids de la police. <code>normal</code> est mis par défaut.</li>
-<li><code>$style</code> = Le style de la police. <code>normal</code> est mis par défaut.</li>
+<li><code>$name</code> = The name of the font used for the <code>font-family</code> in the css.</li>
+<li><code>$filename</code> = File name of the font.</li>
+<li><code>$context</code> = In what context the font is used. (component)</li>
+<li><code>$weight</code> = The weight of the font. <code>normal</code> is the default value.</li>
+<li><code>$style</code> = The style of the font. <code>normal</code> is the default value.</li>
 </ul>
-<h2 id="comment-utiliser" tabindex="-1"><a class="anchor" href="#comment-utiliser">⚭</a> Comment utiliser</h2>
-<p>Pour générer le bon code, vous devez au moins fournir <code>$name</code>, <code>$filename</code> et <code>$context</code>.</p>
-<pre><code class="language-scss">//-- Ligne de code appelé pour générer la font-family
+<h3 id="how-to-use" tabindex="-1"><a class="anchor" href="#how-to-use">⚭</a> How to use</h3>
+<p>To generate valid css, <code>$name</code>, <code>$filename</code> and <code>$context</code> are required.</p>
+<pre><code class="language-scss">//-- Generate font-family
 @include load-font-mixin('roboto', 'roboto-light-webfont', 'common', $weight:$light-weight);
 
-//-- Utilisation au niveau d'une variable
-$text-font: 'Open Sans', sans-serif;
+//-- Variable usage
+$common-text-font: 'Open Sans', sans-serif;
 </code></pre>
-<h2 id="gestion-de-font-weight" tabindex="-1"><a class="anchor" href="#gestion-de-font-weight">⚭</a> Gestion de font-weight</h2>
-<p>Il est préférable d'avoir une police pour chacune des graisses utilisées dans la composante et d'utiliser le même <code>$name</code>pour chacun d'eux. Il est ainsi plus facile de gérer la graisse de manière globale.</p>
-<pre><code class="language-scss">//-- Chargement des différentes graisses
-@include load-font-mixin('roboto', 'roboto-light-webfont', 'common', $light-weight);
-@include load-font-mixin('roboto', 'roboto-regular-webfont', 'common', $normal-weight);
-@include load-font-mixin('roboto', 'roboto-bold-webfont', 'common', $bold-weight);
-@include load-font-mixin('roboto', 'roboto-black-webfont', 'common', $black-weight);
+<h2 id="font-weight-management" tabindex="-1"><a class="anchor" href="#font-weight-management">⚭</a> Font-weight management</h2>
+<p>It is preferable to have a font for each of the weights used in the component and to use the same <code>$ name</code> for each of them. This makes it easier to manage fat overall.</p>
+<pre><code class="language-scss">//-- Generate font-weight
+@include load-font-mixin('roboto', 'roboto-light-webfont', 'common', $nwayo-light-weight);
+@include load-font-mixin('roboto', 'roboto-regular-webfont', 'common', $nwayo-normal-weight);
+@include load-font-mixin('roboto', 'roboto-bold-webfont', 'common', $nwayo-bold-weight);
+@include load-font-mixin('roboto', 'roboto-black-webfont', 'common', $nwayo-black-weight);
 
-//-- Appel dans le css
-$text-font: 'roboto', sans-serif;
+//-- SCSS usages
+$common-text-font: 'roboto', sans-serif;
 
 body {
 	font-family: $text-font;
