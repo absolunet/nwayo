@@ -28,10 +28,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - SCSS function `nwayo-list-contains`: Parameter name change from `$var` → `$value`
 - SCSS mixin `nwayo-scalable-icon-colored-states-styles`: Parameter name change from `$name` → `$file`
 - SCSS mixin `nwayo-scaling-block-styles`: Parameter names change from `$w` → `$width`, `$h` → `$height`
+- Remove support for Node.js 12.x
 - Maintenance updates
 
 ### Removed
 - SCSS variable `$nwayo-social-colors`: Remove `googleplus`
+- Remove some package standardization tests, keeping only linters
 
 ### Fixed
 - Fix `scripts-lint` on `watch` that would stop on lint error
