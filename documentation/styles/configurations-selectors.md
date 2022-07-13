@@ -1,17 +1,18 @@
-# [Selectors](https://sass-lang.com/documentation/style-rules/parent-selector)
+# Configurations - Selectors
 
 #### ⚠️ Work in progress ⚠️
 ####
 
 ## Content
+[SCSS Selectors](https://sass-lang.com/documentation/style-rules/parent-selector)
 You can store selector in a variable, so it can be reused multiple times. It is recommended to use the sass parent selector when needed.
 
 
 ## Good practices
 - Use general selector linter rules
-- Use scss [nesting concept](#exemple-1) OR [concatenate selector](#exemple-2) to create new ones
+- Use SCSS [nesting concept](#exemple-1) OR [concatenate selector](#exemple-2) to create new ones
 - Useful for selectors that are frequently used
--
+
 
 
 ## Exemple 1

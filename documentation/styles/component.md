@@ -6,7 +6,7 @@
 > Nwayo is base on a system of components what are enabled or disabled depending on the usages
 
 ## Available Components
-- [Foundation](foundation.md)
+- [Foundation](component-foundation.md)
 
 
 > Being written

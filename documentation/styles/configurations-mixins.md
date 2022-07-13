@@ -1,9 +1,10 @@
-# [Mixins](https://sass-lang.com/documentation/at-rules/mixin)
+# Configurations - Mixins
 
 #### ⚠️ Work in progress ⚠️
 ####
 
 ## Content
+[SCSS Mixins](https://sass-lang.com/documentation/at-rules/mixin)
 Mixins purpose is to encapsulate styles to which it can be included and reused at multiple places. They can be modified with variable and conditions inside.
 
 ## Good practices

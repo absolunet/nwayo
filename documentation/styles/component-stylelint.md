@@ -1,4 +1,4 @@
-# Stylelint
+# Component - Stylelint
 
 #### ⚠️ Work in progress ⚠️
 ####

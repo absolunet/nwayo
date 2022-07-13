@@ -1,9 +1,10 @@
-# [Design](https://sass-lang.com/documentation/variables)
+# Configurations - Design
 
 #### ⚠️ Work in progress ⚠️
 ####
 
 ## Content
+[SCSS Variables](https://sass-lang.com/documentation/variables)
 In this configuration file, we set up a variable that can be reused in this component. Every property that is reused or
 relate to each other could be set in a variable.
 

@@ -10,7 +10,7 @@ jobs:
         os:
           - ubuntu-latest
         node_version:
-          - latest
+          - 18
           - 16
           - 14
     name: 'Node ${{ matrix.node_version }} - on ${{ matrix.os }}'

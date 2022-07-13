@@ -1,9 +1,10 @@
-# [Functions](https://sass-lang.com/documentation/at-rules/function)
+# Configurations - Functions
 
 #### ⚠️ Work in progress ⚠️
 ####
 
 ## Content
+[SCSS Functions](https://sass-lang.com/documentation/at-rules/function)
 The difference between functions and mixins is that the mixins generate an output (mostly styling directives) and
 functions generates values
 

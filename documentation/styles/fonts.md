@@ -13,7 +13,7 @@ You need to have a WOFF 1.0 font (`.woff`) under the `fonts` folder. Optionnally
 ## Mixin
 The `@font-face` mixins is used to generate the css
 
-[Consult the list of all mixins for more details](configurations/mixins.md)
+[Consult the list of all mixins for more details](configurations-mixins.md)
 
 ```scss
 //-- Font-face

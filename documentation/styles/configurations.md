@@ -12,10 +12,10 @@ variable into more specifics components
 
 ## Types
 They are 4 types of assets:
-- [Design](design.md)
-- [Functions](functions.md)
-- [Mixins](mixins.md)
-- [Selectors](selectors.md)
+- [Design](configurations-design.md)
+- [Functions](configurations-functions.md)
+- [Mixins](configurations-mixins.md)
+- [Selectors](configurations-selectors.md)
 
 
 ## Structures
