@@ -1,20 +1,21 @@
 <h1>Images</h1>
-<p>Les images sont situées sous le dossier <code>images</code>, sous la composante associée à l'image en question.</p>
+<h4 id="%E2%9A%A0%EF%B8%8F-work-in-progress-%E2%9A%A0%EF%B8%8F" tabindex="-1"><a class="anchor" href="#%E2%9A%A0%EF%B8%8F-work-in-progress-%E2%9A%A0%EF%B8%8F">⚭</a> ⚠️ Work in progress ⚠️</h4>
+<h4 id="" tabindex="-1"><a class="anchor" href="#">⚭</a> </h4>
+<p>The images are located in the <code>images</code> directory, under its component.</p>
 <h2 id="mixin" tabindex="-1"><a class="anchor" href="#mixin">⚭</a> Mixin</h2>
-<p>Le mixin utilisé pour générer les images au niveau du css. Il sera ensuite possible de les inclure par <code>@include</code> sous le sélecteur voulu.
-<strong>Note:</strong> Le fonctionnement des images <code>inline</code> et <code>Scalable</code> seront traitées dans la section <a href="inline-image">inline-image</a></p>
-<h2 id="fonctionnement" tabindex="-1"><a class="anchor" href="#fonctionnement">⚭</a> Fonctionnement</h2>
+<p>The mixin used to generate the images at the css level. It will then be possible to include them by <code>@include</code> under the desired selector.
+<strong>NB:</strong> Please refer to the <a href="inline-image">inline-image</a> for <code>inline</code> or <code>Scalable</code> images.</p>
 <pre><code class="language-scss">//-- Background image
 @mixin bg-image-mixin ($file, $context, $inline:false, $width:false, $height:false, $color:false) {
-	
+
 	// uri
 	$uri: '';
 	@if $inline {
-		// Portion détaillé dans la section inline-image
+		// Portion detailed in the inline-image section
 	} @else {
 		$uri: url(assets-path($file, $context, 'images'));
 	}
-	
+
 	// high density
 	@if str-index($file, '@2x') {
 		$path: 'components/' + $context + '/assets/' + if($inline, 'inline-', '') + 'images/' + $file;
@@ -33,15 +34,15 @@
 }
 </code></pre>
 <ul>
-<li><code>$file</code> = Le nom du fichier image.</li>
-<li><code>$context</code> = Le contexte dans lequel se situe l'image.</li>
-<li><code>$inline</code> = Si l'image est inline ou non.</li>
-<li><code>$width</code> = Assigner la largeur d'une image @2x.</li>
-<li><code>$height</code> = Assigner la hauteur d'une image @2x.</li>
-<li><code>$color</code> = La couleur utilisée pour les svg. Voir la section <a href="inline-image">inline-image</a> pour plus de détails.</li>
+<li><code>$file</code> = Name of the file</li>
+<li><code>$context</code> = The usage context of this image</li>
+<li><code>$inline</code> = If the image is inline or not</li>
+<li><code>$width</code> = Assign the width of the image @2x.</li>
+<li><code>$height</code> =Assign the height of the image @2x.</li>
+<li><code>$color</code> = the color used in the image for the SVG format. Consult the <a href="inline-image">inline-image</a> for more infos.</li>
 </ul>
-<h2 id="comment-utiliser" tabindex="-1"><a class="anchor" href="#comment-utiliser">⚭</a> Comment utiliser</h2>
-<p>Pour générer le bon code, vous devez au moins fournir <code>$file</code> et <code>$context</code>.</p>
+<h2 id="how-to-use" tabindex="-1"><a class="anchor" href="#how-to-use">⚭</a> How to use</h2>
+<p>To be able to generate an image, the <code>$file</code> and <code>$context</code> are required.</p>
 <pre><code class="language-scss">// Normal
 @mixin misc1-image { @include bg-image-mixin('misc1.png', 'common'); }
 @mixin logo1-image { @include bg-image-mixin('logo1.png', 'foobar'); }
@@ -56,7 +57,7 @@
 // Scalable
 @mixin icon4-image { @include scalable-icon-mixin('icon4.svg', 'foobar'); }
 
-//-- Appel dans le css
+//-- How to use it
 .logo {
 	@include logo1-image;
 }

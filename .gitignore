@@ -1,5 +1,13 @@
+.idea
+.vscode
+.DS_Store
+Thumbs.db
+
 .nwayo-cache
 .publish-tarballs
 node_modules
 npm-debug.log
-package-lock.json
+
+packages/grow-extension/boilerplate/package-lock.json
+packages/grow-project/boilerplate/package-lock.json
+packages/grow-project/boilerplate/vendor/package-lock.json

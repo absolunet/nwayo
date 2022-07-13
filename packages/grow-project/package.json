@@ -1,6 +1,6 @@
 {
   "name": "@absolunet/nwayo-grow-project",
-  "version": "3.9.1",
+  "version": "3.9.2",
   "description": "Boilerplate generator for nwayo project",
   "definition": "",
   "homepage": "https://documentation.absolunet.com/nwayo",
@@ -25,14 +25,14 @@
     "nwayo-grow-project": "bin/nwayo-grow-project"
   },
   "engines": {
-    "node": ">= 12"
+    "node": ">= 14.17.0"
   },
   "main": "index.js",
   "dependencies": {
     "@absolunet/fss": "^1.7.0",
-    "chalk": "^3.0.0",
+    "chalk": "^4.1.2",
     "figures": "^3.2.0",
     "inquirer": "^8.2.1",
-    "replace-in-file": "^6.3.2"
+    "replace-in-file": "^6.3.5"
   }
 }

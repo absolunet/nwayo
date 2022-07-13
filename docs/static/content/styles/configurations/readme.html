@@ -1,0 +1,38 @@
+<h1>Configurations</h1>
+<h4 id="%E2%9A%A0%EF%B8%8F-work-in-progress-%E2%9A%A0%EF%B8%8F" tabindex="-1"><a class="anchor" href="#%E2%9A%A0%EF%B8%8F-work-in-progress-%E2%9A%A0%EF%B8%8F">⚭</a> ⚠️ Work in progress ⚠️</h4>
+<h4 id="" tabindex="-1"><a class="anchor" href="#">⚭</a> </h4>
+<blockquote>
+<p>It is possible to set including design variables, mixins and function inside a component.
+Those configurations can be imported to another component and or bundle to make sure that the styling and
+features are applied with consistency.</p>
+</blockquote>
+<p>It's a good idea to have a general component where you declare the general look and feel of your project and remap those
+variable into more specifics components</p>
+<h2 id="types" tabindex="-1"><a class="anchor" href="#types">⚭</a> Types</h2>
+<p>They are 4 types of assets:</p>
+<ul>
+<li><a href="design">Design</a></li>
+<li><a href="functions">Functions</a></li>
+<li><a href="mixins">Mixins</a></li>
+<li><a href="selectors">Selectors</a></li>
+</ul>
+<h2 id="structures" tabindex="-1"><a class="anchor" href="#structures">⚭</a> Structures</h2>
+<p>The source files are located under <code>[NWAYO_ROOT]/components/[COMPONENT_NAME]/styles</code>. The component must also be included in one or many bundle. The diffenr</p>
+<pre><code>- config /
+  - _design.scss
+  - _functions.scss
+  - _mixins.scss
+  - ...
+- config.scss
+</code></pre>
+<p>To be able to use configurations, we must importe the config file before the styling component in the bundle file. This will make them available inside the component where those configs are imported</p>
+<pre><code class="language-yaml">//-------------------------------------
+//-- [COMPONENT_NAME - Configuration
+//-------------------------------------
+
+@import 'components/[COMPONENT_NAME]/styles/config/design';
+@import 'components/[COMPONENT_NAME]/styles/config/mixins';
+@import 'components/[COMPONENT_NAME]/styles/config/functions';
+@import 'components/[COMPONENT_NAME]/styles/config/selectors';
+
+</code></pre>

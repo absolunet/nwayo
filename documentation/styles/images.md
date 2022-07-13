@@ -1,23 +1,26 @@
 # Images
-Les images sont situées sous le dossier `images`, sous la composante associée à l'image en question.
+
+#### ⚠️ Work in progress ⚠️
+####
+
+The images are located in the `images` directory, under its component.
 
 ## Mixin
-Le mixin utilisé pour générer les images au niveau du css. Il sera ensuite possible de les inclure par `@include` sous le sélecteur voulu.
-**Note:** Le fonctionnement des images `inline` et `Scalable` seront traitées dans la section [inline-image](inline-image.md)
+The mixin used to generate the images at the css level. It will then be possible to include them by `@include` under the desired selector.
+**NB:** Please refer to the [inline-image](inline-image.md) for `inline` or `Scalable` images.
 
-## Fonctionnement
 ```scss
 //-- Background image
 @mixin bg-image-mixin ($file, $context, $inline:false, $width:false, $height:false, $color:false) {
-	
+
 	// uri
 	$uri: '';
 	@if $inline {
-		// Portion détaillé dans la section inline-image
+		// Portion detailed in the inline-image section
 	} @else {
 		$uri: url(assets-path($file, $context, 'images'));
 	}
-	
+
 	// high density
 	@if str-index($file, '@2x') {
 		$path: 'components/' + $context + '/assets/' + if($inline, 'inline-', '') + 'images/' + $file;
@@ -35,15 +38,15 @@ Le mixin utilisé pour générer les images au niveau du css. Il sera ensuite po
 	background-image: #{$uri};
 }
 ```
-- `$file` = Le nom du fichier image.
-- `$context` = Le contexte dans lequel se situe l'image.
-- `$inline` = Si l'image est inline ou non.
-- `$width` = Assigner la largeur d'une image @2x.
-- `$height` = Assigner la hauteur d'une image @2x.
-- `$color` = La couleur utilisée pour les svg. Voir la section [inline-image](inline-image.md) pour plus de détails.
+- `$file` = Name of the file
+- `$context` = The usage context of this image
+- `$inline` = If the image is inline or not
+- `$width` = Assign the width of the image @2x.
+- `$height` =Assign the height of the image @2x.
+- `$color` = the color used in the image for the SVG format. Consult the [inline-image](inline-image.md) for more infos.
 
-## Comment utiliser
-Pour générer le bon code, vous devez au moins fournir `$file` et `$context`.
+## How to use
+To be able to generate an image, the `$file` and `$context` are required.
 ```scss
 // Normal
 @mixin misc1-image { @include bg-image-mixin('misc1.png', 'common'); }
@@ -59,7 +62,7 @@ Pour générer le bon code, vous devez au moins fournir `$file` et `$context`.
 // Scalable
 @mixin icon4-image { @include scalable-icon-mixin('icon4.svg', 'foobar'); }
 
-//-- Appel dans le css
+//-- How to use it
 .logo {
 	@include logo1-image;
 }

@@ -1,6 +1,6 @@
 {
   "name": "@absolunet/nwayo-toolbox",
-  "version": "3.9.1",
+  "version": "3.9.2",
   "description": "Toolbox for nwayo",
   "definition": "",
   "homepage": "https://documentation.absolunet.com/nwayo/",
@@ -21,16 +21,16 @@
     "url": "https://github.com/absolunet/nwayo/issues"
   },
   "engines": {
-    "node": ">= 12"
+    "node": ">= 14.17.0"
   },
   "browser": "scripts/dependencies-starter.js",
   "peerDependencies": {
-    "@absolunet/pinki": "^3.0.0",
-    "imagesloaded": "^4.1.4",
-    "jquery": "^3.6.0"
+    "@absolunet/pinki": ">= 3.0.0",
+    "imagesloaded": ">= 5.0.0",
+    "jquery": ">= 3.6.0"
   },
   "optionalDependencies": {
-    "lodash": "^4.17.21",
-    "modernizr": "^3.11.8"
+    "lodash": ">= 4.17.21",
+    "modernizr": ">= 3.12.0"
   }
 }

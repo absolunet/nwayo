@@ -1,33 +1,43 @@
 //--------------------------------------------------------
 //-- nwayo
 //--------------------------------------------------------
-'use strict';
+"use strict";
 
-/* eslint-disable global-require */
+/* eslint-disable node/global-require */
 class NwayoClasses {
-
-	get extension() { return require('./classes/extension'); }
-
+	get extension() {
+		return require("./classes/extension");
+	}
 }
 
-
 class NwayoHelpers {
+	// eslint-disable-next-line unicorn/prevent-abbreviations
+	get env() {
+		return require("./helpers/env");
+	}
 
-	get env()     { return require('./helpers/env'); }  // eslint-disable-line unicorn/prevent-abbreviations
-	get paths()   { return require('./helpers/paths'); }
-	get toolbox() { return require('./helpers/toolbox'); }
-	get util()    { return require('./helpers/util'); }
+	get paths() {
+		return require("./helpers/paths");
+	}
 
+	get toolbox() {
+		return require("./helpers/toolbox");
+	}
+
+	get util() {
+		return require("./helpers/util");
+	}
 }
 /* eslint-enable global-require */
 
-
 class NwayoWorkflow {
+	get classes() {
+		return new NwayoClasses();
+	}
 
-	get classes() { return new NwayoClasses(); }
-	get helpers() { return new NwayoHelpers(); }
-
+	get helpers() {
+		return new NwayoHelpers();
+	}
 }
-
 
 module.exports = new NwayoWorkflow();

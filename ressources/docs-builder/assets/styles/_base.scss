@@ -10,16 +10,16 @@ a {
 	transition: color, $docs-transition;
 }
 
-pre[class*='language-'] {
+pre[class*='language-'] {  // stylelint-disable-line selector-attribute-name-disallowed-list -- Class exception
 	border-radius: $docs-code-radius;
 }
 
-code[class*='language-'] {
+code[class*='language-'] {  // stylelint-disable-line selector-attribute-name-disallowed-list -- Class exception
 	font-family: $docs-monospace-font !important;
 	font-size: $docs-code-size;
 }
 
-code:not([class]) {
+code:not([class]) {  // stylelint-disable-line selector-attribute-name-disallowed-list -- Class exception
 	padding: .2em .5em;
 	border-radius: $docs-code-radius;
 	margin: 0 .2em;

@@ -13,6 +13,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+## [3.9.2] - 2022-07-12
+### Added
+- Add partial documentation
+- Add SassDoc toolbox styles
+- SCSS function `nwayo-strip-unit`: Add function
+- SCSS mixin `nwayo-scaling-block-styles`: Add parameter `$subselector`
+- SCSS mixin `nwayo-valign-parent-styles`: Add parameter `$subselector`
+- SCSS mixin `nwayo-placeholder-styles`: Add parameter `$selector`
+- SCSS mixin `nwayo-column-list-styles`: Add parameter `$subselector`
+- SCSS variable `$nwayo-social-colors`: Add `messenger`, `whatsapp`, `snapchat`, `tiktok`
+- SCSS variable `$nwayo-extrablack-weight`: Add variable
+- Add fixer maintenance scripts
+
+### Changed
+- Remove support for Node.js 12.x
+- SCSS function `nwayo-breakpoint-media`: Parameter name change from `$bp` → `$breakpoint`
+- SCSS function `nwayo-str-replace`: Parameter name change from `$string` → `$subject`
+- SCSS function `nwayo-color-replace`: Parameter names change from `$string` → `$subject`, `$source` → `$search`, `$target` → `$replace`
+- SCSS function `nwayo-list-contains`: Parameter name change from `$var` → `$value`
+- SCSS mixin `nwayo-scalable-icon-colored-states-styles`: Parameter name change from `$name` → `$file`
+- SCSS mixin `nwayo-scaling-block-styles`: Parameter names change from `$w` → `$width`, `$h` → `$height`
+- Prettierfy codebase
+- Maintenance updates
+
+### Removed
+- SCSS variable `$nwayo-social-colors`: Remove `googleplus`
+- Remove some package standardization tests, keeping only linters
+
+### Fixed
+- Fix `scripts-lint` on `watch` that would stop on lint error
+- Fix `styles-lint` on `watch` that would still halt after fixing lint error, by removing custom patch
+
+
+
 ## [3.9.1] - 2022-03-28
 ### Changed
 - Update documentation
@@ -649,7 +683,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-[Unreleased]:    https://github.com/absolunet/nwayo/compare/3.9.1...HEAD
+[Unreleased]:    https://github.com/absolunet/nwayo/compare/3.9.2...HEAD
+[3.9.2]:         https://github.com/absolunet/nwayo/compare/3.9.1...3.9.2
 [3.9.1]:         https://github.com/absolunet/nwayo/compare/3.9.0...3.9.1
 [3.9.0]:         https://github.com/absolunet/nwayo/compare/3.9.0-beta.2...3.9.0
 [3.9.0-beta.2]:  https://github.com/absolunet/nwayo/compare/3.9.0-beta.1...3.9.0-beta.2

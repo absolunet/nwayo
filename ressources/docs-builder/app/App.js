@@ -2,20 +2,17 @@
 //-- App
 //-------------------------------------
 
-import React                    from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-import { hot }                  from 'react-hot-loader';
+import React from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+import { hot } from "react-hot-loader";
 
-import paths from './helpers/paths';
-
-import Header  from './components/Header';
-import Nav     from './components/Nav';
-import Content from './components/Content';
-import Footer  from './components/Footer';
-
+import Content from "./components/Content";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Nav from "./components/Nav";
+import paths from "./helpers/paths";
 
 class App extends React.PureComponent {
-
 	render() {
 		return (
 			<BrowserRouter basename={paths.root}>
@@ -39,8 +36,6 @@ class App extends React.PureComponent {
 			</BrowserRouter>
 		);
 	}
-
 }
-
 
 export default hot(module)(App);

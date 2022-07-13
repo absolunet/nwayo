@@ -1,6 +1,6 @@
 {
   "name": "@absolunet/nwayo-cli",
-  "version": "3.9.1",
+  "version": "3.9.2",
   "description": "CLI for nwayo",
   "definition": "",
   "homepage": "https://documentation.absolunet.com/nwayo",
@@ -24,14 +24,14 @@
     "nwayo": "bin/nwayo"
   },
   "engines": {
-    "node": ">= 12"
+    "node": ">= 14.17.0"
   },
   "main": "index.js",
   "dependencies": {
     "@absolunet/fss": "^1.7.0",
     "@absolunet/terminal": "^3.2.0",
     "boxen": "^5.1.2",
-    "chalk": "^3.0.0",
+    "chalk": "^4.1.2",
     "cross-spawn": "^7.0.3",
     "minimist": "^1.2.6",
     "open": "^8.4.0",

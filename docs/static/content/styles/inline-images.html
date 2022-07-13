@@ -1,12 +1,13 @@
 <h1>Inline image</h1>
-<p>La différence entre les <code>images inline</code> et les <code>images</code> est que l'<code>image inline</code> intégrera le contenu de l'image directement dans la feuille de styles, ce qui élimine une autre requête HTTP.
-Les images sont situées sous le dossier <code>inline-images</code>, sous la composante associée à l'image en question.</p>
+<h4 id="%E2%9A%A0%EF%B8%8F-work-in-progress-%E2%9A%A0%EF%B8%8F" tabindex="-1"><a class="anchor" href="#%E2%9A%A0%EF%B8%8F-work-in-progress-%E2%9A%A0%EF%B8%8F">⚭</a> ⚠️ Work in progress ⚠️</h4>
+<h4 id="" tabindex="-1"><a class="anchor" href="#">⚭</a> </h4>
+<p>The main difference between <code>images inline</code> and <code>images</code> is that <code>image inline</code> will embed the content of the image directly into the stylesheet, eliminating another HTTP request.
+The images are located under the <code>inline-images</code> folder, under the component associated with the image in question.</p>
 <h2 id="mixin" tabindex="-1"><a class="anchor" href="#mixin">⚭</a> Mixin</h2>
-<p>Le mixin utilisé pour générer les images au niveau du css. Il sera ensuite possible de les inclure par <code>@include</code> sous le sélecteur voulu.</p>
-<h2 id="fonctionnement" tabindex="-1"><a class="anchor" href="#fonctionnement">⚭</a> Fonctionnement</h2>
+<p>The mixin used to generate the images at the css level. It will then be possible to include them by <code>@include</code> under the desired selector.</p>
 <pre><code class="language-scss">//-- Background image
 @mixin bg-image-mixin ($file, $context, $inline:false, $width:false, $height:false, $color:false) {
-	
+
 	// uri
 	$uri: '';
 	@if $inline {
@@ -43,7 +44,7 @@ Les images sont situées sous le dossier <code>inline-images</code>, sous la com
 	} @else {
 		$uri: url(assets-path($file, $context, 'images'));
 	}
-	
+
 	// high density
 	@if str-index($file, '@2x') {
 		$path: 'components/' + $context + '/assets/' + if($inline, 'inline-', '') + 'images/' + $file;
@@ -62,14 +63,14 @@ Les images sont situées sous le dossier <code>inline-images</code>, sous la com
 }
 </code></pre>
 <ul>
-<li><code>$file</code> = Le nom du fichier image.</li>
-<li><code>$context</code> = Le contexte dans lequel se situe l'image.</li>
-<li><code>$inline</code> = Si l'image est inline ou non.</li>
-<li><code>$width</code> = Assigner la largeur d'une image @2x.</li>
-<li><code>$height</code> = Assigner la hauteur d'une image @2x.</li>
-<li><code>$color</code> = La couleur utilisée pour les svg.</li>
+<li><code>$file</code> = Name of the file</li>
+<li><code>$context</code> = The usage context of this image</li>
+<li><code>$inline</code> = If the image is inline or not</li>
+<li><code>$width</code> = Assign the width of the image @2x.</li>
+<li><code>$height</code> =Assign the height of the image @2x.</li>
+<li><code>$color</code> = the color used in the image for the SVG format</li>
 </ul>
-<p>Il est aussi possible d'utiliser <code>scalable-icon-mixin</code> pour les icônes et ainsi avoir des styles de bases pour les différentes propriétés de background importantes.</p>
+<p>It is also possible to use <code>scalable-icon-mixin</code> for icons and thus have basic styles for the various important background properties.</p>
 <pre><code class="language-scss">//-- Scalable icon
 @mixin scalable-icon-mixin ($file, $context, $color:false) {
 	@include bg-image-mixin($file, $context, $inline:true, $color:$color);
@@ -78,8 +79,10 @@ Les images sont situées sous le dossier <code>inline-images</code>, sous la com
 	background-size: contain;
 }
 </code></pre>
-<h2 id="comment-utiliser" tabindex="-1"><a class="anchor" href="#comment-utiliser">⚭</a> Comment utiliser</h2>
-<p>Pour générer le bon code, vous devez au moins fournir <code>$file</code> et <code>$context</code>. La variable <code>$inline</code> est nécessaire lors de l'utilisation au niveau du <code>bg-image-mixin</code>. Pour le mixin <code>scalable-icon-mixin</code>, la variable <code>$inline</code> est automatiquement ajouté à <code>true</code>.</p>
+<h2 id="how-to-use" tabindex="-1"><a class="anchor" href="#how-to-use">⚭</a> How to use</h2>
+<p>To be able to generate an image, the <code>$file</code> and <code>$context</code> are required.
+The <code>$inline</code> is required when used with <code>bg-image-mixin</code>.
+For the <code>scalable-icon-mixin</code>, the <code>$inline</code> variable default value is <code>true</code>.</p>
 <pre><code class="language-scss">// Inline
 @mixin misc3-image { @include bg-image-mixin('misc3.png', 'common', $inline:true); }
 @mixin icon3-image { @include bg-image-mixin('icon3.png', 'foobar', $inline:true); }
@@ -87,16 +90,17 @@ Les images sont situées sous le dossier <code>inline-images</code>, sous la com
 // Scalable
 @mixin icon4-image { @include scalable-icon-mixin('icon4.svg', 'foobar'); }
 
-//-- Appel dans le css
+//-- Usage in scss
 .logo {
 	@include logo1-image;
 }
 </code></pre>
-<p>Pour générer un svg d'une ou plusieurs couleurs, le svg doit absolument corresponde à l'une de ces options.</p>
+<h3 id="colors-usage" tabindex="-1"><a class="anchor" href="#colors-usage">⚭</a> Colors usage</h3>
+<p>To generate an svg of one or more colors, the svg must absolutely match one of these options.</p>
 <ol>
-<li><strong>Couleur simple</strong>: la couleur passée en paramètre remplacera la couleur <code>#BA0BAB</code> du svg.</li>
-<li><strong>Liste</strong>: deux couleurs doivent être passées en paramètre sous ce format <code>($firstColor, $secondColor)</code>. Ces couleurs remplaceront les couleurs du svg dans l'ordre <code>#BA0BAB</code>, <code>#C0FFEE</code>.</li>
-<li><strong>Hash</strong>: À l'aide d'un map auquel la valeur remplacera la key. <code>(key1: value1, key2: value2, key3: value3)</code></li>
+<li><strong>Simple color</strong>: the color passed in parameter will replace the <code># BA0BAB</code> color of the svg.</li>
+<li><strong>Colors list</strong>: two colors must be passed as a parameter in this format <code>($ firstColor, $ secondColor)</code>. These colors will replace the colors of the svg in the order <code># BA0BAB</code>,<code> # C0FFEE</code>.</li>
+<li><strong>Hash</strong>: Using a map where the value will replace the key. <code>(key1: value1, key2: value2, key3: value3)</code></li>
 </ol>
 <pre><code class="language-scss">// Scalable with color
 $firstColor  = #25329d;

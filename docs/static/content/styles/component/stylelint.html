@@ -1,0 +1,38 @@
+<h1>Stylelint</h1>
+<h4 id="%E2%9A%A0%EF%B8%8F-work-in-progress-%E2%9A%A0%EF%B8%8F" tabindex="-1"><a class="anchor" href="#%E2%9A%A0%EF%B8%8F-work-in-progress-%E2%9A%A0%EF%B8%8F">⚭</a> ⚠️ Work in progress ⚠️</h4>
+<h4 id="" tabindex="-1"><a class="anchor" href="#">⚭</a> </h4>
+<blockquote>
+<p><a href="https://stylelint.io/" class="external" rel="external">For more details as how to use Stylelint, please consult its official documentation</a>.</p>
+</blockquote>
+<h2 id="include-stylelint-to-your-project" tabindex="-1"><a class="anchor" href="#include-stylelint-to-your-project">⚭</a> Include Stylelint to your project</h2>
+<h2 id="personalise-stylelint-config" tabindex="-1"><a class="anchor" href="#personalise-stylelint-config">⚭</a> Personalise Stylelint config</h2>
+<p>You can add rule settings in the <code>.stylelintc.yaml</code> file at the root of your Nwayo directory</p>
+<pre><code class="language-yaml">extends: '@absolunet/stylelint-config-nwayo'
+
+rules:
+  scss/selector-no-union-class-name: null
+  scss/at-import-partial-extension: null
+  scss/map-keys-quotes: null
+  scss/at-rule-conditional-no-parentheses: null
+
+</code></pre>
+<p><a href="https://documentation.absolunet.com/stylelint-config/scss/api/" class="external" rel="external">Consult the default Stylelint configurations</a></p>
+<h3 id="add-file-or-directory-to-ignore" tabindex="-1"><a class="anchor" href="#add-file-or-directory-to-ignore">⚭</a> Add file or directory to ignore</h3>
+<p>You can add the path to the specific file or directory in the <code>.stylelintignore</code> file at the root of your Nwayo directory</p>
+<p>Ex:</p>
+<pre><code>components/*/styles/vendor
+node_modules
+</code></pre>
+<h3 id="enable-or-disable-a-rule-for-a-section" tabindex="-1"><a class="anchor" href="#enable-or-disable-a-rule-for-a-section">⚭</a> Enable or disable a rule for a section</h3>
+<p><strong>DO NOT FORGET TO RE-ENABLE THE RULE</strong></p>
+<pre><code class="language-scss">// stylelint-disable rule-to-disable
+...
+// stylelint-enable rule-to-disable
+</code></pre>
+<h3 id="enable-or-disable-a-rule-for-a-line" tabindex="-1"><a class="anchor" href="#enable-or-disable-a-rule-for-a-line">⚭</a> Enable or disable a rule for a line</h3>
+<pre><code class="language-scss">@media print {
+	@page {
+		margin: 1cm; // stylelint-disable-line unit-whitelist
+	}
+...
+</code></pre>

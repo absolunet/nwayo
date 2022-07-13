@@ -1,13 +1,20 @@
-//-------------------------------------
-//-- nwayo - Functions - Helpers
-//-------------------------------------
+////
+/// nwayo - Functions - Helpers
+///
+/// @group @absolunet/nwayo-toolbox
+////
+
 @use 'sass:list';
 @use 'sass:map';
 @use 'sass:math';
 @use 'sass:meta';
 @use 'sass:string';
 
-//-- Deep map: Path splitter
+/// Extract levels of a dot notation path.
+///
+/// @param {String} $path - Path in dot notation.
+/// @returns {List<String>} Levels.
+///
 @function nwayo-map-deep-split-path($path) {
 	$keys:      ();
 	$separator: '.';
@@ -23,7 +30,14 @@
 	@return list.append($keys, $path);
 }
 
-//-- Deep map: Has key
+/// Check if a path exists in a map.
+///
+/// @requires {Function} nwayo-map-deep-split-path
+///
+/// @param {Map<String,*>} $map - Map to query.
+/// @param {String} $path - Path in dot notation.
+/// @returns {Boolean} If path exists in map.
+///
 @function nwayo-map-deep-has-key($map, $path) {
 	@each $key in nwayo-map-deep-split-path($path) {
 		@if map.has-key($map, $key) {
@@ -36,7 +50,14 @@
 	@return true;
 }
 
-//-- Deep map: Get value
+/// Get a map value via a dot notation path.
+///
+/// @requires {Function} nwayo-map-deep-split-path
+///
+/// @param {Map<String,*>} $map - Map to query.
+/// @param {String} $path - Path in dot notation.
+/// @returns {*} The value.
+///
 @function nwayo-map-deep-get($map, $path) {
 	@each $key in nwayo-map-deep-split-path($path) {
 		@if $map {
@@ -51,51 +72,80 @@
 	@return $map;
 }
 
-
-
-//-- String replace
-@function nwayo-str-replace($string, $search, $replace: '') {
-	$index: string.index($string, $search);
+/// Replace all occurrences of the search text with the replacement text.
+///
+/// @requires {Function} nwayo-str-replace
+///
+/// @param {String} $subject - Text to search within.
+/// @param {String} $search - Text to find.
+/// @param {String} $replace [""] - Text to replace the occurences.
+/// @returns {String} Replaced text.
+///
+@function nwayo-str-replace($subject, $search, $replace: '') {
+	$index: string.index($subject, $search);
 	@if $index {
-		@return string.slice($string, 1, $index - 1) + $replace + nwayo-str-replace(string.slice($string, $index + string.length($search)), $search, $replace);
+		@return string.slice($subject, 1, $index - 1) + $replace + nwayo-str-replace(string.slice($subject, $index + string.length($search)), $search, $replace);
 	}
-	@return $string;
+	@return $subject;
 }
 
-
-
-//-- Color replace
-@function nwayo-color-replace($string, $source, $target) {
-	$string: nwayo-str-replace($string, nwayo-to-string($source), nwayo-to-string($target));
-	$string: nwayo-str-replace($string, string.to-upper-case(nwayo-to-string($source)), nwayo-to-string($target));
-	@return $string;
+/// Replace all occurrences of the search color with the replacement color.
+///
+/// @requires {Function} nwayo-str-replace
+/// @requires {Function} nwayo-to-string
+///
+/// @param {String} $subject - Text to search within.
+/// @param {Color} $search - Color to find.
+/// @param {Color} $replace - Color to replace the occurences.
+/// @returns {String} Replaced text.
+///
+@function nwayo-color-replace($subject, $search, $replace) {
+	$subject: nwayo-str-replace($subject, nwayo-to-string($search), nwayo-to-string($replace));
+	$subject: nwayo-str-replace($subject, string.to-upper-case(nwayo-to-string($search)), nwayo-to-string($replace));
+	@return $subject;
 }
 
-
-
-//-- Cast to string
+/// Cast to string.
+///
+/// @param {*} $value - Value to cast.
+/// @returns {String} Value in string format.
+///
 @function nwayo-to-string($value) {
 	@return meta.inspect($value);
 }
 
+/// Remove unit from a numeric value.
+///
+/// @access private
+/// @param {Number} $value - Value to strip unit from.
+/// @returns {Number} Value without unit.
+///
+@function nwayo-strip-unit($value) {
+	@return math.div($value, $value * 0 + 1);
+}
 
-
-//-- Check if list contains value
-//     @mixin xyz($options:()) {
-//       $a: nwayo-list-contains($options, a);
-//       $b: nwayo-list-contains($options, b);
-//     }
-@function nwayo-list-contains($list, $var) {
-	@if list.index($list, $var) {
+/// Check if a list contains a value.
+///
+/// @param {List} $list - List to check.
+/// @param {*} $value - Value to find.
+/// @returns {Boolean} If list contains value.
+///
+@function nwayo-list-contains($list, $value) {
+	@if list.index($list, $value) {
 		@return true;
 	}
 	@return false;
 }
 
-
-
-//-- SVG optimized for data-uri (https://github.com/waldemarfm/sass-svg-uri)
-//-- Chunk up string in order to avoid "stack level too deep" error
+/// Transform a SVG to a data-uri safe version.
+/// String chunked up in order to avoid "stack level too deep" error.
+/// @link https://github.com/waldemarfm/sass-svg-uri Original source.
+///
+/// @requires {Function} nwayo-str-replace
+///
+/// @param {String} $svg - SVG content.
+/// @returns {String} SVG ready for data-uri.
+///
 @function nwayo-svg-data-uri($svg) {
 	$encoded: '';
 	$slice: 1000;
@@ -111,5 +161,5 @@
 		$encoded: #{$encoded}#{$chunk};
 		$index: $index + $slice;
 	}
-	@return url("data:image/svg+xml;charset=utf8,#{$encoded}");  // stylelint-disable-line string-quotes
+	@return url("data:image/svg+xml;charset=utf8,#{$encoded}");  // stylelint-disable-line string-quotes -- Bugs with single quotes
 }

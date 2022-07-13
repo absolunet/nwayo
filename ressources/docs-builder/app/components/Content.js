@@ -1,60 +1,50 @@
 //-------------------------------------
 //-- Content
 //-------------------------------------
-import React from 'react';
+import React from "react";
 
-import { tree } from '../helpers/generated';
-import paths    from '../helpers/paths';
-import Util     from '../helpers/util';
+import { tree } from "../helpers/generated";
+import paths from "../helpers/paths";
+import Util from "../helpers/util";
 
-
-const ROOT     = '__root__';
-const ERROR404 = '__404__';
+const ROOT = "__root__";
+const ERROR404 = "__404__";
 
 const contentData = (data, fullTitle) => {
 	return {
 		sourceFile: data.source,
-		title:      `${data.title}${!fullTitle ? ' - nwayo' : ''}`
+		title: `${data.title}${!fullTitle ? " - nwayo" : ""}`,
 	};
 };
 
-
-
-
-
-
 class Content extends React.Component {
-
 	constructor(properties) {
 		super(properties);
 		this.state = {};
 	}
 
-
 	static getDerivedStateFromProps(properties) {
 		return { url: properties.path };
 	}
-
 
 	componentDidUpdate() {
 		window.Prism.highlightAll();
 
 		document.querySelectorAll('a[rel="external"]').forEach((link) => {
-			link.target = '_blank';  // eslint-disable-line no-param-reassign
+			link.target = "_blank"; // eslint-disable-line no-param-reassign
 		});
 	}
 
-
 	render() {
-		const util    = new Util(this);
+		const util = new Util(this);
 		const { url } = this.state;
-		const parts   = url.replace(/^\//u, '').replace(/\/$/u, '').split('/');
+		const parts = url.replace(/^\//u, "").replace(/\/$/u, "").split("/");
 
 		let sourceFile;
 		let title;
 		let isError = false;
 		try {
-			if (url === '/') {
+			if (url === "/") {
 				({ sourceFile, title } = contentData(tree[ROOT], true));
 			} else if (parts.length === 1) {
 				({ sourceFile, title } = contentData(tree[parts[0]]));
@@ -64,7 +54,7 @@ class Content extends React.Component {
 				({ sourceFile, title } = contentData(tree[ERROR404], true));
 				isError = true;
 			}
-		} catch (error) {
+		} catch {
 			({ sourceFile, title } = contentData(tree[ERROR404], true));
 			isError = true;
 		}
@@ -74,28 +64,26 @@ class Content extends React.Component {
 		if (!util.isCached(source)) {
 			util.fetchAndUpdate(source);
 
-			content = (
-				<div className="loading">Loading...</div>
-			);
-
+			content = <div className="loading">Loading...</div>;
 		} else {
-
 			document.title = title;
 
 			content = (
 				<>
 					{util.getCache(source)}
-					{!isError && <p className="edit-page"><a href={`${paths.githubSource}/${sourceFile}.md`} rel="external">Edit this page</a></p>}
+					{!isError && (
+						<p className="edit-page">
+							<a href={`${paths.githubSource}/${sourceFile}.md`} rel="external">
+								Edit this page
+							</a>
+						</p>
+					)}
 				</>
 			);
 		}
 
-		return (
-			<main>{content}</main>
-		);
+		return <main>{content}</main>;
 	}
-
 }
-
 
 export default Content;

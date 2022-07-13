@@ -1,4 +1,10 @@
 # Styles
+- [Configurations](configurations)
+- [Conventions](conventions.md)
+- [External Component](component)
 - [Fonts](fonts.md)
+- [Generation Tools](generation-tools.md)
+- [Global Architecture](global-architecture.md)
 - [Images](images.md)
 - [Inline images](inline-images.md)
+- [Recipes](recipes)

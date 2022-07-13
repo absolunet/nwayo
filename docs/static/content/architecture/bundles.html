@@ -1,0 +1,193 @@
+<h1>Bundles</h1>
+<h4 id="%E2%9A%A0%EF%B8%8F-work-in-progress-%E2%9A%A0%EF%B8%8F" tabindex="-1"><a class="anchor" href="#%E2%9A%A0%EF%B8%8F-work-in-progress-%E2%9A%A0%EF%B8%8F">⚭</a> ⚠️ Work in progress ⚠️</h4>
+<h4 id="" tabindex="-1"><a class="anchor" href="#">⚭</a> </h4>
+<blockquote>
+<p>A bundle is the result of is one or many collections put together to form a specific groupment of ressources (assets, images, scripts and styles) with a common purpose.</p>
+</blockquote>
+<h2 id="path-and-settings" tabindex="-1"><a class="anchor" href="#path-and-settings">⚭</a> Path and settings</h2>
+<p>The bundles files are located under <code>[NWAYO_ROOT]/bundles/[NAME]</code>
+There can be many sub-bundle inside of a primary bundle</p>
+<h3 id="exemple%3A" tabindex="-1"><a class="anchor" href="#exemple%3A">⚭</a> Exemple:</h3>
+<p><code>[NWAYO_ROOT]/bundles/[PRIMARY_BUNDLE_NAME]</code></p>
+<p><code>[NWAYO_ROOT]/bundles/[PRIMARY_BUNDLE_NAME]/[PRIMARY_BUNDLE_NAME].yaml</code></p>
+<h2 id="content-of-the-%5Bnwayo_root%5D%2Fbundles%2F%5Bprimary_bundle_name%5D%2F%5Bprimary_bundle_name%5D.yaml" tabindex="-1"><a class="anchor" href="#content-of-the-%5Bnwayo_root%5D%2Fbundles%2F%5Bprimary_bundle_name%5D%2F%5Bprimary_bundle_name%5D.yaml">⚭</a> Content of the <code>[NWAYO_ROOT]/bundles/[PRIMARY_BUNDLE_NAME]/[PRIMARY_BUNDLE_NAME].yaml</code></h2>
+<p>This is where we set the global configurations for the compilation of this specific bundle</p>
+<h3 id="output-paths" tabindex="-1"><a class="anchor" href="#output-paths">⚭</a> Output paths</h3>
+<ul>
+<li>Include in the main Bundle file
+<ul>
+<li>Will be applied to all the collections in this bundle</li>
+</ul>
+</li>
+<li>Available settings
+<ul>
+<li><code>build</code> : Build's path relative to Nwayo folder and output url</li>
+<li><code>konstan</code> : JSON konstan's path relative to Nwayo folder and output url</li>
+<li><code>konstan</code> : Root URL</li>
+</ul>
+</li>
+</ul>
+<h4 id="exemple" tabindex="-1"><a class="anchor" href="#exemple">⚭</a> Exemple</h4>
+<pre><code class="language-yaml">#-- Output paths (relative to nwayo folder) and output url
+output:
+  konstan: [PATH_ROOT]/[BUILD_FOLDER_NAME]/[BUNDLE_NAME]
+  build:   [PATH_ROOT]/[BUILD_FOLDER_NAME]/[BUNDLE_NAME]
+  url:     /[BUILD_FOLDER_NAME]/[BUNDLE_NAME]
+</code></pre>
+<h3 id="assets" tabindex="-1"><a class="anchor" href="#assets">⚭</a> Assets</h3>
+<ul>
+<li>Component : Declare in the collection file</li>
+<li>Can list more than one</li>
+</ul>
+<pre><code class="language-yaml">#-- Assets
+assets:
+  components:
+    - [COMPONENT_NAME]
+</code></pre>
+<h3 id="scripts" tabindex="-1"><a class="anchor" href="#scripts">⚭</a> Scripts</h3>
+<ul>
+<li>Collections</li>
+<li>Babel</li>
+<li>Minification</li>
+</ul>
+<pre><code class="language-yaml">#-- Scripts
+scripts:
+  options:
+    minify: true
+    babel:
+      - '&gt; .25%'
+      - 'not dead'
+      -
+  allowBabel:
+    - vendor/node_modules/foundation-sites
+    - vendor/node_modules/@absolunet
+
+</code></pre>
+<h3 id="styles" tabindex="-1"><a class="anchor" href="#styles">⚭</a> Styles</h3>
+<ul>
+<li>Collections</li>
+<li>Autoprefixer</li>
+<li>Source maps</li>
+<li>Minification</li>
+</ul>
+<pre><code class="language-yaml">#-- Styles
+styles:
+  options:
+    minify: true
+    sourcemaps: false
+    autoprefixer:
+      - '&gt; .25%'
+      - 'not dead'
+
+</code></pre>
+<h2 id="good-practices" tabindex="-1"><a class="anchor" href="#good-practices">⚭</a> Good practices</h2>
+<ul>
+<li>Minify Bundle before using in prod</li>
+<li>One bundle by section or major functionality</li>
+</ul>
+<h2 id="tasks" tabindex="-1"><a class="anchor" href="#tasks">⚭</a> Tasks</h2>
+<p>Almost all the tasks will interact with a component</p>
+<h2 id="exemple-1" tabindex="-1"><a class="anchor" href="#exemple-1">⚭</a> Exemple</h2>
+<h3 id="structure" tabindex="-1"><a class="anchor" href="#structure">⚭</a> Structure</h3>
+<pre><code>/ nwayo
+    / bundles
+        / [BUNDLE_NAME] /
+            _[BUNDLE_COMPONENT_NAME_1].yaml
+            _[BUNDLE_COMPONENT_NAME_2].yaml
+            _...
+            [BUNDLE_NAME].yaml
+
+        / ..
+    / components
+        / ...
+</code></pre>
+<h4 id="nwayo%2Fbundles%2F%5Bbundle_name%5D%2F%5Bbundle_name%5D.yaml" tabindex="-1"><a class="anchor" href="#nwayo%2Fbundles%2F%5Bbundle_name%5D%2F%5Bbundle_name%5D.yaml">⚭</a> <code>nwayo/bundles/[BUNDLE_NAME]/[BUNDLE_NAME].yaml</code></h4>
+<pre><code class="language-yaml">#-------------------------------------
+#-- [BUNDLE_NAME]
+#-------------------------------------
+
+#-- Output
+#-- Output paths (relative to nwayo folder) and output url
+output:
+  konstan: [PATH_ROOT]/[BUILD_FOLDER_NAME]/[BUNDLE_NAME]
+  build:   [PATH_ROOT]/[BUILD_FOLDER_NAME]/[BUNDLE_NAME]
+  url:     /[BUILD_FOLDER_NAME]/[BUNDLE_NAME]
+
+#-- Scripts
+scripts:
+  options:
+    minify: true
+    babel:
+      - '&gt; .25%'
+      - 'not dead'
+      -
+  allowBabel:
+    - vendor/node_modules/foundation-sites
+    - vendor/node_modules/@absolunet
+
+#-- Styles
+styles:
+  options:
+    minify: true
+    sourcemaps: false
+    autoprefixer:
+      - '&gt; .25%'
+      - 'not dead'
+
+</code></pre>
+<h2 id="content-of-the-%5Bnwayo_root%5D%2Fbundles%2F%5Bprimary_bundle_name%5D%2F_%5Bsub_bundle_name%5D.yaml" tabindex="-1"><a class="anchor" href="#content-of-the-%5Bnwayo_root%5D%2Fbundles%2F%5Bprimary_bundle_name%5D%2F_%5Bsub_bundle_name%5D.yaml">⚭</a> Content of the <code>[NWAYO_ROOT]/bundles/[PRIMARY_BUNDLE_NAME]/_[SUB_BUNDLE_NAME].yaml</code></h2>
+<p>This is where we set the content of this sub-bundle that will be build</p>
+<h3 id="scripts-1" tabindex="-1"><a class="anchor" href="#scripts-1">⚭</a> Scripts</h3>
+<ul>
+<li>Component : ...</li>
+</ul>
+<pre><code class="language-yaml">#-- Assets
+assets:
+  components:
+    - [COMPONENT_NAME]
+</code></pre>
+<h3 id="style" tabindex="-1"><a class="anchor" href="#style">⚭</a> Style</h3>
+<ul>
+<li>Component : ...</li>
+</ul>
+<pre><code class="language-yaml">#-- Assets
+assets:
+  components:
+    - [COMPONENT_NAME]
+</code></pre>
+<h3 id="assets-1" tabindex="-1"><a class="anchor" href="#assets-1">⚭</a> Assets</h3>
+<ul>
+<li>Component : Declare in the collection file</li>
+<li>Can list more than one</li>
+</ul>
+<pre><code class="language-yaml">#-- Assets
+assets:
+  components:
+    - [COMPONENT_NAME]
+</code></pre>
+<p>###<code>[NWAYO_ROOT]/bundles/[PRIMARY_BUNDLE_NAME]/_[SUB_BUNDLE_NAME].yaml</code></p>
+<pre><code class="language-yaml">#-------------------------------------
+#-- [BUNDLE_NAME] - [SUB_BUNDLE_NAME]
+#-------------------------------------
+
+#-- Scripts
+scripts:
+  collections:
+    [COLLECTION_NAME]:
+      - vendor/node_modules/@absolunet/nwayo-toolbox/scripts/collection-starter
+      - components/[COMPONENT_NAME]/scripts/[COMPONENT_NAME]
+
+#-- Styles
+styles:
+  collections:
+    [COLLECTION_NAME]:
+      - components/[GENERAL_COMPONENT_NAME]/styles/config // General project Config
+      - components/[COMPONENT_NAME]/styles/config
+      - components/[COMPONENT_NAME]/styles/[COMPONENT_NAME]
+
+#-- Assets
+assets:
+  components:
+    - [COMPONENT_NAME]
+
+</code></pre>

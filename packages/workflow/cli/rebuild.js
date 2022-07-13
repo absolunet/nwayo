@@ -1,17 +1,15 @@
 //--------------------------------------------------------
 //-- Rebuild
 //--------------------------------------------------------
-'use strict';
+"use strict";
 
-const cli    = require('@absolunet/cli');
-const Task   = require('../classes/task');
-const env    = require('../helpers/env');
-const util   = require('../helpers/util');
+const cli = require("@absolunet/cli");
+const Task = require("../classes/task");
+const env = require("../helpers/env"); // eslint-disable-line unicorn/prevent-abbreviations
+const util = require("../helpers/util");
 const { ow } = cli;
 
-
 class RebuildTask extends Task {
-
 	constructor() {
 		super();
 		this.filename = __filename;
@@ -21,7 +19,7 @@ class RebuildTask extends Task {
 		util.checkInstalledWorkflow();
 
 		const { prod } = cli.validateFlags(meowCli, {
-			prod: ow.boolean  // eslint-disable-line unicorn/prevent-abbreviations
+			prod: ow.boolean, // eslint-disable-line unicorn/prevent-abbreviations
 		});
 
 		// --prod
@@ -32,14 +30,11 @@ class RebuildTask extends Task {
 		if (meowCli.input.length <= 2) {
 			const [, bundle] = meowCli.input;
 
-			util.runWorkflowTask('rebuild', { bundle });
-
+			util.runWorkflowTask("rebuild", { bundle });
 		} else {
 			cli.showTaskUsage(meowCli);
 		}
 	}
-
 }
-
 
 module.exports = new RebuildTask();
