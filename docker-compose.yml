@@ -1,0 +1,24 @@
+services:
+ node-latest:
+  build:
+    context: .
+    args:
+      NODEJS_VERSION: latest
+  container_name: nwayo-node-latest
+  tty: true
+
+ node-16:
+  build:
+    context: .
+    args:
+      NODEJS_VERSION: 16
+  container_name: nwayo-node-16
+  tty: true
+
+ node-14:
+  build:
+    context: .
+    args:
+      NODEJS_VERSION: 14
+  container_name: nwayo-node-14
+  tty: true

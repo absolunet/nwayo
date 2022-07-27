@@ -13,7 +13,12 @@
     "postinstall": "node manager.js --task=postinstall",
     "outdated": "node manager.js --task=outdated",
     "build": "node manager.js --task=build",
-    "deploy": "node manager.js --task=deploy"
+    "deploy": "node manager.js --task=deploy",
+    "docker:start": "docker-compose up -d",
+    "docker:stop": "docker-compose down && docker image rm nwayo_node-latest nwayo_node-16 nwayo_node-14",
+    "docker:connect": "docker exec -it nwayo-node-latest /bin/bash",
+    "docker:connect:16": "docker exec -it nwayo-node-16 /bin/bash",
+    "docker:connect:14": "docker exec -it nwayo-node-14 /bin/bash"
   },
   "devDependencies": {
     "@absolunet/eslint-config-node": "3.2.2",
