@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+
+
+
+## [3.9.3] - 2022-07-28
 ### Fixed
 - Fix `update` command that fails
 - Fix incorrect paths delimiters on Windows
@@ -687,7 +691,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-[Unreleased]:    https://github.com/absolunet/nwayo/compare/3.9.2...HEAD
+[Unreleased]:    https://github.com/absolunet/nwayo/compare/3.9.3...HEAD
+[3.9.3]:         https://github.com/absolunet/nwayo/compare/3.9.2...3.9.3
 [3.9.2]:         https://github.com/absolunet/nwayo/compare/3.9.1...3.9.2
 [3.9.1]:         https://github.com/absolunet/nwayo/compare/3.9.0...3.9.1
 [3.9.0]:         https://github.com/absolunet/nwayo/compare/3.9.0-beta.2...3.9.0

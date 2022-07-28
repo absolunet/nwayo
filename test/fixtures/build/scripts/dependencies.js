@@ -19529,7 +19529,7 @@ function _typeof(obj) {"@babel/helpers - typeof";return _typeof = "function" == 
 /* global nwayoStarterConfig */
 
 (function () {
-  'use strict';
+  "use strict";
 
   var addProperty = function addProperty(object, property, value) {
     Object.defineProperty(object, property, {
@@ -19544,7 +19544,7 @@ function _typeof(obj) {"@babel/helpers - typeof";return _typeof = "function" == 
     var object = {};
 
     Object.keys(data).forEach(function (property) {
-      if (_typeof(data[property]) === 'object' && !Array.isArray(data[property])) {
+      if (_typeof(data[property]) === "object" && !Array.isArray(data[property])) {
         data[property] = readonlyObject(data[property]);
       }
       addProperty(object, property, data[property]);
@@ -19553,8 +19553,6 @@ function _typeof(obj) {"@babel/helpers - typeof";return _typeof = "function" == 
     return object;
   };
 
-
-
   //-- Initialize nwayo
   var nwayo = readonlyObject({
     project: konstan.project,
@@ -19562,103 +19560,119 @@ function _typeof(obj) {"@babel/helpers - typeof";return _typeof = "function" == 
 
 
   // Vendors
-  var jQueryScoped;
+  var jQueryScoped; // eslint-disable-line unicorn/prevent-abbreviations
   switch (nwayoStarterConfig.jQuery.scope) {
-
-    case 'private':jQueryScoped = global.jQuery.noConflict(true);break;
-    case 'semi':jQueryScoped = global.jQuery.noConflict();break;
-    case 'public':jQueryScoped = global.jQuery;break;
-    default:break;}
-
+    case "private":
+      jQueryScoped = global.jQuery.noConflict(true);
+      break;
+    case "semi":
+      jQueryScoped = global.jQuery.noConflict();
+      break;
+    case "public":
+      jQueryScoped = global.jQuery;
+      break;
+    default:
+      break;}
 
 
   var lodashScoped;
   switch (nwayoStarterConfig.lodash.scope) {
-
-    case 'private':lodashScoped = global._.noConflict();break;
-    case 'public':lodashScoped = global._;break;
-    default:break;}
-
+    case "private":
+      lodashScoped = global._.noConflict();
+      break;
+    case "public":
+      lodashScoped = global._;
+      break;
+    default:
+      break;}
 
 
   var vendor = {};
-  addProperty(vendor, 'jQuery', jQueryScoped);
-  addProperty(vendor, 'lodash', lodashScoped);
-  addProperty(vendor, 'Modernizr', global.Modernizr);
-  addProperty(vendor, 'pinki', global.pinki);
+  addProperty(vendor, "jQuery", jQueryScoped);
+  addProperty(vendor, "lodash", lodashScoped);
+  addProperty(vendor, "Modernizr", global.Modernizr);
+  addProperty(vendor, "pinki", global.pinki);
 
-  addProperty(nwayo, 'vendor', vendor);
+  addProperty(nwayo, "vendor", vendor);
 
   // Redefine
   var $ = vendor.jQuery;
   var _ = vendor.lodash;
 
-
-
   // Vows
   var vows = readonlyObject({
-    DOMParsed: 'nwayo-core.dom-parsed',
-    documentLoaded: 'nwayo-core.document-loaded',
-    globaljqueryLoaded: 'nwayo-core.globaljquery-loaded' });
+    DOMParsed: "nwayo-core.dom-parsed",
+    documentLoaded: "nwayo-core.document-loaded",
+    globaljqueryLoaded: "nwayo-core.globaljquery-loaded" });
 
 
-  addProperty(nwayo, 'vows', vows);
+  addProperty(nwayo, "vows", vows);
 
   // Shortcuts
   var shortcuts = function () {
     var shortcut = {};
     var selector = function selector(key, value) {
-      return "[".concat(key).concat(value ? "~=\"".concat(value, "\"") : '', "]");
+      return "[".concat(key).concat(value ? "~=\"".concat(value, "\"") : "", "]");
     };
 
     // Shortcuts
-    ['name'].forEach(function (key) {
-      shortcut[key] = function (value) {return selector(key, value);};
-      shortcut["$".concat(key)] = function (value) {return $(shortcut[key](value));};
+    ["name"].forEach(function (key) {
+      shortcut[key] = function (value) {
+        return selector(key, value);
+      };
+      shortcut["$".concat(key)] = function (value) {
+        return $(shortcut[key](value));
+      };
     });
 
     // Data - shortcuts
-    ['action', 'component', 'placeholder'].forEach(function (key) {
-      shortcut[key] = function (value) {return selector("data-".concat(key), value);};
-      shortcut["$".concat(key)] = function (value) {return $(shortcut[key](value));};
+    ["action", "component", "placeholder"].forEach(function (key) {
+      shortcut[key] = function (value) {
+        return selector("data-".concat(key), value);
+      };
+      shortcut["$".concat(key)] = function (value) {
+        return $(shortcut[key](value));
+      };
     });
 
     // DOM shortcuts
     shortcut.$window = $(global);
     shortcut.$document = $(document);
-    shortcut.$html = $('html');
-    shortcut.$body = $('body');
+    shortcut.$html = $("html");
+    shortcut.$body = $("body");
 
     return shortcut;
   }();
 
-  addProperty(nwayo, 'shortcuts', shortcuts);
+  addProperty(nwayo, "shortcuts", shortcuts);
 
-  addProperty(nwayo, 'helpers', {});
+  addProperty(nwayo, "helpers", {});
 
-  addProperty(global, 'nwayo', nwayo);
-
-
+  addProperty(global, "nwayo", nwayo);
 
   //-- Initialize application
   var path = konstan.konstan.path;
   delete konstan.konstan.path;
 
-  var culture = $('html').attr('lang') || '';
-  var $body = $('body');
-  var bodyClass = $body.attr('class');
+  var culture = $("html").attr("lang") || "";
+  var $body = $("body");
+  var bodyClass = $body.attr("class");
 
-  addProperty(global, konstan.project, readonlyObject({
+  addProperty(
+  global,
+  konstan.project,
+  readonlyObject({
     bundle: konstan.bundle,
     konstan: konstan.konstan,
     path: path,
     tmpl: {},
-    env: { // eslint-disable-line unicorn/prevent-abbreviations
+    // eslint-disable-next-line unicorn/prevent-abbreviations
+    env: {
       culture: culture,
       lang: culture.slice(0, 2),
       country: culture.slice(3, 2).toLowerCase(),
-      pageId: $body.attr('id'),
-      pageTags: bodyClass ? _.compact(bodyClass.split(' ')) : [] } }));
+      pageId: $body.attr("id"),
+      pageTags: bodyClass ? _.compact(bodyClass.split(" ")) : [] } }));
 
 
 
@@ -19677,7 +19691,8 @@ function _typeof(obj) {"@babel/helpers - typeof";return _typeof = "function" == 
   });
 
   // When document loaded
-  $(window).on('load', function () {// eslint-disable-line no-restricted-globals
+  // eslint-disable-next-line no-restricted-globals
+  $(window).on("load", function () {
     if (!DOMParsed) {
       waitingOnDOM = true;
     } else {
@@ -19689,7 +19704,6 @@ function _typeof(obj) {"@babel/helpers - typeof";return _typeof = "function" == 
   if (global.jQuery) {
     pinki.vow.fulfill(vows.globaljqueryLoaded, global.jQuery);
   }
-
 })();
 
  })(typeof window !== 'undefined' ? window : this);
