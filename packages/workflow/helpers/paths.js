@@ -9,7 +9,7 @@ const slash = require("slash");
 const VENDORS = "vendor";
 const CACHE = ".nwayo-cache";
 const NOLINT = "vendor";
-const ROOT = process.cwd();
+const ROOT = slash(process.cwd());
 
 const pattern = {};
 pattern.anytree = "**";

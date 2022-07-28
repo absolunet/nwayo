@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+### Fixed
+- Fix `update` command that fails
+- Fix incorrect paths delimiters on Windows
+- Fix workflow `postinstall` script that fails on Windows
 
 
 
