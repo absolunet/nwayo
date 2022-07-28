@@ -76,7 +76,7 @@ $half: math.div(1, 2);
 <p>Inside your <code>./package.json</code> add a <code>postinstall</code> script to install vendors when installing the workflow.</p>
 <pre><code class="language-json">{
   &quot;scripts&quot;: {
-    &quot;postinstall&quot;: &quot;cd vendor; npm install&quot;
+    &quot;postinstall&quot;: &quot;cd vendor &amp;&amp; npm install&quot;
   }
 }
 </code></pre>

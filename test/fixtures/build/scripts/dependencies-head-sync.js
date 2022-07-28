@@ -21766,7 +21766,6 @@
 
 /* eslint-disable strict */
 (function () {
-
   var ORIGINAL_GLOBAL = global.define;
   global.define = undefined;
   /**
@@ -25048,7 +25047,6 @@
 
 
   global.define = ORIGINAL_GLOBAL;
-
 })();
 
  })(typeof window !== 'undefined' ? window : this);

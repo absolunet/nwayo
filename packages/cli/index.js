@@ -53,7 +53,7 @@ module.exports = async () => {
 				)}\n\nUpdating...\n`
 			);
 
-			const terminal = require("@absolunet/terminal");
+			const { terminal } = require("@absolunet/terminal");
 			terminal.process.run("npm uninstall -g @absolunet/nwayo-cli && npm install -g --no-audit @absolunet/nwayo-cli");
 		} else {
 			util.echo("No update available");
