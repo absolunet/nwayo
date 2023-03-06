@@ -24,7 +24,13 @@
   "engines": {
     "node": ">= 14.17.0"
   },
+  "bin": {
+    "nwayo-cli": "./bin/nwayo-cli.js"
+  },
   "main": "index.js",
+  "exports": {
+    "./cli": "./cli/index.js"
+  },
   "dependencies": {
     "@absolunet/cli": "^0.9.1",
     "@absolunet/fsp": "^1.7.0",
