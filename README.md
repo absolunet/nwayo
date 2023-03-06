@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="https://github.com/absolunet/nwayo/raw/production/ressources/images/nwayo.png" width="250" height="250" alt="nwayo">
+	<img src="https://github.com/absolunet/nwayo/raw/main/ressources/images/nwayo.png" width="250" height="250" alt="nwayo">
 </p>
 <h1 align="center"><strong>nwayo</strong></h1>
 <p align="center">/nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.</p>
@@ -40,7 +40,7 @@ nwayo rebuild
 
 
 
-## Tools &nbsp; <img src="https://github.com/absolunet/nwayo/raw/production/ressources/images/vendors.png" width="375" alt="nwayo vendors">
+## Tools &nbsp; <img src="https://github.com/absolunet/nwayo/raw/main/ressources/images/vendors.png" width="375" alt="nwayo vendors">
 nwayo is HTML5 ready and uses [gulp](https://gulpjs.com) as a build system
 
 - Based (but not mandatory) on [Zurb Foundation](https://foundation.zurb.com)

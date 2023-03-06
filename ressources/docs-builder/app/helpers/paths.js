@@ -12,7 +12,7 @@ class Paths {
 	}
 
 	get githubSource() {
-		return `${this.github}/blob/production/documentation`;
+		return `${this.github}/blob/main/documentation`;
 	}
 }
 
