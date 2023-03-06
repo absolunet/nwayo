@@ -29,7 +29,9 @@
   },
   "main": "index.js",
   "exports": {
-    "./cli": "./cli/index.js"
+    "./cli": "./cli/index.js",
+    "./eslint-config": "./config/eslint.cjs",
+    "./eslint-config/no-prettier": "./config/eslint-no-prettier.cjs"
   },
   "dependencies": {
     "@absolunet/cli": "^0.9.1",
@@ -93,11 +95,9 @@
     "vinyl": "^2.2.1"
   },
   "peerDependencies": {
-    "@absolunet/eslint-config-json": ">=3.2.2",
-    "@absolunet/eslint-config-nwayo": ">=3.2.2",
+    "@absolunet/eslint-config-browser": ">=3.2.2",
     "@absolunet/stylelint-config-scss": ">=3.1.1",
     "eslint": ">=8.19.0",
-    "eslint-plugin-json": ">=3.1.0",
     "eslint-plugin-unicorn": ">=43.0.0",
     "postcss-scss": ">=4.0.4",
     "stylelint": ">=14.9.1",

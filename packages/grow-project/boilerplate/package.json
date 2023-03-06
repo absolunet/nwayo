@@ -6,6 +6,8 @@
     "@absolunet/nwayo-workflow": "3.9.3"
   },
   "scripts": {
-    "postinstall": "cd vendor && npm install"
+    "postinstall": "cd vendor && npm install",
+    "rebuild": "nwayo-cli rebuild",
+    "watch": "nwayo-cli watch"
   }
 }

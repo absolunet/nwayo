@@ -12,7 +12,7 @@
 You can add rule settings in the `.stylelintc.yaml` file at the root of your Nwayo directory
 
 ```yaml
-extends: '@absolunet/stylelint-config-nwayo'
+extends: '@absolunet/stylelint-config-scss'
 
 rules:
   scss/selector-no-union-class-name: null
@@ -22,8 +22,6 @@ rules:
 
 ```
 
-
-[Consult the default Stylelint configurations](https://documentation.absolunet.com/stylelint-config/scss/api/)
 
 ### Add file or directory to ignore
 You can add the path to the specific file or directory in the `.stylelintignore` file at the root of your Nwayo directory

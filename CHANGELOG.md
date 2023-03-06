@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Add option to use the workflow without the global CLI
+- Add ESLint configuration export
 
 ### Changed
 - Internalize `@absolunet/gulp-include`
