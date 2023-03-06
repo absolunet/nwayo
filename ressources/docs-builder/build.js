@@ -15,8 +15,8 @@ const path = require("path");
 const scandirectory = require("scandirectory");
 const sass = require("sass");
 const fss = require("@absolunet/fss");
-const include = require("@absolunet/gulp-include");
 const babel = require("@babel/core");
+const include = require("../../packages/workflow/helpers/gulp-include");
 
 const paths = {};
 paths.root = fss.realpath(path.join(__dirname, "..", ".."));

@@ -54,7 +54,7 @@ nwayo is HTML5 ready and uses [gulp](https://gulpjs.com) as a build system
 #### Scripting
 - ES6+ ready via [Babel](https://babeljs.io) and linted via [ESLint](https://eslint.org)
 - Comes with [jQuery](https://jquery.com), [Modernizr](https://modernizr.com), [Lodash](https://lodash.com), [pinki](https://github.com/absolunet/pinki), [JsRender](https://www.jsviews.com), [kafe](https://documentation.absolunet.com/kafe/)
-- Builds with [gulp-include](https://www.npmjs.com/package/@absolunet/gulp-include) and is minified with [UglifyJS](http://lisperator.net/uglifyjs)
+- Minified with [UglifyJS](http://lisperator.net/uglifyjs)
 
 #### Other
 - Optimizes images via [gifsicle](https://www.lcdf.org/gifsicle), [MozJPEG](https://github.com/mozilla/mozjpeg), [optipng](http://optipng.sourceforge.net), [svgo](https://github.com/svg/svgo)
