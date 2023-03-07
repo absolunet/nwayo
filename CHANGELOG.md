@@ -13,9 +13,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add option to use the workflow without the global CLI
 - Add ESLint configuration export
+- Add Sass function to toolbox: `nwayo-serialize()`
+- Add custom PostCSS functions:
+	- `nwayopostcss-base64-image()`
+	- `nwayopostcss-svg-image()`
+	- `nwayopostcss-url-image()`
+	- `nwayopostcss-url-woff-woff2()`
 
 ### Changed
 - Internalize `@absolunet/gulp-include`
+
+### Removed
+- Remove Sass functions from toolbox:
+  - `nwayo-cacheinvalidator-querystring()`
+  - `nwayo-color-replace()`
+  - `nwayo-svg-data-uri()`
+- Remove Dart Sass functions:
+	- `nwayodart-file-exists()`
+	- `nwayodart-read-file()`
+	- `nwayodart-inline-file()`
+	- `nwayodart-checksum()`
 
 
 
@@ -85,7 +102,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Maintenance updates
 
 ### Fixed
-- Fixes bad paths in Windows during SASS compilation
+- Fixes bad paths in Windows during Sass compilation
 
 
 
@@ -100,7 +117,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update to cssnano 5.x
 - Update to ESLint 8.x
 - Update to Foundation 6.7.x
-- Update to SASS 1.45.x
+- Update to Sass 1.45.x
 - Linters updates
 - `nwayo.yaml` file must now be in root `nwayo` folder
 - Convert empty image from gif to png

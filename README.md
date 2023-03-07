@@ -18,7 +18,7 @@
 
 ## Requirements
 - [Node.js](https://nodejs.org)
-- [nwayo CLI](https://www.npmjs.com/package/@absolunet/nwayo-cli)
+- [nwayo CLI](https://www.npmjs.com/package/@absolunet/nwayo-cli) _(Optional)_
 
 
 
@@ -31,11 +31,8 @@ npx @absolunet/nwayo-grow-project
 # Install workflow and vendor (in nwayo root folder)
 npm install
 
-# Install CLI
-npm install -g @absolunet/nwayo-cli
-
 # Build (in nwayo root folder)
-nwayo rebuild
+npm run rebuild
 ```
 
 
@@ -84,7 +81,7 @@ Multiple extensions [available](https://www.npmjs.com/search?q=keywords:nwayo-ex
 |---|---|---|
 | **[@absolunet/nwayo-workflow](packages/workflow)** | [![npm](https://img.shields.io/npm/v/@absolunet/nwayo-workflow.svg)](https://www.npmjs.com/package/@absolunet/nwayo-workflow) | Workflow where all the magic happens |
 | **[@absolunet/nwayo-toolbox](packages/toolbox)** | [![npm](https://img.shields.io/npm/v/@absolunet/nwayo-toolbox.svg)](https://www.npmjs.com/package/@absolunet/nwayo-toolbox) | Toolbox with SCSS/JS helpers |
-| **[@absolunet/nwayo-cli](packages/cli)** | [![npm](https://img.shields.io/npm/v/@absolunet/nwayo-cli.svg)](https://www.npmjs.com/package/@absolunet/nwayo-cli) | CLI |
+| [@absolunet/nwayo-cli](packages/cli) | [![npm](https://img.shields.io/npm/v/@absolunet/nwayo-cli.svg)](https://www.npmjs.com/package/@absolunet/nwayo-cli) | CLI |
 | [@absolunet/nwayo-grow-project](packages/grow-project) | [![npm](https://img.shields.io/npm/v/@absolunet/nwayo-grow-project.svg)](https://www.npmjs.com/package/@absolunet/nwayo-grow-project) | Boilerplate generator for nwayo project |
 | [@absolunet/nwayo-grow-extension](packages/grow-extension) | [![npm](https://img.shields.io/npm/v/@absolunet/nwayo-grow-extension.svg)](https://www.npmjs.com/package/@absolunet/nwayo-grow-extension) | Boilerplate generator for nwayo extension |
 

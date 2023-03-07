@@ -97,15 +97,3 @@
 		@return 'screen and (max-width: #{math.div($breakpoint, $nwayo-basic-size) * 1em})';
 	}
 }
-
-
-/// Get a cache invalidation query string based on file content.
-///
-/// @requires {CustomFunction} nwayodart-checksum
-///
-/// @param {String} $file - File absolute path.
-/// @returns {String} Complete query string.
-///
-@function nwayo-cacheinvalidator-querystring($file) {
-	@return '?v=' + nwayodart-checksum($file);
-}

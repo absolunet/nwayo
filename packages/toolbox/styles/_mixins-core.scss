@@ -3,23 +3,17 @@
 /// @group @absolunet/nwayo-toolbox
 ////
 
-@use 'sass:list';
-@use 'sass:map';
-@use 'sass:meta';
 @use 'sass:string';
 
 /// Background image via a component asset.
 ///
-/// @requires {Number} $nwayo-svg-replacement-1-color
 /// @requires {Number} $nwayo-svg-replacement-colors
 /// @requires {Function} nwayo-assets-path
 /// @requires {Function} nwayo-build-path
-/// @requires {Function} nwayo-cacheinvalidator-querystring
-/// @requires {Function} nwayo-color-replace
 /// @requires {Function} nwayo-str-replace
-/// @requires {Function} nwayo-svg-data-uri
-/// @requires {CustomFunction} nwayodart-read-file
-/// @requires {CustomFunction} nwayodart-inline-file
+/// @requires {CustomFunction} nwayopostcss-base64-image
+/// @requires {CustomFunction} nwayopostcss-svg-image
+/// @requires {CustomFunction} nwayopostcss-url-image
 ///
 /// @param {String} $file - Filename.
 /// @param {String} $component - Component name.
@@ -66,32 +60,9 @@
 		$inline-image-path: nwayo-assets-path($file, $component, 'inline');
 
 		@if string.index($file, '.svg') {
-			$svg: nwayodart-read-file($inline-image-path);
-
-			@if $color {
-
-				// Single color
-				@if meta.type-of($color) == 'color' {
-					$svg: nwayo-color-replace($svg, $nwayo-svg-replacement-1-color, $color);
-
-					// List
-				} @else if meta.type-of($color) == 'list' {
-					@for $i from 1 through list.length($color) {
-						$svg: nwayo-color-replace($svg, list.nth($nwayo-svg-replacement-colors, $i), list.nth($color, $i));
-					}
-
-					// Hash
-				} @else {
-					@each $source, $target in $color {
-						$svg: nwayo-color-replace($svg, $source, $target);
-					}
-				}
-			}
-
-			$uri: nwayo-svg-data-uri($svg);
-
+			$uri: nwayopostcss-svg-image($inline-image-path, nwayo-serialize($nwayo-svg-replacement-colors), nwayo-serialize($color));
 		} @else {
-			$uri: nwayodart-inline-file($inline-image-path);
+			$uri: nwayopostcss-base64-image($inline-image-path);
 		}
 
 	} @else {
@@ -101,14 +72,14 @@
 		// High density
 		@if string.index($file, '@2x') {
 			@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {  // stylelint-disable-line -- Has to be this way
-				background-image: url($url + nwayo-cacheinvalidator-querystring($path));  // stylelint-disable-line function-url-quotes -- Variables
+				background-image: nwayopostcss-url-image($url, $path);
 			}
 
 			$path: nwayo-str-replace($path, '@2x', '');
 			$url:  nwayo-str-replace($url, '@2x', '');
 		}
 
-		$uri: url($url + nwayo-cacheinvalidator-querystring($path));  // stylelint-disable-line function-url-quotes -- Variables
+		$uri: nwayopostcss-url-image($url, $path);
 	}
 
 	// Output
@@ -168,8 +139,7 @@
 ///
 /// @requires {Function} nwayo-assets-path
 /// @requires {Function} nwayo-build-path
-/// @requires {CustomFunction} nwayo-cacheinvalidator-querystring
-/// @requires {CustomFunction} nwayodart-file-exists
+/// @requires {CustomFunction} nwayopostcss-url-woff-woff2
 ///
 /// @param {String} $name - Name of the font.
 /// @param {String} $filename - Filename without extension of WOFF/WOFF2 files.
@@ -185,15 +155,14 @@
 ///   @include nwayo-load-font-styles("Open Sans", "opensans-bolditalic-webfont", "lorem", $weight:700, $style:italic);
 ///
 @mixin nwayo-load-font-styles($name, $filename, $component, $weight:normal, $style:normal) {
-	$path:  nwayo-build-path($filename, $component, 'fonts');
-	$url:   nwayo-assets-path($filename, $component, 'fonts');
-	$woff2: if(nwayodart-file-exists($path + '.woff2'), url($url + '.woff2' + nwayo-cacheinvalidator-querystring($path + '.woff2')) format('woff2') + ',', '');  // stylelint-disable-line function-url-quotes -- Variables
+	$path: nwayo-build-path($filename, $component, 'fonts');
+	$url:  nwayo-assets-path($filename, $component, 'fonts');
 
 	@font-face {
 		font-family: $name;
 		font-weight: $weight;
 		font-style: $style;
 		font-display: swap;
-		src: #{$woff2} url($url + '.woff' + nwayo-cacheinvalidator-querystring($path + '.woff'));  // stylelint-disable-line function-url-quotes -- Variables
+		src: nwayopostcss-url-woff-woff2($url, $path);
 	}
 }

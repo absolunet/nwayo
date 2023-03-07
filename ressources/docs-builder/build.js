@@ -7,16 +7,18 @@
 const gulp = require("gulp");
 const cssnano = require("gulp-cssnano");
 const gulpsass = require("gulp-dart-sass");
+const postcss = require("gulp-postcss");
 const uglify = require("gulp-uglify");
 const MarkdownIt = require("markdown-it");
 const anchor = require("markdown-it-anchor");
 const externalLinks = require("markdown-it-external-links");
 const path = require("path");
+const postcssFunctions = require("postcss-functions");
 const scandirectory = require("scandirectory");
-const sass = require("sass");
 const fss = require("@absolunet/fss");
 const babel = require("@babel/core");
 const include = require("../../packages/workflow/helpers/gulp-include");
+const customPostCSSFunctions = require("../../packages/workflow/helpers/postcss-functions");
 
 const paths = {};
 paths.root = fss.realpath(path.join(__dirname, "..", ".."));
@@ -161,21 +163,23 @@ gulp
 		gulpsass
 			.sync({
 				includePaths: [paths.assets],
-				functions: {
-					"docsdart-read-file($file)": (parametersFile) => {
-						const file = parametersFile.getValue();
-
-						if (fss.exists(file)) {
-							return new sass.types.String(fss.readFile(file, "utf8"));
-						}
-
-						throw new Error(`File '${file}' not found`);
-					},
-				},
 			})
 			.on("error", gulpsass.logError)
 	)
+	.pipe(
+		postcss([
+			postcssFunctions({
+				functions: {
+					...customPostCSSFunctions,
+					"docspostcss-svg-image": (fileRaw = "", baseColors, colors) => {
+						const file = fileRaw.replace(/^(?<start>["'])?(?<content>.*?)(?<end>["'])?$/gu, "$<content>");
 
+						return customPostCSSFunctions["nwayopostcss-svg-image"](path.resolve(file), baseColors, colors);
+					},
+				},
+			}),
+		])
+	)
 	.pipe(cssnano({ reduceIdents: false, zindex: false }))
 	.pipe(gulp.dest(`${paths.static}/styles`));
 
