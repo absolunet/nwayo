@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add option to use the workflow without the global CLI
 - Add ESLint configuration export
+- Add option to use global standalone Dart Sass compiler, instead of the embedded pure JavaScript Sass compiler
 - Add Sass function to toolbox: `nwayo-serialize()`
 - Add custom PostCSS functions:
 	- `nwayopostcss-base64-image()`

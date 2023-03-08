@@ -19,6 +19,7 @@
 ## Requirements
 - [Node.js](https://nodejs.org)
 - [nwayo CLI](https://www.npmjs.com/package/@absolunet/nwayo-cli) _(Optional)_
+- [Dart Sass](https://sass-lang.com/install) _(Optional)_
 
 
 
@@ -45,7 +46,7 @@ nwayo is HTML5 ready and uses [gulp](https://gulpjs.com) as a build system
 
 #### Styling
 - CSS3 ready via [Autoprefixer](https://github.com/postcss/autoprefixer) and linted via [stylelint](https://stylelint.io)
-- Comes with [Sass](https://sass-lang.com), built via [Dart Sass](https://www.npmjs.com/package/dart-sass)
+- Comes with [Sass](https://sass-lang.com), built via [Pure JavaScript Sass compiler](https://www.npmjs.com/package/sass) or optionally via [Dart Sass compiler](https://sass-lang.com/install)
 - Minifies with [cssnano](https://cssnano.co)
 
 #### Scripting

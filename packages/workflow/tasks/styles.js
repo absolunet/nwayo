@@ -22,6 +22,7 @@ const jsonToScss = require("@absolunet/json-to-scss");
 const stylelint = require("@ronilaukkarinen/gulp-stylelint");
 const env = require("../helpers/env"); // eslint-disable-line unicorn/prevent-abbreviations
 const flow = require("../helpers/flow");
+const gulpDartSass = require("../helpers/gulp-dartsass");
 const paths = require("../helpers/paths");
 const customPostCSSFunctions = require("../helpers/postcss-functions");
 const toolbox = require("../helpers/toolbox");
@@ -120,6 +121,13 @@ module.exports = () => {
 		"styles-compile",
 
 		({ taskName }) => {
+			const useGlobalDartSassCompiler = Boolean(env.configRaw.useGlobalDartSassCompiler);
+
+			toolbox.log(
+				taskName,
+				`Using ${useGlobalDartSassCompiler ? "global standalone Dart" : "embedded pure JavaScript"} Sass compiler`
+			);
+
 			const streams = [];
 
 			for (const name of Object.keys(env.bundles)) {
@@ -170,10 +178,16 @@ module.exports = () => {
 							.pipe(gulpif(toSourcemaps, sourcemaps.init()))
 
 							.pipe(
-								gulpsass({
-									includePaths: [paths.directory.root],
-									// sourcemaps  (bundle.styles.options.sourcemaps)
-								}).on("error", gulpsass.logError)
+								gulpif(
+									useGlobalDartSassCompiler,
+									gulpDartSass({
+										loadPath: paths.directory.root,
+									}),
+									gulpsass({
+										includePaths: [paths.directory.root],
+										// sourcemaps  (bundle.styles.options.sourcemaps)
+									}).on("error", gulpsass.logError)
+								)
 							)
 
 							.pipe(postcss(postCssPlugins))
