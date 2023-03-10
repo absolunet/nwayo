@@ -31,7 +31,8 @@
   "exports": {
     "./cli": "./cli/index.js",
     "./eslint-config": "./config/eslint.cjs",
-    "./eslint-config/no-prettier": "./config/eslint-no-prettier.cjs"
+    "./eslint-config/no-prettier": "./config/eslint-no-prettier.cjs",
+    "./stylelint-config": "./config/stylelint.cjs"
   },
   "dependencies": {
     "@absolunet/cli": "^0.9.1",

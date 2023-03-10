@@ -12,7 +12,7 @@
 You can add rule settings in the `.stylelintc.yaml` file at the root of your Nwayo directory
 
 ```yaml
-extends: '@absolunet/stylelint-config-scss'
+extends: './node_modules/@absolunet/nwayo-workflow/config/stylelint.cjs'
 
 rules:
   scss/selector-no-union-class-name: null

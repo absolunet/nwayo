@@ -1,1 +1,1 @@
-extends: '@absolunet/stylelint-config-scss'
+extends: './node_modules/@absolunet/nwayo-workflow/config/stylelint.cjs'
