@@ -126,7 +126,6 @@ config.vendors = `${directory.vendors}/package.json`;
 config.konstan = `${directory.root}/konstan.yaml`;
 config.projectPackage = `${directory.root}/package.json`;
 config.workflowPackage = `${workflow.root}/package.json`;
-config.sassFunctions = `${workflow.ressources}/dart-sass-functions.js`;
 config.stylelint = `${directory.root}/.stylelintrc.yaml`;
 config.modernizr = `${directory.root}/modernizr.yaml`;
 config.lodash = `${directory.root}/lodash.yaml`;

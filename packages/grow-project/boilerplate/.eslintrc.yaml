@@ -1,6 +1,6 @@
 extends:
-  - '@absolunet/nwayo'
-  - './node_modules/@absolunet/nwayo-workflow/ressources/eslint-config-pre-prettier.cjs'
+  - "./node_modules/@absolunet/nwayo-workflow/config/eslint.cjs"
+  - "./node_modules/@absolunet/nwayo-workflow/config/eslint-no-prettier.cjs"
 
 # Environments
 #env:

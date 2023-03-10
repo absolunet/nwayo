@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="https://github.com/absolunet/nwayo/raw/production/ressources/images/nwayo.png" width="250" height="250" alt="nwayo">
+	<img src="https://github.com/absolunet/nwayo/raw/main/ressources/images/nwayo.png" width="250" height="250" alt="nwayo">
 </p>
 <h1 align="center"><strong>nwayo</strong></h1>
 <p align="center">/nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.</p>
@@ -18,7 +18,8 @@
 
 ## Requirements
 - [Node.js](https://nodejs.org)
-- [nwayo CLI](https://www.npmjs.com/package/@absolunet/nwayo-cli)
+- [nwayo CLI](https://www.npmjs.com/package/@absolunet/nwayo-cli) _(Optional)_
+- [Dart Sass](https://sass-lang.com/install) _(Optional)_
 
 
 
@@ -31,16 +32,13 @@ npx @absolunet/nwayo-grow-project
 # Install workflow and vendor (in nwayo root folder)
 npm install
 
-# Install CLI
-npm install -g @absolunet/nwayo-cli
-
 # Build (in nwayo root folder)
-nwayo rebuild
+npm run rebuild
 ```
 
 
 
-## Tools &nbsp; <img src="https://github.com/absolunet/nwayo/raw/production/ressources/images/vendors.png" width="375" alt="nwayo vendors">
+## Tools &nbsp; <img src="https://github.com/absolunet/nwayo/raw/main/ressources/images/vendors.png" width="375" alt="nwayo vendors">
 nwayo is HTML5 ready and uses [gulp](https://gulpjs.com) as a build system
 
 - Based (but not mandatory) on [Zurb Foundation](https://foundation.zurb.com)
@@ -48,13 +46,13 @@ nwayo is HTML5 ready and uses [gulp](https://gulpjs.com) as a build system
 
 #### Styling
 - CSS3 ready via [Autoprefixer](https://github.com/postcss/autoprefixer) and linted via [stylelint](https://stylelint.io)
-- Comes with [Sass](https://sass-lang.com), built via [Dart Sass](https://www.npmjs.com/package/dart-sass)
+- Comes with [Sass](https://sass-lang.com), built via [Pure JavaScript Sass compiler](https://www.npmjs.com/package/sass) or optionally via [Dart Sass compiler](https://sass-lang.com/install)
 - Minifies with [cssnano](https://cssnano.co)
 
 #### Scripting
 - ES6+ ready via [Babel](https://babeljs.io) and linted via [ESLint](https://eslint.org)
 - Comes with [jQuery](https://jquery.com), [Modernizr](https://modernizr.com), [Lodash](https://lodash.com), [pinki](https://github.com/absolunet/pinki), [JsRender](https://www.jsviews.com), [kafe](https://documentation.absolunet.com/kafe/)
-- Builds with [gulp-include](https://www.npmjs.com/package/@absolunet/gulp-include) and is minified with [UglifyJS](http://lisperator.net/uglifyjs)
+- Minified with [UglifyJS](http://lisperator.net/uglifyjs)
 
 #### Other
 - Optimizes images via [gifsicle](https://www.lcdf.org/gifsicle), [MozJPEG](https://github.com/mozilla/mozjpeg), [optipng](http://optipng.sourceforge.net), [svgo](https://github.com/svg/svgo)
@@ -84,7 +82,7 @@ Multiple extensions [available](https://www.npmjs.com/search?q=keywords:nwayo-ex
 |---|---|---|
 | **[@absolunet/nwayo-workflow](packages/workflow)** | [![npm](https://img.shields.io/npm/v/@absolunet/nwayo-workflow.svg)](https://www.npmjs.com/package/@absolunet/nwayo-workflow) | Workflow where all the magic happens |
 | **[@absolunet/nwayo-toolbox](packages/toolbox)** | [![npm](https://img.shields.io/npm/v/@absolunet/nwayo-toolbox.svg)](https://www.npmjs.com/package/@absolunet/nwayo-toolbox) | Toolbox with SCSS/JS helpers |
-| **[@absolunet/nwayo-cli](packages/cli)** | [![npm](https://img.shields.io/npm/v/@absolunet/nwayo-cli.svg)](https://www.npmjs.com/package/@absolunet/nwayo-cli) | CLI |
+| [@absolunet/nwayo-cli](packages/cli) | [![npm](https://img.shields.io/npm/v/@absolunet/nwayo-cli.svg)](https://www.npmjs.com/package/@absolunet/nwayo-cli) | CLI |
 | [@absolunet/nwayo-grow-project](packages/grow-project) | [![npm](https://img.shields.io/npm/v/@absolunet/nwayo-grow-project.svg)](https://www.npmjs.com/package/@absolunet/nwayo-grow-project) | Boilerplate generator for nwayo project |
 | [@absolunet/nwayo-grow-extension](packages/grow-extension) | [![npm](https://img.shields.io/npm/v/@absolunet/nwayo-grow-extension.svg)](https://www.npmjs.com/package/@absolunet/nwayo-grow-extension) | Boilerplate generator for nwayo extension |
 

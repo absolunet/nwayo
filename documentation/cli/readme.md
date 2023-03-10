@@ -26,6 +26,19 @@ $ nwayo [...]
 
 ## Commands
 
+**IMPORTANT**
+These three project commands can also be used without the nwayo CLI, by configuring npm scripts:
+
+```json
+{
+  "scripts": {
+    "build-<task>": "nwayo-cli run <task>",
+    "rebuild": "nwayo-cli rebuild",
+    "watch": "nwayo-cli watch"
+  }
+}
+```
+
 ### run
 `nwayo run <task> [<bundle>]`
 

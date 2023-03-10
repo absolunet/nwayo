@@ -100,5 +100,5 @@ $docs-header-zindex: 1;
 
 //-- Image
 @mixin docs-image-styles($file, $color) {
-	background-image: #{nwayo-svg-data-uri(nwayo-color-replace(docsdart-read-file('./assets/images/' + $file + '.svg'), $nwayo-svg-replacement-1-color, $color))};
+	background-image: docspostcss-svg-image('./assets/images/' + $file + '.svg', nwayo-serialize($nwayo-svg-replacement-1-color), nwayo-serialize($color));
 }

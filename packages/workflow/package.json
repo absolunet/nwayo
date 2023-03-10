@@ -24,12 +24,20 @@
   "engines": {
     "node": ">= 14.17.0"
   },
+  "bin": {
+    "nwayo-cli": "./bin/nwayo-cli.js"
+  },
   "main": "index.js",
+  "exports": {
+    "./cli": "./cli/index.js",
+    "./eslint-config": "./config/eslint.cjs",
+    "./eslint-config/no-prettier": "./config/eslint-no-prettier.cjs",
+    "./stylelint-config": "./config/stylelint.cjs"
+  },
   "dependencies": {
     "@absolunet/cli": "^0.9.1",
     "@absolunet/fsp": "^1.7.0",
     "@absolunet/fss": "^1.7.0",
-    "@absolunet/gulp-include": "^0.5.1",
     "@absolunet/json-to-scss": "^1.0.0",
     "@absolunet/private-registry": "^2.0.0",
     "@absolunet/terminal": "^3.2.0",
@@ -41,6 +49,7 @@
     "chalk": "^4.1.2",
     "core-js-builder": "^3.23.3",
     "cssnano": "^5.1.12",
+    "event-stream": "^3.3.4",
     "fancy-log": "^2.0.0",
     "glob": "^8.0.3",
     "glob-all": "^3.3.0",
@@ -63,6 +72,7 @@
     "lodash-cli": "^4.17.5",
     "lodash.clonedeep": "^4.5.0",
     "lodash.flatten": "^4.4.0",
+    "lodash.last": "^3.0.0",
     "lodash.map": "^4.6.0",
     "lodash.property": "^4.4.2",
     "lodash.uniq": "^4.5.0",
@@ -74,6 +84,7 @@
     "ora": "^5.4.1",
     "pluralize": "^8.0.0",
     "postcss": "^8.4.14",
+    "postcss-functions": "^4.0.2",
     "pretty-bytes": "^5.6.0",
     "regenerator-runtime": "^0.13.9",
     "require-dir": "^1.2.0",
@@ -86,11 +97,9 @@
     "vinyl": "^2.2.1"
   },
   "peerDependencies": {
-    "@absolunet/eslint-config-json": ">=3.2.2",
-    "@absolunet/eslint-config-nwayo": ">=3.2.2",
+    "@absolunet/eslint-config-browser": ">=3.2.2",
     "@absolunet/stylelint-config-scss": ">=3.1.1",
     "eslint": ">=8.19.0",
-    "eslint-plugin-json": ">=3.1.0",
     "eslint-plugin-unicorn": ">=43.0.0",
     "postcss-scss": ">=4.0.4",
     "stylelint": ">=14.9.1",

@@ -89,22 +89,6 @@
 	@return $subject;
 }
 
-/// Replace all occurrences of the search color with the replacement color.
-///
-/// @requires {Function} nwayo-str-replace
-/// @requires {Function} nwayo-to-string
-///
-/// @param {String} $subject - Text to search within.
-/// @param {Color} $search - Color to find.
-/// @param {Color} $replace - Color to replace the occurences.
-/// @returns {String} Replaced text.
-///
-@function nwayo-color-replace($subject, $search, $replace) {
-	$subject: nwayo-str-replace($subject, nwayo-to-string($search), nwayo-to-string($replace));
-	$subject: nwayo-str-replace($subject, string.to-upper-case(nwayo-to-string($search)), nwayo-to-string($replace));
-	@return $subject;
-}
-
 /// Cast to string.
 ///
 /// @param {*} $value - Value to cast.
@@ -137,29 +121,32 @@
 	@return false;
 }
 
-/// Transform a SVG to a data-uri safe version.
-/// String chunked up in order to avoid "stack level too deep" error.
-/// @link https://github.com/waldemarfm/sass-svg-uri Original source.
+/// Serialize value to a string.
 ///
-/// @requires {Function} nwayo-str-replace
+/// @param {*} $value - Value to serialize.
+/// @returns {String} Serialized value.
 ///
-/// @param {String} $svg - SVG content.
-/// @returns {String} SVG ready for data-uri.
-///
-@function nwayo-svg-data-uri($svg) {
-	$encoded: '';
-	$slice: 1000;
-	$index: 0;
-	$loops: math.ceil(math.div(string.length($svg), $slice));
-	@for $i from 1 through $loops {
-		$chunk: string.slice($svg, $index, $index + $slice - 1);
-		$chunk: nwayo-str-replace($chunk, '"', "'");
-		$chunk: nwayo-str-replace($chunk, '<', '%3C');
-		$chunk: nwayo-str-replace($chunk, '>', '%3E');
-		$chunk: nwayo-str-replace($chunk, '&', '%26');
-		$chunk: nwayo-str-replace($chunk, '#', '%23');
-		$encoded: #{$encoded}#{$chunk};
-		$index: $index + $slice;
+@function nwayo-serialize($value) {
+	$serialized: '';
+
+	// List
+	@if meta.type-of($value) == 'list' {
+		$serialized: '#{list.join($value, (), $separator: comma)}'
+
+		// Map
+	} @else if meta.type-of($value) == 'map' {
+		$list: ();
+
+		@each $key, $item in $value {
+			$list: list.append($list, $key + ':' + $item);
+		}
+
+		$serialized: '#{list.join($list, (), $separator: comma)}'
+
+		// Plain
+	} @else {
+		$serialized: '#{$value}';
 	}
-	@return url("data:image/svg+xml;charset=utf8,#{$encoded}");  // stylelint-disable-line string-quotes -- Bugs with single quotes
+
+	@return $serialized;
 }

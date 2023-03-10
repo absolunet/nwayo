@@ -16,12 +16,15 @@ const gulpsass = require("gulp-sass")(require("sass"));
 const sourcemaps = require("gulp-sourcemaps");
 const cloneDeep = require("lodash.clonedeep");
 const pluralize = require("pluralize");
+const postcssFunctions = require("postcss-functions");
 const slash = require("slash");
 const jsonToScss = require("@absolunet/json-to-scss");
 const stylelint = require("@ronilaukkarinen/gulp-stylelint");
 const env = require("../helpers/env"); // eslint-disable-line unicorn/prevent-abbreviations
 const flow = require("../helpers/flow");
+const gulpDartSass = require("../helpers/gulp-dartsass");
 const paths = require("../helpers/paths");
+const customPostCSSFunctions = require("../helpers/postcss-functions");
 const toolbox = require("../helpers/toolbox");
 const util = require("../helpers/util");
 
@@ -118,7 +121,12 @@ module.exports = () => {
 		"styles-compile",
 
 		({ taskName }) => {
-			const sassFunctions = require(paths.config.sassFunctions); // eslint-disable-line node/global-require
+			const useGlobalDartSassCompiler = Boolean(env.configRaw.useGlobalDartSassCompiler);
+
+			toolbox.log(
+				taskName,
+				`Using ${useGlobalDartSassCompiler ? "global standalone Dart" : "embedded pure JavaScript"} Sass compiler`
+			);
 
 			const streams = [];
 
@@ -144,7 +152,12 @@ module.exports = () => {
 					const destination = `${bundle.output.build}/${paths.build.styles}`;
 					const source = `${util.getGeneratedBanner(name)}${list.join("\n")}\n`;
 
-					const postCssPlugins = [autoprefixer({ overrideBrowserslist: bundle.styles.options.autoprefixer })];
+					const postCssPlugins = [
+						postcssFunctions({
+							functions: customPostCSSFunctions,
+						}),
+						autoprefixer({ overrideBrowserslist: bundle.styles.options.autoprefixer }),
+					];
 					if (toMinify) {
 						postCssPlugins.push(
 							cssnano({
@@ -165,11 +178,16 @@ module.exports = () => {
 							.pipe(gulpif(toSourcemaps, sourcemaps.init()))
 
 							.pipe(
-								gulpsass({
-									includePaths: [paths.directory.root],
-									functions: sassFunctions,
-									// sourcemaps  (bundle.styles.options.sourcemaps)
-								}).on("error", gulpsass.logError)
+								gulpif(
+									useGlobalDartSassCompiler,
+									gulpDartSass({
+										loadPath: paths.directory.root,
+									}),
+									gulpsass({
+										includePaths: [paths.directory.root],
+										// sourcemaps  (bundle.styles.options.sourcemaps)
+									}).on("error", gulpsass.logError)
+								)
 							)
 
 							.pipe(postcss(postCssPlugins))

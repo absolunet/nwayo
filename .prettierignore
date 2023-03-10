@@ -6,6 +6,7 @@
 docs
 packages/grow-extension/boilerplate
 packages/grow-project/boilerplate
+packages/workflow/helpers/gulp-include
 ressources/docs-builder/app/helpers/generated
 ressources/docs-builder/assets/*/vendor
 ressources/docs-builder/local-server
