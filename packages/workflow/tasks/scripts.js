@@ -8,16 +8,15 @@ const { exec } = require("child_process");
 const corejs = require("core-js-builder");
 const gulp = require("gulp");
 const cache = require("gulp-cached");
-const eslint = require("gulp-eslint-new");
+const eslint = require("gulp-eslint-new"); // eslint-disable-line node/no-missing-require
 const gulpif = require("gulp-if");
 const lec = require("gulp-line-ending-corrector");
 const uglify = require("gulp-uglify");
 const cloneDeep = require("lodash.clonedeep");
 const modernizr = require("modernizr");
 const pluralize = require("pluralize");
-const fsp = require("@absolunet/fsp");
-const fss = require("@absolunet/fss");
-const { terminal } = require("@absolunet/terminal");
+const { fsAsync, fsSync } = require("@valtech-commerce/fs");
+const { terminal } = require("@valtech-commerce/terminal");
 const env = require("../helpers/env"); // eslint-disable-line unicorn/prevent-abbreviations
 const flow = require("../helpers/flow");
 const include = require("../helpers/gulp-include");
@@ -101,10 +100,10 @@ module.exports = () => {
 
 		return toolbox.fakeStream((callback) => {
 			const modernizrBuild = new Promise((resolve) => {
-				modernizr.build(fss.readYaml(paths.config.modernizr), (result) => {
+				modernizr.build(fsSync.readYaml(paths.config.modernizr), (result) => {
 					const file = `${paths.directory.cacheScripts}/${paths.filename.modernizr}.${paths.extension.scripts}`;
-					fsp.ensureFile(file).then(() => {
-						fss.writeFile(file, result);
+					fsAsync.ensureFile(file).then(() => {
+						fsSync.writeFile(file, result);
 						log("Modernizr", file);
 						resolve();
 					});
@@ -132,7 +131,7 @@ module.exports = () => {
 					targets: env.configRaw.polyfill,
 					filename: file,
 				}).then(() => {
-					fsp.appendFile(file, fss.readFile(paths.config.regeneratorRuntime, "utf8")).then(() => {
+					fsAsync.appendFile(file, fsSync.readFile(paths.config.regeneratorRuntime, "utf8")).then(() => {
 						log("core-js polyfill", file);
 						resolve();
 					});

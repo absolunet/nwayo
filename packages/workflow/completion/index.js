@@ -91,46 +91,57 @@ module.exports = ({ completion, root }) => {
 	let values = [];
 
 	switch (items.length) {
-		case 1:
+		case 1: {
 			values = [...level1Cmds(), ...flag(items, LEVEL1_FLAGS)];
 			break;
+		}
 
-		case 2:
+		case 2: {
 			switch (items[0]) {
-				case "run":
+				case "run": {
 					values = TASKS;
 					break;
+				}
 
-				case "rebuild":
+				case "rebuild": {
 					values = [...bundles(root), ...flag(items, REBUILD_FLAGS)];
 					break;
+				}
 
-				case "watch":
+				case "watch": {
 					values = bundles(root);
 					break;
+				}
 
-				default:
+				default: {
 					break;
+				}
 			}
 			break;
+		}
 
-		case 3:
+		case 3: {
 			switch (items[0]) {
-				case "run":
+				case "run": {
 					values = bundles(root);
 					break;
+				}
 
-				case "rebuild":
+				case "rebuild": {
 					values = flag(items, REBUILD_FLAGS);
 					break;
+				}
 
-				default:
+				default: {
 					break;
+				}
 			}
 			break;
+		}
 
-		default:
+		default: {
 			break;
+		}
 	}
 
 	return values.join(" ");

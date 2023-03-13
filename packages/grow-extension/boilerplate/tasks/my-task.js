@@ -3,15 +3,15 @@
 //--------------------------------------------------------
 'use strict';
 
-const path     = require('path');
-const fss      = require('@absolunet/fss');
-const nwayo    = require('@absolunet/nwayo-workflow');
-const myHelper = require('../helpers/my-helper');
+const path       = require('path');
+const nwayo      = require('@absolunet/nwayo-workflow'); // eslint-disable-line node/no-missing-require
+const { fsSync } = require('@valtech-commerce/fs');
+const myHelper   = require('../helpers/my-helper');
 
 const { toolbox, util } = nwayo.helpers;
 
 const TASK      = 'my-task';
-const ROOT      = fss.realpath(`${path.dirname(__filename)}/..`);
+const ROOT      = fsSync.realpath(`${path.dirname(__filename)}/..`);
 const RESOURCES = `${ROOT}/resources`;
 
 
@@ -32,7 +32,7 @@ module.exports = (extension) => {
 			console.log(extension.options);
 			console.log(util.getKonstan(extension.options.bundle));
 			console.log(util.getScriptsUrl(extension.options.bundle, extension.options.collection));
-			console.log(fss.readYaml(`${RESOURCES}/data.yaml`));
+			console.log(fsSync.readYaml(`${RESOURCES}/data.yaml`));
 			console.log(extension.getGeneratedBanner(extension.options.id, 'text'));
 			/* eslint-enable no-console */
 

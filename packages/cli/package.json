@@ -24,17 +24,16 @@
     "nwayo": "bin/nwayo"
   },
   "engines": {
-    "node": ">= 14.17.0"
+    "node": ">= 16"
   },
   "main": "index.js",
   "dependencies": {
-    "@absolunet/fss": "^1.7.0",
-    "@absolunet/terminal": "^3.2.0",
+    "@valtech-commerce/terminal": "^3.2.0",
     "boxen": "^5.1.2",
     "chalk": "^4.1.2",
     "cross-spawn": "^7.0.3",
-    "minimist": "^1.2.6",
-    "open": "^8.4.0",
+    "minimist": "^1.2.8",
+    "open": "^8.4.2",
     "string-width": "^4.2.3",
     "update-notifier": "^5.1.0"
   }

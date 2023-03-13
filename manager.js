@@ -5,8 +5,7 @@
 
 /* eslint-disable node/no-unpublished-require */
 
-const fss = require("@absolunet/fss");
-const fsp = require("@absolunet/fsp");
+const { fsSync, fsAsync } = require("@valtech-commerce/fs");
 const manager = require("@absolunet/manager");
 
 const ROOT = ".";
@@ -31,27 +30,27 @@ manager.multiScriptsRunner({
 				terminal.print("Install static current version of workflow to grow-project boilerplate").spacer();
 
 				await terminal.runPromise(`npm pack ${WORKFLOW} --pack-destination=${ROOT}`);
-				const [workflowPackage] = await fsp.scandir(ROOT, "file", {
+				const [workflowPackage] = await fsAsync.scandir(ROOT, "file", {
 					fullPath: true,
 					pattern: "absolunet-nwayo-workflow-*.tgz",
 				});
 
 				terminal.print("npm install").spacer();
 				await terminal.runPromise(`cd ${BOILER}; npm install ${workflowPackage} --save=false`);
-				await fsp.remove(workflowPackage);
+				await fsAsync.remove(workflowPackage);
 
 				// Install grow-project boilerplate toolbox from current toolbox
 				terminal.print("Install static current version of toolbox to grow-project boilerplate").spacer();
 
 				await terminal.runPromise(`npm pack ${TOOLBOX} --pack-destination=${ROOT}`);
-				const [toolboxPackage] = await fsp.scandir(ROOT, "file", {
+				const [toolboxPackage] = await fsAsync.scandir(ROOT, "file", {
 					fullPath: true,
 					pattern: "absolunet-nwayo-toolbox-*.tgz",
 				});
 
 				terminal.print("npm install").spacer();
 				await terminal.runPromise(`cd ${BOILER_VENDOR}; npm install ${toolboxPackage} --save=false`);
-				await fsp.remove(toolboxPackage);
+				await fsAsync.remove(toolboxPackage);
 
 				await manager.installPackage(BOILER_VENDOR);
 
@@ -79,20 +78,20 @@ manager.multiScriptsRunner({
 			postRun: async ({ terminal }) => {
 				//-- Version bump
 				terminal.print(`Version bump: grow-project boilerplate 'package.json'`).spacer();
-				const boilerPackage = await fsp.readJson(BOILER_PACKAGE);
+				const boilerPackage = await fsAsync.readJson(BOILER_PACKAGE);
 				boilerPackage.dependencies["@absolunet/nwayo-workflow"] = manager.version;
-				await fsp.writeJson(BOILER_PACKAGE, boilerPackage, { space: 2 });
+				await fsAsync.writeJson(BOILER_PACKAGE, boilerPackage, { space: 2 });
 
 				terminal.print(`Version bump: grow-project boilerplate vendor 'package.json'`).spacer();
-				const boilerVendor = await fsp.readJson(BOILER_VENDOR_PACKAGE);
+				const boilerVendor = await fsAsync.readJson(BOILER_VENDOR_PACKAGE);
 				boilerVendor.dependencies["@absolunet/nwayo-toolbox"] = manager.version;
-				await fsp.writeJson(BOILER_VENDOR_PACKAGE, boilerVendor, { space: 2 });
+				await fsAsync.writeJson(BOILER_VENDOR_PACKAGE, boilerVendor, { space: 2 });
 
 				terminal.print(`Version bump: grow-project boilerplate 'SAMPLE-HTML/index.html'`).spacer();
-				const boilerIndex = await fsp.readFile(BOILER_INDEX, "utf8");
-				await fsp.writeFile(
+				const boilerIndex = await fsAsync.readFile(BOILER_INDEX, "utf8");
+				await fsAsync.writeFile(
 					BOILER_INDEX,
-					boilerIndex.replace(
+					boilerIndex.replaceAll(
 						/nwayo (v?(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-[\da-z-]+(?:\.[\da-z-]+)*)?(?:\+[\da-z-]+(?:\.[\da-z-]+)*)?)/gu, // eslint-disable-line prefer-named-capture-group
 						`nwayo ${manager.version}`
 					)
@@ -102,7 +101,7 @@ manager.multiScriptsRunner({
 				await manager.updatePackageMeta(EXTENSION_BOILER);
 
 				//-- Counter old manager
-				const packages = await fsp.scandir(PACKAGES, "dir", {
+				const packages = await fsAsync.scandir(PACKAGES, "dir", {
 					fullPath: true,
 					pattern: "*",
 				});
@@ -110,9 +109,19 @@ manager.multiScriptsRunner({
 				packages.push(EXTENSION_BOILER);
 
 				packages.forEach((directory) => {
-					const content = fss.readJson(`${directory}/package.json`);
-					content.engines.node = ">= 14.17.0";
-					fss.writeJson(`${directory}/package.json`, content, { space: 2 });
+					const content = fsSync.readJson(`${directory}/package.json`);
+					content.engines.node = ">= 16";
+					fsSync.writeJson(`${directory}/package.json`, content, { space: 2 });
+				});
+
+				const licenses = fsSync
+					.scandir(ROOT, "file", { recursive: true, pattern: "license", fullPath: true })
+					.filter((file) => !file.includes("node_modules"));
+
+				licenses.forEach((file) => {
+					const temporary = `${file}_${Date.now()}`;
+					fsSync.move(file, temporary);
+					fsSync.move(temporary, `${file.slice(0, "license".length * -1)}LICENSE`);
 				});
 
 				//-- grow-project boilerplate 'nwayo rebuild'

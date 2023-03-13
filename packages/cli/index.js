@@ -46,6 +46,7 @@ module.exports = async () => {
 
 		util.echo("");
 
+		// eslint-disable-next-line unicorn/no-negated-condition
 		if (update.current !== update.latest) {
 			util.echo(
 				`Update available: ${chalk.dim(update.current)} ${chalk.reset("→")} ${chalk.green(
@@ -53,7 +54,7 @@ module.exports = async () => {
 				)}\n\nUpdating...\n`
 			);
 
-			const { terminal } = require("@absolunet/terminal");
+			const { terminal } = require("@valtech-commerce/terminal");
 			terminal.process.run("npm uninstall -g @absolunet/nwayo-cli && npm install -g --no-audit @absolunet/nwayo-cli");
 		} else {
 			util.echo("No update available");

@@ -3,10 +3,12 @@
 //-------------------------------------
 
 class Paths {
+	// eslint-disable-next-line class-methods-use-this
 	get root() {
 		return "/nwayo";
 	}
 
+	// eslint-disable-next-line class-methods-use-this
 	get github() {
 		return `https://github.com/absolunet/nwayo`;
 	}

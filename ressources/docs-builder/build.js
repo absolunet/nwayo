@@ -15,13 +15,13 @@ const externalLinks = require("markdown-it-external-links");
 const path = require("path");
 const postcssFunctions = require("postcss-functions");
 const scandirectory = require("scandirectory");
-const fss = require("@absolunet/fss");
 const babel = require("@babel/core");
+const { fsSync } = require("@valtech-commerce/fs");
 const include = require("../../packages/workflow/helpers/gulp-include");
 const customPostCSSFunctions = require("../../packages/workflow/helpers/postcss-functions");
 
 const paths = {};
-paths.root = fss.realpath(path.join(__dirname, "..", ".."));
+paths.root = fsSync.realpath(path.join(__dirname, "..", ".."));
 paths.ressources = `${paths.root}/ressources`;
 paths.builder = `${paths.ressources}/docs-builder`;
 paths.assets = `${paths.builder}/assets`;
@@ -73,24 +73,25 @@ const processNav = (tree, section = "") => {
 };
 
 //-- Cleanup
-fss.remove(paths.static);
-fss.ensureDir(paths.static);
+fsSync.remove(paths.static);
+fsSync.ensureDir(paths.static);
 
 //-- Pages
 scandirectory(`${paths.root}/documentation`, { readFiles: true }, (error, list, tree) => {
+	// eslint-disable-next-line unicorn/no-negated-condition
 	if (!error) {
-		const mainReadme = fss.readFile(`${paths.root}/readme.md`, "utf8");
+		const mainReadme = fsSync.readFile(`${paths.root}/readme.md`, "utf8");
 		list["readme.md"] = mainReadme;
 		tree["readme.md"] = mainReadme;
 
 		//-- Build nav
-		const { version } = fss.readJson(`${paths.root}/lerna.json`);
+		const { version } = fsSync.readJson(`${paths.root}/lerna.json`);
 		const navTree = processNav(tree);
 		navTree.__root__ = { source: "readme", title: `nwayo ${version} - Documentation` };
 		navTree.__404__ = navTree["404"];
 		delete navTree["404"];
 
-		fss.outputFile(
+		fsSync.outputFile(
 			`${paths.builder}/app/helpers/generated/index.js`,
 			`
 			export const tree = ${JSON.stringify(navTree)};
@@ -131,12 +132,12 @@ scandirectory(`${paths.root}/documentation`, { readFiles: true }, (error, list, 
 			if (file === "readme.md") {
 				md.set({ html: true });
 				content = content
-					.replaceAll(/\]\(documentation\//gu, `](${ROOT}/`)
+					.replaceAll("](documentation/", `](${ROOT}/`)
 					.replaceAll(
 						/https:\/\/github.com\/absolunet\/nwayo\/raw\/main\/ressources\/images\//gu,
 						`${ROOT}/static/images/`
 					)
-					.replaceAll(/nwayo\.png/gu, `nwayo.svg`)
+					.replaceAll("nwayo.png", `nwayo.svg`)
 					.replaceAll(/\[\/\/\]: # \(Doc\)(?<spaces>[\s\S]*?)\[\/\/\]: # \(\/Doc\)/gu, "");
 			} else {
 				md.set({ html: false });
@@ -144,7 +145,7 @@ scandirectory(`${paths.root}/documentation`, { readFiles: true }, (error, list, 
 
 			if (content !== "dir" && !isBeingWritten(content)) {
 				const outFile = `${paths.static}/content/${file.replace(".md", ".html")}`;
-				fss.outputFile(outFile, md.render(content));
+				fsSync.outputFile(outFile, md.render(content));
 			}
 		});
 	} else {
@@ -153,8 +154,8 @@ scandirectory(`${paths.root}/documentation`, { readFiles: true }, (error, list, 
 });
 
 //-- Build assets
-fss.copy(`${paths.ressources}/images`, `${paths.static}/images`);
-fss.copy(`${paths.root}/test/fixtures/build/icons/site`, `${paths.static}/icons`);
+fsSync.copy(`${paths.ressources}/images`, `${paths.static}/images`);
+fsSync.copy(`${paths.root}/test/fixtures/build/icons/site`, `${paths.static}/icons`);
 
 // SCSS
 gulp
@@ -172,7 +173,7 @@ gulp
 				functions: {
 					...customPostCSSFunctions,
 					"docspostcss-svg-image": (fileRaw = "", baseColors, colors) => {
-						const file = fileRaw.replace(/^(?<start>["'])?(?<content>.*?)(?<end>["'])?$/gu, "$<content>");
+						const file = fileRaw.replaceAll(/^(?<start>["'])?(?<content>.*?)(?<end>["'])?$/gu, "$<content>");
 
 						return customPostCSSFunctions["nwayopostcss-svg-image"](path.resolve(file), baseColors, colors);
 					},

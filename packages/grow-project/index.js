@@ -7,32 +7,32 @@ const chalk = require("chalk");
 const figures = require("figures");
 const inquirer = require("inquirer");
 const replaceInFile = require("replace-in-file");
-const fss = require("@absolunet/fss");
+const { fsSync } = require("@valtech-commerce/fs");
 
-const LOCAL = fss.realpath(".");
+const LOCAL = fsSync.realpath(".");
 const NWAYO = `${LOCAL}/nwayo`;
 const CONFIG_ORIGINAL = `${NWAYO}/nwayo.yaml`;
 const BUNDLE = `${NWAYO}/bundles/site/site.yaml`;
 const CONFIG = `${LOCAL}/nwayo.yaml`;
 
-const ROOT = fss.realpath(__dirname);
+const ROOT = fsSync.realpath(__dirname);
 const BOILERPLATE = `${ROOT}/boilerplate`;
-const PACKAGE = fss.readJson(`${ROOT}/package.json`);
+const PACKAGE = fsSync.readJson(`${ROOT}/package.json`);
 
 const echo = console.log; // eslint-disable-line no-console
 
 const error = (message) => {
 	console.error(chalk.red(`\n  ${figures.cross} ${message}`)); // eslint-disable-line no-console
-	process.exit(); // eslint-disable-line node/no-process-exit, unicorn/no-process-exit
+	process.exit(); // eslint-disable-line no-process-exit, unicorn/no-process-exit
 };
 
 class GrowProject {
 	async cli() {
-		if (fss.exists(NWAYO)) {
+		if (fsSync.exists(NWAYO)) {
 			error(`There is already a 'nwayo' folder`);
 		}
 
-		if (fss.exists(CONFIG)) {
+		if (fsSync.exists(CONFIG)) {
 			error(`There is already a 'nwayo.yaml' file`);
 		}
 
@@ -58,19 +58,19 @@ class GrowProject {
 		echo(chalk.blue(`\n${figures.play} Generating project ${figures.ellipsis}`));
 
 		// Duplicate boilerplate
-		fss.copy(BOILERPLATE, NWAYO);
-		fss.rename(`${NWAYO}/-gitignore`, `${NWAYO}/.gitignore`);
+		fsSync.copy(BOILERPLATE, NWAYO);
+		fsSync.rename(`${NWAYO}/-gitignore`, `${NWAYO}/.gitignore`);
 
 		// Configuration
-		const config = fss.readYaml(CONFIG_ORIGINAL);
-		fss.writeYaml(CONFIG, config);
-		fss.remove(CONFIG_ORIGINAL);
+		const config = fsSync.readYaml(CONFIG_ORIGINAL);
+		fsSync.writeYaml(CONFIG, config);
+		fsSync.remove(CONFIG_ORIGINAL);
 
 		// Bundle
-		const bundle = fss.readYaml(BUNDLE);
+		const bundle = fsSync.readYaml(BUNDLE);
 		bundle.output.konstan = "../pub/build";
 		bundle.output.build = "../pub/build";
-		fss.writeYaml(BUNDLE, bundle);
+		fsSync.writeYaml(BUNDLE, bundle);
 
 		// Change project name
 		await replaceInFile({

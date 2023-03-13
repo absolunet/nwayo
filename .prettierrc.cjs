@@ -1,3 +1,3 @@
 module.exports = {
-	...require("@absolunet/prettier-config-core"),
+	...require("@valtech-commerce/prettier-config/core"),
 };

@@ -5,10 +5,10 @@
 
 const crypto = require("crypto");
 const mimeTypes = require("mime-types");
-const fss = require("@absolunet/fss");
+const { fsSync } = require("@valtech-commerce/fs");
 
 const dequote = (value) => {
-	return value.replace(/^(?<start>["'])?(?<content>.*?)(?<end>["'])?$/gu, "$<content>");
+	return value.replaceAll(/^(?<start>["'])?(?<content>.*?)(?<end>["'])?$/gu, "$<content>");
 };
 
 const deserialize = (value) => {
@@ -31,7 +31,7 @@ const deserialize = (value) => {
 };
 
 const buildUniqueURL = (url, file) => {
-	const checksum = crypto.createHash("sha512").update(fss.readFile(file)).digest("hex");
+	const checksum = crypto.createHash("sha512").update(fsSync.readFile(file)).digest("hex");
 
 	return `url("${url}?v=${checksum}")`;
 };
@@ -40,8 +40,8 @@ const buildUniqueURL = (url, file) => {
 const base64Image = (fileRaw = "") => {
 	const file = dequote(fileRaw);
 
-	if (fss.exists(file)) {
-		const data = fss.readFile(file).toString("base64");
+	if (fsSync.exists(file)) {
+		const data = fsSync.readFile(file).toString("base64");
 		const mimeType = mimeTypes.lookup(file);
 
 		return `url('data:${mimeType};base64,${data}')`;
@@ -55,8 +55,8 @@ const svgImage = (fileRaw = "", rawBaseColors = "", rawColors = "") => {
 	const baseColors = deserialize(dequote(rawBaseColors));
 	const colors = deserialize(dequote(rawColors));
 
-	if (fss.exists(file)) {
-		let svg = fss.readFile(file, "utf8");
+	if (fsSync.exists(file)) {
+		let svg = fsSync.readFile(file, "utf8");
 
 		if (typeof colors === "string" && colors.trim() !== "") {
 			svg = svg.replaceAll(new RegExp(baseColors[0], "gui"), colors);
@@ -90,7 +90,7 @@ const urlImage = (urlRaw = "", fileRaw = "") => {
 	const url = dequote(urlRaw);
 	const file = dequote(fileRaw);
 
-	if (fss.exists(file)) {
+	if (fsSync.exists(file)) {
 		return buildUniqueURL(url, file);
 	}
 
@@ -103,11 +103,11 @@ const urlWoffWoff2 = (urlRaw = "", fileRaw = "") => {
 
 	let woff2 = "";
 
-	if (fss.exists(dequote(`${file}.woff2`))) {
+	if (fsSync.exists(dequote(`${file}.woff2`))) {
 		woff2 = `${buildUniqueURL(`${url}.woff2`, `${file}.woff2`)} format("woff2"), `;
 	}
 
-	if (fss.exists(dequote(`${file}.woff`))) {
+	if (fsSync.exists(dequote(`${file}.woff`))) {
 		return `${woff2}${buildUniqueURL(`${url}.woff`, `${file}.woff`)}`;
 	}
 

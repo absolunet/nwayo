@@ -93,10 +93,10 @@ class Util {
 
 	exit(message) {
 		if (message && !argv["completion-logic"]) {
-			const { terminal } = require("@absolunet/terminal");
+			const { terminal } = require("@valtech-commerce/terminal");
 			terminal.exit(message);
 		} else {
-			process.exit(); // eslint-disable-line node/no-process-exit, unicorn/no-process-exit
+			process.exit(); // eslint-disable-line no-process-exit, unicorn/no-process-exit
 		}
 	}
 

@@ -21,13 +21,13 @@
     "url": "https://github.com/absolunet/nwayo/issues"
   },
   "engines": {
-    "node": ">= 14.17.0"
+    "node": ">= 16"
   },
   "browser": "scripts/dependencies-starter.js",
   "peerDependencies": {
     "@absolunet/pinki": ">= 3.0.0",
     "imagesloaded": ">= 5.0.0",
-    "jquery": ">= 3.6.0"
+    "jquery": ">= 3.6.4"
   },
   "optionalDependencies": {
     "lodash": ">= 4.17.21",

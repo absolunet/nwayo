@@ -3,7 +3,7 @@
 "use strict";
 
 module.exports = {
-	extends: "@absolunet/eslint-config-browser",
+	extends: "@valtech-commerce/eslint-config/browser",
 	env: {
 		jquery: true,
 	},
@@ -42,6 +42,7 @@ module.exports = {
 			},
 		],
 		"unicorn/consistent-function-scoping": ["off"],
+		"unicorn/prefer-module": ["off"],
 		"unicorn/no-unreadable-iife": ["off"],
 	},
 };

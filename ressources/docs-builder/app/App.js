@@ -18,24 +18,22 @@ class App extends React.PureComponent {
 			<BrowserRouter basename={paths.root}>
 				<Route
 					path=":path(.*)"
-					render={({ match }) => {
-						return (
-							<>
-								<Header />
+					render={({ match }) => (
+						<>
+							<Header />
 
-								<div className="container">
-									<Nav />
-									<Content path={match.params.path} />
-								</div>
+							<div className="container">
+								<Nav />
+								<Content path={match.params.path} />
+							</div>
 
-								<Footer />
-							</>
-						);
-					}}
+							<Footer />
+						</>
+					)}
 				/>
 			</BrowserRouter>
 		);
 	}
 }
 
-export default hot(module)(App);
+export default hot(module)(App); // eslint-disable-line unicorn/prefer-module

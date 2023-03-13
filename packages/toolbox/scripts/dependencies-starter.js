@@ -37,29 +37,36 @@
 	// Vendors
 	let jQueryScoped; // eslint-disable-line unicorn/prevent-abbreviations
 	switch (nwayoStarterConfig.jQuery.scope) {
-		case "private":
+		case "private": {
 			jQueryScoped = global.jQuery.noConflict(true);
 			break;
-		case "semi":
+		}
+		case "semi": {
 			jQueryScoped = global.jQuery.noConflict();
 			break;
-		case "public":
+		}
+		case "public": {
 			jQueryScoped = global.jQuery;
 			break;
-		default:
+		}
+		default: {
 			break;
+		}
 	}
 
 	let lodashScoped;
 	switch (nwayoStarterConfig.lodash.scope) {
-		case "private":
+		case "private": {
 			lodashScoped = global._.noConflict();
 			break;
-		case "public":
+		}
+		case "public": {
 			lodashScoped = global._;
 			break;
-		default:
+		}
+		default: {
 			break;
+		}
 	}
 
 	const vendor = {};
@@ -168,6 +175,7 @@
 	// When document loaded
 	// eslint-disable-next-line no-restricted-globals
 	$(window).on("load", () => {
+		// eslint-disable-next-line unicorn/no-negated-condition
 		if (!DOMParsed) {
 			waitingOnDOM = true;
 		} else {

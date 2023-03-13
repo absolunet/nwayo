@@ -1,4 +1,4 @@
-extends: "@absolunet/react"
+extends: "@valtech-commerce/eslint-config/react"
 
 parserOptions:
   requireConfigFile: false

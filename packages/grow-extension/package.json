@@ -26,11 +26,11 @@
     "nwayo-grow-extension": "bin/nwayo-grow-extension"
   },
   "engines": {
-    "node": ">= 14.17.0"
+    "node": ">= 16"
   },
   "main": "index.js",
   "dependencies": {
-    "@absolunet/fss": "^1.7.0",
+    "@valtech-commerce/fs": "^1.7.0",
     "chalk": "^4.1.2",
     "figures": "^3.2.0"
   }

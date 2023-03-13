@@ -8,7 +8,7 @@ const boxen = require("boxen");
 const chalk = require("chalk");
 const crypto = require("crypto");
 const events = require("events");
-const glob = require("glob");
+const { globSync } = require("glob");
 const multiDest = require("gulp-multi-dest");
 const cloneDeep = require("lodash.clonedeep");
 const path = require("path");
@@ -16,8 +16,8 @@ const requireDir = require("require-dir");
 const semver = require("semver");
 const slash = require("slash");
 const cli = require("@absolunet/cli");
-const fss = require("@absolunet/fss");
-const { terminal } = require("@absolunet/terminal");
+const { fsSync } = require("@valtech-commerce/fs");
+const { terminal } = require("@valtech-commerce/terminal");
 const env = require("./env"); // eslint-disable-line unicorn/prevent-abbreviations
 const paths = require("./paths");
 const toolbox = require("./toolbox");
@@ -28,7 +28,7 @@ const __ = {
 
 //-- Escape for regex usage
 const escapeForRegex = (string) => {
-	return string.replace(/[/\\^$*+?.()|[\]{}]/gu, "\\$&");
+	return string.replaceAll(/[/\\^$*+?.()|[\]{}]/gu, "\\$&");
 };
 
 //-- Compare value with current cache if different
@@ -64,13 +64,14 @@ class Util {
 		data.path = { root: rootUrl };
 
 		if (type === "styles") {
-			options.escape = options.escape || [];
+			options.escape ||= [];
 			options.escape.push("path.root", "util.emptyimage");
 			urls.inline = slash(paths.directory.cacheInline);
-			urls.buildroot = slash(fss.realpath(`${paths.directory.root}/${buildRoot}`));
+			urls.buildroot = slash(fsSync.realpath(`${paths.directory.root}/${buildRoot}`));
 		}
 
 		for (const key of Object.keys(urls)) {
+			// eslint-disable-next-line unicorn/no-negated-condition
 			data.path[key] = (!["inline", "buildroot"].includes(key) ? `${data.path.root}/` : "") + urls[key];
 
 			if (options.escape && options.escape.includes("path.root")) {
@@ -106,7 +107,7 @@ class Util {
 
 	//-- Parse Lodash config
 	parseLodash() {
-		const config = fss.readYaml(paths.config.lodash);
+		const config = fsSync.readYaml(paths.config.lodash);
 		let cliParameters = "";
 
 		for (const option of Object.keys(config)) {
@@ -187,7 +188,7 @@ class Util {
 		for (const component of env.bundlesComponents) {
 			// Check if component has assets
 			const componentFiles = files.replace(paths.pattern.anytree, component);
-			if (glob.sync(componentFiles).length > 0) {
+			if (globSync(componentFiles).length > 0) {
 				// Create stream for component
 				let componentStream = gulp.src(componentFiles, { base: paths.directory.root });
 				componentStream = customPiping(componentStream);
@@ -217,10 +218,13 @@ class Util {
 		}for ${env.packageConfig.name}:${name}`;
 
 		switch (type) {
-			case "text":
+			case "text": {
 				return banner;
-			default:
+			}
+
+			default: {
 				return `/*!\n * @preserve ${banner}\n */\n\n`;
+			}
 		}
 	}
 
@@ -301,7 +305,7 @@ Run ${chalk.cyan("npm install")} to update`,
 		} else {
 			const [group] = task.split("-");
 			taskFile = `${paths.workflow.tasks}/${group}`;
-			if (!fss.exists(`${taskFile}.js`)) {
+			if (!fsSync.exists(`${taskFile}.js`)) {
 				terminal.exit(`Task ${chalk.underline(task)} does not exists`);
 			}
 		}

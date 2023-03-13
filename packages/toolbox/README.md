@@ -5,13 +5,13 @@
 [![npms](https://badges.npms.io/%40absolunet%2Fnwayo-workflow.svg)](https://npms.io/search?q=%40absolunet%2Fnwayo-workflow)
 [![Code style ESLint](https://img.shields.io/badge/code_style-@absolunet/node-659d32.svg)](https://github.com/absolunet/eslint-config-node)
 
-> Workflow for [nwayo](https://documentation.absolunet.com/nwayo/)
+> Toolbox for [nwayo](https://documentation.absolunet.com/nwayo/)
 
 
 ## Install
 
 ```bash
-$ npm install -g @absolunet/nwayo-workflow
+$ npm install -g @absolunet/nwayo-toolbox
 ```
 
 ## Documentation

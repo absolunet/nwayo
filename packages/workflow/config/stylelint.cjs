@@ -2,5 +2,5 @@
 "use strict";
 
 module.exports = {
-	extends: "@absolunet/stylelint-config-scss",
+	extends: "@valtech-commerce/stylelint-config/scss",
 };

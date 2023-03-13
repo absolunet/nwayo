@@ -4,27 +4,27 @@
 "use strict";
 
 const chalk = require("chalk");
-const glob = require("glob");
+const { globSync } = require("glob");
 const flatten = require("lodash.flatten");
 const map = require("lodash.map");
 const property = require("lodash.property");
 const uniq = require("lodash.uniq");
 const emoji = require("node-emoji");
 const os = require("os");
-const fss = require("@absolunet/fss");
-const { terminal } = require("@absolunet/terminal");
+const { fsSync } = require("@valtech-commerce/fs");
+const { terminal } = require("@valtech-commerce/terminal");
 const paths = require("./paths");
 
 const NAME = "nwayo";
 
 //-- Existence validated by CLI
-const WORKFLOW_PACKAGE = fss.readJson(paths.config.workflowPackage);
-const PACKAGE = fss.readJson(paths.config.projectPackage);
+const WORKFLOW_PACKAGE = fsSync.readJson(paths.config.workflowPackage);
+const PACKAGE = fsSync.readJson(paths.config.projectPackage);
 
-if (!fss.exists(paths.config.main)) {
+if (!fsSync.exists(paths.config.main)) {
 	terminal.exit(`'${paths.filename.mainConfig}' not found`);
 }
-const CONFIG = fss.readYaml(paths.config.main);
+const CONFIG = fsSync.readYaml(paths.config.main);
 
 const EXTENSIONS = (() => {
 	const enabled = {};
@@ -35,10 +35,12 @@ const EXTENSIONS = (() => {
 			let normalizedName = "";
 
 			const scopedMatch = /^(?<kebab1>@[a-z0-9-]+\/)(?<kebab2>[a-z0-9-]+)$/u.exec(name);
+			// eslint-disable-next-line unicorn/no-negated-condition
 			if (scopedMatch !== null) {
 				normalizedName = `${scopedMatch[1]}${prefix}${scopedMatch[2]}`;
 			} else {
 				const namedMatch = /^[a-z0-9-]+$/u.exec(name);
+				// eslint-disable-next-line unicorn/no-negated-condition
 				if (namedMatch !== null) {
 					normalizedName = `${prefix}${name}`;
 				} else {
@@ -153,7 +155,7 @@ class Env {
 	//-- Init workflow env
 	initWorkflow({ bundle = "*" }) {
 		// Load konstan
-		__.konstan = fss.readYaml(paths.config.konstan);
+		__.konstan = fsSync.readYaml(paths.config.konstan);
 
 		// Get bundle list
 		const [requiredName, requiredSubname = "*"] = bundle.split(":");
@@ -165,14 +167,14 @@ class Env {
 			__.scope = "subbundle";
 		}
 
-		const bundlesList = glob.sync(`${paths.directory.bundles}/${requiredName}/`);
+		const bundlesList = globSync(`${paths.directory.bundles}/${requiredName}/`);
 
 		// Process bundles
 		const data = {};
 		if (bundlesList.length > 0) {
 			for (const folder of bundlesList) {
-				const [, name] = folder.match(/\/(?<alphanum>[0-9a-zA-Z-]+)\/$/u);
-				data[name] = fss.readYaml(`${folder}/${name}.${paths.extension.bundles}`);
+				const [, name] = folder.match(/\/(?<alphanum>[0-9a-zA-Z-]+)$/u);
+				data[name] = fsSync.readYaml(`${folder}/${name}.${paths.extension.bundles}`);
 
 				if (!data[name].assets) {
 					data[name].assets = {};
@@ -190,12 +192,12 @@ class Env {
 					data[name].styles.collections = {};
 				}
 
-				const subBundlesList = glob.sync(
+				const subBundlesList = globSync(
 					`${paths.directory.bundles}/${name}/_${requiredSubname}.${paths.extension.bundles}`
 				);
 				if (subBundlesList.length > 0) {
 					for (const subBundleFile of subBundlesList) {
-						const subBundleData = fss.readYaml(subBundleFile);
+						const subBundleData = fsSync.readYaml(subBundleFile);
 						if (subBundleData.assets && subBundleData.assets.components) {
 							data[name].assets.components = [
 								...new Set([...data[name].assets.components, ...subBundleData.assets.components]),
@@ -215,7 +217,7 @@ class Env {
 				}
 			}
 		} else {
-			terminal.exit(requiredName !== "*" ? `Bundle ${chalk.underline(bundle)} does not exists` : `No bundle found`);
+			terminal.exit(requiredName !== "*" ? `Bundle ${chalk.underline(bundle)} does not exists` : `No bundle found`); // eslint-disable-line unicorn/no-negated-condition
 		}
 
 		__.bundles = data;

@@ -10,12 +10,10 @@ import Util from "../helpers/util";
 const ROOT = "__root__";
 const ERROR404 = "__404__";
 
-const contentData = (data, fullTitle) => {
-	return {
-		sourceFile: data.source,
-		title: `${data.title}${!fullTitle ? " - nwayo" : ""}`,
-	};
-};
+const contentData = (data, fullTitle) => ({
+	sourceFile: data.source,
+	title: `${data.title}${!fullTitle ? " - nwayo" : ""}`, // eslint-disable-line unicorn/no-negated-condition
+});
 
 class Content extends React.Component {
 	constructor(properties) {
@@ -61,6 +59,7 @@ class Content extends React.Component {
 
 		const source = `${paths.root}/static/content/${sourceFile}.html`;
 		let content;
+		// eslint-disable-next-line unicorn/no-negated-condition
 		if (!util.isCached(source)) {
 			util.fetchAndUpdate(source);
 

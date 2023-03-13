@@ -3,8 +3,9 @@
 //--------------------------------------------------------
 'use strict';
 
-const fss   = require('@absolunet/fss');
-const nwayo = require('@absolunet/nwayo-workflow');
+const path       = require('node:path');
+const nwayo      = require('@absolunet/nwayo-workflow'); // eslint-disable-line node/no-missing-require
+const { fsSync } = require('@valtech-commerce/fs');
 
 const NwayoExtension = nwayo.classes.extension;
 const { paths }      = nwayo.helpers;
@@ -18,7 +19,7 @@ class NwayoMyExtensionExtension extends NwayoExtension {
 
 
 	get version() {
-		const packageConfig = fss.readJson(`${__dirname}/package.json`);
+		const packageConfig = fsSync.readJson(path.join(__dirname, 'package.json'));
 
 		return packageConfig.version;
 	}
@@ -35,15 +36,15 @@ class NwayoMyExtensionExtension extends NwayoExtension {
 
 	taskExists(name) {
 		try {
-			return Boolean(require.resolve(`./tasks/${name}`));
-		} catch (error) {
+			return Boolean(require.resolve(path.join('.', 'tasks', name)));
+		} catch {
 			return false;
 		}
 	}
 
 
 	requireTask(name) {
-		require(`./tasks/${name}`)(this);  // eslint-disable-line global-require
+		require(path.join('.', 'tasks', name))(this); // eslint-disable-line node/global-require
 	}
 
 }

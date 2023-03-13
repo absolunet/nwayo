@@ -2,7 +2,7 @@ var fs = require('fs'),
 	path = require('path'),
 	es = require('event-stream'),
 	gutil = require('gulp-util'),
-	glob = require('glob'),
+	{ globSync } = require('glob'),
 	last = require('lodash.last');
 
 
@@ -187,7 +187,7 @@ module.exports = function (params) {
 			fullPath = path.join((basePath !== '') ? basePath : folderPath, thisGlob.replace(/['"]/g, '') + ext),
 			files;
 
-		files = glob.sync(fullPath, {
+		files = globSync(fullPath, {
 			mark: true
 		});
 
@@ -200,7 +200,7 @@ module.exports = function (params) {
 				elements[elements.length-1] = '_'+elements[elements.length-1];
 				var fullPath2 = elements.join(pathSeparator);
 
-				files = glob.sync(fullPath2, {
+				files = globSync(fullPath2, {
 					mark: true
 				});
 

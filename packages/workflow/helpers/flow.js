@@ -10,8 +10,8 @@ const gulp = require("gulp");
 const emoji = require("node-emoji");
 const ora = require("ora");
 const pluralize = require("pluralize");
-const fss = require("@absolunet/fss");
-const { terminal } = require("@absolunet/terminal");
+const { fsSync } = require("@valtech-commerce/fs");
+const { terminal } = require("@valtech-commerce/terminal");
 const env = require("./env"); // eslint-disable-line unicorn/prevent-abbreviations
 const paths = require("./paths");
 const toolbox = require("./toolbox");
@@ -46,17 +46,19 @@ const logStep = (action, scope, name, start) => {
 
 const logGuard = (action, name, file) => {
 	switch (action) {
-		case START:
+		case START: {
 			return `${emoji.get("guardsman")}  Guard n°${__.totalGuards + 1} standing guard...`;
+		}
 
-		case ALERT:
+		case ALERT: {
 			return terminal.echo(
 				`${emoji.get("mega")}  Guard n°${__.totalGuards} alerted by ${chalk.magenta(
 					file.split(`${paths.directory.root}/`)[1]
 				)} calling ${chalk.cyan(name)}`
 			);
+		}
 
-		case END:
+		case END: {
 			return terminal.echo(
 				`${emoji.get("zzz")}  Guard n°${__.activeGuards[name]} duty is completed ${chalk.cyan.dim(`(${name})`)}${
 					__.ignoredChanges[name]
@@ -68,9 +70,11 @@ const logGuard = (action, name, file) => {
 						: ""
 				}\n`
 			);
+		}
 
-		default:
+		default: {
 			return undefined; // eslint-disable-line unicorn/no-useless-undefined
+		}
 	}
 };
 
@@ -83,6 +87,7 @@ const runTask = ({ name, task, start }) => {
 		task({ taskName: name })
 			// Log task as completed
 			.on("finish", () => {
+				// eslint-disable-next-line unicorn/no-negated-condition
 				if (!__.cascadeSkip) {
 					logStep(END, TASK, name, start);
 				} else {
@@ -175,12 +180,13 @@ class Flow {
 
 			// Delete
 			list.forEach((path) => {
-				fss.remove(path);
+				fsSync.remove(path);
 			});
 
 			// Run sequence
 			gulp.series(sequence, () => {
 				// Log sequence as completed
+				// eslint-disable-next-line unicorn/no-negated-condition
 				if (!__.cascadeSkip) {
 					logStep(END, SEQUENCE, name, start);
 				} else {

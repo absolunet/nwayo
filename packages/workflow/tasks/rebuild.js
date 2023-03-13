@@ -5,7 +5,7 @@
 
 // const debug = require('gulp-debug');
 const gulp = require("gulp");
-const fss = require("@absolunet/fss");
+const { fsSync } = require("@valtech-commerce/fs");
 const env = require("../helpers/env"); // eslint-disable-line unicorn/prevent-abbreviations
 const flow = require("../helpers/flow");
 const paths = require("../helpers/paths");
@@ -25,7 +25,7 @@ module.exports = () => {
 			() => {
 				return toolbox.fakeStream((callback) => {
 					for (const name of Object.keys(env.bundles)) {
-						fss.outputFile(
+						fsSync.outputFile(
 							`${paths.directory.root}/${env.bundles[name].output.build}/readme-${env.id}.md`,
 							`# ${util.getGeneratedBanner(name, "text")}\n`
 						);

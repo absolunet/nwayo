@@ -3,7 +3,7 @@
 //--------------------------------------------------------
 "use strict";
 
-const { terminal } = require("@absolunet/terminal");
+const { terminal } = require("@valtech-commerce/terminal");
 const paths = require("../helpers/paths");
 const toolbox = require("../helpers/toolbox");
 

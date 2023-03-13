@@ -22,7 +22,7 @@
     "url": "https://github.com/absolunet/nwayo-extension-MYEXTENSION/issues"
   },
   "engines": {
-    "node": ">= 14.17.0"
+    "node": ">= 16"
   },
   "main": "index.js",
   "scripts": {
@@ -34,9 +34,10 @@
   },
   "devDependencies": {
     "@absolunet/manager": "1.1.0",
-    "@absolunet/tester": "2.6.11"
+    "@absolunet/tester": "2.6.11",
+    "@valtech-commerce/eslint-config": "^4.0.0-rc.3"
   },
   "dependencies": {
-    "@absolunet/fss": "^1.7.0"
+    "@valtech-commerce/fs": "^1.7.0"
   }
 }

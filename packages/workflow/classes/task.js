@@ -3,43 +3,41 @@
 //--------------------------------------------------------
 "use strict";
 
-const __ = require("@absolunet/private-registry");
-const { terminal } = require("@absolunet/terminal");
+const { terminal } = require("@valtech-commerce/terminal");
 const paths = require("../helpers/paths");
 
 class Task {
+	#filename;
+	#deprecated;
+
 	/* eslint-disable no-unused-vars */
 	get filename() {
-		return __(this).get("filename");
+		return this.#filename;
 	}
 
 	set filename(filename) {
-		__(this).set("filename", filename);
+		this.#filename = filename;
 	}
 
 	get deprecate() {
-		return __(this).get("deprecated");
+		return this.#deprecated;
 	}
 
 	set deprecate(message) {
-		__(this).set("deprecated", message);
+		this.#deprecated = message;
 	}
 
 	get bin() {
-		if (__(this).get("filename")) {
-			return __(this).get("filename").split(`${paths.workflow.cliTasks}/`)[1].split(".js")[0].replace("/", ":");
+		if (this.#filename) {
+			return this.#filename.split(`${paths.workflow.cliTasks}/`)[1].split(".js")[0].replace("/", ":");
 		}
 
 		throw new Error("Filename not defined by subclass");
 	}
 
 	cli(meowCli) {
-		if (__(this).get("deprecated")) {
-			terminal
-				.spacer()
-				.warning(`DEPRECATED - ${__(this).get("deprecated")}`)
-				.spacer()
-				.exit();
+		if (this.#deprecated) {
+			terminal.spacer().warning(`DEPRECATED - ${this.#deprecated}`).spacer().exit();
 		}
 
 		throw new Error("Not overwritten by subclass");

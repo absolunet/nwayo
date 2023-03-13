@@ -21,30 +21,12 @@
     "docker:connect:14": "docker exec -it nwayo-node-14 /bin/bash"
   },
   "devDependencies": {
-    "@absolunet/eslint-config-browser": "3.2.2",
-    "@absolunet/eslint-config-node": "3.2.2",
-    "@absolunet/eslint-config-react": "3.2.2",
-    "@absolunet/fsp": "1.7.0",
     "@absolunet/manager": "1.1.0",
-    "@absolunet/prettier-config-core": "1.0.1",
-    "@absolunet/stylelint-config-scss": "3.1.1",
-    "@babel/core": "7.18.6",
-    "@babel/eslint-parser": "7.18.2",
-    "@babel/preset-react": "7.18.6",
-    "eslint": "8.19.0",
-    "eslint-plugin-import": "2.26.0",
-    "eslint-plugin-jsx-a11y": "6.6.0",
-    "eslint-plugin-node": "11.1.0",
-    "eslint-plugin-ordered-imports": "0.6.0",
-    "eslint-plugin-react": "7.30.1",
-    "eslint-plugin-react-hooks": "4.6.0",
-    "eslint-plugin-unicorn": "43.0.0",
-    "lerna": "5.1.8",
-    "postcss-scss": "4.0.4",
-    "prettier": "2.7.1",
-    "stylelint": "14.9.1",
-    "stylelint-declaration-strict-value": "1.8.0",
-    "stylelint-order": "5.0.0",
-    "stylelint-scss": "4.3.0"
+    "@babel/preset-react":"^7.18.6",
+    "@valtech-commerce/eslint-config": "^4.0.0-rc.3",
+    "@valtech-commerce/fs": "^1.7.0",
+    "@valtech-commerce/prettier-config": "^1.1.0",
+    "@valtech-commerce/stylelint-config": "^3.2.0",
+    "lerna": "^6.5.1"
   }
 }

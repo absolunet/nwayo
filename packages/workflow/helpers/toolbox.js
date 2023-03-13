@@ -3,7 +3,7 @@
 //-------------------------------------
 "use strict";
 
-const { Buffer } = require("buffer"); // eslint-disable-line no-redeclare
+const { Buffer } = require("buffer");
 const chalk = require("chalk");
 const log = require("fancy-log");
 const plumber = require("gulp-plumber");
@@ -17,8 +17,8 @@ const stream = require("stream");
 const through2 = require("through2");
 const toIco = require("to-ico");
 const Vinyl = require("vinyl");
-const fss = require("@absolunet/fss");
-const { terminal } = require("@absolunet/terminal");
+const { fsSync } = require("@valtech-commerce/fs");
+const { terminal } = require("@valtech-commerce/terminal");
 
 class Toolbox {
 	//-- Create a vinyl stream from a text
@@ -80,18 +80,21 @@ class Toolbox {
 				let mimeType;
 
 				switch (path.extname(file.path).slice(1).toLowerCase()) {
-					case "jpg":
+					case "jpg": {
 						mimeType = Jimp.MIME_JPEG;
 						image.quality(100);
 						break;
+					}
 
-					case "png":
+					case "png": {
 						mimeType = Jimp.MIME_PNG;
 						image.rgba(true);
 						break;
+					}
 
-					default:
+					default: {
 						break;
+					}
 				}
 
 				custom(Jimp, image);
@@ -130,7 +133,7 @@ class Toolbox {
 
 	//-- Get human-readable filesize
 	filesize(file) {
-		return prettyBytes(fss.stat(file).size);
+		return prettyBytes(fsSync.stat(file).size);
 	}
 
 	//-- Task logging

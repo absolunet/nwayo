@@ -21,20 +21,12 @@ class Util {
 			const processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions(React);
 			const processingInstructions = [
 				{
-					shouldProcessNode: () => {
-						return true;
-					},
+					shouldProcessNode: () => true,
 					processNode: processNodeDefinitions.processDefaultNode,
 				},
 			];
 
-			cache[url] = htmlToReactParser.parseWithInstructions(
-				data,
-				() => {
-					return true;
-				},
-				processingInstructions
-			);
+			cache[url] = htmlToReactParser.parseWithInstructions(data, () => true, processingInstructions);
 
 			this.component.setState({ cache });
 		});
