@@ -3,10 +3,10 @@
   "version": "3.9.3",
   "description": "Boilerplate generator for nwayo extension",
   "definition": "",
-  "homepage": "https://documentation.absolunet.com/nwayo",
+  "homepage": "https://valtech-commerce.github.io/nwayo",
   "author": {
-    "name": "Absolunet",
-    "url": "https://absolunet.com"
+    "name": "Valtech Canada inc.",
+    "url": "https://www.valtech.ca/"
   },
   "keywords": [
     "boilerplate",
@@ -16,11 +16,11 @@
   ],
   "license": "MIT",
   "repository": {
-    "url": "git://github.com/absolunet/nwayo.git",
+    "url": "git://github.com/valtech-commerce/nwayo.git",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/absolunet/nwayo/issues"
+    "url": "https://github.com/valtech-commerce/nwayo/issues"
   },
   "bin": {
     "nwayo-grow-extension": "bin/nwayo-grow-extension"

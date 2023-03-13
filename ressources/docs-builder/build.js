@@ -134,7 +134,7 @@ scandirectory(`${paths.root}/documentation`, { readFiles: true }, (error, list, 
 				content = content
 					.replaceAll("](documentation/", `](${ROOT}/`)
 					.replaceAll(
-						/https:\/\/github.com\/absolunet\/nwayo\/raw\/main\/ressources\/images\//gu,
+						/https:\/\/github.com\/valtech-commerce\/nwayo\/raw\/main\/ressources\/images\//gu,
 						`${ROOT}/static/images/`
 					)
 					.replaceAll("nwayo.png", `nwayo.svg`)

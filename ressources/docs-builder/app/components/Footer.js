@@ -11,7 +11,7 @@ class Footer extends React.PureComponent {
 	render() {
 		return (
 			<footer>
-				<a href={`${paths.github}/blob/main/license`} rel="external">
+				<a href={`${paths.github}/blob/main/LICENSE`} rel="external">
 					MIT
 				</a>
 				&copy; 2011-
@@ -20,8 +20,8 @@ class Footer extends React.PureComponent {
 					Made with
 					<span className="adjective">{env.adjective}</span>
 					by
-					<a href="https://absolunet.com" rel="external">
-						Absolunet
+					<a href="https://www.valtech.ca/" rel="external">
+						Valtech Canada inc.
 					</a>
 				</span>
 			</footer>

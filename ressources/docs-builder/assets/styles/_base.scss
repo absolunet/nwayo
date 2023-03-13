@@ -242,7 +242,7 @@ footer {
 		}
 
 		a::before {
-			@include docs-image-styles(absolunet, $docs-footer-link-color);
+			@include docs-image-styles(valtech, $docs-footer-link-color);
 			content: '';
 			position: relative;
 			top: .4em;

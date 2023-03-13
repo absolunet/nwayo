@@ -3,10 +3,10 @@
   "version": "3.9.3",
   "description": "Workflow for nwayo",
   "definition": "/nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.",
-  "homepage": "https://documentation.absolunet.com/nwayo/",
+  "homepage": "https://valtech-commerce.github.io/nwayo/",
   "author": {
-    "name": "Absolunet",
-    "url": "https://absolunet.com"
+    "name": "Valtech Canada inc.",
+    "url": "https://www.valtech.ca/"
   },
   "keywords": [
     "gulp",
@@ -15,11 +15,11 @@
   ],
   "license": "MIT",
   "repository": {
-    "url": "git://github.com/absolunet/nwayo.git",
+    "url": "git://github.com/valtech-commerce/nwayo.git",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/absolunet/nwayo/issues"
+    "url": "https://github.com/valtech-commerce/nwayo/issues"
   },
   "engines": {
     "node": ">= 16"

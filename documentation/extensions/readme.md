@@ -49,7 +49,7 @@ nwayo run customycorrect:build-that
 
 ## Official extensions
 These are the official extensions
-- [Styleguide](https://github.com/absolunet/nwayo-extension-styleguide) - Generate a styleguide from templates in your different components
+- [Styleguide](https://github.com/valtech-commerce/nwayo-extension-styleguide) - Generate a styleguide from templates in your different components
 
 
 ## Find extensions

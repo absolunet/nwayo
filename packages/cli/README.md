@@ -1,11 +1,12 @@
 # @absolunet/nwayo-cli
 
-[![npm](https://img.shields.io/npm/v/@absolunet/nwayo-cli.svg)](https://www.npmjs.com/package/@absolunet/nwayo-cli)
-[![npm dependencies](https://david-dm.org/absolunet/nwayo/status.svg?path=packages/cli)](https://david-dm.org/absolunet/nwayo?path=packages/cli)
-[![npms](https://badges.npms.io/%40absolunet%2Fnwayo-cli.svg)](https://npms.io/search?q=%40absolunet%2Fnwayo-cli)
-[![Code style ESLint](https://img.shields.io/badge/code_style-@absolunet/node-659d32.svg)](https://github.com/absolunet/eslint-config-node)
+[![npm][npm-badge]][npm-url]
+[![npms.io: Score][npmsio-badge]][npmsio-url]
+[![libraries.io: SourceRank][librariesio-badge]][librariesio-url]
+[![Tests][tests-badge]][tests-url]
+[![License: MIT][license-badge]][license-url]
 
-> CLI for [nwayo](https://documentation.absolunet.com/nwayo/)
+> CLI for [nwayo](https://valtech-commerce.github.io/nwayo/)
 
 
 ## Install
@@ -16,8 +17,19 @@ $ npm install -g @absolunet/nwayo-cli
 
 ## Documentation
 
-[https://documentation.absolunet.com/nwayo/cli/](https://documentation.absolunet.com/nwayo/cli/)
+[https://valtech-commerce.github.io/nwayo/cli/](https://valtech-commerce.github.io/nwayo/cli/)
 
 ## License
 
-MIT © [Absolunet](https://absolunet.com)
+[MIT](LICENSE) © [Valtech Canada inc.](https://www.valtech.ca/)
+
+[npm-badge]: https://img.shields.io/npm/v/@absolunet/nwayo-cli?style=flat-square
+[npmsio-badge]: https://img.shields.io/npms-io/final-score/@absolunet/nwayo-cli?style=flat-square
+[librariesio-badge]: https://img.shields.io/librariesio/sourcerank/npm/@absolunet/nwayo-cli?style=flat-square
+[tests-badge]: https://img.shields.io/github/actions/workflow/status/valtech-commerce/nwayo/tests.yaml?style=flat-square&branch=main
+[license-badge]: https://img.shields.io/badge/license-MIT-green?style=flat-square
+[npm-url]: https://www.npmjs.com/package/@absolunet/nwayo-cli
+[npmsio-url]: https://npms.io/search?q=%40absolunet%2Fnwayo-cli
+[librariesio-url]: https://libraries.io/npm/@absolunet%2Fnwayo-cli
+[tests-url]: https://github.com/valtech-commerce/nwayo/actions/workflows/tests.yaml?query=branch%3Amain
+[license-url]: https://opensource.org/licenses/MIT

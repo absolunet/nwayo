@@ -1,9 +1,4 @@
-# @absolunet/gulp-include
-
-[![NPM version](https://img.shields.io/npm/v/@absolunet/gulp-include.svg)](https://www.npmjs.com/package/@absolunet/gulp-include)
-[![Travis build](https://api.travis-ci.org/absolunet/gulp-include.svg?branch=master)](https://travis-ci.org/absolunet/gulp-include/builds)
-[![Dependencies](https://david-dm.org/absolunet/gulp-include/status.svg)](https://david-dm.org/absolunet/gulp-include)
-[![Dev dependencies](https://david-dm.org/absolunet/gulp-include/dev-status.svg)](https://david-dm.org/absolunet/gulp-include?type=dev)
+# gulp-include
 
 >Makes inclusion of files a breeze.
 Enables functionality similar to that of snockets / sprockets or other file insertion compilation tools.
@@ -13,10 +8,7 @@ Enables functionality similar to that of snockets / sprockets or other file inse
 
 
 ## Usage
-First, install `gulp-include` as a dev dependency:
-`npm install --save-dev @absolunet/gulp-include`
-
-Then, add your _include-comments_ to your file.
+Add your _include-comments_ to your file.
 _People who have experience with `sprockets` or `snockets` will feel at home._
 
 
@@ -83,7 +75,7 @@ window.main = new Main()
 
 ```javascript
 var gulp		= require('gulp'),
-	include		= require('@absolunet/gulp-include'),
+	include		= require('./gulp-include'),
 	coffee		= require('gulp-coffee');
 
 gulp.task("scripts", function() {
@@ -139,10 +131,10 @@ app.tmpl.cart_list1.render();
 
 
 ## Documentation
-Visit the [http://absolunet.github.io/nwayo](http://absolunet.github.io/nwayo) website for all the things.
+Visit the [https://valtech-commerce.github.io/nwayo](https://valtech-commerce.github.io/nwayo) website for all the things.
 
 ## Release history
 Forked from gulp-include [v1.1.0](https://github.com/wiledal/gulp-include/commit/c1e06c2c6ba76af9f00548675b817719a90a9f86)
 
 ## License
-See the [license](https://github.com/absolunet/gulp-include/blob/master/license).
+See the [license](../../LICENSE).

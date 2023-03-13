@@ -31,7 +31,7 @@
 
 ## Release Github
 
-- Créer une [nouvelle release](https://github.com/absolunet/nwayo/releases/new) sur Github
+- Créer une [nouvelle release](https://github.com/valtech-commerce/nwayo/releases/new) sur Github
 - `Tag version` et `Release title` sont le numéro de version
 - Ajouter dans la description le changelog
 - Enjoy  🥂

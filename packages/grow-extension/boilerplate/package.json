@@ -1,12 +1,12 @@
 {
-  "name": "@absolunet/nwayo-extension-MYEXTENSION",
+  "name": "nwayo-extension-MYEXTENSION",
   "version": "0.1.0",
   "description": "What does it do?",
   "definition": "",
-  "homepage": "https://github.com/absolunet/nwayo-extension-MYEXTENSION",
+  "homepage": "https://github.com/valtech-commerce/nwayo-extension-MYEXTENSION",
   "author": {
-    "name": "Absolunet",
-    "url": "https://absolunet.com"
+    "name": "Valtech Canada inc.",
+    "url": "https://www.valtech.ca/"
   },
   "keywords": [
     "MY-KEYWORDS",
@@ -15,11 +15,11 @@
   ],
   "license": "MIT",
   "repository": {
-    "url": "git://github.com/absolunet/nwayo-extension-MYEXTENSION.git",
+    "url": "git://github.com/valtech-commerce/nwayo-extension-MYEXTENSION.git",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/absolunet/nwayo-extension-MYEXTENSION/issues"
+    "url": "https://github.com/valtech-commerce/nwayo-extension-MYEXTENSION/issues"
   },
   "engines": {
     "node": ">= 16"

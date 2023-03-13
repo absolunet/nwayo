@@ -22,7 +22,7 @@ sassdoc(paths.source, {
 	display: {
 		access: ["public"],
 	},
-	basePath: "https://github.com/absolunet/nwayo/blob/main/packages/toolbox/styles",
+	basePath: "https://github.com/valtech-commerce/nwayo/blob/main/packages/toolbox/styles",
 });
 
 // Add CSS

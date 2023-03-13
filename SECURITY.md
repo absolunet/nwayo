@@ -10,4 +10,4 @@ If older versions are supported, they will be listed in the [README](README.md) 
 
 If the vulnerability is minor or requires something in the lines of updating dependencies, please open an 'Vulnerability report' issue.
 
-If however the vulnerability is major or contains sensitive information, please send an email to opensource@absolunet.com
+If however the vulnerability is major or contains sensitive information, please send an email to abso-opensource@valtech.com

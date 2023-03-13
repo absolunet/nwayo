@@ -73,7 +73,7 @@ module.exports = async () => {
 		//-- Trap `docs`
 	} else if (util.cmd("docs")) {
 		const open = require("open");
-		const URL = "https://documentation.absolunet.com/nwayo/";
+		const URL = "https://valtech-commerce.github.io/nwayo/";
 
 		util.echo(`\n${chalk.underline(URL)}`);
 		open(URL);

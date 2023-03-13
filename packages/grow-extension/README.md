@@ -1,11 +1,12 @@
 # @absolunet/nwayo-grow-extension
 
-[![npm](https://img.shields.io/npm/v/@absolunet/nwayo-grow-extension.svg)](https://www.npmjs.com/package/@absolunet/nwayo-grow-extension)
-[![npm dependencies](https://david-dm.org/absolunet/nwayo/status.svg?path=packages/grow-extension)](https://david-dm.org/absolunet/nwayo?path=packages/grow-extension)
-[![npms](https://badges.npms.io/%40absolunet%2Fnwayo-grow-extension.svg)](https://npms.io/search?q=%40absolunet%2Fnwayo-grow-extension)
-[![Code style](https://img.shields.io/badge/code_style-@absolunet/node-659d32.svg)](https://github.com/absolunet/eslint-config)
+[![npm][npm-badge]][npm-url]
+[![npms.io: Score][npmsio-badge]][npmsio-url]
+[![libraries.io: SourceRank][librariesio-badge]][librariesio-url]
+[![Tests][tests-badge]][tests-url]
+[![License: MIT][license-badge]][license-url]
 
-> Boilerplate generator for [nwayo](https://documentation.absolunet.com/nwayo) extension
+> Boilerplate generator for [nwayo](https://valtech-commerce.github.io/nwayo) extension
 
 ## Usage
 
@@ -15,9 +16,20 @@ $ npx @absolunet/nwayo-grow-extension
 
 ## Documentation
 
-[https://documentation.absolunet.com/nwayo/](https://documentation.absolunet.com/nwayo/)
+[https://valtech-commerce.github.io/nwayo/](https://valtech-commerce.github.io/nwayo/)
 
 
 ## License
 
-MIT © [Absolunet](https://absolunet.com)
+[MIT](LICENSE) © [Valtech Canada inc.](https://www.valtech.ca/)
+
+[npm-badge]: https://img.shields.io/npm/v/@absolunet/nwayo-grow-extension?style=flat-square
+[npmsio-badge]: https://img.shields.io/npms-io/final-score/@absolunet/nwayo-grow-extension?style=flat-square
+[librariesio-badge]: https://img.shields.io/librariesio/sourcerank/npm/@absolunet/nwayo-grow-extension?style=flat-square
+[tests-badge]: https://img.shields.io/github/actions/workflow/status/valtech-commerce/nwayo/tests.yaml?style=flat-square&branch=main
+[license-badge]: https://img.shields.io/badge/license-MIT-green?style=flat-square
+[npm-url]: https://www.npmjs.com/package/@absolunet/nwayo-grow-extension
+[npmsio-url]: https://npms.io/search?q=%40absolunet%2Fnwayo-grow-extension
+[librariesio-url]: https://libraries.io/npm/@absolunet%2Fnwayo-grow-extension
+[tests-url]: https://github.com/valtech-commerce/nwayo/actions/workflows/tests.yaml?query=branch%3Amain
+[license-url]: https://opensource.org/licenses/MIT

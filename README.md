@@ -1,11 +1,11 @@
 <p align="center">
-	<img src="https://github.com/absolunet/nwayo/raw/main/ressources/images/nwayo.png" width="250" height="250" alt="nwayo">
+	<img src="https://github.com/valtech-commerce/nwayo/raw/main/ressources/images/nwayo.png" width="250" height="250" alt="nwayo">
 </p>
 <h1 align="center"><strong>nwayo</strong></h1>
 <p align="center">/nwajo/ (haitian creole) The tough central part of various fruits, containing the seeds.</p>
 
-[![npm](https://img.shields.io/npm/v/@absolunet/nwayo-workflow.svg)](https://www.npmjs.com/package/@absolunet/nwayo-workflow)
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
+[![Tests][tests-badge]][tests-url]
+[![License: MIT][license-badge]][license-url]
 
 <br>
 
@@ -38,7 +38,7 @@ npm run rebuild
 
 
 
-## Tools &nbsp; <img src="https://github.com/absolunet/nwayo/raw/main/ressources/images/vendors.png" width="375" alt="nwayo vendors">
+## Tools &nbsp; <img src="https://github.com/valtech-commerce/nwayo/raw/main/ressources/images/vendors.png" width="375" alt="nwayo vendors">
 nwayo is HTML5 ready and uses [gulp](https://gulpjs.com) as a build system
 
 - Based (but not mandatory) on [Zurb Foundation](https://foundation.zurb.com)
@@ -51,7 +51,7 @@ nwayo is HTML5 ready and uses [gulp](https://gulpjs.com) as a build system
 
 #### Scripting
 - ES6+ ready via [Babel](https://babeljs.io) and linted via [ESLint](https://eslint.org)
-- Comes with [jQuery](https://jquery.com), [Modernizr](https://modernizr.com), [Lodash](https://lodash.com), [pinki](https://github.com/absolunet/pinki), [JsRender](https://www.jsviews.com), [kafe](https://documentation.absolunet.com/kafe/)
+- Comes with [jQuery](https://jquery.com), [Modernizr](https://modernizr.com), [Lodash](https://lodash.com), [pinki](https://github.com/valtech-commerce/pinki), [JsRender](https://www.jsviews.com), [kafe](https://documentation.absolunet.com/kafe/)
 - Minified with [UglifyJS](http://lisperator.net/uglifyjs)
 
 #### Other
@@ -80,15 +80,15 @@ Multiple extensions [available](https://www.npmjs.com/search?q=keywords:nwayo-ex
 
 | Package | Version | Description |
 |---|---|---|
-| **[@absolunet/nwayo-workflow](packages/workflow)** | [![npm](https://img.shields.io/npm/v/@absolunet/nwayo-workflow.svg)](https://www.npmjs.com/package/@absolunet/nwayo-workflow) | Workflow where all the magic happens |
-| **[@absolunet/nwayo-toolbox](packages/toolbox)** | [![npm](https://img.shields.io/npm/v/@absolunet/nwayo-toolbox.svg)](https://www.npmjs.com/package/@absolunet/nwayo-toolbox) | Toolbox with SCSS/JS helpers |
-| [@absolunet/nwayo-cli](packages/cli) | [![npm](https://img.shields.io/npm/v/@absolunet/nwayo-cli.svg)](https://www.npmjs.com/package/@absolunet/nwayo-cli) | CLI |
-| [@absolunet/nwayo-grow-project](packages/grow-project) | [![npm](https://img.shields.io/npm/v/@absolunet/nwayo-grow-project.svg)](https://www.npmjs.com/package/@absolunet/nwayo-grow-project) | Boilerplate generator for nwayo project |
-| [@absolunet/nwayo-grow-extension](packages/grow-extension) | [![npm](https://img.shields.io/npm/v/@absolunet/nwayo-grow-extension.svg)](https://www.npmjs.com/package/@absolunet/nwayo-grow-extension) | Boilerplate generator for nwayo extension |
+| **[@absolunet/nwayo-workflow](packages/workflow)** | [![workflow][workflow-npm-badge]][workflow-npm-url] | Workflow where all the magic happens |
+| **[@absolunet/nwayo-toolbox](packages/toolbox)** | [![toolbox][toolbox-npm-badge]][toolbox-npm-url] | Toolbox with SCSS/JS helpers |
+| [@absolunet/nwayo-cli](packages/cli) | [![cli][cli-npm-badge]][cli-npm-url] | CLI |
+| [@absolunet/nwayo-grow-project](packages/grow-project) | [![growproject][growproject-npm-badge]][growproject-npm-url] | Boilerplate generator for nwayo project |
+| [@absolunet/nwayo-grow-extension](packages/grow-extension) | [![growextension][growextension-npm-badge]][growextension-npm-url] | Boilerplate generator for nwayo extension |
 
 ## Documentation
-- [Full documentation](https://documentation.absolunet.com/nwayo) ([source](documentation))  &nbsp; &nbsp; _[in progress...]_
-- [Toolbox styles documentation](https://documentation.absolunet.com/nwayo/toolbox/styles) (generated from [comments](http://sassdoc.com/) directly inside the [source code](packages/toolbox/styles))
+- [Full documentation](https://valtech-commerce.github.io/nwayo) ([source](documentation))  &nbsp; &nbsp; _[in progress...]_
+- [Toolbox styles documentation](https://valtech-commerce.github.io/nwayo/toolbox/styles) (generated from [comments](http://sassdoc.com/) directly inside the [source code](packages/toolbox/styles))
 - [CodePen examples](https://codepen.io/collection/XJWozK/)
 
 [//]: # (/Doc)
@@ -114,6 +114,24 @@ By interacting with this repository, organization, or community you agree to abi
 [//]: # (Doc)
 
 ## License
-[MIT](LICENSE) © [Absolunet](https://absolunet.com)
+[MIT](LICENSE) © [Valtech Canada inc.](https://www.valtech.ca/)
 
 [//]: # (/Doc)
+
+
+
+[tests-badge]: https://img.shields.io/github/actions/workflow/status/valtech-commerce/nwayo/tests.yaml?style=flat-square&branch=main
+[license-badge]: https://img.shields.io/badge/license-MIT-green?style=flat-square
+[tests-url]: https://github.com/valtech-commerce/nwayo/actions/workflows/tests.yaml?query=branch%3Amain
+[license-url]: https://opensource.org/licenses/MIT
+
+[workflow-npm-badge]: https://img.shields.io/npm/v/@absolunet/nwayo-workflow?style=flat-square
+[toolbox-npm-badge]: https://img.shields.io/npm/v/@absolunet/nwayo-toolbox?style=flat-square
+[cli-npm-badge]: https://img.shields.io/npm/v/@absolunet/nwayo-cli?style=flat-square
+[growproject-npm-badge]: https://img.shields.io/npm/v/@absolunet/nwayo-grow-project?style=flat-square
+[growextension-npm-badge]: https://img.shields.io/npm/v/@absolunet/nwayo-grow-extension?style=flat-square
+[workflow-npm-url]: https://www.npmjs.com/package/@absolunet/nwayo-workflow
+[toolbox-npm-url]: https://www.npmjs.com/package/@absolunet/nwayo-toolbox
+[cli-npm-url]: https://www.npmjs.com/package/@absolunet/nwayo-cli
+[growproject-npm-url]: https://www.npmjs.com/package/@absolunet/nwayo-grow-project
+[growextension-npm-url]: https://www.npmjs.com/package/@absolunet/nwayo-grow-extension

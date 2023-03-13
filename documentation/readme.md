@@ -15,7 +15,7 @@
 
 ## Toolbox - [@absolunet/nwayo-toolbox](https://www.npmjs.com/package/@absolunet/nwayo-toolbox)
 - JavaScript helpers [TODO]
-- [SCSS helpers](https://documentation.absolunet.com/nwayo/toolbox/styles)
+- [SCSS helpers](https://valtech-commerce.github.io/nwayo/toolbox/styles)
 
 ## Boilerplate - [@absolunet/nwayo-grow-project](https://www.npmjs.com/package/@absolunet/nwayo-grow-project)
 - [TODO]

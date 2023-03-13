@@ -206,7 +206,7 @@ $ nwayo --help
   --pronounce                     Listen to nwayo pronunciation
 
        cli@3.6.0 /usr/local/bin/nwayo
-  workflow@3.6.0 /Users/absolunet/www/project-name/nwayo/node_modules/@absolunet/nwayo-workflow
+  workflow@3.6.0 /Users/xyz/www/project-name/nwayo/node_modules/@absolunet/nwayo-workflow
 ```
 
 ### --pronounce

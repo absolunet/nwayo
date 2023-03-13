@@ -1,0 +1,174 @@
+/**
+* xonokai theme for JavaScript, CSS and HTML
+* based on: https://github.com/MoOx/sass-prism-theme-base by Maxime Thirouin ~ MoOx --> http://moox.fr/ , which is Loosely based on Monokai textmate theme by http://www.monokai.nl/
+* license: MIT; http://moox.mit-license.org/
+*/
+
+@use "../../../node_modules/@valtech-commerce/brand-guidelines/dist/guidelines";
+
+$_white:  guidelines.get("color.primary.white");
+$_black:  guidelines.get("color.primary.black");
+$_blue:   guidelines.get("color.primary.blue");
+$_cyan:   guidelines.get("color.secondary.connected-cyan");
+$_pink:   guidelines.get("color.secondary.disruptive-rose");
+$_green:  guidelines.get("color.secondary.transformative-turquoise");
+$_yellow: guidelines.get("color.secondary.agile-yellow");
+
+code[class*="language-"],
+pre[class*="language-"] {
+	-moz-tab-size: 2;
+	-o-tab-size: 2;
+	tab-size: 2;
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+	white-space: pre;
+	white-space: pre-wrap;
+	word-wrap: normal;
+	font-family: 'Roboto Mono', Menlo, Monaco, "Courier New", monospace;
+	font-size: 14px;
+	color: $_cyan;
+	text-shadow: none;
+	background-color: transparent;
+}
+
+pre > code[class*="language-"] {
+	font-size: 1em;
+}
+
+pre[class*="language-"],
+:not(pre) > code[class*="language-"] {
+	background: $_black;
+}
+
+pre[class*="language-"] {
+	padding: 15px;
+	border-radius: 4px;
+	border: 1px solid #e1e1e8;
+	overflow: auto;
+	position: relative;
+}
+
+pre[class*="language-"] code {
+	white-space: pre;
+	display: block;
+}
+
+:not(pre) > code[class*="language-"] {
+	padding: 0.15em 0.2em 0.05em;
+	border-radius: .3em;
+	border: 0.13em solid #7a6652;
+	box-shadow: 1px 1px 0.3em -0.1em #000 inset;
+}
+
+.token.namespace {
+	opacity: .7;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #6f705e;
+}
+
+.token.operator,
+.token.boolean,
+.token.number {
+	color: #a77afe;
+}
+
+.token.attr-name,
+.token.string {
+	color: $_yellow;
+}
+
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: $_yellow;
+}
+
+.token.selector,
+.token.inserted {
+	color: $_green;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword,
+.token.important,
+.token.deleted {
+	color: $_pink;
+}
+
+.token.regex,
+.token.statement {
+	color: $_cyan;
+}
+
+.token.placeholder,
+.token.variable {
+	color: $_white;
+}
+
+.token.important,
+.token.statement,
+.token.bold {
+	font-weight: bold;
+}
+
+.token.punctuation {
+	color: #bebec5;
+}
+
+.token.entity {
+	cursor: help;
+}
+
+.token.italic {
+	font-style: italic;
+}
+
+code.language-markup {
+	color: #f9f9f9;
+}
+
+code.language-markup .token.tag {
+	color: $_pink;
+}
+
+code.language-markup .token.attr-name {
+	color: $_green;
+}
+
+code.language-markup .token.attr-value {
+	color: $_yellow;
+}
+
+code.language-markup .token.style,
+code.language-markup .token.script {
+	color: $_cyan;
+}
+
+code.language-markup .token.script .token.keyword {
+	color: $_cyan;
+}
+
+/* Line highlight plugin */
+.line-highlight.line-highlight {
+	padding: 0;
+	background: rgba(255, 255, 255, 0.08);
+}
+
+.line-highlight.line-highlight:before,
+.line-highlight.line-highlight[data-end]:after {
+	padding: 0.2em 0.5em;
+	background-color: rgba(255, 255, 255, 0.4);
+	color: black;
+	height: 1em;
+	line-height: 1em;
+	box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+}

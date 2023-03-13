@@ -1,3 +1,3 @@
 # nwayo's GitHub Pages repo
 
-> View on [http://absolunet.github.io/nwayo](http://absolunet.github.io/nwayo)
+> View on [https://valtech-commerce.github.io/nwayo](https://valtech-commerce.github.io/nwayo)

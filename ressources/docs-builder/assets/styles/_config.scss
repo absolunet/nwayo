@@ -3,26 +3,16 @@
 //-------------------------------------
 @use 'sass:color';
 
+@use '../../node_modules/@valtech-commerce/brand-guidelines/dist/guidelines';
+
 // Brand
-$palette-brand-sockeye:  #ff5252;
-$palette-brand-victoria: #2b2d3c;
+$palette-brand-primary: guidelines.get('color.primary.blue');
+$palette-brand-dark:    guidelines.get('color.primary.black');
+$palette-brand-light:   guidelines.get('color.primary.white');
 
-// nwayo
-$palette-nwayo-shell:       #659d32;
-$palette-nwayo-shell-shade: #618931;
-$palette-nwayo-fruit:       #423228;
-$palette-nwayo-fruit-shade: #5e483c;
-
-// Main
-$palette-main-cold-water:     #3c475d;
-$palette-main-cold-water-alt: #808a9f;
-
-// Grey
-$palette-myst:                     #b1c0c7;
-$palette-greyhound:                #68738b;
-$palette-toundra:                  #e2e9ed;
-$palette-white-rabbit-in-the-snow: #f2f6f7;
-$palette-mysty-toundra:            color.mix($palette-myst, $palette-toundra, 25%);
+$palette-scale-1: color.adjust(guidelines.get('color.achromatic.gainsboro'), $lightness: 8%);
+$palette-scale-2: color.adjust(guidelines.get('color.achromatic.light-gray'), $lightness: 8%);
+$palette-scale-3: color.adjust(guidelines.get('color.achromatic.silver'), $lightness: 8%);
 
 // Vendor
 $vendor-github-color:     #0366d6;
@@ -37,57 +27,55 @@ $docs-bp-xlarge: 1500;
 // Transition
 $docs-transition: 100ms;
 
-// stylelint-disable value-keyword-case -- Font exception
-$docs-text-font:      Lato, $nwayo-sansserif-font;
-$docs-title-font:     Poppins, $nwayo-sansserif-font;
-$docs-monospace-font: 'Fira Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', Courier, monospace;
-// stylelint-enable value-keyword-case
+$docs-text-font:      #{guidelines.get('font.safe')};
+$docs-title-font:     #{guidelines.get('font.safe')};
+$docs-monospace-font: #{guidelines.get('font.code')};
 
 
 
 
 
 
-$docs-text-color:       $palette-brand-victoria;
-$docs-link-color:       $palette-nwayo-shell;
-$docs-link-hover-color: $palette-nwayo-shell-shade;
+$docs-text-color:       $palette-brand-dark;
+$docs-link-color:       $palette-brand-primary;
+$docs-link-hover-color: $palette-brand-primary;
 $docs-title-weight:     $nwayo-bold-weight;
 
 //-- Code
-$docs-code-bg-color: $palette-mysty-toundra;
+$docs-code-bg-color: $palette-scale-2;
 $docs-code-size:     .9em;
 $docs-code-radius:   .2em;
 
 
 //-- Table
-$docs-table-border:          1px $palette-myst solid;  // stylelint-disable-line unit-allowed-list -- Thin line
-$docs-table-header-color:    $palette-myst;
-$docs-table-alternate-color: $palette-toundra;
+$docs-table-border:          1px $palette-scale-3 solid;  // stylelint-disable-line unit-allowed-list -- Thin line
+$docs-table-header-color:    $palette-scale-3;
+$docs-table-alternate-color: $palette-scale-1;
 
 
 //-- Header
-$docs-header-bg-color:      $palette-toundra;
-$docs-header-name-color:    $palette-nwayo-shell;
-$docs-header-version-color: $palette-nwayo-fruit;
+$docs-header-bg-color:      $palette-scale-1;
+$docs-header-name-color:    $palette-brand-dark;
+$docs-header-version-color: $palette-brand-dark;
 $docs-header-name-size:     1.25em;
 $docs-header-version-size:  .9em;
 
 //-- Nav
-$docs-nav-bg-color:      $palette-mysty-toundra;
-$docs-nav-link-color:    $palette-nwayo-fruit-shade;
-$docs-nav-current-color: $palette-nwayo-fruit;
+$docs-nav-bg-color:      $palette-scale-2;
+$docs-nav-link-color:    $palette-brand-primary;
+$docs-nav-current-color: $palette-brand-dark;
 $docs-nav-active-weight: $nwayo-black-weight;
 
 //-- Main
-$docs-main-bg-color:      $palette-white-rabbit-in-the-snow;
-$docs-main-anchor-color:  $palette-myst;
+$docs-main-bg-color:      $palette-brand-light;
+$docs-main-anchor-color:  $palette-scale-3;
 $docs-main-anchor-size:   1.2rem;
 $docs-main-external-size: .8rem;
 
 //-- Footer
-$docs-footer-bg-color:   $palette-brand-victoria;
-$docs-footer-text-color: $palette-white-rabbit-in-the-snow;
-$docs-footer-link-color: $palette-brand-sockeye;
+$docs-footer-bg-color:   $palette-brand-dark;
+$docs-footer-text-color: $palette-brand-light;
+$docs-footer-link-color: $palette-brand-primary;
 
 
 

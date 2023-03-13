@@ -7,18 +7,18 @@ services:
   container_name: nwayo-node-latest
   tty: true
 
+ node-18:
+  build:
+    context: .
+    args:
+      NODEJS_VERSION: 18
+  container_name: nwayo-node-18
+  tty: true
+
  node-16:
   build:
     context: .
     args:
       NODEJS_VERSION: 16
   container_name: nwayo-node-16
-  tty: true
-
- node-14:
-  build:
-    context: .
-    args:
-      NODEJS_VERSION: 14
-  container_name: nwayo-node-14
   tty: true
