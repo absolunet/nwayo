@@ -28,6 +28,7 @@
 
 @mixin site-h2-styles {
 	@include site-subtitle-styles();
+
 	margin: .4em 0;
 	color: $common-text-color;
 	font-size: $common-title-size;
@@ -39,6 +40,7 @@
 
 @mixin site-h3-styles {
 	@include site-subtitle-styles();
+
 	font-size: $common-text-medium-size;
 
 	@media #{bp(medium)} {
@@ -48,6 +50,7 @@
 
 @mixin site-h4-styles {
 	@include site-subtitle-styles();
+
 	font-size: $common-text-medium-size;
 	line-height: $common-text-lineheight;
 
@@ -58,12 +61,14 @@
 
 @mixin site-h5-styles {
 	@include site-subtitle-styles();
+
 	font-size: $common-text-small-size;
 	line-height: $common-text-lineheight;
 }
 
 @mixin site-h6-styles {
 	@include site-subtitle-styles();
+
 	font-size: $common-text-small-size;
 	line-height: $common-text-lineheight;
 }

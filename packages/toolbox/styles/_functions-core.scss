@@ -4,9 +4,8 @@
 /// @group @absolunet/nwayo-toolbox
 ////
 
-@use 'sass:map';
-@use 'sass:math';
-
+@use "sass:map";
+@use "sass:math";
 
 /// Get a konstan value.
 ///
@@ -19,7 +18,6 @@
 	@return nwayo-map-deep-get($konstan, $path);
 }
 
-
 /// Check if a path exists in konstan.
 ///
 /// @requires {Function} nwayo-map-deep-has-key
@@ -31,7 +29,6 @@
 	@return nwayo-map-deep-has-key($konstan, $path);
 }
 
-
 /// Get asset url based on current bundle.
 ///
 /// @requires {Function} konstan-get
@@ -42,15 +39,14 @@
 /// @returns {String} Asset url.
 ///
 @function nwayo-assets-path($file, $component, $type) {
-	@if $type == 'images' {
-		@return konstan-get('path.images') + '/' + $component + '/' + $file;
-	} @else if $type == 'inline' {
-		@return konstan-get('path.inline') + '/' + $component + '/' + $file;
-	} @else if $type == 'fonts' {
-		@return konstan-get('path.fonts') + '/' + $component + '/' + $file;
+	@if $type == "images" {
+		@return konstan-get("path.images") + "/" + $component + "/" + $file;
+	} @else if $type == "inline" {
+		@return konstan-get("path.inline") + "/" + $component + "/" + $file;
+	} @else if $type == "fonts" {
+		@return konstan-get("path.fonts") + "/" + $component + "/" + $file;
 	}
 }
-
 
 /// Get asset absolute build path based on current bundle.
 ///
@@ -62,13 +58,12 @@
 /// @returns {String} Asset absolute build path.
 ///
 @function nwayo-build-path($file, $component, $type) {
-	@if $type == 'images' {
-		@return konstan-get('path.buildroot') + '/images/' + $component + '/' + $file;
-	} @else if $type == 'fonts' {
-		@return konstan-get('path.buildroot') + '/fonts/' + $component + '/' + $file;
+	@if $type == "images" {
+		@return konstan-get("path.buildroot") + "/images/" + $component + "/" + $file;
+	} @else if $type == "fonts" {
+		@return konstan-get("path.buildroot") + "/fonts/" + $component + "/" + $file;
 	}
 }
-
 
 /// Get a z-index relative to a defined scope.
 ///
@@ -77,10 +72,9 @@
 /// @param {Number} $delta [0] - Variance to apply to the scope value.
 /// @returns {Number} Final z-index value.
 ///
-@function nwayo-zindex($scopes, $scope, $delta:0) {
+@function nwayo-zindex($scopes, $scope, $delta: 0) {
 	@return map.get($scopes, $scope) + $delta;
 }
-
 
 /// Get a breakpoint media query.
 ///
@@ -92,8 +86,8 @@
 ///
 @function nwayo-breakpoint-media($breakpoint, $direction) {
 	@if $direction == up {
-		@return 'screen and (min-width: #{math.div($breakpoint + 1, $nwayo-basic-size) * 1em})';
+		@return "screen and (min-width: #{math.div($breakpoint + 1, $nwayo-basic-size) * 1em})";
 	} @else if $direction == down {
-		@return 'screen and (max-width: #{math.div($breakpoint, $nwayo-basic-size) * 1em})';
+		@return "screen and (max-width: #{math.div($breakpoint, $nwayo-basic-size) * 1em})";
 	}
 }

@@ -165,6 +165,7 @@ a:not(.button) {
 
 		&::before {
 			@include nwayo-pseudo-image-styles(1em);
+
 			position: absolute;
 			top: .8em;
 			left: .65em;

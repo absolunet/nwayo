@@ -1,8 +1,9 @@
-//-------------------------------------
-//-- Docs - Base
-//-------------------------------------
+// -------------------------------------
+// -- Docs - Base
+// -------------------------------------
 
-html, body {
+html,
+body {
 	background-color: $docs-footer-bg-color;
 }
 
@@ -10,23 +11,30 @@ a {
 	transition: color, $docs-transition;
 }
 
-pre[class*='language-'] {  // stylelint-disable-line selector-attribute-name-disallowed-list -- Class exception
+// stylelint-disable-next-line selector-attribute-name-disallowed-list -- Class exception
+pre[class*="language-"] {
 	border-radius: $docs-code-radius;
 }
 
-code[class*='language-'] {  // stylelint-disable-line selector-attribute-name-disallowed-list -- Class exception
+// stylelint-disable-next-line selector-attribute-name-disallowed-list -- Class exception
+code[class*="language-"] {
 	font-family: $docs-monospace-font !important;
 	font-size: $docs-code-size;
 }
 
-code:not([class]) {  // stylelint-disable-line selector-attribute-name-disallowed-list -- Class exception
-	padding: .2em .5em;
+// stylelint-disable-next-line selector-attribute-name-disallowed-list -- Class exception
+code:not([class]) {
+	padding: 0.2em 0.5em;
 	border-radius: $docs-code-radius;
-	margin: 0 .2em;
+	margin: 0 0.2em;
 	font-size: $docs-code-size;
 }
 
-h2, h3, h4, h5, h6 {
+h2,
+h3,
+h4,
+h5,
+h6 {
 	margin-top: 1.5em;
 }
 
@@ -44,13 +52,13 @@ table {
 		background-color: $docs-table-alternate-color;
 	}
 
-	th, td {
-		padding: .5em 1em;
+	th,
+	td {
+		padding: 0.5em 1em;
 		border: $docs-table-border;
 		text-align: left;
 	}
 }
-
 
 header {
 	position: fixed;
@@ -75,7 +83,7 @@ header {
 
 		.logo {
 			position: absolute;
-			top: .5em;
+			top: 0.5em;
 			left: 1em;
 			width: 2.7em;
 			height: 2.1em;
@@ -83,8 +91,8 @@ header {
 
 		.version {
 			position: relative;
-			top: -.1em;
-			padding: 0 0 0 .5em;
+			top: -0.1em;
+			padding: 0 0 0 0.5em;
 			color: $docs-header-version-color;
 			font-family: $docs-monospace-font;
 			font-size: $docs-header-version-size;
@@ -98,7 +106,8 @@ header {
 
 		&::before {
 			@include docs-image-styles(github, $vendor-github-color);
-			content: '';
+
+			content: "";
 			position: absolute;
 			top: 0;
 			left: -2em;
@@ -117,15 +126,16 @@ header {
 	}
 }
 
-
 .container {
 	@include xy-grid();
+
 	margin: 3.5em 0 0;
 	background-color: $docs-main-bg-color;
 }
 
 nav {
 	@include xy-cell(1 of 4);
+
 	padding: 1em;
 	margin-left: 0;
 	background-color: $docs-nav-bg-color;
@@ -154,16 +164,22 @@ nav {
 
 main {
 	@include xy-cell(3 of 4);
+
 	max-width: 60em;
 	min-height: calc(100vh - 7em);
 	padding: 3em 1em 1em;
 	margin: 0 auto;
 
-	h1, h2, h3, h4, h5, h6 {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
 		position: relative;
 
 		&::before {
-			content: '';
+			content: "";
 			position: absolute;
 			top: 0;
 			left: -2rem;
@@ -187,11 +203,11 @@ main {
 	}
 
 	.external::after {
-		content: '⇗';
+		content: "⇗";
 		position: relative;
-		top: .1em;
+		top: 0.1em;
 		vertical-align: top;
-		margin: 0 .2em;
+		margin: 0 0.2em;
 		font-size: $docs-main-external-size;
 	}
 
@@ -200,11 +216,11 @@ main {
 		margin: 3em 0 0;
 
 		&::before {
-			content: '[ ';
+			content: "[ ";
 		}
 
 		&::after {
-			content: ' ]';
+			content: " ]";
 		}
 	}
 
@@ -218,7 +234,7 @@ main {
 }
 
 footer {
-	padding: .5em 1em 1em;
+	padding: 0.5em 1em 1em;
 	color: $docs-footer-text-color;
 	text-align: center;
 
@@ -237,19 +253,20 @@ footer {
 		}
 
 		.adjective {
-			margin: 0 .2em;
+			margin: 0 0.2em;
 			color: $docs-footer-link-color;
 		}
 
 		a::before {
 			@include docs-image-styles(valtech, $docs-footer-link-color);
-			content: '';
+
+			content: "";
 			position: relative;
-			top: .4em;
+			top: 0.4em;
 			display: inline-block;
 			width: 1.5em;
 			height: 1.5em;
-			margin: 0 .4em 0 .6em;
+			margin: 0 0.4em 0 0.6em;
 			background-color: $docs-footer-text-color;
 		}
 	}

@@ -3,8 +3,8 @@
 /// @group @absolunet/nwayo-toolbox
 ////
 
-@use 'sass:map';
-@use 'sass:string';
+@use "sass:map";
+@use "sass:string";
 
 /// Background image via a component asset.
 ///
@@ -53,31 +53,35 @@
 ///   @include nwayo-bg-image-styles("ipsum.svg", "lorem", $inline:true, $color:(#888888: #abcdef));
 ///   // background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%3E%3Cpath d='xyz' fill='#c0ffee'/%3E%3Cpath d='xyz' fill='#ba0bab'/%3E%3Cpath d='xyz' fill='#abcdef'/%3E%3C/svg%3E");
 ///
-@mixin nwayo-bg-image-styles($file, $component, $inline:false, $color:false) {
-
+@mixin nwayo-bg-image-styles($file, $component, $inline: false, $color: false) {
 	// URI
-	$uri: '';
-	@if $inline {
-		$inline-image-path: nwayo-assets-path($file, $component, 'inline');
+	$uri: "";
 
-		@if string.index($file, '.svg') {
-			$uri: nwayopostcss-svg-image($inline-image-path, nwayo-serialize($nwayo-svg-replacement-colors), nwayo-serialize($color));
+	@if $inline {
+		$inline-image-path: nwayo-assets-path($file, $component, "inline");
+
+		@if string.index($file, ".svg") {
+			$uri: nwayopostcss-svg-image(
+				$inline-image-path,
+				nwayo-serialize($nwayo-svg-replacement-colors),
+				nwayo-serialize($color)
+			);
 		} @else {
 			$uri: nwayopostcss-base64-image($inline-image-path);
 		}
-
 	} @else {
 		$path: nwayo-build-path($file, $component, images);
-		$url:  nwayo-assets-path($file, $component, images);
+		$url: nwayo-assets-path($file, $component, images);
 
 		// High density
-		@if string.index($file, '@2x') {
-			@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {  // stylelint-disable-line -- Has to be this way
+		@if string.index($file, "@2x") {
+			// stylelint-disable-next-line -- Has to be this way
+			@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
 				background-image: nwayopostcss-url-image($url, $path);
 			}
 
-			$path: nwayo-str-replace($path, '@2x', '');
-			$url:  nwayo-str-replace($url, '@2x', '');
+			$path: nwayo-str-replace($path, "@2x", "");
+			$url: nwayo-str-replace($url, "@2x", "");
 		}
 
 		$uri: nwayopostcss-url-image($url, $path);
@@ -102,8 +106,9 @@
 ///   @include nwayo-scalable-icon-styles("ipsum.svg", "lorem", $color:(#ff0000, #0000ff));
 ///   @include nwayo-scalable-icon-styles("ipsum.svg", "lorem", $color:(#888888: #abcdef));
 ///
-@mixin nwayo-scalable-icon-styles($file, $component, $color:false) {
-	@include nwayo-bg-image-styles($file, $component, $inline:true, $color:$color);
+@mixin nwayo-scalable-icon-styles($file, $component, $color: false) {
+	@include nwayo-bg-image-styles($file, $component, $inline: true, $color: $color);
+
 	background-position: center center;
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -132,8 +137,8 @@
 ///   @include lorem-ipsum(hover);
 ///   @include lorem-ipsum(active);
 ///
-@mixin nwayo-scalable-icon-colored-states-styles($file, $component, $state:default, $states:()) {
-	@include nwayo-scalable-icon-styles($file, $component, $color:map.get($states, $state));
+@mixin nwayo-scalable-icon-colored-states-styles($file, $component, $state: default, $states: ()) {
+	@include nwayo-scalable-icon-styles($file, $component, $color: map.get($states, $state));
 }
 
 /// WOFF (WOFF2 if file exists) @font-face declaration via component assets.
@@ -155,9 +160,9 @@
 ///   @include nwayo-load-font-styles("Open Sans", "opensans-bold-webfont", "lorem", $weight:700);
 ///   @include nwayo-load-font-styles("Open Sans", "opensans-bolditalic-webfont", "lorem", $weight:700, $style:italic);
 ///
-@mixin nwayo-load-font-styles($name, $filename, $component, $weight:normal, $style:normal) {
-	$path: nwayo-build-path($filename, $component, 'fonts');
-	$url:  nwayo-assets-path($filename, $component, 'fonts');
+@mixin nwayo-load-font-styles($name, $filename, $component, $weight: normal, $style: normal) {
+	$path: nwayo-build-path($filename, $component, "fonts");
+	$url: nwayo-assets-path($filename, $component, "fonts");
 
 	@font-face {
 		font-family: $name;

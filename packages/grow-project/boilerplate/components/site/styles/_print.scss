@@ -18,7 +18,6 @@ $site-print-color: konstan-get('color.black');
 	}
 
 	//-- Reset what hasn't been redefined
-	// stylelint-disable selector-max-universal -- Exception for print overwrite
 	* {
 		position: static !important;
 		overflow: visible !important;
@@ -33,6 +32,5 @@ $site-print-color: konstan-get('color.black');
 		&::before, &::after {
 			display: none !important;
 		}
-		// stylelint-enable selector-max-universal
 	}
 }

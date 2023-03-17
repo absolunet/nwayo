@@ -3,7 +3,7 @@
 /// @group @absolunet/nwayo-toolbox
 ////
 
-@use 'sass:math';
+@use "sass:math";
 
 /// Prepare a ::before/::after pseudo-element to be used with a background image.
 ///
@@ -11,8 +11,8 @@
 /// @param {Number} $height [$width] - Height.
 /// @outputs Empty content, width and height.
 ///
-@mixin nwayo-pseudo-image-styles($width, $height:$width) {
-	content: '';
+@mixin nwayo-pseudo-image-styles($width, $height: $width) {
+	content: "";
 	width: $width;
 	height: $height;
 }
@@ -23,7 +23,7 @@
 /// @param {Number} $height [$width] - Height.
 /// @outputs Replaced width/height with padding that overflows the content outside the visible container.
 ///
-@mixin nwayo-textreplace-image-styles($width, $height:$width) {
+@mixin nwayo-textreplace-image-styles($width, $height: $width) {
 	overflow: hidden;
 	width: 0;
 	height: 0;
@@ -36,8 +36,9 @@
 /// @outputs Ye Olde Clearfix.
 ///
 @mixin nwayo-clearfix-styles() {
-	&::before, &::after {
-		content: '';
+	&::before,
+	&::after {
+		content: "";
 		display: table;
 	}
 
@@ -54,11 +55,11 @@
 	position: absolute;
 	overflow: hidden;
 	clip: rect(0, 0, 0, 0);
-	width: rem-calc(1);  // stylelint-disable-line declaration-property-value-disallowed-list -- Has to be static
-	height: rem-calc(1);  // stylelint-disable-line declaration-property-value-disallowed-list -- Has to be static
+	width: rem-calc(1); // stylelint-disable-line declaration-property-value-disallowed-list -- Has to be static
+	height: rem-calc(1); // stylelint-disable-line declaration-property-value-disallowed-list -- Has to be static
 	padding: 0;
 	border: 0;
-	margin: rem-calc(-1);  // stylelint-disable-line declaration-property-value-disallowed-list -- Has to be static
+	margin: rem-calc(-1); // stylelint-disable-line declaration-property-value-disallowed-list -- Has to be static
 }
 
 /// Make an element scalable within a ratio.
@@ -68,7 +69,7 @@
 /// @param {String} $subselector [.scaling-block-content] - Subelement selector.
 /// @outputs Scalable element that requires a subelement accessible via $subselector.
 ///
-@mixin nwayo-scaling-block-styles($width: 2, $height:1, $subselector:'.scaling-block-content') {
+@mixin nwayo-scaling-block-styles($width: 2, $height: 1, $subselector: ".scaling-block-content") {
 	position: relative;
 	display: block;
 	height: 0;
@@ -76,10 +77,7 @@
 
 	#{$subselector} {
 		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
+		inset: 0;
 	}
 }
 
@@ -88,11 +86,11 @@
 /// @param {String} $subselector [.valign-child] - Subelement selector.
 /// @outputs A container which vertically centers a subelement accessible via $subselector.
 ///
-@mixin nwayo-valign-parent-styles($subselector:'.valign-child') {
-	font-size: 0;  // stylelint-disable-line scale-unlimited/declaration-strict-value -- Hack
+@mixin nwayo-valign-parent-styles($subselector: ".valign-child") {
+	font-size: 0; // stylelint-disable-line scale-unlimited/declaration-strict-value -- Hack
 
 	&::before {
-		content: '';
+		content: "";
 		display: inline-block;
 		vertical-align: middle;
 		height: 100%;
@@ -139,12 +137,12 @@
 /// @content Placeholder styles.
 /// @outputs Styled placeholders.
 ///
-@mixin nwayo-placeholder-styles($selector:'.placeholder') {
-	#{'select' + $selector} {
+@mixin nwayo-placeholder-styles($selector: ".placeholder") {
+	#{"select" + $selector} {
 		@content;
 	}
 
-	#{'input' + $selector} {
+	#{"input" + $selector} {
 		@content;
 	}
 
@@ -192,7 +190,7 @@
 /// @param {Color} $color - Color.
 /// @outputs Pseudo-arrow.
 ///
-@mixin nwayo-arrow-styles($direction:right, $size:.625em, $color) {
+@mixin nwayo-arrow-styles($direction: right, $size: 0.625em, $color) {
 	display: inline-block;
 	border: 0;
 
@@ -206,7 +204,6 @@
 		} @else {
 			border-top: $size solid $color;
 		}
-
 	} @else if $direction == left or $direction == right {
 		width: $size;
 		border-top: $size solid transparent;
@@ -232,18 +229,26 @@
 /// @param {Boolean} $base-style [true] - Wether or not to output base styles.
 /// @outputs Columned list.
 ///
-@mixin nwayo-column-list-styles($subselector:'> li', $nb-column:2, $bullet-spacing:1.0625em, $column-spacing:1.875em, $row-spacing:.625em, $base-style:true) {
-
+@mixin nwayo-column-list-styles(
+	$subselector: "> li",
+	$nb-column: 2,
+	$bullet-spacing: 1.0625em,
+	$column-spacing: 1.875em,
+	$row-spacing: 0.625em,
+	$base-style: true
+) {
 	// Calculate a column offset : $column-spacing * ($column - 1) + $bullet-spacing * $column
 	$total-spacing: $column-spacing * ($nb-column - 1) + $bullet-spacing * $nb-column;
 
 	@if $base-style {
 		padding-left: 0;
 	}
+
 	padding-right: $total-spacing;
 
 	@if $base-style {
 		@include nwayo-clearfix-styles();
+
 		box-sizing: border-box;
 	}
 
@@ -252,6 +257,7 @@
 			position: relative;
 			float: left;
 		}
+
 		width: math.percentage(math.div(1, $nb-column));
 
 		// Reset styles for media query usage
@@ -262,12 +268,12 @@
 		}
 
 		// Remove margin from first row
-		&:nth-of-type(-n+#{$nb-column}) {
+		&:nth-of-type(-n + #{$nb-column}) {
 			margin-top: 0;
 		}
 
 		// Clear rows
-		&:nth-of-type(#{$nb-column}n+1) {
+		&:nth-of-type(#{$nb-column}n + 1) {
 			clear: both;
 		}
 

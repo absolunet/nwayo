@@ -96,7 +96,7 @@
     "vinyl": "^2.2.1"
   },
   "peerDependencies": {
-    "@valtech-commerce/eslint-config": ">=4.0.0-rc.3",
-    "@valtech-commerce/stylelint-config": ">=3.2.0"
+    "@valtech-commerce/eslint-config": ">=4.0.0",
+    "@valtech-commerce/stylelint-config": ">=4.0.0"
   }
 }

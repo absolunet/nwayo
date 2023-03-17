@@ -1,27 +1,25 @@
-//-------------------------------------
-//-- Docs - Main
-//-------------------------------------
+// -------------------------------------
+// -- Docs - Main
+// -------------------------------------
 
 // stylelint-disable no-invalid-position-at-import-rule -- Exception
 
+// -- Get nwayo toolbox
+@import "../../packages/toolbox/styles/config";
 
-//-- Get nwayo toolbox
-@import '../../packages/toolbox/styles/config';
+// -- Get doc config
+@import "styles/config";
 
-//-- Get doc config
-@import 'styles/config';
-
-//-- Get Foundation
-@import 'node_modules/foundation-sites/scss/util/util';
-@import '../../packages/grow-project/boilerplate/components/foundation/styles/config/functions';
-@import 'styles/foundation-settings';
-@import 'node_modules/foundation-sites/scss/foundation';
-
+// -- Get Foundation
+@import "node_modules/foundation-sites/scss/util/util";
+@import "../../packages/grow-project/boilerplate/components/foundation/styles/config/functions";
+@import "styles/foundation-settings";
+@import "node_modules/foundation-sites/scss/foundation";
 @include foundation-global-styles();
 @include foundation-typography();
 
-//-- Prism
-@import 'styles/vendor/prism-xonokai';
+// -- Prism
+@import "styles/vendor/prism-xonokai";
 
-//-- Go to town
-@import 'styles/base';
+// -- Go to town
+@import "styles/base";

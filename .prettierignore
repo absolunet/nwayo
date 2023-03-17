@@ -2,6 +2,7 @@
 !*.js
 !*.cjs
 !*.mjs
+!*.scss
 
 docs
 packages/grow-extension/boilerplate

@@ -35,7 +35,7 @@
   "devDependencies": {
     "@absolunet/manager": "1.1.0",
     "@absolunet/tester": "2.6.11",
-    "@valtech-commerce/eslint-config": "^4.0.0-rc.3"
+    "@valtech-commerce/eslint-config": "^4.0.0"
   },
   "dependencies": {
     "@valtech-commerce/fs": "^1.7.0"

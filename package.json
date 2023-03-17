@@ -2,31 +2,32 @@
   "name": "nwayo",
   "private": true,
   "scripts": {
+    "test": "npm run lint",
     "fix": "npm run fix:eslint; npm run fix:stylelint; npm run fix:prettier",
     "fix:eslint": "eslint --fix .",
     "fix:stylelint": "stylelint --fix \"**/*.scss\"",
     "fix:prettier": "prettier --write .",
-    "test": "npm run test:prettier && npm run test:eslint && npm run test:stylelint",
-    "test:prettier": "prettier --check .",
-    "test:eslint": "eslint --report-unused-disable-directives .",
-    "test:stylelint": "stylelint --report-descriptionless-disables --report-invalid-scope-disables --report-needless-disables \"**/*.scss\"",
+    "lint": "npm run lint:prettier && npm run lint:eslint && npm run lint:stylelint",
+    "lint:prettier": "prettier --check .",
+    "lint:eslint": "eslint --report-unused-disable-directives .",
+    "lint:stylelint": "stylelint --report-descriptionless-disables --report-invalid-scope-disables --report-needless-disables \"**/*.scss\"",
     "postinstall": "node manager.js --task=postinstall",
     "outdated": "node manager.js --task=outdated",
     "build": "node manager.js --task=build",
     "deploy": "node manager.js --task=deploy",
     "docker:start": "docker-compose up -d",
-    "docker:stop": "docker-compose down && docker image rm nwayo_node-latest nwayo_node-16 nwayo_node-14",
+    "docker:stop": "docker-compose down && docker image rm nwayo_node-latest nwayo_node-18 nwayo_node-16",
     "docker:connect": "docker exec -it nwayo-node-latest /bin/bash",
-    "docker:connect:16": "docker exec -it nwayo-node-16 /bin/bash",
-    "docker:connect:14": "docker exec -it nwayo-node-14 /bin/bash"
+    "docker:connect:18": "docker exec -it nwayo-node-18 /bin/bash",
+    "docker:connect:16": "docker exec -it nwayo-node-16 /bin/bash"
   },
   "devDependencies": {
     "@absolunet/manager": "1.1.0",
     "@babel/preset-react":"^7.18.6",
-    "@valtech-commerce/eslint-config": "^4.0.0-rc.3",
+    "@valtech-commerce/eslint-config": "^4.0.0",
     "@valtech-commerce/fs": "^1.7.0",
-    "@valtech-commerce/prettier-config": "^1.1.0",
-    "@valtech-commerce/stylelint-config": "^3.2.0",
+    "@valtech-commerce/prettier-config": "^1.2.0",
+    "@valtech-commerce/stylelint-config": "^4.0.0",
     "lerna": "^6.5.1"
   }
 }

@@ -4,11 +4,11 @@
 /// @group @absolunet/nwayo-toolbox
 ////
 
-@use 'sass:list';
-@use 'sass:map';
-@use 'sass:math';
-@use 'sass:meta';
-@use 'sass:string';
+@use "sass:list";
+@use "sass:map";
+@use "sass:math";
+@use "sass:meta";
+@use "sass:string";
 
 /// Extract levels of a dot notation path.
 ///
@@ -16,14 +16,14 @@
 /// @returns {List<String>} Levels.
 ///
 @function nwayo-map-deep-split-path($path) {
-	$keys:      ();
-	$separator: '.';
-	$index:     string.index($path, $separator);
+	$keys: ();
+	$separator: ".";
+	$index: string.index($path, $separator);
 
 	@while $index {
-		$item:  string.slice($path, 1, $index - 1);
-		$keys:  list.append($keys, $item);
-		$path:  string.slice($path, $index + 1);
+		$item: string.slice($path, 1, $index - 1);
+		$keys: list.append($keys, $item);
+		$path: string.slice($path, $index + 1);
 		$index: string.index($path, $separator);
 	}
 
@@ -81,11 +81,15 @@
 /// @param {String} $replace [""] - Text to replace the occurences.
 /// @returns {String} Replaced text.
 ///
-@function nwayo-str-replace($subject, $search, $replace: '') {
+@function nwayo-str-replace($subject, $search, $replace: "") {
 	$index: string.index($subject, $search);
+
 	@if $index {
-		@return string.slice($subject, 1, $index - 1) + $replace + nwayo-str-replace(string.slice($subject, $index + string.length($search)), $search, $replace);
+		// stylelint-disable-next-line scss/operator-no-newline-after -- Prettier
+		@return string.slice($subject, 1, $index - 1) + $replace +
+			nwayo-str-replace(string.slice($subject, $index + string.length($search)), $search, $replace);
 	}
+
 	@return $subject;
 }
 
@@ -118,6 +122,7 @@
 	@if list.index($list, $value) {
 		@return true;
 	}
+
 	@return false;
 }
 
@@ -127,25 +132,25 @@
 /// @returns {String} Serialized value.
 ///
 @function nwayo-serialize($value) {
-	$serialized: '';
+	$serialized: "";
 
 	// List
-	@if meta.type-of($value) == 'list' {
-		$serialized: '#{list.join($value, (), $separator: comma)}'
+	@if meta.type-of($value) == "list" {
+		$serialized: "#{list.join($value, (), $separator: comma)}";
 
 		// Map
-	} @else if meta.type-of($value) == 'map' {
+	} @else if meta.type-of($value) == "map" {
 		$list: ();
 
 		@each $key, $item in $value {
-			$list: list.append($list, $key + ':' + $item);
+			$list: list.append($list, $key + ":" + $item);
 		}
 
-		$serialized: '#{list.join($list, (), $separator: comma)}'
+		$serialized: "#{list.join($list, (), $separator: comma)}";
 
 		// Plain
 	} @else {
-		$serialized: '#{$value}';
+		$serialized: "#{$value}";
 	}
 
 	@return $serialized;

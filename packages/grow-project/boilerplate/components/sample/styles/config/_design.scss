@@ -3,7 +3,7 @@
 //-------------------------------------
 
 //-- Colors
-$sample-bg-color:   $common-bg-site-color;
+$sample-bg-color: $common-bg-site-color;
 $sample-text-color: $common-text-var1-color;
 
 
@@ -100,7 +100,6 @@ $sample-text-color: $common-text-var1-color;
 	active:      $common-text-color,
 	active-flip: $common-text-color
 )) {
-
 	@if $state == default or $state == hover {
 		@include nwayo-scalable-icon-colored-states-styles('icon-multi-b.svg', 'sample', $state, $states);
 

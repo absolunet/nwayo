@@ -1,92 +1,79 @@
-//-------------------------------------
-//-- Docs - Configuration
-//-------------------------------------
-@use 'sass:color';
-
-@use '../../node_modules/@valtech-commerce/brand-guidelines/dist/guidelines';
+// -------------------------------------
+// -- Docs - Configuration
+// -------------------------------------
+@use "sass:color";
+@use "../../node_modules/@valtech-commerce/brand-guidelines/dist/guidelines";
 
 // Brand
-$palette-brand-primary: guidelines.get('color.primary.blue');
-$palette-brand-dark:    guidelines.get('color.primary.black');
-$palette-brand-light:   guidelines.get('color.primary.white');
-
-$palette-scale-1: color.adjust(guidelines.get('color.achromatic.gainsboro'), $lightness: 8%);
-$palette-scale-2: color.adjust(guidelines.get('color.achromatic.light-gray'), $lightness: 8%);
-$palette-scale-3: color.adjust(guidelines.get('color.achromatic.silver'), $lightness: 8%);
+$palette-brand-primary: guidelines.get("color.primary.blue");
+$palette-brand-dark: guidelines.get("color.primary.black");
+$palette-brand-light: guidelines.get("color.primary.white");
+$palette-scale-1: color.adjust(guidelines.get("color.achromatic.gainsboro"), $lightness: 8%);
+$palette-scale-2: color.adjust(guidelines.get("color.achromatic.light-gray"), $lightness: 8%);
+$palette-scale-3: color.adjust(guidelines.get("color.achromatic.silver"), $lightness: 8%);
 
 // Vendor
-$vendor-github-color:     #0366d6;
+$vendor-github-color: #0366d6;
 $vendor-github-alt-color: #24292e;
 
 // Breakpoints
-$docs-bp-small:   600;
-$docs-bp-medium:  900;
-$docs-bp-large:  1200;
+$docs-bp-small: 600;
+$docs-bp-medium: 900;
+$docs-bp-large: 1200;
 $docs-bp-xlarge: 1500;
 
 // Transition
 $docs-transition: 100ms;
-
-$docs-text-font:      #{guidelines.get('font.safe')};
-$docs-title-font:     #{guidelines.get('font.safe')};
-$docs-monospace-font: #{guidelines.get('font.code')};
-
-
-
-
-
-
-$docs-text-color:       $palette-brand-dark;
-$docs-link-color:       $palette-brand-primary;
+$docs-text-font: #{guidelines.get("font.safe")};
+$docs-title-font: #{guidelines.get("font.safe")};
+$docs-monospace-font: #{guidelines.get("font.code")};
+$docs-text-color: $palette-brand-dark;
+$docs-link-color: $palette-brand-primary;
 $docs-link-hover-color: $palette-brand-primary;
-$docs-title-weight:     $nwayo-bold-weight;
+$docs-title-weight: $nwayo-bold-weight;
 
-//-- Code
+// -- Code
 $docs-code-bg-color: $palette-scale-2;
-$docs-code-size:     .9em;
-$docs-code-radius:   .2em;
+$docs-code-size: 0.9em;
+$docs-code-radius: 0.2em;
 
-
-//-- Table
-$docs-table-border:          1px $palette-scale-3 solid;  // stylelint-disable-line unit-allowed-list -- Thin line
-$docs-table-header-color:    $palette-scale-3;
+// -- Table
+$docs-table-border: 1px $palette-scale-3 solid; // stylelint-disable-line unit-allowed-list -- Thin line
+$docs-table-header-color: $palette-scale-3;
 $docs-table-alternate-color: $palette-scale-1;
 
-
-//-- Header
-$docs-header-bg-color:      $palette-scale-1;
-$docs-header-name-color:    $palette-brand-dark;
+// -- Header
+$docs-header-bg-color: $palette-scale-1;
+$docs-header-name-color: $palette-brand-dark;
 $docs-header-version-color: $palette-brand-dark;
-$docs-header-name-size:     1.25em;
-$docs-header-version-size:  .9em;
+$docs-header-name-size: 1.25em;
+$docs-header-version-size: 0.9em;
 
-//-- Nav
-$docs-nav-bg-color:      $palette-scale-2;
-$docs-nav-link-color:    $palette-brand-primary;
+// -- Nav
+$docs-nav-bg-color: $palette-scale-2;
+$docs-nav-link-color: $palette-brand-primary;
 $docs-nav-current-color: $palette-brand-dark;
 $docs-nav-active-weight: $nwayo-black-weight;
 
-//-- Main
-$docs-main-bg-color:      $palette-brand-light;
-$docs-main-anchor-color:  $palette-scale-3;
-$docs-main-anchor-size:   1.2rem;
-$docs-main-external-size: .8rem;
+// -- Main
+$docs-main-bg-color: $palette-brand-light;
+$docs-main-anchor-color: $palette-scale-3;
+$docs-main-anchor-size: 1.2rem;
+$docs-main-external-size: 0.8rem;
 
-//-- Footer
-$docs-footer-bg-color:   $palette-brand-dark;
+// -- Footer
+$docs-footer-bg-color: $palette-brand-dark;
 $docs-footer-text-color: $palette-brand-light;
 $docs-footer-link-color: $palette-brand-primary;
 
-
-
-
-
-
-//-- Footer
+// -- Footer
 $docs-header-zindex: 1;
 
-
-//-- Image
+// -- Image
 @mixin docs-image-styles($file, $color) {
-	background-image: docspostcss-svg-image('./assets/images/' + $file + '.svg', nwayo-serialize($nwayo-svg-replacement-1-color), nwayo-serialize($color));
+	background-image: docspostcss-svg-image(
+		"./assets/images/" + $file + ".svg",
+		nwayo-serialize($nwayo-svg-replacement-1-color),
+		nwayo-serialize($color)
+	);
 }

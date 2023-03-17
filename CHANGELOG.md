@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Internalize `@absolunet/gulp-include`
+- Update ESLint / stylelint configurations
 - Maintenance updates
 
 ### Removed

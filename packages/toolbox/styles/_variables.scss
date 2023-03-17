@@ -7,8 +7,6 @@
 /// @type Number
 $nwayo-basic-size: 16;
 
-
-
 /// First replacement color for SVG in nwayo-bg-image-styles.
 /// @type Color
 $nwayo-svg-replacement-1-color: #ba0bab;
@@ -22,8 +20,6 @@ $nwayo-svg-replacement-2-color: #c0ffee;
 /// @requires {Color} $nwayo-svg-replacement-2-color
 /// @type List<Color>
 $nwayo-svg-replacement-colors: ($nwayo-svg-replacement-1-color, $nwayo-svg-replacement-2-color);
-
-
 
 // Social network colors.
 /// @type Map<String,Color>
@@ -39,34 +35,30 @@ $nwayo-svg-replacement-colors: ($nwayo-svg-replacement-1-color, $nwayo-svg-repla
 /// @prop {Color} snapchat - Snapchat. (https://snap.com/en-US/brand-guidelines)
 /// @prop {Color} tiktok - TikTok. (https://www.tiktok.com/en)
 $nwayo-social-colors: (
-	'facebook': #1877f2,
-	'messenger': #000000,
-	'pinterest': #d6001c,
-	'twitter': #1d9bf0,
-	'instagram': #bc2a8d,
-	'youtube': #ff0000,
-	'vimeo': #1ab7ea,
-	'linkedin': #0077b5,
-	'whatsapp': #25d366,
-	'snapchat': #fffc00,
-	'tiktok': #000000
+	"facebook": #1877f2,
+	"messenger": #000000,
+	"pinterest": #d6001c,
+	"twitter": #1d9bf0,
+	"instagram": #bc2a8d,
+	"youtube": #ff0000,
+	"vimeo": #1ab7ea,
+	"linkedin": #0077b5,
+	"whatsapp": #25d366,
+	"snapchat": #fffc00,
+	"tiktok": #000000,
 );
-
-
 
 /// Default sans-serif fonts fallback.
 /// @type String
-$nwayo-sansserif-font: Helvetica, Arial, Verdana, sans-serif;  // stylelint-disable-line value-keyword-case -- Font exception
+$nwayo-sansserif-font: Helvetica, Arial, Verdana, sans-serif; // stylelint-disable-line value-keyword-case -- Font exception
 
 /// Default serif fonts fallback.
 /// @type String
-$nwayo-serif-font: 'Times New Roman', Times, serif;  // stylelint-disable-line value-keyword-case -- Font exception
+$nwayo-serif-font: "Times New Roman", Times, serif; // stylelint-disable-line value-keyword-case -- Font exception
 
 /// Default monospace fonts fallback.
 /// @type String
-$nwayo-monospace-font: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', Courier, monospace;  // stylelint-disable-line value-keyword-case -- Font exception
-
-
+$nwayo-monospace-font: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", Courier, monospace; // stylelint-disable-line value-keyword-case -- Font exception
 
 /// Thin / Hairline font weight.
 /// @type Number
@@ -108,27 +100,21 @@ $nwayo-black-weight: 900;
 /// @type Number
 $nwayo-extrablack-weight: 950;
 
-
-
 /// "•" character.
 /// @type String
-$nwayo-bull-char: '\2022';
+$nwayo-bull-char: "\2022";
 
 /// "×" character.
 /// @type String
-$nwayo-times-char:  '\00D7';
+$nwayo-times-char: "\00D7";
 
 /// "–" character.
 /// @type String
-$nwayo-endash-char: '\2013';
-
-
+$nwayo-endash-char: "\2013";
 
 /// All text-like inputs.
 /// @type String
 $nwayo-textfields-selector: 'input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], input[type="date"], input[type="number"]';
-
-
 
 /// :hover selector active only on non-touch devices according to What Input?.
 /// @type String
@@ -136,9 +122,7 @@ $nwayo-hover-selector: 'html:not([data-whatintent="touch"]) &:hover';
 
 /// Body selector active only after document has loaded.
 /// @type String
-$nwayo-docloaded-selector: 'body.document-loaded';
-
-
+$nwayo-docloaded-selector: "body.document-loaded";
 
 /// Pleasant red for debugging.
 /// @type Color

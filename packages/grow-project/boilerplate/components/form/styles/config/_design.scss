@@ -3,13 +3,12 @@
 //-------------------------------------
 @use 'sass:color';
 
-$form-input-bg-color:          $common-bg-color;
-$form-input-border-color:      $common-border-color;
-$form-input-text-color:        $common-text-color;
+$form-input-bg-color: $common-bg-color;
+$form-input-border-color: $common-border-color;
+$form-input-text-color: $common-text-color;
 $form-input-placeholder-color: color.adjust($common-text-color, $lightness: 50%);
-$form-error-text-color:        $common-error-text-color;
-
-$form-input-text-font:         $common-text-font;
-$form-input-text-size:         $common-text-base-size;
-$form-input-lineheight:        $common-text-lineheight;
+$form-error-text-color: $common-error-text-color;
+$form-input-text-font: $common-text-font;
+$form-input-text-size: $common-text-base-size;
+$form-input-lineheight: $common-text-lineheight;
 
