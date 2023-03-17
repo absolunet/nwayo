@@ -27,16 +27,17 @@
   "bin": {
     "nwayo-cli": "./bin/nwayo-cli.js"
   },
-  "main": "index.js",
   "exports": {
+    ".": "./index.js",
     "./cli": "./cli/index.js",
     "./eslint-config": "./config/eslint.cjs",
     "./eslint-config/no-prettier": "./config/eslint-no-prettier.cjs",
-    "./stylelint-config": "./config/stylelint.cjs"
+    "./stylelint-config": "./config/stylelint.cjs",
+    "./stylelint-config/no-prettier": "./config/stylelint-no-prettier.cjs"
   },
   "dependencies": {
     "@absolunet/cli": "^0.9.1",
-    "@babel/core": "^7.21.0",
+    "@babel/core": "^7.21.3",
     "@babel/preset-env": "^7.20.2",
     "@ronilaukkarinen/gulp-stylelint": "^14.1.1",
     "@valtech-commerce/fs": "^1.7.0",
@@ -45,11 +46,11 @@
     "autoprefixer": "^10.4.14",
     "boxen": "^5.1.2",
     "chalk": "^4.1.2",
-    "core-js-builder": "^3.29.0",
+    "core-js-builder": "^3.29.1",
     "cssnano": "^5.1.15",
     "event-stream": "^4.0.1",
     "fancy-log": "^2.0.0",
-    "glob": "^9.2.1",
+    "glob": "^9.3.0",
     "glob-all": "^3.3.1",
     "gulp": "^4.0.2",
     "gulp-cached": "^1.1.1",
@@ -86,7 +87,7 @@
     "pretty-bytes": "^5.6.0",
     "regenerator-runtime": "^0.13.11",
     "require-dir": "^1.2.0",
-    "sass": "^1.59.0",
+    "sass": "^1.59.3",
     "semver": "^7.3.8",
     "slash": "^3.0.0",
     "through2": "^4.0.2",
@@ -96,13 +97,6 @@
   },
   "peerDependencies": {
     "@valtech-commerce/eslint-config": ">=4.0.0-rc.3",
-    "@valtech-commerce/stylelint-config": ">=3.2.0",
-    "eslint": ">=8.36.0",
-    "eslint-plugin-unicorn": ">=45.0.2",
-    "postcss-scss": ">=4.0.6",
-    "stylelint": ">=14.16.1",
-    "stylelint-declaration-strict-value": ">=1.9.2",
-    "stylelint-order": ">=5.0.0",
-    "stylelint-scss": ">=4.4.0"
+    "@valtech-commerce/stylelint-config": ">=3.2.0"
   }
 }

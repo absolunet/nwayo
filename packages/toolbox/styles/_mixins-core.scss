@@ -3,6 +3,7 @@
 /// @group @absolunet/nwayo-toolbox
 ////
 
+@use 'sass:map';
 @use 'sass:string';
 
 /// Background image via a component asset.
@@ -92,7 +93,7 @@
 ///
 /// @param {String} $file - Filename.
 /// @param {String} $component - Component name.
-/// @param {Color | List<Color> | Map<Color,Color>} $color - Remplacement colors.
+/// @param {Color | List<Color> | Map<Color,Color>} $color [false] - Remplacement colors.
 /// @outputs Background image properties that stick its dimensions to the HTML element.
 ///
 /// @example scss
@@ -101,7 +102,7 @@
 ///   @include nwayo-scalable-icon-styles("ipsum.svg", "lorem", $color:(#ff0000, #0000ff));
 ///   @include nwayo-scalable-icon-styles("ipsum.svg", "lorem", $color:(#888888: #abcdef));
 ///
-@mixin nwayo-scalable-icon-styles($file, $component, $color) {
+@mixin nwayo-scalable-icon-styles($file, $component, $color:false) {
 	@include nwayo-bg-image-styles($file, $component, $inline:true, $color:$color);
 	background-position: center center;
 	background-size: contain;
